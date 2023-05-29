@@ -26,6 +26,7 @@
 			<img alt="" src="./static/images/common/Asset1.png">
 			<img alt="" src="./static/images/common/Asset1.png">
 			<img alt="" src="./static/images/common/Asset1.png">
+			commit 테스트
 		</div>	
 	</body>
 	
