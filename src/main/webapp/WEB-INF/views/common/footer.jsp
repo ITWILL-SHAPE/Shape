@@ -14,7 +14,7 @@
 						</ul>						
 					</div>
 					<p class="company">회사명: (주) 8월</p>
-					<p class="creator">만든이: 김세이 김지민 남지현 배선영 손창빈 우수빈 정지언 하지윤</p>
+					<p class="creator">만든이: 김세이 김지민 남지현 배선영 손창민 우수빈 정지언 하지윤</p>
 				</div>
 			</footer>
 		</div>
