@@ -32,8 +32,6 @@
 			테스트
 			
 			branch 테스트 1
-			
-			xptmxm
 		</div>	
 	</body>
 	
