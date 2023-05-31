@@ -16,6 +16,12 @@
     	<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
     	<property name="username" value="scott"/>
     	<property name="password" value="tiger"/>
+    	
+    	<!-- 새로운 DB 연결 계정 -->
+    	<!--
+    	<property name="username" value="SHAPE"/>
+    	<property name="password" value="shape"/>
+    	-->
     </bean>
     
     <!-- HikariDataSource dataSource = new HikariDataSource(hikariConfig); -->
