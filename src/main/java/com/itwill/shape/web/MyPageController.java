@@ -1,10 +1,5 @@
 package com.itwill.shape.web;
 
-<<<<<<< HEAD
-public class MyPageController {
-
-}
-=======
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -87,4 +82,3 @@ public class MyPageController {
 	}
 	
 }
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
