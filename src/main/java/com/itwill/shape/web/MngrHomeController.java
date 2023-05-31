@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequestMapping("/mngr")
 @Controller
-public class HomeController {
+public class MngrHomeController {
 	
 	/**
-	 * 사용자 home page
+	 * 관리자 main page 
 	 * @return
 	 */
-	@GetMapping("/")
-	public String home() {
-		log.info("home()");
+	@GetMapping({"/", ""})
+	public String mngr() {
+		log.info("mngr()");
 		
-		return "main";
+ 		return "/mngr/home";
 	}
 	
 	
