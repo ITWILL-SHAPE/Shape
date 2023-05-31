@@ -81,4 +81,8 @@ public class MyPageController {
 		return "/mypage/board/mycomments";
 	}
 	
+	@GetMapping("/asdf")
+	public String asdf() {
+		return "/mypage/memberinfo/asdf";
+	}
 }

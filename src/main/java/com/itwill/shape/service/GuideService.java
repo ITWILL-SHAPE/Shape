@@ -8,7 +8,7 @@ import com.itwill.shape.repository.GuideRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Service// -> 스프링 컨테이너에서 서비스 컴포넌트 객체를 생성하고 관리(필요한 곳에 주입).
+@Service					// -> 스프링 컨테이너에서 서비스 컴포넌트 객체를 생성하고 관리(필요한 곳에 주입).
 @RequiredArgsConstructor	// GuideRepository를 가지는 생성자를 만들어줌.
 @Slf4j
 public class GuideService {
