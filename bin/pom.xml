@@ -143,6 +143,8 @@
 			<version>2.15.1</version>
 		</dependency>
 	</dependencies>
+	
+	
 	<!-- 프로젝트 빌드 플러그인 설정 -->
 	<build>
 		<plugins>
