@@ -9,7 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class MyPageController {
 
-	// 마이페이지 - 회원정보 - 나의 프로필
+
+	
+	// 마이페이지 - 회원정보 - 나의 프로필 /WEB-INF/views/memberinfo/myprofile.jsp
+
 	@GetMapping("/myprofile")
 	public String myProfile() {
 		log.info("myprofile()");

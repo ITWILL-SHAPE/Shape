@@ -65,7 +65,7 @@
 						<li class="profile">
 							<a href=""><i class="bi bi-person after-login"></i></a>
 							<ul class="sub_menu">
-								<li><a href="">마이페이지</a></li>
+								<li><a href="/shape/myprofile">마이페이지</a></li>
 								<li><a href="">로그아웃</a></li>
 							</ul>
 						</li>
