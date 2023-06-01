@@ -1,5 +1,5 @@
 package com.itwill.shape.repository;
-
+// 지현 큐앤에이
 import java.util.List;
 
 import com.itwill.shape.domain.InfoQnA;

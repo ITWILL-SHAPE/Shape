@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
+import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.UserInfoService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 @Slf4j // 로그
 @RequiredArgsConstructor // 생성자에 의한 의존성 주입
 @Controller
@@ -25,7 +25,6 @@ public class MyPageController {
 
 	private final PostCommentService postCommentsService;
 	private final UserInfoService userInfoService;
-	
 	// 마이페이지 > 회원정보 > 나의 프로필
 
 	@GetMapping("/myprofile")
@@ -34,7 +33,6 @@ public class MyPageController {
 		log.info("id={}", id);
 		
 		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
-		
 		model.addAttribute("myPageUserInfo", dto);
 		 return "/mypage/memberinfo/myprofile";
 	}

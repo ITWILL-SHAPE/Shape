@@ -14,5 +14,7 @@ public interface UserInfoRepository {
 	 * @return 0 or 1
 	 */
 	int insertAdmin(UserInfo user);
+	
+	
 	UserInfo selectById(String id);
 }

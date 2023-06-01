@@ -39,7 +39,8 @@ public class UserInfoService {
 	 * @return
 	 */
 	public UserInfoSelectByIdDto selectById(String id) {
-		System.out.println("service");
+		log.info("selectById()");
+		log.info("id={}", id);
 		UserInfo entity = userInfoRepository.selectById(id);
 		
 		UserInfoSelectByIdDto dto = UserInfoSelectByIdDto.fromEntity(entity);
