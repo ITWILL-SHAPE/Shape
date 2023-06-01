@@ -1,5 +1,5 @@
 package com.itwill.shape.domain;
-
+// 지현 qna 모델
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;

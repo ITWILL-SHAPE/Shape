@@ -1,5 +1,5 @@
 package com.itwill.shape.web;
-
+// 지현 큐앤에이 관리
 import java.util.List;
 
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ public class InfoQnAMngrController {
 	 * @param qid
 	 * @param model
 	 */
-	@GetMapping("/list")
+	@GetMapping("/qna")
 	public void list(Model model) {
 		log.info("list()");
 		

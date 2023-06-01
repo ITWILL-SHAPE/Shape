@@ -1,5 +1,5 @@
 package com.itwill.shape.dto;
-//사용자, 관리자
+//지현 큐앤에이 사용자, 관리자 목록 호출
 import java.sql.Timestamp;
 
 import com.itwill.shape.domain.InfoQnA;

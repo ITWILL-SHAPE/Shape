@@ -1,5 +1,5 @@
 package com.itwill.shape.web;
-
+// 지현 큐앤에이 사용자
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/qna")
+@RequestMapping("/info")
 @Controller
 public class InfoQnAController {
 	
@@ -29,6 +29,7 @@ public class InfoQnAController {
 	 * @param qid
 	 * @param model
 	 */
+	@GetMapping("/qna")
 	public void list(Model model) {
 		log.info("list()");
 		
