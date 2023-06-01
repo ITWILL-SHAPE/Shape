@@ -26,7 +26,7 @@ public class InfoFaQController {
 	public void faq(Model model) {
 		log.info("faq()");
 		List<InfoFaQDto> list = infoFaQService.read();
-		
+		System.out.println(list);
 		// view에 보여줄 데이터를 Model에 저장.
 		model.addAttribute("faq", list);
 	}
