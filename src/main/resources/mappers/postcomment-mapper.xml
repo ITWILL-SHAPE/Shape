@@ -13,10 +13,11 @@
 	: 해당 쿼리 작성 후 무슨 역할을 하는지와 작성자 이름 기재
 -->
 	
-	<insert id="selectById">
+	<select	id="selectById"
+		resultType="com.itwill.shape.domain.PostComment">
 		SELECT *
 		  FROM post_comment
-		 WHERE AUTHOR = ${id}
-	</insert>
+		 WHERE author = ${author}
+	</select>
 
 </mapper>

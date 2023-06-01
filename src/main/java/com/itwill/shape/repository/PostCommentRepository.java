@@ -14,5 +14,5 @@ public interface PostCommentRepository {
 	 * @param id
 	 * @return List<PostCommentSelectByIdDTO>
 	 */
-	List<PostComment> selectById(long id);
+	List<PostComment> selectById(String author);
 }

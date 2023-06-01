@@ -24,11 +24,11 @@ public class PostCommentService {
 	 * @param id
 	 * @return List<PostCommentSelectById> dto
 	 */
-	public List<PostCommentSelectByIdDTO> read(long id) {
+	public List<PostCommentSelectByIdDTO> read(String author) {
 		log.info("read()");
-		log.info("id={}", id);
+		log.info("author={}", author);
 		
-		List<PostComment> entity = postCommentRepository.selectById(id);
+		List<PostComment> entity = postCommentRepository.selectById(author);
 		
 		// PostComment 타입 객체를 PostCommentSelectByUserIdDTO 타입 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectByPostId

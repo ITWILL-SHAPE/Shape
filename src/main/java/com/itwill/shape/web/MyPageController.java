@@ -31,7 +31,7 @@ public class MyPageController {
 	@GetMapping("/myprofile")
 	public String myProfile(String id, Model model) {
 		log.info("myprofile()");
-		log.info("");
+		log.info("id={}", id);
 		
 		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 		
@@ -87,10 +87,20 @@ public class MyPageController {
 		return "/mypage/meet/viewed";
 	}
 	
+	/**
+	 * 손창민
+	 * 내가 작성한 글 불러오기
+	 * @param model
+	 * @param id
+	 * @return "/mypage/board/myposts"
+	 */
 	// 마이페이지 > 게시판 > 내가 작성한 게시물
 	@GetMapping("/myposts")
-	public String myposts() {
+	public String myposts(Model model, String id) {
 		log.info("myposts()");
+		log.info("id={}", id);
+		
+//		List<PostPostSelectByIdDTO> myposts = post
 		
 		return "/mypage/board/myposts";
 	}
@@ -98,10 +108,13 @@ public class MyPageController {
 	/**
 	 * 손창민
 	 * 내가 작성한 댓글 불러오기
+	 * @param model
+	 * @param id
+	 * @return "/mypage/board/mycomments"
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 댓글
 	@GetMapping("/mycomments")
-	public String mycomments(Model model, long id) {
+	public String mycomments(Model model, String id) {
 		log.info("mycomments()");
 		log.info("id={}", id);
 		
