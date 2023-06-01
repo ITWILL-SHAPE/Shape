@@ -9,10 +9,10 @@ import com.itwill.shape.dto.PostCommentSelectByIdDTO;
 public interface PostCommentRepository {
 
 	/**
-	 * 손창민
+	 * 0601 손창민
 	 * Post_Comment Table에서 아규먼트로 넘겨받은 id와 일치하는 댓글 전부 리턴
 	 * @param id
-	 * @return List<PostCommentSelectByIdDTO>
+	 * @return List<PostComment>
 	 */
 	List<PostComment> selectById(String author);
 }

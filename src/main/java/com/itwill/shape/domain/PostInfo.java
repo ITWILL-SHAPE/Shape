@@ -17,12 +17,15 @@ import lombok.ToString;
 @Setter				// setter 메서드들
 @ToString			// toString 메서드
 @Data				// Getter, Setter, toString, equals, hashCode
-public class PostComment {
+public class PostInfo {
 	
-	private long pcid;
 	private long pid;
+	private String title;
 	private String content;
 	private String author;
+	private long hrs_hd;
 	private LocalDateTime created_date;
 	private LocalDateTime modified_date;
+	private long views;
+	
 }

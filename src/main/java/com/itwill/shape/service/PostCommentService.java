@@ -19,19 +19,19 @@ public class PostCommentService {
 	private final PostCommentRepository postCommentRepository;
 	
 	/**
-	 * 손창민
+	 * 0601 손창민
 	 * id와 일치하는 댓글 목록 불러오기
 	 * @param id
 	 * @return List<PostCommentSelectById> dto
 	 */
-	public List<PostCommentSelectByIdDTO> read(String author) {
-		log.info("read()");
+	public List<PostCommentSelectByIdDTO> selectById(String author) {
+		log.info("selectById()");
 		log.info("author={}", author);
 		
 		List<PostComment> entity = postCommentRepository.selectById(author);
 		
-		// PostComment 타입 객체를 PostCommentSelectByUserIdDTO 타입 객체로
-		// 리포지토리 계층의 메서드를 호출 - DB selectByPostId
+		// PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입의 객체로
+		// 리포지토리 계층의 메서드를 호출 - DB selectById
 		return entity.stream().map(PostCommentSelectByIdDTO::fromEntity).toList();
 	}
 }
