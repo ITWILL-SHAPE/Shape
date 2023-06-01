@@ -1,23 +1,32 @@
 package com.itwill.shape.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
+import com.itwill.shape.service.UserInfoService;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class MyPageController {
-
-
+	private final UserInfoService userInfoService;
+	
 	
 	// 마이페이지 - 회원정보 - 나의 프로필 /WEB-INF/views/memberinfo/myprofile.jsp
 
 	@GetMapping("/myprofile")
-	public String myProfile() {
+	public String myProfile(String id, Model model) {
 		log.info("myprofile()");
 		
-		return "/mypage/memberinfo/myprofile";
+//		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+//		
+//		model.addAttribute("myPageUserInfo", dto);
+		 return "/mypage/memberinfo/myprofile";
 	}
 	
 	// 마이페이지 - 회원정보 - 비밀번호 수정

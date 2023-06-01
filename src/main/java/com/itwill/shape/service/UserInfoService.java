@@ -2,8 +2,9 @@ package com.itwill.shape.service;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.UserCreateDto;
-import com.itwill.shape.repository.GuideRepository;
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.repository.UserInfoRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,23 @@ public class UserInfoService {
 		log.info("create(dto = {})", dto);
 		
 		return userInfoRepository.insertAdmin(dto.toEntityAdmin());
+	}
+	
+	/**
+	 * 김세이 06.01
+	 * 마이페이지 첫 화면 개인정보를 위한 메소드
+	 * dto={name, gender, id, birth, phone, email}
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public UserInfoSelectByIdDto selectById(String id) {
+		System.out.println("service");
+		UserInfo entity = userInfoRepository.selectById(id);
+		
+		UserInfoSelectByIdDto dto = UserInfoSelectByIdDto.fromEntity(entity);
+		
+		return dto;
 	}
 
 }
