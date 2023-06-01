@@ -1,11 +1,9 @@
 package com.itwill.shape.web;
 
 import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
 import com.itwill.shape.service.PostCommentService;
-
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.UserInfoService;
-
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +31,7 @@ public class MyPageController {
 	@GetMapping("/myprofile")
 	public String myProfile(String id, Model model) {
 		log.info("myprofile()");
-		log.infp("")
+		log.info("");
 		
 		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 		
