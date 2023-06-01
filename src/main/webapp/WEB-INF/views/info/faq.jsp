@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -11,20 +11,13 @@
 <body>
 	<h1>테스트</h1>
 	<div>
-		<table>
-			<thead>
-				<tr>
-					<th>no.</th>
-					<th>질문</th>
-					<th>답변</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach>
-				</c:forEach>
-			</tbody>
-		
-		</table>
+		<c:forEach items="${ faq }" var="faqs">
+			${ faqs }
+			<%-- <dl>
+				<dt>${ faqs.question }</dt>
+				<dd>${ faqs.answer }</dd>
+			</dl> --%>
+		</c:forEach>
 	</div>
 </body>
 </html>
