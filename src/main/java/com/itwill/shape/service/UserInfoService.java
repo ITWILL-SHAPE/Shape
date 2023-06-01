@@ -28,5 +28,4 @@ public class UserInfoService {
 		
 		return userInfoRepository.insertAdmin(dto.toEntityAdmin());
 	}
-
 }

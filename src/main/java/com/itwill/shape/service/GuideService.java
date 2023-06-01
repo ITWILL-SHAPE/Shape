@@ -33,7 +33,7 @@ public class GuideService {
 	 */
 	public int create(GuideCreateDto dto) {
 		log.info("create{}", dto);
-		
+		 
 		// GuideCreateDto 타입을 Guide 타입으로 변환해서
 		// 리포지토리 계층의 메서드를 호출 - DB Insert.
 		return guideRepository.insert(dto.toEntity());
