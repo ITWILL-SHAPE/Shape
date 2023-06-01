@@ -1,14 +1,10 @@
 package com.itwill.shape.web;
 
-<<<<<<< HEAD
 import java.util.List;
-=======
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 
-<<<<<<< HEAD
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
 import com.itwill.shape.service.PostCommentService;
-=======
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.UserInfoService;
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,15 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j // 로그
 @RequiredArgsConstructor // 생성자에 의한 의존성 주입
 @Controller
-@RequiredArgsConstructor
 public class MyPageController {
-<<<<<<< HEAD
 
 	private final PostCommentService postCommentsService;
-=======
 	private final UserInfoService userInfoService;
 	
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 	
 	// 마이페이지 > 회원정보 > 나의 프로필
 
