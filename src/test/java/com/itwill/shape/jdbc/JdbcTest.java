@@ -28,7 +28,7 @@ public class JdbcTest {
 		log.info("Oracle JDBC 드라이버 등록 성공");
 		
 		// JDBC 2: Connection 객체 생성
-		final String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		final String url = "jdbc:oracle:thin:@14.38.222.151:1521:xe";
 		final String username = "scott";
 		final String password = "tiger";
 		Connection conn = DriverManager.getConnection(url, username, password);

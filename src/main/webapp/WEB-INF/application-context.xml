@@ -12,16 +12,17 @@
     <!-- HikariConfig hikariConfig = new HikariConfig() 생성자 호출 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
     	<!-- hikariConfig.setDriverClassName("...") 메서드 호출 -->
+    	<!-- 
     	<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
     	<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
     	<property name="username" value="scott"/>
     	<property name="password" value="tiger"/>
-    	
+    	 -->
     	<!-- 새로운 DB 연결 계정 -->
-    	<!--
+    	<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+    	<property name="jdbcUrl" value="jdbc:oracle:thin:@14.38.222.151:1521:xe"/>
     	<property name="username" value="SHAPE"/>
     	<property name="password" value="shape"/>
-    	-->
     </bean>
     
     <!-- HikariDataSource dataSource = new HikariDataSource(hikariConfig); -->
