@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.shape.repository.UserInfoRepository">
+
+	<!-- 관리자 생성 insert 문 -->
+	<insert id="insertAdmin">
+		INSERT INTO USER_INFO (ID, PWD, NAME, DIVISION, JOIN_DATE)
+		VALUES (#{id}, #{pwd}, #{name}, 'A', systimestamp)
+	</insert>
+	
+	
+	 <!--마이페이지 첫 화면 개인정보 쿼리문 -->
+	<select id="selectById"
+		resultType="com.itwill.shape.repository.UserInfoRepository">
+		select * from USERINFO where ID = #{id}
+	</select>
+</mapper>

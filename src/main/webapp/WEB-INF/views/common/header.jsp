@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,9 +15,9 @@
 			integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 			crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-		<link rel="stylesheet" href="./static/css/common.css"/>
+		<link rel="stylesheet" href="http://localhost:8081/shape/static/css/common.css"/>
 		<!-- icon -->
-		<link rel="shortcut icon" type="image/x-icon" href="./static/images/common/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="http://localhost:8081/shape/static/images/common/favicon.ico">
 		<title>Shape</title>
 	</head>
 	<body>
@@ -29,7 +30,8 @@
 					<div class="util">
 						<!-- 로그인 전 -->
 						<div class="before">
-							<a href="" title="login">로그인</a>
+							<c:url value="/login" var="login"></c:url>
+							<a href="${ login }" title="login">로그인</a>
 							<a href="" title="signUp">회원가입</a>
 						</div>
 					</div>
@@ -56,8 +58,8 @@
 						<li>
 							<a href="">도움말</a>
 							<ul class="sub_menu">
-								<li><a href="">공지사항</a></li>
-								<li><a href="">FAQ</a></li>
+								<li><a href="/info/notice">공지사항</a></li>
+								<li><a href="/info/faq">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 							</ul>
 						</li>
@@ -65,7 +67,10 @@
 						<li class="profile">
 							<a href=""><i class="bi bi-person after-login"></i></a>
 							<ul class="sub_menu">
-								<li><a href="">마이페이지</a></li>
+								<li>
+									<c:url value="/myprofile" var="myPage"></c:url>
+									<a href="${ myPage }">마이페이지</a>
+								</li>
 								<li><a href="">로그아웃</a></li>
 							</ul>
 						</li>

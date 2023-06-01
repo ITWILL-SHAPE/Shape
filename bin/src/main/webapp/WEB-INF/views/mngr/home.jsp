@@ -13,13 +13,13 @@
 			integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 			crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-		<link rel="stylesheet" href="./static/css/common.css"/>
+		<link rel="stylesheet" href="http://localhost:8081/shape/static/css/common.css"/>
 		<!-- icon -->
-		<link rel="shortcut icon" type="image/x-icon" href="./static/images/common/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="http://localhost:8081/shape/static/images/common/favicon.ico">
 		<title>Shape - 관리자</title>
 	</head>
 	<body>
-		<%@ include file="../common/sidebar.jsp" %>
+		<%@ include file="../common/mngr_sidebar.jsp" %>
 
 		<div class="cd1">
 			<h1>큰 제목</h1>
