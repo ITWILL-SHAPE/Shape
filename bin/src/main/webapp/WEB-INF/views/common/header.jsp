@@ -57,8 +57,8 @@
 						<li>
 							<a href="">도움말</a>
 							<ul class="sub_menu">
-								<li><a href="">공지사항</a></li>
-								<li><a href="">FAQ</a></li>
+								<li><a href="/info/notice">공지사항</a></li>
+								<li><a href="/info/faq">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 							</ul>
 						</li>
