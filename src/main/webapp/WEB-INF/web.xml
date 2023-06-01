@@ -8,10 +8,24 @@
 	<!-- 스프링 컨텍스트 설정 정보들을 저장한 파일의 위치 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/application-context.xml</param-value>
+		<param-value>
+			/WEB-INF/application-context.xml
+			/WEB-INF/security-context.xml
+		</param-value>
 	</context-param>
 
 	<!-- Filter 설정 -->
+	<!-- security -->
+	<filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+	<!-- 한글 깨짐 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<!-- 스프링에서 제공하는 filter를 사용하겠다. -->
