@@ -15,10 +15,6 @@ public interface UserInfoRepository {
 	 */
 	int insertAdmin(UserInfo user);
 	
-<<<<<<< HEAD
 	
-}
-=======
 	UserInfo selectById(String id);
 }
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git

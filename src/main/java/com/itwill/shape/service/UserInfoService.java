@@ -29,9 +29,6 @@ public class UserInfoService {
 		
 		return userInfoRepository.insertAdmin(dto.toEntityAdmin());
 	}
-<<<<<<< HEAD
-}
-=======
 	
 	/**
 	 * 김세이 06.01
@@ -42,7 +39,8 @@ public class UserInfoService {
 	 * @return
 	 */
 	public UserInfoSelectByIdDto selectById(String id) {
-		System.out.println("service");
+		log.info("selectById()");
+		log.info("id={}", id);
 		UserInfo entity = userInfoRepository.selectById(id);
 		
 		UserInfoSelectByIdDto dto = UserInfoSelectByIdDto.fromEntity(entity);
@@ -51,4 +49,3 @@ public class UserInfoService {
 	}
 
 }
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
