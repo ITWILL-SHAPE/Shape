@@ -1,0 +1,3 @@
+/**
+ * infoFaq-list.js
+ */

@@ -5,7 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
+import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.UserInfoService;
@@ -18,16 +24,14 @@ import lombok.extern.slf4j.Slf4j;
 public class MyPageController {
 
 	private final PostCommentService postCommentsService;
-
 	private final UserInfoService userInfoService;
-	
-	
 	// 마이페이지 > 회원정보 > 나의 프로필
 
 	@GetMapping("/myprofile")
 	public String myProfile(String id, Model model) {
 		log.info("myprofile()");
 		log.info("id={}", id);
+		log.info("");
 		
 		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 		model.addAttribute("myPageUserInfo", dto);
