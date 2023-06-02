@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../../common/header.jsp"%>
 
 <!DOCTYPE html>
@@ -37,9 +37,11 @@ th, td {
 		<c:forEach items="${myPageUserInfo}" var="info">
 			<div class="profile-container">
 				<div class="profile-image-container">
+					<form action="/mypage/imagemodify" method="POST" enctype="multipart/form-data"> 
 					<img src="data:image/jpeg;base64,${info.profile}" alt="Profile Image">
 					<div class="profile-overlay">
-						<button class="change-profile-btn">사진 변경</button>
+						<button type="submit" class="change-profile-btn">사진 변경</button>
+				   </form>
 					</div>
 				</div>
 			</div>

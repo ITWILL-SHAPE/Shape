@@ -1,11 +1,14 @@
 package com.itwill.shape.web;
 
+import java.io.IOException;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
 import com.itwill.shape.dto.PostInfoSelectByIdDTO;
@@ -50,13 +53,14 @@ public class MyPageController {
 	 * @param id
 	 * @param model
 	 * @return "/mypage/memberinfo/myprofile"
+	 * @throws IOException 
 	 */
 	
 	@GetMapping("/imagemodify")
-	public String imageModify(UserInfoSelectByIdDto dto) {
+	public String imageModify(String id, @RequestParam("profile") MultipartFile imageFile) throws IOException {
 		log.info("imageModify()");
 		
-		int result = userInfoService.imageModify(dto);
+		int result = userInfoService.imageModify(id, imageFile);
 		log.info("imageModify 결과 = {}", result);
 		
 		return "/mypage/memberinfo/myprofile";
