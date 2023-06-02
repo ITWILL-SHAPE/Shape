@@ -58,7 +58,7 @@
 		on M.mtid = L.mtid 
 		left join MEET_PRTCP P
 		on M.mtid = P.mtid
-		where title like '%'(" #{title} ")'%'
+		where title like '%' + #{title} + '%'
 		group by M.mtid, M.sido, M.mt_date
 		order by create_date desc
 	</select>
@@ -71,7 +71,7 @@
 		on M.mtid = L.mtid 
 		left join MEET_PRTCP P
 		on M.mtid = P.mtid
-		where sido like '%'(" #{sido} ")'%'
+		where sido like '%' + #{sido} + '%'
 		group by M.mtid, M.sido, M.mt_date
 		order by create_date desc
 	</select>
@@ -84,7 +84,7 @@
 		on M.mtid = L.mtid 
 		left join MEET_PRTCP P
 		on M.mtid = P.mtid
-		where category like '%'(" #{category} ")'%'
+		where category like '%' + #{category} + '%'
 		group by M.mtid, M.sido, M.mt_date
 		order by create_date desc
 	</select>
