@@ -23,7 +23,7 @@ public class InfoQnARepositoryTest {
 	@Autowired
 	private InfoQnARepository infoQnARepository;
 	
-	@Test
+	//@Test
 	public void testSelectOrderByQidDesc() {
 		List<InfoQnA> list = infoQnARepository.selectOrderByQidDesc();
 		for(InfoQnA q :list) {
@@ -38,12 +38,12 @@ public class InfoQnARepositoryTest {
 		log.info("resultOfTestDelete={}", result);
 	}
 	
-	//@Test
+	@Test
 	public void testUpdateAnswerToQnA() {
 		InfoQnA infoQnA = InfoQnA.builder()
-				.qid(1)
+				.qid(2)
 				.an_title("답변드립니다.")
-				.an_comment("네, 마이페이지에서 모집 취소 가능합니다.")
+				.an_comment("네, 탈퇴처리 도와드리겠습니다.")
 				.build();
 		int result = infoQnARepository.updateAnswerToQnA(infoQnA);
 		Assertions.assertEquals(1, result);

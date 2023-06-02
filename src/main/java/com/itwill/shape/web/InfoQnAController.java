@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/info")
+@RequestMapping("/user/info")
 @Controller
 public class InfoQnAController {
 	
@@ -37,17 +37,17 @@ public class InfoQnAController {
 		model.addAttribute("infoQnAs", list);
 	}
 	
-//	@GetMapping("/create")
-//	public void create() {
-//		log.info("GET:create()");
-//	}
+	@GetMapping("qna/create")
+	public void create() {
+		log.info("GET:create()");
+	}
 	
 	/**
 	 * 사용자 큐앤에이 등록
 	 * @param dto
 	 * @return
 	 */
-	@PostMapping("/create")
+	@PostMapping("/qna/create")
 	public String create(InfoQnACreateDto dto) {
 		log.info("POST: create({})", dto);
 		int result = infoQnAService.create(dto);
@@ -60,7 +60,7 @@ public class InfoQnAController {
 	 * @param qid
 	 * @param model
 	 */
-	@GetMapping("/detail")
+	@GetMapping("/qna/detail")
 	public void detail(long qid, Model model) {
 		log.info("detail(qid={})", qid);
 		InfoQnADetailDto dto = infoQnAService.read(qid);
@@ -72,7 +72,7 @@ public class InfoQnAController {
 	 * @param qid
 	 * @return
 	 */
-	@PostMapping("/delete")
+	@PostMapping("/qna/delete")
 	public String delete(long qid) {
 		log.info("delete(id={})", qid);
 		int result = infoQnAService.delete(qid);
