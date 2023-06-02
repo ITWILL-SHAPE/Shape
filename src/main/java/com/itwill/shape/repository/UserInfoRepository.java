@@ -25,6 +25,6 @@ public interface UserInfoRepository {
 	UserInfo selectById(String id);
 
 
-	int pwdModify(UserInfo entity);
+	int imageModify(UserInfo entity);
 
 	}

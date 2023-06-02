@@ -59,10 +59,18 @@ public class UserInfoService {
 		return dto;
 	}
 
-	public int pwdModify(UserInfoSelectByIdDto dto) {
-		log.info("pwdModify({})", dto);
+	/**
+	 * 김세이 06.02 
+	 * 마이페이지 프로필 사진 변경을 위한 메서드 
+	 * dto={name, gender, id, birth, phone, email}
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	public int imageModify(UserInfoSelectByIdDto dto) {
+		log.info("imageModify({})", dto);
 		
-		// return UserInfoRepository.pwdModify(dto.toEntity());
+		// return UserInfoRepository.imageModify(dto.toEntity());
 		return 0;
 	}
 

@@ -29,56 +29,56 @@
 			}
 		</style>
 	</head>
-	<body>
-		<div id="sidebar">
-			<%@ include file="../sidebar.jsp" %>
-		</div>
-		<main>
-			
-			<img alt="" src="">
-		
+<body>
+	<div id="sidebar">
+		<%@ include file="../sidebar.jsp" %>
+	</div>
+	<main>
+		<c:forEach items="${myPageUserInfo}" var="info">
+			<img src="data:image/jpeg;base64,${info.profile}" alt="Profile Image">
+
 			<div class="center">
 				<table>
-				  <tbody>
-				  <c:forEach items="${myPageUserInfo}" var="info">
-				  <tr>
-						<th>이름</th>
-						<td>${info.name}</td>
-					</tr>
-					<tr>
-						<th>성별</th>
-						<td>${info.gender}</td>
-					</tr>
-					<tr>
-						<th>아이디</th>
-						<td>${info.id}</td>
-					</tr>
-					<tr>
-						<th>생년월일</th>
-						<td>${info.birth}</td>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<td>${info.number}</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>g${info.email}</td>
-					</tr>
-					</c:forEach>	
-				  </tbody>
+					<tbody>
+						<tr>
+							<th>이름</th>
+							<td>${info.name}</td>
+						</tr>
+						<tr>
+							<th>성별</th>
+							<td>${info.gender}</td>
+						</tr>
+						<tr>
+							<th>아이디</th>
+							<td>${info.id}</td>
+						</tr>
+						<tr>
+							<th>생년월일</th>
+							<td>${info.birth}</td>
+						</tr>
+						<tr>
+							<th>번호</th>
+							<td>${info.number}</td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td>${info.email}</td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 			<div class="center">
-				<c:url var="mypageModifyPage" value="/mypage/pwdmodify">
+				<c:url var="mypageModifyPage" value="/pwdmodify">
 					<c:param name="id" value="${info.id}"></c:param>
 				</c:url>
-				<a class="btn btn-outline-primary form-control"
-					href="${myPageModifyPage}">회원정보 수정</a>
+				<a class="btn btn-outline-primary form-control" href="${myPageModifyPage}">회원정보 수정</a>
 			</div>
-		</main>
-	</body>
+		</c:forEach>
+	</main>
+</body>
+
 </html>
 
 <%@ include file="../../common/footer.jsp" %>   
+
 
