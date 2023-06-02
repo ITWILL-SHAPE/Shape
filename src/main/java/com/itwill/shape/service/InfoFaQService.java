@@ -1,5 +1,5 @@
 package com.itwill.shape.service;
-
+//우수빈 faq service
 import java.util.List;
 
 import org.springframework.stereotype.Service;

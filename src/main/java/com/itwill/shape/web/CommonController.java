@@ -25,7 +25,7 @@ public class CommonController {
 	 * 관리자 home page 
 	 * @return
 	 */
-	@GetMapping({"/mngr", "/mngr/"})
+	@GetMapping("/mngr")
 	public String mngr() {
 		log.info("mngr()");
 		
