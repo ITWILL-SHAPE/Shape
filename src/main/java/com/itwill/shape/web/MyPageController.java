@@ -5,9 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
@@ -15,10 +12,8 @@ import com.itwill.shape.dto.PostInfoSelectByIdDTO;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
-import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.UserInfoService;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j // 로그
@@ -67,7 +62,24 @@ public class MyPageController {
 		return "/mypage/memberinfo/myprofile";
 	}
 	
-	
+	/**
+	 * 0602 손창민
+	 * 비밀번호 변경 전 비밀번호 재입력
+	 * @param pwd, inputPwd
+	 * @return
+	 */
+	// 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
+	@GetMapping("/pwdConfirm")
+	public String pwdConfirm(String pwd, String inputPwd) {
+		log.info("pwdConfirm()");
+		log.info("pwd={}", pwd);
+		log.info("pwd={}", inputPwd);
+		
+		
+		
+		
+		return "/mypage/memberinfo/pwdConfirm";
+	}
 	
 	// 마이페이지 > 회원정보 > 회원탈퇴
 	@GetMapping("/withdrawal")
