@@ -19,7 +19,7 @@
 		<title>Shape - 관리자</title>
 	</head>
 	<body>
-		<%@ include file="../common/mngr_sidebar.jsp" %>
+		<%@ include file="./common/mngr_sidebar.jsp" %>
 
 		<div class="cd1">
 			<h1>큰 제목</h1>
