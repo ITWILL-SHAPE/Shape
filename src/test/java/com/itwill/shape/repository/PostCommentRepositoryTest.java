@@ -29,7 +29,11 @@ public class PostCommentRepositoryTest {
 	
 	@Test
 	public void testSelectById() {
-		List<PostCommentSelectByIdDTO> list = postCommentService.selectById("asd");
+		
+		PostComment postComment = new PostComment(0,0,"테스트", "test", null, null);
+		
+		
+		List<PostCommentSelectByIdDTO> list = postCommentService.selectById(postComment.getAuthor());
 		//assertNotNull(list);
 		log.info("list={}", list);
 	}

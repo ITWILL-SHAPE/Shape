@@ -62,7 +62,8 @@
 								<li><a href="/info/notice">공지사항</a></li>
 								<c:url value="/info/faq" var="faq"></c:url>
 								<li><a href="${ faq }">FAQ</a></li>
-								<li><a href="">Q&A</a></li>
+								<c:url value="/info/qna" var="qna"></c:url>
+								<li><a href="${ qna }">Q&amp;A</a></li>
 							</ul>
 						</li>
 						<!-- 로그인 후 -->

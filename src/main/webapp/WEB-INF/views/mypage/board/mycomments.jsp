@@ -33,4 +33,3 @@
 	</body>
 </html>
 <%@ include file="../../common/footer.jsp" %>
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git

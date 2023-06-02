@@ -23,11 +23,11 @@ public class InfoFaQDto {
 	private String question;
 	private String answer;
 	
-	public InfoFaQ fromEntity(InfoFaQ entity) {
+	public static InfoFaQDto fromEntity(InfoFaQ entity) {
 		
-		return InfoFaQ.builder()
+		return InfoFaQDto.builder()
 				.fid(entity.getFid())
-				.question(entity.getAnswer())
+				.question(entity.getQuestion())
 				.answer(entity.getAnswer())
 				.build();
 	}

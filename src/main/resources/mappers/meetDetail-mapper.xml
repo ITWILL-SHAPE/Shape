@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.shape.repository.MeetDetailRepository">
+
+	<!-- 상세보기 page -->
+	<!-- mitd 상세보기 select문 -->
+	<select id="detailByMtid">
+		select M.*, U.email
+		from MEET_INFO M
+		left join USER_INFO U on M.mtid = U.mtid
+		where M.mtid = #{ mtid }
+	</select>
+	
+	<!-- 참여인원 list select문 -->
+	<select id="prtcpList">
+		select * from MEET_PRTCP where mtid = #{ mtid }
+	</select>
+	
+	<!-- 참여취소 delete문 -->
+	<delete id="prtcpDelete">
+		delete from MEET_PRTCP where prtcp_id = #{ prtcp_id }
+	</delete>
+	
+	<!-- 참여하기 insert문 -->
+	<insert id="prtcpInsert" parameterType="MeetParticipant">
+  		insert into MEET_PRTCP (mtid, prtcp_id, name, gender, phone, email)
+  		values (#{mtid}, #{prtcpId}, #{name}, #{gender}, #{phone}, #{email})
+	</insert>
+		
+	<!-- 참여한 user 정보 select문 -->
+	<select id="getUserInfo" resultType="User">
+		select id, name, phone, email
+		from USER_INFO
+		where id = #{userId}
+	</select>
+		
+</mapper>

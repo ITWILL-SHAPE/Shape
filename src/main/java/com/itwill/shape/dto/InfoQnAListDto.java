@@ -20,6 +20,7 @@ public class InfoQnAListDto {
 	private String title;
 	private Timestamp created_date;
 	private String secret;
+	private String an_title;
 	
 	// 답변 완료 되었는지 아닌지 알아야함	
 //	private String an_title이 있으면 답변완료, 없으면 확인중
@@ -30,6 +31,7 @@ public class InfoQnAListDto {
 				.title(entity.getTitle())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.secret(entity.getSecret())
+				.an_title(entity.getAn_title())
 				.build();
 	}
 }

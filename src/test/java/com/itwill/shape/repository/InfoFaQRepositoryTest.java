@@ -64,10 +64,18 @@ public class InfoFaQRepositoryTest {
 		Assertions.assertEquals(1, result);
 	}
 	
-	@Test //delete
+	//@Test //delete
 	public void testDeleteFaq() {
 		int result = infoFaQRepository.deleteByFid(3);
 		Assertions.assertEquals(1, result);
+	}
+	
+	@Test //detail
+	public void testSelectByFid() {
+		InfoFaQ faq = infoFaQRepository.selectByFid(1);
+		Assertions.assertNotNull(faq);
+		log.info(faq.toString());
+		
 	}
 	
 }

@@ -20,7 +20,7 @@
 
 	<update id="updateAnswerToQnA">
 		update INFO_QNA set 
-		AN_TITLE = #{anTitle}, AN_COMMENT = #{anComment}, 
+		AN_TITLE = #{an_title}, AN_COMMENT = #{an_comment}, 
 		ANSWER_DATE = systimestamp 
 		where QID = ${qid}
 	</update>
