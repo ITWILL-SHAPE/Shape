@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j			// 로그
 @RequiredArgsConstructor	// 생성자에 의한 의존성 주입
-@RequestMapping("/guide")	// 클래스의 메서드들은 요청 주소가 "/..."로 시작.
+@RequestMapping("/user/guide")	// 클래스의 메서드들은 요청 주소가 "/..."로 시작.
 @Controller	
 public class GuideController {
 	
@@ -57,6 +57,12 @@ public class GuideController {
 		
 		// Post - Redirect - Get
 		return "redirect:/guide/main";
+	}
+	
+	
+	@GetMapping("/guide")
+	public void guide() {
+		log.info("guide()");
 	}
 	
 	

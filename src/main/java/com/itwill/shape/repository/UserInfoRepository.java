@@ -1,7 +1,5 @@
 package com.itwill.shape.repository;
 
-import java.util.List;
-
 import com.itwill.shape.domain.UserInfo;
 
 public interface UserInfoRepository {
@@ -14,6 +12,14 @@ public interface UserInfoRepository {
 	 * @return 0 or 1
 	 */
 	int insertAdmin(UserInfo user);
+	
+	/**
+	 * 0602
+	 * 사용자 유저 생성
+	 * @param user
+	 * @return
+	 */
+	int insertMember(UserInfo user);
 	
 	
 	UserInfo selectById(String id);
