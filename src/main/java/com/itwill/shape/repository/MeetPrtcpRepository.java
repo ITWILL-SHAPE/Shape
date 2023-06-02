@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.itwill.shape.domain.MeetPrtcp;
 
-public interface MeetDetailRepository {
+public interface MeetPrtcpRepository {
 
 	// 모임 참여 신청
 	int prtcpInsert(MeetPrtcp mtPrtcp);

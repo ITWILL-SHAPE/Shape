@@ -32,7 +32,7 @@ public class MtCreateRepositoryTest {
 	private MeetRepository mtCreateRepository;
 	
 	@Autowired
-	private MeetDetailRepository meetDetailRepository; 
+	private MeetPrtcpRepository meetDetailRepository; 
 	
 	//@Test // create
 	public void testCreateMeet() {
