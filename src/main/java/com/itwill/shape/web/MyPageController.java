@@ -51,19 +51,18 @@ public class MyPageController {
 	
 	/**
 	 * 0601 김세이  
-	 * 비밀번호 수정  
+	 * 마이페이지 이미지 수정  
 	 * @param id
 	 * @param model
 	 * @return "/mypage/memberinfo/myprofile"
 	 */
 	
-	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@GetMapping("/pwdmodify")
-	public String pwdModify(UserInfoSelectByIdDto dto) {
-		log.info("pwdModify()");
+	@GetMapping("/imagemodify")
+	public String imageModify(UserInfoSelectByIdDto dto) {
+		log.info("imageModify()");
 		
-		int result = userInfoService.pwdModify(dto);
-		log.info("pwdModif 결과 = {}", result);
+		int result = userInfoService.imageModify(dto);
+		log.info("imageModify 결과 = {}", result);
 		
 		return "/mypage/memberinfo/myprofile";
 	}
