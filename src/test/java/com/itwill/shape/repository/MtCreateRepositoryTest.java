@@ -3,6 +3,8 @@ package com.itwill.shape.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
+
 import javax.print.SimpleDoc;
 
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.itwill.shape.domain.InfoFaQ;
 import com.itwill.shape.domain.MeetInfo;
+import com.itwill.shape.domain.MeetPrtcp;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +30,9 @@ public class MtCreateRepositoryTest {
 	
 	@Autowired
 	private MeetRepository mtCreateRepository;
+	
+	@Autowired
+	private MeetDetailRepository meetDetailRepository; 
 	
 	//@Test // create
 	public void testCreateMeet() {
@@ -77,7 +83,44 @@ public class MtCreateRepositoryTest {
 		Assertions.assertEquals(1, result);
 	}
 	
+//	@Test
+	public void testCreatePrtcp() {
+		assertNotNull(meetDetailRepository);
+		log.info("MeetDetailRepository = {}" , meetDetailRepository);
+		
+		MeetPrtcp mtPrtcp = MeetPrtcp.builder()
+				.mtid(3)
+				.prtcp_id("admin")
+				.name("어드민")
+				.gender("F")
+				.phone(0)
+				.email("test")
+				.build();
+		log.info(mtPrtcp.toString());
+		
+		int result = meetDetailRepository.prtcpInsert(mtPrtcp);
+		log.info("mtInfo = {}", mtPrtcp);
+	}
 	
+//	@Test
+	public void testSelectPrtcpList() {
+		List<MeetPrtcp> list = meetDetailRepository.prtcpList(2);
+        for (MeetPrtcp p : list) {
+            log.info(p.toString());
+        }	
+    }
 	
-
+//	@Test
+	public void testUserInfoSelect() {
+		List<MeetPrtcp> list = meetDetailRepository.prtcpList(2);
+        for (MeetPrtcp p : list) {
+            log.info(p.toString());
+        }	
+	}
+	
+	@Test
+	public void testDeletePrtcp() {
+		int result = meetDetailRepository.prtcpDelete("admin");
+	}
+	
 }
