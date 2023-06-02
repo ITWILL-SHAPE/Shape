@@ -1,7 +1,8 @@
 package com.itwill.shape.web;
-
+//우수빈 faq 관리자 화면
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.dto.InfoFaQCreateDto;
 import com.itwill.shape.dto.InfoFaQDto;
+import com.itwill.shape.dto.InfoFaQUpdateDto;
 import com.itwill.shape.service.InfoFaQService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/mngr/faq")
 public class InfoFaqMngrController {
@@ -63,5 +66,34 @@ public class InfoFaqMngrController {
 		model.addAttribute("faq", dto);
 	}
 	
+	/**
+	 * faq 관리자 글 수정하기
+	 * @param fid
+	 * @param model
+	 */
+	@GetMapping("/modify")
+	public void modify(long fid, Model model) {
+		log.info("modify({})", fid);
+		
+		InfoFaQDto dto = infoFaqService.read(fid);
+		
+		model.addAttribute("faq", dto);
+	}
 	
+	@PostMapping("/delete")
+	public String delete(long fid) {
+		log.info("delete({})", fid);
+		
+		int result = infoFaqService.delete(fid);
+		
+		return "redirect:/faq/list";
+	}
+	
+	@PostMapping("/update")
+	public String update(InfoFaQUpdateDto dto) {
+		log.info("update({})", dto);
+		
+		int result = infoFaqService.update(dto);
+		return "redirect:/faq/detail?fid=" + dto.getFid();
+	}
 }

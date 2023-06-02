@@ -1,0 +1,23 @@
+/**
+ * infoFaq-detail.js
+ * 우수빈 faq 관리자 삭제
+ */
+
+ document.addEventListener('DOMContentLoaded', function() {
+	 
+	 const form = document.querySelector('#faqDetailForm');
+	 
+	 const btnDelete = document.querySelector('button#btnFaqDelete');
+	 
+	 btnDelete.addEventListener('click', (e) => {
+		 e.preventDefault();
+		 
+		 const result = confirm(`NO. ${id} 삭제하시겠습니까?`);
+		 
+		 if(result) {
+			 form.action = 'delete';
+			 form.method = 'post';
+			 form.submit();
+		 }
+	 }); 
+ });

@@ -1,5 +1,7 @@
 package com.itwill.shape.domain;
-// 우수빈 faq
+import java.time.LocalDateTime;
+
+//우수빈 notice
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -15,8 +19,12 @@ import lombok.ToString;
 @Setter
 @ToString
 @Data
-public class InfoFaQ {
-	private long fid;
-	private String question;
-	private String answer;
+public class InfoNotice {
+	private long nid;
+	private String title;
+	private String content;
+	private byte[] atchd_file;
+	private int views;
+	private LocalDateTime created_date;
+
 }

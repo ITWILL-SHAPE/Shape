@@ -13,9 +13,10 @@
     <!-- Configure security rules -->
     <security:http>
     	<security:intercept-url pattern="/" access="permitAll"/>
+    	<security:intercept-url pattern="/mngr/**" access="permitAll"/>
     	<security:intercept-url pattern="/static/**" access="permitAll"/>
     	<security:intercept-url pattern="/user/**" access="hasRole('M')"/>
-    	<security:intercept-url pattern="/mngr/**" access="hasRole('A')" />
+    	<!-- <security:intercept-url pattern="/mngr/**" access="hasRole('A')" /> -->
     	<!-- <security:form-login/> -->
     	<security:form-login login-page="/member/customLogin"
     		authentication-success-handler-ref="customLoginSuccess"/>
@@ -36,7 +37,7 @@
     		</security:user-service>
     	 -->
     		<security:jdbc-user-service data-source-ref="dataSource"
-    				users-by-username-query="SELECT ID, PWD FROM USER_INFO WHERE ID = ?"
+    				users-by-username-query="SELECT ID, PWD, ENABLED FROM USER_INFO WHERE ID = ?"
     				authorities-by-username-query="SELECT ID, DIVISION FROM USER_INFO WHERE ID = ?"/>
     		<!-- <security:password-encoder ref="customPasswordEncoder"/> -->
     		<security:password-encoder ref="bcryptPasswordEncoder"/>
