@@ -55,16 +55,13 @@
 							</ul>
 						</li>
 						<li>
-							<a href="">게시판</a>
-							<ul class="sub_menu">
-								<li><a href="">게시판</a></li>
-								<li><a href="">글쓰기</a></li>
-							</ul>
+							<c:url value="/post/list" var="postListPage"></c:url>
+							<a href="${ postListPage }">게시판</a>
 						</li>
 						<li>
 							<a href="">도움말</a>
 							<ul class="sub_menu">
-								<li><a href="/info/notice">공지사항</a></li>
+								<li><a href="/shape/info/notice">공지사항</a></li>
 								<c:url value="/info/faq" var="faq"></c:url>
 								<li><a href="${ faq }">FAQ</a></li>
 								<c:url value="/info/qna" var="qna"></c:url>

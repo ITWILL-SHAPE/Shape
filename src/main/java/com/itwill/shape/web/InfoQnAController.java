@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.shape.dto.InfoQnACreateDto;
 import com.itwill.shape.dto.InfoQnADetailDto;
@@ -52,7 +53,7 @@ public class InfoQnAController {
 		log.info("POST: create({})", dto);
 		int result = infoQnAService.create(dto);
 		log.info("큐앤에이 등록 결과 ={}", result);
-		return "redirect:/post/list";
+		return "redirect:/qna";
 	}
 	
 	/**
@@ -77,6 +78,6 @@ public class InfoQnAController {
 		log.info("delete(id={})", qid);
 		int result = infoQnAService.delete(qid);
 		log.info("삭제 결과 = {}", qid);
-		return "redirect:post/list";
+		return "redirect:/info/qna";
 	}
 }
