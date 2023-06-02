@@ -14,8 +14,8 @@
 	</select>
 
 	<insert id="insert">
-		INSERT INTO INFO_QNA (TITLE, CONTENT, WRITER, CREATED_DATE)
-		VALUES (#{title}, #{content}, #{writer}, systimestamp)
+		INSERT INTO INFO_QNA (TITLE, CONTENT, WRITER, SECRET, CREATED_DATE, ANSWER_DATE, AN_TITLE, AN_COMMENT)
+		VALUES (#{title}, #{content}, #{writer},'N', systimestamp, systimestamp, '확인중', '확인 후 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.')
 	</insert>
 
 	<update id="updateAnswerToQnA">
