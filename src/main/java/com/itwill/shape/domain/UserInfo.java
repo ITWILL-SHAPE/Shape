@@ -17,7 +17,7 @@ public class UserInfo {
 	private String name;
 	private String gender;
 	private String birth;
-	private long phone;
+	private String phone;
 	private String email;
 	private byte[] profile;
 	private String join_date;

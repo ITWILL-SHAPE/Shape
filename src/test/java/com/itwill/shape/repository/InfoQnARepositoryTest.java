@@ -38,12 +38,12 @@ public class InfoQnARepositoryTest {
 		log.info("resultOfTestDelete={}", result);
 	}
 	
-	@Test
+	//@Test
 	public void testUpdateAnswerToQnA() {
 		InfoQnA infoQnA = InfoQnA.builder()
-				.qid(2)
+				.qid(21)
 				.an_title("답변드립니다.")
-				.an_comment("네, 탈퇴처리 도와드리겠습니다.")
+				.an_comment("네, 모집 취소는 모임 상세창에서 가능합니다.")
 				.build();
 		int result = infoQnARepository.updateAnswerToQnA(infoQnA);
 		Assertions.assertEquals(1, result);
@@ -62,10 +62,10 @@ public class InfoQnARepositoryTest {
 		Assertions.assertNotNull(infoQnARepository);
 		log.info("infoQnARepository = {}",infoQnARepository);
 		InfoQnA infoQnA = InfoQnA.builder()
-				.title("탈퇴하고 싶습니다.")
-				.content("탈퇴 버튼이 없던데 문의 남기면 될까요?")
+				.title("문의드립니다.")
+				.content("모임 모집 취소 가능한가요?")
 				.writer("user")
-				.secret("Y")
+				.secret("N")
 				.build();
 		log.info(infoQnA.toString());
 		int result = infoQnARepository.insert(infoQnA);

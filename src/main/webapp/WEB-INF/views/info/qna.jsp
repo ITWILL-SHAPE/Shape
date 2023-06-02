@@ -57,7 +57,7 @@
 								<!-- an_title이 null인지 아닌지에 따라 진행상태가 달라짐 -->
 								<c:if test="${infoQnA != null}">
 									<c:choose>
-										<c:when test="${empty infoQnA.an_title}">
+										<c:when test="${infoQnA.an_title=='확인중'}">
 											<td>확인중</td>
 										</c:when>
 										<c:otherwise>
