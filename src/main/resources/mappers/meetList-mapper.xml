@@ -6,7 +6,7 @@
 
 	<!-- 모임 찾기 page -->
 	<!-- 최신순으로 select문 -->
-	<select id="selectOrderByRecent">
+	<select id="selectOrderByRecent" resultType="com.itwill.shape.dto.MeetListCountDto">
 		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
 		from MEET_INFO M 
 		left join MEET_LIKE L 
@@ -18,7 +18,7 @@
 	</select>
 	
 	<!-- 인기순으로 select문 -->
-	<select id="selectOrderByPopularity">
+	<select id="selectOrderByPopularity" resultType="com.itwill.shape.dto.MeetListCountDto">
 		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
 		from MEET_INFO M 
 		left join MEET_LIKE L 
@@ -30,7 +30,7 @@
 	</select>
 	
 	<!-- 키워드 검색 select문 -->
-	<select id="selectByKeyword">
+	<select id="selectByKeyword" resultType="com.itwill.shape.dto.MeetListCountDto">
 		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
 		from MEET_INFO M 
 		left join MEET_LIKE L 
@@ -43,7 +43,7 @@
 	</select>
 	
 	<!-- 지역 select문 -->
-	<select id="selectByLocation">
+	<select id="selectByLocation" resultType="com.itwill.shape.dto.MeetListCountDto">
 		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
 		from MEET_INFO M 
 		left join MEET_LIKE L 
@@ -56,7 +56,7 @@
 	</select>
 	
 	<!-- 분야 select문 -->
-	<select id="selectByCategory">
+	<select id="selectByCategory" resultType="com.itwill.shape.dto.MeetListCountDto">
 		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
 		from MEET_INFO M 
 		left join MEET_LIKE L 
