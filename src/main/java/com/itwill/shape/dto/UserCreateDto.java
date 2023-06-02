@@ -18,7 +18,7 @@ public class UserCreateDto {
 	private String name;
 	private String gender;
 	private String birth;
-	private long phone;
+	private String phone;
 	private String email;
 	private byte[] profile;
 	private String joinDate;
@@ -38,6 +38,25 @@ public class UserCreateDto {
 						.id(id)
 						.pwd(pwd)
 						.name(name)
+						.build();
+	}
+	
+	/**
+	 * 0602 하지윤
+	 * USER - 사용자 생성을 위한 메소드
+	 * joinDate와 division은 자동 생성
+	 * 
+	 * @return
+	 */
+	public UserInfo toEntityMember() {
+		return UserInfo.builder()
+						.id(id)
+						.pwd(pwd)
+						.name(name)
+						.gender(gender)
+						.birth(birth)
+						.phone(phone)
+						.email(email)
 						.build();
 	}
 	

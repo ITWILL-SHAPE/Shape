@@ -25,7 +25,7 @@ public class UserInfoSelectByIdDto {
 	private String gender; // 성별 
 	private String id; // 아이디
 	private String birth; // 생년월일  
-	private long phone; // 핸드폰번호 
+	private String phone; // 핸드폰번호 
 	private String email; // 이메일 
 
 	
