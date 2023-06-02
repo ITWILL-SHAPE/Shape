@@ -23,12 +23,12 @@ public class MeetInfo {
 	private String mt_date;
 	private String mt_time;
 	private String ed_date;
-	private int nm_ppl;
+	private long nm_ppl;
 	private String mt_cost;
 	private String mt_cost_info;
 	private byte[] img;
 	private String content;
-	private int views;
+//	private long views;
 	private LocalDateTime created_date;
 	
 }

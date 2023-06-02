@@ -2,13 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.shape.repository.MtCreateRepository">
+<mapper namespace="com.itwill.shape.repository.MeetRepository">
 	
-	<!-- 모임 개설 insert 문 -->
+	<!-- 모임 개설 page -->
+	<!-- 모임 개설 insert문 -->
 	<insert id="insert">
 		insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY, SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME, 
-			ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, IMG_1, IMG_2, IMG_3, IMG_4, IMG_5, 
-			CONTENT, VIEWS, CREATED_DATE) values (#{crtr_id}, #{title}, #{ )
+			ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, CONTENT, CREATED_DATE) 
+			values (#{crtr_id}, #{title}, #{category}, #{sido}, #{sigungu}, #{location}, #{mt_date}, #{mt_time}, #{ed_date}, #{nm_ppl}, #{mt_cost}, #{mt_cost_info}, #{content}, sysdate)
 	</insert>
 	
 	<!-- 모임 삭제 -->
@@ -16,14 +17,10 @@
 		delete from MEET_INFO where MTID = #{mtid}
 	</delete>
 
-	<!-- 모임 수정 update 문 -->
+	<!-- 모임 수정 update문 -->
 	<update id="update">
 		update MEET_INFO set TITLE = #{title}, MT_DATE = #{mt_date}, MT_TIME = #{mt_time}, MT_COST = #{mt_cost}
 			, MT_COST_INFO = #{mt_cost_info}, CONTENT = #{content} where MTID = #{mtid}
 	</update>
-	
-	<select id="selectOrderByRecent">
-		select  from MEET_INFO 
-	</select>
 	
 </mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.shape.repository.MeetLikeRepository">
+
+	<!-- 찜 수 update문 -->
+	<update id="likeUpdate">
+		update MEET_LIKE set MTID = #{mtid}, ID = #{id}
+	</update>
+	
+	<!-- 찜 수 delete문 -->
+	<delete id="likeDelete">
+		delete from MEET_INFO where MTID = #{mtid}
+	</delete>
+	
+</mapper>
