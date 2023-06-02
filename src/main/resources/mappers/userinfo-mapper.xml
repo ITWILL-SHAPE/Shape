@@ -41,4 +41,13 @@
 		resultType="com.itwill.shape.repository.UserInfoRepository">
 		select * from USER_INFO where ID = #{id}
 	</select>
+	
+	
+	<!-- 참여한 user 정보 select문  선영이꺼 -->
+	<select id="getUserInfo" resultType="com.itwill.shape.domain.UserInfo">
+		select id, name, phone, email
+		from USER_INFO
+		where id = #{userId}
+	</select>
+	
 </mapper>

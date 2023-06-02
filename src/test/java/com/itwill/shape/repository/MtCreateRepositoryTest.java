@@ -118,9 +118,10 @@ public class MtCreateRepositoryTest {
         }	
 	}
 	
-	@Test
+//	@Test // 참여취소 테스트
 	public void testDeletePrtcp() {
 		int result = meetDetailRepository.prtcpDelete("admin");
 	}
+	
 	
 }

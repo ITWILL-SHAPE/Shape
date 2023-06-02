@@ -6,7 +6,7 @@
 
 	<!-- 상세보기 page -->
 	
-	<!-- 참여하기 insert문 -->
+	<!-- 참여하기 insert문 !-->
 	<insert id="prtcpInsert">
   		insert into MEET_PRTCP (mtid, prtcp_id, name, gender, phone, email)
   		values (#{mtid}, #{prtcp_id}, #{name}, #{gender}, #{phone}, #{email})
@@ -14,25 +14,20 @@
 		
 	<!-- mitd 상세보기 select문 -->
 	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetHostDto">
-		select M.*, U.email as uEmail
-		from MEET_INFO M
-		left join USER_INFO U on M.mtid = U.mtid
-		where M.mtid = #{ mtid }
+    	SELECT M.*, U.email AS uEmail
+    	FROM MEET_INFO M
+    	LEFT JOIN USER_INFO U ON M.mtid = U.mtid
+    	WHERE M.mtid = #{mtid}
 	</select>
 	
-	<!-- 참여인원 list select문 -->
+	<!-- 참여인원 list select문 !-->
 	<select id="prtcpList" resultType="com.itwill.shape.domain.MeetPrtcp">
 		select * from MEET_PRTCP where mtid = #{ mtid }
 	</select>
 	
-	<!-- 참여한 user 정보 select문 -->
-	<select id="getUserInfo" resultType="com.itwill.shape.domain.UserInfo">
-		select id, name, phone, email
-		from USER_INFO
-		where id = #{userId}
-	</select>	
+		
 	
-	<!-- 참여취소 delete문 -->
+	<!-- 참여취소 delete문 !-->
 	<delete id="prtcpDelete">
 		delete from MEET_PRTCP where prtcp_id = #{ prtcp_id }
 	</delete>
