@@ -28,8 +28,15 @@ public class MyPageController {
 	private final PostCommentService postCommentsService;
 	private final PostInfoService postInfoService;
 	private final UserInfoService userInfoService;
+	
+	/**
+	 * 0601 김세
+	 * 나의프로필 정보 불러오기  
+	 * @param id
+	 * @param model
+	 * @return "/mypage/memberinfo/myprofile"
+	 */
 	// 마이페이지 > 회원정보 > 나의 프로필
-
 	@GetMapping("/myprofile")
 	public String myProfile(String id, Model model) {
 		log.info("myprofile()");
@@ -40,12 +47,23 @@ public class MyPageController {
 		 return "/mypage/memberinfo/myprofile";
 	}
 	
+	/**
+	 * 0601 김세이  
+	 * 비밀번호 수정  
+	 * @param id
+	 * @param model
+	 * @return "/mypage/memberinfo/myprofile"
+	 */
+	
 	// 마이페이지 > 회원정보 > 비밀번호 수정
 	@GetMapping("/pwdmodify")
-	public String pwdModify() {
+	public String pwdModify(UserInfoSelectByIdDto dto) {
 		log.info("pwdModify()");
 		
-		return "/mypage/memberinfo/pwdmodify";
+		int result = userInfoService.pwdModify(dto);
+		log.info("pwdModif 결과 = {}", result);
+		
+		return "/mypage/memberinfo/myprofile";
 	}
 	
 	// 마이페이지 > 회원정보 > 회원탈퇴

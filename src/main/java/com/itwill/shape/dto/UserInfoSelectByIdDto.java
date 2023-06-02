@@ -20,19 +20,21 @@ import com.itwill.shape.domain.UserInfo;
 @Data	
 public class UserInfoSelectByIdDto {
 
+	private byte[] profile;
 	private String name; // 이름 
 	private String gender; // 성별 
 	private String id; // 아이디
 	private String birth; // 생년월일  
 	private long phone; // 핸드폰번호 
 	private String email; // 이메일 
+
 	
 
 
 	
 	/**
 	 * 0601 김세이 
-	 *  UserMember 타입 객체를 UserMemeberDto 타입으로 변환해서 리턴
+	 *  UserInfo 타입 객체를 UserInfoSelectByDto 타입으로 변환해서 리턴
 	 * 
 	 * @return
 	 */
@@ -47,7 +49,24 @@ public class UserInfoSelectByIdDto {
 				.phone(entity.getPhone())
 				.email(entity.getEmail())
 				.build();
-		
-		
 	}
+	
+	/**
+	 * 0602 김세이 
+	 *  UserInfoSelectByDto 타입 객체를 UserInfo 타입으로 변환해서 리턴
+	 * 
+	 * @return
+	 */
+	public UserInfo toEntity() {
+		
+		return UserInfo.builder()
+				.name(name)
+				.gender(gender)
+				.id(id)
+				.birth(birth)
+				.phone(phone)
+				.build();
+	}
+	
+	
 }

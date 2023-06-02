@@ -14,6 +14,6 @@
 	 <!--마이페이지 첫 화면 개인정보 쿼리문 -->
 	<select id="selectById"
 		resultType="com.itwill.shape.repository.UserInfoRepository">
-		select * from USERINFO where ID = #{id}
+		select * from USER_INFO where ID = #{id}
 	</select>
 </mapper>

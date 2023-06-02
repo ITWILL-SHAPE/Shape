@@ -48,4 +48,11 @@ public class UserInfoService {
 		return dto;
 	}
 
+	public int pwdModify(UserInfoSelectByIdDto dto) {
+		log.info("pwdModify({})", dto);
+		
+		// return UserInfoRepository.pwdModify(dto.toEntity());
+		return 0;
+	}
+
 }
