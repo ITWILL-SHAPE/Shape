@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.domain.InfoFaQ;
 import com.itwill.shape.dto.InfoFaQCreateDto;
 import com.itwill.shape.dto.InfoFaQDto;
 import com.itwill.shape.dto.InfoFaQUpdateDto;
@@ -48,9 +49,29 @@ public class InfoFaQService {
 		return infoFaQRepository.updateFaQ(dto.toEntity());
 	}
 	
+	/**
+	 * faq 삭제 (admin)
+	 * @param fid
+	 * @return
+	 */
 	public int delete(long fid) {
 		log.info("delete({})", fid);
 		return infoFaQRepository.deleteByFid(fid);
 	}
 	
+	/**
+	 * faq 상세보기 (admin)
+	 * 상세보기 detail 페이지에서 수정 or 삭제 버튼 선택
+	 */
+	public InfoFaQDto read(long fid) {
+		log.info("read({})", fid);
+		
+		// db에서 검색
+		InfoFaQ entity = infoFaQRepository.selectByFid(fid);
+		
+		// 검색 내용 dto로 변환
+		InfoFaQDto dto = InfoFaQDto.fromEntity(entity);
+		
+		return dto;
+	}
 }

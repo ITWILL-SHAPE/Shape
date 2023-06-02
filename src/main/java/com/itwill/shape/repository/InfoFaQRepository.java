@@ -9,6 +9,8 @@ public interface InfoFaQRepository {
 	
 	int insert (InfoFaQ faq);
 	
+	InfoFaQ selectByFid(long fid);
+	
 	List<InfoFaQDto> selectOrderByFid();
 	
 	int updateFaQ (InfoFaQ faq);
