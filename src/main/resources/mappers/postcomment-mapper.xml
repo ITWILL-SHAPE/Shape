@@ -12,11 +12,14 @@
 	: TABLE 당 하나의 mapper를 갖는다.
 	: 해당 쿼리 작성 후 무슨 역할을 하는지와 작성자 이름 기재
 -->
-	
-	<insert id="selectById">
+	<!-- 
+	author?로 댓글 목록 가져오기
+	 -->
+	<select	id="selectById"
+		resultType="com.itwill.shape.domain.PostComment">
 		SELECT *
 		  FROM post_comment
-		 WHERE AUTHOR = ${id}
-	</insert>
+		 WHERE author = ${author}
+	</select>
 
 </mapper>

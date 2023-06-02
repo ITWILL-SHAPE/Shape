@@ -7,6 +7,8 @@
 		<div id="body">
 			<span>로그인</span>
 			<input type="file" value="파일찾기"/>
+			
+			
 		</div>
 	</body>
 

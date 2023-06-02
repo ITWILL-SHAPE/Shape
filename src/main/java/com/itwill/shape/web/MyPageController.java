@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
+import com.itwill.shape.dto.PostInfoSelectByIdDTO;
 import com.itwill.shape.service.PostCommentService;
+import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.UserInfoService;
@@ -24,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MyPageController {
 
 	private final PostCommentService postCommentsService;
+	private final PostInfoService postInfoService;
 	private final UserInfoService userInfoService;
 	// 마이페이지 > 회원정보 > 나의 프로필
 
@@ -31,7 +34,6 @@ public class MyPageController {
 	public String myProfile(String id, Model model) {
 		log.info("myprofile()");
 		log.info("id={}", id);
-		log.info("");
 		
 		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 		model.addAttribute("myPageUserInfo", dto);
@@ -86,26 +88,41 @@ public class MyPageController {
 		return "/mypage/meet/viewed";
 	}
 	
+	/**
+	 * 0601 손창민
+	 * 내가 작성한 글 불러오기
+	 * @param model
+	 * @param id
+	 * @return "/mypage/board/myposts"
+	 */
 	// 마이페이지 > 게시판 > 내가 작성한 게시물
 	@GetMapping("/myposts")
-	public String myposts() {
+	public String myposts(Model model, String author) {
 		log.info("myposts()");
+		log.info("id={}", author);
 		
+		List<PostInfoSelectByIdDTO> myposts = postInfoService.selectById(author);
+		
+		model.addAttribute("myposts", myposts);
+
 		return "/mypage/board/myposts";
 	}
 	
 	/**
-	 * 손창민
+	 * 0601 손창민
 	 * 내가 작성한 댓글 불러오기
+	 * @param model
+	 * @param id
+	 * @return "/mypage/board/mycomments"
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 댓글
 	@GetMapping("/mycomments")
-	public String mycomments(Model model, long id) {
+	public String mycomments(Model model, String author) {
 		log.info("mycomments()");
-		log.info("id={}", id);
+		log.info("id={}", author);
 		
 		//컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByIdDTO> mycomments = postCommentsService.read(id);
+		List<PostCommentSelectByIdDTO> mycomments = postCommentsService.selectById(author);
 		
 		model.addAttribute("mycomments", mycomments);
 		

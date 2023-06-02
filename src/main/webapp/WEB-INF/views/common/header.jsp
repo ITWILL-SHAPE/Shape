@@ -15,22 +15,23 @@
 			integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 			crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-		<link rel="stylesheet" href="http://localhost:8081/shape/static/css/common.css"/>
+		<!-- <link rel="stylesheet" href="../static/css/common.css"/> -->
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/css/common.css"/>
 		<!-- icon -->
-		<link rel="shortcut icon" type="image/x-icon" href="http://localhost:8081/shape/static/images/common/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/static/images/common/favicon.ico">
 		<title>Shape</title>
 	</head>
 	<body>
 		<div id="wrap">
 			<header class="header">
 				<div class="inner-wrap">
-					<h1 class="logo"><a href="" title="홈페이지">메인페이지</a></h1>
+					<h1 class="logo"><a href="/" title="홈페이지">메인페이지</a></h1>
 				</div>
 				<div class="header-wrap">
 					<div class="util">
 						<!-- 로그인 전 -->
 						<div class="before">
-							<c:url value="/login" var="login"></c:url>
+							<c:url value="/member/customLogin" var="login"></c:url>
 							<a href="${ login }" title="login">로그인</a>
 							<a href="" title="signUp">회원가입</a>
 						</div>

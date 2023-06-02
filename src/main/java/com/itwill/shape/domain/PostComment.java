@@ -23,6 +23,6 @@ public class PostComment {
 	private long pid;
 	private String content;
 	private String author;
-	private LocalDateTime createdTime;
-	private LocalDateTime modifiedTime;
+	private LocalDateTime created_date;
+	private LocalDateTime modified_date;
 }
