@@ -37,6 +37,7 @@ public class MemberTests {
 	@Autowired
 	private UserInfoRepository userInfoRepository;
 	
+	// 사용자 유저 만들기
 	@Test
 	public void testInsertMember() {
 		assertNotNull(userInfoRepository);
@@ -48,11 +49,30 @@ public class MemberTests {
 										.name("test2")
 										.gender("M")
 										.phone("01011112222")
-										.email("test1@test1.com")
+										.email("test2@test2.com")
 										.build();
 		log.info(dto.toString());
 		
 		int result = userInfoRepository.insertMember(dto.toEntityMember());
+		assertEquals(1, result);
+		log.info("result = {}", result);
+		
+	}
+	
+	// 관리자 유저 만들기
+	@Test
+	public void testInsertAdmin() {
+		assertNotNull(userInfoRepository);
+		log.info("userInfoRepository = {}", userInfoRepository);
+		
+		UserCreateDto dto = UserCreateDto.builder()
+										.id("admin1")
+										.pwd(passwordEncoder.encode("admin1"))
+										.name("admin1")
+										.build();
+		log.info(dto.toString());
+		
+		int result = userInfoRepository.insertAdmin(dto.toEntityAdmin());
 		assertEquals(1, result);
 		log.info("result = {}", result);
 		
