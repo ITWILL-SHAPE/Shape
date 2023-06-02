@@ -68,11 +68,11 @@ public class UserInfoService {
 	 * @param id, imageFile 
 	 * @return int 
 	 */
-	public int imageModify(String id, MultipartFile imageFile) throws IOException {
+	public int imageModify(String id, MultipartFile profile) throws IOException {
 		log.info("imageModify({})", id);
 		
 		        // 이미지 파일을 읽어서 byte 배열로 변환
-		        byte[] imageData = imageFile.getBytes();
+		        byte[] imageData = profile.getBytes();
 
 		        // 변환된 byte 배열을 데이터베이스에 저장
 		    return userInfoRepository.imageModify(id,imageData);

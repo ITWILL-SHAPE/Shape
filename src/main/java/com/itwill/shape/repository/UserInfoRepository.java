@@ -45,6 +45,6 @@ public interface UserInfoRepository {
 	 */
 
 	
-	int imageModify(String id, byte[] imageFile);
+	int imageModify(String id, byte[] ImageData);
 
 	}

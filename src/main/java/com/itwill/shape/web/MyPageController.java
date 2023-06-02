@@ -57,10 +57,10 @@ public class MyPageController {
 	 */
 	
 	@GetMapping("/imagemodify")
-	public String imageModify(String id, @RequestParam("profile") MultipartFile imageFile) throws IOException {
+	public String imageModify(String id, @RequestParam("profile") MultipartFile profile) throws IOException {
 		log.info("imageModify()");
 		
-		int result = userInfoService.imageModify(id, imageFile);
+		int result = userInfoService.imageModify(id, profile);
 		log.info("imageModify 결과 = {}", result);
 		
 		return "/mypage/memberinfo/myprofile";
