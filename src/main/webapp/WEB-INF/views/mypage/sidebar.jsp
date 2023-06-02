@@ -6,33 +6,33 @@
     <ul>
     	<h5>회원정보</h5>
     	<li>
-    		<a href="myprofile">-나의 프로필</a>
+    		<a href="user/myprofile">-나의 프로필</a>
     	</li>
     	<li>
-    		<a href="pwdmodify">-비밀번호 수정</a>
+    		<a href="user/pwdmodify">-비밀번호 수정</a>
     	</li>
     	<li>
-    		<a href="withdrawal">-회원탈퇴(beta)</a>
+    		<a href="user/withdrawal">-회원탈퇴(beta)</a>
 		</li>
     	<h5>모임</h5>
     	<li>
-    		<a href="active">-내가 참여 중인 모임</a>
+    		<a href="user/active">-내가 참여 중인 모임</a>
     	</li>
     	<li>
-			<a href="created">-내가 개설한 모임</a>
+			<a href="user/created">-내가 개설한 모임</a>
 		</li>
     	<li>
-    		<a href="interests">-내가 찜한 모임</a>
+    		<a href="user/interests">-내가 찜한 모임</a>
     	</li>
     	<li>
-    		<a href="viewed">-최근 본 모임(beta)</a>
+    		<a href="user/viewed">-최근 본 모임(beta)</a>
     	</li>
     	<h5>게시판</h5>
     	<li>
-    		<a href="myposts">-내가 작성한 게시글</a>
+    		<a href="user/myposts">-내가 작성한 게시글</a>
     	</li>
     	<li>
-    		<a href="mycomments">-내가 작성한 댓글</a>
+    		<a href="user/mycomments">-내가 작성한 댓글</a>
     	</li>
     </ul>
 </div>

@@ -18,11 +18,13 @@ import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.UserInfoService;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j // 로그
 @RequiredArgsConstructor // 생성자에 의한 의존성 주입
 @Controller
+@RequestMapping("/user")
 public class MyPageController {
 
 	private final PostCommentService postCommentsService;
@@ -60,6 +62,8 @@ public class MyPageController {
 	@GetMapping("/active")
 	public String active() {
 		log.info("active()");
+		
+		
 		
 		return "/mypage/meet/active";
 	}
