@@ -1,5 +1,5 @@
 package com.itwill.shape.repository;
-
+//우수빈 faq repository
 import java.util.List;
 
 import com.itwill.shape.domain.InfoFaQ;

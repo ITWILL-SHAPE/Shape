@@ -10,10 +10,42 @@
 		VALUES (#{id}, #{pwd}, #{name}, 'A', systimestamp)
 	</insert>
 	
+	<!-- 사용자 생성 insert 문 -->
+	<!-- 수정 필요. 현재 테스트로 birth를 sysdate로 insert -->
+	<insert id="insertMember">
+		INSERT INTO USER_INFO (
+			  ID
+			, PWD
+			, NAME
+			, GENDER
+			, BIRTH
+			, PHONE
+			, EMAIL
+			, JOIN_DATE
+			, DIVISION
+		) VALUES (
+			  #{id}
+			, #{pwd}
+			, #{name}
+			, #{gender}
+			, systimestamp
+			, #{phone}
+			, #{email}
+			, systimestamp
+			, 'M'
+		)
+	</insert>
 	
 	 <!--마이페이지 첫 화면 개인정보 쿼리문 -->
 	<select id="selectById"
 		resultType="com.itwill.shape.repository.UserInfoRepository">
 		select * from USER_INFO where ID = #{id}
 	</select>
+	
+	<!--마이페이지 프로필 사진 변경 쿼리문  -->
+	<update id="imageModify" parameterType="map">
+	    UPDATE USER_INFO
+	    SET PROFILE = #{profile}
+	    WHERE id = #{id}
+	</update>
 </mapper>

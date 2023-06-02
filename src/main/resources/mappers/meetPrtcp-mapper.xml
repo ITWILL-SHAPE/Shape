@@ -2,11 +2,11 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.shape.repository.MeetDetailRepository">
+<mapper namespace="com.itwill.shape.repository.MeetPrtcpRepository">
 
 	<!-- 상세보기 page -->
 	
-	<!-- 참여하기 insert문 -->
+	<!-- 참여하기 insert문 !-->
 	<insert id="prtcpInsert">
   		insert into MEET_PRTCP (mtid, prtcp_id, name, gender, phone, email)
   		values (#{mtid}, #{prtcp_id}, #{name}, #{gender}, #{phone}, #{email})
@@ -14,27 +14,36 @@
 		
 	<!-- mitd 상세보기 select문 -->
 	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetHostDto">
-		select M.*, U.email as uEmail
-		from MEET_INFO M
-		left join USER_INFO U on M.mtid = U.mtid
-		where M.mtid = #{ mtid }
+    	SELECT M.*, U.email AS uEmail
+    	FROM MEET_INFO M
+    	LEFT JOIN USER_INFO U ON M.mtid = U.mtid
+    	WHERE M.mtid = #{mtid}
 	</select>
 	
-	<!-- 참여인원 list select문 -->
+	<!-- 참여인원 list select문 !-->
 	<select id="prtcpList" resultType="com.itwill.shape.domain.MeetPrtcp">
 		select * from MEET_PRTCP where mtid = #{ mtid }
 	</select>
-	
-	<!-- 참여한 user 정보 select문 -->
+	<!-- 참여한 user 정보 select문  선영이꺼 -->
 	<select id="getUserInfo" resultType="com.itwill.shape.domain.UserInfo">
 		select id, name, phone, email
 		from USER_INFO
 		where id = #{userId}
-	</select>	
+	</select>
 	
-	<!-- 참여취소 delete문 -->
+		
+	
+	<!-- 참여취소 delete문 !-->
 	<delete id="prtcpDelete">
 		delete from MEET_PRTCP where prtcp_id = #{ prtcp_id }
 	</delete>
+	
+	<!-- meetList.jsp에서 사용될 참여자 수 저장. -->
+	 <!-- java.lang.Long: wrapper Class(기본 데이터 타입을 객체로 감싸는 클래스) -->
+    <!-- primary key를 사용해도 됨: 중복 안되고 null이 아니기에 -->
+    <select id="selectPrtcpCountWithPrtcpId" resultType="java.lang.Long">
+        select count(prtcp_id) from MEET_PRTCP where prtcp_id = #{prtcp_id}
+    </select>	
+		
 		
 </mapper>

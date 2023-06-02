@@ -29,10 +29,10 @@ import lombok.extern.slf4j.Slf4j;
 public class MtCreateRepositoryTest {
 	
 	@Autowired
-	private MeetRepository mtCreateRepository;
+	private MeetInfoRepository mtCreateRepository;
 	
 	@Autowired
-	private MeetDetailRepository meetDetailRepository; 
+	private MeetPrtcpRepository meetDetailRepository; 
 	
 	//@Test // create
 	public void testCreateMeet() {
@@ -118,9 +118,10 @@ public class MtCreateRepositoryTest {
         }	
 	}
 	
-	@Test
+//	@Test // 참여취소 테스트
 	public void testDeletePrtcp() {
 		int result = meetDetailRepository.prtcpDelete("admin");
 	}
+	
 	
 }

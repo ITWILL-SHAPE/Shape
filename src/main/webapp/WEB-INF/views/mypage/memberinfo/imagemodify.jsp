@@ -34,14 +34,19 @@ th, td {
 </head>
 <body>
 	<main>
+		<c:forEach items="${myPageUserInfo}" var="info">
+			<div class="profile-container">
+				<div class="profile-image-container">
+					<img src="data:image/jpeg;base64,${info.profile}" alt="Profile Image">
+					<div class="profile-overlay">
+						<button class="change-profile-btn">사진 변경</button>
+					</div>
+				</div>
+			</div>
 
-		<img alt="" src="">
-
-
-		<div class="center">
-			<table>
-				<tbody>
-					<c:forEach items="${myPageUserInfo}" var="info">
+			<div class="center">
+				<table>
+					<tbody>
 						<tr>
 							<th>이름</th>
 							<td>${info.name}</td>
@@ -64,22 +69,22 @@ th, td {
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td>g${info.email}</td>
+							<td>${info.email}</td>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-		<div class="center">
-			<c:url var="myProfile" value="/mypage/myprofile">
+					</tbody>
+				</table>
+			</div>
+			<div class="center">
+			<c:url var="myProfile" value="myprofile">
 				<c:param name="id" value="${info.id}"></c:param>
 			</c:url>
 			<a class="btn btn-outline-primary form-control" 
 				href="${myProfile}">수정 완료</a>
 		</div>
-
+		</c:forEach>
 	</main>
 </body>
+
 </html>
 
 

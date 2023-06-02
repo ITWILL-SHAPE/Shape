@@ -43,8 +43,8 @@
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="Y"
-								id="secret" name="secret"> <label class="form-check-label"
-								for="flexCheckDefault"> 비밀글 </label>
+								id="secret" name="secret"> <label
+								class="form-check-label" for="flexCheckDefault"> 비밀글 </label>
 						</div>
 					</div>
 					<div class="card-footer my-2">

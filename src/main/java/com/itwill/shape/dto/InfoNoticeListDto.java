@@ -1,8 +1,7 @@
-package com.itwill.shape.domain;
-// 우수빈 faq
+package com.itwill.shape.dto;
+// 우수빈 notice 리스트
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,9 +13,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Data
-public class InfoFaQ {
-	private long fid;
-	private String question;
-	private String answer;
+public class InfoNoticeListDto {
+	
+	private long nid;
+	
 }

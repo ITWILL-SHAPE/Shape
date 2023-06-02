@@ -1,5 +1,5 @@
 package com.itwill.shape.dto;
-
+//우수빈 faq 관리자 수정
 import com.itwill.shape.domain.InfoFaQ;
 
 import lombok.AllArgsConstructor;
