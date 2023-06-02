@@ -16,10 +16,11 @@
 	author?로 댓글 목록 가져오기
 	 -->
 	<select	id="selectById"
-		resultType="com.itwill.shape.domain.PostComment">
+		resultType="com.itwill.shape.domain.PostComment"
+		>
 		SELECT *
 		  FROM post_comment
-		 WHERE author = ${author}
+		 WHERE author = #{author}
 	</select>
 
 </mapper>

@@ -17,10 +17,10 @@ public class InfoQnADetailDto {
 	private String title;
 	private String content;
 	private String writer;
-	private String anTitle;
-	private String anComment;
-	private Timestamp createdDate;
-	private Timestamp answerDate;
+	private String an_title;
+	private String an_comment;
+	private Timestamp created_date;
+	private Timestamp answer_date;
 	private String secret;
 	
 	public static InfoQnADetailDto fromEntity(InfoQnA entity) {
@@ -29,8 +29,10 @@ public class InfoQnADetailDto {
 				.title(entity.getTitle())
 				.content(entity.getContent())
 				.writer(entity.getWriter())
-				.createdDate(Timestamp.valueOf(entity.getCreated_date()))
-				.answerDate(Timestamp.valueOf(entity.getAnswer_date()))
+				.an_title(entity.getAn_title())
+				.an_comment(entity.getAn_comment())
+				.created_date(Timestamp.valueOf(entity.getCreated_date()))
+				.answer_date(Timestamp.valueOf(entity.getAnswer_date()))
 				.secret(entity.getSecret())
 				.build();
 	}

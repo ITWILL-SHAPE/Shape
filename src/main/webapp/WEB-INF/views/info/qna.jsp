@@ -41,12 +41,12 @@
 								<c:if test="${infoQnA != null}">
 									<c:choose>
 										<c:when test="${infoQnA.secret.equals('N')}">
-											<td><c:url var="postDetailPage" value="/post/detail">
+											<td><c:url var="infoQnADetailPage" value="/info/qna/detail">
 													<c:param name="qid" value="${ infoQnA.qid }" />
 												</c:url> <a href="${ infoQnADetailPage }">${ infoQnA.title }</a></td>
 										</c:when>
 										<c:otherwise>
-											<td><c:url var="postDetailPage" value="/post/detail">
+											<td><c:url var="infoQnADetailPage" value="/info/qna/detail">
 													<c:param name="qid" value="${ infoQnA.qid }" />
 												</c:url> <a href="${ infoQnADetailPage }">🔒비밀글입니다.</a></td>
 										</c:otherwise>
@@ -71,7 +71,8 @@
 				</table>
 			</div>
 			<div class="my-2 d-grid d-md-flex justify-content-md-end">
-				<button class="btn btn-primary" type="button">질문하기</button>
+				<c:url var="qnaCreate" value="/info/qna/create" />
+				<button onclick="location.href='${ qnaCreate }'" class="btn btn-primary" type="button">질문하기</button>
 			</div>
 		</main>
 
