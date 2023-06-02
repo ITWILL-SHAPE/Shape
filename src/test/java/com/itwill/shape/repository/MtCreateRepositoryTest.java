@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MtCreateRepositoryTest {
 	
 	@Autowired
-	private MeetRepository mtCreateRepository;
+	private MeetInfoRepository mtCreateRepository;
 	
 	@Autowired
 	private MeetPrtcpRepository meetDetailRepository; 

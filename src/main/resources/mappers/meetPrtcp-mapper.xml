@@ -36,5 +36,13 @@
 	<delete id="prtcpDelete">
 		delete from MEET_PRTCP where prtcp_id = #{ prtcp_id }
 	</delete>
+	
+	<!-- meetList.jsp에서 사용될 참여자 수 저장. -->
+	 <!-- java.lang.Long: wrapper Class(기본 데이터 타입을 객체로 감싸는 클래스) -->
+    <!-- primary key를 사용해도 됨: 중복 안되고 null이 아니기에 -->
+    <select id="selectPrtcpCountWithPrtcpId" resultType="java.lang.Long">
+        select count(prtcp_id) from MEET_PRTCP where prtcp_id = #{prtcp_id}
+    </select>	
+		
 		
 </mapper>
