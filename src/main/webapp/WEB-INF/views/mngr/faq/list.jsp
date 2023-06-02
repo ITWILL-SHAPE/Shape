@@ -24,7 +24,7 @@
 	<body>
 		<%@ include file="../../common/mngr_sidebar.jsp"%>
 		<h1>관리자 faq list 테스트</h1>
-			<div>
+			<div id="body">
 				<table>
 					<thead>
 						<tr>
@@ -34,12 +34,10 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${ faqs }" var="faq">
-							<tr>
 								<td>${ faq.fid }</td>
 								<td>
 									${ faq.question }
 								</td>
-							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
