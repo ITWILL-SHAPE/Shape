@@ -24,18 +24,18 @@ import lombok.ToString;
 public class PostCommentSelectByIdDTO {
 
 	private String content;
-	private Timestamp created_time;
+	private Timestamp created_date;
 
 	/**
-	 * 손창민 
-	 * DB에서 select한 PostComment 타입 객체를 PostCommentSelectByUserIdDTO 타입 객체로 변환해서 리턴.
+	 * 0601 손창민 
+	 * DB에서 select한 PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입 객체로 변환해서 리턴.
 	 * 
 	 */
 	public static PostCommentSelectByIdDTO fromEntity(PostComment entity) {
 
 		return PostCommentSelectByIdDTO.builder()
 				.content(entity.getContent())
-				.created_time(Timestamp.valueOf(entity.getCreatedTime()))
+				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();
 	}
 }

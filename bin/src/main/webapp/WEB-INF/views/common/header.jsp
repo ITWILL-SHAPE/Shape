@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,7 +30,8 @@
 					<div class="util">
 						<!-- 로그인 전 -->
 						<div class="before">
-							<a href="" title="login">로그인</a>
+							<c:url value="/login" var="login"></c:url>
+							<a href="${ login }" title="login">로그인</a>
 							<a href="" title="signUp">회원가입</a>
 						</div>
 					</div>
@@ -58,7 +59,8 @@
 							<a href="">도움말</a>
 							<ul class="sub_menu">
 								<li><a href="/info/notice">공지사항</a></li>
-								<li><a href="/info/faq">FAQ</a></li>
+								<c:url value="/info/faq" var="faq"></c:url>
+								<li><a href="${ faq }">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 							</ul>
 						</li>
@@ -66,7 +68,10 @@
 						<li class="profile">
 							<a href=""><i class="bi bi-person after-login"></i></a>
 							<ul class="sub_menu">
-								<li><a href="/shape/myprofile">마이페이지</a></li>
+								<li>
+									<c:url value="/myprofile" var="myPage"></c:url>
+									<a href="${ myPage }">마이페이지</a>
+								</li>
 								<li><a href="">로그아웃</a></li>
 							</ul>
 						</li>
