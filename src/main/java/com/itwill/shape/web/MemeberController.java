@@ -51,4 +51,14 @@ public class MemeberController {
 		log.info("custom logout");
 	}
 	
+	
+	/**
+	 * 회원가입
+	 */
+	@GetMapping("/signUp")
+	public void signUp() {
+		log.info("signUp()");
+		
+	}
+	
 }

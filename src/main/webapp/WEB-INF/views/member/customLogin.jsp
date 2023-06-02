@@ -7,10 +7,14 @@
 		<div id="body">
 			<h1>Custom Login Page</h1>
 			<h2>
-				<c:out value="${ error }"/>
+				<c:if test="${ error != null }">
+					<c:out value="${ error }"/>
+				</c:if>
 			</h2>
 			<h2>
-				<c:out value="${ logout }"/>
+				<c:if test="${ logout != null }">
+					<c:out value="${ logout }"/>
+				</c:if>
 			</h2>
 			<%-- 
 			<c:url var="login" value="/member/login"/>
@@ -18,7 +22,7 @@
 			 --%>
 			<form method="post" action="/shape/login">
 				<div>
-					<input type="text" name="id"/>
+					<input type="text" name="username"/>
 				</div>
 				<div>
 					<input type="password" name="password"/>
@@ -28,7 +32,6 @@
 				</div>
 				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }"/>
 			</form>
-			<a href="/logout">Logout</a>
 		</div>
 	</body>
 

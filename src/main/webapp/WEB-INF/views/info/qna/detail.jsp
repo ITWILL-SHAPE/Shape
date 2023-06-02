@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btnDelete.addEventListener('click', () => {
         const check = confirm('정말 삭제할까요?');
         if(check){
-            modifyForm.action = './delete'; //'delete' //폼 요청 주소
-            modifyForm.method = 'post'; //폼 요청 방식
-            modifyForm.submit(); // 폼 제출 -> 요청을 서버로 보냄.
+            modifyForm.action = './delete?qid='+${ infoQnA.qid }; 
+            modifyForm.method = 'post'; 
+            modifyForm.submit(); 
         }
     })
 });
@@ -92,9 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					</c:if>
 
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<c:url var="qnaDelete" value="/info/qna/delete" />
-						<button onclick="location.href='${ qnaDelete }'"
-							class="btn btn-primary me-md-2" id="btnDelete" type="button">삭제하기</button>
+						<button class="btn btn-primary me-md-2" id="btnDelete" type="button">삭제하기</button>
 						<c:url var="qna" value="/info/qna" />
 						<button onclick="location.href='${ qna }'" class="btn btn-primary"
 							type="button">목록</button>

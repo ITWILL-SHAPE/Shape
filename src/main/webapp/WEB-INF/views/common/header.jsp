@@ -33,7 +33,12 @@
 						<div class="before">
 							<c:url value="/member/customLogin" var="login"></c:url>
 							<a href="${ login }" title="login">로그인</a>
-							<a href="" title="signUp">회원가입</a>
+							<c:url value="/member/signUp" var="signUp"></c:url>
+							<a href="${ signUp }" title="signUp">회원가입</a>
+							<c:url value="/user/guide" var="guide"/>
+							<a href="${ guide }" title="guide">가이드</a>
+							<c:url value="/member/logout" var="logout"/>
+							<a href="${ logout }" title="logout">로그아웃</a>
 						</div>
 					</div>
 				</div>
@@ -50,16 +55,13 @@
 							</ul>
 						</li>
 						<li>
-							<a href="">게시판</a>
-							<ul class="sub_menu">
-								<li><a href="">게시판</a></li>
-								<li><a href="">글쓰기</a></li>
-							</ul>
+							<c:url value="/post/list" var="postListPage"></c:url>
+							<a href="${ postListPage }">게시판</a>
 						</li>
 						<li>
 							<a href="">도움말</a>
 							<ul class="sub_menu">
-								<li><a href="/info/notice">공지사항</a></li>
+								<li><a href="/shape/info/notice">공지사항</a></li>
 								<c:url value="/info/faq" var="faq"></c:url>
 								<li><a href="${ faq }">FAQ</a></li>
 								<c:url value="/info/qna" var="qna"></c:url>

@@ -1,9 +1,12 @@
 package com.itwill.shape.repository;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+=======
+>>>>>>> refs/remotes/origin/main
 import com.itwill.shape.domain.UserInfo;
 
 public interface UserInfoRepository {
@@ -16,6 +19,14 @@ public interface UserInfoRepository {
 	 * @return 0 or 1
 	 */
 	int insertAdmin(UserInfo user);
+	
+	/**
+	 * 0602
+	 * 사용자 유저 생성
+	 * @param user
+	 * @return
+	 */
+	int insertMember(UserInfo user);
 	
 	
 	/**

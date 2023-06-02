@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 
 <div class="accordion" id="accordionExample">
 	<ul class="sidebar">
@@ -29,13 +30,16 @@
 					<div class="accordion-body">
 						<ul>
 							<li>
-								<a href="">공지사항</a>
+							    <c:url value="/mngr/notice/list" var="mngrNoticeListPage"></c:url>
+								<a href="${ mngrNoticeListPage }">공지사항</a>
 							</li>
 							<li>
-								<a href="">FAQ</a>
+								<c:url value="/mngr/faq/list" var="mngrFaqListPage"></c:url>
+								<a href="${ mngrFaqListPage }">FAQ</a>
 							</li>
 							<li>
-								<a href="">Q&A</a>
+								<c:url value="/mngr/qna/list" var="mngrQnAListPage"></c:url>
+								<a href="${ mngrQnAListPage }">Q&amp;A</a>
 							</li>
 						</ul>
 					</div>

@@ -1,5 +1,5 @@
 package com.itwill.shape.web;
-
+//우수빈 faq controller 이용자 화면
 import java.util.List;
 
 import org.springframework.stereotype.Controller;

@@ -27,10 +27,21 @@ public class UserInfoService {
 	 * @param dto
 	 * @return
 	 */
-	public int create(UserCreateDto dto) {
-		log.info("create(dto = {})", dto);
+	public int createAdmin(UserCreateDto dto) {
+		log.info("createAdmin(dto = {})", dto);
 		
 		return userInfoRepository.insertAdmin(dto.toEntityAdmin());
+	}
+	
+	/**
+	 * 사용자 생성을 위한 메소드
+	 * @param dto
+	 * @return
+	 */
+	public int createMember(UserCreateDto dto) {
+		log.info("createMember(dto = {})", dto);
+		
+		return userInfoRepository.insertMember(dto.toEntityMember());
 	}
 	
 	/**

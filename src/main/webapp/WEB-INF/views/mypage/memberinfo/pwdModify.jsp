@@ -11,9 +11,6 @@
 		<div id="sidebar">
 			<%@ include file="../sidebar.jsp" %>
 		</div>
-		
-		<h2>비밀번호 재입력</h2>
-		
 	</body>
 </html>
 <%@ include file="../../common/footer.jsp" %>
