@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/mngr")
+@RequestMapping("/mngr/qna")
 public class InfoQnAMngrController {
 	private final InfoQnAService infoQnAService;
 	
@@ -25,7 +25,7 @@ public class InfoQnAMngrController {
 	 * @param qid
 	 * @param model
 	 */
-	@GetMapping("/qna")
+	@GetMapping("/list")
 	public void list(Model model) {
 		log.info("list()");
 		
