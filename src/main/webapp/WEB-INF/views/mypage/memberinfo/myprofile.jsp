@@ -30,6 +30,9 @@
 		</style>
 	</head>
 	<body>
+		<div id="sidebar">
+			<%@ include file="../sidebar.jsp" %>
+		</div>
 		<main>
 			
 			<img alt="" src="">

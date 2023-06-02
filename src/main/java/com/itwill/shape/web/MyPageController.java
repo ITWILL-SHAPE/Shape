@@ -126,7 +126,7 @@ public class MyPageController {
 		log.info("id={}", author);
 		
 		//컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByIdDTO> mycomments = postCommentsService.selectById(author);
+		List<PostCommentSelectByIdDTO> mycomments = postCommentsService.selectById("테스터");
 		
 		model.addAttribute("mycomments", mycomments);
 		
