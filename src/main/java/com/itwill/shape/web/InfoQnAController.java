@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/user/info")
+@RequestMapping("/info")
 @Controller
 public class InfoQnAController {
 	
