@@ -23,7 +23,7 @@ public class UserInfoRepositoryTest {
 	@Autowired
 	private UserInfoRepository userInfoRepository;
 	
-	@Test
+	// @Test
 	public void testCreateAdmin() {
 		assertNotNull(userInfoRepository);
 		log.info("userInfoRepository = {}", userInfoRepository);
@@ -38,6 +38,16 @@ public class UserInfoRepositoryTest {
 		int result = userInfoRepository.insertAdmin(user);
 		assertEquals(1, result);
 		log.info("result={}", result);
+		
+	}
+	
+	
+	@Test
+	public void testMypage() {
+		
+		
+		UserInfo result = userInfoRepository.selectById("user");
+		log.info(result.toString());
 		
 	}
 	

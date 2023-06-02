@@ -24,13 +24,13 @@
 	</delete>
 	
 	<!-- 참여하기 insert문 -->
-	<insert id="prtcpInsert" parameterType="MeetParticipant">
+	<insert id="prtcpInsert">
   		insert into MEET_PRTCP (mtid, prtcp_id, name, gender, phone, email)
   		values (#{mtid}, #{prtcpId}, #{name}, #{gender}, #{phone}, #{email})
 	</insert>
 		
 	<!-- 참여한 user 정보 select문 -->
-	<select id="getUserInfo" resultType="User">
+	<select id="getUserInfo">
 		select id, name, phone, email
 		from USER_INFO
 		where id = #{userId}

@@ -41,6 +41,10 @@
 				<table>
 				  <tbody>
 				  <c:forEach items="${myPageUserInfo}" var="info">
+				  <tr>
+						<th>이름</th>
+						<td>${info.name}</td>
+					</tr>
 					<tr>
 						<th>성별</th>
 						<td>${info.gender}</td>
@@ -66,12 +70,15 @@
 				</table>
 			</div>
 			<div class="center">
-				<button>회원 정보 수정</button>
+				<c:url var="mypageModifyPage" value="/mypage/pwdmodify">
+					<c:param name="id" value="${info.id}"></c:param>
+				</c:url>
+				<a class="btn btn-outline-primary form-control"
+					href="${myPageModifyPage}">회원정보 수정</a>
 			</div>
 		</main>
 	</body>
 </html>
-
 
 <%@ include file="../../common/footer.jsp" %>   
 

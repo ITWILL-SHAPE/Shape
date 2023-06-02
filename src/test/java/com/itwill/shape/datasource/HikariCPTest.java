@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -71,4 +72,5 @@ public class HikariCPTest {
         conn.close(); // 사용했던 Connection을 Data Source에 반환.
         log.info("conn close 성공");
 	}
+
 }
