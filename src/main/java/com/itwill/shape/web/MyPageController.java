@@ -68,6 +68,8 @@ public class MyPageController {
 		return "/mypage/memberinfo/myprofile";
 	}
 	
+	
+	
 	// 마이페이지 > 회원정보 > 회원탈퇴
 	@GetMapping("/withdrawal")
 	public String withdrawal() {
