@@ -1,12 +1,9 @@
 package com.itwill.shape.repository;
 
-<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-=======
->>>>>>> refs/remotes/origin/main
 import com.itwill.shape.domain.UserInfo;
 
 public interface UserInfoRepository {
