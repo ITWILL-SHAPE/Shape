@@ -24,10 +24,21 @@ public class UserInfoService {
 	 * @param dto
 	 * @return
 	 */
-	public int create(UserCreateDto dto) {
-		log.info("create(dto = {})", dto);
+	public int createAdmin(UserCreateDto dto) {
+		log.info("createAdmin(dto = {})", dto);
 		
 		return userInfoRepository.insertAdmin(dto.toEntityAdmin());
+	}
+	
+	/**
+	 * 사용자 생성을 위한 메소드
+	 * @param dto
+	 * @return
+	 */
+	public int createMember(UserCreateDto dto) {
+		log.info("createMember(dto = {})", dto);
+		
+		return userInfoRepository.insertMember(dto.toEntityMember());
 	}
 	
 	/**
@@ -48,6 +59,14 @@ public class UserInfoService {
 		return dto;
 	}
 
+	/**
+	 * 김세이 06.02 
+	 * 마이페이지 프로필 사진 변경을 위한 메서드 
+	 * dto={name, gender, id, birth, phone, email}
+	 * 
+	 * @param dto
+	 * @return
+	 */
 	public int imageModify(UserInfoSelectByIdDto dto) {
 		log.info("imageModify({})", dto);
 		

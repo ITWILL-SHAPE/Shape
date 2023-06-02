@@ -33,7 +33,12 @@
 						<div class="before">
 							<c:url value="/member/customLogin" var="login"></c:url>
 							<a href="${ login }" title="login">로그인</a>
-							<a href="" title="signUp">회원가입</a>
+							<c:url value="/member/signUp" var="signUp"></c:url>
+							<a href="${ signUp }" title="signUp">회원가입</a>
+							<c:url value="/user/guide" var="guide"/>
+							<a href="${ guide }" title="guide">가이드</a>
+							<c:url value="/member/logout" var="logout"/>
+							<a href="${ logout }" title="logout">로그아웃</a>
 						</div>
 					</div>
 				</div>
