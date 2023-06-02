@@ -1,6 +1,9 @@
 package com.itwill.shape.service;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.UserCreateDto;
@@ -51,16 +54,17 @@ public class UserInfoService {
 	/**
 	 * 김세이 06.02 
 	 * 마이페이지 프로필 사진 변경을 위한 메서드 
-	 * dto={name, gender, id, birth, phone, email}
-	 * 
-	 * @param dto
-	 * @return
+	 * @param id, imageFile 
+	 * @return int 
 	 */
-	public int imageModify(UserInfoSelectByIdDto dto) {
-		log.info("imageModify({})", dto);
+	public int imageModify(String id, MultipartFile imageFile) throws IOException {
+		log.info("imageModify({})", id);
 		
-		// return UserInfoRepository.imageModify(dto.toEntity());
-		return 0;
+		        // 이미지 파일을 읽어서 byte 배열로 변환
+		        byte[] imageData = imageFile.getBytes();
+
+		        // 변환된 byte 배열을 데이터베이스에 저장
+		    return userInfoRepository.imageModify(id,imageData);
 	}
 
 }

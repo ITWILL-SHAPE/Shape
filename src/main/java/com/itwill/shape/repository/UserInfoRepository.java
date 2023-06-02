@@ -2,6 +2,8 @@ package com.itwill.shape.repository;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itwill.shape.domain.UserInfo;
 
 public interface UserInfoRepository {
@@ -16,9 +18,25 @@ public interface UserInfoRepository {
 	int insertAdmin(UserInfo user);
 	
 	
+	/**
+	 * 0602 김세이 
+	 * 마이페이지 첫 페이지 
+	 * 
+	 * @param id 
+	 * @return UserInfo 
+	 */
 	UserInfo selectById(String id);
 
+	/**
+	 * 0602 김세이 
+	 * 마이페이지 프로필 사진 변경 
+	 * 
+	 * @param id 
+	 * @param imageFile
+	 * @return int (0/1)  
+	 */
 
-	int imageModify(UserInfo entity);
+	
+	int imageModify(String id, byte[] imageFile);
 
 	}

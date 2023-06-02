@@ -16,4 +16,11 @@
 		resultType="com.itwill.shape.repository.UserInfoRepository">
 		select * from USER_INFO where ID = #{id}
 	</select>
+	
+	<!--마이페이지 프로필 사진 변경 쿼리문  -->
+	<update id="imageModify" parameterType="map">
+    UPDATE USER_INFO
+    SET PROFILE = #{profile}
+    WHERE id = #{id}
+</update>
 </mapper>
