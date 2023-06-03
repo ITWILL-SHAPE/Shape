@@ -1,52 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shape</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<div>
-		<div>
+	<div class="container">
+		<div class="container">
 			<!-- 작성 -->
-			<div>
-				<div>
-					<div>
-						<h3>모임 만들기</h3>
+			<div class="back-wrap">
+				<div class="back-inner">
+					<div class="container-fluid">
+						<h3 class="inner-t1 _pnone">모임 만들기</h3>
 						<div>
 							<p>
-							" 필수 입력 "
+							필수 입력
 							<strong>*</strong>
 							<br>
-							" 모임 분야, 모임 장소, 모집 기간, 모임 인원은 수정할 수 없습니다. "
+							모임 분야, 모임 장소, 모집 기간, 모임 인원은 수정할 수 없습니다.
 							</p>
 						</div>
 						<form action="" method="post">
 							<dl>
-								<dt>
-								"모임 제목"
+								<dt class="form-label">
+								모임 제목
 									<span>*</span>
 								</dt>
 								<dd>
-									<div>
+									<div class="input-group mb-3">
 										<label for="title">
-											<input type="text" id="title" name="title" class="input-default"
+											<input type="text" id="title" name="title" class="form-control"
 											placeholder="모임의 제목을 입력하세요." value required>
 										</label>	
 									</div>
 								</dd>	
 								<dt>
-								"모임 분류"
+								모임 분류
 									<span>*</span>
 								</dt>
 								<dd>
-									<div>
-										<label>
-											<select>
-												<option value>카테고리를 선택하세요.</option>
+									<div class="input-group mb-3">
+										<label for="categorySelect">
+											<select class="custom-select" id="categorySelect">
+												<option>카테고리를 선택하세요.</option>
 												<option value="1">운동·액티비티</option>
 												<option value="2">음식·음료</option>
 												<option value="3">취미</option>
@@ -60,7 +63,7 @@
 									</div>
 								</dd>
 								<dt>
-								"모임 장소"
+								모임 장소
 								<span>*</span>
 								</dt>
 								<dd>
@@ -84,7 +87,7 @@
 									</div>
 								</dd>
 								<dt id="mt_schedule">
-								"모임 일정"
+								모임 일정
 								<span>*</span>
 								</dt>
 								<dd id="mt_schedule_detail">
@@ -106,7 +109,7 @@
 									</div>
 								</dd>
 								<dt id="rcrt_prd">
-								"모집 기간"
+								모집 기간
 								<span>*</span>
 								</dt>
 								<dd id="rcrt_prd_detail">
@@ -128,7 +131,7 @@
 									</div>
 								</dd>
 								<dt>
-								"모임 인원"
+								모임 인원
 								<span>*</span>
 								</dt>
 								<dd>
@@ -136,13 +139,14 @@
 										<div>
 											<label for="nm_ppl">
 												<input type="number" id="nm_ppl" name="nm_ppl" class="input-default"
-												placeholder="인원 수를 입력하세요. (숫자만 입력)">
+												placeholder="인원 수를 입력하세요.">
+												<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력</small>
 											</label>
 										</div>
 									</div>
 								</dd>
 								<dt id="mt_cost">
-								"참가비용(원)"
+								참가비용(원)
 								<span>*</span>
 								</dt>
 								<dd id="mt_cost_detail">
@@ -169,7 +173,7 @@
 									</div>
 								</dd>
 								<dt>
-								"모임 사진"
+								모임 사진
 								</dt>
 								<dd>
 									<div>
@@ -182,7 +186,7 @@
 									</div>
 								</dd>
 								<dt>
-								"모임 상세 내용"
+								모임 상세 내용
 								</dt>
 								<dd>
 									<div>
@@ -211,6 +215,9 @@
 
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
 <%@ include file="../common/footer.jsp"%>
