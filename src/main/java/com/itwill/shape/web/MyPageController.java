@@ -87,11 +87,11 @@ public class MyPageController {
    
    /**
     * 0602 손창민
-    * 비밀번호 변경 전 비밀번호 재입력
+    * 비밀번호 수정
     * @param pwd, inputPwd
     * @return
     */
-   // 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
+   // 마이페이지 > 회원정보 > 비밀번호 수정
    @GetMapping("/pwdmodify")
    public String pwdModify(String pwd, String inputPwd) {
       log.info("pwdModify()");
