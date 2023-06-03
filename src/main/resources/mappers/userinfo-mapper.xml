@@ -36,6 +36,12 @@
 		)
 	</insert>
 	
+	<!-- 로그인한 id를 이용하여 user의 정보읽기 -->
+	<select id="readUserInfoById"
+			resultType="com.itwill.shape.domain.UserInfo">
+		SELECT * FROM USER_INFO WHERE ID = #{id}
+	</select>
+	
 	 <!--마이페이지 첫 화면 개인정보 쿼리문 -->
 	<select id="selectById"
 		resultType="com.itwill.shape.repository.UserInfoRepository">

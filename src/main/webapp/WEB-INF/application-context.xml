@@ -20,7 +20,7 @@
     	 -->
     	<!-- 새로운 DB 연결 계정 -->
     	<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-    	<property name="jdbcUrl" value="jdbc:oracle:thin:@14.38.222.151:1521:xe"/>
+    	<property name="jdbcUrl" value="jdbc:oracle:thin:@220.74.96.30:1521:xe"/>
     	<property name="username" value="SHAPE"/>
     	<property name="password" value="shape"/>
     </bean>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -25,20 +26,26 @@
 		<div id="wrap">
 			<header class="header">
 				<div class="inner-wrap">
-					<h1 class="logo"><a href="/" title="홈페이지">메인페이지</a></h1>
+					<h1 class="logo"><a href="<%=request.getContextPath()%>" title="홈페이지">메인페이지</a></h1>
 				</div>
 				<div class="header-wrap">
 					<div class="util">
 						<!-- 로그인 전 -->
 						<div class="before">
-							<c:url value="/member/customLogin" var="login"></c:url>
-							<a href="${ login }" title="login">로그인</a>
-							<c:url value="/member/signUp" var="signUp"></c:url>
-							<a href="${ signUp }" title="signUp">회원가입</a>
-							<c:url value="/user/guide" var="guide"/>
-							<a href="${ guide }" title="guide">가이드</a>
-							<c:url value="/member/logout" var="logout"/>
-							<a href="${ logout }" title="logout">로그아웃</a>
+							<!-- access="isAnonymous()": 익명의 사용자의 경우 true -> 로그인을 안하면 보임. -->
+							<sec:authorize access="isAnonymous()">
+								<!-- 로그인 -->
+								<c:url value="/member/customLogin" var="login"/>
+								<a href="${ login }" title="login">로그인</a>
+								<!-- 회원가입 -->
+								<c:url value="/member/signUp" var="signUp"/>
+								<a href="${ signUp }" title="signUp">회원가입</a>
+							</sec:authorize>
+							<!-- access="isAuthenticated()": 인증된 사용자면 true -> 로그인 했으면 보임. -->
+							<sec:authorize access="isAuthenticated()">
+								<c:url value="/member/logout" var="logout"/>
+								<a href="${ logout }" title="logout">로그아웃</a>
+							</sec:authorize>
 						</div>
 					</div>
 				</div>

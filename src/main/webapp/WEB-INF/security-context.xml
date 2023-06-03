@@ -9,9 +9,11 @@
 	<!-- <bean id="customPasswordEncoder" class="com.itwill.shape.security.CustomNoOpPasswordEncoder"></bean> -->
 	<bean id="bcryptPasswordEncoder"
 			class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="customUserDetailsService"
+			class="com.itwill.shape.security.CustomUserDetailsService"/>
 	
     <!-- Configure security rules -->
-    <security:http>
+    <security:http auto-config="true" use-expressions="true">
     	<security:intercept-url pattern="/" access="permitAll"/>
     	<security:intercept-url pattern="/mngr/**" access="permitAll"/>
     	<security:intercept-url pattern="/static/**" access="permitAll"/>
@@ -29,16 +31,18 @@
     </security:http>
     
     <security:authentication-manager>
-    	<security:authentication-provider>
+    	<security:authentication-provider user-service-ref="customUserDetailsService">
     		<!-- 
     		<security:user-service>
     			<security:user name="user" password="{noop}user" authorities="M" />
     			<security:user name="admin" password="{noop}admin" authorities="A" />
     		</security:user-service>
     	 -->
+    	 	<!-- 
     		<security:jdbc-user-service data-source-ref="dataSource"
     				users-by-username-query="SELECT ID, PWD, ENABLED FROM USER_INFO WHERE ID = ?"
     				authorities-by-username-query="SELECT ID, DIVISION FROM USER_INFO WHERE ID = ?"/>
+    		 -->
     		<!-- <security:password-encoder ref="customPasswordEncoder"/> -->
     		<security:password-encoder ref="bcryptPasswordEncoder"/>
     	</security:authentication-provider>

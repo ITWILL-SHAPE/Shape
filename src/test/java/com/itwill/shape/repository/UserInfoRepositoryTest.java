@@ -42,7 +42,7 @@ public class UserInfoRepositoryTest {
 	}
 	
 	
-	@Test
+	// @Test
 	public void testMypage() {
 		
 		
@@ -50,6 +50,19 @@ public class UserInfoRepositoryTest {
 		log.info(result.toString());
 		
 	}
+	
+	/**
+	 * 하지윤 - user 정보 일기
+	 */
+	@Test
+	public void readUserInfoByIdTest() {
+		UserInfo result = userInfoRepository.readUserInfoById("test1");
+		log.info("-----------------------------------------------");
+		log.info(result.toString());
+		log.info("-----------------------------------------------");
+		
+	}
+	
 	
 
 }

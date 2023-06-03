@@ -17,7 +17,7 @@ public class MemeberController {
 	 * 사용자 login
 	 * @return
 	 */	
-	@GetMapping({"/customLogin"})
+	@GetMapping("/customLogin")
 	public void loginInput(String error, String logout, Model model) {
 		log.info("login()");
 		log.info("error = {}", error);
@@ -48,7 +48,7 @@ public class MemeberController {
 	 */
 	@GetMapping("/logout")
 	public void logoutGET() {
-		log.info("custom logout");
+		log.info("custom logout");		
 	}
 	
 	

@@ -25,6 +25,13 @@ public interface UserInfoRepository {
 	 */
 	int insertMember(UserInfo user);
 	
+	/**
+	 * 로그인한 id를 이용하여 user의 정보읽기
+	 * @param id
+	 * @return
+	 */	
+	UserInfo readUserInfoById(String id);
+	
 	
 	/**
 	 * 0602 김세이 
