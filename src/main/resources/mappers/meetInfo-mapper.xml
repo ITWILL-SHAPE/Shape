@@ -12,6 +12,14 @@
 			values (#{crtr_id}, #{title}, #{category}, #{sido}, #{sigungu}, #{location}, #{mt_date}, #{mt_time}, #{ed_date}, #{nm_ppl}, #{mt_cost}, #{mt_cost_info}, #{content}, sysdate)
 	</insert>
 	
+	<!-- 모임 개설 insert문 이미지 test -->
+<!--	<insert id="insert">
+		insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY, SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME, 
+			ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, IMG_1, CONTENT, CREATED_DATE) 
+			values (#{crtr_id}, #{title}, #{category}, #{sido}, #{sigungu}, #{location}, #{mt_date}, #{mt_time}, #{ed_date}, #{nm_ppl}, #{mt_cost}, #{mt_cost_info}, #{img_1}, #{content}, sysdate)
+	</insert>
+--> 
+	
 	<!-- 모임 삭제 -->
 	<delete id="delete">
 		delete from MEET_INFO where MTID = #{mtid}
@@ -22,6 +30,7 @@
 		update MEET_INFO set TITLE = #{title}, MT_DATE = #{mt_date}, MT_TIME = #{mt_time}, MT_COST = #{mt_cost}
 			, MT_COST_INFO = #{mt_cost_info}, CONTENT = #{content} where MTID = #{mtid}
 	</update>
+	
 	
 	<!-- meetList.jsp에 사용될 모든 sql 문장들 정리. -> service에서 정리 및 합침. -->
 	

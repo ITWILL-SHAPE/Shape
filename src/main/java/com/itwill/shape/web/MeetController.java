@@ -42,6 +42,8 @@ public class MeetController {
 		log.info("모임 만들기 결과 = {}", result);
 		
 		return "redirect:/meet/list";
+		
+		// 여기에 blob에 저장하기 위해 url을 byte로 변환하는 코드를 넣어야하는 지?
 	}
 	
 	/**
