@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
 									<div>
 										<label for="title">
 											<input type="text" id="title" name="title" class="input-default"
-											placehoder="모임의 제목을 입력하세요." value required>
+											placeholder="모임의 제목을 입력하세요." value required>
 										</label>	
 									</div>
 								</dd>	
@@ -83,16 +83,16 @@
 										</label>
 									</div>
 								</dd>
-								<dt>
+								<dt id="mt_schedule">
 								"모임 일정"
 								<span>*</span>
 								</dt>
-								<dd>
+								<dd id="mt_schedule_detail">
 									<div>
 										<div>
 											<label>
 												<i></i>
-												<input type="text" id="start_date" name="start_date" class="input-date" 
+												<input type="date" id="start_date" name="start_date" class="input-date" 
 												placeholder="날짜" value>
 											</label>
 										</div>
@@ -105,7 +105,105 @@
 										</div>
 									</div>
 								</dd>
+								<dt id="rcrt_prd">
+								"모집 기간"
+								<span>*</span>
+								</dt>
+								<dd id="rcrt_prd_detail">
+									<div>
+										<div>
+											<label for="rcrt_str_date">
+												<i></i>
+												<input type="date" id="rcrt_str_date" name="rcrt_str_date" class="input-date" 
+												placeholder="시작날짜" value>
+											</label>
+										</div>
+										<div>
+											<label for="rcrt_end_date">
+												<i></i>
+												<input type="date" id="rcrt_end_date" name="rcrt_end_date" class="input-default"
+												placeholder="종료날짜" value>
+											</label>
+										</div>
+									</div>
+								</dd>
+								<dt>
+								"모임 인원"
+								<span>*</span>
+								</dt>
+								<dd>
+									<div>
+										<div>
+											<label for="nm_ppl">
+												<input type="number" id="nm_ppl" name="nm_ppl" class="input-default"
+												placeholder="인원 수를 입력하세요. (숫자만 입력)">
+											</label>
+										</div>
+									</div>
+								</dd>
+								<dt id="mt_cost">
+								"참가비용(원)"
+								<span>*</span>
+								</dt>
+								<dd id="mt_cost_detail">
+									<div>
+										<div>
+											<label for="mt_cost">
+												<input type="number" id="mt_cost" class="input-default"
+												placeholder="참가비용을 입력하세요. 예) 5000(숫자만 입력)" value>
+											</label>
+										</div>
+										<div>
+											<label for="mt_cost_info">
+												<select id="mt_cost_info" name="mt_cost_info" class="select-default">
+													<option value="none">---참가비 없음---</option>
+													<option value="snack">다과비</option>
+													<option value="material">재료비</option>
+													<option value="rental">대관료</option>
+													<option value="operation">운영비</option>
+													<option value="noshow">노쇼방지</option>
+													<option value="etc">기타</option>
+												</select>
+											</label>
+										</div>
+									</div>
+								</dd>
+								<dt>
+								"모임 사진"
+								</dt>
+								<dd>
+									<div>
+										<div class="filebox">
+											<label for="mt_img_upload">
+											이미지 파일 업로드
+											</label>
+											<input type="file" id="mt_img_upload" name="mt_img_upload" accept="image/*">
+										</div>
+									</div>
+								</dd>
+								<dt>
+								"모임 상세 내용"
+								</dt>
+								<dd>
+									<div>
+										<div>
+											<label>
+												<textarea placeholder="모임을 소개해주세요."></textarea>
+											</label>
+										</div>
+									</div>
+								</dd>	
 							</dl>
+							<div>
+								<div>
+									<div>
+										<button type="button" class="btn-cancel">취소</button>
+									</div>
+									<div>
+										<button type="button" class="btn-create">모임 만들기</button>
+									</div>
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
