@@ -23,4 +23,38 @@
 		 WHERE author = #{author}
 	</select>
 
+	<!--게시판 페이지 -->
+	<select id="selectCommentCountWithPid"
+        resultType="java.lang.Long">
+        select count(PCID) from POST_COMMENT
+        where PID = #{pid}
+    </select>
+    
+    <select id="selectByPid" 
+        resultType="com.itwill.spring2.domain.PostComment">
+        select * from POST_COMMENT
+        where PID = #{pid}
+        order by MODIFIED_DATE desc
+    </select>
+    
+    <select id="selectByPcid"
+        resultType="com.itwill.spring2.domain.PostComment">
+        select * from POST_COMMENT where PCID = #{pcid}
+    </select>
+    
+    <insert id="insert">
+        insert into POST_COMMENT (PCID, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE)
+        values (#{pcid}, #{content}, #{author}, systimestamp, systimestamp)
+    </insert>
+    
+    <update id="update">
+        update POST_COMMENT
+        set CONTENT = #{content}, MODIFIED_DATE = systimestamp
+        where PCID = #{pcid}
+    </update>
+    
+    <delete id="delete">
+        delete from POST_COMMENT
+        where PCID = #{pcid}
+    </delete>
 </mapper>
