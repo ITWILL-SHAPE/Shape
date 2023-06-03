@@ -62,23 +62,17 @@
 							게시판
 						</button>
 						<div class="btn-group">
-							<button class="btn dropdown-toggle headerBtn" type="button" id="dropHelp"
+							<button class="btn dropdown-toggle headerBtn" type="button" id="dropInfo"
 								data-bs-toggle="dropdown" aria-expanded="false">
 								도움말
 							</button>
-							<ul class="dropdown-menu" aria-labelledby="dropHelp">
+							<ul class="dropdown-menu" aria-labelledby="dropInfo">
 								<li>
 									<c:url value="/info/notice" var="notice"/>
 									<a class="dropdown-item" href="${ notice }">공지사항</a>
 								</li>
 								<li>
-									<c:url value="/info/faq" var="faq">
-										<sec:authorize access="isAuthenticated()">
-											<c:param name="division">
-												<sec:authentication property="principal.user.division"/>
-											</c:param>
-										</sec:authorize>
-									</c:url>
+									<c:url value="/info/faq" var="faq"/>
 									<a class="dropdown-item" href="${ faq }">FAQ</a>
 								</li>
 								<li>
