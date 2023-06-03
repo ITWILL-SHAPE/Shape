@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,10 @@ public class PostCommentRepositoryTest {
 	
 	@Autowired
 	private PostCommentService postCommentService;
-//	private PostCommentRepository postCommentRepository;
+	@Autowired
+	private PostCommentRepository postCommentRepository;
 	
-	@Test
+	//@Test
 	public void testSelectById() {
 		
 		PostComment postComment = new PostComment(0,0,"테스트", "test", null, null);
@@ -37,4 +39,48 @@ public class PostCommentRepositoryTest {
 		//assertNotNull(list);
 		log.info("list={}", list);
 	}
+	
+//	@Test
+    public void testReplyCount() {
+        long result = postCommentRepository.selectCommentCountWithPid(1);
+        log.info("result = {}", result);
+    }
+    
+//    @Test
+    public void testDelete() {
+        int result = postCommentRepository.delete(3);
+        log.info("result = {}", result);
+    }
+    
+//    @Test
+    public void testUpdate() {
+        PostComment entity = PostComment.builder()
+                .pcid(1)
+                .content("update test")
+                .build();
+        int result = postCommentRepository.update(entity);
+        log.info("result = {}", result);
+    }
+    
+//    @Test
+    public void testInsert() {
+        PostComment entity = PostComment.builder()
+                .content("test")
+                .author("test")
+                .pid(1)
+                .build();
+        int result = postCommentRepository.insert(entity);
+        log.info("result = {}", result);
+    }
+    
+//    @Test
+    public void test() {
+        Assertions.assertNotNull(postCommentRepository);
+        log.info(postCommentRepository.toString());
+        
+        List<PostComment> list = postCommentRepository.selectByPid(1);
+        for(PostComment comment : list) {
+            log.info(comment.toString());
+        }
+    }
  }

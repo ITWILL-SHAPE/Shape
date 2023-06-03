@@ -43,8 +43,8 @@
     </select>
     
     <insert id="insert">
-        insert into POST_COMMENT (PCID, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE)
-        values (#{pcid}, #{content}, #{author}, systimestamp, systimestamp)
+        insert into POST_COMMENT (PID, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE)
+        values (#{pid}, #{content}, #{author}, systimestamp, systimestamp)
     </insert>
     
     <update id="update">

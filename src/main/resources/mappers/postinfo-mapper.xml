@@ -17,10 +17,10 @@
 	
 	<select id="selectWithCommentCount"
         resultType="com.itwill.shape.dto.PostListDto">
-        select P.PID, P.HRS_DH, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
+        select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
         from POST_INFO P left join POST_COMMENT C
             on P.PID = C.PID
-        group by P.PID, P.HRS_DH, P.TITLE, P.AUTHOR, P.CREATED_DATE
+        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
         order by P.PID desc
     </select>
     
