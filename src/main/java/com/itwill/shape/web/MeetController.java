@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/meet")
 @Controller
 public class MeetController {
 	
@@ -34,7 +34,7 @@ public class MeetController {
 	 * @param dto
 	 * @return
 	 */
-	@PostMapping("/meet/create")
+	@PostMapping("/create")
 	public String create(MeetInfoCreateDto dto) {
 		log.info("POST: create({})", dto);
 		
