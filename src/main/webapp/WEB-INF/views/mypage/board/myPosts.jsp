@@ -30,7 +30,7 @@
 				<tbody>
 					<c:forEach items="${ myposts }" var="myposts" varStatus="loop">
 						<tr>
-							<td>${loop.index + 1}</td>
+							<td>${ loop.index + 1 }</td>
 							<td>${ myposts.title }</td>
 							<td>
 							<td><fmt:formatDate value="${ myposts.created_date }"

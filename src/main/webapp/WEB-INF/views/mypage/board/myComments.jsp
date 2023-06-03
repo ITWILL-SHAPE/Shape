@@ -31,7 +31,7 @@
 					<c:forEach items="${ mycomments }" var="mycomments"
 						varStatus="loop">
 						<tr>
-							<td>${loop.index + 1}</td>
+							<td>${ loop.index + 1 }</td>
 							<td>${ mycomments.content }</td>
 							<td><fmt:formatDate value="${ mycomments.created_date }"
 									pattern="yyyy-MM-dd HH:mm" /></td>

@@ -55,9 +55,12 @@ public class UserInfoService {
 	public UserInfoSelectByIdDto selectById(String id) {
 		log.info("selectById()");
 		log.info("id={}", id);
+		
 		UserInfo entity = userInfoRepository.selectById(id);
+		log.info("entity={}", entity);
 		
 		UserInfoSelectByIdDto dto = UserInfoSelectByIdDto.fromEntity(entity);
+		log.info("dto={}", dto);
 		
 		return dto;
 	}

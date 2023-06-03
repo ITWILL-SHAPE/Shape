@@ -43,7 +43,7 @@ public class MyPageController {
 		log.info("myprofile()");
 		log.info("id={}", id);
 
-		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+		UserInfoSelectByIdDto dto = userInfoService.selectById("drj9812");
 		model.addAttribute("myPageUserInfo", dto);
 		return "/mypage/memberinfo/myprofile";
 	}
@@ -99,7 +99,7 @@ public class MyPageController {
 		return "/mypage/memberinfo/pwdModify";
 	}
 
-	// 마이페이지 > 회원정보 > 회원탈퇴
+	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
 	@GetMapping("/withdrawal")
 	public String withdrawal() {
 		log.info("withdrawal()");
@@ -107,6 +107,10 @@ public class MyPageController {
 		return "/mypage/memberinfo/withdrawal";
 	}
 
+	/**
+	 * 0604 손창민 내가 참여 중인 모임
+	 * @return
+	 */
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
 	@GetMapping("/active")
 	public String active() {
