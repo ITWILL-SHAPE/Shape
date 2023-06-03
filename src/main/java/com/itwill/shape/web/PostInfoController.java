@@ -58,7 +58,7 @@ public class PostInfoController {
 
 	@GetMapping("/detail")
 	public void detail(long pid, Model model) {
-		log.info("detail(id={})", pid);
+		log.info("detail(pid={})", pid);
 
 		// 서비스 계층의 메서드를 호출해서 화면에 보여줄 PostDetailDto를 가져옴.
 		PostDetailDto dto = postInfoService.read(pid);
@@ -69,7 +69,7 @@ public class PostInfoController {
 
 	@GetMapping("/modify")
 	public void modify(long pid, Model model) {
-		log.info("modify(id={})", pid);
+		log.info("modify(pid={})", pid);
 
 		PostDetailDto dto = postInfoService.read(pid);
 		model.addAttribute("post", dto);
