@@ -13,7 +13,7 @@
 	</insert>
 		
 	<!-- mitd 상세보기 select문 -->
-	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetMainDetaillDto">
+	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetMainDetailDto">
     	SELECT M.*, U.email AS uEmail
     	FROM MEET_INFO M
     	LEFT JOIN USER_INFO U ON M.mtid = U.mtid
