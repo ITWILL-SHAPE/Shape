@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.PostComment;
+import com.itwill.shape.dto.PostCommentCreateDto;
+import com.itwill.shape.dto.PostCommentReadDto;
 import com.itwill.shape.dto.PostCommentSelectByIdDTO;
+import com.itwill.shape.dto.PostCommentUpdateDto;
+import com.itwill.shape.dto.PostUpdateDto;
 import com.itwill.shape.repository.PostCommentRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -33,5 +37,43 @@ public class PostCommentService {
 		// PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입의 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
 		return entity.stream().map(PostCommentSelectByIdDTO::fromEntity).toList();
+	}
+	
+	/**
+	 * 0603 지현 게시판 댓글 사용
+	 * @param dto
+	 * @return
+	 */
+	public int create(PostCommentCreateDto dto) {
+		log.info("create(dto={})",dto);
+		return postCommentRepository.insert(dto.toEntity());
+	}
+	
+	public List<PostCommentReadDto> read(long pid){
+		log.info("read(pid={})", pid);
+		List<PostComment> list = postCommentRepository.selectByPid(pid);
+		return list.stream().map(PostCommentReadDto::fromEntity).toList();
+	}
+	
+	public PostCommentReadDto readByPcid(long pcid) {
+		log.info("readByPcid(pcid= {})", pcid);
+		PostComment entity = postCommentRepository.selectByPcid(pcid);
+		return PostCommentReadDto.fromEntity(entity);
+	}
+	
+	public int delete(long pcid) {
+		log.info("delete(pcid={}", pcid);
+		return postCommentRepository.delete(pcid);
+	}
+	
+	public int update(long pcid, PostCommentUpdateDto dto) {
+		log.info("update(pcid={}, dto={})", pcid, dto);
+		
+		PostComment entity = PostComment.builder()
+				.pcid(pcid)
+				.content(dto.getContent())
+				.build();
+		log.info("entity={}, entity");
+		return postCommentRepository.update(entity);
 	}
 }
