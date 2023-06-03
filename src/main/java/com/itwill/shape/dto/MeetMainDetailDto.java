@@ -30,7 +30,7 @@ public class MeetMainDetailDto {
 	private String mt_cost_info;
 	private byte[] img;
 	private String content;
-//	private long views;
+//	private long views; //
 	private Timestamp created_date;
 	private String uEmail; // 주최자 이메일 
 		
@@ -52,6 +52,7 @@ public class MeetMainDetailDto {
 		            .content(entity.getContent())
 		            .created_date(Timestamp.valueOf(entity.getCreated_date()))
 		            .build();
+			
 		            
 		            
 		}
