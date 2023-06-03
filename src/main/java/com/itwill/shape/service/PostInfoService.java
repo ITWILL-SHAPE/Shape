@@ -36,6 +36,7 @@ public class PostInfoService {
 		log.info("author={}", author);
 		
 		List<PostInfo> entity = postInfoRepository.selectById(author);
+		log.info("entity={}", entity);
 		
 		// PostInfo 타입의 객체를 PostInfoSelectByIdDTO 타입 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById

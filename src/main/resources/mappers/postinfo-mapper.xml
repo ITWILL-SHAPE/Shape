@@ -12,7 +12,7 @@
 		resultType="com.itwill.shape.domain.PostInfo">
 		SELECT *
 		  FROM post_info
-		 WHERE author = ${author}
+		 WHERE author = #{author}
 	</select>
 	
 	<select id="selectWithCommentCount"
