@@ -64,7 +64,7 @@
 	</select>
 	
 	<!-- 지역 select문 -->
-	<select id="selectByLocation" resultType="com.itwill.shape.dto.MeetListCountDto">
+	<select id="selectByLocation" resultType="com.itwill.shape.dto.MeetMainDetailDto">
 		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
 		from MEET_INFO M 
 		left join MEET_LIKE L 
