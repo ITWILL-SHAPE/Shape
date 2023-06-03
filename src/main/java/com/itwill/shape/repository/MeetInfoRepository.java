@@ -10,7 +10,7 @@ public interface MeetInfoRepository {
 	int deleteByMtid(long mtid); // delete 모임 삭제하기
 	int delete(int i);
 	
-	// mtid 모임 상세 페이지
+//	// mtid 모임 상세 페이지
 	MeetInfo selectById(long mtid); 
 
 }

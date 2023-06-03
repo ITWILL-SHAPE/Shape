@@ -35,27 +35,27 @@ public class MeetMainDetailDto {
 	private String uEmail; // 주최자 이메일 
 		
 	
-		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
-			return MeetMainDetailDto.builder()
-		            .mtid(entity.getMtid())
-		            .crtr_id(entity.getCrtr_id())
-		            .title(entity.getTitle())
-		            .category(entity.getCategory())
-		            .sido(entity.getSido())
-		            .sigungu(entity.getSigungu())
-		            .location(entity.getLocation())
-		            .mt_date(entity.getMt_date())
-		            .mt_time(entity.getMt_time())
-		            .ed_date(entity.getEd_date())
-		            .nm_ppl(entity.getNm_ppl())
-		            .img(entity.getImg())
-		            .content(entity.getContent())
-		            .created_date(Timestamp.valueOf(entity.getCreated_date()))
-		            .build();
-			
-		            
-		            
-		}
+//		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
+//			return MeetMainDetailDto.builder()
+//		            .mtid(entity.getMtid())
+//		            .crtr_id(entity.getCrtr_id())
+//		            .title(entity.getTitle())
+//		            .category(entity.getCategory())
+//		            .sido(entity.getSido())
+//		            .sigungu(entity.getSigungu())
+//		            .location(entity.getLocation())
+//		            .mt_date(entity.getMt_date())
+//		            .mt_time(entity.getMt_time())
+//		            .ed_date(entity.getEd_date())
+//		            .nm_ppl(entity.getNm_ppl())
+//		            .img(entity.getImg())
+//		            .content(entity.getContent())
+//		            .created_date(Timestamp.valueOf(entity.getCreated_date()))
+//		            .build();
+//			
+//		            
+//		            
+//		}
 	
 }
 	
