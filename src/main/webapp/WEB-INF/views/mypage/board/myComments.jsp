@@ -21,26 +21,23 @@
 		<div>
 			<table class="table">
 				<thead>
-					<th>
-						<tr>
-							<th>No</th>
-							<th>내용</th>
-							<th>작성일</th>
-						</tr>
-					</th>
+					<tr>
+						<th>No</th>
+						<th>내용</th>
+						<th>작성일</th>
+					</tr>
+				</thead>
 				<tbody>
-					<c:forEach items="${ mycomments }" var="mycomments" varStatus="loop">
+					<c:forEach items="${ mycomments }" var="mycomments"
+						varStatus="loop">
 						<tr>
-							<td>${loop.index + 1}</td>
+							<td>${ loop.index + 1 }</td>
 							<td>${ mycomments.content }</td>
-							<td>
-							<fmt:formatDate value="${ mycomments.created_date }"
-								pattern="yyyy-MM-dd HH:mm" />
-							</td>
+							<td><fmt:formatDate value="${ mycomments.created_date }"
+									pattern="yyyy-MM-dd HH:mm" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
-				</thead>
 			</table>
 		</div>
 	</main>

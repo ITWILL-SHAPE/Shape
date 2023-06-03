@@ -20,7 +20,7 @@ public class MeetInfoService {
 	
 	private final MeetPrtcpRepository meetPrtcpRepository; // 참여자 정보 
 
-	// 모임 만들기 페이지
+	// 모임 만들기
 	public int create(MeetInfoCreateDto dto) {
 		log.info("create({})", dto);
 

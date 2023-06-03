@@ -155,7 +155,10 @@
 						<li>
 							<a href="">모임</a>
 							<ul class="sub_menu">
-								<li><a href="">모임만들기</a></li>
+								<li>
+									<c:url value="/meet/create" var="meetCreatePage"></c:url>
+									<a href="${ meetCreatePage }">모임 만들기</a>
+								</li>
 								<li>
 									<c:url value="/meet/list" var="meetListPage"></c:url>
 									<a href="${ meetListPage }">모임 찾기</a>

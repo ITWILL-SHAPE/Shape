@@ -40,7 +40,8 @@ public class MeetInfoPrtcpLikeSelectByMtIdDTO {
 //				.sido(meetInfo.getSido())
 //				.category(meetInfo.getCategory())
 //				.nm_ppl(meetInfo.getNm_ppl())
-//				.lnct(meetLike.get)
+//				.lcnt(meetLike.get)
+//				.pcnt(meetPrtcp.)
 //				.build()
 //	}
 }
