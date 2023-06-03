@@ -54,4 +54,6 @@
 	    SET PROFILE = #{profile}
 	    WHERE id = #{id}
 	</update>
+	
+
 </mapper>

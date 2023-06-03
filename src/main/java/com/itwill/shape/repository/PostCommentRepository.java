@@ -15,4 +15,28 @@ public interface PostCommentRepository {
 	 * @return List<PostComment>
 	 */
 	List<PostComment> selectById(String author);
+	
+	
+	/**
+	 * 0603 지현
+	 * 아래로 게시판 댓글 사용
+	 * @param pid
+	 * @return
+	 */
+	long selectCommentCountWithPid(long pid);
+
+
+	int insert(PostComment entity);
+
+
+	List<PostComment> selectByPid(long pid);
+
+
+	PostComment selectByPcid(long pcid);
+
+
+	int delete(long pcid);
+
+
+	int update(PostComment entity);
 }

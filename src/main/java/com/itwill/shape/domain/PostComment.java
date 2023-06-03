@@ -19,7 +19,7 @@ import lombok.ToString;
 @Data				// Getter, Setter, toString, equals, hashCode
 public class PostComment {
 	
-	private long pcid;
+	private long pcid;// 댓글
 	private long pid;
 	private String content;
 	private String author;
