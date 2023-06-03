@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j // 로그
 @RequiredArgsConstructor // 생성자에 의한 의존성 주입
 @Controller
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class MyPageController {
 
 	private final PostCommentService postCommentsService;
@@ -162,7 +162,7 @@ public class MyPageController {
 		
 		//컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
 		List<PostCommentSelectByIdDTO> mycomments = postCommentsService.selectById("테스터");
-		
+		log.info("mycomments={}", mycomments);
 		model.addAttribute("mycomments", mycomments);
 		
 		return "/mypage/board/mycomments";

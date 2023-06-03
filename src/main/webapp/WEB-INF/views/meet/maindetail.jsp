@@ -14,26 +14,72 @@
 			<div>
 				<div>
 					<div>
-						<h3>모임 상세보기</h3>
-						<div> <!-- 메인 사진 넣기 --> </div>
+						<header>
+							<h3>모임 상세보기</h3>
+						</header>
+						<div id="carouselExampleIndicators" class="carousek slide"> <!-- 메인 사진 넣기 --> 
+							<div class="carousel-indicators">
+    						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    						<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  						</div>
+  					<div class="carousel-inner">
+    					<div class="carousel-item active">
+      						<img src="..." class="d-block w-100" alt="...">
+    					</div>
+    					<div class="carousel-item">
+      						<img src="..." class="d-block w-100" alt="...">
+    					</div>
+    					<div class="carousel-item">
+      						<img src="..." class="d-block w-100" alt="...">
+    					</div>
+  					</div>
+ 	 						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    							<span class="visually-hidden">Previous</span>
+  							</button>
+  							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+    							<span class="visually-hidden">Next</span>
+  							</button>
+					</div>
+				</div>
 						<!-- 제목, 내용 -->
 						<div>
 							<div>커피 모임 구해요~</div>
 						</div>
 							<div>
 								<ul>
-									<li>분야</li>
-									<li>위치</li>
-									<li>모임 일정</li>
-									<li>모임가간</li>
-									<li>인원</li>
-									<li>참가비용</li>
+									<li>
+									<i class="bi bi-bookmark-fill">categories</i>
+									<sapn>분야</sapn>
+									</li>
+									<li>
+									<i class="bi bi-flag-fill">map</i>
+									<span>위치</span>
+									</li>
+									<li>
+									<i class="bi bi-calendar2-event-fill">schedule</i>
+									<span>모임 일정</span>
+									</li>
+									<li>
+									<i class="bi bi-calendar-check-fill">period</i>
+									<span>모집기간</span>
+									</li>
+									<li>
+									<i class="bi bi-person-fill">person</i>
+									<span>인원</span>
+									</li>
+									<li>
+									<i class="bi bi-cash-coin">cash</i>
+									<span>참가비용</span>
+									</li>
 								</ul>
 							</div>
 							<hr>
 							<div>
-								<button>찜</button>
-								<button>참여하기</button>
+								<button type="button" class="btn-lg-primary">찜</button>
+								<button type="button" class="btn-lg-primary">참여하기</button>
 							</div>
 							<hr>
 							<!-- 프로필 -->
@@ -61,10 +107,8 @@
 							</div>
 							
 							<!--목록 페이지로 가기 -->
-							<button>목록</button>
-					</div>
-					
-					
+							<button>목록</button>	
+					</div>	
 				</div>
 			</div>		
 		</div>

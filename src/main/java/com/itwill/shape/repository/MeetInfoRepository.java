@@ -9,5 +9,16 @@ public interface MeetInfoRepository {
 	int update(MeetInfo entity); // update 모임 수정하기
 	int deleteByMtid(long mtid); // delete 모임 삭제하기
 	int delete(int i);
+<<<<<<< HEAD
+=======
+	
+	int update(MeetInfo mtInfo);
+
+	int deleteByMtid(long mtid);
+	
+	// mtid 모임 상세 페이지
+	MeetInfo selectById(long mtid); 
+
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 
 }

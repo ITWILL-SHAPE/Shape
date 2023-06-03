@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MeetInfo {
+public class MeetInfo { //작성내용
 
 	private long mtid;
 	private String crtr_id;

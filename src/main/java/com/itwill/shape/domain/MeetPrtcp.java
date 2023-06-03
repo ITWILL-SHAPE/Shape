@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MeetPrtcp {
+public class MeetPrtcp { // 참여자 정보
 	
 	private long mtid;
 	private String prtcp_id;
