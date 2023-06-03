@@ -30,7 +30,7 @@ public class MeetInfoUpdateDto {
 	private byte[] img;
 	private String content;
 	
-	public MeetInfo toEntity() {
+	public MeetInfo updateEntity() {
 		
 		return MeetInfo.builder()
 				.title(title)
@@ -49,4 +49,5 @@ public class MeetInfoUpdateDto {
 				.build();
 		
 	}
+
 }

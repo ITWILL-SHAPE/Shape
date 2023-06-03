@@ -11,4 +11,6 @@ public interface MeetInfoRepository {
 	
 	int update(MeetInfo mtInfo);
 
+	int deleteByMtid(long mtid);
+
 }
