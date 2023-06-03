@@ -3,9 +3,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.jsp" %>
 
-	<body>
-		<div id="body">
-			<h1>Custom Login Page</h1>
+	<div class="container">
+		<span>로그인</span>
+		<div class="text-center border bg-body rounded shadow-sm loginBox">
+			<form method="post" action="/shape/login" class="text-center">
+				<h1 class="my-4">로그인</h1>
+				<div class="my-2">
+					<main class="d-grid gap-3 login-inputBox">
+						<div class="form-floating">
+							<input id="floatingInput" class="form-control"
+								type="text" name="username" placeholder="ID"/>
+							<label for="floatingInput">ID</label>
+						</div>
+						<div class="form-floating">
+							<input id="floatingPassword" class="form-control"
+								type="password" name="password" placeholder="Password"/>
+							<label for="floatingPassword">Password</label>
+						</div>
+					</main>
+				</div>
+				<button class="w-50 btn btn-lg btn-primary" type="submit">로그인</button>
+			</form>
+		</div>
+	</div>
+		
+			<%-- 
 			<h2>
 				<c:if test="${ error != null }">
 					<c:out value="${ error }"/>
@@ -16,10 +38,10 @@
 					<c:out value="${ logout }"/>
 				</c:if>
 			</h2>
-			<%-- 
+			
 			<c:url var="login" value="/member/login"/>
 			<form method="post" action="${ login }">
-			 --%>
+			
 			<form method="post" action="/shape/login">
 				<div>
 					<input type="text" name="username"/>
@@ -32,7 +54,6 @@
 				</div>
 				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }"/>
 			</form>
-		</div>
-	</body>
+			 --%>
 
 <%@ include file="../common/footer.jsp" %>

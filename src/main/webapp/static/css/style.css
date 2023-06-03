@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* header.jsp에서 사용 */
+.headerBtn {border: none;}
+.headerBtn:active, .headerBtn:focus { outline:none !important; box-shadow:none !important;}
+/* footer.jsp에서 사용 */
+.text-white {color: white;}
+/* login.jsp에 사용 */
+div.loginBox {
+	height: 500px;
+    margin-bottom: 75px;
+    padding: 30px;
+}
+main.login-inputBox {
+	width: 50%;
+    margin: auto;
+}
