@@ -73,7 +73,7 @@ public class MyPageController {
     * @return
     */
    // 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
-   @GetMapping("/pwdConfirm")
+   @GetMapping("/pwdconfirm")
    public String pwdConfirm(String pwd, String inputPwd) {
       log.info("pwdConfirm()");
       log.info("pwd={}", pwd);
@@ -83,6 +83,25 @@ public class MyPageController {
       
       
       return "/mypage/memberinfo/pwdConfirm";
+   }
+   
+   /**
+    * 0602 손창민
+    * 비밀번호 변경 전 비밀번호 재입력
+    * @param pwd, inputPwd
+    * @return
+    */
+   // 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
+   @GetMapping("/pwdmodify")
+   public String pwdModify(String pwd, String inputPwd) {
+      log.info("pwdModify()");
+      log.info("pwd={}", pwd);
+      log.info("pwd={}", inputPwd);
+      
+      
+      
+      
+      return "/mypage/memberinfo/pwdModify";
    }
    
    // 마이페이지 > 회원정보 > 회원탈퇴
@@ -144,7 +163,7 @@ public class MyPageController {
       log.info("myposts={}", myposts);
       model.addAttribute("myposts", myposts);
 
-      return "/mypage/board/myposts";
+      return "/mypage/board/myPosts";
    }
    
    /**
@@ -165,6 +184,6 @@ public class MyPageController {
       log.info("mycomments={}", mycomments);
       model.addAttribute("mycomments", mycomments);
       
-      return "/mypage/board/mycomments";
+      return "/mypage/board/myComments";
    }
 }
