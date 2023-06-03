@@ -42,18 +42,18 @@ public class MeetInfoService {
 		
 	}
 	
-	// 모임 상세페이지
-//	public MeetMainDetailDto read(long mtid) {
-//		log.info("mtid={}" , mtid);
-//		
-//		MeetInfo entity = meetInfoRepository.selectById(mtid);
-//		
-//		MeetMainDetailDto detailDto = MeetMainDetailDto.fromEntity(entity);
-//		
-//		//참여자 정보 가져오기
-//				
-//		
-//		return detailDto;			
-//	}
+	//모임 상세페이지
+	public MeetMainDetailDto read(long mtid) {
+		log.info("mtid={}" , mtid);
+		
+		MeetInfo entity = meetInfoRepository.selectById(mtid);
+		
+		MeetMainDetailDto detailDto = MeetMainDetailDto.fromEntity(entity);
+		
+		//참여자 정보 가져오기
+				
+		
+		return detailDto;			
+	}
 	
 }
