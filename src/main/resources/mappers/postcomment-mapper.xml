@@ -31,14 +31,14 @@
     </select>
     
     <select id="selectByPid" 
-        resultType="com.itwill.spring2.domain.PostComment">
+        resultType="com.itwill.shape.domain.PostComment">
         select * from POST_COMMENT
         where PID = #{pid}
         order by MODIFIED_DATE desc
     </select>
     
     <select id="selectByPcid"
-        resultType="com.itwill.spring2.domain.PostComment">
+        resultType="com.itwill.shape.domain.PostComment">
         select * from POST_COMMENT where PCID = #{pcid}
     </select>
     

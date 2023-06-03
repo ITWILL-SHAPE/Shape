@@ -29,7 +29,7 @@
         values (#{title}, #{content}, #{author}, systimestamp, systimestamp, #{hrs_hd})
     </insert>
     
-    <select id="selectByPid" resultType="com.itwill.spring2.domain.PostInfo">
+    <select id="selectByPid" resultType="com.itwill.shape.domain.PostInfo">
         select * from POST_INFO where PID = #{pid}
     </select>
     
