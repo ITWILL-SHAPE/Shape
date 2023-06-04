@@ -18,6 +18,6 @@ public interface MeetLikeRepository {
 	 * @param mtLike -> mtid, id(모임 아이디 + 유저 아이디 필요)
 	 * @return
 	 */
-	int likeDelete(MeetLike mtLike);
+	int likeDelete(long mtid, String id);
 
 }

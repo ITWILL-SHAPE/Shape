@@ -48,7 +48,7 @@ public class MtLikeRepositoryTest {
 	
 	@Test
 	public void testLikeDelete() {
-		int result = meetLikeRepository.likeDelete(2);
+		int result = meetLikeRepository.likeDelete(3, "test3");
 	}
 	
 	

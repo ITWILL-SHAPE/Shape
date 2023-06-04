@@ -90,14 +90,14 @@ public class MeetListService {
 	
 	/**
 	 * mtid 모임에 like count 감소
-	 * @param mtLike -> mtid, id
+	 * @param long mtid, String id
 	 * @return
 	 */
-	public int LikeCountDelete(MeetLike mtLike) {
-		log.info("LikeCountDelete(mtLike = {})", mtLike);
+	public int LikeCountDelete(long mtid, String id) {
+		log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
 		
 		
-		return meetLikeRepository.likeDelete(mtLike);
+		return meetLikeRepository.likeDelete(mtid, id);
 	}
 	
 	// 모임별 찜 수 
