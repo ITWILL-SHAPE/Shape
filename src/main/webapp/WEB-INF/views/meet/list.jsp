@@ -65,7 +65,7 @@
 			class="searchForm" method="post">
 			<input type="hidden" name="_token"
 				value="ETZkFaodePka6Rzd4LOdkxx5G5AbBDX4aS7jJNFK">
-			<div class="tst-title">어떤 모임을 찾으세요?</div>
+			<div class="tst-title">전체 모임</div>
 			<div class="tst-search">
 				<div class="sch-wrap">
 					<label for="search_term"> <input type="text"
@@ -92,11 +92,22 @@
 						</select>
 					</div>
 					<!-- 필터 -->
-					<div class="filter-wrap">
-						<button type="button" class="btn-filter"
-							onclick="modalCtrl.openFilterPop();">
-							<i class="material-icons">sort</i> <span>필터</span>
-						</button>
+					<div class="input-group mb-3">
+						<label for="categorySelect"> 
+						<select
+							class="custom-select custom-select-lg mb-3" id="category"
+							name="category">
+								<option>모집 분야</option>
+								<option value="1">운동·액티비티</option>
+								<option value="2">음식·음료</option>
+								<option value="3">취미</option>
+								<option value="4">여행·동행</option>
+								<option value="5">자기계발·교육</option>
+								<option value="6">동네·친목</option>
+								<option value="7">문화·예술</option>
+								<option value="8">기타</option>
+						</select>
+						</label>
 					</div>
 					<!--[D] modal 상세조건 -->
 					<div id="modalFilter" class="modal fade">
@@ -389,16 +400,7 @@
 											 <em>3~ 10</em>명
 											 </span>
 										</div>
-										<div class="post-status">
-											<button type="button" class="btn--sm">모임종료</button>
-										</div>
 									</div>
-
-
-
-									<p class="card-text">This is a wider card with supporting
-										text below as a natural lead-in to additional content. This
-										content is a little bit longer.</p>
 									<div class="d-flex justify-content-between align-items-center">
 										
 										<small class="text-muted">9 mins</small>
