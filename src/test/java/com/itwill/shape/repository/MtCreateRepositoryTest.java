@@ -34,25 +34,25 @@ public class MtCreateRepositoryTest {
 	@Autowired
 	private MeetPrtcpRepository meetDetailRepository; 
 	
-	//@Test // create
+	@Test // create
 	public void testCreateMeet() {
 		assertNotNull(mtCreateRepository);
 		log.info("mtCreateRepository = {}" , mtCreateRepository);
 		
 		MeetInfo mtInfo = MeetInfo.builder()
-				.crtr_id("test1")
-				.title("mtInfo Junit test")
-				.category("mtInfo Junit test")
-				.sido("mtInfo Junit test")
-				.sigungu("mtInfo Junit test")
-				.location("mtInfo Junit test")
-				.mt_date("mtInfo Junit test")
-				.mt_time("mtInfo Junit test")
-				.ed_date("mtInfo Junit test")
-				.nm_ppl(1)
-				.mt_cost("test")
-				.mt_cost_info("mtInfo Junit test")
-				.content("mtInfo Junit test")
+				.crtr_id("test2")
+				.title("뭐 쓰지")
+				.category("취미")
+				.sido("경기도")
+				.sigungu("어딘가")
+				.location("수영장")
+				.mt_date("20230605")
+				.mt_time("1212")
+				.ed_date("20230605")
+				.nm_ppl(5)
+				.mt_cost("5000")
+				.mt_cost_info("커피")
+				.content("집")
 				.build();
 		log.info(mtInfo.toString());
 		
