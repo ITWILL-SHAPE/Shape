@@ -12,6 +12,8 @@ import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
+import com.itwill.shape.dto.PostDetailDto;
+import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
 
@@ -27,6 +29,7 @@ public class MeetController {
 	
 	private final MeetInfoService meetInfoService;
 	private final MeetListService meetListService;
+	private final MeetDetailService meetDetailService; // 상세보기 서비스 다시 만들었습니다.
 	
 	@GetMapping("/create")
 	public void create() {
@@ -61,7 +64,7 @@ public class MeetController {
 	public void modify(long mtid, Model model) {
 		log.info("modify(mtid={})", mtid);
 		
-		MeetMainDetailDto dto = meetInfoService.read(mtid);
+		MeetMainDetailDto dto = meetDetailService.read(mtid);
 		model.addAttribute("meet", dto);
 		
 	}
@@ -114,5 +117,20 @@ public class MeetController {
 		model.addAttribute("listCount", dto);
 
 	}
-	
+	/**
+	 * 0604 배선영
+	 * 상세보기 페이지
+	 * @param mtid, model
+	 */
+	@GetMapping("/maindetail")
+	public void maindetail(long mtid, Model model) {
+		log.info("maindetail");
+		
+		// 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
+		MeetMainDetailDto dto = meetDetailService.read(mtid);
+		
+		// 뷰에 MeetDetaildto를 전달.
+		model.addAttribute("meetmaindetail" , dto);
+		
+	}
 }

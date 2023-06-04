@@ -32,7 +32,7 @@ public class MeetMainDetailDto {
 	private String content;
 //	private long views; //
 	private Timestamp created_date;
-	private String uEmail; // 주최자 이메일 
+	private String uEmail; // user 이메일 , (주최자 이메일 참여자 이메일)
 		
 	
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
@@ -56,6 +56,9 @@ public class MeetMainDetailDto {
 		            
 		            
 		}
+
+
+	
 	
 }
 	

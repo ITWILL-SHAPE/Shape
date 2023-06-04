@@ -1,6 +1,7 @@
 package com.itwill.shape.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetInfoCreateDto;
@@ -17,8 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MeetInfoService {
 	private final MeetInfoRepository meetInfoRepository;
+	private final MeetMainDetailDto meetMainDetailDto; // 상세보기
 	
-	private final MeetPrtcpRepository meetPrtcpRepository; // 참여자 정보 
+	
 
 	// 모임 만들기
 	public int create(MeetInfoCreateDto dto) {
@@ -40,20 +42,6 @@ public class MeetInfoService {
 		
 		return meetInfoRepository.deleteByMtid(mtid);
 		
-	}
-	
-	//모임 상세페이지
-	public MeetMainDetailDto read(long mtid) {
-		log.info("mtid={}" , mtid);
-		
-		MeetInfo entity = meetInfoRepository.selectById(mtid);
-		
-		MeetMainDetailDto detailDto = MeetMainDetailDto.fromEntity(entity);
-		
-		//참여자 정보 가져오기
-				
-		
-		return detailDto;			
 	}
 	
 }
