@@ -23,6 +23,11 @@
 							</div>
 							<form action="" method="post" class="form-box">
 								<dl>
+									<div>
+										<sec:authorize access="isAuthenticated()">
+											<input type="hidden" id="crtr_id" name="crtr_id" value="<sec:authentication property="principal.username"/>" />
+										</sec:authorize>
+									</div>
 									<dt align="left">
 									모임 제목
 										<span>*</span>
@@ -149,13 +154,13 @@
 											<div>
 												<label for="mt_cost_info">
 													<select id="mt_cost_info" name="mt_cost_info" class="select-default">
-														<option value="none">---참가비 없음---</option>
-														<option value="snack">다과비</option>
-														<option value="material">재료비</option>
-														<option value="rental">대관료</option>
-														<option value="operation">운영비</option>
-														<option value="noshow">노쇼방지</option>
-														<option value="etc">기타</option>
+														<option value="참가비 없음.">---참가비 없음---</option>
+														<option value="다과비">다과비</option>
+														<option value="재료비">재료비</option>
+														<option value="대관료">대관료</option>
+														<option value="운영비">운영비</option>
+														<option value="노쇼방지">노쇼방지</option>
+														<option value="기타">기타</option>
 													</select>
 													<small id="nm_ppl_help" class="form-text text-muted">예) 5000(숫자만 입력)</small>
 												</label>
