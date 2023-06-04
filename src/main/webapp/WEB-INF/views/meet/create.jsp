@@ -49,14 +49,14 @@
 											<label for="categorySelect">
 												<select class="custom-select custom-select-lg mb-3" id="category" name="category">
 													<option>카테고리를 선택하세요.</option>
-													<option value="1">운동·액티비티</option>
-													<option value="2">음식·음료</option>
-													<option value="3">취미</option>
-													<option value="4">여행·동행</option>
-													<option value="5">자기계발·교육</option>
-													<option value="6">동네·친목</option>
-													<option value="7">문화·예술</option>
-													<option value="8">기타</option>
+													<option value="운동·액티비티">운동·액티비티</option>
+													<option value="음식·음료">음식·음료</option>
+													<option value="취미">취미</option>
+													<option value="여행·동행">여행·동행</option>
+													<option value="자기계발·교육">자기계발·교육</option>
+													<option value="동네·친목">동네·친목</option>
+													<option value="문화·예술">문화·예술</option>
+													<option value="기타">기타</option>
 												</select>
 											</label>
 										</div>

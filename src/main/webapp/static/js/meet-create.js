@@ -55,7 +55,7 @@ $('document').ready(function() {
 		var selectedOption = $(this).val();
 		var inputElement = $("input#mt_cost");
 
-		if (selectedOption === "none") {
+		if (selectedOption === "참가비 없음.") {
 			inputElement.prop("readonly", true);
 			inputElement.attr("placeholder", "참가비 없음.");
 		} else {
