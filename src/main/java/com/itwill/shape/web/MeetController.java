@@ -1,5 +1,7 @@
 package com.itwill.shape.web;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
+import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.service.MeetInfoService;
+import com.itwill.shape.service.MeetListService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -22,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MeetController {
 	
 	private final MeetInfoService meetInfoService;
+	private final MeetListService meetListService;
 	
 	@GetMapping("/create")
 	public void create() {
@@ -92,6 +97,22 @@ public class MeetController {
 		
 		return "redirect:/meet/list";
 		
+	}
+	
+	/**
+	 * 0604 김지민
+	 * 최신순(basic) 정렬
+	 * @param model
+	 */
+	@GetMapping("/list")
+	public void readBasic(Model model) {
+		log.info("readBasic");
+
+		List<MeetListCountDto> dto = meetListService.readByCreateTime();
+
+		// 뷰에 PostDetailDto를 전달.
+		model.addAttribute("listCount", dto);
+
 	}
 	
 }

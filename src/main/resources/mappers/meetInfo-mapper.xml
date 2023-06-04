@@ -2,24 +2,27 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.shape.repository.MeetInfoRepository">
-	
+<mapper
+	namespace="com.itwill.shape.repository.MeetInfoRepository">
+
 	<!-- 모임 개설 page -->
 	<!-- 모임 개설 insert문 -->
 	<insert id="insert">
-		insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY, SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME, 
-			ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, CONTENT, CREATED_DATE) 
-			values (#{crtr_id}, #{title}, #{category}, #{sido}, #{sigungu}, #{location}, #{mt_date}, #{mt_time}, #{ed_date}, #{nm_ppl}, #{mt_cost}, #{mt_cost_info}, #{content}, sysdate)
+		insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY,
+		SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME,
+		ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, CONTENT, CREATED_DATE)
+		values (#{crtr_id}, #{title}, #{category}, #{sido}, #{sigungu}, #{location},
+		#{mt_date}, #{mt_time}, #{ed_date}, #{nm_ppl}, #{mt_cost},
+		#{mt_cost_info}, #{content}, sysdate)
 	</insert>
-	
+
 	<!-- 모임 개설 insert문 이미지 test -->
-<!--	<insert id="insert">
-		insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY, SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME, 
-			ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, IMG_1, CONTENT, CREATED_DATE) 
-			values (#{crtr_id}, #{title}, #{category}, #{sido}, #{sigungu}, #{location}, #{mt_date}, #{mt_time}, #{ed_date}, #{nm_ppl}, #{mt_cost}, #{mt_cost_info}, #{img_1}, #{content}, sysdate)
-	</insert>
---> 
-	
+	<!-- <insert id="insert"> insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY, 
+		SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME, ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, 
+		IMG_1, CONTENT, CREATED_DATE) values (#{crtr_id}, #{title}, #{category}, 
+		#{sido}, #{sigungu}, #{location}, #{mt_date}, #{mt_time}, #{ed_date}, #{nm_ppl}, 
+		#{mt_cost}, #{mt_cost_info}, #{img_1}, #{content}, sysdate) </insert> -->
+
 	<!-- 모임 삭제 -->
 	<delete id="delete">
 		delete from MEET_INFO where MTID = #{mtid}
@@ -27,75 +30,86 @@
 
 	<!-- 모임 수정 update문 -->
 	<update id="update">
-		update MEET_INFO set TITLE = #{title}, MT_DATE = #{mt_date}, MT_TIME = #{mt_time}, MT_COST = #{mt_cost}
-			, MT_COST_INFO = #{mt_cost_info}, CONTENT = #{content} where MTID = #{mtid}
+		update MEET_INFO set TITLE = #{title}, MT_DATE =
+		#{mt_date}, MT_TIME = #{mt_time}, MT_COST = #{mt_cost}
+		, MT_COST_INFO = #{mt_cost_info}, CONTENT = #{content} where MTID =
+		#{mtid}
 	</update>
-	
-	
+
+
 	<!-- meetList.jsp에 사용될 모든 sql 문장들 정리. -> service에서 정리 및 합침. -->
-	
+
 	<!-- 모임 찾기 page -->
 	<!-- 최신순으로 select문 -->
-	<select id="selectOrderByRecent" resultType="com.itwill.shape.dto.MeetListCountDto">
-		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
-		from MEET_INFO M 
-		left join MEET_LIKE L 
-		on M.mtid = L.mtid 
-		left join MEET_PRTCP P
-		on M.mtid = P.mtid
-		group by M.mtid, M.sido, M.mt_date
-		order by create_date desc
+	<select id="selectOrderByRecent"
+		resultType="com.itwill.shape.dto.MeetListCountDto">
+	SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
+	count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
+	FROM MEET_INFO M
+	LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
+	LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+	GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, M.CREATED_DATE
+	ORDER BY M.CREATED_DATE DESC
 	</select>
-	
+
+
 	<!-- 인기순으로 select문 -->
-	<select id="selectOrderByPopularity" resultType="com.itwill.shape.dto.MeetListCountDto">
-		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
-		from MEET_INFO M 
-		left join MEET_LIKE L 
-		on M.mtid = L.mtid 
+	<select id="selectOrderByPopularity"
+		resultType="com.itwill.shape.dto.MeetListCountDto">
+		select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title
+		from MEET_INFO M
+		left join MEET_LIKE L
+		on M.mtid = L.mtid
 		left join MEET_PRTCP P
 		on M.mtid = P.mtid
-		group by M.mtid, M.sido, M.mt_date
-		order by count(L.id) desc
+		group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title
+		order by count(L.mtid) desc
 	</select>
-	
+
 	<!-- 키워드 검색 select문 -->
-	<select id="selectByKeyword" resultType="com.itwill.shape.dto.MeetListCountDto">
-		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
-		from MEET_INFO M 
-		left join MEET_LIKE L 
-		on M.mtid = L.mtid 
+	<select id="selectByKeyword"
+		resultType="com.itwill.shape.dto.MeetListCountDto">
+		select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title, M.create_date
+		from MEET_INFO M
+		left join MEET_LIKE L
+		on M.mtid = L.mtid
 		left join MEET_PRTCP P
 		on M.mtid = P.mtid
 		where title like '%' + #{title} + '%'
-		group by M.mtid, M.sido, M.mt_date
-		order by create_date desc
+		group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, M.create_date
+		order by M.create_date desc
 	</select>
-	
+
 	<!-- 지역 select문 -->
-	<select id="selectByLocation" resultType="com.itwill.shape.dto.MeetListCountDto">
-		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
-		from MEET_INFO M 
-		left join MEET_LIKE L 
-		on M.mtid = L.mtid 
+	<select id="selectByLocation"
+		resultType="com.itwill.shape.dto.MeetListCountDto">
+		select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title, M.create_date
+		from MEET_INFO M
+		left join MEET_LIKE L
+		on M.mtid = L.mtid
 		left join MEET_PRTCP P
 		on M.mtid = P.mtid
 		where sido like '%' + #{sido} + '%'
-		group by M.mtid, M.sido, M.mt_date
-		order by create_date desc
+		group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, M.create_date
+		order by M.create_date desc
 	</select>
-	
+
 	<!-- 분야 select문 -->
-	<select id="selectByCategory" resultType="com.itwill.shape.dto.MeetListCountDto">
-		select (M.mtid, M.sido, M.mt_date, M.category count(L.mtid) as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title) 
-		from MEET_INFO M 
-		left join MEET_LIKE L 
-		on M.mtid = L.mtid 
+	<select id="selectByCategory"
+		resultType="com.itwill.shape.dto.MeetListCountDto">
+		select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title, M.create_date
+		from MEET_INFO M
+		left join MEET_LIKE L
+		on M.mtid = L.mtid
 		left join MEET_PRTCP P
 		on M.mtid = P.mtid
 		where category like '%' + #{category} + '%'
-		group by M.mtid, M.sido, M.mt_date
-		order by create_date desc
+		group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, M.create_date
+		order by M.create_date desc
 	</select>
-	
+
 </mapper>
