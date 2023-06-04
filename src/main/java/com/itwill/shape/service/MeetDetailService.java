@@ -1,5 +1,7 @@
 package com.itwill.shape.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.MeetInfo;
@@ -22,19 +24,28 @@ public class MeetDetailService {
 	private final MeetPrtcpRepository meetPrtcpRepository; // 참여자 정보 
 	
 	
+	
 		/**
 		 * 리스트 페이지
 		 */
-		public MeetMainDetailDto read(long mtid) {
-			log.info("mtid={}" , mtid);
+		public List<MeetMainDetailDto> detailByMtid(long mtid) {
+			log.info("detail(mtid={})" , mtid);
 			
-			// DB MeetInfo 테이블 검색
-			MeetInfo entity = meetInfoRepository.detailByMtid(mtid);
+			List<MeetMainDetailDto> list = meetInfoRepository.detailByMtid(mtid);
 			
-			// 검색 내용을 DTO로 변환
-			MeetMainDetailDto detailDto = MeetMainDetailDto.fromEntity(entity);
+//			return list.stream().map(MeetMainDetailDto::fromEntity).
+			return null;
+		}
 
-			return detailDto;			
+
+		/**
+		 * 상세보기 수정 페이지 modify
+		 */
+		public MeetMainDetailDto read(long mtid) {
+			log.info("read(mtid={})",mtid);
+			
+			
+			return null;
 		}
 		
 		/**

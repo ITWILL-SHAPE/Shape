@@ -56,7 +56,9 @@ public interface MeetInfoRepository {
 	 * @param mtid
 	 * @return
 	 */
-	MeetInfo detailByMtid(long mtid); 
+	
+	// 작성 상세페이지
+	List<MeetMainDetailDto> detailByMtid(long mtid);
 	
 	
 	
