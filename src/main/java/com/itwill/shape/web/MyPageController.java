@@ -15,6 +15,7 @@ import com.itwill.shape.dto.PostInfoSelectByIdDTO;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
+import com.itwill.shape.dto.UserInfoSelectPwdByIdDto;
 import com.itwill.shape.service.UserInfoService;
 
 import lombok.RequiredArgsConstructor;
@@ -56,7 +57,6 @@ public class MyPageController {
 	 * @return "/mypage/memberinfo/myprofile"
 	 * @throws IOException
 	 */
-
 	@GetMapping("/imagemodify")
 	public String imageModify(String id, @RequestParam("profile") MultipartFile profile) throws IOException {
 		log.info("imageModify()");
@@ -68,18 +68,24 @@ public class MyPageController {
 	}
 
 	/**
-	 * 0604 손창민 비밀번호 변경 전 비밀번호 재입력
+	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력
 	 * 
 	 * @param pwd, inputPwd
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
 	@GetMapping("/pwdconfirm")
-	public String pwdConfirm(String pwd, String inputPwd) {
+	public String pwdConfirm(String id, String inputPwd) {
 		log.info("pwdConfirm()");
-		log.info("pwd={}", pwd);
-		log.info("pwd={}", inputPwd);
+		log.info("id={}", id);
+		log.info("inputPwd={}", inputPwd);
 
+		UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
+		log.info("dto={}", dto);
+		
+		String pwd = dto.getPwd();
+		log.info("pwd={}", pwd);
+		
 		return "/mypage/memberinfo/pwdConfirm";
 	}
 
@@ -91,11 +97,13 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
 	@GetMapping("/pwdmodify")
-	public String pwdModify(String pwd, String inputPwd) {
+	public String pwdModify(String id, String inputPwd) {
 		log.info("pwdModify()");
-		log.info("pwd={}", pwd);
-		log.info("pwd={}", inputPwd);
-
+		log.info("id={}", id);
+		log.info("inputPwd={}", inputPwd);
+		
+		
+		
 		return "/mypage/memberinfo/pwdModify";
 	}
 
@@ -109,6 +117,7 @@ public class MyPageController {
 
 	/**
 	 * 0604 손창민 내가 참여 중인 모임
+	 * 
 	 * @return
 	 */
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
@@ -148,7 +157,7 @@ public class MyPageController {
 	 * 
 	 * @param model
 	 * @param id
-	 * @return "/mypage/board/myposts"
+	 * @return "/mypage/board/myPosts"
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 게시물
 	@GetMapping("/myposts")
@@ -168,7 +177,7 @@ public class MyPageController {
 	 * 
 	 * @param model
 	 * @param id
-	 * @return "/mypage/board/mycomments"
+	 * @return "/mypage/board/myComments"
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 댓글
 	@GetMapping("/mycomments")

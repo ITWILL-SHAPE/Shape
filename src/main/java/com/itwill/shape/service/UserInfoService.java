@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.UserCreateDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
+import com.itwill.shape.dto.UserInfoSelectPwdByIdDto;
 import com.itwill.shape.repository.UserInfoRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,23 @@ public class UserInfoService {
 		log.info("createAdmin(dto = {})", dto);
 		
 		return userInfoRepository.insertAdmin(dto.toEntityAdmin());
+	}
+	
+	/**
+	 * 0604 손창민
+	 * DB에서 id와 일치하는 UserInfo 객체를 가져온 뒤 비밀번호 필드만을 가지고 있는 dto 타입으로 반환
+	 */
+	public UserInfoSelectPwdByIdDto selectPwdById(String id) {
+		log.info("selectPwdById()");
+		log.info("selectPwdbyId(id={})", id);
+		
+		UserInfo entity = userInfoRepository.selectPwdById(id);
+		log.info("entity={}", entity);
+		
+		UserInfoSelectPwdByIdDto dto = UserInfoSelectPwdByIdDto.fromEntity(entity);
+		log.info("dto={}", dto);
+		
+		return dto;
 	}
 	
 	/**

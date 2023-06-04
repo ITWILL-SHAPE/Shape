@@ -1,12 +1,14 @@
 package com.itwill.shape.repository;
 
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import com.itwill.shape.domain.UserInfo;
 
 public interface UserInfoRepository {
+	
+	/**
+	 * 0604 손창민
+	 * UserInfo Table에서 id와 일치하는 유저 객체 가져오기
+	 */
+	UserInfo selectPwdById(String id);
 	
 	/**
 	 * 0601
