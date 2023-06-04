@@ -21,7 +21,15 @@ public class PostInfoRepositoryTest {
 	@Autowired
 	private PostInfoRepository postInfoRepository;
 	
+
+	
 	@Test
+    public void testSelectWithKeyword() {
+        List<PostListDto> result = postInfoRepository.selectWithKeyword("te");
+        log.info("result = {}", result);
+    }
+	
+//	@Test
     public void testReplyCount() {
         List<PostListDto> result = postInfoRepository.selectWithCommentCount();
         log.info("result = {}", result);

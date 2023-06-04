@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <%@ include file="../common/header.jsp"%> --%>
+<%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,40 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
+
+<script type="text/javascript">
+ document.addEventListener('DOMContentLoaded', () => {
+     const modifyForm = document.querySelector('#modifyForm');
+     
+     
+     const btnDelete = document.querySelector('#btnDelete');
+     btnDelete.addEventListener('click', () => {
+         const check = confirm('정말 삭제할까요?');
+         if(check){
+             modifyForm.action = './delete?pid=' +${post.pid};
+             modifyForm.method = 'post'; 
+             modifyForm.submit(); 
+         }
+     })
+     
+     const btnUpdate = document.querySelector('#btnUpdate');
+     btnUpdate.addEventListener('click', () =>{
+         // 제목과 내용이 입력되어 있는 지 체크
+         const titleInput = document.querySelector('input#title').value; //input에 입력된 값
+         const content = document.querySelector('textarea#content').value; //textarea에 입력된 값
+         if(title === ''||content ===''){
+             alert('제목과 내용은 반드시 입력하세요.')
+             return;
+         }
+         const check = confirm('변경 내용을 저장할까요?')
+         if(check){
+             modifyForm.action = './update?pid=' +${post.pid};
+             modifyForm.method = 'post';
+             modifyForm.submit();
+         }
+     })
+ });
+</script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -92,7 +126,7 @@
 		<main class="my-2">
 			<div class="card">
 				<form method="post">
-					<div class="card-body">
+					<div class="card-body" id="modifyForm">
 						<div class="my-2">
 							<label class="form-label" for="hrs_hd">말머리</label>
 							<!-- !!!!!!말머리 번호 전달!!!!!! -->
@@ -144,3 +178,4 @@
 	</div>
 </body>
 </html>
+<%@ include file="../common/footer.jsp"%>

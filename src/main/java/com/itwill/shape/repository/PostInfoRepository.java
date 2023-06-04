@@ -29,4 +29,6 @@ public interface PostInfoRepository {
 	int updateTitleAndContent(PostInfo entity);
 
 	int deleteByPid(long pid);
+
+	List<PostListDto> selectWithKeyword(String keyword);
 }

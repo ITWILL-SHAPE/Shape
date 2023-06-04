@@ -49,19 +49,18 @@
 						</div>
 					</div>
 					<div class="my-2">
-						<label class="form-label" for="author">작성자 아이디</label> <input
-							class="form-control" id="author" value="${ post.author }"
-							readonly />
+						<label class="form-label" for="author">작성자 아이디</label> 
+						<input class="form-control" id="author" value="${ post.author }" readonly />
 					</div>
 					<div class="my-2">
-						<label class="form-label" for="createdTime">작성 날짜</label>
+						<label class="form-label" for="created_date">작성 날짜</label>
 						<fmt:formatDate value="${ post.created_date }"
 							pattern="yyyy-MM-dd HH:mm:ss" var="created" />
 						<input class="form-control" id="created_date" value="${ created }"
 							readonly />
 					</div>
 					<div class="my-2">
-						<label class="form-label" for="modifiedTime">수정 날짜</label>
+						<label class="form-label" for="modified_date">수정 날짜</label>
 						<fmt:formatDate value="${ post.modified_date }"
 							pattern="yyyy-MM-dd HH:mm:ss" var="modified" />
 						<input class="form-control" id="modified_date"

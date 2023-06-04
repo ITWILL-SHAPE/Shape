@@ -38,6 +38,14 @@ public class PostInfoController {
 		// 리턴 값이 없는 경우 뷰의 이름은 요청 주소와 같음.
 		// /WEB-INF/views/post/list.jsp
 	}
+	
+	@GetMapping("/search")
+	public void list(Model model, String keyword) {
+		log.info("keywordList(keyword={})", keyword);
+		List<PostListDto> list = postInfoService.readByKeyword(keyword);
+		model.addAttribute("posts", list);
+	}
+	
 
 	@GetMapping("/create")
 	public void create() {
@@ -88,7 +96,7 @@ public class PostInfoController {
 		log.info("update(dto={})", dto);
 		int result = postInfoService.update(dto);
 		log.info("업데이트 결과 ={}", result);
-		return "redirect:/post/detail?id=" + dto.getPid();
+		return "redirect:/post/detail?pid=" + dto.getPid();
 	}
 
 }

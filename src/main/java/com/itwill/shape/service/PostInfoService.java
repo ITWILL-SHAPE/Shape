@@ -45,9 +45,14 @@ public class PostInfoService {
 	
 	/**
 	 * 0603 지현
-	 * 목록 불러오기
+	 * 목록 키워드로 불러오기
 	 * @return
 	 */
+	public List<PostListDto> readByKeyword(String keyword){
+		log.info("readByKeyword(keyword={})",keyword);
+		return postInfoRepository.selectWithKeyword(keyword);
+	}
+	
 	public List<PostListDto> read(){
 		log.info("read()");
 		return postInfoRepository.selectWithCommentCount();
