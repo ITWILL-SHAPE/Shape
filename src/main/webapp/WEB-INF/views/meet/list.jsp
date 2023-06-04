@@ -1,13 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 
 <%@ include file="../common/header.jsp"%>
-<!DOCTYPE html>
-<html>
-	<head>
-	<meta charset="UTF-8">
-	<title>Shape</title>
-	</head>
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Album example · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.1/examples/album/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#7952b3">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+  </head>
+
 <body>
 	<!--검색/필터-->
 	<div class="tst-tools">
@@ -297,137 +336,44 @@
 			</div>
 		</form>
 	</div>
-	<!--아이템: 부트 스트랩 사용.-->
-	<div class="item-box">
-		<div class="lst-board">
-			<ul>
-				<li><a href="https://www.plomeet.com/meetings/13/_show">
-						<div class="post-img">
-							<div class="pst-target"
-								style="background: url('https://www.plomeet.com/images/plomeet/category/1658588859.png')"></div>
-						</div>
-						<div class="post-inner">
-							<div class="post-location">
-								<span class="head">서울 관악구</span>
-							</div>
-							<div class="post-tit tit-lg">도림천 같이 산책 가요~</div>
-							<div class="post-info">
-								<span class="map">친목·사교·미팅</span> <span class="member"> <em>3
-										~ 10</em> 명
-								</span>
-							</div>
-							<div class="post-status">
-								<button type="button" class="btn--sm">모임종료</button>
-							</div>
-						</div>
-				</a></li>
-				<li><a href="https://www.plomeet.com/meetings/10/_show">
-						<div class="post-img">
-							<div class="pst-target"
-								style="background: url('https://www.plomeet.com/images/plomeet/category/1658588829.png')"></div>
-						</div>
-						<div class="post-inner">
-							<div class="post-location">
-								<span class="head">경기 성남시 수정구</span>
-							</div>
-							<div class="post-tit tit-lg">커피 고고~</div>
-							<div class="post-info">
-								<span class="map">게임·오락</span> <span class="member"> <em>인원
-										제한없음</em>
-								</span>
-							</div>
-							<div class="post-status">
-								<button type="button" class="btn--sm _apply">모집중</button>
+	<!--아이템: 부트 스트랩 사용. model.addAttribute("listCount", dto);-->
+	<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      			<c:forEach items="${ listCount }" var="cardList">
+				<div class="col">
+					<div class="card shadow-sm">
+						<svg class="bd-placeholder-img card-img-top" width="100%"
+							height="225" xmlns="http://www.w3.org/2000/svg" role="img"
+							aria-label="Placeholder: Thumbnail"
+							preserveAspectRatio="xMidYMid slice" focusable="false">
+							<title>Placeholder</title><rect width="100%" height="100%"
+								fill="#55595c" />
+							<text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+						<div class="card-body">
+							<p class="card-text">This is a wider card with supporting
+								text below as a natural lead-in to additional content. This
+								content is a little bit longer.</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<!-- 삭제해야 함. btn -->
+								<div class="btn-group">
+									<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+									<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+								</div>
+								<small class="text-muted">9 mins</small>
 							</div>
 						</div>
-				</a></li>
-				<li><a href="https://www.plomeet.com/meetings/9/_show">
-						<div class="post-img">
-							<div class="pst-target"
-								style="background: url('https://www.plomeet.com/images/plomeet/category/1658588891.png')"></div>
-						</div>
-						<div class="post-inner">
-							<div class="post-location">
-								<span class="head">인천 계양구</span>
-							</div>
-							<div class="post-tit tit-lg">한강 갈분 구함 2</div>
-							<div class="post-info">
-								<span class="map">자유주제</span> <span class="member"> <em>2
-										~ 5</em> 명
-								</span>
-							</div>
-							<div class="post-status">
-								<button type="button" class="btn--sm">모임종료</button>
-							</div>
-						</div>
-				</a></li>
-				<li><a href="https://www.plomeet.com/meetings/6/_show">
-						<div class="post-img">
-							<div class="pst-target"
-								style="background: url('https://www.plomeet.com/images/plomeet/category/1658588768.png')"></div>
-						</div>
-						<div class="post-inner">
-							<div class="post-location">
-								<span class="head">제주 전체</span>
-							</div>
-							<div class="post-tit tit-lg">제주도 서핑 고고~~</div>
-							<div class="post-info">
-								<span class="map">운동·액티비티</span> <span class="member"> <em>인원
-										제한없음</em>
-								</span>
-							</div>
-							<div class="post-status">
-								<button type="button" class="btn--sm">모임종료</button>
-							</div>
-						</div>
-				</a></li>
-				<li><a href="https://www.plomeet.com/meetings/2/_show">
-						<div class="post-img">
-							<div class="pst-target"
-								style="background: url('https://www.plomeet.com/images/plomeet/category/1658588726.png')"></div>
-						</div>
-						<div class="post-inner">
-							<div class="post-location">
-								<span class="head">경기 전체</span>
-							</div>
-							<div class="post-tit tit-lg">[서울 경기] 주말에 노지캠핑 가요~</div>
-							<div class="post-info">
-								<span class="map">아웃도어·여행</span> <span class="member"> <em>2
-										~ 3</em> 명
-								</span>
-							</div>
-							<div class="post-status">
-								<button type="button" class="btn--sm">모임종료</button>
-							</div>
-						</div>
-				</a></li>
-				<li><a href="https://www.plomeet.com/meetings/1/_show">
-						<div class="post-img">
-							<div class="pst-target"
-								style="background: url('https://www.plomeet.com/images/plomeet/category/1658588859.png')"></div>
-						</div>
-						<div class="post-inner">
-							<div class="post-location">
-								<span class="head">서울 강남구</span>
-							</div>
-							<div class="post-tit tit-lg">비도 오는데 모듬전에 막걸리 한주전자 콜~??</div>
-							<div class="post-info">
-								<span class="map">친목·사교·미팅</span> <span class="member"> <em>3
-										~ 6</em> 명
-								</span>
-							</div>
-							<div class="post-status">
-								<button type="button" class="btn--sm">모임종료</button>
-							</div>
-						</div>
-				</a></li>
-			</ul>
-		</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	
+					</div>
+				</div>
+				</c:forEach>
+			</div>
+        </div>
+        </div>
+
+
+	<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
-</html>
+
 <%@ include file="../common/footer.jsp"%>
