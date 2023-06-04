@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MeetInfoService {
 	private final MeetInfoRepository meetInfoRepository;
-	private final MeetMainDetailDto meetMainDetailDto; // 상세보기
+	
 	
 	
 

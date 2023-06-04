@@ -122,7 +122,7 @@ public class MeetController {
 	 * 상세보기 페이지
 	 * @param mtid, model
 	 */
-	@GetMapping("/maindetail")
+	@GetMapping("/all/{postId}")
 	public void maindetail(long mtid, Model model) {
 		log.info("maindetail");
 		
