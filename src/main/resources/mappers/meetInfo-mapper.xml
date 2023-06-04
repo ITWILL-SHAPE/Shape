@@ -111,5 +111,14 @@
 		group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, M.create_date
 		order by M.create_date desc
 	</select>
+	
+	<!-- 상세 페이지 가져오기 -->
+	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetMainDetailDto">
+    	SELECT M.*, U.email AS uEmail
+    	FROM MEET_INFO M
+    	LEFT JOIN USER_INFO U ON M.mtid = U.mtid
+    	WHERE M.mtid = #{mtid} AND U.id = #{id}
+	</select>
+	
 
 </mapper>

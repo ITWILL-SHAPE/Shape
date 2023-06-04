@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetListCountDto;
+import com.itwill.shape.dto.MeetMainDetailDto;
 
 // meet_info의 repository.
 public interface MeetInfoRepository {
@@ -13,8 +14,7 @@ public interface MeetInfoRepository {
 	int deleteByMtid(long mtid); // delete 모임 삭제하기
 	int delete(int i);
 	
-	// mtid 모임 상세 페이지
-	MeetInfo selectById(long mtid); 
+	
 	
 	// MEET_list에서 사용할 코드들 - 김지민
 	
@@ -50,6 +50,14 @@ public interface MeetInfoRepository {
 	 * @return
 	 */
 	List<MeetListCountDto> selectByCategory(String category);
+	
+	/**
+	 * mtid 모임 상세 페이지
+	 * @param mtid
+	 * @return
+	 */
+	MeetInfo detailByMtid(long mtid); 
+	
 	
 	
 	

@@ -12,14 +12,6 @@
   		values (#{mtid}, #{prtcp_id}, #{name}, #{gender}, #{phone}, #{email})
 	</insert>
 		
-	<!-- mitd 상세보기 select문 -->
-	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetMainDetailDto">
-    	SELECT M.*, U.email AS uEmail
-    	FROM MEET_INFO M
-    	LEFT JOIN USER_INFO U ON M.mtid = U.mtid
-    	WHERE M.mtid = #{mtid}
-	</select>
-	
 	<!-- 참여인원 list select문 !-->
 	<select id="prtcpList" resultType="com.itwill.shape.domain.MeetPrtcp">
 		select * from MEET_PRTCP where mtid = #{ mtid }

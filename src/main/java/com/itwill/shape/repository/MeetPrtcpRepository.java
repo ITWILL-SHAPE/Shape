@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetPrtcp;
+import com.itwill.shape.dto.MeetMainDetailDto;
 
 public interface MeetPrtcpRepository {
 
