@@ -2,12 +2,15 @@ package com.itwill.shape.web;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
 import com.itwill.shape.dto.MeetListCountDto;
@@ -117,20 +120,23 @@ public class MeetController {
 		model.addAttribute("listCount", dto);
 
 	}
+	
 	/**
 	 * 0604 배선영
 	 * 상세보기 페이지
 	 * @param mtid, model
 	 */
 	@GetMapping("/maindetail/{id}")
-	public void maindetail(long mtid, Model model) {
+	public ResponseEntity<List<MeetMainDetailDto>> maindetail(@PathVariable long mtid, Model model) {
 		log.info("maindetail");
 		
 		// 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
-		MeetMainDetailDto dto = meetDetailService.read(mtid);
+		List<MeetMainDetailDto> list = meetDetailService.detailByMtid(mtid);
 		
 		// 뷰에 MeetDetaildto를 전달.
-		model.addAttribute("meetmaindetail" , dto);
+		model.addAttribute("meetmaindetail" , list);
+		
+		return ResponseEntity.ok(list);
 		
 	}
 }
