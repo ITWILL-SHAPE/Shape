@@ -2,6 +2,8 @@ package com.itwill.shape.web;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 //@RequestMapping("/user")
 public class MyPageController {
 
+	private final PasswordEncoder passwordEncoder;
 	private final PostCommentService postCommentsService;
 	private final PostInfoService postInfoService;
 	private final UserInfoService userInfoService;
@@ -102,7 +105,8 @@ public class MyPageController {
 		log.info("id={}", id);
 		log.info("inputPwd={}", inputPwd);
 		
-		
+		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
+		log.info("result={}", result);
 		
 		return "/mypage/memberinfo/pwdModify";
 	}

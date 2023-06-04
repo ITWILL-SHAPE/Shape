@@ -36,9 +36,15 @@
 		)
 	</insert>
 	
+	<update id="modifyPwdById">
+		UPDATE user_info
+        SET pwd = #{inputPwd}
+        where id = #{id}
+	</update>
+	
 	<select id="selectPwdById"
 			resultType="com.itwill.shape.domain.UserInfo">
-		SELECT * FROM user_info WHERE ID = #{id}
+		SELECT * FROM user_info WHERE id = #{id}
 	</select>
 	
 	<!-- 로그인한 id를 이용하여 user의 정보읽기 -->

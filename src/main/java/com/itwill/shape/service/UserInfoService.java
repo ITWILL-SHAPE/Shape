@@ -35,8 +35,20 @@ public class UserInfoService {
 	}
 	
 	/**
+	 * 0606 손창민
+	 * DB에서 아규먼트로 전달받은 id와 일치하는 user_info table의 pwd를 inputPwd로 변경
+	 */
+	public int modifyPwdById(String id, String inputPwd) {
+		log.info("id={}", id);
+		log.info("inputPwd={}", inputPwd);
+		
+		return userInfoRepository.modifyPwdById(id, inputPwd);
+	}
+	
+	
+	/**
 	 * 0604 손창민
-	 * DB에서 id와 일치하는 UserInfo 객체를 가져온 뒤 비밀번호 필드만을 가지고 있는 dto 타입으로 반환
+	 * DB에서 아규먼트로 전달받은 id와 일치하는 UserInfo 객체를 가져온 뒤 비밀번호 필드만을 가지고 있는 dto 타입으로 반환
 	 */
 	public UserInfoSelectPwdByIdDto selectPwdById(String id) {
 		log.info("selectPwdById()");

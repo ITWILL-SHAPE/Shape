@@ -3,6 +3,16 @@ package com.itwill.shape.repository;
 import com.itwill.shape.domain.UserInfo;
 
 public interface UserInfoRepository {
+	/**
+	 * 0605 손창민
+	 * 비밀번호 변경
+	 * 
+	 * @param id
+	 * @param inputPwd
+	 * @return
+	 */
+	int modifyPwdById(String id, String inputPwd);
+	
 	
 	/**
 	 * 0604 손창민
@@ -55,5 +65,5 @@ public interface UserInfoRepository {
 
 	
 	int imageModify(String id, byte[] ImageData);
-
-	}
+	
+}
