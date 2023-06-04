@@ -5,44 +5,44 @@
 <%@ include file="../common/header.jsp"%>
 
 <body>
-	<div class="main-container">
-		<div class="sub-container">
-		 	<div class="sub-inner">
+	<div class="container">
+		<div class="container">
+		 	<div class="text-center border bg-body rounded shadow-sm meetCreateBox">
 				<!-- 작성 -->
 				<div class="back-wrap">
 					<div class="back-inner">
-						<div class="create-box _pdt">
-							<h3 class="inner-t1 _pnone">모임 만들기</h3>
-							<div>
-								<p>
+						<div>
+							<h2 class="my-4">모임 만들기</h2>
+							<div class="my-2">
+								<p align="right">
 								필수 입력
 								<strong>*</strong>
 								<br>
 								모임 분야, 모임 장소, 모집 기간, 모임 인원은 수정할 수 없습니다.
 								</p>
 							</div>
-							<form action="" method="post">
+							<form action="" method="post" class="form-box">
 								<dl>
-									<dt class="form-label">
+									<dt align="left">
 									모임 제목
 										<span>*</span>
 									</dt>
-									<dd>
-										<div class="input-group mb-3">
-											<label for="title">
+									<dd align="left">
+										<div>
+											<label for="title" class="form-label">
 												<input type="text" id="title" name="title" class="form-control"
 												placeholder="모임의 제목을 입력하세요." value required>
 											</label>	
 										</div>
 									</dd>	
-									<dt>
+									<dt align="left">
 									모임 분류
 										<span>*</span>
 									</dt>
-									<dd>
+									<dd align="left">
 										<div class="input-group mb-3">
 											<label for="categorySelect">
-												<select class="custom-select" id="categorySelect">
+												<select class="custom-select custom-select-lg mb-3" id="category" name="category">
 													<option>카테고리를 선택하세요.</option>
 													<option value="1">운동·액티비티</option>
 													<option value="2">음식·음료</option>
@@ -56,20 +56,16 @@
 											</label>
 										</div>
 									</dd>
-									<dt>
+									<dt align="left">
 									모임 장소
 									<span>*</span>
 									</dt>
-									<dd>
+									<dd align="left">
 										<div>
 											<div>
-												<label> <!-- 셀렉트 박스 내용은 js에서 처리 -->
+												<label>
 													<select name="sido" id="sido"></select>
-												</label>
-											</div>
-											<div>
-												<label> <!-- 셀렉트 박스 내용은 js에서 처리 -->
-													<select name="gugun" id="gugun"></select>
+													<select name="sigungu" id="sigungu"></select>
 												</label>
 											</div>
 										</div>
@@ -80,55 +76,55 @@
 											</label>
 										</div>
 									</dd>
-									<dt id="mt_schedule">
+									<dt id="mt_schedule" align="left">
 									모임 일정
 									<span>*</span>
 									</dt>
-									<dd id="mt_schedule_detail">
+									<dd id="mt_schedule_detail" align="left">
 										<div>
 											<div>
 												<label>
 													<i></i>
-													<input type="date" id="start_date" name="start_date" class="input-date" 
+													<input type="date" id="mt_date" name="mt_date" class="input-date" 
 													placeholder="날짜" value>
 												</label>
 											</div>
 											<div>
 												<label>
 													<i></i>
-													<input type="time" id="start_time" name="start_time" class="input-default"
+													<input type="time" id="mt_time" name="mt_time" class="input-default"
 													placeholder="시간" value>
 												</label>
 											</div>
 										</div>
 									</dd>
-									<dt id="rcrt_prd">
+									<dt id="rcrt_prd" align="left">
 									모집 기간
 									<span>*</span>
 									</dt>
-									<dd id="rcrt_prd_detail">
+									<dd id="rcrt_prd_detail" align="left">
 										<div>
 											<div>
-												<label for="rcrt_str_date">
+												<label for="str_date">
 													<i></i>
-													<input type="date" id="rcrt_str_date" name="rcrt_str_date" class="input-date" 
-													placeholder="시작날짜" value>
+													<input type="date" id="str_date" name="str_date" class="input-date" 
+													placeholder="시작날짜" value="" readonly>
 												</label>
 											</div>
 											<div>
-												<label for="rcrt_end_date">
+												<label for="ed_date">
 													<i></i>
-													<input type="date" id="rcrt_end_date" name="rcrt_end_date" class="input-default"
+													<input type="date" id="ed_date" name="ed_date" class="input-default"
 													placeholder="종료날짜" value>
 												</label>
 											</div>
 										</div>
 									</dd>
-									<dt>
+									<dt align="left">
 									모임 인원
 									<span>*</span>
 									</dt>
-									<dd>
+									<dd align="left">
 										<div>
 											<div>
 												<label for="nm_ppl">
@@ -139,16 +135,15 @@
 											</div>
 										</div>
 									</dd>
-									<dt id="mt_cost">
+									<dt id="mt_cost" align="left">
 									참가비용(원)
-									<span>*</span>
 									</dt>
-									<dd id="mt_cost_detail">
+									<dd id="mt_cost_detail" align="left">
 										<div>
 											<div>
 												<label for="mt_cost">
-													<input type="number" id="mt_cost" class="input-default"
-													placeholder="참가비용을 입력하세요. 예) 5000(숫자만 입력)" value>
+													<input type="text" id="mt_cost" name="mt_cost" class="input-default"
+													placeholder="참가비 없음." value>
 												</label>
 											</div>
 											<div>
@@ -162,31 +157,32 @@
 														<option value="noshow">노쇼방지</option>
 														<option value="etc">기타</option>
 													</select>
+													<small id="nm_ppl_help" class="form-text text-muted">예) 5000(숫자만 입력)</small>
 												</label>
 											</div>
 										</div>
 									</dd>
-									<dt>
+									<dt align="left">
 									모임 사진
 									</dt>
-									<dd>
+									<dd align="left">
 										<div>
 											<div class="filebox">
-												<label for="mt_img_upload">
+												<label for="img">
 												이미지 파일 업로드
 												</label>
-												<input type="file" id="mt_img_upload" name="mt_img_upload" accept="image/*">
+												<input type="file" id="img" name="img" accept="image/*">
 											</div>
 										</div>
 									</dd>
-									<dt>
+									<dt align="left">
 									모임 상세 내용
 									</dt>
-									<dd>
+									<dd align="left">
 										<div>
 											<div>
 												<label>
-													<textarea placeholder="모임을 소개해주세요."></textarea>
+													<textarea id="content" name="content" placeholder="모임을 소개해주세요." required></textarea>
 												</label>
 											</div>
 										</div>
@@ -194,11 +190,12 @@
 								</dl>
 								<div>
 									<div>
-										<div>
-											<button type="button" class="btn-cancel">취소</button>
+										<div class="modal-footer">
+											<button type="button" class="btn-secondary" data-bs-dismiss="modal">취소</button>
 										</div>
-										<div>
-											<button type="button" class="btn-create">모임 만들기</button>
+										<div class="card-footer my-2">
+											<input class="form-control btn btn-outline-primary" type="submit"
+											value="모임 만들기" />
 										</div>
 									</div>
 								</div>
@@ -212,6 +209,6 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script src="../static/js/meet_create.js"></script>
+	<script src="../static/js/meet-create.js"></script>
 </body>
 <%@ include file="../common/footer.jsp"%>

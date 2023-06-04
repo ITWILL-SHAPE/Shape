@@ -16,9 +16,20 @@ main.login-inputBox {
 }
 /* meet/create.jsp에 사용 */
 .sub-container {background:#fff;}
-.main-container {position:relative;}
+
+.main-container {
+	position:relative;
+}
+
 .sub-inner{
-        max-width:920px;
-        margin-bottom:70px;
-    }
+    max-width:920px;
+    margin-bottom:70px;
+}
+
+div.meetCreateBox {
+	height: 1200px;
+	margin-bottom: 75px;
+    padding: 30px;
+	
+}
   

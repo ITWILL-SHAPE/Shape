@@ -1,8 +1,9 @@
 /**
  * meet-create.js
- * 정지언 시군구 셀렉트
+ * 정지언 
  */
 
+// 시군구 셀렉트
 $('document').ready(function() {
 	var area0 = ["시/도 선택", "서울특별시", "인천광역시", "대전광역시", "광주광역시", "대구광역시", "울산광역시", "부산광역시", "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주도"];
 	var area1 = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"];
@@ -36,17 +37,51 @@ $('document').ready(function() {
 	// 시/도 선택시 구/군 설정
 	$("select[name^=sido]").change(function() {
 		var area = "area" + $("option", $(this)).index($("option:selected", $(this))); // 선택지역의 구군 Array
-		var $gugun = $(this).next(); // 선택영역 군구 객체
-		$("option", $gugun).remove(); // 구군 초기화
+		var $sigungu = $(this).next(); // 선택영역 군구 객체
+		$("option", $sigungu).remove(); // 구군 초기화
 
 		if (area == "area0")
-			$gugun.append("<option value=''>구/군 선택</option>");
+			$sigungu.append("<option value=''>구/군 선택</option>");
 		else {
 			$.each(eval(area), function() {
-				$gugun.append("<option value='" + this + "'>" + this + "</option>");
+				$sigungu.append("<option value='" + this + "'>" + this + "</option>");
 			});
 		}
 	});
 
 
+	// 참가비 없음을 선택하면 readonly
+	$("select#mt_cost_info").change(function() {
+		var selectedOption = $(this).val();
+		var inputElement = $("input#mt_cost");
+
+		if (selectedOption === "none") {
+			inputElement.prop("readonly", true);
+			inputElement.attr("placeholder", "참가비 없음.");
+		} else {
+			inputElement.prop("readonly", false);
+			inputElement.attr("placeholder", "참가비용을 입력하세요.");
+		}
+	});
+
 });
+
+// 현재 날짜를 가져오기 위한 함수
+function getCurrentDate() {
+	const now = new Date();
+	const year = now.getFullYear();
+	const month = String(now.getMonth() + 1).padStart(2, '0');
+	const day = String(now.getDate()).padStart(2, '0');
+	return `${year}-${month}-${day}`;
+}
+
+// 시작날짜 입력란에 현재 날짜 자동 채우기
+const startDateInput = document.getElementById('str_date');
+startDateInput.value = getCurrentDate();
+
+
+
+
+
+
+
