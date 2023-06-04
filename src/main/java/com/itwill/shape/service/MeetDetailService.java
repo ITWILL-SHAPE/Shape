@@ -33,8 +33,8 @@ public class MeetDetailService {
 			
 			List<MeetMainDetailDto> list = meetInfoRepository.detailByMtid(mtid);
 			
-//			return list.stream().map(MeetMainDetailDto::fromEntity).
-			return null;
+			return meetInfoRepository.detailByMtid(mtid);
+			
 		}
 
 
