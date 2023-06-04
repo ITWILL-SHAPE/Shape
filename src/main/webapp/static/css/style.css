@@ -17,7 +17,8 @@ main.login-inputBox {
 /* meet/create.jsp에 사용 */
 .sub-container {background:#fff;}
 .main-container {position:relative;}
- .sub-inner{
+.sub-inner{
         max-width:920px;
         margin-bottom:70px;
     }
+  
