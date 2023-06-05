@@ -14,6 +14,25 @@ main.login-inputBox {
 	width: 50%;
     margin: auto;
 }
+div.errorMessage {
+	text-align: start;
+    font-size: 13px;
+    color: red;
+}
+
+/* 회원가입 */
+div.signUpBox {
+	height: 700px;
+    margin-bottom: 75px;
+    padding: 30px;
+}
+
+.bg-color-blue {
+	background-color: blue;
+}
+
+.fw-700 {font-weight: 700;}
+
 /* meet/create.jsp에 사용 */
 .sub-container {background:#fff;}
 
