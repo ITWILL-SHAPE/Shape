@@ -36,9 +36,9 @@
 		<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
 		<meta name="theme-color" content="#7952b3">
 		
-		
+		<!-- 직접 작성한 css -->
 		<style>
-		.bd-placeholder-img {
+			.bd-placeholder-img {
 			font-size: 1.125rem;
 			text-anchor: middle;
 			-webkit-user-select: none;
@@ -51,8 +51,24 @@
 				font-size: 3.5rem;
 			}
 		}
-		</style>
+		
+		.overlay-image {
+  			position: relative;
+		}
 
+		.overlay-right {
+		  position: absolute;
+		  top: 10px;
+		  right: 10px;
+		}
+
+		.overlay-left {
+		  position: absolute;
+		  top: 10px;
+		  left: 10px;
+		}
+		</style>
+		
 
 	</head>
 	
@@ -172,16 +188,26 @@
 							</c:url>
 							<a href="${ meetDetailPage }" class="text-decoration-none">
 								<div class="col">
-									<div class="card shadow-sm">
+									<div class="card shadow-sm image-container position-relative"">
 									
 										<!-- svg 대신에 img 사용. -->
-										<svg class="bd-placeholder-img card-img-top" width="100%"
+										 <svg class="bd-placeholder-img card-img-top" width="100%"
 											height="220" xmlns="http://www.w3.org/2000/svg" role="img"
 											aria-label="Placeholder: Thumbnail"
 											preserveAspectRatio="xMidYMid slice" focusable="false">
 											<rect width="100%" height="100%" fill="#55595c" />
-											<text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
 										</svg>
+										<img id="heartBtn" 
+                            					src="../static/images/sample/like2.svg" 
+                            					alt="notLike" 
+                            					width="50"
+												class="overlay-image overlay-right"/>
+										<img id="heartBtn" 
+                            					src="../static/images/sample/mozip_ing.svg" 
+                            					alt="notLike" 
+                            					width="80"
+												class="overlay-image overlay-left"/>		
+												
 		
 										<div class="card-body">
 											<div class="post-inner">
