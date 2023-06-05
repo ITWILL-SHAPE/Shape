@@ -125,18 +125,20 @@ public class MeetController {
 	/**
 	 * 0604 배선영
 	 * 상세보기 페이지
-	 * @param mtid, model
+	 * @param mtid = id ㅡㅡ..존나 어지럽다 ㄹㅇ;;;;, model
 	 */
-		@GetMapping("/maindetail") // mtid로 경로 변수 이름 수정
+		@GetMapping("/maindetail") 
 		public void maindetail(long id, Model model) {
 		    log.info("maindetail(id = {})", id);
 
 		    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
-		    List<MeetMainDetailDto> list = meetDetailService.detailByMtid(id);
+		    MeetMainDetailDto result = meetDetailService.detailByMtid(id);
 
 		    // 뷰에 MeetDetaildto를 전달.
-		    model.addAttribute("meetmaindetail" , list);
+		    model.addAttribute("meetmaindetail" , result);
 		}
+		
+		
 
 		
 	}

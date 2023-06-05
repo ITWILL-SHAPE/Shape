@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -46,40 +46,55 @@
 				</div>
 						<!-- 제목, 내용 -->
 						<div>
-							<div>커피 모임 구해요~</div>
+							<div>
+								<label for="title">제목</label>
+								<input id="title" value="${ meetInfo.title }" readonly/>
+							</div>
 						</div>
 							<div>
 								<ul>
-									<li>
-									<i class="bi bi-bookmark-fill">categories</i>
-									<sapn>분야</sapn>
-									</li>
-									<li>
-									<i class="bi bi-flag-fill">map</i>
-									<span>위치</span>
-									</li>
-									<li>
-									<i class="bi bi-calendar2-event-fill">schedule</i>
-									<span>모임 일정</span>
-									</li>
-									<li>
-									<i class="bi bi-calendar-check-fill">period</i>
-									<span>모집기간</span>
-									</li>
-									<li>
-									<i class="bi bi-person-fill">person</i>
-									<span>인원</span>
-									</li>
-									<li>
-									<i class="bi bi-cash-coin">cash</i>
-									<span>참가비용</span>
-									</li>
+									<div>
+										<li>
+										 <i class="bi bi-bookmark-fill">categories</i>
+										<sapn>분야</sapn>
+										</li>
+									</div>
+									<div>
+										<li>
+										<i class="bi bi-flag-fill">map</i>
+										<span>위치</span>
+										</li>
+									</div>
+									<div>
+										<li id="mt_schedule"">
+										<i class="bi bi-calendar2-event-fill">schedule</i>
+										<span>모임 일정</span>
+										</li>
+									</div>
+									<div>
+									<li id="rcrt_prd"">
+										<i class="bi bi-calendar-check-fill">period</i>
+										<span>모집기간</span>
+										</li>
+									</div>
+									<div>
+										<li>
+										<i class="bi bi-person-fill">person</i>
+										<span>인원</span>
+										</li>
+									</div>
+									<div>
+										<li id="mt_cost"">
+										<i class="bi bi-cash-coin">cash</i>
+										<span>참가비용</span>
+										</li>
+									</div>
 								</ul>
 							</div>
 							<hr>
 							<div>
-								<button type="button" class="btn-lg-primary">찜</button>
-								<button type="button" class="btn-lg-primary">참여하기</button>
+								<button type="submit" class="btn-lg-primary">찜</button>
+								<button type="submit" class="btn-lg-primary">참여하기</button>
 							</div>
 							<hr>
 							<!-- 프로필 -->

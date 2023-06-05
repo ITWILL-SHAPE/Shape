@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.dto.MeetMainDetailDto;
+import com.itwill.shape.dto.MeetPrtcpCreateDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.MeetPrtcpRepository;
@@ -28,12 +29,12 @@ public class MeetDetailService {
 		/**
 		 * 리스트 페이지
 		 */
-		public List<MeetMainDetailDto> detailByMtid(long mtid) {
+		public MeetMainDetailDto detailByMtid(long mtid) {
 			log.info("detail(mtid={})" , mtid);
 			
-			List<MeetMainDetailDto> list = meetInfoRepository.detailByMtid(mtid);
+			MeetMainDetailDto result = meetInfoRepository.detailByMtid(mtid);
 			
-			return list;
+			return result;
 			
 		}
 
@@ -48,10 +49,9 @@ public class MeetDetailService {
 			return null;
 		}
 		
-		/**
-		 * 참여자 정보 
-		 */
 		
+			
+			
 		
 		
 		

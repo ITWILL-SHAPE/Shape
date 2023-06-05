@@ -59,7 +59,7 @@ public interface MeetInfoRepository {
 	 */
 	
 	// 작성 상세페이지
-	List<MeetMainDetailDto> detailByMtid(long mtid);
+	MeetMainDetailDto detailByMtid(long mtid);
 
 	
 	
