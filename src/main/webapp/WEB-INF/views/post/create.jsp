@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <%@ include file="../common/header.jsp"%> --%>
+<%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,6 +82,16 @@
 										});
 					});
 </script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+	const changeHd = (target) => {
+		const hd = target.value;
+		console.log(target.value);
+		document.getElementById('textarea#hrs_hd').innerText = hd;
+	}
+	
+});
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -94,14 +104,15 @@
 				<form method="post">
 					<div class="card-body">
 						<div class="my-2">
-							<label class="form-label" for="hrs_hd">말머리</label> 
+							<label class="form-label" for="hrs_hd">말머리</label>
 							<!-- !!!!!!말머리 번호 전달!!!!!! -->
-							<select	id="hrs_hd" class="form-select" aria-label="Default select example">
-								<option selected>말머리를 선택해주세요.</option>
-								<option name="hrs_hd" value="1">모임 후기</option>
-								<option name="hrs_hd" value="2">사담</option>
-								<option name="hrs_hd" value="3">기타</option>
+							<select onchange="changeHd(this)" class="form-select">
+								<!-- <option selected>말머리를 선택해주세요.</option> -->
+								<option value="1">모임 후기</option>
+								<option value="2">사담</option>
+								<option value="3">기타</option>
 							</select>
+							<textarea class="form-control d-none" id="hrs_hd" name="hrs_hd"></textarea>
 						</div>
 
 						<div class="my-2">

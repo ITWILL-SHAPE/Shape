@@ -12,9 +12,9 @@ public interface InfoQnARepository {
 
 	int insert(InfoQnA entity);
 
-	int updateAnswerToQnA(InfoQnA entity);
-
 	int deleteByQid(long qid);
+
+	int updateAnswerToQnA(InfoQnA entity);
 
 	
 }
