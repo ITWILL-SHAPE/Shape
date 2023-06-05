@@ -125,9 +125,16 @@
     	, m.mt_date
     	, m.mt_time
     	, m.ed_date
+    	, m.nm_ppl
     	, m.mt_cost
     	, m.mt_cost_info
+    	, m.img_1
+    	, m.img_2
+    	, m.img_3
+    	, m.img_4
+    	, m.img_5
     	, m.content
+    	, nvl(m.views, 0)
     	, m.created_date
 	    , u.email
 	from meet_info m

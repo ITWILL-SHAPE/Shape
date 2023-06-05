@@ -38,7 +38,7 @@ public class MeetMainDetailDto {
 	private Timestamp created_date;
 	private String Email; // user 이메일 , (주최자 이메일 참여자 이메일)
 		
-	
+	/*
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
 			return MeetMainDetailDto.builder()
 		            .mtid(entity.getMtid())
@@ -70,7 +70,7 @@ public class MeetMainDetailDto {
 		            
 		}
 
-
+*/
 	
 	
 }
