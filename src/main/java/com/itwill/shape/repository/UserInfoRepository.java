@@ -1,5 +1,7 @@
 package com.itwill.shape.repository;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.shape.domain.UserInfo;
 
 public interface UserInfoRepository {
@@ -11,7 +13,7 @@ public interface UserInfoRepository {
 	 * @param inputPwd
 	 * @return
 	 */
-	int modifyPwdById(String id, String inputPwd);
+	int modifyPwdById(@Param("id")String id, @Param("inputPwd")String inputPwd);
 	
 	
 	/**
@@ -62,8 +64,6 @@ public interface UserInfoRepository {
 	 * @param imageFile
 	 * @return int (0/1)  
 	 */
-
-	
 	int imageModify(String id, byte[] ImageData);
 	
 }

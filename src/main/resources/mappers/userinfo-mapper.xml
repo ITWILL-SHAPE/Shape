@@ -36,7 +36,7 @@
 		)
 	</insert>
 	
-	<update id="modifyPwdById">
+	<update id="modifyPwdById" parameterType="map">
 		UPDATE user_info
         SET pwd = #{inputPwd}
         where id = #{id}
@@ -55,7 +55,7 @@
 	
 	 <!--마이페이지 첫 화면 개인정보 쿼리문 -->
 	<select id="selectById"
-		resultType="com.itwill.shape.repository.UserInfoRepository">
+		resultType="com.itwill.shape.domain.UserInfo">
 		select * from USER_INFO where ID = #{id}
 	</select>
 	

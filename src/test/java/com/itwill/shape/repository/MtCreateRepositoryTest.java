@@ -17,6 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.itwill.shape.domain.InfoFaQ;
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetPrtcp;
+import com.itwill.shape.dto.MeetMainDetailDto;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ public class MtCreateRepositoryTest {
 	@Autowired
 	private MeetPrtcpRepository meetDetailRepository; 
 	
-	@Test // create
+	//@Test // create
 	public void testCreateMeet() {
 		assertNotNull(mtCreateRepository);
 		log.info("mtCreateRepository = {}" , mtCreateRepository);
@@ -83,18 +84,18 @@ public class MtCreateRepositoryTest {
 		Assertions.assertEquals(1, result);
 	}
 	
-//	@Test
+//	@Test // 상세페이지에서 참여를 누를경우 참여자 정보
 	public void testCreatePrtcp() {
 		assertNotNull(meetDetailRepository);
 		log.info("MeetDetailRepository = {}" , meetDetailRepository);
 		
 		MeetPrtcp mtPrtcp = MeetPrtcp.builder()
 				.mtid(3)
-				.prtcp_id("admin")
-				.name("어드민")
-				.gender("F")
-				.phone(0)
-				.email("test")
+				.prtcp_id("test2")
+				.name("test2")
+				.gender("M")
+				.phone(01011112222)
+				.email("test2@test2.com")
 				.build();
 		log.info(mtPrtcp.toString());
 		
@@ -102,26 +103,25 @@ public class MtCreateRepositoryTest {
 		log.info("mtInfo = {}", mtPrtcp);
 	}
 	
-//	@Test
+//	@Test  //MTID를 선택한 user들의 참여자 정보 검색
 	public void testSelectPrtcpList() {
-		List<MeetPrtcp> list = meetDetailRepository.prtcpList(2);
+		List<MeetPrtcp> list = meetDetailRepository.prtcpList(21); // 파라미터 MTID 번호 -> 소모임들중 어떤 소모임 글인지
         for (MeetPrtcp p : list) {
             log.info(p.toString());
         }	
     }
 	
-//	@Test
-	public void testUserInfoSelect() {
-		List<MeetPrtcp> list = meetDetailRepository.prtcpList(2);
-        for (MeetPrtcp p : list) {
-            log.info(p.toString());
-        }	
-	}
-	
-//	@Test // 참여취소 테스트
+//	@Test // 참여취소 테스트 user가 참여 취소 누르실 
 	public void testDeletePrtcp() {
-		int result = meetDetailRepository.prtcpDelete("admin");
+		int result = meetDetailRepository.prtcpDelete("admin"); //prtcpId 값을 써줘야함
 	}
 	
+//	@Test // 리스트에 상세페이지 누르면 나오는 페이지 
+	public void testdetailByMtid() {
+		List<MeetMainDetailDto> list = mtCreateRepository.detailByMtid(21);
+			System.out.println(list);
+		
+		
+	}
 	
 }

@@ -21,7 +21,7 @@
 		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
         from POST_INFO P left join POST_COMMENT C
             on P.PID = C.PID
-        where P.CONTENT like '%'#{keyword}'%'
+        where P.CONTENT like '%#{keyword}%'
         group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
         order by P.PID desc;
 	</select>

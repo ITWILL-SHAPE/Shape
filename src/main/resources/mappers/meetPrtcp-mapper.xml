@@ -24,6 +24,7 @@
 		where id = #{userId}
 	</select>
 	
+	
 		
 	
 	<!-- 참여취소 delete문 !-->

@@ -33,7 +33,7 @@ public class MeetDetailService {
 			
 			List<MeetMainDetailDto> list = meetInfoRepository.detailByMtid(mtid);
 			
-			return meetInfoRepository.detailByMtid(mtid);
+			return list;
 			
 		}
 

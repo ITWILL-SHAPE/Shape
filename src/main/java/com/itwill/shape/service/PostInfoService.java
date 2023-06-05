@@ -9,6 +9,7 @@ import com.itwill.shape.dto.GuideCreateDto;
 import com.itwill.shape.dto.PostCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
 import com.itwill.shape.dto.PostInfoSelectByIdDTO;
+import com.itwill.shape.dto.PostInfoSelectByKeywordDto;
 import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.dto.PostUpdateDto;
 import com.itwill.shape.repository.PostCommentRepository;
@@ -48,9 +49,11 @@ public class PostInfoService {
 	 * 목록 키워드로 불러오기
 	 * @return
 	 */
-	public List<PostListDto> readByKeyword(String keyword){
+	public List<PostInfoSelectByKeywordDto> readByKeyword(String keyword){
 		log.info("readByKeyword(keyword={})",keyword);
-		return postInfoRepository.selectWithKeyword(keyword);
+		List<PostInfo> entity = postInfoRepository.selectWithKeyword(keyword);
+		log.info("entity= {}", entity);
+		return entity.stream().map(PostInfoSelectByKeywordDto::fromEntity).toList();
 	}
 	
 	public List<PostListDto> read(){
