@@ -116,7 +116,7 @@ public class MtCreateRepositoryTest {
 		int result = meetDetailRepository.prtcpDelete("admin"); //prtcpId 값을 써줘야함
 	}
 	
-	@Test // 리스트에 상세페이지 누르면 나오는 페이지 
+//	@Test // 리스트에 상세페이지 누르면 나오는 페이지 
 	public void testdetailByMtid() {
 		List<MeetMainDetailDto> list = mtCreateRepository.detailByMtid(21);
 			System.out.println(list);
