@@ -40,7 +40,7 @@ th, td {
 					<form action="/imagemodify" method="POST"
 						enctype="multipart/form-data">
 						<img src="data:image/jpeg;base64,${info.profile}"
-							alt="Profile Image"> <input type="file" name="profile">
+							alt="Profile Image"> 
 						<input type="file" name="profile">
 
 						<div class="profile-overlay">
@@ -81,7 +81,7 @@ th, td {
 				</table>
 			</div>
 			<div class="center">
-				<c:url var="myProfile" value="myprofile">
+				<c:url var="myProfile" value="/myprofile">
 					<c:param name="id" value="${info.id}"></c:param>
 				</c:url>
 				<a class="btn btn-outline-primary form-control" href="${myProfile}">수정

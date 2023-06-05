@@ -62,8 +62,6 @@ public interface UserInfoRepository {
 	 * @param imageFile
 	 * @return int (0/1)  
 	 */
-
-	
 	int imageModify(String id, byte[] ImageData);
 	
 }
