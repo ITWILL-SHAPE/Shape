@@ -77,9 +77,9 @@ public class MyPageController {
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
-	@GetMapping("/pwdconfirm")
-	public String pwdConfirm(String id, String inputPwd) {
-		log.info("pwdConfirm()");
+	@GetMapping("/confirmpwd")
+	public String confirmPwd(String id, String inputPwd) {
+		log.info("confirmPwd()");
 		log.info("id={}", id);
 		log.info("inputPwd={}", inputPwd);
 
@@ -89,7 +89,7 @@ public class MyPageController {
 		String pwd = dto.getPwd();
 		log.info("pwd={}", pwd);
 		
-		return "/mypage/memberinfo/pwdConfirm";
+		return "/mypage/memberinfo/confirmPwd";
 	}
 
 	/**
@@ -99,9 +99,9 @@ public class MyPageController {
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@GetMapping("/pwdmodify")
-	public String pwdModify(String id, String inputPwd) {
-		log.info("pwdModify()");
+	@GetMapping("/modifypwd")
+	public String modifyPwd(String id, String inputPwd) {
+		log.info("modifyPwd()");
 		log.info("id={}", id);
 		log.info("inputPwd={}", inputPwd);
 		passwordEncoder.encode("drj9812");
@@ -109,7 +109,7 @@ public class MyPageController {
 		int result = userInfoService.modifyPwdById("drj9812", "drj9812");
 		log.info("result={}", result);
 		
-		return "/mypage/memberinfo/pwdModify";
+		return "/mypage/memberinfo/modifyPwd";
 	}
 
 	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
