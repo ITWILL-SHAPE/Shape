@@ -13,7 +13,7 @@ public class CommonController {
 	 * 사용자 main page
 	 * @return
 	 */
-	@GetMapping({"/", ""})
+	@GetMapping("/")
 	public String home() {
 		log.info("home()");
 		
@@ -30,6 +30,11 @@ public class CommonController {
 		log.info("mngr()");
 		
  		return "/common/home";
+	}
+	
+	@GetMapping("/test/testHandler")
+	public void test() {
+		log.info("test()");
 	}
 	
 }

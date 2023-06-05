@@ -24,13 +24,14 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 		
 		if(auth != null) {
 			log.info("User: " + auth.getName() + " attempted to access the protected URL: " + request.getRequestURI());
-			result = request.getRequestURI();
+			// result = request.getRequestURI();
+			result = "/shape/member/accessError";
 		} else {
 			log.error("Access Denied Handler");
 			log.error("Redirect...");
 			result = "/shape/member/accessError";
 		}		
 		
-		response.sendRedirect(result);	
+		response.sendRedirect(result);
 	}
 }

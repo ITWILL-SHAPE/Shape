@@ -14,16 +14,26 @@
 							<input id="floatingInput" class="form-control"
 								type="text" name="username" placeholder="ID"/>
 							<label for="floatingInput">ID</label>
-						</div>
+						</div>						
 						<div class="form-floating">
 							<input id="floatingPassword" class="form-control"
 								type="password" name="password" placeholder="Password"/>
 							<label for="floatingPassword">Password</label>
 						</div>
-					</main>
+						<c:if test="${ error != null }">
+							<div class="errorMessage">
+								아이디 및 비밀번호가 잘못됐습니다.
+							</div>
+						</c:if>
+					</main>					
 				</div>
 				<button class="w-50 btn btn-lg btn-primary" type="submit">로그인</button>
 			</form>
+			<div class="text-end w-50 m-auto">
+				<c:url value="/member/signUp" var="signUp"/>
+				<a href="${ signUp }" class="text-decoration-none text-dark">회원가입</a> | 
+				<a href="" class="text-decoration-none text-dark">아이디 및 비밀번호 찾기</a>
+			</div>
 		</div>
 	</div>
 		

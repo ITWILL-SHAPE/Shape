@@ -57,8 +57,7 @@ public class MemeberController {
 	 */
 	@GetMapping("/signUp")
 	public void signUp() {
-		log.info("signUp()");
-		
+		log.info("signUp()");		
 	}
 	
 }
