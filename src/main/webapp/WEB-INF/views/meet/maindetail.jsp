@@ -48,7 +48,7 @@
 						<div>
 							<div>
 								<label for="title">제목</label>
-								<input id="title" value="${ meetInfo.title }" readonly/>
+								<input id="title" value="${ cardList.title }" readonly/>
 							</div>
 						</div>
 							<div>
