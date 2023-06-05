@@ -49,8 +49,9 @@ $('document').ready(function() {
 		}
 	});
 
+});
 
-	// 참가비 없음을 선택하면 readonly
+// 참가비 없음을 선택하면 readonly
 	$("select#mt_cost_info").change(function() {
 		var selectedOption = $(this).val();
 		var inputElement = $("input#mt_cost");
@@ -63,8 +64,10 @@ $('document').ready(function() {
 			inputElement.attr("placeholder", "참가비용을 입력하세요.");
 		}
 	});
+	
+// summernote <p> 태그 제거
+	$("#content").html(data.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g,'"').replace(/&#40;/g,'(').replace(/&#41;/g,')').replace(/&#35;/g,'#'));
 
-});
 
 // 현재 날짜를 가져오기 위한 함수
 function getCurrentDate() {
@@ -78,6 +81,8 @@ function getCurrentDate() {
 // 시작날짜 입력란에 현재 날짜 자동 채우기
 const startDateInput = document.getElementById('str_date');
 startDateInput.value = getCurrentDate();
+
+
 
 
 
