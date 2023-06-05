@@ -246,6 +246,9 @@
 				</div>
 			</div>
 	</div>
+	<div class="my-2 p-5 d-grid gap-2 col-6 mx-auto">
+  		<button id="loadMoreBtn" class="btn btn-outline-success btn-lg" type="button">더보기</button>
+	</div>
 
 
 	
