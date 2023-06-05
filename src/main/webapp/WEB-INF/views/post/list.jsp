@@ -12,7 +12,7 @@
 > 2. 조회수
 > 3. 말머리 번호로 입력
 	0으로 들어가……어캄
-> 4. 수정, 삭제
+> 4. 수정, (삭제 해결
 	왜 안되냐 js 적용했는데 post 방식이 아니라는게.. 왜..?
 > 5. 작성자 화면에 출력 안됨
 	사이트 화면에서 보니까 value 입력이 안되는데 얘만 안되는 이유를 모르겠음
@@ -31,23 +31,22 @@
 	crossorigin="anonymous">
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', () => {
-	const searchForm = document.querySelector('#searchForm')
-	const search = document.querySelector('input#search');
-	// 검색버튼을 클릭
-	const btnSearch = document.querySelector('#btnSearch');
-    btnSearch.addEventListener('click', () => {
+	
+	const btnSearch = documnet.querySelector('button#btnSearch');
+	btnSearch.addEventListener('click', () => {
     	// 하면 키워드가 읽혀서 search 페이지로 넘어가게	
-    	const keyword = search.value; //<<<< 이게 안들어간다! 어떡함
-    	searchForm.action = './search?keyword='+ keyword; 
+    	const keyword = document.querySelector('input#search').value;
+		/* searchForm.action = './search?keyword='+ keyword; 
     	searchForm.method = 'post'; 
-    	searchForm.submit(); 
+    	searchForm.submit();  */
     })
+    
 });
 </script>
 </head>
 <body>
 	<div class="container-fluid">
-		<header class="my-2 p-5 text-center">
+		<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
 			<h1>게시판</h1>
 			<!-- 검색 -->
 			<div class="my-2 row" id="searchForm">
@@ -56,77 +55,67 @@ document.addEventListener('DOMContentLoaded', () => {
 				</div>
 				<div class="col-2">
 					<!-- !!!!!!검색 만들것!!!!!!! -->
-					<c:url var="postSearch" value="/post/search" />
+					<c:url var="postSearch" value="/post/search">
+					<c:param name="keyword" value='${ keyword }'></c:param>
+					</c:url>
 					<button onclick="location.href='${postSearch}'" for="search"
 						class="form-control btn btn-outline-warning" id="btnSearch">검색</button>
 				</div>
 			</div>
+			
+		</header>
+		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
 			<!-- 글쓰기 버튼 -->
-			<div class="my-2 row">
+			<div class="d-grid my-2 col-5 mx-auto" style="height: 4rem;">
 				<c:url var="postCreate" value="/post/create" />
 				<button onclick="location.href='${ postCreate }'"
 					class="btn btn-warning" type="button">글쓰기</button>
 			</div>
-		</header>
-
-		<main class="my-2">
-			<div class="card">
-				<table class="card-body table table-hover">
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${ posts }" var="postInfo">
-							<tr>
-								<td>${ postInfo.pid }</td>
-								<!-- secret 여부에 따라 제목이 달라짐 -->
+			<div class="row row-cols-1 row-cols-md-2 g-4">
+				<c:forEach items="${ posts }" var="postInfo">
+					<c:url var="postDetailPage" value="/post/detail">
+						<c:param name="pid" value="${ postInfo.pid }" />
+					</c:url>
+					<div class="col" onclick="location.href='${ postDetailPage }'">
+						<div class="card border-warning my-2 p-3">
+							<div class="card-body">
+								<!-- 글 번호 -->
+								<!-- <div>${ postInfo.pid }</div> -->
+								<!-- 말머리랑 제목 -->
 								<c:if test="${postInfo != null}">
 									<c:choose>
 										<c:when test="${postInfo.hrs_hd == 1}">
-											<td><c:url var="postDetailPage" value="/post/detail">
-													<c:param name="pid" value="${ postInfo.pid }" />
-												</c:url> <a href="${ postDetailPage }">[모임 후기] ${ postInfo.title }</a></td>
+											<h5 class="card-title">[모임 후기] ${ postInfo.title }</h5>
 										</c:when>
-										<c:when test="${postInfo.hrs_hd == 2 }">
-											<td><c:url var="postDetailPage" value="/post/detail">
-													<c:param name="pid" value="${ postInfo.pid }" />
-												</c:url> <a href="${ postDetailPage }">[사담] ${ postInfo.title }</a></td>
+										<c:when test="${postInfo.hrs_hd == 1}">
+											<h5>[사담] ${ postInfo.title }</h5>
 										</c:when>
-										<c:when test="${postInfo.hrs_hd == 3 }">
-											<td><c:url var="postDetailPage" value="/post/detail">
-													<c:param name="pid" value="${ postInfo.pid }" />
-												</c:url> <a href="${ postDetailPage }">[기타] ${ postInfo.title }</a></td>
+										<c:when test="${postInfo.hrs_hd == 1}">
+											<h5>[기타] ${ postInfo.title }</h5>
 										</c:when>
 										<c:otherwise>
-											<td><c:url var="postDetailPage" value="/post/detail">
-													<c:param name="pid" value="${ postInfo.pid }" />
-												</c:url> <a href="${ postDetailPage }">[오류 말머리 수정 필요함] ${ postInfo.title }</a></td>
+											<h5>[오류 말머리 수정 필요함] ${ postInfo.title }</h5>
 										</c:otherwise>
 									</c:choose>
 								</c:if>
-								<td>${ postInfo.author }</td>
-								<td><fmt:formatDate value="${ postInfo.created_date }"
-										pattern="yyyy-MM-dd" /></td>
-								<!-- an_title이 null인지 아닌지에 따라 진행상태가 달라짐 -->
-
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+								<!-- 작성자 -->
+								<p class="card-text">작성자: ${ postInfo.author }
+								<!-- 작성 날짜 -->
+									<br />작성일자:
+									<fmt:formatDate value="${ postInfo.created_date }"
+										pattern="yyyy-MM-dd" />
+								</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
-
-		</main>
+		</div>
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 			crossorigin="anonymous"></script>
-
 	</div>
 </body>
 </html>

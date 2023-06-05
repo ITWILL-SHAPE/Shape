@@ -19,22 +19,11 @@
  document.addEventListener('DOMContentLoaded', () => {
      const modifyForm = document.querySelector('#modifyForm');
      
-     
-     const btnDelete = document.querySelector('#btnDelete');
-     btnDelete.addEventListener('click', () => {
-         const check = confirm('정말 삭제할까요?');
-         if(check){
-             modifyForm.action = './delete?pid=' +${post.pid};
-             modifyForm.method = 'post'; 
-             modifyForm.submit(); 
-         }
-     })
-     
      const btnUpdate = document.querySelector('#btnUpdate');
      btnUpdate.addEventListener('click', () =>{
          // 제목과 내용이 입력되어 있는 지 체크
          const titleInput = document.querySelector('input#title').value; //input에 입력된 값
-         const content = document.querySelector('textarea#content').value; //textarea에 입력된 값
+         const content = document.querySelector('textarea#summernote').value; //textarea에 입력된 값
          if(title === ''||content ===''){
              alert('제목과 내용은 반드시 입력하세요.')
              return;
@@ -125,50 +114,46 @@
 
 		<main class="my-2">
 			<div class="card">
-				<form method="post">
-					<div class="card-body" id="modifyForm">
-						<div class="my-2">
-							<label class="form-label" for="hrs_hd">말머리</label>
-							<!-- !!!!!!말머리 번호 전달!!!!!! -->
-							<select id="hrs_hd" class="form-select"
-								aria-label="Default select example">
-								<option selected>말머리를 선택해주세요.</option>
-								<option name="hrs_hd" value="1">모임 후기</option>
-								<option name="hrs_hd" value="2">사담</option>
-								<option name="hrs_hd" value="3">기타</option>
-							</select>
-						</div>
+				<form class="card-body" id="modifyForm">
+					<div class="my-2">
+						<label class="form-label" for="hrs_hd">말머리</label>
+						<!-- !!!!!!말머리 번호 전달!!!!!! -->
+						<select id="hrs_hd" class="form-select"
+							aria-label="Default select example">
+							<option selected>말머리를 선택해주세요.</option>
+							<option name="hrs_hd" value="1">모임 후기</option>
+							<option name="hrs_hd" value="2">사담</option>
+							<option name="hrs_hd" value="3">기타</option>
+						</select>
+					</div>
 
-						<div class="my-2">
-							<label class="form-label" for="title">제목</label> <input
-								class="form-control" id="title" name="title"
-								value="${ post.title }" autofocus />
-						</div>
-						<div class="my-2">
-							<label class="form-label" for="summernote">내용</label>
-							<textarea class="form-control" id="summernote" name="content"
-								required>${ post.content }</textarea>
-						</div>
-						<div class="my-2">
-							<label class="form-label" for="author">작성자 아이디</label> <input
-								class="form-control" id="author" value="${ post.author }"
-								readonly />
-						</div>
+					<div class="my-2">
+						<label class="form-label" for="title">제목</label> <input
+							class="form-control" id="title" name="title"
+							value="${ post.title }" autofocus />
 					</div>
-					<div class="card-footer my-2">
-						<div class="d-flex justify-content-center">
-                        <button class="mx-1 btn btn-outline-danger" id="btnDelete">삭제</button>
-                        <button class="mx-1 btn btn-outline-success" id="btnUpdate">업데이트</button>
-                    </div>
+					<div class="my-2">
+						<label class="form-label" for="summernote">내용</label>
+						<textarea class="form-control" id="summernote" name="content"
+							required>${ post.content }</textarea>
 					</div>
-					<div class="my-2 text-center">
-						<c:url var="postList" value="/post/list" />
-						<button onclick="location.href='${ postList }'"
-							class="btn btn-warning" type="button">목록</button>
+					<div class="my-2">
+						<label class="form-label" for="author">작성자 아이디</label> <input
+							class="form-control" id="author" value="${ post.author }"
+							readonly />
+					</div>
+
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<button class="btn btn-warning" type="button" id="btnUpdate">수정
+							완료</button>
 					</div>
 				</form>
 			</div>
-
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<c:url var="postList" value="/post/list" />
+				<button onclick="location.href='${ postList }'"
+					class="btn btn-warning" type="button">목록</button>
+			</div>
 		</main>
 
 		<script

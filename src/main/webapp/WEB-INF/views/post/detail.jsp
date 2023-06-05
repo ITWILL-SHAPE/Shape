@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <%@ include file="../common/header.jsp"%> --%>
+<%@ include file="../common/header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -16,6 +15,23 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
+
+<script type="text/javascript">
+ document.addEventListener('DOMContentLoaded', () => {
+     const modifyForm = document.querySelector('#modifyForm');
+     
+     
+     const btnDelete = document.querySelector('#btnDelete');
+     btnDelete.addEventListener('click', () => {
+         const check = confirm('정말 삭제할까요?');
+         if(check){
+             modifyForm.action = './delete?pid=' +${post.pid};
+             modifyForm.method = 'post'; 
+             modifyForm.submit(); 
+         }
+     })
+ });
+ </script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 	crossorigin="anonymous"></script>
@@ -25,6 +41,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="../static/summernote/lang/summernote-ko-KR.js"></script>
+
 </head>
 <body>
 	<div class="container-fluid">
@@ -33,58 +50,41 @@
 		</header>
 		<main class="my-2">
 			<section class="card">
-				<form class="card-body">
-					<div class="my-2">
-						<label class="form-label" for="id">번호</label> <input
-							class="form-control" id="id" value="${ post.pid }" readonly />
-					</div>
-					<div class="my-2">
-						<label class="form-label" for="title">제목</label> <input
-							class="form-control" id="title" value="${ post.title }"
-							readonly />
-					</div>
+				<form class="card-body" id="modifyForm">
+					<!-- 글번호 -->
+					<p class="card-text">${ post.pid }</p>
+					<!-- 제목 -->
+					<h2 class="card-title">${ post.title }</h2>
+					<!-- 작성자 -->
+					<p class="card-text">${ post.author }작성자왜안뜨는지</p>
+					<!-- 내용 -->
 					<div class="my-2">
 						<label class="form-label" for="content">내용</label>
 						<div class="form-control" id="content" readonly>${ post.content }
 						</div>
 					</div>
-					<div class="my-2">
-						<label class="form-label" for="author">작성자 아이디</label> 
-						<input class="form-control" id="author" value="${ post.author }" readonly />
+					<!-- 작성날짜, 수정날짜 -->
+					<fmt:formatDate value="${ post.created_date }"
+						pattern="yyyy-MM-dd HH:mm:ss" var="created" />
+					<fmt:formatDate value="${ post.modified_date }"
+						pattern="yyyy-MM-dd HH:mm:ss" var="modified" />
+					<p class="card-text" id="created_date">${ created }/${ modified }</p>
+					<!-- 수정 삭제 버튼  -->
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<c:url var="postModifyPage" value="/post/modify">
+							<c:param name="pid" value="${ post.pid }"></c:param>
+						</c:url>
+						<button class="btn btn-warning me-md-2" type="button"
+							onclick="location.href='${ postModifyPage }'">수정</button>
+						<button class="btn btn-warning" type="button" id="btnDelete">삭제</button>
 					</div>
-					<div class="my-2">
-						<label class="form-label" for="created_date">작성 날짜</label>
-						<fmt:formatDate value="${ post.created_date }"
-							pattern="yyyy-MM-dd HH:mm:ss" var="created" />
-						<input class="form-control" id="created_date" value="${ created }"
-							readonly />
-					</div>
-					<div class="my-2">
-						<label class="form-label" for="modified_date">수정 날짜</label>
-						<fmt:formatDate value="${ post.modified_date }"
-							pattern="yyyy-MM-dd HH:mm:ss" var="modified" />
-						<input class="form-control" id="modified_date"
-							value="${ modified }" readonly />
-					</div>
+
 				</form>
-				<div class="card-footer my-2">
-					<c:url var="postModifyPage" value="/post/modify">
-						<c:param name="pid" value="${ post.pid }"></c:param>
-					</c:url>
-					<a class="btn btn-outline-warning form-control"
-						href="${ postModifyPage }">수정하기</a>
-				</div>
-				<div class="my-2 text-center">
-					<c:url var="postList" value="/post/list" />
-					<button onclick="location.href='${ postList }'"
-						class="btn btn-warning" type="button">목록</button>
-				</div>
 			</section>
 			<!-- 포스트 상세 보기 카드 -->
-<%-- 
 			<section class="my-2 card">
 				<div class="card-header fw-bold">
-					<span>댓글</span> <span id="commentCount">${ post.CommentCount }</span>개
+					<span>댓글</span> <span id="commentCount">${ post.commentCount }</span>개
 					<button class="btn" id="btnToggleReply">
 						<img id="toggleBtnIcon"
 							src="../static/assets/icons/toggle2-off.svg" alt="toggle-off"
@@ -136,7 +136,14 @@
 					</div>
 				</div>
 			</div>
- --%>			<!-- end modal -->
+
+
+			<div class="d-grid gap-2 col-5 mx-auto">
+				<c:url var="postList" value="/post/list" />
+				<button onclick="location.href='${ postList }'"
+					class="btn btn-warning" type="button">목록</button>
+			</div>
+			<!-- end modal -->
 		</main>
 
 		<script
@@ -144,6 +151,8 @@
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 			crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="../static/js/post-comment.js"></script>
 	</div>
 </body>
 </html>
+<%@ include file="../common/footer.jsp"%>

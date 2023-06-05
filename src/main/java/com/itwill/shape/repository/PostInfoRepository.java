@@ -30,5 +30,5 @@ public interface PostInfoRepository {
 
 	int deleteByPid(long pid);
 
-	List<PostListDto> selectWithKeyword(String keyword);
+	List<PostInfo> selectWithKeyword(String keyword);
 }

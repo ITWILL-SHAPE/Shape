@@ -25,7 +25,7 @@ public class PostInfoRepositoryTest {
 	
 	@Test
     public void testSelectWithKeyword() {
-        List<PostListDto> result = postInfoRepository.selectWithKeyword("te");
+        List<PostInfo> result = postInfoRepository.selectWithKeyword("te");
         log.info("result = {}", result);
     }
 	

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.dto.PostCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
+import com.itwill.shape.dto.PostInfoSelectByKeywordDto;
 import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.dto.PostUpdateDto;
 import com.itwill.shape.service.PostInfoService;
@@ -42,7 +43,7 @@ public class PostInfoController {
 	@GetMapping("/search")
 	public void list(Model model, String keyword) {
 		log.info("keywordList(keyword={})", keyword);
-		List<PostListDto> list = postInfoService.readByKeyword(keyword);
+		List<PostInfoSelectByKeywordDto> list = postInfoService.readByKeyword(keyword);
 		model.addAttribute("posts", list);
 	}
 	
