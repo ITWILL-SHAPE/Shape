@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://www.springframework.org/tags"%>
+	<%--
 <%@ include file="../../common/header.jsp"%>
-
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,55 +69,54 @@ th, td {
 </head>
 <body>
 	<div id="sidebar">
+	<%--
 		<%@ include file="../sidebar.jsp"%>
+		 --%>
 	</div>
 	<main>
-		<c:forEach items="${myPageUserInfo}" var="info">
-			<img src="data:image/jpeg;base64,${info.profile}" alt="Profile Image">
-
-			<div class="center">
-				<table>
-					<tbody>
-						<tr>
-							<th>이름</th>
-							<td>${info.name}</td>
-						</tr>
-						<tr>
-							<th>성별</th>
-							<td>${info.gender}</td>
-						</tr>
-						<tr>
-							<th>아이디</th>
-							<td>${info.id}</td>
-						</tr>
-						<tr>
-							<th>생년월일</th>
-							<td>${info.birth}</td>
-						</tr>
-						<tr>
-							<th>번호</th>
-							<td>${info.number}</td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td>${info.email}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="center">
-				<c:url var="mypageModifyPage" value="/pwdmodify">
-					<c:param name="id" value="${info.id}"></c:param>
-				</c:url>
-				<a class="btn btn-outline-primary form-control"
-					href="${myPageModifyPage}">회원정보 수정</a>
-			</div>
-		</c:forEach>
+		<img src="data:image/jpeg;base64,${info.profile}" alt="Profile Image">
+		<div class="center">
+			<table>
+				<tbody>
+					<tr>
+						<th>이름</th>
+						<td>${myPageUserInfo.name}</td>
+					</tr>
+					<tr>
+						<th>성별</th>
+						<td>${myPageUserInfo.gender}</td>
+					</tr>
+					<tr>
+						<th>아이디</th>
+						<td>${myPageUserInfo.id}</td>
+					</tr>
+					<tr>
+						<th>생년월일</th>
+						<td>${myPageUserInfo.birth}</td>
+					</tr>
+					<tr>
+						<th>번호</th>
+						<td>${myPageUserInfo.phone}</td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td>${myPageUserInfo.email}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="center">
+			<c:url var="mypageModifyPage" value="/pwdmodify">
+				<c:param name="id" value="${myPageUserInfo.id}"></c:param>
+			</c:url>
+			<a class="btn btn-outline-primary form-control"
+				href="${myPageModifyPage}">회원정보 수정</a>
+		</div>
 	</main>
 </body>
 
 </html>
-
+<%--
 <%@ include file="../../common/footer.jsp"%>
-
+ --%>
 
