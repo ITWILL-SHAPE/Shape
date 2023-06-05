@@ -192,6 +192,7 @@
 									<dd align="left">
 										<div>
 											<div>
+												<!-- DB에 들어갈 때 p태그가 생기는 문제 -->
 												<label class="form-label" for="summernote">
 													<textarea class="form-control" id="summernote" name="content" placeholder="모임을 소개해주세요." required></textarea>
 												</label>
