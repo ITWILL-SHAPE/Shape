@@ -127,18 +127,20 @@ public class MeetController {
 	 * 상세보기 페이지
 	 * @param mtid, model
 	 */
-	@GetMapping("/maindetail/{id}")
-	public ResponseEntity<List<MeetMainDetailDto>> maindetail(@PathVariable long mtid, Model model) {
-		log.info("maindetail");
-		
-		// 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
-		List<MeetMainDetailDto> list = meetDetailService.detailByMtid(mtid);
-		
-		// 뷰에 MeetDetaildto를 전달.
-		model.addAttribute("meetmaindetail" , list);
-		
-		return ResponseEntity.ok(list);
+		@GetMapping("/maindetail/{mtid}") // mtid로 경로 변수 이름 수정
+		public ResponseEntity<List<MeetMainDetailDto>> maindetail(@PathVariable long mtid, Model model) {
+		    log.info("maindetail");
+
+		    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
+		    List<MeetMainDetailDto> list = meetDetailService.detailByMtid(mtid);
+
+		    // 뷰에 MeetDetaildto를 전달.
+		    model.addAttribute("meetmaindetail" , list);
+
+		    return ResponseEntity.ok(list);
+		}
+
 		
 	}
 	
-}
+

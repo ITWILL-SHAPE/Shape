@@ -51,6 +51,7 @@ public interface MeetInfoRepository {
 	 */
 	List<MeetListCountDto> selectByCategory(String category);
 	
+	
 	/**
 	 * mtid 모임 상세 페이지
 	 * @param mtid
@@ -59,6 +60,7 @@ public interface MeetInfoRepository {
 	
 	// 작성 상세페이지
 	List<MeetMainDetailDto> detailByMtid(long mtid);
+
 	
 	
 	
