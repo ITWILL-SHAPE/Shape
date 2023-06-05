@@ -3,421 +3,228 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../common/header.jsp"%>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author"
-	content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
-<meta name="generator" content="Hugo 0.88.1">
-<title>Album example · Bootstrap v5.1</title>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author"
+			content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
+		<meta name="generator" content="Hugo 0.88.1">
+		
+		<link rel="canonical"
+			href="https://getbootstrap.kr/docs/5.1/examples/album/">
+		
+		
+		
+		<!-- Bootstrap core CSS -->
+		<link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+			crossorigin="anonymous">
+		
+		<!-- Favicons -->
+		<link rel="apple-touch-icon"
+			href="/docs/5.1/assets/img/favicons/apple-touch-icon.png"
+			sizes="180x180">
+		<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png"
+			sizes="32x32" type="image/png">
+		<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png"
+			sizes="16x16" type="image/png">
+		<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+		<link rel="mask-icon"
+			href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg"
+			color="#7952b3">
+		<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+		<meta name="theme-color" content="#7952b3">
+		
+		
+		<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+		
+		@media ( min-width : 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+		</style>
 
-<link rel="canonical"
-	href="https://getbootstrap.kr/docs/5.1/examples/album/">
 
-
-
-<!-- Bootstrap core CSS -->
-<link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-
-<!-- Favicons -->
-<link rel="apple-touch-icon"
-	href="/docs/5.1/assets/img/favicons/apple-touch-icon.png"
-	sizes="180x180">
-<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png"
-	sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png"
-	sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-<link rel="mask-icon"
-	href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg"
-	color="#7952b3">
-<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
-
-
-<style>
-.bd-placeholder-img {
-	font-size: 1.125rem;
-	text-anchor: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-}
-
-@media ( min-width : 768px) {
-	.bd-placeholder-img-lg {
-		font-size: 3.5rem;
-	}
-}
-</style>
-
-
-</head>
-
-<body>
-	<!--검색/필터-->
-	<div class="tst-tools">
-		<form id="search_form"
-			action="https://www.plomeet.com/meetings/single/search"
-			class="searchForm" method="post">
-			<input type="hidden" name="_token"
-				value="ETZkFaodePka6Rzd4LOdkxx5G5AbBDX4aS7jJNFK">
-			<div class="tst-title">전체 모임</div>
-			<div class="tst-search">
-				<div class="sch-wrap">
-					<label for="search_term"> <input type="text"
-						id="search_term" name="search_term" class="input-sch"
-						placeholder="검색어 입력">
-					</label>
-					<button type="submit" class="btn-sch">
-						<i class="material-icons">search</i>
-					</button>
-					<button type="button" class="btn-reset">
-						<i class="material-icons">cancel</i>
-					</button>
+	</head>
+	
+	<body>
+		<div class="container-fluid">
+		
+			<!--제목 검색 -> post -->
+			<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
+				<h1>전체 모임</h1>
+				<div class="tst-tools">
+					<div class="d-flex justify-content-center">
+						<div class="input-group w-50">
+							<form id="searchFormByTitle" class="TitleSearchForm">
+								<input type="text" class="form-control" id="searchTitle" name="serchT"
+									placeholder="검색어 입력" aria-label="Input group example"
+									aria-describedby="basic-addon1">
+							</form>		
+							<button type="button" class="btn btn-outline-secondary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+	 								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+								</svg>
+								<span class="visually-hidden">Button</span>
+							</button>
+						</div>
+					</div>	
 				</div>
-			</div>
-			<div class="tst-filter">
-				<div class="left-box">
-					<div class="total-wrap"></div>
+			</header>	
+			
+			<!--모집 중 체크 박스 검색 -> post -->
+				<form id="searchFormCheckBox" class="CheckBoxSearchForm">
+				<div class="form-check form-check-reverse">
+					<input class="form-check-input" type="checkbox" value="" id="reverseCheck1"> 
+						<label class="form-check-label" for="reverseCheck1">
+						 모집중
+						 </label>
 				</div>
-				<div class="right-box">
-					<div class="sort-wrap">
-						<select name="sort_by" onchange="submit()">
+				</form>
+
+			<!-- category/sido/ 검색 div들 -> post -->
+			
+			<div class="d-flex mb-3">
+				<!-- 모집 분야 필터 -->
+				<div class="p-2">
+					<form id="searchFormCategory" class="categorySearchForm">
+						<div class="input-group mb-3">
+							<label for="categorySelect"> 
+							<select
+								class="custom-select custom-select-lg mb-3" id="category"
+								name="category">
+									<option value="">모집 분야</option>
+									<option value="1">운동·액티비티</option>
+									<option value="2">음식·음료</option>
+									<option value="3">취미</option>
+									<option value="4">여행·동행</option>
+									<option value="5">자기계발·교육</option>
+									<option value="6">동네·친목</option>
+									<option value="7">문화·예술</option>
+									<option value="8">기타</option>
+							</select>
+							</label>
+						</div>
+					</form>	
+				</div>	
+				
+				<!-- 시도 필터 -->
+				
+				<div class="p-2">
+					<form id="searchFormSido" class="sidoSearchForm">
+						<div class="input-group mb-3">
+							<label for="sidoSelect"> 
+								<select
+									class="custom-select custom-select-lg mb-3" id="sido"
+									name="sidoValue">
+										<option value="">---시/도 선택---</option>
+										<option value="1">서울특별시</option>
+										<option value="2">인천광역시</option>
+										<option value="3">대전광역시</option>
+										<option value="4">광주광역시</option>
+										<option value="5">대구광역시</option>
+										<option value="6">울산광역시</option>
+										<option value="7">부산광역시</option>
+										<option value="8">경기도</option>
+										<option value="9">강원도</option>
+										<option value="10">충청북도</option>
+										<option value="11">충청남도</option>
+										<option value="12">전라북도</option>
+										<option value="13">전라남도</option>
+										<option value="14">경상북도</option>
+										<option value="15">경상남도</option>
+										<option value="16">제주도</option>
+								</select>
+							</label>
+						</div>
+					</form>	
+				</div>	
+				<div class="ms-auto p-2">
+					<form id="searchFormSort" class="sortSearchForm">
+						<!-- <select> 요소의 선택 항목을 변경했을 때 발생하는 이벤트를 처리하는 JavaScript 코드를 지정 -->
+						<select name="sortBy" onchange="submit()">
 							<option value="latest">최신순</option>
 							<option value="popular">인기순</option>
 						</select>
-					</div>
-					<!-- 필터 -->
-					<div class="input-group mb-3">
-						<label for="categorySelect"> 
-						<select
-							class="custom-select custom-select-lg mb-3" id="category"
-							name="category">
-								<option>모집 분야</option>
-								<option value="1">운동·액티비티</option>
-								<option value="2">음식·음료</option>
-								<option value="3">취미</option>
-								<option value="4">여행·동행</option>
-								<option value="5">자기계발·교육</option>
-								<option value="6">동네·친목</option>
-								<option value="7">문화·예술</option>
-								<option value="8">기타</option>
-						</select>
-						</label>
-					</div>
-					<!--[D] modal 상세조건 -->
-					<div id="modalFilter" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true"> <i class="material-icons">close</i>
-										</span>
-									</button>
-									<h4 class="modal-title">상세조건설정</h4>
-								</div>
-								<div class="modal-body">
-									<div class="filterForm">
-										<dl class="create-form">
-											<dt>지역 및 장소</dt>
-											<dd>
-												<div class="flex-col">
-													<div class="col">
-														<label for="city"> <select id="city"
-															name="city_id" class="select-default">
-																<option value="">---시/도 선택---</option>
-																<option value="1">전체</option>
-																<option value="2">서울</option>
-																<option value="3">부산</option>
-																<option value="4">대구</option>
-																<option value="5">인천</option>
-																<option value="6">광주</option>
-																<option value="7">대전</option>
-																<option value="8">울산</option>
-																<option value="9">세종</option>
-																<option value="10">경기</option>
-																<option value="11">경남</option>
-																<option value="12">경북</option>
-																<option value="13">충남</option>
-																<option value="14">충북</option>
-																<option value="15">전남</option>
-																<option value="16">전북</option>
-																<option value="17">강원</option>
-																<option value="18">제주</option>
-														</select>
-														</label>
+					</form>	
+				</div>
+		    </div>
+			<!--아이템: model.addAttribute("listCount", dto);-->
+			<div class="album py-5">
+				<div class="container">
+		
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					
+						<!-- for문 변경가능함 확인해보기. -->
+						<c:forEach items="${ listCount }" var="cardList">
+							<c:url var="meetDetailPage" value="/meet/maindetail">
+								<c:param name="id" value="${ cardList.mtid }" />
+							</c:url>
+							<a href="${ meetDetailPage }" class="text-decoration-none">
+								<div class="col">
+									<div class="card shadow-sm">
+									
+										<!-- svg 대신에 img 사용. -->
+										<svg class="bd-placeholder-img card-img-top" width="100%"
+											height="220" xmlns="http://www.w3.org/2000/svg" role="img"
+											aria-label="Placeholder: Thumbnail"
+											preserveAspectRatio="xMidYMid slice" focusable="false">
+											<rect width="100%" height="100%" fill="#55595c" />
+											<text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+										</svg>
+		
+										<div class="card-body">
+											<div class="post-inner">
+												<!-- span 넣는것 고려하기. -->
+												<div class="row align-items-center">
+													<div class="col-auto" id="post-category">
+														${ cardList.category }
 													</div>
-													<div class="col">
-														<label for="town"> <select id="town"
-															name="town_id" class="select-default">
-																<option value="">---구/군 선택---</option>
-														</select>
-														</label>
+													<div class="col text-lg-end text-center">
+														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+														 <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+														</svg> 
+														<span class="text-end" id="post-lcnt">
+													 	<em>${cardList.lcnt}</em>
+													 	</span>	
 													</div>
 												</div>
-											</dd>
-											<dt>모임 주제(카테고리)</dt>
-											<dd>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id1"> <input type="checkbox"
-														name="category_id[]" id="category_id1" value="1">
-														<span>교육·언어·도서</span>
-													</label>
+												<div id="post-sidoAndTitle">
+													[ ${ cardList.sido } ]  < ${ cardList.title } >
 												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id2"> <input type="checkbox"
-														name="category_id[]" id="category_id2" value="2">
-														<span>아웃도어·여행</span>
-													</label>
+												<div id="post-mtDate">
+													<span class="map">모집일정: ${ cardList.mt_date }</span>
 												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id3"> <input type="checkbox"
-														name="category_id[]" id="category_id3" value="3">
-														<span>유아·아동</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id4"> <input type="checkbox"
-														name="category_id[]" id="category_id4" value="4">
-														<span>운동·액티비티</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id5"> <input type="checkbox"
-														name="category_id[]" id="category_id5" value="5">
-														<span>요리·공예·제조</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id6"> <input type="checkbox"
-														name="category_id[]" id="category_id6" value="6">
-														<span>문화·공연·축제</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id7"> <input type="checkbox"
-														name="category_id[]" id="category_id7" value="7">
-														<span>사진·영상·음악</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id8"> <input type="checkbox"
-														name="category_id[]" id="category_id8" value="8">
-														<span>게임·오락</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id9"> <input type="checkbox"
-														name="category_id[]" id="category_id9" value="9">
-														<span>자동차·오토바이</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id10"> <input type="checkbox"
-														name="category_id[]" id="category_id10" value="10">
-														<span>패션·뷰티</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id11"> <input type="checkbox"
-														name="category_id[]" id="category_id11" value="11">
-														<span>친목·사교·미팅</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id12"> <input type="checkbox"
-														name="category_id[]" id="category_id12" value="12">
-														<span>업무·직종</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id13"> <input type="checkbox"
-														name="category_id[]" id="category_id13" value="13">
-														<span>봉사·단체활동</span>
-													</label>
-												</div>
-												<div class="col check-default"
-													style="width: 33.3333%; float: left;">
-													<label for="category_id14"> <input type="checkbox"
-														name="category_id[]" id="category_id14" value="14">
-														<span>자유주제</span>
-													</label>
-												</div>
-											</dd>
-											<dt>모임 일정</dt>
-											<dd>
-												<div class="flex-col">
-													<div class="col">
-														<label for="start_date" class="_date_po"> <i
-															class="material-icons _date_ic">event_available</i> <input
-															type="text" id="start_date" name="start_date"
-															class="input-date" placeholder="시작일">
-														</label>
-													</div>
-													<div class="col">
-														<label for="end_date" class="_date_po"> <i
-															class="material-icons _date_ic">event_available</i> <input
-															type="text" id="end_date" name="end_date"
-															class="input-date" placeholder="종료일">
-														</label>
-													</div>
-												</div>
-											</dd>
-											<dt>모임 인원(명)</dt>
-											<dd>
-												<div class="flex-col">
-													<div class="col">
-														<label for="headcount_min"> <input type="number"
-															id="headcount_min" name="headcount_min"
-															class="input-default" placeholder="최소 (숫자입력)">
-														</label>
-													</div>
-													<div class="col">
-														<label for="headcount_max"> <input type="number"
-															id="headcount_max" name="headcount_max"
-															class="input-default" placeholder="최대 (숫자입력)">
-														</label>
-													</div>
-												</div>
-											</dd>
-											<dt>연령</dt>
-											<dd>
-												<div class="flex-col">
-													<div class="col">
-														<label for="age_min"> <input type="number"
-															id="age_min" name="age_min" class="input-default"
-															placeholder="최소 (숫자입력)">
-														</label>
-													</div>
-													<div class="col">
-														<label for="age_max"> <input type="number"
-															id="age_max" name="age_max" class="input-default"
-															placeholder="최대 (숫자입력)">
-														</label>
-													</div>
-												</div>
-											</dd>
-											<dt>참가비용(원)</dt>
-											<dd>
-												<div class="flex-col">
-													<div class="col">
-														<label for="fee_min"> <input type="number"
-															id="fee_min" name="fee_min" class="input-default"
-															placeholder="최소 (숫자입력)">
-														</label>
-													</div>
-													<div class="col">
-														<label for="fee_max"> <input type="number"
-															id="fee_max" name="fee_max" class="input-default"
-															placeholder="최소 (숫자입력)">
-														</label>
-													</div>
-												</div>
-											</dd>
-										</dl>
+											</div>
+											<div class="text-lg-end text-center">
+												 <small class="text-muted"> 
+												 모집인원: <span id="currentApplicants">${cardList.pcnt}</span> / <span id="maxApplicants">${cardList.nm_ppl}</span>
+												</small>
+											</div>
+										</div> <!-- card-body 끝나는 부분 -->
 									</div>
 								</div>
-								<div class="modal-footer">
-									<div class="flex-col">
-										<div class="col">
-											<button type="submit" class="btn-lg-primary">필터 적용</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card-type-a">
-						<button type="button" class="btn-card">
-							<i class="material-icons type-a"
-								onclick="utilsCtrl.changeCardTypeA();">border_all</i> <i
-								class="material-icons type-b on"
-								onclick="utilsCtrl.changeCardTypeB();">format_list_bulleted</i>
-						</button>
+							</a>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
-		</form>
-	</div>
-	<!--아이템: model.addAttribute("listCount", dto);-->
-	<div class="album py-5 bg-light">
-		<div class="container">
-
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-			
-				<!-- for문 변경가능함 확인해보기. -->
-				<c:forEach items="${ listCount }" var="cardList">
-					<c:url var="meetDetailPage" value="/meet/maindetail">
-						<c:param name="id" value="${ cardList.mtid }" />
-					</c:url>
-					<a href="${ meetDetailPage }">
-						<div class="col">
-							<div class="card shadow-sm">
-							
-								<!-- svg 대신에 img 사용. -->
-								<svg class="bd-placeholder-img card-img-top" width="100%"
-									height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-									aria-label="Placeholder: Thumbnail"
-									preserveAspectRatio="xMidYMid slice" focusable="false">
-									<title>Placeholder</title>
-									<rect width="100%" height="100%" fill="#55595c" />
-									<text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-								</svg>
-
-								<div class="card-body">
-									<div class="post-inner">
-										<!-- span 넣는것 고려하기. -->
-										<div class="post-category">
-											[ ${ cardList.category } ]
-										</div>
-										<div class="post-sido">
-											${ cardList.sido }
-										</div>
-										<div class="post-title">
-											< ${ cardList.title } >
-										</div>
-										<div class="post-mtDate">
-											<span class="map">모집일정: ${ cardList.mt_date }</span>
-											 <span class="member">
-											 <em>3~ 10</em>명
-											 </span>
-										</div>
-									</div>
-									<div class="d-flex justify-content-between align-items-center">
-										
-										<small class="text-muted">9 mins</small>
-									</div>
-								</div> <!-- card-body 끝나는 부분 -->
-							</div>
-						</div>
-					</a>
-				</c:forEach>
-			</div>
-		</div>
 	</div>
 
 
-	<script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+	
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" 
 		crossorigin="anonymous"></script>
 </body>
-
 <%@ include file="../common/footer.jsp"%>
