@@ -104,8 +104,9 @@ public class MyPageController {
 		log.info("pwdModify()");
 		log.info("id={}", id);
 		log.info("inputPwd={}", inputPwd);
+		passwordEncoder.encode("drj9812");
 		
-		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
+		int result = userInfoService.modifyPwdById("drj9812", "drj9812");
 		log.info("result={}", result);
 		
 		return "/mypage/memberinfo/pwdModify";

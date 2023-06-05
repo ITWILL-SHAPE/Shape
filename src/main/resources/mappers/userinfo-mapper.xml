@@ -59,18 +59,12 @@
 		select * from USER_INFO where ID = #{id}
 	</select>
 	
-	<!--마이페이지 프로필 사진 변경 쿼리문  
+	<!--마이페이지 프로필 사진 변경 쿼리문  -->
 	<update id="imageModify" parameterType="map">
 	    UPDATE USER_INFO
 	    SET PROFILE = #{profile}
 	    WHERE id = #{id}
-	</update> -->
-    
-    <insert id="imageModify" parameterType="com.example.model.UserInfo">
-        INSERT INTO USER_INFO (profile)
-        VALUES (#{profile, jdbcType=BLOB})
-    </insert>
-	<!-- ImageMapper.xml -->
+	</update>
+	
 
-    
 </mapper>
