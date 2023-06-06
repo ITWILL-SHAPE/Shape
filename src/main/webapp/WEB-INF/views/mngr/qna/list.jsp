@@ -50,7 +50,16 @@
 						<c:forEach items="${ infoQnAs }" var="infoQnA">
 							<tr>
 								<td>${ infoQnA.qid }</td>
-								<td>${ infoQnA.title }</td>
+								<c:if test="${infoQnA != null}">
+									<c:choose>
+										<c:when test="${infoQnA.secret.equals('N')}">
+											<td>${ infoQnA.title }</td>
+										</c:when>
+										<c:otherwise>
+											<td>🔒${ infoQnA.title }</td>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
 								<td>${ infoQnA.writer }</td>
 								<td><fmt:formatDate value="${ infoQnA.created_date }"
 										pattern="yyyy-MM-dd" /></td>
@@ -59,15 +68,15 @@
 									<c:choose>
 										<c:when test="${infoQnA.an_title=='확인중'}">
 											<td><c:url var="infoQnAUpdatePage"
-													value="/mngr/qna/update">
+													value="/mngr/qna/modify">
 													<c:param name="qid" value="${ infoQnA.qid }" />
-												</c:url> <a href="${ infoQnADetailPage }">답변하기</a></td>
+												</c:url> <a href="${ infoQnAUpdatePage }">답변하기</a></td>
 										</c:when>
 										<c:otherwise>
 											<td><c:url var="infoQnAUpdatePage"
-													value="/mngr/qna/update">
+													value="/mngr/qna/modify">
 													<c:param name="qid" value="${ infoQnA.qid }" />
-												</c:url> <a href="${ infoQnADetailPage }">답변완료</a></td>
+												</c:url> <a href="${ infoQnAUpdatePage }">답변완료</a></td>
 										</c:otherwise>
 									</c:choose>
 								</c:if>

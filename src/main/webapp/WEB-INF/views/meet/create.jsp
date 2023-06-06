@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Shape</title>
+</head>
 <body>
 	<div class="container">
 		<div class="container">
@@ -13,13 +19,13 @@
 					<div class="back-inner">
 						<div>
 							<h2 class="my-4">모임 만들기</h2>
-							<div class="my-2">
-								<p align="right">
+							<div class="my-2" align="right" id="mt_notice">
+								<small>
 								필수 입력
 								<strong>*</strong>
 								<br>
 								모임 분야, 모임 장소, 모집 기간, 모임 인원은 수정할 수 없습니다.
-								</p>
+								</small>
 							</div>
 							<form action="" method="post" class="form-box">
 								<dl>
@@ -112,11 +118,9 @@
 											<div>
 												<label for="str_date">
 													<i></i>
-													<input type="date" id="str_date" name="str_date" class="input-date" 
-													placeholder="시작날짜" value="" readonly>
+													<input type="date" id="str_date" name="str_date" class="input-default" 
+													placeholder="시작날짜" readonly>
 												</label>
-											</div>
-											<div>
 												<label for="ed_date">
 													<i></i>
 													<input type="date" id="ed_date" name="ed_date" class="input-default"
@@ -148,12 +152,10 @@
 											<div>
 												<label for="mt_cost">
 													<input type="text" id="mt_cost" name="mt_cost" class="input-default"
-													placeholder="참가비 없음." value>
+													placeholder="참가비 없음." readonly>
 												</label>
-											</div>
-											<div>
 												<label for="mt_cost_info">
-													<select id="mt_cost_info" name="mt_cost_info" class="select-default">
+													<select id="mt_cost_info" name="mt_cost_info" class="select-default" onchange="resetInputValue()" >
 														<option value="참가비 없음.">---참가비 없음---</option>
 														<option value="다과비">다과비</option>
 														<option value="재료비">재료비</option>
@@ -186,8 +188,9 @@
 									<dd align="left">
 										<div>
 											<div>
-												<label>
-													<textarea id="content" name="content" placeholder="모임을 소개해주세요." required></textarea>
+												<!-- DB에 들어갈 때 p태그가 생기는 문제 -->
+												<label class="form-label" for="summernote">
+													<textarea class="form-control" id="summernote" name="content" placeholder="모임을 소개해주세요." required></textarea>
 												</label>
 											</div>
 										</div>
@@ -195,12 +198,12 @@
 								</dl>
 								<div>
 									<div>
-										<div class="modal-footer">
-											<button type="button" class="btn-secondary" data-bs-dismiss="modal">취소</button>
+										<div class="my-2">
+										  <c:url var="meetList" value="/meet/list"></c:url>
+										  <button type="button" onclick="location.href='${ meetList }'" class="btn btn-outline-warning">취소</button>
 										</div>
-										<div class="card-footer my-2">
-											<input class="form-control btn btn-outline-primary" type="submit"
-											value="모임 만들기" />
+										<div>
+										  <input class="btn-outline-primary" type="submit" value="모임 만들기" />
 										</div>
 									</div>
 								</div>
@@ -215,5 +218,69 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="../static/js/meet-create.js"></script>
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+		crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<link
+		href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+		rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+	<script src="../static/summernote/lang/summernote-ko-KR.js"></script>
+	<script>
+	$(document)
+			.ready(
+					function() {
+						$('#summernote')
+								.summernote(
+										{
+											lang : 'ko-KR', // default: 'en-US'
+											height : 300, // set editor height
+											minHeight : null, // set minimum height of editor
+											maxHeight : null, // set maximum height of editor
+											focus : true, // set focus to editable area after initializing summernote
+											toolbar : [
+													// [groupName, [list of button]]
+													[ 'fontname',
+															[ 'fontname' ] ],
+													[ 'fontsize',
+															[ 'fontsize' ] ],
+													[
+															'style',
+															[
+																	'bold',
+																	'italic',
+																	'underline',
+																	'strikethrough',
+																	'clear' ] ],
+													[
+															'color',
+															[ 'forecolor',
+																	'color' ] ],
+													[ 'table', [ 'table' ] ],
+													[
+															'para',
+															[ 'ul', 'ol',
+																	'paragraph' ] ],
+													[ 'height', [ 'height' ] ],
+													[
+															'view',
+															[ 'fullscreen',
+																	'help' ] ] ],
+											fontNames : [ 'Arial',
+													'Arial Black',
+													'Comic Sans MS',
+													'Courier New', '맑은 고딕',
+													'궁서', '굴림체', '굴림', '돋움체',
+													'바탕체' ],
+											fontSizes : [ '8', '9', '10', '11',
+													'12', '14', '16', '18',
+													'20', '22', '24', '28',
+													'30', '36', '50', '72' ]
+										});
+					});
+</script>
 </body>
 <%@ include file="../common/footer.jsp"%>

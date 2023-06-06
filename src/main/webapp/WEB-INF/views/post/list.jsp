@@ -10,10 +10,8 @@
 > 1. 검색
 	keyword 어떻게 읽게함? 
 > 2. 조회수
-> 3. 말머리 번호로 입력
-	0으로 들어가……어캄
-
-> 5. 작성자 화면에 출력 안됨
+> 3. 말머리 번호로 입력 지금 0으로 들어감
+> 5. 작성자> 화면에 출력 안됨
 	사이트 화면에서 보니까 value 입력이 안되는데 얘만 안되는 이유를 모르겠음
 > 6. 페이징
 > 7. 댓글 
@@ -31,45 +29,49 @@
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', () => {
 	
-	const btnSearch = documnet.querySelector('button#btnSearch');
+	/* const btnSearch = documnet.querySelector('button#btnSearch');
 	btnSearch.addEventListener('click', () => {
     	// 하면 키워드가 읽혀서 search 페이지로 넘어가게	
     	const keyword = document.querySelector('input#search').value;
-		/* searchForm.action = './search?keyword='+ keyword; 
+		searchForm.action = './search?keyword='+ keyword; 
     	searchForm.method = 'post'; 
-    	searchForm.submit();  */
-    })
+    	searchForm.submit();  
+    }) */
     
 });
 </script>
 </head>
 <body>
 	<div class="container-fluid">
-		<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
+		<header class="my-2 pt-5 text-center">
 			<h1>게시판</h1>
+		</header>
+
+
+		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
+
 			<!-- 검색 -->
-			<div class="my-2 row" id="searchForm">
-				<div class="col-10">
-					<input class="form-control" type="text" id="search" />
+			<div class="row mb-3" id="search">
+				<div class="col-sm-10">
+					<input class="form-control border-warning" type="text" id="search" />
 				</div>
-				<div class="col-2">
+				<div class="col-sm-2">
 					<!-- !!!!!!검색 만들것!!!!!!! -->
 					<c:url var="postSearch" value="/post/search">
-					<c:param name="keyword" value='${ keyword }'></c:param>
+						<c:param name="keyword" value='${ keyword }'></c:param>
 					</c:url>
 					<button onclick="location.href='${postSearch}'" for="search"
 						class="form-control btn btn-outline-warning" id="btnSearch">검색</button>
 				</div>
 			</div>
-			
-		</header>
-		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
+
 			<!-- 글쓰기 버튼 -->
 			<div class="d-grid my-2 col-5 mx-auto" style="height: 4rem;">
 				<c:url var="postCreate" value="/post/create" />
 				<button onclick="location.href='${ postCreate }'"
 					class="btn btn-warning" type="button">글쓰기</button>
 			</div>
+
 			<div class="row row-cols-1 row-cols-md-2 g-4">
 				<c:forEach items="${ posts }" var="postInfo">
 					<c:url var="postDetailPage" value="/post/detail">
@@ -98,8 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
 									</c:choose>
 								</c:if>
 								<!-- 작성자 -->
-								<p class="card-text">작성자: ${ postInfo.author }
-								<!-- 작성 날짜 -->
+								<p class="card-text">
+									작성자: ${ postInfo.author }
+									<!-- 작성 날짜 -->
 									<br />작성일자:
 									<fmt:formatDate value="${ postInfo.created_date }"
 										pattern="yyyy-MM-dd" />

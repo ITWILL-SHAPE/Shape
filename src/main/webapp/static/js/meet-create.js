@@ -51,7 +51,8 @@ $('document').ready(function() {
 
 
 	// 참가비 없음을 선택하면 readonly
-	$("select#mt_cost_info").change(function() {
+	$("select#mt_cost_info").change(
+		function() {
 		var selectedOption = $(this).val();
 		var inputElement = $("input#mt_cost");
 
@@ -78,6 +79,12 @@ function getCurrentDate() {
 // 시작날짜 입력란에 현재 날짜 자동 채우기
 const startDateInput = document.getElementById('str_date');
 startDateInput.value = getCurrentDate();
+
+function resetInputValue() {
+  document.getElementById("mt_cost").value = "";
+}
+
+
 
 
 

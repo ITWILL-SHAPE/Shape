@@ -14,6 +14,23 @@
 	rel="stylesheet"
 	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
 	crossorigin="anonymous">
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+	
+	function getCheckboxValue(event){
+		  const secret = '';
+		  if(event.target.checked)  {
+			  secret = event.target.value;
+		  }else {
+			  secret = 'N';
+		  }
+		  
+		  document.getElementById('textarea#secret').innerText
+		    = secret;
+		}
+    
+});
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -43,13 +60,15 @@
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="Y"
-								id="secret" name="secret"> <label
-								class="form-check-label" for="flexCheckDefault"> 비밀글 </label>
+								id="checkbox" checked> <label class="form-check-label"
+								for="checkbox"> 비밀글 </label>
 						</div>
+						<textarea class="form-control d-none" id="secret" name="secret"
+								></textarea>
 					</div>
 					<div class="card-footer my-2">
-						<input class="form-control btn btn-outline-primary" type="submit"
-							value="작성 완료" />
+						<input class="form-control btn btn-outline-primary" id="btnSubmit"
+							type="submit" value="작성 완료" />
 					</div>
 				</form>
 			</div>
