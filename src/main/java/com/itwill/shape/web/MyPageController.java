@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -78,16 +78,18 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
 	@GetMapping("/confirmpwd")
-	public String confirmPwd(String id, String inputPwd) {
+	public String confirmPwd(String id, String inputPwd, Model model) {
 		log.info("confirmPwd()");
 		log.info("id={}", id);
 		log.info("inputPwd={}", inputPwd);
 
 		UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
 		log.info("dto={}", dto);
-		
-		String pwd = dto.getPwd();
-		log.info("pwd={}", pwd);
+
+		String userPwd = dto.getPwd();
+		log.info("pwd={}", userPwd);
+
+		model.addAttribute("userPwd", userPwd);
 		
 		return "/mypage/memberinfo/confirmPwd";
 	}
@@ -99,20 +101,20 @@ public class MyPageController {
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@GetMapping("/modifypwd")
+	@PostMapping("/modifypwd")
 	public String modifyPwd(String id, String inputPwd) {
 		log.info("modifyPwd()");
 		log.info("id={}", id);
 		log.info("inputPwd={}", inputPwd);
-		
+
 		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
 		log.info("result={}", result);
-		
+
 		return "/mypage/memberinfo/modifyPwd";
 	}
 
 	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
-	@GetMapping("/withdrawal")
+	@PostMapping("/withdrawal")
 	public String withdrawal() {
 		log.info("withdrawal()");
 
