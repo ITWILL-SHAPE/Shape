@@ -68,7 +68,10 @@
 							<tr>
 								<td>${ faq.fid }</td>
 								<td>
-									${ faq.question }
+									<c:url var="faqDetailPage" value="/mngr/faq/detail">
+										<c:param name="fid" value="${ faq.fid }"></c:param>
+									</c:url>
+									<a href="${ faqDetailPage }">${ faq.question }</a>
 								</td>
 							</tr>	
 						</c:forEach>
@@ -77,7 +80,7 @@
 			</div>
 			
 			<div style="float: right">
-				<c:url var="faqCreatePage" value="/faq/create" ></c:url>
+				<c:url var="faqCreatePage" value="/mngr/faq/create" ></c:url>
 				<a href="${ faqCreatePage }">FAQ 작성</a>	
 			</div>
 		</main>

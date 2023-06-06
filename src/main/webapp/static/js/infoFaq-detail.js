@@ -12,10 +12,12 @@
 	 btnDelete.addEventListener('click', (e) => {
 		 e.preventDefault();
 		 
-		 const result = confirm(`NO. ${id} 삭제하시겠습니까?`);
+		 const fid = document.querySelector('input#fid').value;
+		 
+		 const result = confirm(`NO. ${fid} 삭제하시겠습니까?`);
 		 
 		 if(result) {
-			 form.action = 'delete';
+			 form.action = 'delete?fid='+fid;
 			 form.method = 'post';
 			 form.submit();
 		 }
