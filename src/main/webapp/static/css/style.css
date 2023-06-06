@@ -49,6 +49,15 @@ div.meetCreateBox {
 	height: 1500px;
 	margin-bottom: 75px;
     padding: 30px;
-	
+    
 }
+
+#mt_notice small{
+	text-align: right;
+	color: red;
+}
+
+
+
+
   

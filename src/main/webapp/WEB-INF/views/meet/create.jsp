@@ -19,13 +19,13 @@
 					<div class="back-inner">
 						<div>
 							<h2 class="my-4">모임 만들기</h2>
-							<div class="my-2">
-								<p align="right">
+							<div class="my-2" align="right" id="mt_notice">
+								<small>
 								필수 입력
 								<strong>*</strong>
 								<br>
 								모임 분야, 모임 장소, 모집 기간, 모임 인원은 수정할 수 없습니다.
-								</p>
+								</small>
 							</div>
 							<form action="" method="post" class="form-box">
 								<dl>
@@ -121,8 +121,6 @@
 													<input type="date" id="str_date" name="str_date" class="input-default" 
 													placeholder="시작날짜" readonly>
 												</label>
-											</div>
-											<div>
 												<label for="ed_date">
 													<i></i>
 													<input type="date" id="ed_date" name="ed_date" class="input-default"
@@ -154,12 +152,10 @@
 											<div>
 												<label for="mt_cost">
 													<input type="text" id="mt_cost" name="mt_cost" class="input-default"
-													placeholder="참가비 없음." value>
+													placeholder="참가비 없음." readonly>
 												</label>
-											</div>
-											<div>
 												<label for="mt_cost_info">
-													<select id="mt_cost_info" name="mt_cost_info" class="select-default">
+													<select id="mt_cost_info" name="mt_cost_info" class="select-default" onchange="resetInputValue()" >
 														<option value="참가비 없음.">---참가비 없음---</option>
 														<option value="다과비">다과비</option>
 														<option value="재료비">재료비</option>
@@ -204,7 +200,7 @@
 									<div>
 										<div class="my-2">
 										  <c:url var="meetList" value="/meet/list"></c:url>
-										  <button type="button" onclick="location.href='/meet/list'" class="btn btn-outline-warning">취소</button>
+										  <button type="button" onclick="location.href='${ meetList }'" class="btn btn-outline-warning">취소</button>
 										</div>
 										<div>
 										  <input class="btn-outline-primary" type="submit" value="모임 만들기" />
@@ -221,6 +217,7 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="../static/js/meet-create.js"></script>
 	<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
 		rel="stylesheet"
@@ -285,6 +282,5 @@
 										});
 					});
 </script>
-<script src="../static/js/meet-create.js"></script>
 </body>
 <%@ include file="../common/footer.jsp"%>

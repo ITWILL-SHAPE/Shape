@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -106,6 +107,7 @@ public class MeetController {
 		
 	}
 	
+	
 	/**
 	 * 0604 김지민
 	 * 최신순(basic) 정렬
@@ -123,22 +125,36 @@ public class MeetController {
 	}
 	
 	/**
-	 * 0604 배선영
-	 * 상세보기 페이지
-	 * @param mtid = id ㅡㅡ..존나 어지럽다 ㄹㅇ;;;;, model
+	 * 드랍박스 최신순 클릭시 작동되는 메서드
+	 * @param selectedValue
+	 * @return
 	 */
-		@GetMapping("/maindetail") 
-		public void maindetail(long id, Model model) {
-		    log.info("maindetail(id = {})", id);
+//	 @PostMapping("/getList")
+//	  public List<String> getList(@RequestBody String selectedValue) {
+//		 
+//	 }
+	
+	// 김지민 - 모임 list: 여기서부터는 다 AJAX 요청
+	
+	
+	
+	
+	
+	 /**
+		 * 0604 배선영
+		 * 상세보기 페이지
+		 * @param mtid = id ㅡㅡ..존나 어지럽다 ㄹㅇ;;;;, model
+		 */
+			@GetMapping("/maindetail") 
+			public void maindetail(long id, Model model) {
+			    log.info("maindetail(id = {})", id);
 
-		    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
-		    MeetMainDetailDto result = meetDetailService.detailByMtid(id);
+			    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
+			    MeetMainDetailDto result = meetDetailService.detailByMtid(id);
 
-		    // 뷰에 MeetDetaildto를 전달.
-		    model.addAttribute("meetmaindetail" , result);
-		}
-		
-		
+			    // 뷰에 MeetDetaildto를 전달.
+			    model.addAttribute("meetmaindetail" , result);
+			}
 
 		
 	}
