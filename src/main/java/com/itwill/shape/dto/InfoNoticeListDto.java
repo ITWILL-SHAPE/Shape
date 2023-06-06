@@ -16,5 +16,6 @@ import lombok.ToString;
 public class InfoNoticeListDto {
 	
 	private long nid;
-	
+	private String title;
+	private String content;
 }
