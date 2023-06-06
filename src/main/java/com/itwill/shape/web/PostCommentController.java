@@ -27,14 +27,14 @@ public class PostCommentController {
     
     private final PostCommentService postCommentService;
     
-    @PostMapping
-    public ResponseEntity<Integer> createComment(@RequestBody PostCommentCreateDto dto) {
-        log.info("createComment(dto={})", dto);
-        
-        int result = postCommentService.create(dto);
-        
-        return ResponseEntity.ok(result);
-    }
+	/*
+	 * @PostMapping public ResponseEntity<Integer> createComment(@RequestBody
+	 * PostCommentCreateDto dto) { log.info("createComment(dto={})", dto);
+	 * 
+	 * int result = postCommentService.create(dto);
+	 * 
+	 * return ResponseEntity.ok(result); }
+	 */
 
     @GetMapping("/all/{pid}")
     public ResponseEntity<List<PostCommentReadDto>> read(@PathVariable long pid) {

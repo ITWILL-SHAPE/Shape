@@ -33,6 +33,8 @@ div.signUpBox {
 
 .fw-700 {font-weight: 700;}
 
+.signUp-border { border-color: darkgray; }
+
 /* meet/create.jsp에 사용 */
 .sub-container {background:#fff;}
 

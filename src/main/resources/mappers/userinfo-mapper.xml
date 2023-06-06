@@ -11,7 +11,6 @@
 	</insert>
 	
 	<!-- 사용자 생성 insert 문 -->
-	<!-- 수정 필요. 현재 테스트로 birth를 sysdate로 insert -->
 	<insert id="insertMember">
 		INSERT INTO USER_INFO (
 			  ID
@@ -28,13 +27,20 @@
 			, #{pwd}
 			, #{name}
 			, #{gender}
-			, systimestamp
+			, #{birth}
 			, #{phone}
 			, #{email}
 			, systimestamp
 			, 'M'
 		)
 	</insert>
+	
+	<!-- id 중복체크 -->
+	<select id="idDupCheck">
+		SELECT COUNT(*) AS TOCNT
+		FROM USER_INFO
+		WHERE ID = #{id}
+	</select>
 	
 	<update id="modifyPwdById" parameterType="map">
 		UPDATE user_info

@@ -40,6 +40,13 @@ public interface UserInfoRepository {
 	int insertMember(UserInfo user);
 	
 	/**
+	 * 0606
+	 * 사용자 아이디 중복 체크
+	 */
+	int idDupCheck(String id);
+	
+	
+	/**
 	 * 로그인한 id를 이용하여 user의 정보읽기
 	 * @param id
 	 * @return
