@@ -19,9 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 public class MeetInfoService {
 	private final MeetInfoRepository meetInfoRepository;
 	
-	
-	
-
 	// 모임 만들기
 	public int create(MeetInfoCreateDto dto) {
 		log.info("create({})", dto);
@@ -42,6 +39,17 @@ public class MeetInfoService {
 		
 		return meetInfoRepository.deleteByMtid(mtid);
 		
+	}
+
+	// 모임 상세보기 페이지
+	public MeetMainDetailDto read(long mtid) {
+		log.info("read(mtid={})", mtid);
+		
+		MeetInfo entity = meetInfoRepository.selectByMtid(mtid);
+		
+		MeetMainDetailDto dto = MeetMainDetailDto.fromEntity(entity);
+		
+		return dto;
 	}
 	
 }

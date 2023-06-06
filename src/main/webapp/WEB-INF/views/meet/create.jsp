@@ -198,12 +198,13 @@
 								</dl>
 								<div>
 									<div>
-										<div class="my-2">
-										  <c:url var="meetList" value="/meet/list"></c:url>
-										  <button type="button" onclick="location.href='${ meetList }'" class="btn btn-outline-warning">취소</button>
-										</div>
 										<div>
 										  <input class="btn-outline-primary" type="submit" value="모임 만들기" />
+										</div>
+										<div class="my-2 text-center">
+											<c:url var="meetList" value="/meet/list" />
+											<button onclick="location.href='${ meetList }'"
+												class="btn btn-warning" type="button">취소</button>
 										</div>
 									</div>
 								</div>
