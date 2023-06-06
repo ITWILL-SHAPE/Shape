@@ -42,21 +42,47 @@ public class MeetDetailService {
 		/**
 		 * 상세보기 수정 페이지 modify
 		 */
-		public MeetMainDetailDto read(long mtid) {
-			log.info("read(mtid={})",mtid);
+		public MeetMainDetailDto update(long mtid) {
+			log.info("update(mtid={})",mtid);
 			
 			
 			return null;
+			
 		}
 		
-		
-			
-			
-		
-		
-		
-		
+		/**
+		 * 참여자는 따로 서비스 컨트롤러 만들었음
+		 */
 		
 		// 찜수 
+		/**
+		 * MTID 테이블의 ID USER의 찜 수 +1
+		 * @param mtlike -> mtid, id 둘 다 필요 + 넘기기
+		 * @return
+		 */
+		public int LikeCountUpdate(MeetLike mtlike) {
+			log.info("LikeCountUpdate(mtlike = {})", mtlike);
+			
+			
+			return meetLikeRepository.likeCreate(mtlike);
+		}
+		/**
+		 * mtid 모임에 like count 감소
+		 * @param long mtid, String id
+		 * @return
+		 */
+		public int LikeCountDelete(long mtid, String id) {
+			log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
+			
+			
+			return meetLikeRepository.likeDelete(mtid, id);
+		}
 		
+		// 모임별 찜 수 
+		public long LikeCountMtid(int mtid) {
+			log.info("LikeCountMtid(mtid = {})", mtid);
+			
+			
+			return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
+		}
 }

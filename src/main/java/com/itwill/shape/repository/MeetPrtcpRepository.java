@@ -12,8 +12,7 @@ public interface MeetPrtcpRepository {
 	// 모임 참여 신청
 	int Prtcpinsert(MeetPrtcp mtPrtcp);
 	
-	// 참여한 모임을 찾는 값
-//	MeetPrtcp selectByMtid(long mtid);
+	
 
 	// mtid 모임 참여자 정보를 가져옴
 	List<MeetPrtcp> selectPrtcpList(long mtid);
