@@ -22,27 +22,42 @@
 	<main>
 		<div id="main_content">
 			<table class="table">
-				<thead>
+			<thead>
+				<tr>
+					<th>
+					<input type="checkbox"
+					       id="all-checkbox"
+						   name="all-checkbox">
+					</th>
+					<th>No</th>
+					<th>내용</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${myposts}"
+				           var="myposts"
+				           varStatus="loop">
 					<tr>
-						<th>No</th>
-						<th>제목</th>
-						<th>작성일</th>
+						<td>
+						<input type="checkbox"
+							   id="row-checkbox"
+							   data-id="${myposts.id}">
+						</td>
+						<td>${loop.index + 1}</td>
+						<td class="row-content">${posts.title}</td>
+						<td>
+						<fmt:formatDate value="${mycomments.created_date}"
+								        pattern="yyyy-MM-dd HH:mm"/>
+						</td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${ myposts }" var="myposts" varStatus="loop">
-						<tr>
-							<td>${ loop.index + 1 }</td>
-							<td>${ myposts.title }</td>
-							<td>
-							<td><fmt:formatDate value="${ myposts.created_date }"
-									pattern="yyyy-MM-dd HH:mm" /></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+				</c:forEach>
+			</tbody>
+		</table>
 		</div>
 	</main>
+	<footer>
+		<%@ include file="../../common/footer.jsp"%>
+	</footer>
 </body>
 </html>
-<%@ include file="../../common/footer.jsp" %>

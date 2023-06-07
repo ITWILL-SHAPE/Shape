@@ -105,7 +105,7 @@ public class MyPageController {
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@GetMapping("/modifypwd")
+	@PostMapping("/modifypwd")
 	public String modifyPwd(String id, String inputPwd, Model model) {
 		log.info("modifyPwd()");
 		log.info("id={}", id);
@@ -126,7 +126,7 @@ public class MyPageController {
 	}
 
 	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
-	@PostMapping("/withdrawal")
+	@GetMapping("/withdrawal")
 	public String withdrawal() {
 		log.info("withdrawal()");
 
