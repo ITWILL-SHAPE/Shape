@@ -67,7 +67,7 @@ public class InfoFaqMngrController {
 	}
 	
 	/**
-	 * faq 관리자 글 수정하기
+	 * faq 관리자 글 수정 화면
 	 * @param fid
 	 * @param model
 	 */

@@ -8,11 +8,11 @@
 	
 	<insert id="insert">
 		insert into INFO_NOTICE (TITLE, CONTENT, ATCHD_FILE, VIEWS, CREATED_DATE, FIX)
-		values (#{title}, #{content}, #{atchd_file}, #{views}, systimestamp, 'Y')
+		values (#{title}, #{content}, #{atchd_file}, #{views}, systimestamp, #{fix})
 	</insert>
 	
-	<select id="selectOrderByNidDesc">
-		select * from INFO_NOTICE order by NID desc
+	<select id="selectOrderByDateDesc">
+		select * from INFO_NOTICE order by FIX, CREATED_DATE desc
 	</select>
 	
 	<select id="selectByNid">

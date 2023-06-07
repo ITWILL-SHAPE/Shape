@@ -1,5 +1,6 @@
 package com.itwill.shape.dto;
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 
 import com.itwill.shape.domain.InfoNotice;
 
@@ -22,13 +23,15 @@ public class InfoNoticeListDto {
 	private long nid;
 	private String title;
 	private Timestamp created_date;
-	private String fix; // 고정여부
+	private int fix; // 고정여부
 	
 	public static InfoNoticeListDto fromEntiry(InfoNotice entity) {
 		
 		return InfoNoticeListDto.builder()
 				.nid(entity.getNid())
+				.fix(entity.getFix())
 				.title(entity.getTitle())
+				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();
 				// TODO: created_date 뭐가 틀렸지
 	}
