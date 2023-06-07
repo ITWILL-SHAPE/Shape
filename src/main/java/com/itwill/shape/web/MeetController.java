@@ -18,9 +18,11 @@ import com.itwill.shape.dto.MeetInfoUpdateDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.PostDetailDto;
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
+import com.itwill.shape.service.UserInfoService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -35,7 +37,7 @@ public class MeetController {
 	private final MeetInfoService meetInfoService;
 	private final MeetListService meetListService;
 	private final MeetDetailService meetDetailService; // 상세보기 서비스 다시 만들었습니다.
-	
+	private final UserInfoService userInfoService;
 	@GetMapping("/create")
 	public void create() {
 		log.info("GET: create()");
@@ -133,7 +135,7 @@ public class MeetController {
 	 /**
 		 * 0604 배선영
 		 * 상세보기 페이지
-		 * @param mtid = id ㅡㅡ..존나 어지럽다 ㄹㅇ;;;;, model
+		 * @param mtid = id , model
 		 */
 			@GetMapping("/maindetail") 
 			public void maindetail(long id, Model model) {
@@ -141,9 +143,12 @@ public class MeetController {
 
 			    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
 			    MeetMainDetailDto result = meetDetailService.detailByMtid(id);
+			    
+			    
 
 			    // 뷰에 MeetDetaildto를 전달.
 			    model.addAttribute("meetmaindetail" , result);
+			   
 			}
 
 		

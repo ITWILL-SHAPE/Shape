@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <title>Shape</title>
 <style>
     .profile {
@@ -32,11 +33,9 @@
      .carousel-item .img-fluid {
         width: 100%;
         height: auto;
- 	
+
 }
-     
-   
-  </style>
+ </style>
 </head>
 <body>
    
@@ -48,32 +47,55 @@
                   <header class="d-grid my-2 col-7 mx-auto m-5 text-center my-2">
                      <h1>모임 상세보기</h1>
                   </header>
-                  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  					<div class="carousel-indicators">
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-				  </div>
-				  <div class="carousel-inner">
-				    <div class="carousel-item active">
-				      <img src="..." class="d-block w-100" alt="...">
-				    </div>
-				    <div class="carousel-item">
-				      <img src="..." class="d-block w-100" alt="...">
-				    </div>
-				    <div class="carousel-item">
-				      <img src="..." class="d-block w-100" alt="...">
-				    </div>
-				  </div>
-				  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Previous</span>
-				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-				    <span class="visually-hidden">Next</span>
-				  </button>
-</div>
+                  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    				<div class="carousel-indicators">
+      					<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+      					<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
+     					<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+    				</div>
+    				<!-- 1번째 -->
+    				<div class="carousel-inner">
+      				<div class="carousel-item">
+        			<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+        				<div class="container">
+          						<div class="carousel-caption text-start">
+            						<p>사진넣기</p>
+            						<p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+         						</div>
+        				</div>
+      				</div>
+      				<!-- 2번쨰 -->
+      			<div class="carousel-item active">
+        		<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+       	 			<div class="container">
+          				<div class="carousel-caption">
+            					<p>Some representative placeholder content for the second slide of the carousel.</p>
+            					<p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          				</div>
+        			</div>
+      			</div>
+      			<!-- 3번쩨 -->
+      	<div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg>
+
+        	<div class="container">
+          			<div class="carousel-caption text-end">
+            				<p>Some representative placeholder content for the third slide of this carousel.</p>
+            				<p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+          			</div>
+      	 	</div>
+      </div>
+    </div>
+    			<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      				<span class="visually-hidden">Previous</span>
+    			</button>
+    			<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+      				<span class="visually-hidden">Next</span>
+    			</button>
+  		<div>
+  		<!-- 사진 끝 -->
             </div>
                   <!-- 제목, 내용 -->
             <div class="card">
@@ -188,7 +210,8 @@
          </div>      
       </div>
    </div>
-  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src=" <%=request.getContextPath()%>/static/meet-maindetaill.js"></script>	
 </body>
 </html>
 <%@ include file="../common/footer.jsp"%>
