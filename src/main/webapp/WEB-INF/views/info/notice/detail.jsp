@@ -5,6 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
+	<script>
+	
+	</script>
 	<head>
 		<meta charset="UTF-8">
 		<title>Shape</title>
@@ -33,7 +36,7 @@
 				</div>
 				<div class="my-4">
 					<label class="form-label" for="content">내용</label>
-					<textarea class="form-control" id="content" readonly>${ notices.content }</textarea>
+					<div class="form-control" id="content" readonly>${ notices.content }</div>
 				</div>
 			</div>
 		</section>

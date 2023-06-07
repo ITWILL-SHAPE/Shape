@@ -28,9 +28,6 @@
 		<main class="my-2">
 		<section class="card">
 			<form id="noticeDetailFrom">
-			<div>
-				<small>조회수: ${ notices.views }</small>
-			</div>
 			<div class="card-body">
 				<div class="my-4">
 						<label class="form-label" for="nid">NO.</label>
@@ -51,7 +48,7 @@
 				</div>
 				<div class="my-4">
 					<label class="form-label" for="content">내용</label>
-					<textarea class="form-control" id="content" readonly>${ notices.content }</textarea>
+					<div class="form-control" id="content" readonly>${ notices.content }</div>
 				</div>
 			</div>
 			</form>

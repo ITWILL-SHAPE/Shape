@@ -19,9 +19,13 @@
 		select * from INFO_NOTICE where NID = #{nid}
 	</select>
 	
+	<update id="viewCount" parameterType="Integer">
+		update INFO_NOTICE set VIEWS = VIEWS + 1 where NID = #{nid}
+	</update>
+	
 	<update id="updateNotice">
 		update INFO_NOTICE
-		set TITLE = #{title}, CONTENT = #{content}, ATCHD_FILE = #{atchd_file}, CREATED_DATE = systimestamp
+		set TITLE = #{title}, CONTENT = #{content}, ATCHD_FILE = #{atchd_file}, CREATED_DATE = systimestamp, FIX = #{fix}
 		where NID = #{nid}
 	</update>
 	

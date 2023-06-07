@@ -48,6 +48,7 @@ public class InfoNoticeService {
 		public InfoNotice read(long nid) {
 			log.info("read({})", nid);
 			InfoNotice entity = infoNoticeRepository.selectByNid(nid);
+			//entity.setViews(infoNoticeRepository.viewCount(nid));
 			return entity;
 		}
 		
