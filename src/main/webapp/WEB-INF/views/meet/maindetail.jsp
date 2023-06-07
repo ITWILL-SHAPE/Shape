@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shape</title>
 </head>
 <body>
@@ -14,8 +15,8 @@
 			<div>
 				<div>
 					<div>
-						<header>
-							<h3>모임 상세보기</h3>
+						<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
+							<h1>모임 상세보기</h1>
 						</header>
 						<div id="carouselExampleIndicators" class="carousek slide"> <!-- 메인 사진 넣기 --> 
 							<div class="carousel-indicators">
@@ -25,13 +26,13 @@
   						</div>
   					<div class="carousel-inner">
     					<div class="carousel-item active">
-      						<img src="..." class="d-block w-100" alt="...">
+      						<img id=img1 src="../static/images/sample/testdetail.png" width= "50" height="300" class="d-block w-100" alt="테스트">
     					</div>
     					<div class="carousel-item">
-      						<img src="..." class="d-block w-100" alt="...">
+      						<img id=img2 src="../static/images/sample/testdetail.png" class="d-block w-100" alt="테스트">
     					</div>
     					<div class="carousel-item">
-      						<img src="..." class="d-block w-100" alt="...">
+      						<img id=img2 src="../static/images/sample/testdetail.png" class="d-block w-100" alt="테스트">
     					</div>
   					</div>
  	 						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -47,8 +48,14 @@
 						<!-- 제목, 내용 -->
 						<div>
 							<div>
-								<label for="title">제목</label>
-								<input id="title" value="${ cardList.title }" readonly/>
+								<label>
+									<div class="text-center">지역</div>
+								</label>
+							</div>
+							<div for="title">
+								<div id="title" value="" class="con-ig">제목</div>
+								
+								
 							</div>
 						</div>
 							<div>
@@ -93,36 +100,32 @@
 							</div>
 							<hr>
 							<div>
-								<button type="submit" class="btn-lg-primary">찜</button>
-								<button type="submit" class="btn-lg-primary">참여하기</button>
+								<button type="submit" class="btn btn-danger">찜</button>
+								<button type="submit" class="btn btn-primary">참여하기</button>
 							</div>
 							<hr>
 							<!-- 프로필 -->
 							<div>
-								<div>user 사진</div>
-								<div>
-									<div>개설자 이름</div>
-									<div>개설자 이메일</div>
-								</div>
+								<div class="card">
+									<div class="card-body">
+										<div class="profile user img1" id="host-profile">host사진</div>									
+										<div id="host-name">개설자 이름</div>
+										<div id="host-name">개설자 이메일</div>
+									</div>
+									
+								
 							</div>
 							<hr>
 							<!-- 참여자 목록 -->
-							<div>
-								<ul>
-									<li>
-										<div>
-											<div>user 사진</div>
-											<div>
-												<div>개설자 이름</div>
-												<div>개설자 이메일</div>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
+							<div class="card">
+								<div class="card-body">
+									<div class="profile user img1" id="user-profile">user사진</div>									
+									<div id="user-name">사용자 이름</div>
+									<div id="user-name">사용자 이메일</div>
+									</div>
 							
 							<!--목록 페이지로 가기 -->
-							<button>목록</button>	
+							<button type="button" class="btn btn-dark">목록</button>	
 					</div>	
 				</div>
 			</div>		
