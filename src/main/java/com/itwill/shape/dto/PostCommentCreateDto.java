@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class PostCommentCreateDto {
 
-	private long pcid;
+	private long pid;
 	private String content;
 	private String author;
 	
 	public PostComment toEntity() {
 		return PostComment.builder()
-				.pcid(pcid)
+				.pcid(pid)
 				.content(content)
 				.author(author)
 				.build();
