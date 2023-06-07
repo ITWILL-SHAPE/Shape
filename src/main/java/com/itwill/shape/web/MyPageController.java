@@ -101,15 +101,23 @@ public class MyPageController {
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@PostMapping("/modifypwd")
-	public String modifyPwd(String id, String inputPwd) {
+	@GetMapping("/modifypwd")
+	public String modifyPwd(String id, String inputPwd, Model model) {
 		log.info("modifyPwd()");
 		log.info("id={}", id);
 		log.info("inputPwd={}", inputPwd);
 
 		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
 		log.info("result={}", result);
+		
+		UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
+		log.info("dto={}", dto);
 
+		String userPwd = dto.getPwd();
+		log.info("pwd={}", userPwd);
+
+		model.addAttribute("userPwd", userPwd);
+		
 		return "/mypage/memberinfo/modifyPwd";
 	}
 

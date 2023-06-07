@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script defer src="static/js/pwd-confirm.js"></script>
+<script defer src="static/js/inputPwd-confirm.js"></script>
 <title>마이페이지 > 회원정보 > 비밀번호 수정</title>
 </head>
 <body>
@@ -28,14 +28,20 @@
 						본인확인을 위해 <strong>로그인 비밀번호</strong>를 한 번 더 입력해주세요.
 					</h4>
 					<input type="password" id="inputPwd" name="inputPwd"
-						placeholder="비밀번호를 입력해 주세요"> 
+						placeholder="비밀번호를 입력해 주세요">
 					<button class="btn_confirm">확인</button>
 					<!--
 					<input type="submit"
 						class="btn_confirm" value="확인">
 						  -->
+					
 					<input type="hidden" id="userPwd"
 					  value="<c:out value='${userPwd}' />">
+					 <!--
+					<script>
+						var userPwd = "<c:out value='${userPwd}' />";
+					</script>
+					  -->
 					<!-- 배너 영역 -->
 					<div>
 						<a href="" target="" title="새 창 이동"> <img src="" alt="배너타이틀">

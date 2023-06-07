@@ -69,7 +69,8 @@ public class MeetController {
 	public void modify(long mtid, Model model) {
 		log.info("modify(mtid={})", mtid);
 		
-		MeetMainDetailDto dto = meetDetailService.read(mtid);
+		MeetMainDetailDto dto = meetInfoService.read(mtid);
+		
 		model.addAttribute("meet", dto);
 		
 	}

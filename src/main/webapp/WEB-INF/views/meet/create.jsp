@@ -27,7 +27,7 @@
 								모임 분야, 모임 장소, 모집 기간, 모임 인원은 수정할 수 없습니다.
 								</small>
 							</div>
-							<form action="" method="post" class="form-box">
+							<form action="" method="post" class="form-box" id="createForm">
 								<dl>
 									<div>
 										<sec:authorize access="isAuthenticated()">
@@ -198,12 +198,14 @@
 								</dl>
 								<div>
 									<div>
-										<div class="my-2">
-										  <c:url var="meetList" value="/meet/list"></c:url>
-										  <button type="button" onclick="location.href='${ meetList }'" class="btn btn-outline-warning">취소</button>
-										</div>
 										<div>
 										  <input class="btn-outline-primary" type="submit" value="모임 만들기" />
+										</div>
+										<div class="my-2 text-center">
+											<c:url var="meetList" value="/meet/list">
+											</c:url>
+											<a class="btn btn-primary" href="${ meetList }">취소</a>
+											
 										</div>
 									</div>
 								</div>
