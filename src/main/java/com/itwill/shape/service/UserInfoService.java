@@ -2,9 +2,9 @@ package com.itwill.shape.service;
 
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.UserInfo;
@@ -14,7 +14,6 @@ import com.itwill.shape.dto.UserInfoSelectPwdByIdDto;
 import com.itwill.shape.repository.UserInfoRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -22,9 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserInfoService {
 	
-	@Setter(onMethod_ = @Autowired)
 	private PasswordEncoder passwordEncoder;
-	
 	private final UserInfoRepository userInfoRepository;
 	
 	/**
@@ -34,6 +31,7 @@ public class UserInfoService {
 	 * @param dto
 	 * @return
 	 */
+	@Transactional
 	public int createAdmin(UserCreateDto dto) {
 		log.info("createAdmin(dto = {})", dto);
 		dto.setPwd(passwordEncoder.encode(dto.getPwd()));
