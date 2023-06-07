@@ -41,9 +41,12 @@
 								모임 제목 <span class="highlight">*</span>
 							</dt>
 							<dd align="left">
-								<div class="input-group mb-3">
-									<input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value required >
-								</div>
+							  <div class="input-group">
+							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." oninput="updateCharCount()" required>
+							  </div>
+							  <div class="smallText">
+							    <small id="textLengthCheck" class="form-text text-muted">(0 / 80)</small>
+							  </div>
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">
@@ -115,11 +118,11 @@
 							<dd align="left">
 								<div class="smallText">
 									<div class="input-group">
-										<input type="text" class="form-control" 
+										<input type="number" class="form-control" 
 										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl"> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
-									<small id="nm_ppl_help" class="form-text text-muted" align="left">숫자만 입력</small>
+									<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력</small>
 								</div>
 							</dd>
 							<br>

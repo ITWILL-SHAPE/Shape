@@ -36,7 +36,6 @@
 		#{mtid}
 	</update>
 
-
 	<!-- meetList.jsp에 사용될 모든 sql 문장들 정리. -> service에서 정리 및 합침. -->
 
 	<!-- 모임 찾기 page -->

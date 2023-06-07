@@ -84,26 +84,10 @@ div.meetdetailemail{
 }
 */
 
-
-.dt_class {
-  margin-bottom: 10px;
-  margin-left: 180px;
-  margin-right: 180px;
-  margin-left: 180px;
-  margin-right: 180px;
-}
-
-.smallText {
-	text-align: right;
-}
 .dt_class {
   margin-bottom: 10px;
 }
 
-.meetCreateTitle {
-	text-align: center;	
-	margin-bottom: 80px;
-}
 .smallText {
 	text-align: right;
 }
@@ -117,6 +101,7 @@ div.meetdetailemail{
 	margin-bottom: 8px;
 	margin-right: 180px;
 }
+
 
 
   

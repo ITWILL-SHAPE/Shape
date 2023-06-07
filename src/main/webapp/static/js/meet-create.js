@@ -53,15 +53,36 @@ $('document').ready(function() {
 	// 참가비 없음을 선택하면 readonly
 	$("select#mt_cost_info").change(
 		function() {
-		var selectedOption = $(this).val();
-		var inputElement = $("input#mt_cost");
+			var selectedOption = $(this).val();
+			var inputElement = $("input#mt_cost");
 
-		if (selectedOption === "참가비 없음.") {
-			inputElement.prop("readonly", true);
-			inputElement.attr("placeholder", "참가비 없음.");
-		} else {
-			inputElement.prop("readonly", false);
-			inputElement.attr("placeholder", "참가비용을 입력하세요.");
+			if (selectedOption === "참가비 없음.") {
+				inputElement.prop("readonly", true);
+				inputElement.attr("placeholder", "참가비 없음.");
+			} else {
+				inputElement.prop("readonly", false);
+				inputElement.attr("placeholder", "참가비용을 입력하세요.");
+			}
+		});
+
+	// 글자 수 실시간 표시 및 제한
+	$("#title").keyup(function(e) {
+		var content = $(this).val();
+		var maxLength = 80;
+		$("#textLengthCheck").text("(" + content.length + " / " + maxLength + ")"); // 실시간 글자 수 표시
+
+		if (content.length > maxLength) {
+			alert("최대 80자까지 입력이 가능합니다.");
+			$(this).val(content.substring(0, maxLength));
+			$('#textLengthCheck').text("(" + maxLength + " / 최대 " + maxLength + "자)");
+		}
+
+		function updateCharCount() {
+			var textarea = document.getElementById("myTextarea");
+			var charCount = document.getElementById("charCount");
+			var text = textarea.value;
+			var count = text.length;
+			charCount.textContent = count;
 		}
 	});
 
@@ -81,7 +102,7 @@ const startDateInput = document.getElementById('str_date');
 startDateInput.value = getCurrentDate();
 
 function resetInputValue() {
-  document.getElementById("mt_cost").value = "";
+	document.getElementById("mt_cost").value = "";
 }
 
 
