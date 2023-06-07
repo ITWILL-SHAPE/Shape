@@ -50,21 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
 
-			<!-- 검색 -->
-			<div class="row mb-3" id="search">
-				<div class="col-sm-10">
-					<input class="form-control border-warning" type="text" id="search" />
-				</div>
-				<div class="col-sm-2">
-					<!-- !!!!!!검색 만들것!!!!!!! -->
-					<c:url var="postSearch" value="/post/search">
-						<c:param name="keyword" value='${ keyword }'></c:param>
-					</c:url>
-					<button onclick="location.href='${postSearch}'" for="search"
-						class="form-control btn btn-outline-warning" id="btnSearch">검색</button>
-				</div>
-			</div>
-
 			<!-- 글쓰기 버튼 -->
 			<div class="d-grid my-2 col-5 mx-auto" style="height: 4rem;">
 				<c:url var="postCreate" value="/post/create" />
@@ -72,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					class="btn btn-warning" type="button">글쓰기</button>
 			</div>
 
-			<div class="row row-cols-1 row-cols-md-2 g-4">
+			<div class="row row-cols-1 row-cols-md-2 g-4 p-2">
 				<c:forEach items="${ posts }" var="postInfo">
 					<c:url var="postDetailPage" value="/post/detail">
 						<c:param name="pid" value="${ postInfo.pid }" />
@@ -86,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								<c:if test="${postInfo != null}">
 									<c:choose>
 										<c:when test="${postInfo.hrs_hd == 1}">
-											<h5 class="card-title">[모임 후기] ${ postInfo.title }</h5>
+											<h5 class="card-title col-6 text-truncate">[모임 후기] ${ postInfo.title }</h5>
 										</c:when>
 										<c:when test="${postInfo.hrs_hd == 1}">
 											<h5>[사담] ${ postInfo.title }</h5>
@@ -95,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 											<h5>[기타] ${ postInfo.title }</h5>
 										</c:when>
 										<c:otherwise>
-											<h5>[오류 말머리 수정 필요함] ${ postInfo.title }</h5>
+											<h5 class="card-title text-truncate">[오류 말머리 수정 필요함] ${ postInfo.title }</h5>
 										</c:otherwise>
 									</c:choose>
 								</c:if>
@@ -112,12 +97,25 @@ document.addEventListener('DOMContentLoaded', () => {
 					</div>
 				</c:forEach>
 			</div>
+			
+			
+			<!-- 검색 -->
+			<c:url var="postSearch" value="/post/search"></c:url>
+			<form action="${ postSearch }">
+				<div class="pt-5 mb-3 row">
+					<div class="col-sm-10">
+						<input class="form-control border-warning" type="text"
+							name="keyword" />
+					</div>
+					<div class="col-sm-2">
+						<button type="submit" class="form-control btn btn-outline-warning">검색</button>
+					</div>
+				</div>
+			</form>
+
 		</div>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
+		
 	</div>
 </body>
 </html>
