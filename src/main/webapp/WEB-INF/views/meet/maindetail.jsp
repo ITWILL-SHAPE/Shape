@@ -48,7 +48,7 @@
 						<div>
 							<div>
 								<label for="title">제목</label>
-								<input id="title" value="${ cardList.title }" readonly/>
+								<input id="title" value="" readonly/>
 							</div>
 						</div>
 							<div>
