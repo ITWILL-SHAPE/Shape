@@ -129,23 +129,7 @@ public class MeetController {
 		model.addAttribute("listCount", dto);
 
 	}
-	
-	/**
-	 * 드랍박스 최신순 클릭시 작동되는 메서드
-	 * @param selectedValue
-	 * @return
-	 */
-//	 @PostMapping("/getList")
-//	  public List<String> getList(@RequestBody String selectedValue) {
-//		 
-//	 }
-	
-	// 김지민 - 모임 list: 여기서부터는 다 AJAX 요청
-	
-	
-	
-	
-	
+
 	 /**
 		 * 0604 배선영
 		 * 상세보기 페이지

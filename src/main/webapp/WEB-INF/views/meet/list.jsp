@@ -58,13 +58,13 @@
 
 		.overlay-right {
 		  position: absolute;
-		  top: 10px;
-		  right: 10px;
+		  top: 15px;
+		  right: 20px;
 		}
 
 		.overlay-left {
 		  position: absolute;
-		  top: 10px;
+		  top: 15px;
 		  left: 10px;
 		}
 		</style>
@@ -102,7 +102,7 @@
 				<form id="searchFormCheckBox" class="CheckBoxSearchForm">
 				<div class="form-check form-check-reverse">
 					<input class="form-check-input" type="checkbox" value="" id="reverseCheck1"> 
-						<label class="form-check-label" for="reverseCheck1">
+						<label class="form-check-label" for="reverseCheck1" id="checkRecruitmentStatus">
 						 모집중
 						 </label>
 				</div>
@@ -197,14 +197,14 @@
 											preserveAspectRatio="xMidYMid slice" focusable="false">
 											<rect width="100%" height="100%" fill="#55595c" />
 										</svg>
-										<img id="heartBtn" 
+										<img id="heartBtn-${cardList.mtid}"
                             					src="../static/images/sample/like2.svg" 
                             					alt="notLike" 
                             					width="50"
 												class="overlay-image overlay-right"/>
-										<img id="heartBtn" 
+										<img id="recruiImg" 
                             					src="../static/images/sample/mozip_ing.svg" 
-                            					alt="notLike" 
+                            					alt="recuriIng" 
                             					width="80"
 												class="overlay-image overlay-left"/>		
 												

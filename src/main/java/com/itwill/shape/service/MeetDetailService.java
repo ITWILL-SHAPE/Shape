@@ -60,11 +60,11 @@ public class MeetDetailService {
 		 * @param mtlike -> mtid, id 둘 다 필요 + 넘기기
 		 * @return
 		 */
-		public int LikeCountUpdate(MeetLike mtlike) {
-			log.info("LikeCountUpdate(mtlike = {})", mtlike);
+		public int LikeCountUpdate(long mtid, String id) {
+			log.info("LikeCountUpdate(mtid = {}, id = {})", mtid, id);
 			
 			
-			return meetLikeRepository.likeCreate(mtlike);
+			return meetLikeRepository.likeCreate(mtid, id);
 		}
 		/**
 		 * mtid 모임에 like count 감소
