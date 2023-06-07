@@ -38,10 +38,8 @@
  </style>
 </head>
 <body>
-   
-   <div>
-      <div>
-         <div>
+
+         <div id="detaillmain">
             <div class="border bg-body rounded shadow-sm meetCreateBox">
                <div class="my-4">
                   <header class="d-grid my-2 col-7 mx-auto m-5 text-center my-2">
@@ -168,8 +166,8 @@
 	                           <c:url var="updatePage" value="/meet/update">
 	                             <c:param name="mtid" value="${meetmaindetail.mtid}"></c:param>     
 	                           </c:url>
-	                           <a href="${ updatePage }" type="button" class="btn btn-outline-primary btn-lg">수정하기</a>
-	                           <a href="${delete }" type="button" class="btn btn-outline-danger btn-lg">삭제하기</a>   
+	                           <a href="${ updatePage }" type="button" class="btn btn-outline-primary btn-lg" id="btnUpdate">수정하기</a>
+	                           <a href="${delete }" type="button" class="btn btn-outline-danger btn-lg" id="btnDelete">삭제하기</a>   
 	                           </div>
 	                        </div>
 	                     </c:if>
@@ -210,8 +208,10 @@
          </div>      
       </div>
    </div>
+   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <script src=" <%=request.getContextPath()%>/static/meet-maindetaill.js"></script>	
+  <script src=" <%=request.getContextPath()%>/static/meet-hostdetaill.js"></script>
 </body>
 </html>
 <%@ include file="../common/footer.jsp"%>
