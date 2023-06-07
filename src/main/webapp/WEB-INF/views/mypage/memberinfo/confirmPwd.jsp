@@ -16,12 +16,12 @@
 </style>
 </head>
 <body>
+	<div id="sidebar">
+		<%@ include file="../sidebar.jsp"%>
+	</div>
 	<main>
 		<!-- 메인콘텐츠 시작 -->
 		<section class="main_content">
-			<div id="sidebar">
-				<%@ include file="../sidebar.jsp"%>
-			</div>
 			<form class="pwd_form">
 				<input type="hidden" name="ReturnUrl" value="">
 				<div class="sub_content">
