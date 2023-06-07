@@ -144,8 +144,7 @@
 					</div>
 
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<button class="btn btn-warning" type="button" id="btnUpdate">수정
-							완료</button>
+						<button class="btn btn-warning" type="button" id="btnUpdate">수정 완료</button>
 					</div>
 				</form>
 			</div>
