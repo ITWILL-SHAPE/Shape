@@ -99,7 +99,7 @@ public class InfoNoticeMngrController {
 		return "redirect:/mngr/notice/list";
 	}
 	
-	@PostMapping("/detete")
+	@PostMapping("/delete")
 	public String detele(long nid) {
 		log.info("delete({})", nid);
 		int result = infoNoticeService.delete(nid);

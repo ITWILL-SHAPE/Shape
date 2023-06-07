@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		const result = confirm(`NO. ${nid} 삭제?`);
 		
 		if(result) {
-			form.action = 'delete';
+			form.action = 'delete?nid='+nid;
 			form.method = 'post';
 			form.submit();
 		}

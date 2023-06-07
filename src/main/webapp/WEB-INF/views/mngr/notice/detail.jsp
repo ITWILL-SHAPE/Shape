@@ -56,7 +56,7 @@
 			</div>
 			</form>
 		</section>
-		</main>
+
 
 		<div>
 			<div class="my-2 text-center">
@@ -67,7 +67,7 @@
 				<button class="btn btn-primary" id="btnDeleteNotice">삭제</button>
 			</div>
 		</div>
-
+		</main>
 		<script src="../../static/js/infoNotice-detail.js"></script>
 </body>
 </html>
