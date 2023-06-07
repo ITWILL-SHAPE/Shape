@@ -198,15 +198,13 @@
 								</dl>
 								<div>
 									<div>
-										<div>
-										  <input class="btn-outline-primary" type="submit" value="모임 만들기" />
-										</div>
 										<div class="my-2 text-center">
-											<c:url var="meetList" value="/meet/list">
-											</c:url>
+											<c:url var="meetList" value="/meet/list" />
 											<a class="btn btn-primary" href="${ meetList }">취소</a>
-											
-										</div>
+											<c:url var="meetModifyPage" value="/meet/update" />
+											<a class="btn btn-primary" href="${ meetModifyPage }">수정하기</a>
+										  	<input class="btn btn-outline-primary" type="submit" value="모임 만들기" />
+										</div> 
 									</div>
 								</div>
 							</form>

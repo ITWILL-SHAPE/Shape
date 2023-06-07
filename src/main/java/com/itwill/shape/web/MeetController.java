@@ -41,6 +41,11 @@ public class MeetController {
 		log.info("GET: create()");
 	}
 	
+	@GetMapping("/update") // update.jsp 테스트용
+	public void update() {
+		log.info("GET: update()");
+	}
+	
 	/**
 	 * 0604 정지언
 	 * 모임 만들기(모임 등록)
