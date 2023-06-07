@@ -13,16 +13,23 @@
 <body>
 	<div class="main-container">
 		<div class="sub-container">
-			<div class="text-center border bg-body rounded shadow-sm meetCreateBox">
+			<div class="border bg-body rounded shadow-sm meetCreateBox">
 				<!-- 작성 -->
 				<div>
-					<h2 class="my-4">모임 만들기</h2>
-					<form action="" method="post" class="form-box" id="createForm">
-											<div class="my-4" align="right" id="mt_notice">
-						<small> 필수 입력 <strong>*</strong> <br> 모임 분야, 모임 장소,
-							모집 기간, 모임 인원은 수정할 수 없습니다.
+					<div class="meetCreateTitle">
+						<h2>모임 만들기</h2>
+					</div>
+					<div class="meetCreateInfo">
+						<div align="right" id="mt_notice">
+						<small> 필수 입력 
+						<strong>*</strong> 
+						<br> 
+						모임 분야, 모임 장소,
+						모집 기간, 모임 인원은 수정할 수 없습니다.
 						</small>
 						</div>
+					</div>
+					<form action="" method="post" class="form-box" id="createForm">
 						<dl>
 							<div>
 								<sec:authorize access="isAuthenticated()">
@@ -30,7 +37,7 @@
 										value="<sec:authentication property="principal.username"/>" />
 								</sec:authorize>
 							</div>
-							<dt align="left">
+							<dt align="left" class="dt_class">
 								모임 제목 <span class="highlight">*</span>
 							</dt>
 							<dd align="left">
@@ -38,7 +45,8 @@
 									<input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value required >
 								</div>
 							</dd>
-							<dt align="left">
+							<br>
+							<dt align="left" class="dt_class">
 								모임 분류 <span class="highlight">*</span>
 							</dt>
 							<dd align="left">
@@ -56,7 +64,8 @@
 									</select>
 								</div>
 							</dd>
-							<dt align="left">
+							<br>
+							<dt align="left" class="dt_class">
 								모임 장소 
 								<span class="highlight">*</span>
 							</dt>
@@ -71,7 +80,8 @@
 									<input type="text" id="location" name="location" class="form-control" placeholder="상세주소 및 장소명을 입력해주세요." value>
 								</div>
 							</dd>
-							<dt id="mt_schedule" align="left">
+							<br>
+							<dt id="mt_schedule" align="left" class="dt_class">
 								모임 일정 <span class="highlight">*</span>
 							</dt>
 							<dd id="mt_schedule_detail" align="left">
@@ -84,7 +94,8 @@
 									</div>
 								</div>
 							</dd>
-							<dt id="rcrt_prd" align="left">
+							<br>
+							<dt id="rcrt_prd" align="left" class="dt_class">
 								모집 기간 <span class="highlight">*</span>
 							</dt>
 							<dd id="rcrt_prd_detail" align="left">
@@ -97,61 +108,62 @@
 									</div>
 								</div>
 							</dd>
-							<dt align="left">
+							<br>
+							<dt align="left" class="dt_class">
 								모임 인원 <span class="highlight">*</span>
 							</dt>
 							<dd align="left">
-								<div>
-									<div class="input-group mb-3">
+								<div class="smallText">
+									<div class="input-group">
 										<input type="text" class="form-control" 
 										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl"> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
-									<div>
-										<small id="nm_ppl_help" class="form-text text-muted" align="left">숫자만 입력</small>
-									</div>
+									<small id="nm_ppl_help" class="form-text text-muted" align="left">숫자만 입력</small>
 								</div>
 							</dd>
-							<dt id="mt_cost" align="left">
+							<br>
+							<dt id="mt_cost" align="left" class="dt_class">
 							참가비용(원)
 							</dt>
 							<dd id="mt_cost_detail" align="left">
-								<div>
-									<div class="input-group mb-3">
-										<input type="text" id="mt_cost" name="mt_cost" class="form-control"  placeholder="참가비 없음." readonly>
+								<div class="input-group">
+									<input type="text" id="mt_cost" name="mt_cost" class="form-control"  placeholder="참가비 없음." aria-describedby="mt_cost"readonly>
+									<span class="input-group-text" id="mt_cost">원</span>
 										<select id="mt_cost_info" name="mt_cost_info" class="form-select" onchange="resetInputValue()">
-												<option value="참가비 없음.">---참가비 없음---</option>
-												<option value="다과비">다과비</option>
-												<option value="재료비">재료비</option>
-												<option value="대관료">대관료</option>
-												<option value="운영비">운영비</option>
-												<option value="노쇼방지">노쇼방지</option>
-												<option value="기타">기타</option>
+											<option value="참가비 없음.">---참가비 없음---</option>
+											<option value="다과비">다과비</option>
+											<option value="재료비">재료비</option>
+											<option value="대관료">대관료</option>
+											<option value="운영비">운영비</option>
+											<option value="노쇼방지">노쇼방지</option>
+											<option value="기타">기타</option>
 										</select> 
-									</div>
-									<div>
-										<small id="nm_ppl_help" class="form-text text-muted">예) 5000(숫자만 입력)</small>
+								</div>
+								<div class="smallText">
+									<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력 예) 5000</small>
+								</div>
+							</dd>
+							<br>
+							<dt align="left" class="dt_class">
+							모임 사진
+							</dt>
+							<dd align="left">
+								<div>
+									<div class="mb-3">
+										<input class="form-control" type="file" id="formFile" accept="image/*">
 									</div>
 								</div>
 							</dd>
-							<dt align="left">모임 사진</dt>
+							<br>
+							<dt align="left" class="dt_class">
+							모임 상세 내용
+							</dt>
 							<dd align="left">
 								<div>
-									<div class="filebox">
-										<label for="img"> 이미지 파일 업로드 </label> <input type="file"
-											id="img" name="img" accept="image/*">
-									</div>
-								</div>
-							</dd>
-							<dt align="left">모임 상세 내용</dt>
-							<dd align="left">
-								<div>
-									<div>
+									<div class="my-2">
 										<!-- DB에 들어갈 때 p태그가 생기는 문제 -->
-										<label class="form-label" for="summernote"> <textarea
-												class="form-control" id="summernote" name="content"
-												placeholder="모임을 소개해주세요." required></textarea>
-										</label>
+										<textarea class="form-control" id="summernote" name="content" placeholder="모임을 소개해주세요." required></textarea>
 									</div>
 								</div>
 							</dd>
@@ -160,10 +172,12 @@
 							<div>
 								<div class="my-2 text-center">
 									<c:url var="meetList" value="/meet/list" />
-									<a class="btn btn-primary" href="${ meetList }">취소</a>
-									<c:url var="meetModifyPage" value="/meet/update" />
-									<a class="btn btn-primary" href="${ meetModifyPage }">수정하기</a>
+									<a class="btn btn-warning" href="${ meetList }">취소</a>
+									
 									<!-- 수정하기 페이지 test 용 -->
+									<c:url var="meetModifyPage" value="/meet/update" />
+									<a class="btn btn-primary" href="${ meetModifyPage }">수정하기 Test</a>
+									
 									<input class="btn btn-outline-primary" type="submit"
 										value="모임 만들기" />
 								</div>

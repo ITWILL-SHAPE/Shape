@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%-- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp" %>
---%>
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<script defer src="static/js/userPwd-confirm.js"></script>
+<title>마이페이지 > 회원정보 > 비밀번호 수정</title>
 <style>
 /*
 bullet 제거
@@ -31,21 +32,20 @@ input[type="text"]:valid {
 input[type="text"]:invalid {
 	background-color: red;
 }
+
+.main_content {
+	margin-left: 15rem; 
+	padding: 20px;
+}
 </style>
-<head>
-<meta charset="UTF-8">
-<script defer src="static/js/userPwd-confirm.js"></script>
-<title>마이페이지 > 회원정보 > 비밀번호 수정</title>
 </head>
 <body>
-	<%--
-		<div id="sidebar">
-			<%@ include file="../sidebar.jsp" %>
-		</div>
-	 --%>
-	<main>
+	<div id="sidebar">
+		<%@ include file="../sidebar.jsp" %>
+	</div>
+	<main class="main_content">
 		<!-- 메인콘텐츠 시작 -->
-		<section class="main_content">
+		<section>
 			<form id="pwdConfirm">
 				<h3>비밀번호 변경</h3>
 				<ul class="hyphen-list">
@@ -97,7 +97,7 @@ input[type="text"]:invalid {
 								data-parsley-minlength-message="* 비밀번호를 8자 이상 입력해주세요."
 								data-parsley-required-message="* 새로운 비밀번호 변경확인을 위하여 다시 한번 입력해 주세요."
 								data-parsley-equalto-message="* 새로운 비밀번호 변경확인을 위하여 다시 한번 입력해 주세요.">
-							<p class="tip_txt">* 새로운 비밀번호 변경확인을 위하여 다시 한 번 입력해 주세요.</p>
+								<p class="tip_txt">* 새로운 비밀번호 변경확인을 위하여 다시 한 번 입력해 주세요.</p>
 						</div>
 					</div>
 				</div>
@@ -115,6 +115,4 @@ input[type="text"]:invalid {
 	</main>
 </body>
 </html>
-<%--
 <%@ include file="../../common/footer.jsp" %>
- --%>
