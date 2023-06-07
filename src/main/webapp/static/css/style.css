@@ -102,6 +102,21 @@ div.meetdetailemail{
 	margin-right: 180px;
 }
 
+/*디테일 JSP 사용*/ 
+div.meeetcontent {
+   margin-right :15px;
+   margin-left: 15px;
+}
+div.meetdetailemail{
+   margin-right:61px;
+   margin-left: 61px;
+}
+div.meetdetailuser{
+	margin-right:61px;
+   	margin-left: 61px;
+   	margin-top: -55px;
+   	margin-bottom: 10px;
+}
 
 
   
