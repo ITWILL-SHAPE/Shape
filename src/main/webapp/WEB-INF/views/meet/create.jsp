@@ -204,7 +204,8 @@
 										<div class="my-2 text-center">
 											<c:url var="meetList" value="/meet/list">
 											</c:url>
-											<a class="nav-link" href="${ meetList }">취소</a>
+											<a class="btn btn-primary" href="${ meetList }">취소</a>
+											
 										</div>
 									</div>
 								</div>
