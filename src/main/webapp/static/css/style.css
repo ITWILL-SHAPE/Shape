@@ -49,8 +49,11 @@ div.signUpBox {
 
 div.meetCreateBox {
 	height: 1500px;
+	margin-top: 75px;
 	margin-bottom: 75px;
-    padding: 30px;
+	margin-left: 300px;
+	margin-right: 300px;
+    padding: 80px;
     
 }
 
@@ -58,6 +61,18 @@ div.meetCreateBox {
 	text-align: right;
 	color: red;
 }
+
+span.highlight {
+	color: red;
+}
+
+.form-box#createForm {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
 
 
 
