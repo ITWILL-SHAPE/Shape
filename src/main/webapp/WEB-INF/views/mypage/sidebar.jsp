@@ -1,3 +1,5 @@
+sidebar
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,12 +15,18 @@ bullet 제거
 /*
 li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부분에 가상 요소를 추가하여 스타일을 적용
 */
-
 .hyphen-list li::before {
 	content: "- ";
 }
-</style>
 
+#sidebar {
+	padding: 1rem;
+	background-color: white;
+	z-index: 9999;
+	float: left;
+	width: 15rem;
+}
+</style>
 <div id="sidebar">
 	<ul>
 		<li>
@@ -54,22 +62,11 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 	</ul>
 </div>
 <style>
-/* 사이드바 스타일 */
-/* id가 sidebar인 요소 선택(#)*/
-#sidebar {
-	position: fixed;
-	top: 0;
-	left: 100px;
-	width: 200px;
-	background-color: white;
-	margin: 100px 20px 20px; 
-}
-
 /* 메인 콘텐츠 스타일 */
 /*
 #content {
-	margin-left: 220px; /* 사이드바 너비 + 여백
-	padding: 20px;
+   margin-left: 220px; /* 사이드바 너비 + 여백
+   padding: 20px;
 }
 */
 </style>
