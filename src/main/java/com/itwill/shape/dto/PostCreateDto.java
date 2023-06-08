@@ -16,7 +16,7 @@ public class PostCreateDto {
 	private String title;
 	private String content;
 	private String author;
-	private long hrs_hd;
+	private String hrs_hd;
 	
 	public PostInfo toEntity() {
 		return PostInfo.builder()

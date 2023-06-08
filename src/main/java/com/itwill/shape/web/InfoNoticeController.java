@@ -45,7 +45,7 @@ public class InfoNoticeController {
 		InfoNotice notice = infoNoticeService.read(nid);
 		Timestamp time = Timestamp.valueOf(notice.getCreated_date());
 		
-		int viewCnt = infoNoticeService.viewCount(nid);
+		int viewCnt = notice.getViews();
 		log.info("viewCnt = {}", viewCnt);
 		notice.setViews(viewCnt);
 		

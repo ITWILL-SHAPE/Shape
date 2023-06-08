@@ -12,7 +12,7 @@ public class PostUpdateDto {
 	private long pid;
 	private String title;
 	private String content;
-	private long hrs_hd;
+	private String hrs_hd;
 	
 	public PostInfo toEntity() {
 		return PostInfo.builder()

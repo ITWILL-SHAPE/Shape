@@ -24,7 +24,7 @@ public class PostInfo {
 	private String title;
 	private String content;
 	private String author;
-	private long hrs_hd;
+	private String hrs_hd;
 	private LocalDateTime created_date;
 	private LocalDateTime modified_date;
 	private long views;

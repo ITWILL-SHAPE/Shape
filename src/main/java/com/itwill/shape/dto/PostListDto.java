@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class PostListDto {
 // 또 뭐가져가냐 뭐필요하냐
 	private long pid;
-	private long hrs_hd;
+	private String hrs_hd;
 	private String title;
 	private String author;
 	private Timestamp created_date;
