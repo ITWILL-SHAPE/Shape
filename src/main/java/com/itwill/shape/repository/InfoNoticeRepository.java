@@ -13,7 +13,7 @@ public interface InfoNoticeRepository {
 	
 	InfoNotice selectByNid (long nid);
 	
-	Integer viewCount (long nid);
+	int viewCount (long nid);
 	
 	List<InfoNoticeListDto> selectOrderByDateDesc();
 	

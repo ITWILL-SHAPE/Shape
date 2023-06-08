@@ -45,7 +45,13 @@ public class InfoNoticeController {
 		InfoNotice notice = infoNoticeService.read(nid);
 		Timestamp time = Timestamp.valueOf(notice.getCreated_date());
 		
+		int viewCnt = infoNoticeService.viewCount(nid);
+		log.info("viewCnt = {}", viewCnt);
+		notice.setViews(viewCnt);
+		
 		model.addAttribute("notices", notice);
 		model.addAttribute("times", time);
 	}
+	
+	
 }

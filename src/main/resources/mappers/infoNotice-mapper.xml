@@ -19,7 +19,7 @@
 		select * from INFO_NOTICE where NID = #{nid}
 	</select>
 	
-	<update id="viewCount" parameterType="Integer">
+	<update id="viewCount">
 		update INFO_NOTICE set VIEWS = VIEWS + 1 where NID = #{nid}
 	</update>
 	
