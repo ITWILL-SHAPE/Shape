@@ -73,7 +73,7 @@ public class PostCommentRepositoryTest {
         log.info("result = {}", result);
     }
     
-//    @Test
+    @Test
     public void test() {
         Assertions.assertNotNull(postCommentRepository);
         log.info(postCommentRepository.toString());

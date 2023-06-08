@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- 
-<%@ include file="../../common/header.jsp" %>
---%>
+<%@ include file="../../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script defer src="static/js/inputPwd-confirm.js"></script>
 <title>마이페이지 > 회원정보 > 비밀번호 수정</title>
+<style>
+.main_content {
+	margin-left: 15rem;
+	padding: 20px;
+}
+</style>
 </head>
 <body>
-	<%--
-		<div id="sidebar">
-			<%@ include file="../sidebar.jsp" %>
-		</div>
-	 --%>
+	<div id="sidebar">
+		<%@ include file="../sidebar.jsp"%>
+	</div>
 	<main>
 		<!-- 메인콘텐츠 시작 -->
 		<section class="main_content">
@@ -34,10 +36,10 @@
 					<input type="submit"
 						class="btn_confirm" value="확인">
 						  -->
-					
+
 					<input type="hidden" id="userPwd"
-					  value="<c:out value='${userPwd}' />">
-					 <!--
+						value="<c:out value='${userPwd}' />">
+					<!--
 					<script>
 						var userPwd = "<c:out value='${userPwd}' />";
 					</script>
@@ -54,6 +56,4 @@
 	</main>
 </body>
 </html>
-<%--
-<%@ include file="../../common/footer.jsp" %>
- --%>
+<%@ include file="../../common/footer.jsp"%>

@@ -3,11 +3,15 @@ package com.itwill.shape.web;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -101,7 +105,7 @@ public class MyPageController {
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@GetMapping("/modifypwd")
+	@PostMapping("/modifypwd")
 	public String modifyPwd(String id, String inputPwd, Model model) {
 		log.info("modifyPwd()");
 		log.info("id={}", id);
@@ -122,7 +126,7 @@ public class MyPageController {
 	}
 
 	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
-	@PostMapping("/withdrawal")
+	@GetMapping("/withdrawal")
 	public String withdrawal() {
 		log.info("withdrawal()");
 
@@ -205,5 +209,16 @@ public class MyPageController {
 		model.addAttribute("mycomments", mycomments);
 
 		return "/mypage/board/myComments";
+	}
+	
+	/**
+	 * 0607 손창민 myComments 페이지 댓글 삭제 기능
+	 * @param ids
+	 * @return
+	 */
+	@GetMapping("/mycomments-delete")
+	public String deleteComments() {
+		
+		return "";
 	}
 }

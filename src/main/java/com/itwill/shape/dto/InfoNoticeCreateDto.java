@@ -1,7 +1,7 @@
-package com.itwill.shape.domain;
-import java.time.LocalDateTime;
+package com.itwill.shape.dto;
 
-//우수빈 notice
+import com.itwill.shape.domain.InfoNotice;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,13 +17,19 @@ import lombok.ToString;
 @Setter
 @ToString
 @Data
-public class InfoNotice {
-	private long nid;
+public class InfoNoticeCreateDto {
+	
 	private String title;
 	private String content;
 	private byte[] atchd_file;
-	private int views;
-	private LocalDateTime created_date;
 	private int fix;
-
+	
+	public InfoNotice toEntity() {
+		return InfoNotice.builder()
+				.title(title)
+				.content(content)
+				.atchd_file("".getBytes()) //TODO: 나중에 ㅠ
+				.fix(fix)
+				.build();
+	}
 }

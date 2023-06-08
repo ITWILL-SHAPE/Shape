@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.itwill.shape.domain.InfoNotice;
 import com.itwill.shape.dto.InfoNoticeListDto;
+import com.itwill.shape.dto.InfoNoticeUpdateDto;
 
 // 우수빈 notice repository
 public interface InfoNoticeRepository {
@@ -12,9 +13,11 @@ public interface InfoNoticeRepository {
 	
 	InfoNotice selectByNid (long nid);
 	
-	List<InfoNoticeListDto> selectOrderByNidDesc();
+	Integer viewCount (long nid);
 	
-	int uupdateNotice (InfoNotice notice);
+	List<InfoNoticeListDto> selectOrderByDateDesc();
+	
+	int updateNotice (InfoNotice dto);
 	
 	int deleteByNid (long nid);
 }

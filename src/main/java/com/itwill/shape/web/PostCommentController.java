@@ -2,6 +2,7 @@ package com.itwill.shape.web;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.shape.dto.PostCommentCreateDto;
+import com.itwill.shape.dto.PostCommentListDto;
 import com.itwill.shape.dto.PostCommentReadDto;
 import com.itwill.shape.dto.PostCommentUpdateDto;
 import com.itwill.shape.service.PostCommentService;
@@ -36,14 +38,22 @@ public class PostCommentController {
 	 * return ResponseEntity.ok(result); }
 	 */
 
+//    @GetMapping("/all/{pid}")
+//    public ResponseEntity<List<PostCommentReadDto>> read(@PathVariable long pid) {
+//        log.info("read(pid={})", pid);
+//        
+//        List<PostCommentReadDto> list = postCommentService.read(pid);
+//        log.info("# of Comments = {}", list.size());
+//        
+//        return ResponseEntity.ok(list);
+//    }
+    
     @GetMapping("/all/{pid}")
-    public ResponseEntity<List<PostCommentReadDto>> read(@PathVariable long pid) {
-        log.info("read(pid={})", pid);
-        
-        List<PostCommentReadDto> list = postCommentService.read(pid);
-        log.info("# of Comments = {}", list.size());
-        
-        return ResponseEntity.ok(list);
+    public void list(Model model, long pid) {
+    	log.info("list()");
+    	
+    	List<PostCommentReadDto> list = postCommentService.read(pid);
+    	model.addAttribute("comments", list);
     }
     
     @DeleteMapping("/{pcid}")

@@ -51,9 +51,12 @@ div.signUpBox {
 }
 
 div.meetCreateBox {
-	height: 1500px;
+	height: 1800px;
+	margin-top: 75px;
 	margin-bottom: 75px;
-    padding: 30px;
+	margin-left: 300px;
+	margin-right: 300px;
+    padding: 80px;
     
 }
 
@@ -62,7 +65,61 @@ div.meetCreateBox {
 	color: red;
 }
 
+span.highlight {
+	color: red;
+}
 
+.form-box#createForm {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 180px;
+  margin-right: 180px;
+}
+
+/*디테일 JSP 사용 
+div.meeetcontent {
+	margin-right : 10px;
+	margin-left: 10px;
+}
+div.meetdetailemail{
+	margin-right : 10px;
+	margin-left: 10px;
+}
+*/
+
+.dt_class {
+  margin-bottom: 10px;
+}
+
+.smallText {
+	text-align: right;
+}
+
+.meetCreateTitle {
+	text-align: center;	
+	margin-bottom: 80px;
+}
+
+.meetCreateInfo {
+	margin-bottom: 8px;
+	margin-right: 180px;
+}
+
+/*디테일 JSP 사용*/ 
+div.meeetcontent {
+   margin-right :15px;
+   margin-left: 15px;
+}
+div.meetdetailemail{
+   margin-right:61px;
+   margin-left: 61px;
+}
+div.meetdetailuser{
+	margin-right:61px;
+   	margin-left: 61px;
+   	margin-top: -55px;
+   	margin-bottom: 10px;
+}
 
 
   

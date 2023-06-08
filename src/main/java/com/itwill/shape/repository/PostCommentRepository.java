@@ -10,12 +10,19 @@ public interface PostCommentRepository {
 
 	/**
 	 * 0601 손창민
-	 * Post_Comment Table에서 아규먼트로 넘겨받은 id와 일치하는 댓글 전부 리턴
+	 * post_comment table에서 아규먼트로 넘겨받은 id와 일치하는 댓글 전부 리턴
 	 * @param id
 	 * @return List<PostComment>
 	 */
 	List<PostComment> selectById(String author);
-	
+	/**
+	 * 0608 손창민
+	 * post_comment table에서 아규먼트로 넘겨받은 author와 content가 일치하는 댓글 삭제
+	 * @param author
+	 * @param content
+	 * @return
+	 */
+	int deleteByAuthorAndContent(String author, String content);
 	
 	/**
 	 * 0603 지현
@@ -39,4 +46,6 @@ public interface PostCommentRepository {
 
 
 	int update(PostComment entity);
+
+
 }

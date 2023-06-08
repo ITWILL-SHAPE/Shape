@@ -13,9 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	btnConfirm.addEventListener('click', () => {
 		if (inputPwd === userPwd) {
 			pwdForm.action = '/shape/modifypwd';
+			pwdForm.method = 'post';
+			pwdForm.submit();
 		} else {
 			alert('비밀번호가 일치하지 않습니다');
-			pwdForm.action = '/shape/confirmpwd'; // 수정된 경로로 변경
+			pwdForm.action = '/shape/confirmpwd';
 		}
 		pwdForm.method = 'get';
 		pwdForm.submit();

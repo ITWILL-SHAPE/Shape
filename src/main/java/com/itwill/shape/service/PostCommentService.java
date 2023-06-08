@@ -23,6 +23,16 @@ public class PostCommentService {
 	private final PostCommentRepository postCommentRepository;
 	
 	/**
+	 * 손창민
+	 * 
+	 */
+	public int deleteByAuthorAndContent(String author, String content) {
+		log.info("author={}", author);
+		log.info("content={}", content);
+		
+		return postCommentRepository.deleteByAuthorAndContent(author, content);
+	}
+	/**
 	 * 0601 손창민
 	 * id와 일치하는 댓글 목록 불러오기
 	 * @param id

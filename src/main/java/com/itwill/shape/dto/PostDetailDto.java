@@ -28,6 +28,7 @@ public class PostDetailDto {
 				.pid(entity.getPid())
 				.title(entity.getTitle())
 				.content(entity.getContent())
+				.author(entity.getAuthor())
 				.hrs_hd(entity.getHrs_hd())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.modified_date(Timestamp.valueOf(entity.getModified_date()))

@@ -79,7 +79,7 @@
 							</button>
 							<ul class="dropdown-menu" aria-labelledby="dropInfo">
 								<li>
-									<c:url value="/info/notice" var="notice"/>
+									<c:url value="/info/notice/list" var="notice"/>
 									<a class="dropdown-item" href="${ notice }">공지사항</a>
 								</li>
 								<li>

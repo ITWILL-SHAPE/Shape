@@ -18,12 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	btnSubmit.addEventListener('click', () => {
 		if (userPwd === inputPwd) {
 			if (newPwd === rePwd) {
-				alert('비밀번호 변경 완료');
-				pwdForm.action = '/shape/myprofile';
-				pwdForm.method = 'get';
-				pwdForm.submit();
+				// 비밀번호 유효성 검사
+				const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+				if (passwordRegex.test(newPwd)) {
+					alert('비밀번호 변경 완료');
+					pwdForm.action = '/shape/myprofile';
+					pwdForm.method = 'get';
+					pwdForm.submit();
+				} else {
+					alert('영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력해주세요');
+				}
 			} else {
-				alert('영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력해주세요');
+				alert('비밀번호가 일치하지 않습니다');
 			}
 		} else {
 			alert('비밀번호가 일치하지 않습니다');
