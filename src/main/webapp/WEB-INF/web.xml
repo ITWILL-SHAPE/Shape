@@ -11,6 +11,7 @@
 		<param-value>
 			/WEB-INF/application-context.xml
 			/WEB-INF/security-context.xml
+			/WEB-INF/email-context.xml
 		</param-value>
 	</context-param>
 

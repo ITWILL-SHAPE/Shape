@@ -35,6 +35,9 @@ div.signUpBox {
 
 .signUp-border { border-color: darkgray; }
 
+/* 아이디 및 비밀번호 찾기 */
+.mb-55{margin-bottom: 55px;}
+
 /* meet/create.jsp에 사용 */
 .sub-container {background:#fff;}
 

@@ -1,5 +1,6 @@
 package com.itwill.shape.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.shape.dto.UserCreateDto;
+import com.itwill.shape.service.MailSendService;
 import com.itwill.shape.service.UserInfoService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +25,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class MemeberController {
 	
+	@Autowired
+	private MailSendService mailService;
+	
 	private final UserInfoService userInfoService;
+	
 	
 	/**
 	 * 사용자 login
@@ -102,6 +109,28 @@ public class MemeberController {
 	@GetMapping("/signUpSuccess")
 	public void signUpSuccess() {
 		log.info("signUpSuccess()");
+	}
+	
+	/**
+	 * 사용자 아이디 및 패스워드 찾기
+	 */
+	@GetMapping("/findIdOrPwd")
+	public void findIdOrPwd() {
+		log.info("findIdOrPwd()");
+	}
+	
+	/**
+	 * 이메일 인증
+	 * @param email
+	 * @return
+	 */
+	@GetMapping("/mailCheck/{eamil}")
+	@ResponseBody
+	public String mailCheck(@PathVariable String eamil) {
+		log.info("이메일 인증 요청 들어옴!");
+		log.info("email = {}",eamil);
+		
+		return mailService.joinEmail(eamil);
 	}
 	
 }

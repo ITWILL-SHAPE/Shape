@@ -22,13 +22,17 @@
     	<security:intercept-url pattern="/" access="permitAll"/>
     	<security:intercept-url pattern="/common/**" access="permitAll"/>
     	<security:intercept-url pattern="/member/**" access="permitAll"/>
-    	<security:intercept-url pattern="/test/**" access="hasRole('M')"/>
+    	<security:intercept-url pattern="/info/faq" access="permitAll"/>
+    	<security:intercept-url pattern="/meet/list" access="permitAll"/>
+    	<security:intercept-url pattern="/meet/maindetail" access="permitAll"/>
+    	<security:intercept-url pattern="/mngr/**" access="hasRole('A')"/>
+    	<security:intercept-url pattern="/**" access="hasRole('M')"/>
     	<!-- <security:intercept-url pattern="/**" access="hasRole('M')"/> -->    	
     	<security:form-login
     		login-page="/member/customLogin"
     		authentication-success-handler-ref="customLoginSuccess"/>
     	<security:session-management>
-    		<security:concurrency-control max-sessions="1" expired-url="/member/customLogin" error-if-maximum-exceeded="true"/>
+    		<security:concurrency-control max-sessions="1" expired-url="/member/customLogin" error-if-maximum-exceeded="false"/>
     	</security:session-management>
     	<security:logout delete-cookies="true" logout-url="/member/logout" invalidate-session="true"/>
     	<security:access-denied-handler ref="customAccessDenied"/>

@@ -32,7 +32,8 @@
 			<div class="text-end w-50 m-auto">
 				<c:url value="/member/signUp" var="signUp"/>
 				<a href="${ signUp }" class="text-decoration-none text-dark">회원가입</a> | 
-				<a href="" class="text-decoration-none text-dark">아이디 및 비밀번호 찾기</a>
+				<c:url value="/member/findIdOrPwd" var="findIdOrPwd"/>
+				<a href="${ findIdOrPwd }" class="text-decoration-none text-dark">아이디 및 비밀번호 찾기</a>
 			</div>
 		</div>
 	</div>
