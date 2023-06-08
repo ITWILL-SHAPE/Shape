@@ -11,6 +11,7 @@ import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
 import com.itwill.shape.dto.PostCommentUpdateDto;
 import com.itwill.shape.dto.PostUpdateDto;
 import com.itwill.shape.repository.PostCommentRepository;
+import com.itwill.shape.repository.PostInfoRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

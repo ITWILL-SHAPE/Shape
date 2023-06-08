@@ -2,14 +2,25 @@ package com.itwill.shape.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.shape.domain.PostInfo;
 import com.itwill.shape.dto.PostListDto;
 
 public interface PostInfoRepository {
 	
 	/**
+	 * 0608 손창민
+	 * post_info table에서 아규먼트로 념겨받은 id, title과 일치하는 작성글 삭제
+	 * @param author
+	 * @param title
+	 * @return
+	 */
+	int deleteByAuthorAndTitle(@Param("author")String author, @Param("title")String title);
+	
+	/**
 	 * 0601 손창민
-	 * Post_Info Table에서 아규먼트로 넘겨받은 id와 일치하는 작성글 전부 리턴
+	 * post_info table에서 아규먼트로 넘겨받은 id와 일치하는 작성글 전부 리턴
 	 * @param id
 	 * @return List<PostInfo>
 	 */
@@ -33,4 +44,5 @@ public interface PostInfoRepository {
 	int deleteByPid(long pid);
 
 	List<PostInfo> selectWithKeyword(String keyword);
+
 }

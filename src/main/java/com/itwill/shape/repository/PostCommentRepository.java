@@ -2,6 +2,8 @@ package com.itwill.shape.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.shape.domain.PostComment;
 
 
@@ -13,7 +15,7 @@ public interface PostCommentRepository {
 	 * @param content
 	 * @return
 	 */
-	int deleteByAuthorAndContent(String author, String content);
+	int deleteByAuthorAndContent(@Param("author")String author, @Param("content")String content);
 	
 	/**
 	 * 0601 손창민

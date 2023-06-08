@@ -26,7 +26,7 @@
 			<thead>
 				<tr>
 					<th>
-					<input type="checkbox"
+					<input type="checkbox" 
 					       id="all-checkbox"
 						   name="all-checkbox">
 					</th>
@@ -36,20 +36,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${mycomments}"
+				<c:forEach items="${ mycomments }"
 				           var="mycomments"
 				           varStatus="loop">
 					<tr>
 						<td>
 						<input type="checkbox"
-							   id="row-checkbox"
-							   data-id="${mycomment.id}">
+						           id="row-checkbox">
 						</td>
 						<td>${loop.index + 1}</td>
-						<td class="row-content">${mycomments.content}</td>
+						<td class="row-content">${ mycomments.content }</td>
 						<td>
-						<fmt:formatDate value="${mycomments.created_date}"
-								        pattern="yyyy-MM-dd HH:mm"/>
+						<fmt:formatDate value="${ mycomments.created_date }"
+								        pattern="yyyy-MM-dd HH:mm" />
 						</td>
 					</tr>
 				</c:forEach>
