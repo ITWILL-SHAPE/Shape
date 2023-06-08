@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-   <%--
-	pageEncoding="UTF-8"%>
-	<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <%@ include file="../../common/header.jsp"%>
- --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +14,6 @@
    text-align: center; /* 내부 텍스트를 가운데 정렬 */
 }
 
-.container {
-   position: relative;
-   padding-top: 200px; /* 헤더의 높이만큼 여백 추가 */
-   padding-bottom: 200px; /* 푸터의 높이만큼 여백 추가 */
-}
 
 table {
    margin: 0 auto; /* 가로 중앙 정렬을 위해 margin을 auto로 설정 */
@@ -66,17 +59,22 @@ th, td {
    color: white;
    font-size: 16px;
    cursor: pointer;
+   width: max-content;
+   padding: 0; /* 옵션: 버튼 내부 여백을 없애기 위해 padding을 0으로 설정 */
 }
+
 </style>
 </head>
 <body>
    <div id="sidebar">
-   <%--
+   
       <%@ include file="../sidebar.jsp"%>
-       --%>
+       
    </div>
-   <main>
+   <main >
+   <div class="center">
       <img src="data:image/jpeg;base64,${info.profile}" alt="Profile Image">
+      </div>
       <div class="center">
          <table>
             <tbody>
@@ -94,7 +92,8 @@ th, td {
                </tr>
                <tr>
                   <th>생년월일</th>
-                  <td>${myPageUserInfo.birth}</td>
+                  <td>${myPageUserInfo.birth}
+                  </td>
                </tr>
                <tr>
                   <th>번호</th>
@@ -107,62 +106,15 @@ th, td {
             </tbody>
          </table>
       </div>
-      <div class="center">
-         <c:url var="mypageModifyPage" value="/pwdmodify">
+      <div class="center change-profile-btn">
+         <c:url var="mypageModifyPage" value="/imagemodify">
             <c:param name="id" value="${myPageUserInfo.id}"></c:param>
          </c:url>
          <a class="btn btn-outline-primary form-control"
-            href="${myPageModifyPage}">회원정보 수정</a>
+            href="${mypageModifyPage}">회원정보 수정</a>
       </div>
-   </main>
-	<div id="sidebar">
-	<%--
-		<%@ include file="../sidebar.jsp"%>
-		 --%>
-	</div>
-	<main>
-		<img src="data:image/jpeg;base64,${info.profile}" alt="Profile Image">
-		<div class="center">
-			<table>
-				<tbody>
-					<tr>
-						<th>이름</th>
-						<td>${myPageUserInfo.name}</td>
-					</tr>
-					<tr>
-						<th>성별</th>
-						<td>${myPageUserInfo.gender}</td>
-					</tr>
-					<tr>
-						<th>아이디</th>
-						<td>${myPageUserInfo.id}</td>
-					</tr>
-					<tr>
-						<th>생년월일</th>
-						<td>${myPageUserInfo.birth}</td>
-					</tr>
-					<tr>
-						<th>번호</th>
-						<td>${myPageUserInfo.phone}</td>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<td>${myPageUserInfo.email}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="center">
-			<c:url var="mypageModifyPage" value="/pwdmodify">
-				<c:param name="id" value="${myPageUserInfo.id}"></c:param>
-			</c:url>
-			<a class="btn btn-outline-primary form-control"
-				href="${myPageModifyPage}">회원정보 수정</a>
-		</div>
-	</main>
+ </main>
 </body>
 
 </html>
-<%--
 <%@ include file="../../common/footer.jsp"%>
- --%>
