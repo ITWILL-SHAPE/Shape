@@ -40,7 +40,13 @@
 					<tr>
 						<td>
 						<input type="checkbox"
-						       id="row-checkbox"></td>
+						       id="row-checkbox">
+						</td>
+						<td>
+						<input type="hidden"
+						       id="pid"
+						       value="${ myposts.pid }" />
+						</td>
 						<td>${loop.index + 1}</td>
 						<td class="row-content">${ myposts.title }</td>
 						<td>
@@ -52,7 +58,7 @@
 			</tbody>
 		</table>
 		<button class="delete-button">댓글 삭제</button>
-	</main>
+	</main> 
 	<footer>
 		<%@ include file="../../common/footer.jsp"%>
 	</footer>

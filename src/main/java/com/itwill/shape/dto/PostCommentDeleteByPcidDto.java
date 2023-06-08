@@ -17,10 +17,9 @@ import lombok.ToString;
 @Setter				// setter 메서드들
 @ToString			// toString 메서드
 @Data				// Getter, Setter, toString, equals, hashCode
-public class PostCommentDeleteDto {
+public class PostCommentDeleteByPcidDto {
 	
-	private String author;
-	private String content;
+	private long pcid;
 	
 	/**
 	 * 0608손창민
@@ -29,8 +28,7 @@ public class PostCommentDeleteDto {
 	 */
 	public PostComment toEntity() {
 		return PostComment.builder()
-				.author(author)
-				.content(content)
+				.pcid(pcid)
 				.build();
 	}
 }

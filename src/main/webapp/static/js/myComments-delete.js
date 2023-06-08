@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const deleteButton = document.querySelector('.delete-button');
 	const allCheckbox = document.getElementById('all-checkbox');
 	const rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
+	const table = document.querySelector('.table');
 
 	allCheckbox.addEventListener('change', () => {
 		const isChecked = allCheckbox.checked;
@@ -15,15 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	deleteButton.addEventListener('click', () => {
-		const selectedComments = [];
+		const selectedPcids = [];
 		rowCheckboxes.forEach((checkbox) => {
 			if (checkbox.checked) {
-				const author = "drj9812";
-				const content = checkbox.closest('tr').querySelector('.row-content').innerText;
-				console.log(author);
-				console.log(content);
-				selectedComments.push({ author: author, content: content });
-				console.log(selectedComments);
+				const pcid = checkbox.closest('tr').querySelector('#pcid').value;
+				console.log(pcid);
+				selectedComments.push({ pcid: pcid });
+				console.log(selectedPcids);
 			}
 		});
 
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		axios({
 			method: 'delete',
 			url: '/shape/deletecomments',
-			data: selectedComments,
+			data: selectedPcids,
 			headers: { 'Content-Type': 'application/json' }
 		})
 			.then((response) => {

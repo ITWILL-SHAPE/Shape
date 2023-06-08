@@ -22,7 +22,8 @@ import lombok.ToString;
 @ToString // toString 메서드
 @Data // Getter, Setter, toString, equals, hashCode
 public class PostCommentSelectByAuthorDto {
-
+	
+	long pcid;
 	private String content;
 	private Timestamp created_date;
 
@@ -34,6 +35,7 @@ public class PostCommentSelectByAuthorDto {
 	public static PostCommentSelectByAuthorDto fromEntity(PostComment entity) {
 
 		return PostCommentSelectByAuthorDto.builder()
+				.pcid(entity.getPcid())
 				.content(entity.getContent())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();
