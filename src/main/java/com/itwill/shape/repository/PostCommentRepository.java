@@ -48,6 +48,7 @@ public interface PostCommentRepository {
 
 	int update(PostComment entity);
 
-
+	
+	int deleteCommentByPid(long pid);
 
 }

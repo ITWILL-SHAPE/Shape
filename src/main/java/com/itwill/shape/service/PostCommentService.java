@@ -87,4 +87,9 @@ public class PostCommentService {
 		log.info("entity={}, entity");
 		return postCommentRepository.update(entity);
 	}
+	
+	public int deleteCommentByPid(long pid) {
+		log.info("deleteCommentByPid(pid = {})", pid);
+		return postCommentRepository.deleteCommentByPid(pid);
+	}
 }

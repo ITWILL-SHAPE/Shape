@@ -54,7 +54,7 @@
 					<!-- 조회수 -->
 					<p class="card-text">${ post.views }</p>
 					<!-- 글번호 -->
-					<p class="card-text" id="id">${ post.pid }</p>
+					<input class="card-text" id="pid" value="${ post.pid }"></input>
 					<!-- 제목 -->
 					<h2 class="card-title">${ post.title }</h2>
 					<!-- 작성자 -->
@@ -80,10 +80,9 @@
 							onclick="location.href='${ postModifyPage }'">수정</button>
 						<button class="btn btn-warning" type="button" id="btnDelete">삭제</button>
 					</div>
-
 				</form>
-			</section>
-			<!-- 포스트 상세 보기 카드 -->
+			</section><!-- 포스트 상세 보기 카드 -->
+			
 			<section class="my-2 card">
 				<div class="card-header fw-bold">
 					<span>댓글</span> <span id="commentCount">${ post.commentCount }</span>개
@@ -93,10 +92,26 @@
 							width="32" />
 					</button> -->
 				</div>
-				<div class="card-body " id="replyToggleDiv">
-
-					<!-- 댓글 목록 보여줄 영역 -->
-					<div class="my-2 row">
+				
+				<div class="card-body "><!-- 댓글 목록 보여줄 영역 -->
+					
+					<div class="my-2 row"><!-- 내 댓글 작성 div -->
+						<label class="form-label" for="content">나의 댓글</label>
+						<div class="col-10">
+							<textarea class="form-control" id="content"></textarea>
+							<input class="" id="author" />
+							<!-- TODO: 로그인 사용자 아이디 -->
+						</div>
+						<div class="col-2">
+							<button class="form-control btn btn-outline-success"
+								id="btnAddComment">등록</button>
+						</div>
+					</div>
+					
+					<div id="comments">
+					</div>
+					
+					<div class="my-2 row"><!-- 댓글 리스트 div -->
 						<c:if test="${comments != null}">
 							<c:forEach items="${ comments }" var="comment">
 								<div class="card">
@@ -118,20 +133,6 @@
 							</c:forEach>
 						</c:if>
 					</div>
-					<!-- 내 댓글 등록 -->
-					<div class="my-2 row">
-						<label class="form-label" for="replyText">나의 댓글</label>
-						<div class="col-10">
-							<textarea class="form-control" id="replyText"></textarea>
-							<input class="" id="author" />
-							<!-- TODO: 로그인 사용자 아이디 -->
-						</div>
-						<div class="col-2">
-							<button class="form-control btn btn-outline-success"
-								id="btnAddReply">등록</button>
-						</div>
-					</div>
-
 				</div>
 			</section>
 			<!-- 댓글 등록, 댓글 리스트 카드 -->
@@ -145,7 +146,8 @@
 		</main>
 
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+		
+		<script src="<%=request.getContextPath()%>/static/js/postComment.js"></script>
 	</div>
 </body>
 </html>

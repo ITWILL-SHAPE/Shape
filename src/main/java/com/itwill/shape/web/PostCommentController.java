@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.shape.dto.PostCommentCreateDto;
@@ -24,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/reply")
+@RequestMapping("/comment")
 public class PostCommentController {
     
     private final PostCommentService postCommentService;
@@ -48,13 +49,32 @@ public class PostCommentController {
 //        return ResponseEntity.ok(list);
 //    }
     
-    @GetMapping("/all/{pid}")
-    public void list(Model model, long pid) {
-    	log.info("list()");
-    	
-    	List<PostCommentReadDto> list = postCommentService.read(pid);
-    	model.addAttribute("comments", list);
+    // 수빈: 댓글 작성
+    @PostMapping
+    public ResponseEntity<Integer> createComment(@RequestBody PostCommentCreateDto dto) {
+    	log.info("createComment(dto = {})", dto);
+    	int result = postCommentService.create(dto);
+    	return ResponseEntity.ok(result);
     }
+    
+    // 수빈: 댓글 리스트
+    @GetMapping("/all/{pid}")
+    public ResponseEntity<List<PostCommentReadDto>> read(@PathVariable long pid) {
+    	log.info("read(pid={})", pid);
+    	
+    	List<PostCommentReadDto> list =postCommentService.read(pid); 
+    	log.info("# of comment = {}", list.size());
+    	
+    	return ResponseEntity.ok(list);
+    }
+    
+//    @GetMapping("/all/{pid}")
+//    public void list(Model model, long pid) {
+//    	log.info("list()");
+//    	
+//    	List<PostCommentReadDto> list = postCommentService.read(pid);
+//    	model.addAttribute("comments", list);
+//    }
     
     @DeleteMapping("/{pcid}")
     public ResponseEntity<Integer> deleteComment(@PathVariable long pcid) {

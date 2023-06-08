@@ -13,6 +13,7 @@ import com.itwill.shape.dto.PostDetailDto;
 import com.itwill.shape.dto.PostInfoSelectByKeywordDto;
 import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.dto.PostUpdateDto;
+import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostInfoController {
 
 	private final PostInfoService postInfoService; // 생성자에 의한 의존성 주입.
+	private final PostCommentService postCommentService; // 수빈: 댓글 같이 삭제되게 하려고
 
 	@GetMapping("/list") // GET 방식의 /post/list 요청 주소를 처리하는 메서드.
 	public void list(Model model) {
@@ -93,6 +95,10 @@ public class PostInfoController {
 		log.info("delete(id= {})", pid);
 		int result = postInfoService.delete(pid);
 		log.info("삭제 결과 = {}", pid);
+		
+		int cmtResult = postCommentService.deleteCommentByPid(pid);
+		log.info("댓글 삭제 결과 = {}", cmtResult);
+		
 		return "redirect:/post/list";
 	}
 
