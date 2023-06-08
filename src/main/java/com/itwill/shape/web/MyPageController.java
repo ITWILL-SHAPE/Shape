@@ -51,7 +51,7 @@ public class MyPageController {
 		log.info("myprofile()");
 		log.info("id={}", id);
 
-		UserInfoSelectByIdDto dto = userInfoService.selectById("drj9812");
+		UserInfoSelectByIdDto dto = userInfoService.selectById("test0000");
 		model.addAttribute("myPageUserInfo", dto);
 		return "/mypage/memberinfo/myprofile";
 	}
