@@ -42,13 +42,9 @@ public class InfoNoticeController {
 	@GetMapping("/detail")
 	public void datailNotice(long nid, Model model) {
 		log.info("detailNotice({})", nid);
+		infoNoticeService.viewCount(nid);
 		InfoNotice notice = infoNoticeService.read(nid);
 		Timestamp time = Timestamp.valueOf(notice.getCreated_date());
-		
-		int viewCnt = notice.getViews();
-		log.info("viewCnt = {}", viewCnt);
-		notice.setViews(viewCnt);
-		
 		model.addAttribute("notices", notice);
 		model.addAttribute("times", time);
 	}

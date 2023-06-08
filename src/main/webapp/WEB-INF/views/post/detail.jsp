@@ -51,6 +51,8 @@
 		<main class="my-2">
 			<section class="card">
 				<form class="card-body" id="modifyForm">
+					<!-- 조회수 -->
+					<p class="card-text">${ post.views }</p>
 					<!-- 글번호 -->
 					<p class="card-text" id="id">${ post.pid }</p>
 					<!-- 제목 -->

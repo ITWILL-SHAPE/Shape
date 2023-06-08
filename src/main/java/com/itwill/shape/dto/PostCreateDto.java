@@ -17,6 +17,7 @@ public class PostCreateDto {
 	private String content;
 	private String author;
 	private String hrs_hd;
+	private long views;
 	
 	public PostInfo toEntity() {
 		return PostInfo.builder()
@@ -24,6 +25,7 @@ public class PostCreateDto {
 				.content(content)
 				.author(author)
 				.hrs_hd(hrs_hd)
+				.views(views)
 				.build();
 	}
 }

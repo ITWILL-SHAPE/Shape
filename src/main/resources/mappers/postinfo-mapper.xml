@@ -36,13 +36,17 @@
     </select>
     
     <insert id="insert">
-        insert into POST_INFO (TITLE, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE, HRS_HD)
-        values (#{title}, #{content}, #{author}, systimestamp, systimestamp, #{hrs_hd})
+        insert into POST_INFO (TITLE, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE, HRS_HD, VIEWS)
+        values (#{title}, #{content}, #{author}, systimestamp, systimestamp, #{hrs_hd}, 0)
     </insert>
     
     <select id="selectByPid" resultType="com.itwill.shape.domain.PostInfo">
         select * from POST_INFO where PID = #{pid}
     </select>
+    
+    <update id="viewCount">
+		update POST_INFO set VIEWS = VIEWS + 1 where PID = #{pid}
+	</update>
     
     <update id="updateTitleAndContent">
         update POST_INFO

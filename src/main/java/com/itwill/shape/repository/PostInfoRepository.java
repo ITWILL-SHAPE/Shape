@@ -24,6 +24,8 @@ public interface PostInfoRepository {
 
 	PostInfo selectByPid(long pid);
 
+	int viewCount(long pid);
+	
 	int insert(PostInfo entity);
 
 	int updateTitleAndContent(PostInfo entity);
