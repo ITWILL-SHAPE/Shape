@@ -3,35 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<!DOCTYPE html>
 <!-- 지현 qna main(list) page -->
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Shape</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-	crossorigin="anonymous">
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-    const modifyForm = document.querySelector('#modifyForm');
-    
-    const btnDelete = document.querySelector('#btnDelete');
-    btnDelete.addEventListener('click', () => {
-        const check = confirm('정말 삭제할까요?');
-        if(check){
-            modifyForm.action = './delete?qid='+${ infoQnA.qid }; 
-            modifyForm.method = 'post'; 
-            modifyForm.submit(); 
-        }
-    })
-});
-</script>
-</head>
-<body>
-	<div class="container-fluid">
+
+	<div class="container">
 		<header class="my-2 p-5 text-center">
 			<h1>Q&amp;A</h1>
 			<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
@@ -41,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			<section class="card">
 				<form class="card-body" id="modifyForm">
 					<!-- 사용자 문의 출력 -->
-					<%-- <div class="my-2">
-						<label class="form-label" for="qid">번호</label> <input
+					<div class="my-2">
+						<label class="form-label d-none" for="qid">번호</label> <input
 							class="form-control" id="qid" value="${ infoQnA.qid }" readonly />
-					</div> --%>
+					</div> 
 					<div class="my-2">
 						<label class="form-label" for="title">제목</label> <input
 							class="form-control" id="title" value="${ infoQnA.title }"
@@ -54,11 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
 						<label class="form-label" for="content">내용</label>
 						<textarea class="form-control"  style="height: 20rem" id="content" readonly>${ infoQnA.content }</textarea>
 					</div>
-					<%-- <div class="my-2">
-						<label class="form-label" for="author">작성자 아이디</label> <input
+					<div class="my-2">
+						<label class="form-label d-none" for="author">작성자 아이디</label> <input
 							class="form-control" id="author" value="${ infoQnA.writer }"
 							readonly />
-					</div> --%>
+					</div>
 					<div class="my-2">
 						<label class="form-label" for="createdTime">작성 날짜</label>
 						<fmt:formatDate value="${ infoQnA.created_date }"
@@ -102,5 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		</main>
 	</div>
 </body>
+<script src="<%=request.getContextPath()%>/static/js/infoQnA-modify.js"></script>
 </html>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -29,15 +29,15 @@ public class PostInfoService {
 
 	/**
 	 * 0608 손창민
-	 * post_info table에서 author, title와 일치하는 작성글 삭제
+	 * post_info table에서 pcid와 일치하는 작성글 삭제
 	 * @param id
 	 * @return
 	 */
-	public int deleteByAuthorAndTitle(String author, String title) {
-		log.info("author={}", author);
-		log.info("content={}", title);
+	public int deleteByPid(long pid) {
+//		log.info("author={}", author);
+//		log.info("content={}", title);
 		
-		return postInfoRepository.deleteByAuthorAndTitle(author, title);
+		return postInfoRepository.deleteByPid(pid);
 	}
 	
 	/**
