@@ -81,7 +81,7 @@ th, td {
 				</table>
 			</div>
 			<div class="center">
-				<c:url var="myProfile" value="/myprofile">
+				<c:url var="myProfile" value="myprofile">
 					<c:param name="id" value="${info.id}"></c:param>
 				</c:url>
 				<a class="btn btn-outline-primary form-control" href="${myProfile}">수정

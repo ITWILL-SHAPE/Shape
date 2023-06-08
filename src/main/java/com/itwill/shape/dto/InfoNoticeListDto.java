@@ -24,6 +24,7 @@ public class InfoNoticeListDto {
 	private String title;
 	private Timestamp created_date;
 	private int fix; // 고정여부
+	private int views;
 	
 	public static InfoNoticeListDto fromEntiry(InfoNotice entity) {
 		
@@ -31,6 +32,7 @@ public class InfoNoticeListDto {
 				.nid(entity.getNid())
 				.fix(entity.getFix())
 				.title(entity.getTitle())
+				.views(entity.getViews())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();
 				// TODO: created_date 뭐가 틀렸지

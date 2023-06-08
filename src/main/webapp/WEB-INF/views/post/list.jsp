@@ -9,8 +9,6 @@
 게시판 기능 완성하기
 > 1. 검색
 	keyword 어떻게 읽게함? 
-> 2. 조회수
-> 3. 말머리 번호로 입력 지금 0으로 들어감
 > 6. 페이징
 > 7. 댓글 
  -->
@@ -68,22 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 									<!-- 글 번호 -->
 									<!-- <div>${ postInfo.pid }</div> -->
 									<!-- 말머리랑 제목 -->
-									<c:if test="${postInfo != null}">
-										<c:choose>
-											<c:when test="${postInfo.hrs_hd == 1}">
-												<h5 class="card-title col-6 text-truncate">[모임 후기] ${ postInfo.title }</h5>
-											</c:when>
-											<c:when test="${postInfo.hrs_hd == 1}">
-												<h5>[사담] ${ postInfo.title }</h5>
-											</c:when>
-											<c:when test="${postInfo.hrs_hd == 1}">
-												<h5>[기타] ${ postInfo.title }</h5>
-											</c:when>
-											<c:otherwise>
-												<h5 class="card-title text-truncate">[오류 말머리 수정 필요함] ${ postInfo.title }</h5>
-											</c:otherwise>
-										</c:choose>
-									</c:if>
+									<h5 class="card-title col-6 text-truncate">[ ${ postInfo.hrs_hd} ] ${ postInfo.title }</h5>
 									<!-- 작성자 -->
 									<p class="card-text">
 										작성자: ${ postInfo.author }

@@ -87,6 +87,11 @@ public class PostInfoService {
 		return postInfoRepository.insert(dto.toEntity());
 	}
 	
+	public int viewCount(long pid) {
+		log.info("viewCount({})", pid);
+		return postInfoRepository.viewCount(pid);
+	}
+	
 	/**
 	 * 포스트 업데이트
 	 * @param post

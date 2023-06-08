@@ -48,8 +48,18 @@ public class InfoNoticeService {
 		public InfoNotice read(long nid) {
 			log.info("read({})", nid);
 			InfoNotice entity = infoNoticeRepository.selectByNid(nid);
-			//entity.setViews(infoNoticeRepository.viewCount(nid));
+//			entity.setViews(infoNoticeRepository.viewCount(nid));
 			return entity;
+		}
+		
+		/**
+		 * 조회수
+		 * @param nid
+		 * @return
+		 */
+		public int viewCount(long nid) {
+			log.info("viewCount({})", nid);
+			return infoNoticeRepository.viewCount(nid);
 		}
 		
 		/**
@@ -71,4 +81,6 @@ public class InfoNoticeService {
 			log.info("delete({})", nid);
 			return infoNoticeRepository.deleteByNid(nid);
 		}
+		
+		
 }

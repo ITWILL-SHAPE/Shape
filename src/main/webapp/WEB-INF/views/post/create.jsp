@@ -84,11 +84,13 @@
 </script>
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', () => {
-	const changeHd = (target) => {
-		const hd = target.value;
-		console.log(target.value);
-		document.getElementById('textarea#hrs_hd').innerText = hd;
-	}
+	
+		let select = document.getElementById('select');
+		select.addEventListener('change', function(){
+			document.getElementById('hrs_hd').innerHTML
+			= select.options[select.selectedIndex].value;
+		})
+		
 	
 });
 </script>
@@ -106,11 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="my-2">
 							<label class="form-label" for="hrs_hd">말머리</label>
 							<!-- !!!!!!말머리 번호 전달!!!!!! -->
-							<select onchange="changeHd(this)" class="form-select">
-								<!-- <option selected>말머리를 선택해주세요.</option> -->
-								<option value="1">모임 후기</option>
-								<option value="2">사담</option>
-								<option value="3">기타</option>
+							<select class="form-select" id="select" name="select">
+								<option selected disabled="disabled">말머리를 선택해주세요.</option>
+								<option value="모임 후기">모임 후기</option>
+								<option value="사담">사담</option>
+								<option value="기타">기타</option>
 							</select>
 							<textarea class="form-control d-none" id="hrs_hd" name="hrs_hd"></textarea>
 						</div>
