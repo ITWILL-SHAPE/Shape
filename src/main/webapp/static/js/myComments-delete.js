@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//Ajax, RESTful API DELETE
 		axios({
 			method: 'delete',
-			url: '/shape/deleteComments',
+			url: '/shape/deletecomments',
 			data: selectedComments,
 			headers: { 'Content-Type': 'application/json' }
 		})

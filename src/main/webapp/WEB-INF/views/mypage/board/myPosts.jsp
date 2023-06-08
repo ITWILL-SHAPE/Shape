@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../common/header.jsp" %>
+<%@ include file="../../common/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 > 게시판 > 내가 작성한 댓글</title>
+<script defer src="static/js/myPosts-delete.js"></script>
 <style>
 #main_content {
 	margin-left: 15rem;
@@ -16,45 +17,41 @@
 </style>
 </head>
 <body>
-      <div id="sidebar">
-        <%@ include file="../sidebar.jsp" %>
-      </div>
-	<main>
-		<div id="main_content">
-			<table class="table">
+	<div id="sidebar">
+		<%@ include file="../sidebar.jsp"%>
+	</div>
+	<main id="main_content">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>
 					<input type="checkbox"
 					       id="all-checkbox"
-						   name="all-checkbox">
-					</th>
+						   name="all-checkbox"></th>
 					<th>No</th>
-					<th>내용</th>
+					<th>제목</th>
 					<th>작성일</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${myposts}"
+				<c:forEach items="${ myposts }"
 				           var="myposts"
 				           varStatus="loop">
 					<tr>
 						<td>
 						<input type="checkbox"
-							   id="row-checkbox"
-							   data-id="${myposts.id}">
-						</td>
+						       id="row-checkbox"></td>
 						<td>${loop.index + 1}</td>
-						<td class="row-content">${posts.title}</td>
+						<td class="row-content">${ myposts.title }</td>
 						<td>
-						<fmt:formatDate value="${mycomments.created_date}"
-								        pattern="yyyy-MM-dd HH:mm"/>
+						<fmt:formatDate value="${ myposts.created_date }"
+								        pattern="yyyy-MM-dd HH:mm" />
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		</div>
+		<button class="delete-button">댓글 삭제</button>
 	</main>
 	<footer>
 		<%@ include file="../../common/footer.jsp"%>

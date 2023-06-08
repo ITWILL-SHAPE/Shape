@@ -183,7 +183,7 @@ public class MyPageController {
 		log.info("myposts()");
 		log.info("id={}", author);
 
-		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("test");
+		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("ㅅㄷㄴㅅ");
 		log.info("myposts={}", myposts);
 		model.addAttribute("myposts", myposts);
 
@@ -204,21 +204,10 @@ public class MyPageController {
 		log.info("id={}", author);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("테스터");
+		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("drj9812");
 		log.info("mycomments={}", mycomments);
 		model.addAttribute("mycomments", mycomments);
 
 		return "/mypage/board/myComments";
-	}
-	
-	/**
-	 * 0607 손창민 myComments 페이지 댓글 삭제 기능
-	 * @param ids
-	 * @return
-	 */
-	@GetMapping("/mycomments-delete")
-	public String deleteComments() {
-		
-		return "";
 	}
 }

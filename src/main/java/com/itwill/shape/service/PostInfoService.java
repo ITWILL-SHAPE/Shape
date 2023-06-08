@@ -26,9 +26,23 @@ public class PostInfoService {
 	private final PostInfoRepository postInfoRepository;
 	private final PostCommentRepository postCommentRepository;
 
+
+	/**
+	 * 0608 손창민
+	 * post_info table에서 author, title와 일치하는 작성글 삭제
+	 * @param id
+	 * @return
+	 */
+	public int deleteByAuthorAndTitle(String author, String title) {
+		log.info("author={}", author);
+		log.info("content={}", title);
+		
+		return postInfoRepository.deleteByAuthorAndTitle(author, title);
+	}
+	
 	/**
 	 * 0601 손창민
-	 * id와 일치하는 작성글 목록 불러오기
+	 * post_info table에서 author와 일치하는 작성글 불러오기
 	 * @param id
 	 * @return
 	 */

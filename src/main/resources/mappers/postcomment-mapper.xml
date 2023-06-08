@@ -18,7 +18,7 @@
 	 -->
 	<delete id="deleteByAuthorAndContent">
 		DELETE FROM post_comment
-		 WHERE author = #{ author } AND content = #{ content };
+		 WHERE author = #{ author } AND content = #{ content }
 	</delete>
 	
 	<!-- 

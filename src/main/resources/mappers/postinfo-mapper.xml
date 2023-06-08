@@ -2,59 +2,72 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.shape.repository.PostInfoRepository">
+<mapper
+	namespace="com.itwill.shape.repository.PostInfoRepository">
 
 
-	<!-- 
-	post_info table에서 author로 댓글 목록 가져오기
-	 -->
-	<select	id="selectByAuthor"
+	<!-- post_comment table에서 id, author와 일치하는 댓글 삭제 -->
+	<delete id="deleteByAuthorAndTitle">
+		DELETE FROM post_info
+		WHERE author = #{ author } AND title = #{ title }
+	</delete>
+
+	<!-- post_info table에서 author로 댓글 목록 가져오기 -->
+	<select id="selectByAuthor"
 		resultType="com.itwill.shape.domain.PostInfo">
 		SELECT *
-		  FROM post_info
-		 WHERE author = #{author}
+		FROM post_info
+		WHERE author = #{ author }
 	</select>
-	
-	
+
+
 	<!-- 지현 게시판 -->
-	<select id="selectWithKeyword" resultType="com.itwill.shape.dto.PostListDto">
-		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
-        from POST_INFO P left join POST_COMMENT C
-            on P.PID = C.PID
-        where P.CONTENT like '%#{keyword}%'
-        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
-        order by P.PID desc;
+	<select id="selectWithKeyword"
+		resultType="com.itwill.shape.dto.PostListDto">
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE,
+		count(C.PCID) as RCNT
+		from POST_INFO P left join POST_COMMENT C
+		on P.PID = C.PID
+		where P.CONTENT like '%#{keyword}%'
+		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+		order by P.PID desc;
 	</select>
-	
+
 	<select id="selectWithCommentCount"
-        resultType="com.itwill.shape.dto.PostListDto">
-        select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
-        from POST_INFO P left join POST_COMMENT C
-            on P.PID = C.PID
-        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
-        order by P.PID desc
-    </select>
-    
-    <insert id="insert">
-        insert into POST_INFO (TITLE, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE, HRS_HD, VIEWS)
-        values (#{title}, #{content}, #{author}, systimestamp, systimestamp, #{hrs_hd}, 0)
-    </insert>
-    
-    <select id="selectByPid" resultType="com.itwill.shape.domain.PostInfo">
-        select * from POST_INFO where PID = #{pid}
-    </select>
-    
-    <update id="viewCount">
-		update POST_INFO set VIEWS = VIEWS + 1 where PID = #{pid}
+		resultType="com.itwill.shape.dto.PostListDto">
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as
+		RCNT
+		from POST_INFO P left join POST_COMMENT C
+		on P.PID = C.PID
+		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+		order by P.PID desc
+	</select>
+
+	<insert id="insert">
+		insert into POST_INFO (TITLE, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE,
+		HRS_HD, VIEWS)
+		values (#{title}, #{content}, #{author}, systimestamp, systimestamp,
+		#{hrs_hd}, 0)
+	</insert>
+
+	<select id="selectByPid"
+		resultType="com.itwill.shape.domain.PostInfo">
+		select * from POST_INFO where PID = #{pid}
+	</select>
+
+	<update id="viewCount">
+		update POST_INFO set VIEWS = VIEWS + 1 where PID =
+		#{pid}
 	</update>
-    
-    <update id="updateTitleAndContent">
-        update POST_INFO
-        set TITLE = #{title}, CONTENT = #{content}, HRS_HD = #{hrs_hd}, MODIFIED_DATE = systimestamp
-        where PID = #{pid}
-    </update>
-    
-    <delete id="deleteByPid">
-        delete from POST_INFO where PID = #{pid}
-    </delete>
+
+	<update id="updateTitleAndContent">
+		update POST_INFO
+		set TITLE = #{title}, CONTENT = #{content}, HRS_HD = #{hrs_hd},
+		MODIFIED_DATE = systimestamp
+		where PID = #{pid}
+	</update>
+
+	<delete id="deleteByPid">
+		delete from POST_INFO where PID = #{pid}
+	</delete>
 </mapper>
