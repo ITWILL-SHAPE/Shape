@@ -21,7 +21,7 @@ import lombok.ToString;
 @Setter // setter 메서드들
 @ToString // toString 메서드
 @Data // Getter, Setter, toString, equals, hashCode
-public class PostCommentSelectByIdDTO {
+public class PostCommentSelectByAuthorDto {
 
 	private String content;
 	private Timestamp created_date;
@@ -31,9 +31,9 @@ public class PostCommentSelectByIdDTO {
 	 * DB에서 select한 PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입 객체로 변환해서 리턴.
 	 * 
 	 */
-	public static PostCommentSelectByIdDTO fromEntity(PostComment entity) {
+	public static PostCommentSelectByAuthorDto fromEntity(PostComment entity) {
 
-		return PostCommentSelectByIdDTO.builder()
+		return PostCommentSelectByAuthorDto.builder()
 				.content(entity.getContent())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();

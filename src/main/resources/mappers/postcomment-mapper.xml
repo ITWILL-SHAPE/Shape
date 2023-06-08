@@ -12,22 +12,24 @@
 	: TABLE 당 하나의 mapper를 갖는다.
 	: 해당 쿼리 작성 후 무슨 역할을 하는지와 작성자 이름 기재
 -->
+
 	<!-- 
-		author와 content로 댓글 삭제
+	post_comment table에서 id, author와 일치하는 댓글 삭제
 	 -->
 	<delete id="deleteByAuthorAndContent">
 		DELETE FROM post_comment
-         WHERE author = #{ author } AND content = #{ content };
+		 WHERE author = #{ author } AND content = #{ content };
 	</delete>
+	
 	<!-- 
-	author?로 댓글 목록 가져오기
+	post_comment table에서 author로 댓글 목록 가져오기
 	 -->
-	<select	id="selectById"
+	<select	id="selectByAuthor"
 		resultType="com.itwill.shape.domain.PostComment"
 		>
 		SELECT *
 		  FROM post_comment
-		 WHERE author = #{author}
+		 WHERE author = #{ author }
 	</select>
 
 	<!--게시판 페이지 -->

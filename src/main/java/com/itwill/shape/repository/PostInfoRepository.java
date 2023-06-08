@@ -13,7 +13,7 @@ public interface PostInfoRepository {
 	 * @param id
 	 * @return List<PostInfo>
 	 */
-	List<PostInfo> selectById(String author);
+	List<PostInfo> selectByAuthor(String author);
 
 	/**
 	 * 0603 지현 아래로는 게시판 사용자 페이지에서 보여주는 용

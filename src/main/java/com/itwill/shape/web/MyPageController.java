@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itwill.shape.dto.PostCommentSelectByIdDTO;
-import com.itwill.shape.dto.PostInfoSelectByIdDTO;
+import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
+import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
@@ -183,7 +183,7 @@ public class MyPageController {
 		log.info("myposts()");
 		log.info("id={}", author);
 
-		List<PostInfoSelectByIdDTO> myposts = postInfoService.selectById("test");
+		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("test");
 		log.info("myposts={}", myposts);
 		model.addAttribute("myposts", myposts);
 
@@ -204,7 +204,7 @@ public class MyPageController {
 		log.info("id={}", author);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByIdDTO> mycomments = postCommentsService.selectById("테스터");
+		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("테스터");
 		log.info("mycomments={}", mycomments);
 		model.addAttribute("mycomments", mycomments);
 

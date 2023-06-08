@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.shape.domain.PostComment;
 import com.itwill.shape.dto.PostCommentCreateDto;
 import com.itwill.shape.dto.PostCommentReadDto;
-import com.itwill.shape.dto.PostCommentSelectByIdDTO;
+import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
 import com.itwill.shape.dto.PostCommentUpdateDto;
 import com.itwill.shape.dto.PostUpdateDto;
 import com.itwill.shape.repository.PostCommentRepository;
@@ -23,8 +23,8 @@ public class PostCommentService {
 	private final PostCommentRepository postCommentRepository;
 	
 	/**
-	 * 손창민
-	 * 
+	 * 0608손창민
+	 * post_comment table에서 id, content와 일치하는 댓글 삭제
 	 */
 	public int deleteByAuthorAndContent(String author, String content) {
 		log.info("author={}", author);
@@ -34,19 +34,19 @@ public class PostCommentService {
 	}
 	/**
 	 * 0601 손창민
-	 * id와 일치하는 댓글 목록 불러오기
-	 * @param id
+	 * post_comment table에서 id, content와 일치하는 댓글 목록 불러오기
+	 * @param author
 	 * @return List<PostCommentSelectById> dto
 	 */
-	public List<PostCommentSelectByIdDTO> selectById(String author) {
+	public List<PostCommentSelectByAuthorDto> selectByAuthor(String author) {
 		log.info("selectById()");
 		log.info("author={}", author);
 		
-		List<PostComment> entity = postCommentRepository.selectById(author);
+		List<PostComment> entity = postCommentRepository.selectByAuthor(author);
 		
 		// PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입의 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
-		return entity.stream().map(PostCommentSelectByIdDTO::fromEntity).toList();
+		return entity.stream().map(PostCommentSelectByAuthorDto::fromEntity).toList();
 	}
 	
 	/**

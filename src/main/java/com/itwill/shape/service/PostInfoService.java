@@ -8,7 +8,7 @@ import com.itwill.shape.domain.PostInfo;
 import com.itwill.shape.dto.GuideCreateDto;
 import com.itwill.shape.dto.PostCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
-import com.itwill.shape.dto.PostInfoSelectByIdDTO;
+import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
 import com.itwill.shape.dto.PostInfoSelectByKeywordDto;
 import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.dto.PostUpdateDto;
@@ -32,16 +32,16 @@ public class PostInfoService {
 	 * @param id
 	 * @return
 	 */
-	public List<PostInfoSelectByIdDTO> selectById(String author) {
+	public List<PostInfoSelectByAuthorDto> selectByAuthor(String author) {
 		log.info("selectById()");
 		log.info("author={}", author);
 		
-		List<PostInfo> entity = postInfoRepository.selectById(author);
+		List<PostInfo> entity = postInfoRepository.selectByAuthor(author);
 		log.info("entity={}", entity);
 		
 		// PostInfo 타입의 객체를 PostInfoSelectByIdDTO 타입 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
-		return entity.stream().map(PostInfoSelectByIdDTO::fromEntity).toList();
+		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
 	}
 	
 	/**

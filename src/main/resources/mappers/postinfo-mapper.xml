@@ -6,9 +6,9 @@
 
 
 	<!-- 
-	author?로 댓글 목록 가져오기
+	post_info table에서 author로 댓글 목록 가져오기
 	 -->
-	<select	id="selectById"
+	<select	id="selectByAuthor"
 		resultType="com.itwill.shape.domain.PostInfo">
 		SELECT *
 		  FROM post_info

@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class PostInfoSelectByIdDTO {
+public class PostInfoSelectByAuthorDto {
 	
 	private String title;
 	private Timestamp created_date;
@@ -32,9 +32,9 @@ public class PostInfoSelectByIdDTO {
 	 * 
 	 * @return
 	 */
-	public static PostInfoSelectByIdDTO fromEntity(PostInfo entity) {
+	public static PostInfoSelectByAuthorDto fromEntity(PostInfo entity) {
 		
-		return PostInfoSelectByIdDTO.builder()
+		return PostInfoSelectByAuthorDto.builder()
 				.title(entity.getTitle())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();

@@ -30,24 +30,24 @@
 						   name="all-checkbox">
 					</th>
 					<th>No</th>
-					<th>내용</th>
+					<th>제목</th>
 					<th>작성일</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${myposts}"
+				<c:forEach items="${ myposts }"
 				           var="myposts"
 				           varStatus="loop">
 					<tr>
 						<td>
 						<input type="checkbox"
 							   id="row-checkbox"
-							   data-id="${myposts.id}">
+							   data-id="${ myposts.id }">
 						</td>
 						<td>${loop.index + 1}</td>
-						<td class="row-content">${posts.title}</td>
+						<td class="row-title">${ posts.title }</td>
 						<td>
-						<fmt:formatDate value="${mycomments.created_date}"
+						<fmt:formatDate value="${ mycomments.created_date }"
 								        pattern="yyyy-MM-dd HH:mm"/>
 						</td>
 					</tr>
