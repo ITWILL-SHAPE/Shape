@@ -14,6 +14,30 @@ main.login-inputBox {
 	width: 50%;
     margin: auto;
 }
+div.errorMessage {
+	text-align: start;
+    font-size: 13px;
+    color: red;
+}
+
+/* 회원가입 */
+div.signUpBox {
+	height: 700px;
+    margin-bottom: 75px;
+    padding: 30px;
+}
+
+.bg-color-blue {
+	background-color: blue;
+}
+
+.fw-700 {font-weight: 700;}
+
+.signUp-border { border-color: darkgray; }
+
+/* 아이디 및 비밀번호 찾기 */
+.mb-55{margin-bottom: 55px;}
+
 /* meet/create.jsp에 사용 */
 .sub-container {background:#fff;}
 
@@ -27,9 +51,75 @@ main.login-inputBox {
 }
 
 div.meetCreateBox {
-	height: 1200px;
+	height: 1800px;
+	margin-top: 75px;
 	margin-bottom: 75px;
-    padding: 30px;
-	
+	margin-left: 300px;
+	margin-right: 300px;
+    padding: 80px;
+    
 }
+
+#mt_notice small{
+	text-align: right;
+	color: red;
+}
+
+span.highlight {
+	color: red;
+}
+
+.form-box#createForm {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 180px;
+  margin-right: 180px;
+}
+
+/*디테일 JSP 사용 
+div.meeetcontent {
+	margin-right : 10px;
+	margin-left: 10px;
+}
+div.meetdetailemail{
+	margin-right : 10px;
+	margin-left: 10px;
+}
+*/
+
+.dt_class {
+  margin-bottom: 10px;
+}
+
+.smallText {
+	text-align: right;
+}
+
+.meetCreateTitle {
+	text-align: center;	
+	margin-bottom: 80px;
+}
+
+.meetCreateInfo {
+	margin-bottom: 8px;
+	margin-right: 180px;
+}
+
+/*디테일 JSP 사용*/ 
+div.meeetcontent {
+   margin-right :15px;
+   margin-left: 15px;
+}
+div.meetdetailemail{
+   margin-right:61px;
+   margin-left: 61px;
+}
+div.meetdetailuser{
+	margin-right:61px;
+   	margin-left: 61px;
+   	margin-top: -55px;
+   	margin-bottom: 10px;
+}
+
+
   

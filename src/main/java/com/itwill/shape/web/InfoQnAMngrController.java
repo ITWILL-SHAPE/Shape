@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.shape.dto.InfoQnADetailDto;
 import com.itwill.shape.dto.InfoQnAListDto;
 import com.itwill.shape.dto.InfoQnAMngrUpdateDto;
 import com.itwill.shape.service.InfoQnAService;
@@ -35,6 +36,13 @@ public class InfoQnAMngrController {
 		model.addAttribute("infoQnAs", list);
 	}
 	
+	@GetMapping("/modify")
+	public void modify(long qid, Model model) {
+		log.info("modify(qid={})", qid);
+		InfoQnADetailDto dto = infoQnAService.read(qid);
+		model.addAttribute("infoQnA", dto);
+	}
+	
 	/**
 	 * 관리자 큐앤에이 답변 화면인데
 	 * 수정과 동일함, 상세화면에서 그대로 머무름. 상세화면 필요한지 모르겠.
@@ -46,7 +54,7 @@ public class InfoQnAMngrController {
 		log.info("update(dto={})", dto);
 		int result = infoQnAService.update(dto);
 		log.info("답변 업데이트 결과 ={}", result);
-		return "redirect:/mngr/update";
+		return "redirect:/mngr/qna/list";
 	}
 	
 	

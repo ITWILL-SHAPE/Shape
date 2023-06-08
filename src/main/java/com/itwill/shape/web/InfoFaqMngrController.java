@@ -51,7 +51,7 @@ public class InfoFaqMngrController {
 		int result = infoFaqService.create(dto);
 		log.info("create result = {}", result);
 		
-		return "redirect:/faq/list";
+		return "redirect:/mngr/faq/list";
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class InfoFaqMngrController {
 	}
 	
 	/**
-	 * faq 관리자 글 수정하기
+	 * faq 관리자 글 수정 화면
 	 * @param fid
 	 * @param model
 	 */
@@ -86,7 +86,7 @@ public class InfoFaqMngrController {
 		
 		int result = infoFaqService.delete(fid);
 		
-		return "redirect:/faq/list";
+		return "redirect:/mngr/faq/list";
 	}
 	
 	@PostMapping("/update")
@@ -94,6 +94,6 @@ public class InfoFaqMngrController {
 		log.info("update({})", dto);
 		
 		int result = infoFaqService.update(dto);
-		return "redirect:/faq/detail?fid=" + dto.getFid();
+		return "redirect:/mngr/faq/list";
 	}
 }

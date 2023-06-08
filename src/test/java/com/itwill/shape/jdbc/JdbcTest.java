@@ -17,7 +17,11 @@ import oracle.jdbc.OracleDriver;
 @Slf4j
 @ExtendWith(SpringExtension.class)	// Spring JUnit 테스트를 실행하는 메인 클래스.
 @ContextConfiguration(
-	locations = { "file:src/main/webapp/WEB-INF/application-context.xml" }
+	locations = { 
+			"file:src/main/webapp/WEB-INF/application-context.xml",
+			"file:src/main/webapp/WEB-INF/email-context.xml",
+			"file:src/main/webapp/WEB-INF/security-context.xml"
+	}
 )	// 스프링 컨텍스트 환경 설정 파일의 경로와 이름.
 public class JdbcTest {
 	

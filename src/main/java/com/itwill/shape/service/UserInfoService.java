@@ -2,7 +2,10 @@ package com.itwill.shape.service;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.UserInfo;
@@ -19,6 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserInfoService {
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	private final UserInfoRepository userInfoRepository;
 	
 	/**
@@ -28,8 +34,10 @@ public class UserInfoService {
 	 * @param dto
 	 * @return
 	 */
+	@Transactional
 	public int createAdmin(UserCreateDto dto) {
 		log.info("createAdmin(dto = {})", dto);
+		dto.setPwd(passwordEncoder.encode(dto.getPwd()));
 		
 		return userInfoRepository.insertAdmin(dto.toEntityAdmin());
 	}
@@ -70,8 +78,20 @@ public class UserInfoService {
 	 */
 	public int createMember(UserCreateDto dto) {
 		log.info("createMember(dto = {})", dto);
+		dto.setPwd(passwordEncoder.encode(dto.getPwd()));
 		
 		return userInfoRepository.insertMember(dto.toEntityMember());
+	}
+	
+	/**
+	 * 사용자 id 중복체크
+	 * @param id
+	 * @return
+	 */
+	public int idDupCheck(String id) {
+		log.info("idDupCheck(id = {})", id);
+		
+		return userInfoRepository.idDupCheck(id);
 	}
 	
 	/**

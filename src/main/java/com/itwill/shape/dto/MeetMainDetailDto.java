@@ -28,13 +28,16 @@ public class MeetMainDetailDto {
 	private long nm_ppl;
 	private String mt_cost;
 	private String mt_cost_info;
-	private byte[] img;
+	private byte[] img_1;
+	private byte[] img_2;
+	private byte[] img_3;
+	private byte[] img_4;
+	private byte[] img_5;
 	private String content;
-//	private long views; //
+	private long views; 
 	private Timestamp created_date;
-	private String uEmail; // user 이메일 , (주최자 이메일 참여자 이메일)
+	private String Email; // user 이메일 , (주최자 이메일 참여자 이메일)
 		
-	
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
 			return MeetMainDetailDto.builder()
 		            .mtid(entity.getMtid())
@@ -48,15 +51,19 @@ public class MeetMainDetailDto {
 		            .mt_time(entity.getMt_time())
 		            .ed_date(entity.getEd_date())
 		            .nm_ppl(entity.getNm_ppl())
-		            .img(entity.getImg())
+		            .mt_cost(entity.getMt_cost())
+		            .mt_cost_info(entity.getMt_cost_info())
+		            .img_1(entity.getImg())
+		            .img_2(entity.getImg())
+		            .img_3(entity.getImg())
+		            .img_4(entity.getImg())
+		            .img_5(entity.getImg())
 		            .content(entity.getContent())
+		            .views(0)
 		            .created_date(Timestamp.valueOf(entity.getCreated_date()))
 		            .build();
-			
-		            
-		            
-		}
 
+		}
 
 	
 	

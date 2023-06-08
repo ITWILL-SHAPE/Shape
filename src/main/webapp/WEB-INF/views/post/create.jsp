@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%-- <%@ include file="../common/header.jsp"%> --%>
+<%@ include file="../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,26 +82,37 @@
 										});
 					});
 </script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+	const changeHd = (target) => {
+		const hd = target.value;
+		console.log(target.value);
+		document.getElementById('textarea#hrs_hd').innerText = hd;
+	}
+	
+});
+</script>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<header class="my-2 p-5 text-center">
 			<h1>게시글 작성</h1>
 		</header>
 
-		<main class="my-2">
+		<main class="border bg-body rounded shadow-sm">
 			<div class="card">
 				<form method="post">
 					<div class="card-body">
 						<div class="my-2">
-							<label class="form-label" for="hrs_hd">말머리</label> 
+							<label class="form-label" for="hrs_hd">말머리</label>
 							<!-- !!!!!!말머리 번호 전달!!!!!! -->
-							<select	id="hrs_hd" class="form-select" aria-label="Default select example">
-								<option selected>말머리를 선택해주세요.</option>
-								<option name="hrs_hd" value="1">모임 후기</option>
-								<option name="hrs_hd" value="2">사담</option>
-								<option name="hrs_hd" value="3">기타</option>
+							<select onchange="changeHd(this)" class="form-select">
+								<!-- <option selected>말머리를 선택해주세요.</option> -->
+								<option value="1">모임 후기</option>
+								<option value="2">사담</option>
+								<option value="3">기타</option>
 							</select>
+							<textarea class="form-control d-none" id="hrs_hd" name="hrs_hd"></textarea>
 						</div>
 
 						<div class="my-2">
@@ -120,24 +131,18 @@
 								required />
 						</div>
 					</div>
-					<div class="card-footer my-2">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<input class="form-control btn btn-outline-warning" type="submit"
 							value="작성 완료" />
-					</div>
-					<div class="my-2 text-center">
 						<c:url var="postList" value="/post/list" />
 						<button onclick="location.href='${ postList }'"
 							class="btn btn-warning" type="button">목록</button>
 					</div>
 				</form>
+
 			</div>
-
 		</main>
-
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
 	</div>
 </body>
 </html>
+<%@ include file="../common/footer.jsp"%>

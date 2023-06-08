@@ -7,15 +7,17 @@
 	<!-- 상세보기 page -->
 	
 	<!-- 참여하기 insert문 !-->
-	<insert id="prtcpInsert">
+	<insert id="Prtcpinsert">
   		insert into MEET_PRTCP (mtid, prtcp_id, name, gender, phone, email)
   		values (#{mtid}, #{prtcp_id}, #{name}, #{gender}, #{phone}, #{email})
 	</insert>
 		
 	<!-- 참여인원 list select문 !-->
-	<select id="prtcpList" resultType="com.itwill.shape.domain.MeetPrtcp">
+	<select id="selectPrtcpList" resultType="com.itwill.shape.domain.MeetPrtcp">
 		select * from MEET_PRTCP where mtid = #{ mtid }
 	</select>
+	
+	
 	
 	<!-- 참여한 user 정보 select문  선영이꺼 -->
 	<select id="getUserInfo" resultType="com.itwill.shape.domain.UserInfo">
@@ -24,10 +26,11 @@
 		where id = #{userId}
 	</select>
 	
+	
 		
 	
 	<!-- 참여취소 delete문 !-->
-	<delete id="prtcpDelete">
+	<delete id="Prtcpdelete">
 		delete from MEET_PRTCP where prtcp_id = #{ prtcp_id }
 	</delete>
 	

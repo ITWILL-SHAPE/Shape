@@ -53,7 +53,7 @@ public class InfoQnAController {
 		log.info("POST: create({})", dto);
 		int result = infoQnAService.create(dto);
 		log.info("큐앤에이 등록 결과 ={}", result);
-		return "redirect:/qna";
+		return "redirect:/info/qna";
 	}
 	
 	/**

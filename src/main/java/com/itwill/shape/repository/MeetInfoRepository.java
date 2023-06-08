@@ -12,6 +12,7 @@ public interface MeetInfoRepository {
 	int insert(MeetInfo entity); // create 모임 만들기
 	int update(MeetInfo entity); // update 모임 수정하기
 	int deleteByMtid(long mtid); // delete 모임 삭제하기
+	MeetInfo selectByMtid(long mtid); // modify
 	int delete(int i);
 	
 	
@@ -51,6 +52,7 @@ public interface MeetInfoRepository {
 	 */
 	List<MeetListCountDto> selectByCategory(String category);
 	
+	
 	/**
 	 * mtid 모임 상세 페이지
 	 * @param mtid
@@ -58,9 +60,6 @@ public interface MeetInfoRepository {
 	 */
 	
 	// 작성 상세페이지
-	List<MeetMainDetailDto> detailByMtid(long mtid);
-	
-	
-	
+	MeetMainDetailDto detailByMtid(long mtid);
 	
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.shape.repository.InfoNoticeRepository">
+	
+	<!-- 우수빈 noticemapper -->
+	
+	<insert id="insert">
+		insert into INFO_NOTICE (TITLE, CONTENT, ATCHD_FILE, VIEWS, CREATED_DATE, FIX)
+		values (#{title}, #{content}, #{atchd_file}, #{views}, systimestamp, #{fix})
+	</insert>
+	
+	<select id="selectOrderByDateDesc">
+		select * from INFO_NOTICE order by FIX, CREATED_DATE desc
+	</select>
+	
+	<select id="selectByNid">
+		select * from INFO_NOTICE where NID = #{nid}
+	</select>
+	
+	<update id="viewCount" parameterType="Integer">
+		update INFO_NOTICE set VIEWS = VIEWS + 1 where NID = #{nid}
+	</update>
+	
+	<update id="updateNotice">
+		update INFO_NOTICE
+		set TITLE = #{title}, CONTENT = #{content}, ATCHD_FILE = #{atchd_file}, CREATED_DATE = systimestamp, FIX = #{fix}
+		where NID = #{nid}
+	</update>
+	
+	<delete id="deleteByNid">
+		delete from INFO_NOTICE where NID = #{nid}
+	</delete>
+	
+</mapper>

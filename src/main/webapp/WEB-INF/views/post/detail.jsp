@@ -52,11 +52,11 @@
 			<section class="card">
 				<form class="card-body" id="modifyForm">
 					<!-- 글번호 -->
-					<p class="card-text">${ post.pid }</p>
+					<p class="card-text" id="id">${ post.pid }</p>
 					<!-- 제목 -->
 					<h2 class="card-title">${ post.title }</h2>
 					<!-- 작성자 -->
-					<p class="card-text">${ post.author }작성자왜안뜨는지</p>
+					<p class="card-text">${ post.author }</p>
 					<!-- 내용 -->
 					<div class="my-2">
 						<label class="form-label" for="content">내용</label>
@@ -85,19 +85,43 @@
 			<section class="my-2 card">
 				<div class="card-header fw-bold">
 					<span>댓글</span> <span id="commentCount">${ post.commentCount }</span>개
-					<button class="btn" id="btnToggleReply">
+					<!-- <button class="btn" id="btnToggleReply">
 						<img id="toggleBtnIcon"
 							src="../static/assets/icons/toggle2-off.svg" alt="toggle-off"
 							width="32" />
-					</button>
+					</button> -->
 				</div>
-				<div class="card-body collapse" id="replyToggleDiv">
+				<div class="card-body " id="replyToggleDiv">
+
+					<!-- 댓글 목록 보여줄 영역 -->
+					<div class="my-2 row">
+						<c:if test="${comments != null}">
+							<c:forEach items="${ comments }" var="comment">
+								<div class="card">
+									<div>
+										<div class="col"> 번호 ${comment.pcid}</div>
+										<div class="col"> 작성자 ${comment.author}</div>
+										<fmt:formatDate value="${comment.modified_date}"
+											var="modified" pattern="yyyy-MM-dd" />
+										<div class="col"> 작성 날짜 ${modified}</div>
+									</div>
+									<div>${comment.content}</div>
+									<div>
+										<button class="btnDelete btn btn-outline-danger"
+											data-id="${reply.id}">삭제</button>
+										<button class="btnModify btn btn-outline-success"
+											data-id="${reply.id}">수정</button>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
+					</div>
 					<!-- 내 댓글 등록 -->
 					<div class="my-2 row">
 						<label class="form-label" for="replyText">나의 댓글</label>
 						<div class="col-10">
 							<textarea class="form-control" id="replyText"></textarea>
-							<input class="d-none" id="writer" value="admin" />
+							<input class="" id="author" />
 							<!-- TODO: 로그인 사용자 아이디 -->
 						</div>
 						<div class="col-2">
@@ -106,37 +130,9 @@
 						</div>
 					</div>
 
-					<!-- 댓글 목록 보여줄 영역 -->
-					<div class="my-2 row" id="replies"></div>
 				</div>
 			</section>
 			<!-- 댓글 등록, 댓글 리스트 카드 -->
-
-			<!-- 댓글 수정 모달 -->
-			<div id="replyUpdateModal" class="modal" tabindex="-1">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">댓글 수정</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal"
-								aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<!-- 수정할 댓글 아이디 - 화면에 보이지 않도록 -->
-							<input id="modalReplyId" class="d-none" />
-							<!-- 수정할 댓글 내용 -->
-							<textarea id="modalReplyText" class="form-control"></textarea>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-bs-dismiss="modal">취소</button>
-							<button type="button" id="modalBtnUpdate" class="btn btn-primary">변경
-								내용 저장</button>
-						</div>
-					</div>
-				</div>
-			</div>
-
 
 			<div class="d-grid gap-2 col-5 mx-auto">
 				<c:url var="postList" value="/post/list" />
@@ -146,12 +142,8 @@
 			<!-- end modal -->
 		</main>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<script src="../static/js/post-comment.js"></script>
+
 	</div>
 </body>
 </html>

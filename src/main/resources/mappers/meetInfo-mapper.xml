@@ -36,7 +36,6 @@
 		#{mtid}
 	</update>
 
-
 	<!-- meetList.jsp에 사용될 모든 sql 문장들 정리. -> service에서 정리 및 합침. -->
 
 	<!-- 모임 찾기 page -->
@@ -114,10 +113,32 @@
 	
 	<!-- 상세 페이지 가져오기 -->
 	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetMainDetailDto">
-    	SELECT M.*, U.email AS uEmail
-    	FROM MEET_INFO M
-    	LEFT JOIN USER_INFO U ON M.mtid = U.mtid
-    	WHERE M.mtid = #{mtid} AND U.id = #{id}
+    	select
+    	m.mtid
+    	, m.crtr_id
+    	, m.title
+    	, m.category
+    	, m.sido
+    	, m.sigungu
+    	, m.location
+    	, m.mt_date
+    	, m.mt_time
+    	, m.ed_date
+    	, m.nm_ppl
+    	, m.mt_cost
+    	, m.mt_cost_info
+    	, m.img_1
+    	, m.img_2
+    	, m.img_3
+    	, m.img_4
+    	, m.img_5
+    	, m.content
+    	, nvl(m.views, 0)
+    	, m.created_date
+	    , u.email
+	from meet_info m
+	LEFT join user_info u on m.crtr_id = u.id
+	where m.mtid = #{mtid}
 	</select>
 	
 

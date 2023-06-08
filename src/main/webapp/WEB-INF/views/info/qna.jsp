@@ -27,16 +27,16 @@
 				<table class="card-body table table-hover">
 					<thead>
 						<tr>
-							<th>No</th>
-							<th>제목</th>
-							<th>작성일</th>
-							<th>진행상태</th>
+							<th scope="col">No</th>
+							<th scope="col">제목</th>
+							<th scope="col">작성일</th>
+							<th scope="col">진행상태</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="table-group-divider">
 						<c:forEach items="${ infoQnAs }" var="infoQnA">
 							<tr>
-								<td>${ infoQnA.qid }</td>
+								<th scope="row" class="col-1">${ infoQnA.qid }</th>
 								<!-- secret 여부에 따라 제목이 달라짐 -->
 								<c:if test="${infoQnA != null}">
 									<c:choose>
@@ -52,16 +52,16 @@
 										</c:otherwise>
 									</c:choose>
 								</c:if>
-								<td><fmt:formatDate value="${ infoQnA.created_date }"
+								<td class="col-2"><fmt:formatDate value="${ infoQnA.created_date }"
 										pattern="yyyy-MM-dd" /></td>
 								<!-- an_title이 null인지 아닌지에 따라 진행상태가 달라짐 -->
 								<c:if test="${infoQnA != null}">
 									<c:choose>
 										<c:when test="${infoQnA.an_title=='확인중'}">
-											<td>확인중</td>
+											<td class="col-2">확인중</td>
 										</c:when>
 										<c:otherwise>
-											<td>답변완료</td>
+											<td class="col-2">답변완료</td>
 										</c:otherwise>
 									</c:choose>
 								</c:if>
@@ -76,10 +76,6 @@
 			</div>
 		</main>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
 
 	</div>
 </body>

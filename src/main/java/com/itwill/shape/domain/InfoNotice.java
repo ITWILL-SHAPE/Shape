@@ -26,5 +26,6 @@ public class InfoNotice {
 	private byte[] atchd_file;
 	private int views;
 	private LocalDateTime created_date;
+	private int fix;
 
 }
