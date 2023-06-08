@@ -3,20 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
-<!DOCTYPE html>
 <!-- 지현 qna main(list) page -->
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Shape</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-	crossorigin="anonymous">
-</head>
-<body>
-	<div class="container-fluid">
+
+	<div class="container">
 		<header class="my-2 p-5 text-center">
 			<h1>Q&amp;A</h1>
 			<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>

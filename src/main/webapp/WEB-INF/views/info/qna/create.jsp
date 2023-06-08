@@ -3,37 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<!DOCTYPE html>
 <!-- 지현 qna main(list) page -->
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Shape</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-	crossorigin="anonymous">
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-	
-	function getCheckboxValue(event){
-		  const secret = '';
-		  if(event.target.checked)  {
-			  secret = event.target.value;
-		  }else {
-			  secret = 'N';
-		  }
-		  
-		  document.getElementById('textarea#secret').innerText
-		    = secret;
-		}
-    
-});
-</script>
-</head>
-<body>
-	<div class="container-fluid">
+	<div class="container">
 		<header class="my-2 p-5 text-center">
 			<h1>Q&amp;A</h1>
 			<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
@@ -59,11 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
 								required />
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="Y"
-								id="checkbox" checked> <label class="form-check-label"
-								for="checkbox"> 비밀글 </label>
+							<input class="form-check-input" type="checkbox"
+								id="checkbox" checked> 
+								<label class="form-check-label" for="checkbox"> 비밀글 </label>
 						</div>
-						<textarea class="form-control d-none" id="secret" name="secret"
+						<textarea class="form-control " id="secret" name="secret"
 								></textarea>
 					</div>
 					<div class="card-footer my-2">
@@ -73,12 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				</form>
 			</div>
 		</main>
-
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
 	</div>
 </body>
-</html>
+<script src="<%=request.getContextPath()%>/static/js/infoQnA-create.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
