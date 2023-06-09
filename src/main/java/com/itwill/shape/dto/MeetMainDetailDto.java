@@ -3,8 +3,11 @@ package com.itwill.shape.dto;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.itwill.shape.domain.MeetInfo;
+import com.itwill.shape.domain.MeetPrtcp;
+import com.itwill.shape.domain.UserInfo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,11 +15,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class MeetMainDetailDto {
 	private long mtid; // 상세보기 페이지 아이디
-	private String crtr_id; // 주최자 아이디
+	private String crtr_id; // 아이디
 	private String title;
 	private String category;
 	private String sido;
@@ -36,7 +40,9 @@ public class MeetMainDetailDto {
 	private String content;
 	private long views; 
 	private Timestamp created_date;
-	private String Email; // user 이메일 , (주최자 이메일 참여자 이메일)
+	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST)
+	private UserInfo userHost; // Host 작성자
+	
 		
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
 			return MeetMainDetailDto.builder()
@@ -53,17 +59,20 @@ public class MeetMainDetailDto {
 		            .nm_ppl(entity.getNm_ppl())
 		            .mt_cost(entity.getMt_cost())
 		            .mt_cost_info(entity.getMt_cost_info())
-		            .img_1(entity.getImg())
-		            .img_2(entity.getImg())
-		            .img_3(entity.getImg())
-		            .img_4(entity.getImg())
-		            .img_5(entity.getImg())
+		            .img_1(entity.getImg_1())
+		            .img_2(entity.getImg_2())
+		            .img_3(entity.getImg_3())
+		            .img_4(entity.getImg_4())
+		            .img_5(entity.getImg_5())
 		            .content(entity.getContent())
 		            .views(0)
 		            .created_date(Timestamp.valueOf(entity.getCreated_date()))
 		            .build();
 
 		}
+
+
+	
 
 	
 	

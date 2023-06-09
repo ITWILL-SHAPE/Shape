@@ -20,7 +20,7 @@ public class PostCommentReadDto {
 	private long pid;
     private String content;
     private String author;
-    private Timestamp modified_date;
+    private Timestamp modifiedDate;
 
     // DB에서 select한 Reply 타입 객체를 ReplyReadDto 타입 객체로 변환해서 리턴.
     public static PostCommentReadDto fromEntity(PostComment entity) {
@@ -29,7 +29,7 @@ public class PostCommentReadDto {
                 .pid(entity.getPid())
                 .content(entity.getContent())
                 .author(entity.getAuthor())
-                .modified_date(Timestamp.valueOf(entity.getModified_date()))
+                .modifiedDate(Timestamp.valueOf(entity.getModified_date()))
                 .build();
     }
     

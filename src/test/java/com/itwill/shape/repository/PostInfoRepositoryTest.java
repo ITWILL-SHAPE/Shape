@@ -16,7 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml",
+		"file:src/main/webapp/WEB-INF/email-context.xml",
+		"file:src/main/webapp/WEB-INF/security-context.xml" })
 public class PostInfoRepositoryTest {
 	@Autowired
 	private PostInfoRepository postInfoRepository;
@@ -25,7 +27,7 @@ public class PostInfoRepositoryTest {
 	
 	@Test
     public void testSelectWithKeyword() {
-        List<PostInfo> result = postInfoRepository.selectWithKeyword("te");
+        List<PostListDto> result = postInfoRepository.selectWithKeyword("te");
         log.info("result = {}", result);
     }
 	
@@ -46,7 +48,7 @@ public class PostInfoRepositoryTest {
 		PostInfo post = PostInfo.builder().pid(1) // 업데이트할 포스트 아이디
 				.title("update test") // 업데이트할 제목
 				.content("update test") // 업데이트할 내용
-				.hrs_hd(2)
+				.hrs_hd("모임 후기")
 				.build();
 		int result = postInfoRepository.updateTitleAndContent(post);
 		Assertions.assertEquals(1, result);
@@ -62,7 +64,7 @@ public class PostInfoRepositoryTest {
 		Assertions.assertNull(result);
 	}
 
-	//@Test
+//	@Test
 	public void testPostRepository() {
 		Assertions.assertNotNull(postInfoRepository);
 		log.info("postRepository = {}", postInfoRepository);
@@ -72,7 +74,7 @@ public class PostInfoRepositoryTest {
 				.title("insert test")
 				.content("insert test")
 				.author("test")
-				.hrs_hd(1)
+				.hrs_hd("사담")
 				.build();
 		log.info(post.toString());
 

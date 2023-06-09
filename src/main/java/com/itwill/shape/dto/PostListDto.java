@@ -1,5 +1,5 @@
 package com.itwill.shape.dto;
-
+//지현
 import java.sql.Timestamp;
 
 import com.itwill.shape.domain.PostInfo;
@@ -14,9 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PostListDto {
-// 또 뭐가져가냐 뭐필요하냐
 	private long pid;
-	private long hrs_hd;
+	private String hrs_hd;
 	private String title;
 	private String author;
 	private Timestamp created_date;

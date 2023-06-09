@@ -6,8 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetLike;
+import com.itwill.shape.domain.MeetPrtcp;
+import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetPrtcpCreateDto;
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.MeetPrtcpRepository;
@@ -32,9 +35,18 @@ public class MeetDetailService {
 		public MeetMainDetailDto detailByMtid(long mtid) {
 			log.info("detail(mtid={})" , mtid);
 			
-			MeetMainDetailDto result = meetInfoRepository.detailByMtid(mtid);
+			MeetMainDetailDto dto = MeetMainDetailDto.fromEntity(meetInfoRepository.detailByMtid(mtid));
+			log.info("dto={}", dto);
 			
-			return result;
+			List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid);
+			
+			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id());
+
+			dto.setPrtcpDtoList(list); // 참여자 정보	
+			
+			dto.setUserHost(result); // 작성자 정보
+			
+			return dto;
 			
 		}
 

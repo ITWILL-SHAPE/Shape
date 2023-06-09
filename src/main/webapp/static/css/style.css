@@ -39,7 +39,7 @@ div.signUpBox {
 .mb-55{margin-bottom: 55px;}
 .h-330{height: 330px;}
 
-/* meet/create.jsp에 사용 */
+/* meet/create.jsp, update.jsp에 사용 */
 .sub-container {background:#fff;}
 
 .main-container {
@@ -52,7 +52,7 @@ div.signUpBox {
 }
 
 div.meetCreateBox {
-	height: 1800px;
+	height: 2050px;
 	margin-top: 75px;
 	margin-bottom: 75px;
 	margin-left: 300px;
@@ -122,5 +122,22 @@ div.meetdetailuser{
    	margin-bottom: 10px;
 }
 
-
+.profile {
+      display: flex;
+      align-items: center;
+    }
   
+    .user-img {
+      width: 50px; /* 사용자 사진의 너비 조정 */
+      height: 50px; /* 사용자 사진의 높이 조정 */
+      margin-right: 10px; /* 사진과 정보 사이의 여백 조정 */
+    }
+  
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .user-name, .user-email {
+      font-size: 16px; /* 이름과 이메일의 글꼴 크기 조정 */
+    }

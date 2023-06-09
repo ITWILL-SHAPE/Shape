@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const btnConfirm = document.querySelector('button.btn_confirm');
 
+/*
 	btnConfirm.addEventListener('click', () => {
 		if (inputPwd === userPwd) {
 			pwdForm.action = '/shape/modifypwd';
@@ -21,5 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		pwdForm.method = 'get';
 		pwdForm.submit();
+	});
+*/	
+	btnConfirm.addEventListener('click', () => {
+		const username = $('input[name="username"]').val();
+		const password = $('input[name="password"]').val();
+		console.log(username, password);
+		
+		const data = {username, password};
+		
+		aixos.post('/shape/login', data)
+		.then((response) => {
+			alert('비밀번호가 맞습니다.');
+			console.log(response);
+		})
+		.catch((error) => {
+			alert('비밀번호가 틀렸습니다.');
+		})
 	});
 });

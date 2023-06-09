@@ -1,5 +1,5 @@
 package com.itwill.shape.dto;
-
+//지현 postpage detail
 import java.sql.Timestamp;
 
 import com.itwill.shape.domain.PostInfo;
@@ -17,7 +17,7 @@ public class PostDetailDto {
 	private String title;
 	private String content;
 	private String author;
-	private long hrs_hd;
+	private String hrs_hd;
 	private Timestamp created_date;
 	private Timestamp modified_date;
 	private long commentCount;

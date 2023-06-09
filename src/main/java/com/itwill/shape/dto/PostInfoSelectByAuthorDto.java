@@ -18,21 +18,26 @@ import lombok.ToString;
 @AllArgsConstructor
 @Data
 @Builder
-public class PostInfoSelectByKeywordDto {
+@ToString
+@Getter
+@Setter
+public class PostInfoSelectByAuthorDto {
 	
-	private long pid;
-	private long hrs_hd;
+	long pid;
 	private String title;
-	private String author;
 	private Timestamp created_date;
 	
-	private long rcnt; //댓글 
-	
-	public static PostInfoSelectByKeywordDto fromEntity(PostInfo entity) {
-		return PostInfoSelectByKeywordDto.builder()
+	/**
+	 * 0601 손창민
+	 * DB에서 select한 PostInfo 타입의 객체를 PostInfoSelectByID 타입의 객체로 변환해서 리턴.
+	 * 
+	 * @return
+	 */
+	public static PostInfoSelectByAuthorDto fromEntity(PostInfo entity) {
+		
+		return PostInfoSelectByAuthorDto.builder()
 				.pid(entity.getPid())
 				.title(entity.getTitle())
-				.author(entity.getAuthor())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();
 	}

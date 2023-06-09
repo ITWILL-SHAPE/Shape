@@ -90,7 +90,7 @@ public class MtCreateRepositoryTest {
 		log.info("MeetDetailRepository = {}" , meetDetailRepository);
 		
 		MeetPrtcp mtPrtcp = MeetPrtcp.builder()
-				.mtid(30)
+				.mtid(62)
 				.prtcp_id("test2")
 				.name("test2")
 				.gender("M")
@@ -103,13 +103,14 @@ public class MtCreateRepositoryTest {
 		log.info("mtInfo = {}", mtPrtcp);
 	}
 	
-//	@Test  //MTID를 선택한 user들의 참여자 정보 검색
-//	public void testSelectPrtcpList() {
-//		List<MeetPrtcp> list = meetDetailRepository.prtcpList("test2"); // 파라미터 MTID 번호 -> 소모임들중 어떤 소모임 글인지
-//        for (MeetPrtcp p : list) {
-//            log.info(p.toString());
-//        }	
-//    }
+//	 @Test  //MTID를 선택한 user들의 참여자 정보 검색
+	public void testSelectPrtcpList() {
+		List<MeetPrtcp> list = meetDetailRepository.selectPrtcpList(47); // 파라미터 MTID 번호 -> 소모임들중 어떤 소모임 글인지
+        for (MeetPrtcp p : list) {
+            log.info(p.toString());
+        }	
+    }
+	 
 	
 //	@Test // 참여취소 테스트 user가 참여 취소 누르실 
 	public void testDeletePrtcp() {
@@ -117,10 +118,12 @@ public class MtCreateRepositoryTest {
 		System.out.println(result);
 	}
 	
-//	@Test // 리스트에 상세페이지 누르면 나오는 페이지 
+	
+	
+	//	@Test // 리스트에 상세페이지 누르면 나오는 페이지 
 	public void testdetailByMtid() {
-		MeetMainDetailDto result = mtCreateRepository.detailByMtid(46);
-			System.out.println(result);
+//		MeetMainDetailDto result = mtCreateRepository.detailByMtid(46);
+//			System.out.println(result);
 		
 		
 	}

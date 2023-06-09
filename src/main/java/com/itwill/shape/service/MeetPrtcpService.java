@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.itwill.shape.domain.MeetPrtcp;
+import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.MeetPrtcpCreateDto;
 import com.itwill.shape.dto.MeetPrtcpReadDto;
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.MeetPrtcpRepository;
@@ -48,6 +50,18 @@ public class MeetPrtcpService {
 			log.info("delete(id={})" ,id);
 			
 			return meetPrtcpRepository.Prtcpdelete(id);
+		}
+		
+		// MTID 작성자
+		public UserInfoSelectByIdDto detailHost(String id) {
+			log.info("Host(dto={}",id);
+
+	        UserInfo entity = meetPrtcpRepository.getUserInfo(id);
+	        
+			UserInfoSelectByIdDto result = UserInfoSelectByIdDto.fromEntity(entity);
+		
+			return result;
+					
 		}
 		
 }

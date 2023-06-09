@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.itwill.shape.domain.PostComment;
-import com.itwill.shape.dto.PostCommentSelectByIdDTO;
+import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
 import com.itwill.shape.service.PostCommentService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class PostCommentRepositoryTest {
 		PostComment postComment = new PostComment(0,0,"테스트", "test", null, null);
 		
 		
-		List<PostCommentSelectByIdDTO> list = postCommentService.selectById(postComment.getAuthor());
+		List<PostCommentSelectByAuthorDto> list = postCommentService.selectById(postComment.getAuthor());
 		//assertNotNull(list);
 		log.info("list={}", list);
 	}

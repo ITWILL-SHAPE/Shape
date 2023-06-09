@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.PostInfo;
-import com.itwill.shape.dto.GuideCreateDto;
 import com.itwill.shape.dto.PostCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
-import com.itwill.shape.dto.PostInfoSelectByIdDTO;
-import com.itwill.shape.dto.PostInfoSelectByKeywordDto;
+import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
 import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.dto.PostUpdateDto;
 import com.itwill.shape.repository.PostCommentRepository;
@@ -26,22 +24,36 @@ public class PostInfoService {
 	private final PostInfoRepository postInfoRepository;
 	private final PostCommentRepository postCommentRepository;
 
+
 	/**
-	 * 0601 손창민
-	 * id와 일치하는 작성글 목록 불러오기
+	 * 0608 손창민
+	 * post_info table에서 pcid와 일치하는 작성글 삭제
 	 * @param id
 	 * @return
 	 */
-	public List<PostInfoSelectByIdDTO> selectById(String author) {
+	public int deleteByPid(long pid) {
+//		log.info("author={}", author);
+//		log.info("content={}", title);
+		
+		return postInfoRepository.deleteByPid(pid);
+	}
+	
+	/**
+	 * 0601 손창민
+	 * post_info table에서 author와 일치하는 작성글 불러오기
+	 * @param id
+	 * @return
+	 */
+	public List<PostInfoSelectByAuthorDto> selectByAuthor(String author) {
 		log.info("selectById()");
 		log.info("author={}", author);
 		
-		List<PostInfo> entity = postInfoRepository.selectById(author);
+		List<PostInfo> entity = postInfoRepository.selectByAuthor(author);
 		log.info("entity={}", entity);
 		
 		// PostInfo 타입의 객체를 PostInfoSelectByIdDTO 타입 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
-		return entity.stream().map(PostInfoSelectByIdDTO::fromEntity).toList();
+		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
 	}
 	
 	/**
@@ -49,11 +61,9 @@ public class PostInfoService {
 	 * 목록 키워드로 불러오기
 	 * @return
 	 */
-	public List<PostInfoSelectByKeywordDto> readByKeyword(String keyword){
-		log.info("readByKeyword(keyword={})",keyword);
-		List<PostInfo> entity = postInfoRepository.selectWithKeyword(keyword);
-		log.info("entity= {}", entity);
-		return entity.stream().map(PostInfoSelectByKeywordDto::fromEntity).toList();
+	public List<PostListDto> read(String keyword){
+		log.info("read(keyword={})",keyword);
+		return postInfoRepository.selectWithKeyword(keyword);
 	}
 	
 	public List<PostListDto> read(){
@@ -85,6 +95,11 @@ public class PostInfoService {
 	public int create(PostCreateDto dto) {
 		log.info("create({})", dto);
 		return postInfoRepository.insert(dto.toEntity());
+	}
+	
+	public int viewCount(long pid) {
+		log.info("viewCount({})", pid);
+		return postInfoRepository.viewCount(pid);
 	}
 	
 	/**
