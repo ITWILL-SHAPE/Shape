@@ -2,6 +2,9 @@ package com.itwill.shape.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor // final 변수 초기화
 @RestController
-@RequestMapping("/shape/api/meet")
+@RequestMapping("/shape/api") // 뷰가 아닌 클라이언트에게로 리턴함.
 public class MeetRestController {
 	
 	  private final MeetListService meetListService;
@@ -46,17 +49,34 @@ public class MeetRestController {
 	        
 	        return ResponseEntity.ok(result);
 	    }
-	  
-	  @GetMapping("/list/all")
-	  public ResponseEntity<List<MeetListCountDto>> readTitle(Model model) {
-	        log.info("readTitle");
-	        
-	        List<MeetListCountDto> dto = meetListService.readByCreateTime();
-	        log.info("# of replies = {}", dto.size());
-	        
-	        model.addAttribute("listCount", dto);
-	        
-	        return ResponseEntity.ok(dto);
-	    }
+//	  
+//	  @PostMapping("/reply/all")
+//	  public ResponseEntity<List<MeetListCountDto>> readTitle() {
+//	        log.info("readTitle");
+//	        
+//	        List<MeetListCountDto> list = meetListService.readByCreateTime();
+//	        log.info("# of replies = {}", list.size());
+//	        
+//	        
+//	        return ResponseEntity.ok(list);
+//	    }
+//	  
+	  @PostMapping("/reply/all")
+	  public ResponseEntity<List<MeetListCountDto>> readTitle() {
+		  log.info("readTitle");
+		  
+		  List<MeetListCountDto> list = meetListService.readByCreateTime();
+	      log.info("# of replies = {}", list.size());
+	      
+	      // 리디렉션할 URL 설정
+	      String redirectUrl = "/shape/meet/list";
+		  
+	      
+	      HttpHeaders headers = new HttpHeaders();
+	      headers.add("Location", redirectUrl);
+	      
+	      return ResponseEntity.ok().headers(headers).body(list);
+	  }
+
 	  
 }

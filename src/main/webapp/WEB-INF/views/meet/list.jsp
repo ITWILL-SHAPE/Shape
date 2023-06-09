@@ -128,7 +128,7 @@
 		</div>
 	</div>
 	<!--아이템: model.addAttribute("listCount", dto);-->
-<div class="album py-5">
+<div id="cardList" class="album py-5">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     <!-- for문 변경가능함 확인해보기. 
       -> 로그인: header.jsp, main.jsp => 37줄 참고 
@@ -136,28 +136,28 @@
     -->
     <c:forEach items="${listCount}" var="cardList" varStatus="status">
       <c:url var="meetDetailPage" value="/meet/maindetail">
-        <c:param name="id" value="${cardList.mtid}" />
+        <c:param name="mtid" value="${cardList.mtid}" />
       </c:url>
       <div class="col">
-        <a href="${meetDetailPage}" class="text-decoration-none" id="disable">
-          <div class="card shadow-sm image-container position-relative">
+        <div class="card shadow-sm image-container position-relative">
+          <a href="${meetDetailPage}" class="text-decoration-none">
             <svg idx="${status.begin}" class="bd-placeholder-img card-img-top" width="100%" height="220"
               xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
               preserveAspectRatio="xMidYMid slice" focusable="false">
               <rect width="100%" height="100%" fill="#55595c" />
             </svg>
-            <span>
+            <div>
               <a idx="${status.begin}" href="javascript:" class="heart-click heart_icon${status.begin}">
                 <img src="../static/images/sample/like2.svg" alt="toggle-off" width="50"
                   class="heart overlay-image overlay-right" />
               </a>
-            </span>
+            </div>
  			
- 			<div id="cardList">      
+ 			<div>      
             <c:choose>
             	<c:when test="${cardList.pcnt >= cardList.nm_ppl}">
 	                 <div id="mozipFin${status.begin}">
-		              <img id="mozipFin${status.begin}" src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
+		              <img id="mozipFinImg${status.begin}" src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
 		                width="80" class="overlay-image overlay-left" />
 		            </div>
             	</c:when>
@@ -170,10 +170,10 @@
             </c:choose>
             </div>
 
-            <%-- 로그인 상태에 따른 하트 클릭 가능 여부 처리
+            <%-- 로그인 상태에 따른 하트 클릭 가능 여부 처리 -> 살려두면 후에 로그인 시 카드 화면이 안보임 카드 전체적으로 묶어야 하는 것 같음
             <script>
               <sec:authorize access="isAuthenticated()">
-                var id = '${id}'; // 사용자 ID
+                var id = '${cardList.id}'; // 사용자 ID
                 var author = '${cardList.author}'; // 카드의 작성자 ID
 
                 // 로그인한 사용자와 카드의 작성자가 일치하는 경우
@@ -192,7 +192,7 @@
                 });
               </sec:authorize>
             </script>  --%>
-
+			
             <div class="card-body">
               <div class="post-inner">
                 <div class="row align-items-center">
@@ -224,9 +224,9 @@
                   / <span id="maxApplicants${status.begin}">${cardList.nm_ppl}</span>
                 </small>
               </div>
-            </div>
-          </div>
-        </a>
+            </div> <!-- card body -->
+           </a>
+         </div>
       </div>
     </c:forEach>
   </div>
