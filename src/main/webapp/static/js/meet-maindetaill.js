@@ -124,7 +124,7 @@
 	  });
 	}
 
-	 
+	**/ 
 	// 참여자 목록
 	
 	document.addEventListener('DOMContentLoaded', () => {
@@ -157,7 +157,7 @@
 	    
 	    });
 	});
-	**/
+	
 
 
 
