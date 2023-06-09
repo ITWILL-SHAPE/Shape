@@ -140,3 +140,7 @@ div.meetdetailuser{
     .user-name, .user-email {
       font-size: 16px; /* 이름과 이메일의 글꼴 크기 조정 */
     }
+div.replyToggleDiv {
+  max-height: 50px; /* 카드의 최대 높이를 지정 */
+  overflow-y: auto; /* 세로 스크롤을 추가하여 내용이 넘치는 경우 스크롤 가능하도록 설정 */
+}
