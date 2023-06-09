@@ -22,15 +22,15 @@
 
 
 	<!-- 지현 게시판 -->
+	<!-- 수빈 게시판 검색 (키워드) -->
 	<select id="selectWithKeyword"
 		resultType="com.itwill.shape.dto.PostListDto">
-		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE,
-		count(C.PCID) as RCNT
-		from POST_INFO P left join POST_COMMENT C
-		on P.PID = C.PID
-		where P.CONTENT like '%#{keyword}%'
-		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
-		order by P.PID desc;
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
+        from POST_INFO P left join POST_COMMENT C
+            on P.PID = C.PID
+        where lower(P.TITLE) like lower('%#{keyword}%') or lower(P.HRS_HD) like lower('%#{keyword}%')   
+        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+        order by P.PID desc
 	</select>
 
 	<select id="selectWithCommentCount"
@@ -70,4 +70,7 @@
 	<delete id="deleteByPid">
 		delete from POST_INFO where PID = #{pid}
 	</delete>
+	
+	
+	
 </mapper>

@@ -183,7 +183,7 @@ public class MyPageController {
 		log.info("myposts()");
 		log.info("id={}", author);
 
-		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("ㅅㄷㄴㅅ");
+		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("ㅌㅅㅌ");
 		log.info("myposts={}", myposts);
 		model.addAttribute("myposts", myposts);
 
@@ -204,7 +204,7 @@ public class MyPageController {
 		log.info("id={}", author);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("drj9812");
+		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test");
 		log.info("mycomments={}", mycomments);
 		model.addAttribute("mycomments", mycomments);
 

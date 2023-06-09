@@ -25,22 +25,23 @@ public class PostCommentService {
 	
 	/**
 	 * 0608손창민
-	 * post_comment table에서 id, content와 일치하는 댓글 삭제
+	 * post_comment table에서 pcid와 일치하는 댓글 삭제
 	 */
-	public int deleteByAuthorAndContent(String author, String content) {
-		log.info("author={}", author);
-		log.info("content={}", content);
+	public int deleteByPcid(long pcid) {
+//		log.info("author={}", author);
+//		log.info("content={}", content);
+		log.info("pcid={}", pcid);
 		
-		return postCommentRepository.deleteByAuthorAndContent(author, content);
+		return postCommentRepository.deleteByPcid(pcid);
 	}
 	/**
 	 * 0601 손창민
-	 * post_comment table에서 id, content와 일치하는 댓글 목록 불러오기
+	 * post_comment table에서 author와 일치하는 댓글 목록 불러오기
 	 * @param author
 	 * @return List<PostCommentSelectById> dto
 	 */
 	public List<PostCommentSelectByAuthorDto> selectByAuthor(String author) {
-		log.info("selectById()");
+		log.info("selectByAuthor()");
 		log.info("author={}", author);
 		
 		List<PostComment> entity = postCommentRepository.selectByAuthor(author);
@@ -86,5 +87,10 @@ public class PostCommentService {
 				.build();
 		log.info("entity={}, entity");
 		return postCommentRepository.update(entity);
+	}
+	
+	public int deleteCommentByPid(long pid) {
+		log.info("deleteCommentByPid(pid = {})", pid);
+		return postCommentRepository.deleteCommentByPid(pid);
 	}
 }

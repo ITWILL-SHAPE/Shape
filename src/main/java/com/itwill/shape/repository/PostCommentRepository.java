@@ -15,7 +15,7 @@ public interface PostCommentRepository {
 	 * @param content
 	 * @return
 	 */
-	int deleteByAuthorAndContent(@Param("author")String author, @Param("content")String content);
+	int deleteByPcid(long pcid);
 	
 	/**
 	 * 0601 손창민
@@ -48,6 +48,7 @@ public interface PostCommentRepository {
 
 	int update(PostComment entity);
 
-
+	
+	int deleteCommentByPid(long pid);
 
 }

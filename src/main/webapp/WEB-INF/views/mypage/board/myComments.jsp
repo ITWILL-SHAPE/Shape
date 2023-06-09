@@ -42,9 +42,14 @@
 					<tr>
 						<td>
 						<input type="checkbox"
-						           id="row-checkbox">
+						           id="row-checkbox" />
 						</td>
-						<td>${loop.index + 1}</td>
+						<td>
+						<input type="hidden"
+						       id="pcid"
+						       value="${ mycomments.pcid }" />
+						</td>
+						<td>${ loop.index + 1 }</td>
 						<td class="row-content">${ mycomments.content }</td>
 						<td>
 						<fmt:formatDate value="${ mycomments.created_date }"

@@ -15,7 +15,7 @@ public class PostCommentCreateDto {
 	
 	public PostComment toEntity() {
 		return PostComment.builder()
-				.pcid(pid)
+				.pid(pid) // 수빈 수정
 				.content(content)
 				.author(author)
 				.build();

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ include file="../../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -29,9 +30,11 @@
 					<h4 class="sub_title">
 						본인확인을 위해 <strong>로그인 비밀번호</strong>를 한 번 더 입력해주세요.
 					</h4>
-					<input type="password" id="inputPwd" name="inputPwd"
-						placeholder="비밀번호를 입력해 주세요">
-					<button class="btn_confirm">확인</button>
+						<sec:authentication property="principal.username" var="username"/>
+						<input type="text" name="username" value="${ username }"/>
+						<input type="password" id="inputPwd" name="password"
+							placeholder="비밀번호를 입력해 주세요">
+						<button class="btn_confirm">확인</button>
 					<!--
 					<input type="submit"
 						class="btn_confirm" value="확인">

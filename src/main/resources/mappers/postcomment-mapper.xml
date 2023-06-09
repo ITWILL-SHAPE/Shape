@@ -14,11 +14,11 @@
 -->
 
 	<!-- 
-	post_comment table에서 id, author와 일치하는 댓글 삭제
+	post_comment table에서 pcid와 일치하는 댓글 삭제
 	 -->
-	<delete id="deleteByAuthorAndContent">
+	<delete id="deleteByPcid">
 		DELETE FROM post_comment
-		 WHERE author = #{ author } AND content = #{ content }
+		 WHERE pcid = #{ pcid }
 	</delete>
 	
 	<!-- 
@@ -51,10 +51,13 @@
         select * from POST_COMMENT where PCID = #{pcid}
     </select>
     
+    <!-- 수빈: date 삭제(default timestamp여서 없어도 됨) -->
     <insert id="insert">
-        insert into POST_COMMENT (PID, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE)
-        values (#{pid}, #{content}, #{author}, systimestamp, systimestamp)
+        insert into POST_COMMENT (PID, CONTENT, AUTHOR)
+        values (#{pid}, #{content}, #{author})
     </insert>
+    
+    
     
     <update id="update">
         update POST_COMMENT
@@ -66,4 +69,10 @@
         delete from POST_COMMENT
         where PCID = #{pcid}
     </delete>
+    
+    <!-- 수빈 : 게시글 삭제될 때 게시글의 댓글도 삭제 -->
+	<delete id="deleteCommentByPid">
+		delete from POST_COMMENT where PID = #{pid}
+	</delete>
+    
 </mapper>

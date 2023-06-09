@@ -26,9 +26,13 @@ public class MeetInfo { //작성내용
 	private long nm_ppl;
 	private String mt_cost;
 	private String mt_cost_info;
-	private byte[] img;
+	private byte[] img_1;
+	private byte[] img_2;
+	private byte[] img_3;
+	private byte[] img_4;
+	private byte[] img_5;
 	private String content;
-//	private long views;
+	private long views;
 	private LocalDateTime created_date;
 	
 }

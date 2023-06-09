@@ -15,8 +15,10 @@ import lombok.ToString;
 @Setter // setter 메서드들
 @ToString // toString 메서드
 @Data // Getter, Setter, toString, equals, hashCode
-public class PostInfoDeleteDto {
-	
-	private String author;
-	private String title;
+public class PostInfoDeleteByPidDto {
+	/**
+	 * 0608 손창민
+	 * post_info table에서 pid만 가져와서 저장하는 Dto
+	 */
+	private long pid;
 }

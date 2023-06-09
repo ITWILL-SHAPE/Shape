@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itwill.shape.dto.PostCommentDeleteDto;
-import com.itwill.shape.dto.PostInfoDeleteDto;
+import com.itwill.shape.dto.PostCommentDeleteByPcidDto;
+import com.itwill.shape.dto.PostInfoDeleteByPidDto;
 //import com.itwill.shape.dto.PostCommentDeleteDto;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
@@ -30,25 +30,22 @@ public class MyPageRestController {
 	
 	/**
 	 * 0608 손창민
-	 * post_comment table에서 id, content와 일치하는 댓글을 삭제
+	 * post_comment table에서 pcid와 일치하는 댓글을 삭제
 	 * @return
 	 */
 //	@ResponseBody
 	@DeleteMapping("/deletecomments")	
-	public ResponseEntity<Integer> postCommentDeleteDtoList(
-			@RequestBody List<PostCommentDeleteDto> selectedComments) {
+	public ResponseEntity<Integer> postCommentDeleteByPcidDtoList(
+			@RequestBody List<PostCommentDeleteByPcidDto> selectedPcids) {
 		log.info("postCommentDeleteDtoList()");
-		log.info("PostCommentDeleteDtoList={}", selectedComments);
+		log.info("PostCommentDeleteDtoList={}", selectedPcids);
 		
 		
-		for (PostCommentDeleteDto postCommentDeletDto : selectedComments) {
-			String author = postCommentDeletDto.getAuthor();
-			String content = postCommentDeletDto.getContent();
-			log.info("commentAuthor={}", author);
-			log.info("commentContent={}", content);
+		for (PostCommentDeleteByPcidDto postCommentDeleteByPcidDto : selectedPcids) {
+			long pcid = postCommentDeleteByPcidDto.getPcid();
+			log.info("pcid={}", pcid);
 			
-			// commentAuthor와 commentContent를 기반으로 post-comment 테이블에서 해당 댓글을 삭제하는 작업 수행
-			postCommentService.deleteByAuthorAndContent(author, content);
+			postCommentService.deleteByPcid(pcid);
 		}
 		
 		return ResponseEntity.ok(1);
@@ -60,19 +57,21 @@ public class MyPageRestController {
 	 * @return
 	 */
 	@DeleteMapping("/deleteposts")
-	public ResponseEntity<Integer> postInfoDeleteDtoList(
-			@RequestBody List<PostInfoDeleteDto> selectedTitles) {
-		log.info("postInfoDeleteDtoList()");
-		log.info("postInfoDeleteDtoList={}", selectedTitles);
+	public ResponseEntity<Integer> postInfoDeleteByPidDtoList(
+			@RequestBody List<PostInfoDeleteByPidDto> selectedPids) {
+		log.info("postInfoDeleteByPidDtoList()");
+		log.info("postInfoDeleteByPidDtoList={}", selectedPids);
 		
-		for (PostInfoDeleteDto postInfoDeletDto : selectedTitles) {
-			String author = postInfoDeletDto.getAuthor();
-			String title = postInfoDeletDto.getTitle();
-			log.info("commentAuthor={}", author);
-			log.info("commentContent={}", title);
+		for (PostInfoDeleteByPidDto postInfoDeleteByPidDto : selectedPids) {
+//			String author = postInfoDeletDto.getAuthor();
+//			String title = postInfoDeletDto.getTitle();
+			long pid = postInfoDeleteByPidDto.getPid();
+//			log.info("author={}", author);
+//			log.info("title={}", title);
+			log.info("pcid={}", pid);
 			
 			// commentAuthor와 commentContent를 기반으로 post-comment 테이블에서 해당 댓글을 삭제하는 작업 수행
-			postInfoService.deleteByAuthorAndTitle(author, title);
+			postInfoService.deleteByPid(pid);
 		}
 		
 		return ResponseEntity.ok(1);
