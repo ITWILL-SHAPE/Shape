@@ -60,6 +60,6 @@ public interface MeetInfoRepository {
 	 */
 	
 	// 작성 상세페이지
-	MeetMainDetailDto detailByMtid(long mtid);
+	MeetInfo detailByMtid(long mtid);
 	
 }

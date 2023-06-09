@@ -1,6 +1,6 @@
 /**
- * infoQnA-modify.js
- * 
+ * infoQnA-detail.js
+ * 지현 qna 삭제
  */
 document.addEventListener('DOMContentLoaded', () => {
     const modifyForm = document.querySelector('#modifyForm');

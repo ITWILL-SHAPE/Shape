@@ -52,12 +52,13 @@
 		</div>
 	</header>
 
-	<!--모집 중 체크 박스 검색 -> post -->
+	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
 	<form id="searchFormCheckBox" class="CheckBoxSearchForm">
 		<div class="form-check form-check-reverse">
+			 <label class="form-check-label"
+				for="reverseCheck" id="checkRecruitmentStatus"> 모집중 </label>
 			<input class="form-check-input" type="checkbox" value=""
-				id="reverseCheck1"> <label class="form-check-label"
-				for="reverseCheck1" id="checkRecruitmentStatus"> 모집중 </label>
+				id="reverseCheck">	
 		</div>
 	</form>
 
@@ -151,11 +152,12 @@
                   class="heart overlay-image overlay-right" />
               </a>
             </span>
-       
+ 			
+ 			<div id="cardList">      
             <c:choose>
-            	<c:when test="${cardList.pcnt} == ${cardList.nm_ppl}">
+            	<c:when test="${cardList.pcnt >= cardList.nm_ppl}">
 	                 <div id="mozipFin${status.begin}">
-		              <img id="mozipFin${status.begin}" src="../static/images/sample/mozip_fin.svg" alt="recuriIng"
+		              <img id="mozipFin${status.begin}" src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
 		                width="80" class="overlay-image overlay-left" />
 		            </div>
             	</c:when>
@@ -166,9 +168,9 @@
 	               </div>
             	</c:otherwise>
             </c:choose>
-            
+            </div>
 
-            <%-- 로그인 상태에 따른 하트 클릭 가능 여부 처리 --%>
+            <%-- 로그인 상태에 따른 하트 클릭 가능 여부 처리
             <script>
               <sec:authorize access="isAuthenticated()">
                 var id = '${id}'; // 사용자 ID
@@ -189,7 +191,7 @@
                   alert('로그인이 필요합니다.');
                 });
               </sec:authorize>
-            </script>
+            </script>  --%>
 
             <div class="card-body">
               <div class="post-inner">

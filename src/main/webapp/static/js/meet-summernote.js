@@ -1,5 +1,5 @@
 /**
- * post-summernote.js 게시판 summernote
+ * post-summernote.js
  * create
  * modify
  */
@@ -39,11 +39,6 @@ $(document)
 								['ul', 'ol',
 									'paragraph']],
 							['height', ['height']],
-							[
-								'insert',
-								['picture',
-									'link',
-									'video']],
 							[
 								'view',
 								['fullscreen',

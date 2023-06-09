@@ -9,17 +9,68 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
 
-	// 모집중, 모집완료 설정. 
+	/*
+	 모집중 이미지 수정하는 함수 -> #cardList 요소 html 코드 변경.
+	 */	
+	const cardList = document.querySelector('div#cardList');
+	const makeCardElements = (data) => {
+		
+		cardList.innerHTML = ''; // 지움.
+		
+		let htmlStr = '';
+		
+		 for (let cardList of data) {
+			htmlStr += `
+				 <div id="mozipIin${cardList.begin}">
+	              	   <img id="mozipIin${cardList.begin}" src="../static/images/sample/mozip_ing.svg" alt="recuriIng"
+	                		width="80" class="overlay-image overlay-left" />
+	               </div>
+			`;
+		 }
+		cardList.innerHTML = htmlStr;	
+	}	
+		
+	/*
+	카드 목록 불러오기 함수
+	*/
+	const getCardAll = async () => {
+		// 댓글 목록을 요청할 URL
+		const reqUrl = `/shape/api/meet/list/all`;
+		
+		// Ajax 요청을 보내고 응답을 기다림.
+		try {
+			const response = await axios.get(reqUrl);
+			console.log(response);
+			makeCardElements(response.data);
+			
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	/*
+	체크박스 클릭시 모집중만 나오게.
+	 */
 
-	// '모집중' 체크 박스 찾기 -> 체크 박스 클릭시 이미지 변경.
-	const checkRecruitmentStatus = document.querySelector('label#button.btnDelete');
+	$('#reverseCheck').on('click', function() {
 
-	// 모집중, 모집완료의 이미지를 찾기. 
-	const recruiImg = document.querySelector('img#recruiImg');
+	// 모집중 이미지를 찾기. 
+	const mozipIin = document.querySelector('img#mozipIin' + status.begin);
 
-	// 모집중,모집완료 이미지를 설정하는 함수. -> prti >= max: 모집완료이미지로 변경.
+		// 체크 박스 상태 확인
+		const isChecked = $(this).is(':checked'); // 체크박스가 가지고 있는 속성.
+		alert('체크되었습니다.');
+		
+		// 목록 변화 처리
+		if (isChecked) {
+			// 선택되었을 떄의 동작 -> html 코드 중에이미지가 모집중인 것만 나와야 함. + 목록 불러오기 함수.
+				getCardAll();
+			//TODO: 모집중 체크하면 모집중만 나와야 함. -> 43 줄에서 에러가 남.
+			
+		} else {
+			// 선택해제되었을 떄의 동작.
+		}
+	});
 
-/*
 	/* 
 	찜수 업뎃: 하트 이미지 클릭시 이미지 변경 및 lcnt값의 변경.
 	
@@ -138,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		
 	});
-
+	
 
 
 

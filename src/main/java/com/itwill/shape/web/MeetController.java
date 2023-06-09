@@ -38,15 +38,16 @@ public class MeetController {
 	private final MeetListService meetListService;
 	private final MeetDetailService meetDetailService; // 상세보기 서비스 다시 만들었습니다.
 	private final UserInfoService userInfoService;
+	
 	@GetMapping("/create")
 	public void create() {
 		log.info("GET: create()");
 	}
 	
-	@GetMapping("/update") // update.jsp 테스트용
-	public void update() {
-		log.info("GET: update()");
-	}
+//	@GetMapping("/update") // update.jsp 테스트용
+//	public void update() {
+//		log.info("GET: update()");
+//	}
 	
 	/**
 	 * 0604 정지언
@@ -72,12 +73,11 @@ public class MeetController {
 	 * @param mtid
 	 * @param model
 	 */
-	@GetMapping("/modify")
+	@GetMapping("/update")
 	public void modify(long mtid, Model model) {
 		log.info("modify(mtid={})", mtid);
 		
 		MeetMainDetailDto dto = meetInfoService.read(mtid);
-		
 		model.addAttribute("meet", dto);
 		
 	}
@@ -132,22 +132,25 @@ public class MeetController {
 
 	}
 
-	 /**
-		 * 0604 배선영
-		 * 상세보기 페이지
-		 * @param mtid = id , model
-		 */
-			@GetMapping("/maindetail") 
-			public void maindetail(long id, Model model) {
-			    log.info("maindetail(id = {})", id);
+	/**
+	 * 0604 배선영
+	 * 상세보기 페이지
+	 * @param mtid = id , model
+	*/
+		@GetMapping("/maindetail") 
+		public void maindetail(long id, Model model) {
+			log.info("maindetail(id = {})", id);
 
-			    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
-			    MeetMainDetailDto result = meetDetailService.detailByMtid(id);
-			    
-			    
+		    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
+			MeetMainDetailDto result = meetDetailService.detailByMtid(id);
 
-			    // 뷰에 MeetDetaildto를 전달.
-			    model.addAttribute("meetmaindetail" , result);
+			log.info("resultasdfasdf = {}", id);
+			log.info("resultasdfasdf = {}", result);
+			
+			
+			
+			// 뷰에 MeetDetaildto를 전달.
+			model.addAttribute("meetmaindetail" , result);
 			   
 			}
 
