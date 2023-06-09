@@ -38,7 +38,7 @@ div.signUpBox {
 /* 아이디 및 비밀번호 찾기 */
 .mb-55{margin-bottom: 55px;}
 
-/* meet/create.jsp에 사용 */
+/* meet/create.jsp, update.jsp에 사용 */
 .sub-container {background:#fff;}
 
 .main-container {
@@ -51,7 +51,7 @@ div.signUpBox {
 }
 
 div.meetCreateBox {
-	height: 1800px;
+	height: 2500px;
 	margin-top: 75px;
 	margin-bottom: 75px;
 	margin-left: 300px;
