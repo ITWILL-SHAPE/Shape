@@ -130,6 +130,11 @@
                               <i>${meetmaindetail.mt_cost_info}</i>
                               </li>                
                            </div>
+                           <div id="content" name="content" class="my-2">
+                              <span>📝내용 : </span>
+                              <i>${meetmaindetail.content}</i>
+                              </li>                
+                           </div>
                         </ul>
                      </div>
                      <!-- 로그인한 유저 -->
