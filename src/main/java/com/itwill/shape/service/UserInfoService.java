@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.UserCreateDto;
+import com.itwill.shape.dto.UserInfoFindDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.dto.UserInfoSelectPwdByIdDto;
 import com.itwill.shape.repository.UserInfoRepository;
@@ -43,6 +44,31 @@ public class UserInfoService {
 	}
 	
 	/**
+	 * 하지윤
+	 * 사용자 생성을 위한 메소드
+	 * @param dto
+	 * @return
+	 */
+	public int createMember(UserCreateDto dto) {
+		log.info("createMember(dto = {})", dto);
+		dto.setPwd(passwordEncoder.encode(dto.getPwd()));
+		
+		return userInfoRepository.insertMember(dto.toEntityMember());
+	}
+	
+	/**
+	 * 하지윤
+	 * 사용자 id 중복체크
+	 * @param id
+	 * @return
+	 */
+	public int idDupCheck(String id) {
+		log.info("idDupCheck(id = {})", id);
+		
+		return userInfoRepository.idDupCheck(id);
+	}
+	
+	/**
 	 * 0606 손창민
 	 * DB에서 아규먼트로 전달받은 id와 일치하는 user_info table의 pwd를 inputPwd로 변경
 	 */
@@ -69,29 +95,6 @@ public class UserInfoService {
 		log.info("dto={}", dto);
 		
 		return dto;
-	}
-	
-	/**
-	 * 사용자 생성을 위한 메소드
-	 * @param dto
-	 * @return
-	 */
-	public int createMember(UserCreateDto dto) {
-		log.info("createMember(dto = {})", dto);
-		dto.setPwd(passwordEncoder.encode(dto.getPwd()));
-		
-		return userInfoRepository.insertMember(dto.toEntityMember());
-	}
-	
-	/**
-	 * 사용자 id 중복체크
-	 * @param id
-	 * @return
-	 */
-	public int idDupCheck(String id) {
-		log.info("idDupCheck(id = {})", id);
-		
-		return userInfoRepository.idDupCheck(id);
 	}
 	
 	/**
@@ -129,6 +132,45 @@ public class UserInfoService {
 
 		        // 변환된 byte 배열을 데이터베이스에 저장
 		    return userInfoRepository.imageModify(id,imageData);
+	}
+	
+	
+	/**
+	 * 하지윤
+	 * 해당 이름과 이메일이 일치하는 user의 ID 리턴
+	 * @param name
+	 * @param email
+	 * @return
+	 */
+	public String findUserId(String name, String email) {
+		log.info("findUserId(name = {}, email = {})", name, email);
+		
+		return userInfoRepository.findUserId(name, email);
+	}
+	
+	/**
+	 * 하지윤
+	 * 해당 아이디, 이름, 이메일이 일치하는 유저가 있는지 확인
+	 * @param dto
+	 * @return 0 or 1
+	 */
+	public int checkUserExist(UserInfoFindDto dto) {
+		log.info("checkUserExist(dto = {})", dto);
+		
+		return userInfoRepository.checkUserExist(dto);
+	}
+	
+	/**
+	 * 하지윤
+	 * 비밀번호 새로 설정
+	 * @param id
+	 * @param pwd
+	 * @return
+	 */
+	public int updateUserPwd(String id, String pwd) {
+		log.info("updateUserPwd(id = {}, pwd = {})", id, pwd);
+		
+		return userInfoRepository.updateUserPwd(id, passwordEncoder.encode(pwd));
 	}
 
 }

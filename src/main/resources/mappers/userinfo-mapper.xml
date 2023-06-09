@@ -4,13 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shape.repository.UserInfoRepository">
 
-	<!-- 관리자 생성 insert 문 -->
+	<!-- 하지윤: 관리자 생성 insert 문 -->
 	<insert id="insertAdmin">
 		INSERT INTO USER_INFO (ID, PWD, NAME, DIVISION, JOIN_DATE)
 		VALUES (#{id}, #{pwd}, #{name}, 'ROLE_A', systimestamp)
 	</insert>
 	
-	<!-- 사용자 생성 insert 문 -->
+	<!-- 하지윤: 사용자 생성 insert 문 -->
 	<insert id="insertMember">
 		INSERT INTO USER_INFO (
 			  ID
@@ -35,12 +35,40 @@
 		)
 	</insert>
 	
-	<!-- id 중복체크 -->
+	<!-- 하지윤: id 중복체크 -->
 	<select id="idDupCheck">
 		SELECT COUNT(*) AS TOCNT
 		FROM USER_INFO
 		WHERE ID = #{id}
 	</select>
+	
+	<!-- 하지윤: 아이디 찾기 - 해당 이름과 이메일이 일치하는 사람이 있는지 id 리턴 -->
+	<select id="findUserId" resultType="String">
+		SELECT
+		      UI.ID
+		FROM USER_INFO UI
+		WHERE UI.NAME = #{name}
+		AND UI.EMAIL = #{email}
+	</select>
+	
+	<!-- 하지윤: 해당 아이디, 이름, 이메일이 일치하는 사람이 있는지 확인 -->
+	<select id="checkUserExist" resultType="int">
+		SELECT
+		    COUNT(*)
+		FROM USER_INFO UI
+		WHERE UI.NAME = #{name}
+		AND UI.EMAIL = #{email}
+		<if test="id != null">
+			AND UI.ID = #{id}
+		</if>
+	</select>
+	
+	<!-- 하지윤: 비밀번호 새로 설정 -->
+	<update id="updateUserPwd">
+		UPDATE USER_INFO UI
+		SET UI.PWD = #{pwd}
+		WHERE UI.ID = #{id}
+	</update>
 	
 	<update id="modifyPwdById" parameterType="map">
 		UPDATE user_info

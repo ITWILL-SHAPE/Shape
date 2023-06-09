@@ -34,8 +34,8 @@ public class MailSendService {
 		return authNumber;
 	}
 	
-	// 임시 비밀번호 생성 함수
-	public static String getRamdomPassword(int len) { 
+	// 8자리 임시 비밀번호 생성 함수
+	public static String getRandomPassword() { 
 		char[] charSet = new char[] { 
 				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
 				'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
@@ -46,7 +46,7 @@ public class MailSendService {
 		StringBuffer sb = new StringBuffer(); 
 		log.info("charSet.length : "+charSet.length); 
 			
-		for (int i = 0; i < len; i++) { 
+		for (int i = 0; i < 8; i++) { 
 			idx = (int) (charSet.length * Math.random()); 
 			// 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
 			log.info("idx : "+idx); 
@@ -55,16 +55,36 @@ public class MailSendService {
 		return sb.toString(); 
 	}
 
-	// 이메일 보낼 양식
-	public String joinEmail(String email) {
+	// 인증번호 이메일 보낼 양식
+	public String authNumberContent(String email) {
 		int authNumber = makeRandomNumber();
 		String setFrom = "chipha808@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
 		String toMail = email;
-		String title = "회원 가입 인증 이메일 입니다."; // 이메일 제목
-		String content = "홈페이지를 방문해주셔서 감사합니다." + // html 형식으로 작성 !
-				"<br><br>" + "인증 번호는 " + authNumber + "입니다." + "<br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요."; // 이메일 내용 삽입
+		String title = "안녕하세요. Shape 입니다."; // 이메일 제목
+		// 내용(html)로 작성할 것
+		String content = "본인 인증을 위한 인증번호입니다.<br>" +
+						"아래 인증번호를 확인하여 이메일 주소 인증을 완료해주세요.<br><br>" +
+						"인증 번호는 <b>" + authNumber + "</b> 입니다.<br>" +
+						"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 		mailSend(setFrom, toMail, title, content);
 		return Integer.toString(authNumber);
+	}
+	
+	// 임시 비밀번호 이메일 보낼 양식
+	public String tmpryPwdContent(String email) {
+		String tmpryPwd = getRandomPassword();
+		
+		String setFrom = "chipha808@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
+		String toMail = email;
+		String title = "안녕하세요. Shape 입니다."; // 이메일 제목
+		// 내용(html)로 작성할 것
+		String content = "임시 비밀번호를 발급해드립니다.<br>" +
+						"아래 비밀번호는 임시로 만들어진 비밀번호이니 로그인 후 마이페이지에서 비밀번호를 변경해주시길 바랍니다.<br><br>" +
+						"임시 비밀번호는 <b>" + tmpryPwd + "</b> 입니다.<br>" +
+						"해당 비밀번호로 로그인해주시기 바랍니다.";
+		mailSend(setFrom, toMail, title, content);
+		
+		return tmpryPwd;
 	}
 
 	// 이메일 전송 메소드
