@@ -1,7 +1,6 @@
 /**
- * post-summernote.js
- * create
- * modify
+ * meet-summernote.js
+ * create, update
  */
 /* summernote 편집기 그거 도구박스 */
 $(document)

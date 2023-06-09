@@ -136,7 +136,7 @@
     -->
     <c:forEach items="${listCount}" var="cardList" varStatus="status">
       <c:url var="meetDetailPage" value="/meet/maindetail">
-        <c:param name="id" value="${cardList.mtid}" />
+        <c:param name="mtid" value="${cardList.mtid}" />
       </c:url>
       <div class="col">
         <a href="${meetDetailPage}" class="text-decoration-none" id="disable">
