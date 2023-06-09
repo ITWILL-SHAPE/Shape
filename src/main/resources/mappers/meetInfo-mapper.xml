@@ -112,7 +112,7 @@
 	</select>
 	
 	<!-- 상세 페이지 가져오기 -->
-	<select id="detailByMtid" resultType="com.itwill.shape.dto.MeetMainDetailDto">
+	<select id="detailByMtid" resultType="com.itwill.shape.domain.MeetInfo">
     	select
     	m.mtid
     	, m.crtr_id
@@ -135,10 +135,12 @@
     	, m.content
     	, nvl(m.views, 0)
     	, m.created_date
-	    , u.email
-	from meet_info m
-	LEFT join user_info u on m.crtr_id = u.id
-	where m.mtid = #{mtid}
+    	, u.email
+        , u.name
+		from meet_info m, user_info u
+		WHERE
+	    m.mtid = #{mtid}
+	    and m.crtr_id = u.id
 	</select>
 	
 
