@@ -16,6 +16,7 @@ import lombok.ToString;
 public class MeetInfoUpdateDto {
 	
 	// jsp 폼안에 name속성과 맞추면 됨.
+	private long mtid;
 	private String crtr_id;
 	private String title;
 	private String category;
@@ -38,6 +39,7 @@ public class MeetInfoUpdateDto {
 	public MeetInfo updateEntity() {
 		
 		return MeetInfo.builder()
+				.mtid(mtid)
 				.crtr_id(crtr_id)
 				.title(title)
 				.category(category)

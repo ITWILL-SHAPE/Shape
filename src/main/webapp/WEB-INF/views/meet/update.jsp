@@ -24,7 +24,7 @@
 					<form action="" method="post" class="form-box" id="createForm">
 						<dl>
 							<div>
-								<input type="text" id="crtr_id" name="crtr_id" value="${ meet.crtr_id }" />
+								<input type="hidden" id="crtr_id" name="crtr_id" value="${ meet.crtr_id }" />
 							</div>
 								<dt align="left" class="dt_class">
 									모임 제목 <span class="highlight">*</span>
@@ -43,16 +43,8 @@
 								</dt>
 							<dd align="left">
 								<div class="input-group mb-3">
-									<select class="form-select" aria-label="Default select example" id="category" name="category" value="${ meet.category }">
-										<option selected>카테고리를 선택하세요.</option>
-										<option value="운동·액티비티">운동·액티비티</option>
-										<option value="음식·음료">음식·음료</option>
-										<option value="취미">취미</option>
-										<option value="여행·동행">여행·동행</option>
-										<option value="자기계발·교육">자기계발·교육</option>
-										<option value="동네·친목">동네·친목</option>
-										<option value="문화·예술">문화·예술</option>
-										<option value="기타">기타</option>
+									<select class="form-select" aria-label="Default select example" id="category" name="category">
+										<option selected>${ meet.category }</option>
 									</select>
 								</div>
 							</dd>
@@ -63,12 +55,13 @@
 							<dd align="left">
 								<div>
 									<div class="input-group mb-3">
-										<select class="form-select" name="sido" id="sido" value="${ meet.sido }"></select> 
-										<select class="form-select" name="sigungu" id="sigungu" value="${ meet.sigungu }"></select>
+										<select class="form-select"><option selected>${ meet.sido }</option></select>
+										<select class="form-select"><option selected>${ meet.sigungu }</option></select>
+										
 									</div>
 								</div>
 								<div class="input-group mb-3">
-									<input type="text" id="location" name="location" class="form-control" placeholder="상세주소 및 장소명을 입력해주세요." value="${ meet.location }">
+									<input type="text" id="location" name="location" class="form-control" placeholder="상세주소 및 장소명을 입력해주세요." value="${ meet.location }" readonly>
 								</div>
 							</dd>
 							<br>
@@ -92,10 +85,11 @@
 							<dd id="rcrt_prd_detail" align="left">
 								<div>
 									<div class="input-group mb-3">
-										<input type="date" id="str_date" name="str_date" class="form-control"
-											placeholder="시작날짜" readonly>
+										<fmt:formatDate value="${ meet.created_date }" pattern="yyyy-MM-dd" var="createdDate"/>
+										<input type="text" id="created_date" name="created_date" class="form-control" value="${ createdDate }"
+											 readonly>
 										<input type="date" id="ed_date" name="ed_date" class="form-control"
-											placeholder="종료날짜" value="${ meet.ed_date }">
+											placeholder="종료날짜" value="${ meet.ed_date }" readonly>
 									</div>
 								</div>
 							</dd>
@@ -107,7 +101,7 @@
 								<div class="smallText">
 									<div class="input-group">
 										<input type="number" class="form-control" 
-										placeholder="인원 수를 입력하세요." value="${ meet.nm_ppl }" aria-label="인원 수를 입력하세요." aria-describedby="ppl"> 
+										placeholder="인원 수를 입력하세요." value="${ meet.nm_ppl }" aria-label="인원 수를 입력하세요." aria-describedby="ppl" readonly> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
 									<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력</small>
@@ -121,7 +115,7 @@
 								<div class="input-group">
 									<input type="text" id="mt_cost" name="mt_cost" class="form-control"  placeholder="참가비 없음." value="${ meet.mt_cost }" aria-describedby="mt_cost" readonly>
 									<span class="input-group-text" id="mt_cost">원</span>
-										<select id="mt_cost_info" name="mt_cost_info" class="form-select" onchange="resetInputValue()" value="${ meet.mt_cost_info }" >
+										<select id="mt_cost_info" name="mt_cost_info" class="form-select">
 											<option value="참가비 없음.">---참가비 없음---</option>
 											<option value="다과비">다과비</option>
 											<option value="재료비">재료비</option>
@@ -130,6 +124,7 @@
 											<option value="노쇼방지">노쇼방지</option>
 											<option value="기타">기타</option>
 										</select> 
+										<textarea class="form-control d-none" id="getMtCostInfo" name="getMtCostInfo">${ meet.mt_cost_info }</textarea>
 								</div>
 								<div class="smallText">
 									<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력 예) 5000</small>
@@ -206,6 +201,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 	<script src="../static/summernote/lang/summernote-ko-KR.js"></script>
-	<script src="<%=request.getContextPath()%>/static/js/meet-create.js"></script>
+	<script src="<%=request.getContextPath()%>/static/js/meet-modify.js"></script>
 	<script src="<%=request.getContextPath()%>/static/js/meet-summernote.js"></script>
+	
 <%@ include file="../common/footer.jsp"%>

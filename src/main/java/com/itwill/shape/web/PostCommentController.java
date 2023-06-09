@@ -30,24 +30,7 @@ public class PostCommentController {
     
     private final PostCommentService postCommentService;
     
-	/*
-	 * @PostMapping public ResponseEntity<Integer> createComment(@RequestBody
-	 * PostCommentCreateDto dto) { log.info("createComment(dto={})", dto);
-	 * 
-	 * int result = postCommentService.create(dto);
-	 * 
-	 * return ResponseEntity.ok(result); }
-	 */
-
-//    @GetMapping("/all/{pid}")
-//    public ResponseEntity<List<PostCommentReadDto>> read(@PathVariable long pid) {
-//        log.info("read(pid={})", pid);
-//        
-//        List<PostCommentReadDto> list = postCommentService.read(pid);
-//        log.info("# of Comments = {}", list.size());
-//        
-//        return ResponseEntity.ok(list);
-//    }
+	
     
     // 수빈: 댓글 작성
     @PostMapping
@@ -68,13 +51,6 @@ public class PostCommentController {
     	return ResponseEntity.ok(list);
     }
     
-//    @GetMapping("/all/{pid}")
-//    public void list(Model model, long pid) {
-//    	log.info("list()");
-//    	
-//    	List<PostCommentReadDto> list = postCommentService.read(pid);
-//    	model.addAttribute("comments", list);
-//    }
     
     @DeleteMapping("/{pcid}")
     public ResponseEntity<Integer> deleteComment(@PathVariable long pcid) {

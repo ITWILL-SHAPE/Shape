@@ -44,11 +44,6 @@ public class MeetController {
 		log.info("GET: create()");
 	}
 	
-//	@GetMapping("/update") // update.jsp 테스트용
-//	public void update() {
-//		log.info("GET: update()");
-//	}
-	
 	/**
 	 * 0604 정지언
 	 * 모임 만들기(모임 등록)
@@ -95,7 +90,7 @@ public class MeetController {
 		int result = meetInfoService.update(dto);
 		log.info("모임 수정 결과 = {}", result);
 		
-		return "redirect:/meet/maindetail";
+		return "redirect:/meet/maindetail?mtid=" + dto.getMtid();
 	}
 	
 	/**
@@ -135,19 +130,17 @@ public class MeetController {
 	/**
 	 * 0604 배선영
 	 * 상세보기 페이지
-	 * @param mtid = id , model
+	 * @param mtid = mtid, model
 	*/
 		@GetMapping("/maindetail") 
-		public void maindetail(long id, Model model) {
-			log.info("maindetail(id = {})", id);
+		public void maindetail(long mtid, Model model) {
+			log.info("maindetail(mtid = {})", mtid);
 
 		    // 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
-			MeetMainDetailDto result = meetDetailService.detailByMtid(id);
+			MeetMainDetailDto result = meetDetailService.detailByMtid(mtid);
 
-			log.info("resultasdfasdf = {}", id);
+			log.info("resultasdfasdf = {}", mtid);
 			log.info("resultasdfasdf = {}", result);
-			
-			
 			
 			// 뷰에 MeetDetaildto를 전달.
 			model.addAttribute("meetmaindetail" , result);

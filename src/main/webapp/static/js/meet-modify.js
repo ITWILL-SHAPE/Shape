@@ -3,49 +3,44 @@
  * 정지언
  */
 
-// 카테고리 select value 설정
-var meetCategory = "${meet.category}"; // 서버에서 가져온 값
-var categorySelect = document.getElementById("category");
+const mtCostInfo = document.querySelector('textarea#getMtCostInfo').value;
+$("#mt_cost_info").val(mtCostInfo);
 
-for (var i = 0; i < categorySelect.options.length; i++) {
-  if (categorySelect.options[i].value === meetCategory) {
-    categorySelect.options[i].selected = true;
-    break;
-  }
-categorySelect.disabled = true; // 셀렉트 할 수 없게 하는 코드
 
-}
+// 참가비 없음을 선택하면 readonly
+$("select#mt_cost_info").change(
+	function() {
+		const selectedOption = $(this).val();
+		const inputElement = $("input#mt_cost");
 
-// sido select value 설정
-var meetSido = "${meet.sido}";
-var sidogunguSelect = document.getElementById("sido");
+		if (selectedOption === "참가비 없음.") {
+			inputElement.prop("readonly", true);
+			inputElement.attr("placeholder", "참가비 없음.");
+		} else {
+			inputElement.prop("readonly", false);
+			inputElement.attr("placeholder", "참가비용을 입력하세요.");
+		}
+	});
 
-for (var i = 0; i < sidogunguSelect.options.length; i++) {
-  if (sidogunguSelect.options[i].value === meetSido) {
-    sidogunguSelect.options[i].selected = true;
-    break;
-  }
-}
+// 글자 수 실시간 표시 및 제한
+$("#title").keyup(function(e) {
+	const content = $(this).val();
+	const maxLength = 80;
+	$("#textLengthCheck").text("(" + content.length + " / " + maxLength + ")"); // 실시간 글자 수 표시
 
-// sigungu select value 설정
-var meetSigungu = "${meet.sigungu}";
-var sidogunguSelect = document.getElementById("sigungu");
+	if (content.length > maxLength) {
+		alert("최대 80자까지 입력이 가능합니다.");
+		$(this).val(content.substring(0, maxLength));
+		$('#textLengthCheck').text("(" + maxLength + " / 최대 " + maxLength + "자)");
+	}
 
-for (var i = 0; i < sidogunguSelect.options.length; i++) {
-  if (sidogunguSelect.options[i].value === meetSigungu) {
-    sidogunguSelect.options[i].selected = true;
-    break;
-  }
-}
+	function updateCharCount() {
+		const textarea = document.getElementById("myTextarea");
+		const charCount = document.getElementById("charCount");
+		const text = textarea.value;
+		const count = text.length;
+		charCount.textContent = count;
+	}
+});
 
-// mt_cost_info select value 설정
-var meetCostInfo = "${meet.mt_cost_info}";
-var mtCostInfoSelect = document.getElementById("mt_cost_info");
-
-for (var i = 0; i < mtCostInfoSelect.options.length; i++) {
-  if (mtCostInfoSelect.options[i].value === meetCostInfo) {
-    mtCostInfoSelect.options[i].selected = true;
-    break;
-  }
-}
 

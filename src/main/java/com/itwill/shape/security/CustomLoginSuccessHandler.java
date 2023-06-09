@@ -28,14 +28,14 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		});
 		
 		log.info("ROLE NAMES : {}", roleNames);
-		System.out.println(roleNames.contains("A"));
+		System.out.println(roleNames.contains("ROLE_A"));
 		if(roleNames.contains("A")) {
 			System.out.println("mngr로 이동");
 			response.sendRedirect("/shape/mngr/");
 			return;
 		}
 		
-		if(roleNames.contains("M")) {
+		if(roleNames.contains("ROLE_M")) {
 			System.out.println("user home으로 이동");
 			response.sendRedirect("/shape/");
 			return;

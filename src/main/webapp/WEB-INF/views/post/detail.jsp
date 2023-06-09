@@ -3,10 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
+<!-- postpage detail -->
 <div class="container">
-	<header class="my-2 p-5 text-center">
-		<h1>포스트 상세 보기</h1>
-	</header>
 	<main class="my-2">
 		<section class="card">
 			<form class="card-body" id="modifyForm">
@@ -50,25 +48,19 @@
 			</div>
 		</c:if>
 		<!-- 포스트 상세 보기 카드 -->
+		
 		<section class="my-2 card">
 			<div class="card-header fw-bold">
-				<span>댓글</span> <span id="commentCount">${ post.commentCount }</span>개
-				<!-- <button class="btn" id="btnToggleReply">
-						<img id="toggleBtnIcon"
-							src="../static/assets/icons/toggle2-off.svg" alt="toggle-off"
-							width="32" />
-					</button> -->
+				<span>댓글 </span><span id="commentCount">${ post.commentCount }</span>
 			</div>
 
-			<div class="card-body ">
-				<!-- 댓글 목록 보여줄 영역 -->
+			<div class="card-body "><!-- 댓글 작성, 목록 보여줄 div -->
 
-				<div class="my-2 row">
-					<!-- 내 댓글 작성 div -->
+				<div class="my-2 row"><!-- 내 댓글 작성 div -->
 					<label class="form-label" for="content">나의 댓글</label>
 					<div class="col-10">
 						<textarea class="form-control" id="content"></textarea>
-						<input class="" id="author" />
+						<input class="" id="author" value=""/>
 						<!-- TODO: 로그인 사용자 아이디 -->
 					</div>
 					<div class="col-2">
@@ -76,35 +68,12 @@
 							id="btnAddComment">등록</button>
 					</div>
 				</div>
-
+				
+				<!-- 수빈: 댓글 리스트 div -->
 				<div id="comments"></div>
 
-				<div class="my-2 row">
-					<!-- 댓글 리스트 div -->
-					<c:if test="${comments != null}">
-						<c:forEach items="${ comments }" var="comment">
-							<div class="card">
-								<div>
-									<div class="col">번호 ${comment.pcid}</div>
-									<div class="col">작성자 ${comment.author}</div>
-									<fmt:formatDate value="${comment.modified_date}" var="modified"
-										pattern="yyyy-MM-dd" />
-									<div class="col">작성 날짜 ${modified}</div>
-								</div>
-								<div>${comment.content}</div>
-								<div>
-									<button class="btnDelete btn btn-outline-danger"
-										data-id="${reply.id}">삭제</button>
-									<button class="btnModify btn btn-outline-success"
-										data-id="${reply.id}">수정</button>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
-				</div>
 			</div>
-		</section>
-		<!-- 댓글 등록, 댓글 리스트 카드 -->
+		</section><!-- 댓글 등록, 댓글 리스트 카드 -->
 
 		<div class="d-grid gap-2 col-5 mx-auto">
 			<c:url var="postList" value="/post/list" />

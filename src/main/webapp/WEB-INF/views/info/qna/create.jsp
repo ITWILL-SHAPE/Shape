@@ -4,47 +4,47 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <!-- 지현 qna main(list) page -->
-	<div class="container">
-		<header class="my-2 p-5 text-center">
-			<h1>Q&amp;A</h1>
-			<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
-		</header>
+<div class="container">
+	<header class="my-2 p-5 text-center">
+		<h1>Q&amp;A</h1>
+		<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
+	</header>
 
-		<main class="my-2">
-			<div class="card">
-				<form method="post">
-					<div class="card-body">
-						<div class="my-2">
-							<label class="form-label" for="title">제목</label> <input
-								class="form-control" type="text" id="title" name="title"
-								required autofocus />
-						</div>
-						<div class="my-2">
-							<label class="form-label" for="content">내용</label>
-							<textarea class="form-control" id="content" name="content"
-								required></textarea>
-						</div>
-						<div class="my-2">
-							<label class="form-label" for="writer">작성자 아이디</label> <input
-								class="form-control" type="text" id="writer" name="writer"
-								required />
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox"
-								id="checkbox" checked> 
-								<label class="form-check-label" for="checkbox"> 비밀글 </label>
-						</div>
-						<textarea class="form-control " id="secret" name="secret"
-								></textarea>
+	<main class="my-2">
+		<div class="card">
+			<form method="post">
+				<div class="card-body">
+					<div class="my-2">
+						<label class="form-label" for="title">제목</label> <input
+							class="form-control" type="text" id="title" name="title" required
+							autofocus />
 					</div>
-					<div class="card-footer my-2">
-						<input class="form-control btn btn-outline-primary" id="btnSubmit"
-							type="submit" value="작성 완료" />
+					<div class="my-2">
+						<label class="form-label" for="content">내용</label>
+						<textarea class="form-control" id="content" name="content"
+							required></textarea>
 					</div>
-				</form>
-			</div>
-		</main>
-	</div>
+					<div class="my-2">
+						<label class="form-label" for="writer">작성자 아이디</label>
+						<sec:authentication property="principal.username" var="id" />
+						<input class="form-control" type="text" id="writer" name="writer"
+							value="${ id }" readonly />
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="checkbox"
+							checked> <label class="form-check-label" for="checkbox">
+							비밀글 </label>
+					</div>
+					<textarea class="form-control d-none" id="secret" name="secret"></textarea>
+				</div>
+				<div class="card-footer my-2">
+					<input class="form-control btn btn-outline-primary" id="btnSubmit"
+						type="submit" value="작성 완료" />
+				</div>
+			</form>
+		</div>
+	</main>
+</div>
 </body>
 <script src="<%=request.getContextPath()%>/static/js/infoQnA-create.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

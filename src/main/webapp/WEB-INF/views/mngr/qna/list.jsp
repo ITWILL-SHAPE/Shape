@@ -28,7 +28,7 @@
 </head>
 <body>
 	<%@ include file="../../common/mngr_sidebar.jsp"%>
-	<div class="container-fluid">
+	<div class="container">
 		<header class="my-2 p-5 text-center">
 			<h1>Q&amp;A</h1>
 			<p>관리자</p>
@@ -39,41 +39,41 @@
 				<table class="card-body table table-hover">
 					<thead>
 						<tr>
-							<th>No</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
-							<th>진행상태</th>
+							<th class="text-center" scope="col">No</th>
+							<th class="text-center" scope="col">제목</th>
+							<th class="text-center" scope="col">작성자</th>
+							<th class="text-center" scope="col">작성일</th>
+							<th class="text-center" scope="col">진행상태</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach items="${ infoQnAs }" var="infoQnA">
 							<tr>
-								<td>${ infoQnA.qid }</td>
+								<th scope="row" class="col-1 text-center">${ infoQnA.qid }</th>
 								<c:if test="${infoQnA != null}">
 									<c:choose>
 										<c:when test="${infoQnA.secret.equals('N')}">
-											<td>${ infoQnA.title }</td>
+											<td class="ms-2">${ infoQnA.title }</td>
 										</c:when>
 										<c:otherwise>
-											<td>🔒${ infoQnA.title }</td>
+											<td class="ms-2">🔒${ infoQnA.title }</td>
 										</c:otherwise>
 									</c:choose>
 								</c:if>
-								<td>${ infoQnA.writer }</td>
-								<td><fmt:formatDate value="${ infoQnA.created_date }"
+								<td class="col-2 text-center">${ infoQnA.writer }</td>
+								<td class="col-2 text-center"><fmt:formatDate value="${ infoQnA.created_date }"
 										pattern="yyyy-MM-dd" /></td>
 								<!-- an_title이 null인지 아닌지에 따라 진행상태가 달라짐 -->
 								<c:if test="${infoQnA != null}">
 									<c:choose>
 										<c:when test="${infoQnA.an_title=='확인중'}">
-											<td><c:url var="infoQnAUpdatePage"
+											<td class="col-2 text-center"><c:url var="infoQnAUpdatePage"
 													value="/mngr/qna/modify">
 													<c:param name="qid" value="${ infoQnA.qid }" />
 												</c:url> <a href="${ infoQnAUpdatePage }">답변하기</a></td>
 										</c:when>
 										<c:otherwise>
-											<td><c:url var="infoQnAUpdatePage"
+											<td class="col-2 text-center"><c:url var="infoQnAUpdatePage"
 													value="/mngr/qna/modify">
 													<c:param name="qid" value="${ infoQnA.qid }" />
 												</c:url> <a href="${ infoQnAUpdatePage }">답변완료</a></td>
