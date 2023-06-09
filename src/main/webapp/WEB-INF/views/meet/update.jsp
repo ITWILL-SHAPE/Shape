@@ -24,10 +24,7 @@
 					<form action="" method="post" class="form-box" id="createForm">
 						<dl>
 							<div>
-								<sec:authorize access="isAuthenticated()">
-									<input type="hidden" id="crtr_id" name="crtr_id"
-										value="<sec:authentication property="principal.username"/>" />
-								</sec:authorize>
+								<input type="text" id="crtr_id" name="crtr_id" value="${ meet.crtr_id }" />
 							</div>
 								<dt align="left" class="dt_class">
 									모임 제목 <span class="highlight">*</span>
@@ -210,5 +207,5 @@
 		src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 	<script src="../static/summernote/lang/summernote-ko-KR.js"></script>
 	<script src="<%=request.getContextPath()%>/static/js/meet-create.js"></script>
-	<script src="<%=request.getContextPath()%>/static/js/post-summernote.js"></script>
+	<script src="<%=request.getContextPath()%>/static/js/meet-summernote.js"></script>
 <%@ include file="../common/footer.jsp"%>

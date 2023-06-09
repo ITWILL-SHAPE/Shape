@@ -35,6 +35,12 @@
 		, MT_COST_INFO = #{mt_cost_info}, CONTENT = #{content} where MTID =
 		#{mtid}
 	</update>
+	
+	<!-- 모임 정보 mtid로 불러오기 -->
+	<select id="selectByMtid"
+		resultType="com.itwill.shape.domain.MeetInfo">
+		select * from MEET_INFO where MTID = #{mtid}
+	</select>
 
 	<!-- meetList.jsp에 사용될 모든 sql 문장들 정리. -> service에서 정리 및 합침. -->
 

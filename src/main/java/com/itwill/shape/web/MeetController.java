@@ -38,15 +38,16 @@ public class MeetController {
 	private final MeetListService meetListService;
 	private final MeetDetailService meetDetailService; // 상세보기 서비스 다시 만들었습니다.
 	private final UserInfoService userInfoService;
+	
 	@GetMapping("/create")
 	public void create() {
 		log.info("GET: create()");
 	}
 	
-	@GetMapping("/update") // update.jsp 테스트용
-	public void update() {
-		log.info("GET: update()");
-	}
+//	@GetMapping("/update") // update.jsp 테스트용
+//	public void update() {
+//		log.info("GET: update()");
+//	}
 	
 	/**
 	 * 0604 정지언
@@ -72,12 +73,11 @@ public class MeetController {
 	 * @param mtid
 	 * @param model
 	 */
-	@GetMapping("/modify")
+	@GetMapping("/update")
 	public void modify(long mtid, Model model) {
 		log.info("modify(mtid={})", mtid);
 		
 		MeetMainDetailDto dto = meetInfoService.read(mtid);
-		
 		model.addAttribute("meet", dto);
 		
 	}
