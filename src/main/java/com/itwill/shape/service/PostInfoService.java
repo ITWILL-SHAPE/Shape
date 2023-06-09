@@ -5,11 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.PostInfo;
-import com.itwill.shape.dto.GuideCreateDto;
 import com.itwill.shape.dto.PostCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
 import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
-import com.itwill.shape.dto.PostInfoSelectByKeywordDto;
 import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.dto.PostUpdateDto;
 import com.itwill.shape.repository.PostCommentRepository;
@@ -63,11 +61,9 @@ public class PostInfoService {
 	 * 목록 키워드로 불러오기
 	 * @return
 	 */
-	public List<PostInfoSelectByKeywordDto> readByKeyword(String keyword){
-		log.info("readByKeyword(keyword={})",keyword);
-		List<PostInfo> entity = postInfoRepository.selectWithKeyword(keyword);
-		log.info("entity= {}", entity);
-		return entity.stream().map(PostInfoSelectByKeywordDto::fromEntity).toList();
+	public List<PostListDto> read(String keyword){
+		log.info("read(keyword={})",keyword);
+		return postInfoRepository.selectWithKeyword(keyword);
 	}
 	
 	public List<PostListDto> read(){

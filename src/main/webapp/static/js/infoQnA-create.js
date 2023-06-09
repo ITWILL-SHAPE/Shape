@@ -1,5 +1,6 @@
 /**
  * infoQnA_create < create.jsp 적
+ * 지현 infoQnA 비밀글 체크박스
  */
 document.addEventListener('DOMContentLoaded', () => {
 

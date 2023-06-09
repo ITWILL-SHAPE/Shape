@@ -1,5 +1,5 @@
 package com.itwill.shape.dto;
-
+//지현
 import com.itwill.shape.domain.PostInfo;
 
 import lombok.Data;

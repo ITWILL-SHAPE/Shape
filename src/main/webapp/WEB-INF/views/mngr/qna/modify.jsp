@@ -24,35 +24,11 @@
 <!-- icon -->
 <link rel="shortcut icon" type="image/x-icon"
 	href="<%=request.getContextPath()%>/static/images/common/favicon.ico">
-
-<script type="text/javascript">
- document.addEventListener('DOMContentLoaded', () => {
-     const modifyForm = document.querySelector('#modifyForm');
-     
-     const btnUpdate = document.querySelector('#btnUpdate');
-     btnUpdate.addEventListener('click', () =>{
-         // 제목과 내용이 입력되어 있는 지 체크
-         const titleInput = document.querySelector('input#an_title').value; //input에 입력된 값
-         const content = document.querySelector('textarea#an_comment').value; //textarea에 입력된 값
-         if(title === ''||content ===''){
-             alert('제목과 내용은 반드시 입력하세요.')
-             return;
-         }
-         const check = confirm('변경 내용을 저장할까요?')
-         if(check){
-             modifyForm.action = './update?qid=' +${infoQnA.qid};
-             modifyForm.method = 'post';
-             modifyForm.submit();
-         }
-     })
- });
-</script>
-
 <title>Shape</title>
 </head>
 <body>
 	<%@ include file="../../common/mngr_sidebar.jsp"%>
-	<div class="container-fluid">
+	<div class="container">
 		<header class="my-2 p-5 text-center">
 			<h1>Q&amp;A</h1>
 			<p>관리자 답변</p>
@@ -63,35 +39,34 @@
 				<form class="card-body" id="modifyForm">
 					<!-- 사용자 문의 출력 -->
 					<div class="my-2">
-						<label class="form-label" for="qid">번호</label> <input
-							class="form-control" id="qid" value="${ infoQnA.qid }" readonly />
-					</div>
-					<div class="my-2">
-						<label class="form-label" for="title">제목</label> <input
-							class="form-control" id="title" value="${ infoQnA.title }"
+						<label class="form-label d-none" for="qid">번호</label> <input
+							class="form-control d-none" id="qid" value="${ infoQnA.qid }"
 							readonly />
 					</div>
-					<div class="my-2">
-						<label class="form-label" for="content">내용</label>
-						<textarea class="form-control" id="content" readonly>${ infoQnA.content }</textarea>
-					</div>
-					<div class="my-2">
-						<label class="form-label" for="author">작성자 아이디</label> <input
-							class="form-control" id="author" value="${ infoQnA.writer }"
-							readonly />
-					</div>
-					<div class="my-2">
-						<label class="form-label" for="createdTime">작성 날짜</label>
-						<fmt:formatDate value="${ infoQnA.created_date }"
-							pattern="yyyy-MM-dd" var="created" />
-						<input class="form-control" id="createdTime" value="${ created }"
-							readonly />
+					<!-- 제목 -->
+					<div class="card mb-3">
+						<div class="card-body">
+							<h2 class="card-text">${ infoQnA.title }</h2>
+							<!-- 작성자 -->
+							<p id="author" class="card-text">작성자: ${ infoQnA.writer }</p>
+							<!-- 내용 -->
+							<hr />
+							<div class="my-2">
+								<label class="form-label d-none" for="content">내용</label>
+								<div class="card-text" id="content" style="height: 10rem">${ infoQnA.content }</div>
+							</div>
+							<hr />
+							<!-- 작성날짜 -->
+							<fmt:formatDate value="${ infoQnA.created_date }"
+								pattern="yyyy-MM-dd HH:mm:ss" var="created" />
+							<p class="card-text text-end small" id="created_date">${ created }</p>
+						</div>
 					</div>
 					<!-- 관리자 답변 -->
 					<div class="my-2">
 						<label class="form-label" for="an_title">제목</label> <input
-							class="form-control" type="text" id="an_title"
-							value="답변드립니다." name="an_title" required readonly />
+							class="form-control" type="text" id="an_title" value="답변드립니다."
+							name="an_title" required readonly />
 					</div>
 					<div class="my-2">
 						<label class="form-label" for="an_comment">답변</label>
@@ -115,4 +90,5 @@
 
 	</div>
 </body>
+<script src="<%=request.getContextPath()%>/static/js/infoQnAMngr-modify.js"></script>
 </html>

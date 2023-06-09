@@ -3,15 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
-<!-- 지현 게시판 main(list) page -->
-<!-- 
-게시판 기능 완성하기
-> 1. 검색
-	keyword 어떻게 읽게함? 
-> 6. 페이징
-> 7. 댓글 
- -->
-<!-- 카드로 2개씩 -->
+<!-- 게시판 main(list) postpage -->
 <div class="container">
 	<div class="text-center border bg-body rounded shadow-sm">
 
@@ -60,10 +52,10 @@
 			<!-- 검색 -->
 			<c:url var="postSearch" value="/post/search"></c:url>
 			<form action="${ postSearch }">
-				<div class=" pt-5 w-50 m-auto row">
+				<div class=" pt-5 m-auto row">
 					<div class="col-sm-10">
 						<input class="form-control border-warning" type="text"
-							name="keyword" />
+							name="keyword" id="keyword" />
 					</div>
 					<div class="col-sm-2">
 						<button type="submit" class="form-control btn btn-outline-warning">검색</button>

@@ -16,7 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml" })
+@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/application-context.xml",
+		"file:src/main/webapp/WEB-INF/email-context.xml",
+		"file:src/main/webapp/WEB-INF/security-context.xml" })
 public class PostInfoRepositoryTest {
 	@Autowired
 	private PostInfoRepository postInfoRepository;
@@ -25,7 +27,7 @@ public class PostInfoRepositoryTest {
 	
 	@Test
     public void testSelectWithKeyword() {
-        List<PostInfo> result = postInfoRepository.selectWithKeyword("te");
+        List<PostListDto> result = postInfoRepository.selectWithKeyword("te");
         log.info("result = {}", result);
     }
 	

@@ -3,6 +3,7 @@ package com.itwill.shape.repository;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.UserInfo;
+import com.itwill.shape.dto.UserInfoFindDto;
 
 public interface UserInfoRepository {
 	/**
@@ -13,7 +14,7 @@ public interface UserInfoRepository {
 	 * @param inputPwd
 	 * @return
 	 */
-	int modifyPwdById(@Param("id")String id, @Param("inputPwd")String inputPwd);
+	int modifyPwdById(@Param("id") String id, @Param("inputPwd") String inputPwd);
 	
 	
 	/**
@@ -44,6 +45,33 @@ public interface UserInfoRepository {
 	 * 사용자 아이디 중복 체크
 	 */
 	int idDupCheck(String id);
+	
+	/**
+	 * 0608 하지윤
+	 * 아이디 찾기
+	 * 해당 이름과 이메일이 일치하는 사람의 ID 리턴
+	 * @param name
+	 * @param email
+	 * @return id
+	 */
+	String findUserId(@Param("name") String name, @Param("email") String email);
+	
+	/**
+	 * 0608 하지윤
+	 * 해당 아이디, 이름, 이메일이 일치하는 사람이 있는지 확인
+	 * @param dto
+	 * @return int
+	 */
+	int checkUserExist(UserInfoFindDto dto);
+	
+	/**
+	 * 0608 하지윤
+	 * 비밀번호 새로 설정
+	 * @param id
+	 * @param pwd
+	 * @return
+	 */
+	int updateUserPwd(@Param("id") String id, @Param("pwd") String pwd);
 	
 	
 	/**

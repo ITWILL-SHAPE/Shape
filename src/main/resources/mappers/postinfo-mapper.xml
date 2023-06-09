@@ -24,19 +24,19 @@
 	<!-- 지현 게시판 -->
 	<!-- 수빈 게시판 검색 (키워드) -->
 	<select id="selectWithKeyword"
+		parameterType="String"
 		resultType="com.itwill.shape.dto.PostListDto">
 		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
         from POST_INFO P left join POST_COMMENT C
             on P.PID = C.PID
-        where lower(P.TITLE) like lower('%#{keyword}%') or lower(P.HRS_HD) like lower('%#{keyword}%')   
+        where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
         group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
         order by P.PID desc
 	</select>
 
 	<select id="selectWithCommentCount"
 		resultType="com.itwill.shape.dto.PostListDto">
-		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as
-		RCNT
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
 		from POST_INFO P left join POST_COMMENT C
 		on P.PID = C.PID
 		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
@@ -71,6 +71,8 @@
 		delete from POST_INFO where PID = #{pid}
 	</delete>
 	
-	
+	<select id="count" resultType="int">
+		select count(pid) from POST_INFO
+	</select>
 	
 </mapper>
