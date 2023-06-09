@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
+<!-- postpage detail -->
 <div class="container">
 	<header class="my-2 p-5 text-center">
 		<h1>포스트 상세 보기</h1>

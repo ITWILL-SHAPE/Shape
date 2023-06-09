@@ -1,5 +1,5 @@
 /**
- * post-summernote.js
+ * post-summernote.js 게시판 summernote
  * create
  * modify
  */

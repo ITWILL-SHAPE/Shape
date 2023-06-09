@@ -1,5 +1,5 @@
 package com.itwill.shape.dto;
-
+//지현 postpage detail
 import java.sql.Timestamp;
 
 import com.itwill.shape.domain.PostInfo;

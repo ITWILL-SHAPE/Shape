@@ -2,7 +2,6 @@ package com.itwill.shape.repository;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.PostInfo;
 import com.itwill.shape.dto.PostListDto;
@@ -34,6 +33,5 @@ public interface PostInfoRepository {
 
 	int deleteByPid(long pid);
 
-	List<PostInfo> selectWithKeyword(String keyword);
-
+	List<PostListDto> selectWithKeyword(String keyword);
 }

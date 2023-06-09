@@ -1,5 +1,5 @@
 /**
- * post-detail 
+ * post-detail 지현 
  */
  document.addEventListener('DOMContentLoaded', () => {
      const modifyForm = document.querySelector('#modifyForm');

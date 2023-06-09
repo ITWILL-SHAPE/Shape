@@ -1,5 +1,5 @@
 package com.itwill.shape.dto;
-//지현 큐앤에이 사용자 상세 화면(답변이 없을떄)
+//지현 큐앤에이 사용자 상세 화면
 import java.sql.Timestamp;
 
 import com.itwill.shape.domain.InfoQnA;
