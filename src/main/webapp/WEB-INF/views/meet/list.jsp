@@ -170,7 +170,7 @@
             </c:choose>
             </div>
 
-            <%-- 로그인 상태에 따른 하트 클릭 가능 여부 처리 --%>
+            <%-- 로그인 상태에 따른 하트 클릭 가능 여부 처리
             <script>
               <sec:authorize access="isAuthenticated()">
                 var id = '${id}'; // 사용자 ID
@@ -191,7 +191,7 @@
                   alert('로그인이 필요합니다.');
                 });
               </sec:authorize>
-            </script>
+            </script>  --%>
 
             <div class="card-body">
               <div class="post-inner">
