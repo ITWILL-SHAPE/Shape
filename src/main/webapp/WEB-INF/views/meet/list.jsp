@@ -22,7 +22,7 @@
 
 <!-- css -->
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/static/css/meet-list.css" />
+	href="<%=request.getContextPath()%>/static/css/style.css" />
 </head>
 
 <div class="container-fluid container">
@@ -140,7 +140,7 @@
       </c:url>
       <div class="col">
         <div class="card shadow-sm image-container position-relative">
-          <a href="${meetDetailPage}" class="text-decoration-none">
+          <a id="meetListATag" href="${meetDetailPage}" class="text-decoration-none" >
             <svg idx="${status.begin}" class="bd-placeholder-img card-img-top" width="100%" height="220"
               xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
               preserveAspectRatio="xMidYMid slice" focusable="false">

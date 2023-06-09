@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const currentApplicants = parseInt(document.querySelectorAll(`span#currentApplicants`).textContent);
 			const maxApplicants = parseInt(document.querySelectorAll(`span#maxApplicants`).textContent);
 			
-			if (currentApplicants === maxApplicants) {
+			if (currentApplicants < maxApplicants) {
 				
 			}
 			
