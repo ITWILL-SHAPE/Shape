@@ -20,8 +20,8 @@
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<main id="main_content">
 	<!-- 메인 컨텐츠 시작 -->
+	<main id="main_content">
 		<table class="table">
 			<thead>
 				<tr>

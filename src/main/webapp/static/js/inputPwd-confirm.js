@@ -3,14 +3,14 @@
  * /mypage/memberinfo/confirmPwd.jsp 에서 사용
  */
 document.addEventListener('DOMContentLoaded', () => {
-	const pwdForm = document.querySelector('.pwd_form');
+	const confirmPwdForm = document.querySelector('.confirmPwd_form');
 	const userPwd = document.querySelector('input#userPwd').value;
 	const inputPwd = document.querySelector('input#inputPwd').value;
 	console.log(userPwd);
 
 	const btnConfirm = document.querySelector('button.btn_confirm');
 
-/*
+
 	btnConfirm.addEventListener('click', () => {
 		if (inputPwd === userPwd) {
 			pwdForm.action = '/shape/modifypwd';
@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		pwdForm.method = 'get';
 		pwdForm.submit();
 	});
-*/	
+
+/*
 	btnConfirm.addEventListener('click', () => {
 		const username = $('input[name="username"]').val();
 		const password = $('input[name="password"]').val();
@@ -40,4 +41,5 @@ document.addEventListener('DOMContentLoaded', () => {
 			alert('비밀번호가 틀렸습니다.');
 		})
 	});
+	*/
 });

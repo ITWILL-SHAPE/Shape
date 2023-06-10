@@ -20,41 +20,33 @@
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
+	<!-- 메인콘텐츠 시작 -->
 	<main id="main_content">
-		<!-- 메인콘텐츠 시작 -->
 			<form class="confirmPwd_form">
-				<input type="hidden" name="ReturnUrl" value="">
 				<div class="sub_content">
 					<h3 class="title">비밀번호 재입력</h3>
 					<h4 class="sub_title">
-						본인확인을 위해 <strong>로그인 비밀번호</strong>를 한 번 더 입력해주세요.
+					본인확인을 위해 <strong>로그인 비밀번호</strong>를 한 번 더 입력해주세요.
 					</h4>
-						<sec:authentication property="principal.username" var="username"/>
-						<input type="text" name="username" value="${ username }"/>
-						<input type="password" id="inputPwd" name="password"
-							placeholder="비밀번호를 입력해 주세요">
-						<button class="btn_confirm">확인</button>
-					<!--
+					<input type="password"
+					       id="inputPwd"
+					       name="inputPwd"
+					       placeholder="비밀번호를 입력해 주세요" />
 					<input type="submit"
-						class="btn_confirm" value="확인">
-						  -->
-
-					<input type="hidden" id="userPwd"
-						value="<c:out value='${userPwd}' />">
-					<!--
-					<script>
-						var userPwd = "<c:out value='${userPwd}' />";
-					</script>
-					  -->
-					<!-- 배너 영역 -->
-					<div>
-						<a href="" target="" title="새 창 이동"> <img src="" alt="배너타이틀">
-						</a>
-					</div>
+					       class="btn_login"
+					       value="확인" />
+				</div>
+				<div class="banner_area">
+					<a href=""
+					   target="_blank"
+					   title="새 창 이동">
+						<img src=""
+						     alt="배너 타이틀">
+					</a>
 				</div>
 			</form>
-		<!-- 메인콘텐츠 끝 -->
 	</main>
+	<!-- 메인콘텐츠 끝 -->
 </body>
 </html>
 <%@ include file="../../common/footer.jsp"%>
