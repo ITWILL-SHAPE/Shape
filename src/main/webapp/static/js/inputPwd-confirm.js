@@ -11,17 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const inputPwd = document.querySelector('input#inputPwd').value;
         console.log(inputPwd);
-	
-		//let data = { id: "test", inputpwd: inputPwd};
 		
         try {
-            const response = await axios.post('/shape/confirmpwd', { inputPwd });
-            //const response = await axios.post('/shape/confirmpwd', { data });
+            const response = await axios.post('/shape/confirmpwd', inputPwd);
             console.log(response);
             const isMatched = response.data;
 
             if (isMatched) {
-                window.location.href = '/modifyPwd';
+				//GET 방식
+                window.location.href = '/shape/modifypwd';
             } else {
                 alert('비밀번호가 일치하지 않습니다.');
             }

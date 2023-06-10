@@ -129,10 +129,10 @@ public class MyPageController {
 	@ResponseBody
 	@PostMapping("/confirmpwd")
 	public String confirmPwd(@RequestBody String inputPwd) {
-		log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
+		log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd.substring(0, inputPwd.length() - 1));
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
-		boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
+		boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd.substring(0, inputPwd.length() - 1));
 		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
 		if (isPasswordMatched) {
 			return "true";
@@ -148,7 +148,7 @@ public class MyPageController {
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@PostMapping("/modifypwd")
+	@GetMapping("/modifypwd")
 	public String modifyPwd(String id, String inputPwd, Model model) {
 		log.info("modifyPwd(id={}, inputPwd={})", id, inputPwd);
 
