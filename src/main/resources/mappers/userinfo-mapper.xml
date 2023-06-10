@@ -108,5 +108,12 @@
 	    WHERE id = #{id}
 	</update>
 	
-
+	<!-- 관리자 - 사용자 전체 조회 -->
+	<select id="selectAllUser" resultType="com.itwill.shape.domain.UserInfo">
+		SELECT
+			*
+		FROM USER_INFO
+		WHERE DIVISION = 'ROLE_M'
+	</select> 
+	
 </mapper>

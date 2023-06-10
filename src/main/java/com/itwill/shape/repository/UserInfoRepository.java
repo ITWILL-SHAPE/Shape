@@ -1,5 +1,7 @@
 package com.itwill.shape.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.UserInfo;
@@ -108,5 +110,12 @@ public interface UserInfoRepository {
 	 * @return int (0/1)  
 	 */
 	int imageModify(String id, byte[] ImageData);
+	
+	/**
+	 * 하지윤
+	 * 관리자 - 사용자 조회
+	 * @return List<UserInfo>
+	 */
+	List<UserInfo> selectAllUser();
 	
 }

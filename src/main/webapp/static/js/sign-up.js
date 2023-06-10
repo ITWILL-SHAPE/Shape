@@ -23,6 +23,7 @@ const initPage = function() {
 		todayHighlight: true,
 		changeMonth: true,
 		changeYear: true,
+		maxDate: "D",
 		nextText: '다음 달',
 		prevText: '이전 달'
 	});
