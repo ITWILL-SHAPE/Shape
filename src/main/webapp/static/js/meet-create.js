@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const nm_ppl = document.querySelector('input#nm_ppl').value;
 		if (title === '' || category === '' || sido === '' || sigungu === '' || location === '' ||
 			mt_date === '' || mt_time === '' || ed_date === '' || nm_ppl === '') {
-			alert('필수 입력 항목을 반드시 입력해주세요.');
+			alert('필수입력 항목을 반드시 입력해주세요.');
 			return;
 		}
 

@@ -3,6 +3,55 @@
  * 정지언
  */
 
+ document.addEventListener('DOMContentLoaded', function () {
+	 	const modifyForm = document.querySelector('#modifyForm');
+	 
+		const title = document.querySelector('input#title').value;
+		const mt_date = document.querySelector('input#mt_date').value;
+		const mt_time = document.querySelector('input#mt_time').value;
+		const mt_cost = document.querySelector('input#mt_cost').value;
+		const mt_cost_info = document.querySelector('select#mt_cost_info').value;
+     	const formFile_1 = document.querySelector('input#formFile_1').value;
+     	const formFile_2 = document.querySelector('input#formFile_2').value;
+     	const formFile_3 = document.querySelector('input#formFile_3').value;
+     	const formFile_4 = document.querySelector('input#formFile_4').value;
+     	const formFile_5 = document.querySelector('input#formFile_5').value;
+     	const summernote = document.querySelector('textarea#summernote').value;
+     
+     const btnUpdate = document.querySelector('#btnUpdate');
+     const btnDelete = document.querySelector('#btnDelete');
+     
+     // 삭제 버튼에 클릭 이벤트 리스너(핸들러)를 등록.
+     btnDelete.addEventListener('click', (e) => { 
+         e.preventDefault();
+         
+         const result = confirm('모임을 정말 삭제할까요?');
+         console.log(`삭제 확인 결과 = ${result}`);
+        
+         // 사용자가 confirm 창에서 '확인'을 클릭했을 때
+         if (result) {
+             form.action = 'delete'; 
+             form.method = 'post';
+             form.submit();
+         }
+     });
+     
+	btnUpdate.addEventListener('click', () => {
+		event.preventDefault();
+
+		if (title === '' || mt_date === '' || mt_time === '') {
+			alert('제목과 모임 일정은 필수입력 항목입니다.');
+			return;
+		}
+
+		const check = confirm('모임을 수정하시겠습니까?');
+		if (check) {
+			modifyForm.submit();
+		}
+	});
+     
+ });
+
 const mtCostInfo = document.querySelector('textarea#getMtCostInfo').value;
 $("#mt_cost_info").val(mtCostInfo);
 

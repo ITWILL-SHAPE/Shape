@@ -21,7 +21,7 @@
 							</small>
 						</div>
 					</div>
-					<form action="" method="post" class="form-box" id="createForm">
+					<form action="" method="post" class="form-box" id="modifyForm">
 						<dl>
 							<div>
 								<input type="hidden" id="crtr_id" name="crtr_id" value="${ meet.crtr_id }" />
@@ -137,19 +137,19 @@
 							<dd align="left">
 								<div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_1" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_2" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_3" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_4" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_5" accept="image/*">
 									</div>
 								</div>
 							</dd>
@@ -172,7 +172,7 @@
 								<div class="my-2 text-center">
 									<c:url var="meetList" value="/meet/list" />
 									<a class="mx-3 btn btn-outline-warning" href="${ meetList }">취소</a>
-									<input class="mx-3 btn btn-outline-primary" type="submit"
+									<input class="mx-3 btn btn-outline-primary" type="submit" id="btnUpdate"
 										value="모임 수정하기" />
 									<button class="mx-3 btn btn-outline-danger" id="btnDelete">삭제</button>
 								</div>
