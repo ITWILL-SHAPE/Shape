@@ -5,8 +5,8 @@
 <%@ include file="../common/header.jsp" %>
 
 <body>
-	<div id="detaillmain container">
-      <div class="border bg-body rounded shadow-sm meetCreateBox">
+	<div id="detaillmain" class="container">
+      <div><!-- "border bg-body rounded shadow-sm meetCreateBox" -->
         <div class="my-4">
           <header class="d-grid my-4 col-7 mx-auto m-5 text-center my-2">
                      <h1>모임 상세보기</h1>
@@ -171,30 +171,59 @@
                      </div>
                      
                      <!-- 참여자 목록 -->
-                     <div>
-   						   <p class="my-4">👪GUEST</p> 						
-                           
-                     		<div class="card my-2">
-                     			<div class="card-header fw-bold">
-                     			<button class="btn" id="btnToggleReply">
-                        			<img id="toggleBtnIcon" 
-                            		src="<%=request.getContextPath()%>/static/images/sample/toggle-off.png" 
-                            		alt="toggle-off" width="45"/>
-                   				</button>
-                   				</div>
-                   				<div id="replyToggleDiv" class="collapse">
-                     			<c:forEach items="${ meetmaindetail.prtcpDtoList }" var= "list">	
-	                              <div class="card-body" id="GUEST" name="GUEST">
-	                                 <img id="profile-guest" name="profile-guest" class="user-img" src="../static/images/sample/user.png" alt="host 사진">                             
-	                                 <div id="guest-name" name="guest-name" class="meetdetailuser">이름: ${ list.name }</div>
-	                                 <div id="guest-email" name="guest-email" class="meetdetailemail">이메일:${ list.email }</div> 
-	                              </div>
-	                             </c:forEach> 
-	                             </div>                           
-	                        </div>
-                     	
-                     </div>               
-                  </div>
+						<div>
+							<p class="my-4">👪GUEST</p>
+							<div class="card my-2">
+								<div class="card-header fw-bold">
+									<button class="btn" id="btnToggleReply">
+										<img id="toggleBtnIcon"
+											src="<%=request.getContextPath()%>/static/images/sample/toggle-off.png"
+											alt="toggle-off" width="45" />
+									</button>
+								</div>
+								
+								<!-- guest들은 로그인 한 사람들만 볼 수 있음 -->
+								<!-- 로그인한 HOST 작성자 볼 수 있게 -->
+								<sec:authorize access="isAuthenticated()">
+									<c:set var="login" value="${ meetmaindetail.crtr_id }" />
+									<c:if test="${ login == loginUser }">
+										<div id="replyToggleDiv" class="collapse">
+											<c:forEach items="${ meetmaindetail.prtcpDtoList }"
+												var="list">
+												<div class="card-body" id="GUEST" name="GUEST">
+													<img id="profile-guest" name="profile-guest"
+														class="user-img" src="../static/images/sample/user.png"
+														alt="host 사진">
+													<div id="guest-name" name="guest-name"
+														class="meetdetailuser">이름: ${ list.name }</div>
+													<div id="guest-email" name="guest-email"
+														class="meetdetailemail">이메일:${ list.email }</div>
+												</div>
+											</c:forEach>
+										</div>
+									</c:if>
+									
+									<!-- 로그인한 GUEST USER들도 볼 수 있게 -->
+									<c:if test="${ login != loginUser }">
+										<div id="replyToggleDiv" class="collapse">
+											<c:forEach items="${ meetmaindetail.prtcpDtoList }"
+												var="list">
+												<div class="card-body" id="GUEST" name="GUEST">
+													<img id="profile-guest" name="profile-guest"
+														class="user-img" src="../static/images/sample/user.png"
+														alt="host 사진">
+													<div id="guest-name" name="guest-name"
+														class="meetdetailuser">이름: ${ list.name }</div>
+													<div id="guest-email" name="guest-email"
+														class="meetdetailemail">이메일:${ list.email }</div>
+												</div>
+											</c:forEach>
+										</div>
+									</c:if>
+								</sec:authorize>
+							</div>
+						</div>
+					</div>
                   <!--목록 페이지로 가기 -->
                         <div class="d-grid gap-2 col-6 mx-auto my-4">
                         <c:url var="listPage" value="/meet/list">   
