@@ -61,13 +61,4 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 		</li>
 	</ul>
 </div>
-<style>
-/* 메인 콘텐츠 스타일 */
-/*
-#content {
-   margin-left: 220px; /* 사이드바 너비 + 여백
-   padding: 20px;
-}
-*/
-</style>
 </html>

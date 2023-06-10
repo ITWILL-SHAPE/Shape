@@ -14,7 +14,7 @@
 		FROM meet_info M
 		LEFT JOIN meet_like L ON M.mtid = L.mtid
 		LEFT JOIN meet_prtcp P ON M.mtid = P.mtid
-		WHERE P.prtcp_id = #{ prtcpId }
+		WHERE P.prtcp_id = #{prtcpId}
 		GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
 		M.created_date
 		ORDER BY M.created_date DESC
@@ -28,7 +28,7 @@
 		FROM meet_info M
 		LEFT JOIN meet_like L ON M.mtid = L.mtid
 		LEFT JOIN meet_prtcp P ON M.mtid = P.mtid
-		WHERE M.crtp_id = #{ crtpId }
+		WHERE M.crtr_id = #{crtrId}
 		GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
 		M.created_date
 		ORDER BY M.created_date DESC
@@ -42,7 +42,7 @@
 		FROM meet_info M
 		LEFT JOIN meet_like L ON M.mtid = L.mtid
 		LEFT JOIN meet_prtcp P ON M.mtid = P.mtid
-		WHERE L.id = #{ id }
+		WHERE L.id = #{id}
 		GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
 		M.created_date
 		ORDER BY M.created_date DESC

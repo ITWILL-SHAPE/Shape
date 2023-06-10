@@ -6,20 +6,18 @@
 	namespace="com.itwill.shape.repository.PostInfoRepository">
 
     <!-- 마이페이지 -->
-	<!-- post_comment table에서 pid와 일치하는 댓글 삭제 -->
-	<!-- 
+	<!-- post_info table에서 pid와 일치하는 댓글 삭제 -->
 	<delete id="deleteByPid">
-		DELETE FROM post_info
-		WHERE pid = #{ pid }
+		DELETE FROM post_info 
+		 WHERE pid = #{pid}
 	</delete>
-	  -->
 
-	<!-- post_info table에서 author로 댓글 목록 가져오기 -->
+	<!-- post_info table에서 author(id)로 댓글 목록 가져오기 -->
 	<select id="selectByAuthor"
 		resultType="com.itwill.shape.domain.PostInfo">
 		SELECT *
 		FROM post_info
-		WHERE author = #{ author }
+		WHERE author = #{author}
 	</select>
     <!-- 마이페이지 끝 -->
 
@@ -69,9 +67,6 @@
 		where PID = #{pid}
 	</update>
 
-	<delete id="deleteByPid">
-		delete from POST_INFO where PID = #{pid}
-	</delete>
 	
 	<select id="count" resultType="int">
 		select count(pid) from POST_INFO

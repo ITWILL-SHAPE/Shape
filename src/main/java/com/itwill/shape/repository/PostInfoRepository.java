@@ -20,7 +20,7 @@ public interface PostInfoRepository {
 	/**
 	 * 0608 손창민
 	 * post_info table에서 아규먼트로 넘겨받은 pid와 일치하는 작성글 삭제
-	 * @param pcid
+	 * @param pid
 	 * @return
 	 */
 	int deleteByPid(long pid);

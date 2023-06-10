@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (checkbox.checked) {
 				const pid = checkbox.closest('tr').querySelector('#pid').value;
 				console.log(pid);
+				
 				selectedPids.push({ pid: pid });
 				console.log(selectedPids);
 			}

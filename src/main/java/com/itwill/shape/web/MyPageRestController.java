@@ -30,6 +30,26 @@ public class MyPageRestController {
 	
 	/**
 	 * 0608 손창민
+	 * post_info table에서 pid와 일치하는 작성글을 삭제
+	 * @return
+	 */
+	@DeleteMapping("/deleteposts")
+	public ResponseEntity<Integer> postInfoDeleteByPidDtoList(
+			@RequestBody List<PostInfoDeleteByPidDto> selectedPids) {
+		log.info("postInfoDeleteByPidDtoList(selectedPids={})", selectedPids);
+		
+		for (PostInfoDeleteByPidDto postInfoDeleteByPidDto : selectedPids) {
+			long pid = postInfoDeleteByPidDto.getPid();
+			log.info("pcid={}", pid);
+			
+			postInfoService.deleteByPid(pid);
+		}
+		
+		return ResponseEntity.ok(1);
+	} 
+	
+	/**
+	 * 0608 손창민
 	 * post_comment table에서 pcid와 일치하는 댓글을 삭제
 	 * @return
 	 */
@@ -37,8 +57,7 @@ public class MyPageRestController {
 	@DeleteMapping("/deletecomments")	
 	public ResponseEntity<Integer> postCommentDeleteByPcidDtoList(
 			@RequestBody List<PostCommentDeleteByPcidDto> selectedPcids) {
-		log.info("postCommentDeleteDtoList()");
-		log.info("PostCommentDeleteDtoList={}", selectedPcids);
+		log.info("postCommentDeleteDtoList(selectedPcids={})", selectedPcids);
 		
 		for (PostCommentDeleteByPcidDto postCommentDeleteByPcidDto : selectedPcids) {
 			long pcid = postCommentDeleteByPcidDto.getPcid();
@@ -50,24 +69,4 @@ public class MyPageRestController {
 		return ResponseEntity.ok(1);
 	}
 	
-	/**
-	 * 0608 손창민
-	 * post_info table에서 pid와 일치하는 작성글을 삭제
-	 * @return
-	 */
-	@DeleteMapping("/deleteposts")
-	public ResponseEntity<Integer> postInfoDeleteByPidDtoList(
-			@RequestBody List<PostInfoDeleteByPidDto> selectedPids) {
-		log.info("postInfoDeleteByPidDtoList()");
-		log.info("postInfoDeleteByPidDtoList={}", selectedPids);
-		
-		for (PostInfoDeleteByPidDto postInfoDeleteByPidDto : selectedPids) {
-			long pid = postInfoDeleteByPidDto.getPid();
-			log.info("pcid={}", pid);
-			
-			postInfoService.deleteByPid(pid);
-		}
-		
-		return ResponseEntity.ok(1);
-	} 
 }

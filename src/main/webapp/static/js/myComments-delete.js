@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (checkbox.checked) {
 				const pcid = checkbox.closest('tr').querySelector('#pcid').value;
 				console.log(pcid);
-				selectedComments.push({ pcid: pcid });
+				
+				selectedPcids.push({ pcid: pcid });
 				console.log(selectedPcids);
 			}
 		});

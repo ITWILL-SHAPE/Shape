@@ -25,6 +25,7 @@ public class PostCommentService {
 	
 	/**
 	 * 0608손창민
+	 * MypageRestController에서 사용
 	 * post_comment table에서 pcid와 일치하는 댓글 삭제
 	 * @param pcid
 	 */
@@ -35,12 +36,13 @@ public class PostCommentService {
 	}
 	/**
 	 * 0601 손창민
-	 * post_comment table에서 author와 일치하는 댓글 목록 불러오기
+	 * MypageController에서 사용
+	 * post_comment table에서 author(id)와 일치하는 댓글 목록 불러오기
 	 * @param author(id)
 	 * @return List<PostCommentSelectById> dto
 	 */
 	public List<PostCommentSelectByAuthorDto> selectByAuthor(String author) {
-		log.info("selectByAuthor(author={})", author);
+		log.info("selectByAuthor(author(id)={})", author);
 		
 		List<PostComment> entity = postCommentRepository.selectByAuthor(author);
 		

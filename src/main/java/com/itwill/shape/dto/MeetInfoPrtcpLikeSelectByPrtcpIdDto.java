@@ -1,5 +1,8 @@
 package com.itwill.shape.dto;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
@@ -22,6 +25,7 @@ public class MeetInfoPrtcpLikeSelectByPrtcpIdDto {
 	private String sido; //meet_info
 	private String category; //meet_info
 	private long nm_ppl; // 모집인원수, meet_info
+	private Timestamp created_date; // meet_inf
 	private int lcnt; // count(meet_like.mtid)
 	private int pcnt; // count(meet_prtcp.prtcp_id)
 	

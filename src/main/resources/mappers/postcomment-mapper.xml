@@ -16,16 +16,16 @@
 	<!-- post_comment table에서 pcid와 일치하는 댓글 삭제 -->
 	<delete id="deleteByPcid">
 		DELETE FROM post_comment
-		 WHERE pcid = #{ pcid }
+		 WHERE pcid = #{pcid}
 	</delete>
 	
-	<!-- post_comment table에서 author로 댓글 목록 가져오기 -->
+	<!-- post_comment table에서 author(id)로 댓글 목록 가져오기 -->
 	<select	id="selectByAuthor"
 		resultType="com.itwill.shape.domain.PostComment"
 		>
 		SELECT *
 		  FROM post_comment
-		 WHERE author = #{ author }
+		 WHERE author = #{author}
 	</select>
 	<!-- 마이 페이지 끝 -->
 
