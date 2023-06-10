@@ -5,11 +5,11 @@
 <mapper
 	namespace="com.itwill.shape.repository.PostInfoRepository">
 
-
+    <!-- 마이페이지 -->
 	<!-- post_comment table에서 id, author와 일치하는 댓글 삭제 -->
-	<delete id="deleteByAuthorAndTitle">
+	<delete id="deleteByPid">
 		DELETE FROM post_info
-		WHERE author = #{ author } AND title = #{ title }
+		WHERE pid = #{ pid }
 	</delete>
 
 	<!-- post_info table에서 author로 댓글 목록 가져오기 -->
@@ -19,7 +19,7 @@
 		FROM post_info
 		WHERE author = #{ author }
 	</select>
-
+    <!-- 마이페이지 끝 -->
 
 	<!-- 지현 게시판 -->
 	<!-- 수빈 게시판 검색 (키워드) -->

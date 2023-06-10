@@ -40,7 +40,6 @@ public class MyPageRestController {
 		log.info("postCommentDeleteDtoList()");
 		log.info("PostCommentDeleteDtoList={}", selectedPcids);
 		
-		
 		for (PostCommentDeleteByPcidDto postCommentDeleteByPcidDto : selectedPcids) {
 			long pcid = postCommentDeleteByPcidDto.getPcid();
 			log.info("pcid={}", pcid);
@@ -65,7 +64,6 @@ public class MyPageRestController {
 		for (PostInfoDeleteByPidDto postInfoDeleteByPidDto : selectedPids) {
 			long pid = postInfoDeleteByPidDto.getPid();
 			log.info("pcid={}", pid);
-			
 			
 			postInfoService.deleteByPid(pid);
 		}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.MeetLike;
+import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
@@ -20,6 +21,39 @@ public class MeetListService {
 
 	private final MeetInfoRepository meetInfoRepository;
 	private final MeetLikeRepository meetLikeRepository;
+	/**
+	 * 0610 손창민
+	 * 내가 참여한 모임 목록 불러오기
+	 * @param prtcpId
+	 * @return
+	 */
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId) {
+		log.info("selectByPrtcpId(prtcpId={})", prtcpId);
+		
+		return meetInfoRepository.selectByPrtcpId(prtcpId);
+	}
+	/**
+	 * 0610 손창민
+	 * 내가 개설한 모임 목록 불러오기
+	 * @param crtrId
+	 * @return
+	 */
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrId(String crtrId) {
+		log.info("selectByPrtcpId(crtrId={})", crtrId);
+		
+		return meetInfoRepository.selectByCrtrId(crtrId);
+	}
+	/**
+	 * 0610 손창민
+	 * 내가 찜한 모임 목록 불러오기
+	 * @param id
+	 * @return
+	 */
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectById(String id) {
+		log.info("selectById(id={})", id);
+		
+		return meetInfoRepository.selectById(id);
+	}
 	
 	/**
 	 * 모임 최신순으로 정렬
@@ -107,4 +141,6 @@ public class MeetListService {
 		
 		return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
 	}
+
+
 }

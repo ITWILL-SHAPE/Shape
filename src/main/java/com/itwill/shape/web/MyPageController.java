@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
+import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
 import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
+import com.itwill.shape.service.MeetListService;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
@@ -37,6 +40,7 @@ public class MyPageController {
 	private final PostCommentService postCommentsService;
 	private final PostInfoService postInfoService;
 	private final UserInfoService userInfoService;
+	private final MeetListService meetListService;
 
 	/**
 	 * 0601 김세 나의프로필 정보 불러오기
@@ -76,7 +80,6 @@ public class MyPageController {
 
 	/**
 	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력
-	 * 
 	 * @param pwd, inputPwd
 	 * @return
 	 */
@@ -100,7 +103,6 @@ public class MyPageController {
 
 	/**
 	 * 0604 손창민 비밀번호 수정
-	 * 
 	 * @param pwd, inputPwd
 	 * @return
 	 */
@@ -135,36 +137,59 @@ public class MyPageController {
 
 	/**
 	 * 0604 손창민 내가 참여 중인 모임
-	 * 
-	 * @return
+	 * @param prticpId(id)
+	 * @param model
+	 * @return 
 	 */
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
 	@GetMapping("/active")
-	public String active() {
+	public String readActiveMeet(String prtcpId, Model model) {
 		log.info("active()");
-
+		log.info("readActiveMeet(prtcpId={})", prtcpId);
+		
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId(prtcpId);
+		log.info("readActiveMeet(dto={})", dto);
+		
+		model.addAttribute("activeList", dto);
+		
 		return "/mypage/meet/active";
 	}
 
+	/**
+	 * 0610 손창민 내가 개설한 모임
+	 * @Param prtcpId(id)
+	 * @return
+	 */
 	// 마이페이지 > 모임 > 내가 개설한 모임
 	@GetMapping("/created")
-	public String created() {
-		log.info("created()");
-
+	public String readCreatedMeet(String crtrId, Model model) {
+		log.info("created(prtcpId={})", crtrId);
+		
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByCrtrId(crtrId);
+		model.addAttribute("createdList", dto);
+		
 		return "/mypage/meet/created";
 	}
 
+	/**
+	 * 0610 손창민 내가 찜한 모임
+	 * @param id
+	 * @return
+	 */
 	// 마이페이지 > 모임 > 내가 찜한 모임
 	@GetMapping("/interests")
-	public String interests() {
-		log.info("interests()");
-
+	public String readInterestsMeet(String id, Model model) {
+		log.info("interests(id={})", id);
+		
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectById(id);
+		model.addAttribute("createdList", dto);
+		
 		return "/mypage/meet/interests";
 	}
 
 	// 마이페이지 > 모임 > 최근 본 모임(beta)
 	@GetMapping("/viewed")
-	public String viewed() {
+	public String readViewedMeet() {
 		log.info("viewed()");
 
 		return "/mypage/meet/viewed";
@@ -174,17 +199,18 @@ public class MyPageController {
 	 * 0601 손창민 내가 작성한 글 불러오기
 	 * 
 	 * @param model
-	 * @param id
+	 * @param author(id)
 	 * @return "/mypage/board/myPosts"
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 게시물
 	@GetMapping("/myposts")
-	public String myposts(Model model, String author) {
+	public String readMyposts(Model model, String author) {
 		log.info("myposts()");
 		log.info("id={}", author);
 
 		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("ㅌㅅㅌ");
-		log.info("myposts={}", myposts);
+		log.info("readMyposts(myposts={})", myposts);
+		
 		model.addAttribute("myposts", myposts);
 
 		return "/mypage/board/myPosts";
@@ -194,18 +220,19 @@ public class MyPageController {
 	 * 0601 손창민 내가 작성한 댓글 불러오기
 	 * 
 	 * @param model
-	 * @param id
+	 * @param author(id)
 	 * @return "/mypage/board/myComments"
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 댓글
 	@GetMapping("/mycomments")
-	public String mycomments(Model model, String author) {
+	public String readMycomments(Model model, String author) {
 		log.info("mycomments()");
 		log.info("id={}", author);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
 		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test");
-		log.info("mycomments={}", mycomments);
+		log.info("readMycomments(mycomments={})", mycomments);
+		
 		model.addAttribute("mycomments", mycomments);
 
 		return "/mypage/board/myComments";

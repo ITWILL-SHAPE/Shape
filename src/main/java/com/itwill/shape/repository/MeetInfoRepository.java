@@ -3,6 +3,7 @@ package com.itwill.shape.repository;
 import java.util.List;
 
 import com.itwill.shape.domain.MeetInfo;
+import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 
@@ -15,7 +16,32 @@ public interface MeetInfoRepository {
 	MeetInfo selectByMtid(long mtid); // modify
 	int delete(int i);
 	
+	//마이페이지
+	/**
+	 * 0610 손창민
+	 * 내가 참여 중인 모임 목록 불러오기
+	 * @param prtcpId
+	 * @return
+	 */
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId);
 	
+	/**
+	 * 0610 손창민
+	 * 내가 개설한 모임 목록 불러오기
+	 * @param crtrId
+	 * @return
+	 */
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrId(String crtrId);
+	
+	/**
+	 * 0610 손창민
+	 * 내가 찜한 모임 목록 불러오기
+	 * @param id
+	 * @return
+	 */
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectById(String id);
+	
+	//마이페이지 끝
 	
 	// MEET_list에서 사용할 코드들 - 김지민
 	
