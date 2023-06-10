@@ -47,7 +47,7 @@
 							<dd align="left">
 								<div class="input-group mb-3">
 									<select class="form-select" aria-label="Default select example" id="category" name="category">
-										<option selected>카테고리를 선택하세요.</option>
+										<option value="" selected>카테고리를 선택하세요.</option>
 										<option value="운동·액티비티">운동·액티비티</option>
 										<option value="음식·음료">음식·음료</option>
 										<option value="취미">취미</option>
@@ -83,9 +83,9 @@
 								<div>
 									<div class="input-group mb-3">
 										<input type="date" id="mt_date"
-											name="mt_date" class="form-control" placeholder="날짜" value>
+											name="mt_date" class="form-control" placeholder="날짜">
 										<input type="time" id="mt_time"
-											name="mt_time" class="form-control" placeholder="시간" value>
+											name="mt_time" class="form-control" placeholder="시간">
 									</div>
 								</div>
 							</dd>
@@ -110,7 +110,7 @@
 							<dd align="left">
 								<div class="smallText">
 									<div class="input-group">
-										<input type="number" class="form-control" 
+										<input type="number" class="form-control" id="nm_ppl"
 										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl"> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
@@ -123,7 +123,7 @@
 							</dt>
 							<dd id="mt_cost_detail" align="left">
 								<div class="input-group">
-									<input type="text" id="mt_cost" name="mt_cost" class="form-control"  placeholder="참가비 없음." aria-describedby="mt_cost"readonly>
+									<input type="text" id="mt_cost" name="mt_cost" class="form-control"  placeholder="참가비 없음." aria-describedby="mt_cost" readonly>
 									<span class="input-group-text" id="mt_cost">원</span>
 										<select id="mt_cost_info" name="mt_cost_info" class="form-select" onchange="resetInputValue()">
 											<option value="참가비 없음.">---참가비 없음---</option>
@@ -170,7 +170,7 @@
 								<div>
 									<div class="my-2">
 										<!-- DB에 들어갈 때 p태그가 생기는 문제 -->
-										<textarea class="form-control" id="summernote" name="content" placeholder="모임을 소개해주세요." required></textarea>
+										<textarea class="form-control" id="summernote" name="content" placeholder="모임을 소개해주세요."></textarea>
 									</div>
 								</div>
 							</dd>
@@ -178,15 +178,10 @@
 						<div>
 							<div>
 								<div class="my-2 text-center">
-									<c:url var="meetList" value="/meet/list" />
-									<a class="btn btn-warning" href="${ meetList }">취소</a>
-									
-									<!-- 수정하기 페이지 test 용 -->
-									<c:url var="meetModifyPage" value="/meet/update" />
-									<a class="btn btn-primary" href="${ meetModifyPage }">수정하기 Test</a>
+									<a class="btn btn-warning" id="btnCancel">취소</a>
 									
 									<input class="btn btn-outline-primary" type="submit"
-										value="모임 만들기" />
+										id="btnCreate" value="모임 만들기" />
 								</div>
 							</div>
 						</div>

@@ -168,11 +168,13 @@
 						</dl>
 						<div>
 							<div>
+								<br>
 								<div class="my-2 text-center">
 									<c:url var="meetList" value="/meet/list" />
-									<a class="btn btn-warning" href="${ meetList }">취소</a>
-									<input class="btn btn-outline-primary" type="submit"
+									<a class="mx-3 btn btn-outline-warning" href="${ meetList }">취소</a>
+									<input class="mx-3 btn btn-outline-primary" type="submit"
 										value="모임 수정하기" />
+									<button class="mx-3 btn btn-outline-danger" id="btnDelete">삭제</button>
 								</div>
 							</div>
 						</div>
