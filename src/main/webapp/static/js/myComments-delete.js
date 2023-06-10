@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					throw new Error('댓글 삭제에 실패했습니다.');
 				}
 				// 삭제 작업 완료 후 처리할 내용
-				location.reload(); // 페이지 새로고침
+				//location.reload(); // 페이지 새로고침
+				table.innerText = response.data;
 			})
 			.catch((error) => {
 				// 에러 발생 시 처리할 내용
