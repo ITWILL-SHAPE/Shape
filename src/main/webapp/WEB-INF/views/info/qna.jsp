@@ -27,10 +27,13 @@
 					<c:forEach items="${ infoQnAs }" var="infoQnA" varStatus="loop">
 						<tr>
 							<th scope="row" class="col-1 text-center">${loop.index + 1}</th>
+							<!-- 로그인 되어있는 경우: 비밀글은 해당 사용자만 열람가능, 공개글은 열람 가능 -->
+							<!-- 로그아웃 되어있는 경우: 비밀글은 열람 불가, 공개글 열람 가능 -->
 							<!-- secret 여부에 따라 제목이 달라짐 -->
 							<c:if test="${infoQnA != null}">
 								<c:choose>
 									<c:when test="${infoQnA.secret.equals('N')}">
+									<!-- 공개글은 로그인, 로그아웃 여부 상관없이 열람 가능 -->
 										<td class="ms-2"><c:url var="infoQnADetailPage"
 												value="/info/qna/detail">
 												<c:param name="qid" value="${ infoQnA.qid }" />
@@ -39,21 +42,29 @@
 											href="${ infoQnADetailPage }">${ infoQnA.title }</a></td>
 									</c:when>
 									<c:otherwise>
+									<!-- 비공개글은 해당 사용자만 열람 가능 -->
 										<!-- security에서 사용자의 id를 가져오고 변수명으로 id를 사용 -->
-										<sec:authentication property="principal.username" var="id" />
-										<c:set value="${ infoQnA.writer }" var="writer" />
 										<c:choose>
-											<c:when test="${ id == writer }">
-												<td class="ms-2" ><c:url var="infoQnADetailPage"
-														value="/info/qna/detail">
-														<c:param name="qid" value="${ infoQnA.qid }" />
-													</c:url> <a
-													class="link-offset-2 link-underline link-underline-opacity-0 link-dark"
-													href="${ infoQnADetailPage }">🔒비밀글입니다.</a></td>
+											<c:when test="sec:authorize access!=isAnonymous()">
+												<sec:authentication property="principal.username" var="id" />
+												<c:set value="${ infoQnA.writer }" var="writer" />
+												<c:choose>
+													<c:when test="${ id == writer }">
+														<td class="ms-2"><c:url var="infoQnADetailPage"
+																value="/info/qna/detail">
+																<c:param name="qid" value="${ infoQnA.qid }" />
+															</c:url> <a
+															class="link-offset-2 link-underline link-underline-opacity-0 link-dark"
+															href="${ infoQnADetailPage }">🔒비밀글입니다.</a></td>
+													</c:when>
+													<c:otherwise>
+														<td class="ms-2"><a
+															class="link-offset-2 link-underline link-underline-opacity-0 link-dark">🔒비밀글입니다.</a></td>
+													</c:otherwise>
+												</c:choose>
 											</c:when>
 											<c:otherwise>
-												<td class="ms-2"><a
-													class="link-offset-2 link-underline link-underline-opacity-0 link-dark">🔒비밀글입니다.</a></td>
+												<td class="ms-2"><a class="link-offset-2 link-underline link-underline-opacity-0 link-dark">🔒비밀글입니다.</a></td>
 											</c:otherwise>
 										</c:choose>
 									</c:otherwise>
@@ -85,6 +96,13 @@
 				</tbody>
 			</table>
 		</div>
+
+		<div class="my-2 d-grid d-md-flex">
+			<c:url var="qnaPaging" value="/info/qna/paging" />
+			<button onclick="location.href='${ qnaPaging }'"
+				class="btn btn-primary" type="button">페이징 적용</button>
+		</div>
+
 		<div class="my-2 d-grid d-md-flex justify-content-md-end">
 			<c:url var="qnaCreate" value="/info/qna/create" />
 			<button onclick="location.href='${ qnaCreate }'"
