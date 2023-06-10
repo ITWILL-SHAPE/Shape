@@ -70,6 +70,14 @@
 		WHERE UI.ID = #{id}
 	</update>
 	
+	<!-- 하지윤: 사용자 encoding 된 pwd 찾기 -->
+	<select id="findUserPwd" resultType="String">
+		SELECT
+			UI.PWD
+		FROM USER_INFO UI
+		WHERE UI.ID = #{id}
+	</select>
+	
 	<update id="modifyPwdById" parameterType="map">
 		UPDATE user_info
         SET pwd = #{inputPwd}

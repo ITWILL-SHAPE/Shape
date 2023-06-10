@@ -172,5 +172,25 @@ public class UserInfoService {
 		
 		return userInfoRepository.updateUserPwd(id, passwordEncoder.encode(pwd));
 	}
+	
+	
+	/**
+	 * 하지윤
+	 * 비밀번호 확인
+	 * User의 id와 pwd를 받으면 해당 아이디에 인코드된 패스워드를 들고와
+	 * 비교한 후 boolean 리턴
+	 * 
+	 * @param id
+	 * @param pwd
+	 * @return boolean
+	 */
+	public boolean confirmUser(String id, String pwd) {
+		log.info("confirmUser(id = {}, pwd = {})", id, pwd);	
+		
+		// 해당 아이디에 있는 User 비밀번호를 찾음.
+		String dbPassword = userInfoRepository.findUserPwd(id);
+		
+		return passwordEncoder.matches(pwd, dbPassword);
+	}
 
 }

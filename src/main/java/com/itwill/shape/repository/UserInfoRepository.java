@@ -73,6 +73,14 @@ public interface UserInfoRepository {
 	 */
 	int updateUserPwd(@Param("id") String id, @Param("pwd") String pwd);
 	
+	/**
+	 * 하지윤
+	 * DB에 있는 pwd를 리턴
+	 * @param id
+	 * @return
+	 */
+	String findUserPwd(String id);
+	
 	
 	/**
 	 * 로그인한 id를 이용하여 user의 정보읽기
