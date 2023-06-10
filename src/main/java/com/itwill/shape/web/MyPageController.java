@@ -210,15 +210,4 @@ public class MyPageController {
 
 		return "/mypage/board/myComments";
 	}
-	
-	/**
-	 * 0607 손창민 myComments 페이지 댓글 삭제 기능
-	 * @param ids
-	 * @return
-	 */
-	@GetMapping("/mycomments-delete")
-	public String deleteComments() {
-		
-		return "";
-	}
 }

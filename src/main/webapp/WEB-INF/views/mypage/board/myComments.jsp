@@ -1,9 +1,8 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../common/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../../common/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +21,7 @@
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<main id="main_content">
+	<!-- 메인 컨텐츠 시작 -->
 		<table class="table">
 			<thead>
 				<tr>
@@ -42,12 +42,7 @@
 					<tr>
 						<td>
 						<input type="checkbox"
-						           id="row-checkbox" />
-						</td>
-						<td>
-						<input type="hidden"
-						       id="pcid"
-						       value="${ mycomments.pcid }" />
+						       id="row-checkbox" />
 						</td>
 						<td>${ loop.index + 1 }</td>
 						<td class="row-content">${ mycomments.content }</td>
@@ -55,12 +50,18 @@
 						<fmt:formatDate value="${ mycomments.created_date }"
 								        pattern="yyyy-MM-dd HH:mm" />
 						</td>
+						<td>
+						<input type="hidden"
+						       id="pcid"
+						       value="${ mycomments.pcid }" />
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<button class="delete-button">댓글 삭제</button>
 	</main>
+	<!-- 메인 컨텐츠 끝 -->
 	<footer>
 		<%@ include file="../../common/footer.jsp"%>
 	</footer>

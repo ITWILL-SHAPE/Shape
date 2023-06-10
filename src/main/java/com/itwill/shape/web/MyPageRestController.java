@@ -53,7 +53,7 @@ public class MyPageRestController {
 	
 	/**
 	 * 0608 손창민
-	 * post_info table에서 id, title와 일치하는 댓글을 삭제
+	 * post_info table에서 pid와 일치하는 작성글을 삭제
 	 * @return
 	 */
 	@DeleteMapping("/deleteposts")
@@ -63,14 +63,10 @@ public class MyPageRestController {
 		log.info("postInfoDeleteByPidDtoList={}", selectedPids);
 		
 		for (PostInfoDeleteByPidDto postInfoDeleteByPidDto : selectedPids) {
-//			String author = postInfoDeletDto.getAuthor();
-//			String title = postInfoDeletDto.getTitle();
 			long pid = postInfoDeleteByPidDto.getPid();
-//			log.info("author={}", author);
-//			log.info("title={}", title);
 			log.info("pcid={}", pid);
 			
-			// commentAuthor와 commentContent를 기반으로 post-comment 테이블에서 해당 댓글을 삭제하는 작업 수행
+			
 			postInfoService.deleteByPid(pid);
 		}
 		

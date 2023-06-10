@@ -20,10 +20,9 @@
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<main>
+	<main id="main_content">
 		<!-- 메인콘텐츠 시작 -->
-		<section class="main_content">
-			<form class="pwd_form">
+			<form class="confirmPwd_form">
 				<input type="hidden" name="ReturnUrl" value="">
 				<div class="sub_content">
 					<h3 class="title">비밀번호 재입력</h3>
@@ -54,7 +53,6 @@
 					</div>
 				</div>
 			</form>
-		</section>
 		<!-- 메인콘텐츠 끝 -->
 	</main>
 </body>
