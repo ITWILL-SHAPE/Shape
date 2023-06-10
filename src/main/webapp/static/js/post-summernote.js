@@ -3,6 +3,12 @@
  * create
  * modify
  */
+/* summernote link */
+document.write(
+	'<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">'
+	, '<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>' 
+	, '<script src="../static/summernote/lang/summernote-ko-KR.js"></script>');
+
 /* summernote 편집기 그거 도구박스 */
 $(document)
 	.ready(

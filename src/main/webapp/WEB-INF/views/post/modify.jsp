@@ -4,14 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!-- postpage modify -->
-<!-- summernote link -->
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script src="../static/summernote/lang/summernote-ko-KR.js"></script>
-<!-- summernote link -->
 <div class="container">
 	<header class="my-2 p-5 text-center">
 		<h1>게시글 수정</h1>

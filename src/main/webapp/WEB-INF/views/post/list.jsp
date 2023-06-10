@@ -5,15 +5,13 @@
 <%@ include file="../common/header.jsp"%>
 <!-- 게시판 main(list) postpage -->
 <div class="container">
-	<div class="text-center border bg-body rounded shadow-sm">
+	<div class="border bg-body rounded shadow-sm">
 
 		<header class="my-2 pt-5 text-center">
 			<h1>게시판</h1>
 		</header>
 
-
 		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
-
 			<!-- 글쓰기 버튼 -->
 			<div class="d-grid my-2 col-5 mx-auto" style="height: 4rem;">
 				<c:url var="postCreate" value="/post/create" />
@@ -21,7 +19,7 @@
 					class="btn btn-warning" type="button">글쓰기</button>
 			</div>
 
-			<div class="row row-cols-1 row-cols-md-2 g-4 p-2">
+			<div class="row row-cols-1 row-cols-md-2 gd-4 p-2">
 				<c:forEach items="${ posts }" var="postInfo">
 					<c:url var="postDetailPage" value="/post/detail">
 						<c:param name="pid" value="${ postInfo.pid }" />
@@ -52,7 +50,7 @@
 			<!-- 검색 -->
 			<c:url var="postSearch" value="/post/search"></c:url>
 			<form action="${ postSearch }">
-				<div class=" pt-5 m-auto row">
+				<div class=" pt-4 m-auto row">
 					<div class="col-sm-10">
 						<input class="form-control border-warning" type="text"
 							name="keyword" id="keyword" />
