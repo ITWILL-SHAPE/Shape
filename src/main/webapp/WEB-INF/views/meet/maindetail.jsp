@@ -206,7 +206,7 @@
            </div> 
          </div>     
   		<script src=" <%=request.getContextPath()%>/static/js/meet-maindetaill.js"></script>	
-  		<script src=" <%=request.getContextPath()%>/static/js/meet-hostdetaill.js"></script>
+  		
 </body>
 
 <%@ include file="../common/footer.jsp"%>

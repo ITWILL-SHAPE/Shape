@@ -129,7 +129,7 @@
 	
 	document.addEventListener('DOMContentLoaded', () => {
 		// 참여자 목록 표시 (div)
-		const guest = document.querySelector('div#GUEST');
+		//const guest = document.querySelector('div#GUEST');
 	
 		// 부트스트랩 Collapse 객체를 생성 - 초기 상태는 화면에서 안보이는 상태
 	    const bsCollapse = new bootstrap.Collapse('div#replyToggleDiv', {toggle: false});
@@ -152,7 +152,7 @@
 	        } else {
 	            toggleBtnIcon.src = '../static/images/sample/toggle-off.png';
 	            toggleBtnIcon.alt = 'toggle-off';
-	            // guest.innerHTML = '';
+	            //guest.innerHTML = '';
 	        }
 	    
 	    });
