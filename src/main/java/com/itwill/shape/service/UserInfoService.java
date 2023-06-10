@@ -184,13 +184,14 @@ public class UserInfoService {
 	 * @param pwd
 	 * @return boolean
 	 */
-	public boolean confirmUser(String id, String pwd) {
-		log.info("confirmUser(id = {}, pwd = {})", id, pwd);	
+	public boolean confirmUser(String id, String inputPwd) {
+		log.info("confirmUser(id = {}, inputPwd = {})", id, inputPwd);	
 		
 		// 해당 아이디에 있는 User 비밀번호를 찾음.
 		String dbPassword = userInfoRepository.findUserPwd(id);
+		log.info("confirmUser(dbPassword{})", dbPassword);
 		
-		return passwordEncoder.matches(pwd, dbPassword);
+		return passwordEncoder.matches(inputPwd, dbPassword);
 	}
 
 }

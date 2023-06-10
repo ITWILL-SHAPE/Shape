@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
@@ -80,27 +82,68 @@ public class MyPageController {
 
 	/**
 	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력
+	 * 
 	 * @param pwd, inputPwd
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정 > 비밀번호 재입력
-	@GetMapping("/confirmpwd")
-	public String confirmPwd(String id, String inputPwd, Model model) {
-		log.info("confirmPwd(id={}, inputPwd={})", id, inputPwd);
+//	@GetMapping("/confirmpwd")
+//	public String confirmPwd(String id, String inputPwd, Model model) {
+//		log.info("confirmPwd(id={}, inputPwd={})", id, inputPwd);
+//
+//		//UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
+//		//log.info("confirmPwd(dto={})", dto);
+//
+//		//String userPwd = dto.getPwd();
+//		//log.info("confirmPwd(userPwd={})", userPwd);
+//		
+//		//model.addAttribute("userPwd", userPwd);
+//		
+//		boolean isTrue = userInfoService.confirmUser("drj9812", "drj9812");	
+//		log.info("confirmPwd(isTrue={})",isTrue);
+//		
+//		model.addAttribute("isTrue", isTrue);
+//		
+//		return "/mypage/memberinfo/confirmPwd";
+//	}
 
-		UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
-		log.info("confirmPwd(dto={})", dto);
+	/**
+	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력 페이지
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/confirmpwdpage")
+	public String confirmPwdPage(String id) {
+		log.info("confirmPwdPage(id={})", id);
 
-		String userPwd = dto.getPwd();
-		log.info("confirmPwd(userPwd={})", userPwd);
-
-		model.addAttribute("userPwd", userPwd);
-		
 		return "/mypage/memberinfo/confirmPwd";
 	}
 
 	/**
+	 * 06010 손창민 비밀번호 수정 전 비밀번호 재입력
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/confirmpwd")
+	public String confirmPwd(@RequestBody String inputPwd) {
+		log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
+
+		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
+		boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
+		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
+		if (isPasswordMatched) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+
+	/**
 	 * 0604 손창민 비밀번호 수정
+	 * 
 	 * @param pwd, inputPwd
 	 * @return
 	 */
@@ -111,7 +154,7 @@ public class MyPageController {
 
 		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
 		log.info("modifyPwd(result={})", result);
-		
+
 		UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
 		log.info("modifyPwd(dto={})", dto);
 
@@ -119,7 +162,7 @@ public class MyPageController {
 		log.info("modifyPwd(userPwd={}", userPwd);
 
 		model.addAttribute("userPwd", userPwd);
-		
+
 		return "/mypage/memberinfo/modifyPwd";
 	}
 
@@ -133,25 +176,27 @@ public class MyPageController {
 
 	/**
 	 * 0604 손창민 내가 참여 중인 모임
+	 * 
 	 * @param prticpId(id)
 	 * @param model
-	 * @return 
+	 * @return
 	 */
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
 	@GetMapping("/active")
 	public String readActiveMeet(String prtcpId, Model model) {
 		log.info("readActiveMeet(prtcpId={})", prtcpId);
-		
+
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId("test");
 		log.info("readActiveMeet(dto={})", dto);
-		
+
 		model.addAttribute("activeList", dto);
-		
+
 		return "/mypage/meet/active";
 	}
 
 	/**
 	 * 0610 손창민 내가 개설한 모임
+	 * 
 	 * @Param prtcpId(id)
 	 * @return
 	 */
@@ -159,17 +204,18 @@ public class MyPageController {
 	@GetMapping("/created")
 	public String readCreatedMeet(String crtrId, Model model) {
 		log.info("readCreatedMeet(prtcpId={})", crtrId);
-		
+
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByCrtrId("test");
 		log.info("readCreatedMeet(dto={})", dto);
-		
+
 		model.addAttribute("createdList", dto);
-		
+
 		return "/mypage/meet/created";
 	}
 
 	/**
 	 * 0610 손창민 내가 찜한 모임
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -177,12 +223,12 @@ public class MyPageController {
 	@GetMapping("/interests")
 	public String readInterestsMeet(String id, Model model) {
 		log.info("readInterestsMeet(id={})", id);
-		
+
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectById("test");
 		log.info("readInterestsMeet(dto={})", dto);
-		
+
 		model.addAttribute("interestsList", dto);
-		
+
 		return "/mypage/meet/interests";
 	}
 
@@ -208,7 +254,7 @@ public class MyPageController {
 
 		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("test");
 		log.info("readMyposts(myposts={})", myposts);
-		
+
 		model.addAttribute("myposts", myposts);
 
 		return "/mypage/board/myPosts";
@@ -229,7 +275,7 @@ public class MyPageController {
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
 		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test2");
 		log.info("readMycomments(mycomments={})", mycomments);
-		
+
 		model.addAttribute("mycomments", mycomments);
 
 		return "/mypage/board/myComments";

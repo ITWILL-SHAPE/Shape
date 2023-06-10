@@ -44,7 +44,6 @@ public class MyPageRestController {
 			
 			postInfoService.deleteByPid(pid);
 		}
-		
 		return ResponseEntity.ok(1);
 	} 
 	
@@ -65,8 +64,6 @@ public class MyPageRestController {
 			
 			postCommentService.deleteByPcid(pcid);
 		}
-		
 		return ResponseEntity.ok(1);
 	}
-	
 }
