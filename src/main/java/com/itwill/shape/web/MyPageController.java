@@ -182,7 +182,7 @@ public class MyPageController {
 		log.info("interests(id={})", id);
 		
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectById(id);
-		model.addAttribute("createdList", dto);
+		model.addAttribute("interestsList", dto);
 		
 		return "/mypage/meet/interests";
 	}

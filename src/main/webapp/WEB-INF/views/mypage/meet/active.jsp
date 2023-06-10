@@ -27,17 +27,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${ meet }" var="meet">
+			<c:forEach items="${ activeList }" var="activeList">
 				<tr>
-					<td>${ meet.mtid }</td>
-					<td>${ meet.title }</td>
-					<td>${ meet.mt_date }</td>
+					<td>${ activeList.mtid }</td>
+					<td>${ activeList.title }</td>
+					<td>${ activeList.mt_date }</td>
 					<!--<td>${ meet.image }</td>-->
-					<td>${ meet.sido }</td>
-					<td>${ meet.category }</td>
-					<td>${ meet.nm_ppl }</td>
-					<td>${ meet.lcnt }</td>
-					<td>${ meet.pcnt }</td>
+					<td>${ activeList.sido }</td>
+					<td>${ activeList.category }</td>
+					<td>${ activeList.nm_ppl }</td>
+					<td>${ activeList.lcnt }</td>
+					<td>${ activeList.pcnt }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
