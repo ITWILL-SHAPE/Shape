@@ -34,7 +34,7 @@
 							</dt>
 							<dd align="left">
 							  <div class="input-group">
-							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." oninput="updateCharCount()" required>
+							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." oninput="updateCharCount()" autofocus required>
 							  </div>
 							  <div class="smallText">
 							    <small id="textLengthCheck" class="form-text text-muted">(0 / 80)</small>
@@ -46,7 +46,7 @@
 							</dt>
 							<dd align="left">
 								<div class="input-group mb-3">
-									<select class="form-select" aria-label="Default select example" id="category" name="category">
+									<select class="form-select" aria-label="Default select example" id="category" name="category" required>
 										<option value="" selected>카테고리를 선택하세요.</option>
 										<option value="운동·액티비티">운동·액티비티</option>
 										<option value="음식·음료">음식·음료</option>
@@ -72,7 +72,7 @@
 									</div>
 								</div>
 								<div class="input-group mb-3">
-									<input type="text" id="location" name="location" class="form-control" placeholder="상세주소 및 장소명을 입력해주세요." value>
+									<input type="text" id="location" name="location" class="form-control" placeholder="상세주소 및 장소명을 입력해주세요." required>
 								</div>
 							</dd>
 							<br>
@@ -83,9 +83,9 @@
 								<div>
 									<div class="input-group mb-3">
 										<input type="date" id="mt_date"
-											name="mt_date" class="form-control" placeholder="날짜">
+											name="mt_date" class="form-control" placeholder="날짜" required>
 										<input type="time" id="mt_time"
-											name="mt_time" class="form-control" placeholder="시간">
+											name="mt_time" class="form-control" placeholder="시간" required>
 									</div>
 								</div>
 							</dd>
@@ -97,9 +97,9 @@
 								<div>
 									<div class="input-group mb-3">
 										<input type="date" id="str_date" name="str_date" class="form-control"
-											placeholder="시작날짜" readonly>
+											placeholder="시작날짜" readonly />
 										<input type="date" id="ed_date" name="ed_date" class="form-control"
-											placeholder="종료날짜" value>
+											placeholder="종료날짜" required />
 									</div>
 								</div>
 							</dd>
@@ -111,7 +111,7 @@
 								<div class="smallText">
 									<div class="input-group">
 										<input type="number" class="form-control" id="nm_ppl"
-										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl"> 
+										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl" required /> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
 									<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력</small>
@@ -123,7 +123,7 @@
 							</dt>
 							<dd id="mt_cost_detail" align="left">
 								<div class="input-group">
-									<input type="text" id="mt_cost" name="mt_cost" class="form-control"  placeholder="참가비 없음." aria-describedby="mt_cost" readonly>
+									<input type="text" id="mt_cost" name="mt_cost" class="form-control"  placeholder="참가비 없음." aria-describedby="mt_cost" readonly />
 									<span class="input-group-text" id="mt_cost">원</span>
 										<select id="mt_cost_info" name="mt_cost_info" class="form-select" onchange="resetInputValue()">
 											<option value="참가비 없음.">---참가비 없음---</option>

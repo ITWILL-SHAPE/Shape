@@ -31,7 +31,7 @@
 								</dt>
 							<dd align="left">
 							  <div class="input-group">
-							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value="${ meet.title }" oninput="updateCharCount()" required>
+							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value="${ meet.title }" oninput="updateCharCount()" autofocus required>
 							  </div>
 							  <div class="smallText">
 							    <small id="textLengthCheck" class="form-text text-muted">(0 / 80)</small>
