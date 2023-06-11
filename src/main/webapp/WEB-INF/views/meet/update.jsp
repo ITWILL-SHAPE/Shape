@@ -25,6 +25,7 @@
 						<dl>
 							<div>
 								<input type="hidden" id="crtr_id" name="crtr_id" value="${ meet.crtr_id }" />
+								<input type="hidden" id="mtid" name="mtid" value="${ meet.mtid }" />
 							</div>
 								<dt align="left" class="dt_class">
 									모임 제목 <span class="highlight">*</span>
@@ -170,11 +171,10 @@
 							<div>
 								<br>
 								<div class="my-2 text-center">
-									<c:url var="meetList" value="/meet/list" />
-									<a class="mx-3 btn btn-outline-warning" href="${ meetList }">취소</a>
+									<a class="mx-3 btn btn-warning" id="btnCancel">취소</a>
 									<input class="mx-3 btn btn-outline-primary" type="submit" id="btnUpdate"
 										value="모임 수정하기" />
-									<button class="mx-3 btn btn-outline-danger" id="btnDelete">삭제</button>
+									<button class="mx-3 btn btn-outline-danger" type="button" id="btnDelete">삭제</button>
 								</div>
 							</div>
 						</div>

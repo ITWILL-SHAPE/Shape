@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script defer src="static/js/userPwd-confirm.js"></script>
+<script defer src="static/js/userPwd-modify.js"></script>
 <title>마이페이지 > 회원정보 > 비밀번호 수정</title>
 <style>
 	.tip_list {
@@ -20,8 +20,8 @@
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<!-- 메인콘텐츠 시작 -->
-	<main class="main_content">
+	<!-- 메인 콘텐츠 시작 -->
+	<main id="main_content">
 		<form class="modifyPwd_form">
 			<h3 class="title">비밀번호 변경</h3>
 			<!-- 참고사항 시작 -->
@@ -73,14 +73,18 @@
 			<!-- 버튼영역 시작 -->
 			<div class="btn_area">
 				<div class="btn_wrap">
-					<input type="submit" class="btn_submit" value="변경완료" /> <input
-						type="submit" class="btn_cancel" value="취소" />
+					<input type="submit"
+					       class="btn_submit"
+					       value="변경완료" /> 
+					<input type="submit"
+					       class="btn_cancel"
+					       value="취소" />
 				</div>
 			</div>
 			<!-- 버튼영역 끝 -->
 		</form>
 	</main>
-	<!-- 메인콘텐츠 끝 -->
+	<!-- 메인 콘텐츠 끝 -->
 </body>
 </html>
 <%@ include file="../../common/footer.jsp"%>

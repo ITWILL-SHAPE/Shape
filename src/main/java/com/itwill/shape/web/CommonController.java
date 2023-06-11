@@ -1,16 +1,13 @@
 package com.itwill.shape.web;
 
-import java.util.Map;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 public class CommonController {
 	
@@ -40,14 +37,6 @@ public class CommonController {
 	@GetMapping("/test/testHandler")
 	public void test() {
 		log.info("test()");
-	}
-	
-	@PostMapping("/attach/file")
-	@ResponseBody
-	public ResponseEntity<Integer> fileAttach(Map<Integer, Object> data) {
-		System.out.println(data);
-		
-		return ResponseEntity.ok(1);
 	}
 	
 }

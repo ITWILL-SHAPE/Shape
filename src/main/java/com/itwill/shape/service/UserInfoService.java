@@ -72,11 +72,10 @@ public class UserInfoService {
 	 * 0606 손창민
 	 * DB에서 아규먼트로 전달받은 id와 일치하는 user_info table의 pwd를 inputPwd로 변경
 	 */
-	public int modifyPwdById(String id, String inputPwd) {
-		log.info("id={}", id);
-		log.info("inputPwd={}", inputPwd);
+	public int modifyPwdById(String id, String newPwd) {
+		log.info("modifyPwdById(id={}, inputPwd={})", id, newPwd);
 		
-		return userInfoRepository.modifyPwdById(id, inputPwd);
+		return userInfoRepository.modifyPwdById(id, newPwd);
 	}
 	
 	
@@ -192,6 +191,17 @@ public class UserInfoService {
 		log.info("confirmUser(dbPassword{})", dbPassword);
 		
 		return passwordEncoder.matches(inputPwd, dbPassword);
+	}
+	/**
+	 * 0611손창민
+	 * 회원탈퇴 유저정보 삭제
+	 * @param id
+	 * @return
+	 */
+	public int deleteUserInfoById(String id) {
+		log.info("deleteUserInfoById(id={})", id);
+		
+		return userInfoRepository.deleteUserInfoById(id);
 	}
 
 }

@@ -9,18 +9,12 @@
 <meta charset="UTF-8">
 <script defer src="static/js/inputPwd-confirm.js"></script>
 <title>마이페이지 > 회원정보 > 비밀번호 수정</title>
-<style>
-.main_content {
-	margin-left: 15rem;
-	padding: 20px;
-}
-</style>
 </head>
 <body>
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<!-- 메인콘텐츠 시작 -->
+	<!-- 메인 콘텐츠 시작 -->
 	<main id="main_content">
 			<form class="confirmPwd_form">
 				<div class="sub_content">
@@ -37,16 +31,17 @@
 					       value="확인" />
 				</div>
 				<div class="banner_area">
-					<a href=""
+					<a href="https://www.itwilledu.net/cmn/eduCrseMain/1000000/all/CRSE_00000000000620eduCrseMainDetail.do"
 					   target="_blank"
 					   title="새 창 이동">
-						<img src=""
-						     alt="배너 타이틀">
+						<img src="https://www.itwilledu.net/cmn/cmm/fms/getImage.do?atchFileId=FILE_000000000003810"
+						     alt="배너 타이틀"
+						     style="width: 400px; height: 250px;">
 					</a>
 				</div>
 			</form>
 	</main>
-	<!-- 메인콘텐츠 끝 -->
+	<!-- 메인 콘텐츠 끝 -->
 </body>
 </html>
 <%@ include file="../../common/footer.jsp"%>

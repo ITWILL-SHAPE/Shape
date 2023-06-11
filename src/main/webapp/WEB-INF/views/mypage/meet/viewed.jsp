@@ -8,17 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 > 모임 > 최근 본 모임(beta)</title>
-<style>
-#main_content {
-	margin-left: 15rem;
-	padding: 20px;
-}
-</style>
 </head>
 <body>
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
+	<!-- 메인 컨텐츠 시작 -->
 	<main id="main_content">
 		<div>
 			<table class="table">
@@ -58,6 +53,7 @@
 			</table>
 		</div>
 	</main>
+	<!-- 메인 컨텐츠 끝 -->
 	<footer>
 		<%@ include file="../../common/footer.jsp"%>
 	</footer>

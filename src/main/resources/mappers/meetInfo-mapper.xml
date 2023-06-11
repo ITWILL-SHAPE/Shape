@@ -72,7 +72,7 @@
       #{mt_cost}, #{mt_cost_info}, #{img_1}, #{content}, sysdate) </insert> -->
 
    <!-- 모임 삭제 -->
-   <delete id="delete">
+   <delete id="deleteByMtid">
       delete from MEET_INFO where MTID = #{mtid}
    </delete>
 

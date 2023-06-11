@@ -22,10 +22,13 @@
 		<link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/static/images/common/favicon.ico">
 		<title>Shape</title>
 	</head>
-	<body>
-		<h1>공지사항 게시판 관리자</h1>
+	<body >
+		<div class="container">
+			<div class="my-2 p-5 text-center">
+				<p>관리자 공지사항 list</p>
+			</div>
 		
-		<div class="container-fluid">
+		
 			<main class="my-2">
 				<div class="card">
 					<table class="card-body table table-hover">
@@ -37,14 +40,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${ notices }" var="notice">
+							<c:forEach items="${ notices }" var="notice" varStatus="status">
 								<tr>
 									<c:choose>
 										<c:when test="${ notice.fix == -1 }">
 											<td>📢</td>
 										</c:when>
 										<c:otherwise>
-											<td>${ notice.nid }</td>
+											<td>${ status.count }</td>
 										</c:otherwise>
 									</c:choose>
 									<td>
@@ -69,7 +72,7 @@
 			<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous"></script> <!-- 지우면 안됨 -->
 			
 		</div>
 	</body>

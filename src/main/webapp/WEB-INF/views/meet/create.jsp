@@ -178,9 +178,9 @@
 						<div>
 							<div>
 								<div class="my-2 text-center">
-									<a class="btn btn-warning" id="btnCancel">취소</a>
+									<a class="mx-3 btn btn-warning" id="btnCancel">취소</a>
 									
-									<input class="btn btn-outline-primary" type="submit"
+									<input class="mx-3 btn btn-outline-primary" type="submit"
 										id="btnCreate" value="모임 만들기" />
 								</div>
 							</div>

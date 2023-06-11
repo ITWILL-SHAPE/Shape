@@ -6,8 +6,11 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<h1>Notice detail</h1>
 		<div class="container">
+			<div class="my-2 p-5 text-center">
+				<h1>공지사항</h1>
+			</div>
+		
 			<main class="my-2">
 			<section class="card">
 				<div>
