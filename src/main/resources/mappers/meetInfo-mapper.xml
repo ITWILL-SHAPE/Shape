@@ -111,69 +111,57 @@
    <!-- 인기순으로 select문 -->
    <select id="selectOrderByPopularity"
       resultType="com.itwill.shape.dto.MeetListCountDto">
-      select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
-      as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title
-      from MEET_INFO M
-      left join MEET_LIKE L
-      on M.mtid = L.mtid
-      left join MEET_PRTCP P
-      on M.mtid
-      = P.mtid
-      group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl,
-      M.title
-      order by count(L.mtid) desc
+      SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
+      count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
+      FROM MEET_INFO M
+      LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
+      LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+      GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
+      M.CREATED_DATE
+       ORDER BY count(L.mtid) DESC
    </select>
 
    <!-- 키워드 검색 select문 -->
    <select id="selectByKeyword"
       resultType="com.itwill.shape.dto.MeetListCountDto">
-      select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
-      as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title, M.create_date
-      from MEET_INFO M
-      left join MEET_LIKE L
-      on M.mtid = L.mtid
-      left join
-      MEET_PRTCP P
-      on M.mtid = P.mtid
-      where title like '%' + #{title} + '%'
-      group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
-      M.create_date
-      order by M.create_date desc
+      SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
+      count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
+       FROM MEET_INFO M
+      LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
+      LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+      where lower(M.title) like lower('%' || #{title} || '%')
+      GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
+      M.CREATED_DATE
+      order by M.CREATED_DATE DESC
    </select>
 
    <!-- 지역 select문 -->
    <select id="selectByLocation"
       resultType="com.itwill.shape.dto.MeetListCountDto">
-      select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
-      as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title, M.create_date
-      from MEET_INFO M
-      left join MEET_LIKE L
-      on M.mtid = L.mtid
-      left join
-      MEET_PRTCP P
-      on M.mtid = P.mtid
-      where sido like '%' + #{sido} + '%'
-      group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
-      M.create_date
-      order by M.create_date desc
+      SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
+      count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
+       FROM MEET_INFO M
+      LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
+      LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+      where sido = #{sido}
+       GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
+      M.CREATED_DATE
+      order by M.CREATED_DATE DESC
    </select>
 
    <!-- 분야 select문 -->
    <select id="selectByCategory"
       resultType="com.itwill.shape.dto.MeetListCountDto">
-      select M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
-      as LCNT, count(P.prtcp_id) as PCNT, M.nm_ppl, M.title, M.create_date
-      from MEET_INFO M
-      left join MEET_LIKE L
-      on M.mtid = L.mtid
-      left join
-      MEET_PRTCP P
-      on M.mtid = P.mtid
-      where category like '%' + #{category} +
-      '%'
-      group by M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
-      M.create_date
-      order by M.create_date desc
+       SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
+      count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
+       FROM MEET_INFO M
+      LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
+      LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+      where category = #{category}
+       GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title,
+      M.CREATED_DATE
+      order by M.CREATED_DATE DESC
+      
    </select>
 
    <!-- 상세 페이지 가져오기 -->

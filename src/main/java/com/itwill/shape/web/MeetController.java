@@ -126,6 +126,46 @@ public class MeetController {
 		model.addAttribute("listCount", dto);
 
 	}
+	
+	/**
+	 * 0611 김지민
+	 * @param category
+	 * @param model
+	 */
+	
+	@GetMapping("/search")
+	public void search(String category, String sidoValue, String sortBy, Model model) {
+	    log.info("search(requestParam={}, {}, {})", category, sidoValue, sortBy);
+
+	    // 카테고리에 따른 검색 로직
+	    if (category != null) {
+	        List<MeetListCountDto> dto = meetListService.readByCategory(category);
+	        model.addAttribute("searchList", dto);
+	        model.addAttribute("category", category);
+	    }
+
+	    // 시도에 따른 검색 로직
+	    if (sidoValue != null) {
+	        List<MeetListCountDto> dto = meetListService.readByLocation(sidoValue);
+	        model.addAttribute("searchList", dto);
+	        model.addAttribute("sidoValue", sidoValue);
+	    }
+
+	   
+
+		// 정렬에 따른 검색 로직
+		if (sortBy != null && sortBy.equals("popular")) {
+			List<MeetListCountDto> dto = meetListService.readByPopularity();
+			model.addAttribute("searchList", dto);
+			model.addAttribute("sortBy", sortBy);
+		} else {
+			List<MeetListCountDto> dto = meetListService.readByCreateTime();
+			model.addAttribute("searchList", dto);
+			model.addAttribute("sortBy", sortBy);
+		}
+	    
+	}
+
 
 	/**
 	 * 0604 배선영
