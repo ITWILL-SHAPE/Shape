@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			//const response = await axios.post('/shape/confirmpwd', { params: { inputPwd } });
 			console.log(response);
 			const isMatched = response.data;
-
+			//유저가 입력한 비밀번호(inputPwd)와 유저의 비밀번호와 일치하면
 			if (isMatched) {
 				if (inputPwd !== newPwd || inputPwd !== rePwd) {
 					if (newPwd === rePwd) {
@@ -46,11 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
 									modifyPwdForm.submit();
 								} else {
 									cosole.error(error);
+									alert('비밀번호 변경 실패. 관리자에게 문의해주세요.');
 								}
 							} catch (error) {
 								console.error(error);
 								// 변경 실패 처리
-								alert('비밀번호 변경 실패');
+								alert('비밀번호 변경 실패. 관리자에게 문의해주세요.');
 							}
 						} else {
 							alert('영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력해주세요');
@@ -59,13 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
 						alert('새로운 비밀번호를 확인해주세요.');
 					}
 				} else {
-					alert('현재 비밀번호와 새로운 비밀번호가 일치하지 않습니다.');
+					alert('현재 비밀번호와 새로운 비밀번호가 일치합니다.');
 				}
 			} else {
 				alert('현재 비밀번호가 일치하지 않습니다.');
 			}
 		} catch (error) {
-			console.error(error);
+			alert('비밀번호 변경 실패. 관리자에게 문의해주세요.');
 		}
 
 	});

@@ -9,18 +9,12 @@
 <meta charset="UTF-8">
 <script defer src="static/js/inputPwd-confirm.js"></script>
 <title>마이페이지 > 회원정보 > 비밀번호 수정</title>
-<style>
-.main_content {
-	margin-left: 15rem;
-	padding: 20px;
-}
-</style>
 </head>
 <body>
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<!-- 메인콘텐츠 시작 -->
+	<!-- 메인 콘텐츠 시작 -->
 	<main id="main_content">
 			<form class="confirmPwd_form">
 				<div class="sub_content">
@@ -47,7 +41,7 @@
 				</div>
 			</form>
 	</main>
-	<!-- 메인콘텐츠 끝 -->
+	<!-- 메인 콘텐츠 끝 -->
 </body>
 </html>
 <%@ include file="../../common/footer.jsp"%>

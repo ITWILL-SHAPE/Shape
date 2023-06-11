@@ -20,8 +20,8 @@
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<!-- 메인콘텐츠 시작 -->
-	<main class="main_content">
+	<!-- 메인 콘텐츠 시작 -->
+	<main id="main_content">
 		<form class="modifyPwd_form">
 			<h3 class="title">비밀번호 변경</h3>
 			<!-- 참고사항 시작 -->
@@ -84,7 +84,7 @@
 			<!-- 버튼영역 끝 -->
 		</form>
 	</main>
-	<!-- 메인콘텐츠 끝 -->
+	<!-- 메인 콘텐츠 끝 -->
 </body>
 </html>
 <%@ include file="../../common/footer.jsp"%>

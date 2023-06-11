@@ -155,6 +155,7 @@ public class MyPageController {
 	@GetMapping("/modifypwdpage")
 //		public String modifyPwdPage(String id, String inputPwd, Model model) {
 	public String modifyPwdPage() {
+		log.info("modifyPwdPage()");
 //			log.info("modifyPwd(id={}, inputPwd={})", id, inputPwd);
 //
 //			int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
@@ -177,7 +178,8 @@ public class MyPageController {
 	public String modifyPwd(String id, @RequestBody String newPwd) {
 		log.info("modifyPwd(id={}, inputPwd={})", id, newPwd.substring(0, newPwd.length() - 1));
 
-		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode(newPwd.substring(0, newPwd.length() - 1)));
+		int result = userInfoService.modifyPwdById("drj9812",
+				passwordEncoder.encode(newPwd.substring(0, newPwd.length() - 1)));
 		log.info("modifyPwd(result={})", result);
 
 		if (result == 1) {
@@ -207,7 +209,7 @@ public class MyPageController {
 	public String readActiveMeet(String prtcpId, Model model) {
 		log.info("readActiveMeet(prtcpId={})", prtcpId);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId("test");
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId("test2");
 		log.info("readActiveMeet(dto={})", dto);
 
 		model.addAttribute("activeList", dto);

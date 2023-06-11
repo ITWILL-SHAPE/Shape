@@ -9,12 +9,6 @@
 <meta charset="UTF-8">
 <title>마이페이지 > 게시판 > 내가 작성한 댓글</title>
 <script defer src="static/js/myPosts-delete.js"></script>
-<style>
-#main_content {
-	margin-left: 15rem;
-	padding: 20px;
-}
-</style>
 </head>
 <body>
 	<div id="sidebar">
