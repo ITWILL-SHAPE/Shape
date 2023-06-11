@@ -16,7 +16,7 @@ public interface UserInfoRepository {
 	 * @param inputPwd
 	 * @return
 	 */
-	int modifyPwdById(@Param("id") String id, @Param("inputPwd") String inputPwd);
+	int modifyPwdById(@Param("id") String id, @Param("newPwd") String newPwd);
 	
 	
 	/**

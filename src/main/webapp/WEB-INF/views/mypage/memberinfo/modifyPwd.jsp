@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script defer src="static/js/userPwd-confirm.js"></script>
+<script defer src="static/js/userPwd-modify.js"></script>
 <title>마이페이지 > 회원정보 > 비밀번호 수정</title>
 <style>
 	.tip_list {
@@ -73,8 +73,12 @@
 			<!-- 버튼영역 시작 -->
 			<div class="btn_area">
 				<div class="btn_wrap">
-					<input type="submit" class="btn_submit" value="변경완료" /> <input
-						type="submit" class="btn_cancel" value="취소" />
+					<input type="submit"
+					       class="btn_submit"
+					       value="변경완료" /> 
+					<input type="submit"
+					       class="btn_cancel"
+					       value="취소" />
 				</div>
 			</div>
 			<!-- 버튼영역 끝 -->

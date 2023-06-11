@@ -80,7 +80,7 @@
 	
 	<update id="modifyPwdById" parameterType="map">
 		UPDATE user_info
-        SET pwd = #{inputPwd}
+        SET pwd = #{newPwd}
         where id = #{id}
 	</update>
 	

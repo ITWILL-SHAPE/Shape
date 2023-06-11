@@ -128,14 +128,15 @@ public class MyPageController {
 	 */
 	@ResponseBody
 	@PostMapping("/confirmpwd")
-	public String confirmPwd(@RequestBody String inputPwd) {
-	//public String confirmPwd(@RequestParam("inputPwd") String inputPwd) {
+	public String confirmPwd(String id, @RequestBody String inputPwd) {
+		// public String confirmPwd(@RequestParam("inputPwd") String inputPwd) {
 		log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd.substring(0, inputPwd.length() - 1));
-		//log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
+		// log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
-		boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd.substring(0, inputPwd.length() - 1));
-		//boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
+		boolean isPasswordMatched = userInfoService.confirmUser("drj9812",
+				inputPwd.substring(0, inputPwd.length() - 1));
+		// boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
 		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
 		if (isPasswordMatched) {
 			return "true";
@@ -145,28 +146,45 @@ public class MyPageController {
 	}
 
 	/**
-	 * 0604 손창민 비밀번호 수정
+	 * 0604 손창민 비밀번호 수정 페이지
 	 * 
-	 * @param pwd, inputPwd
+	 * @param
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@GetMapping("/modifypwd")
-	public String modifyPwd(String id, String inputPwd, Model model) {
-		log.info("modifyPwd(id={}, inputPwd={})", id, inputPwd);
-
-		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
-		log.info("modifyPwd(result={})", result);
-
-		UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
-		log.info("modifyPwd(dto={})", dto);
-
-		String userPwd = dto.getPwd();
-		log.info("modifyPwd(userPwd={}", userPwd);
-
-		model.addAttribute("userPwd", userPwd);
+	@GetMapping("/modifypwdpage")
+//		public String modifyPwdPage(String id, String inputPwd, Model model) {
+	public String modifyPwdPage() {
+//			log.info("modifyPwd(id={}, inputPwd={})", id, inputPwd);
+//
+//			int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
+//			log.info("modifyPwd(result={})", result);
+//
+//			UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
+//			log.info("modifyPwd(dto={})", dto);
+//
+//			String userPwd = dto.getPwd();
+//			log.info("modifyPwd(userPwd={}", userPwd);
+//
+//			model.addAttribute("userPwd", userPwd);
 
 		return "/mypage/memberinfo/modifyPwd";
+	}
+
+	// 마이페이지 > 회원정보 > 비밀번호 수정
+	@ResponseBody
+	@PostMapping("/modifypwd")
+	public String modifyPwd(String id, @RequestBody String newPwd) {
+		log.info("modifyPwd(id={}, inputPwd={})", id, newPwd.substring(0, newPwd.length() - 1));
+
+		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode(newPwd.substring(0, newPwd.length() - 1)));
+		log.info("modifyPwd(result={})", result);
+
+		if (result == 1) {
+			return "true";
+		} else {
+			return "false";
+		}
 	}
 
 	// 마이페이지 > 회원정보 > 회원탈퇴(beta)

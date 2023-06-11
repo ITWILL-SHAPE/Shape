@@ -37,11 +37,12 @@
 					       value="확인" />
 				</div>
 				<div class="banner_area">
-					<a href=""
+					<a href="https://www.itwilledu.net/cmn/eduCrseMain/1000000/all/CRSE_00000000000620eduCrseMainDetail.do"
 					   target="_blank"
 					   title="새 창 이동">
-						<img src=""
-						     alt="배너 타이틀">
+						<img src="https://www.itwilledu.net/cmn/cmm/fms/getImage.do?atchFileId=FILE_000000000003810"
+						     alt="배너 타이틀"
+						     style="width: 400px; height: 250px;">
 					</a>
 				</div>
 			</form>
