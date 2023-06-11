@@ -40,14 +40,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${ notices }" var="notice">
+							<c:forEach items="${ notices }" var="notice" varStatus="status">
 								<tr>
 									<c:choose>
 										<c:when test="${ notice.fix == -1 }">
 											<td>📢</td>
 										</c:when>
 										<c:otherwise>
-											<td>${ notice.nid }</td>
+											<td>${ status.count }</td>
 										</c:otherwise>
 									</c:choose>
 									<td>

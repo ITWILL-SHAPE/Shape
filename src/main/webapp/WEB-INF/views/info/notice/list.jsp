@@ -13,7 +13,7 @@
 		
 			<main class="my-2">
 				<div class="card">
-					<table class="card-body table table-hover">
+					<table class="card-body table table-hover text-center">
 						<thead>
 							<tr>
 								<th>No</th>
@@ -22,14 +22,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${ notices }" var="notice">
+							<c:forEach items="${ notices }" var="notice" varStatus="status">
 								<tr>
 									<c:choose>
 										<c:when test="${ notice.fix == -1 }">
 											<td>📢</td>
 										</c:when>
 										<c:otherwise>
-											<td>${ notice.nid }</td>
+											<!--<td>${ notice.nid }</td>  -->
+											<td>${ status.count }</td>
 										</c:otherwise>
 									</c:choose>
 									<td>
@@ -38,7 +39,7 @@
 										</c:url>
 										<a href="${ noticeDetailPage }">${ notice.title }</a>
 									</td>
-									<td><fmt:formatDate value="${ notice.created_date }" pattern="yyyy.MM.dd"/></td>
+									<td><fmt:formatDate value="${ notice.created_date }" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
 						</tbody>

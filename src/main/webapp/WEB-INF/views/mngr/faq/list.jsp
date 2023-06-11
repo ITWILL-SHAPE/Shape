@@ -39,9 +39,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${ faqs }" var="faq">
+							<c:forEach items="${ faqs }" var="faq" varStatus="status">
 								<tr>
-									<td>${ faq.fid }</td>
+									<td>${ status.count }</td>
 									<td>
 										<c:url var="faqDetailPage" value="/mngr/faq/detail">
 											<c:param name="fid" value="${ faq.fid }"></c:param>
