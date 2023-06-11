@@ -22,30 +22,38 @@
 		<title>Shape</title>
 	</head>
 	<body>
-		<h1>FAQ 작성 화면</h1>
-		
-		<main class="my-2">
-		<section class="card">
-			<form method="post">
-				<div class="card-body">
-					<div class="my-4">
-						<label class="form-label" for="question">question</label>
-						<input class="form-control" type="text" id="question" name="question" required/>
+		<div class="container">
+			<div class="my-2 p-5 text-center">
+				<p>FAQ 작성</p>
+			</div>
+			
+			<main class="my-2">
+			<section class="card">
+				<form method="post">
+					<div class="card-body">
+						<div class="my-4">
+							<label class="form-label" for="question">question</label>
+							<input class="form-control" type="text" id="question" name="question" required/>
+						</div>
+						<div>
+							<label class="form-label" for="answer">answer</label> 
+							<textarea class="form-control" id="an_comment" name="an_comment"
+								 id="answer" name="answer" required></textarea>
+						</div>
+						
+						<div class="my-2 text-center">
+							<input type="submit" class="btn btn-primary"  value="작성 완료"/>
+							<c:url var="faqListPage" value="/mngr/faq/list"></c:url>
+							<a class="btn btn-primary" href="${ faqListPage }">목록</a>
+						</div>
 					</div>
-					<div>
-						<label class="form-label" for="answer">answer</label> 
-						<textarea class="form-control" rows="20" cols="20" id="answer" name="answer" required></textarea>
-					</div>
-					<div style="float: right">
-						<input type="submit" value="작성 완료"/>
-					</div>
-					<div style="float: right">
-						<c:url var="faqListPage" value="/mngr/faq/list"></c:url>
-						<a href="${ faqListPage }">목록</a>
-					</div>
-				</div>
-			</form>
-		</section>
-		</main>
+				</form>
+			</section>
+			</main>
+		</div>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+			crossorigin="anonymous"></script>
 	</body>
 </html>

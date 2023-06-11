@@ -8,18 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 > 모임 > 내가 개설한 모임</title>
-<style>
-#main_content {
-	margin-left: 15rem;
-	padding: 20px;
-}
-</style>
 </head>
 <body>
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<!-- 메인컨텐츠 시작 -->
+	<!-- 메인 컨텐츠 시작 -->
 	<main id="main_content">
 		<table class="table">
 			<thead>
@@ -56,7 +50,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<!-- 메인컨텐츠 끝 -->
+		<!-- 메인 컨텐츠 끝 -->
 	</main>
 	<footer>
 		<%@ include file="../../common/footer.jsp"%>

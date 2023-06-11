@@ -17,7 +17,7 @@ public interface UserInfoRepository {
 	 * @param inputPwd
 	 * @return
 	 */
-	int modifyPwdById(@Param("id") String id, @Param("inputPwd") String inputPwd);
+	int modifyPwdById(@Param("id") String id, @Param("newPwd") String newPwd);
 	
 	
 	/**
@@ -126,5 +126,13 @@ public interface UserInfoRepository {
 	 * @return
 	 */
 	List<UserInfo> selectByKeyword(MngrUserInfoSearchListDto dto);
+	
+	/**
+	 * 0611손창민
+	 * 회원탈퇴 - 유저 정보 삭제
+	 * @param id
+	 * @return
+	 */
+	int deleteUserInfoById(String id);
 	
 }

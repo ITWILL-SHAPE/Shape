@@ -74,6 +74,18 @@
 
 			</div>
 		</section><!-- 댓글 등록, 댓글 리스트 카드 -->
+		
+		<div id="modifyContent${ pcid }" style="display:none"><!-- 댓글 수정 div 그 자리에 안 나타나고 아래에 따로 생김 -->
+			<div>
+				<input id="pcid" class="d-none" />
+				<textarea id="updateText">${ contentText }</textarea>
+			</div>
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<button class="btnUpdate btn btn-outline-success" data-id="${pcid}">
+					수정 확인
+				</button>
+			</div>
+		</div>
 
 		<div class="d-grid gap-2 col-5 mx-auto">
 			<c:url var="postList" value="/post/list" />

@@ -128,11 +128,15 @@ public class MyPageController {
 	 */
 	@ResponseBody
 	@PostMapping("/confirmpwd")
-	public String confirmPwd(@RequestBody String inputPwd) {
+	public String confirmPwd(String id, @RequestBody String inputPwd) {
+		// public String confirmPwd(@RequestParam("inputPwd") String inputPwd) {
 		log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd.substring(0, inputPwd.length() - 1));
+		// log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
-		boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd.substring(0, inputPwd.length() - 1));
+		boolean isPasswordMatched = userInfoService.confirmUser("test2",
+				inputPwd.substring(0, inputPwd.length() - 1));
+		// boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
 		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
 		if (isPasswordMatched) {
 			return "true";
@@ -142,38 +146,84 @@ public class MyPageController {
 	}
 
 	/**
-	 * 0604 손창민 비밀번호 수정
+	 * 0604 손창민 비밀번호 수정 페이지
 	 * 
-	 * @param pwd, inputPwd
+	 * @param
 	 * @return
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
-	@GetMapping("/modifypwd")
-	public String modifyPwd(String id, String inputPwd, Model model) {
-		log.info("modifyPwd(id={}, inputPwd={})", id, inputPwd);
-
-		int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
-		log.info("modifyPwd(result={})", result);
-
-		UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
-		log.info("modifyPwd(dto={})", dto);
-
-		String userPwd = dto.getPwd();
-		log.info("modifyPwd(userPwd={}", userPwd);
-
-		model.addAttribute("userPwd", userPwd);
+	@GetMapping("/modifypwdpage")
+//		public String modifyPwdPage(String id, String inputPwd, Model model) {
+	public String modifyPwdPage() {
+		log.info("modifyPwdPage()");
+//			log.info("modifyPwd(id={}, inputPwd={})", id, inputPwd);
+//
+//			int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
+//			log.info("modifyPwd(result={})", result);
+//
+//			UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
+//			log.info("modifyPwd(dto={})", dto);
+//
+//			String userPwd = dto.getPwd();
+//			log.info("modifyPwd(userPwd={}", userPwd);
+//
+//			model.addAttribute("userPwd", userPwd);
 
 		return "/mypage/memberinfo/modifyPwd";
 	}
 
-	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
-	@GetMapping("/withdrawal")
-	public String withdrawal() {
-		log.info("withdrawal()");
+	// 마이페이지 > 회원정보 > 비밀번호 수정
+	@ResponseBody
+	@PostMapping("/modifypwd")
+	public String modifyPwd(String id, @RequestBody String newPwd) {
+		log.info("modifyPwd(id={}, inputPwd={})", id, newPwd.substring(0, newPwd.length() - 1));
 
+		int result = userInfoService.modifyPwdById("drj9812",
+				passwordEncoder.encode(newPwd.substring(0, newPwd.length() - 1)));
+		log.info("modifyPwd(result={})", result);
+
+		if (result == 1) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
+	/**
+	 * 0611 손창민
+	 * 회워탈퇴 페이지
+	 * @return
+	 */
+	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
+	@GetMapping("/withdrawalpage")
+	public String withdrawalPage(String id, Model model) {
+		log.info("withdrawalPage(id={})", id);
+		
+		model.addAttribute("id", "test2");
+		
 		return "/mypage/memberinfo/withdrawal";
 	}
+	
+	/**
+	 * 0611 손창민
+	 * 회원 탈퇴 처리 메서드
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/withdrawal")
+	public String withdrawal(@RequestBody String id) {
+		log.info("withdrawal(id={})", id);
+		
+		int result = userInfoService.deleteUserInfoById("test2");
+		
+		if (result == 1) {
+			return "회원탈퇴되었습니다.";
+		} else {
+			return "error";
+		}
+	}
 
+	
 	/**
 	 * 0604 손창민 내가 참여 중인 모임
 	 * 
@@ -186,7 +236,7 @@ public class MyPageController {
 	public String readActiveMeet(String prtcpId, Model model) {
 		log.info("readActiveMeet(prtcpId={})", prtcpId);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId("test");
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId("test2");
 		log.info("readActiveMeet(dto={})", dto);
 
 		model.addAttribute("activeList", dto);
@@ -273,7 +323,7 @@ public class MyPageController {
 		log.info("readMycomments(author(id)={})", author);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test2");
+		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test");
 		log.info("readMycomments(mycomments={})", mycomments);
 
 		model.addAttribute("mycomments", mycomments);

@@ -9,12 +9,6 @@
 <meta charset="UTF-8">
 <title>마이페이지 > 게시판 > 내가 작성한 댓글</title>
 <script defer src="static/js/myPosts-delete.js"></script>
-<style>
-#main_content {
-	margin-left: 15rem;
-	padding: 20px;
-}
-</style>
 </head>
 <body>
 	<div id="sidebar">
@@ -28,7 +22,7 @@
 					<th>
 					<input type="checkbox"
 					       id="all-checkbox"
-						   name="all-checkbox">
+						   name="all-checkbox" />
 				    </th>
 					<th>No</th>
 					<th>제목</th>
@@ -45,7 +39,11 @@
 						       id="row-checkbox" />
 						</td>
 						<td>${ loop.index + 1 }</td>
-						<td class="row-content">${ myposts.title }</td>
+						<td class="row-content">
+							<a href="/shape/post/detail?pid=${ myposts.pid }">
+								${ myposts.title }
+							</a>
+						</td>
 						<td>
 						<fmt:formatDate value="${ myposts.created_date }"
 								        pattern="yyyy-MM-dd HH:mm" />
