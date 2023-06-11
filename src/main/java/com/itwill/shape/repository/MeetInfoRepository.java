@@ -78,6 +78,19 @@ public interface MeetInfoRepository {
 	 */
 	List<MeetListCountDto> selectByCategory(String category);
 	
+	/**
+	 * 0612 김지민
+	 * 모집 완료
+	 * @return
+	 */
+	List<MeetListCountDto> selectOrderByMozipEnd();
+	
+	/**
+	 * 0612 김지민
+	 * 모집 중
+	 * @return
+	 */
+	List<MeetListCountDto> selectOrderByMozipIng();
 	
 	/**
 	 * mtid 모임 상세 페이지

@@ -53,11 +53,13 @@
 	</header>
 
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
-	<form id="searchFormCheckBox" class="CheckBoxSearchForm">
+	<c:url var="meetSearchPage" value="/meet/search">
+	</c:url>
+	<form id="searchFormCheckBox" class="CheckBoxSearchForm" action="${ meetSearchPage }">
 		<div class="form-check form-check-reverse">
 			<label class="form-check-label" for="reverseCheck"
 				id="checkRecruitmentStatus"> 모집중 </label> <input
-				class="form-check-input" type="checkbox" value="" id="reverseCheck">
+				class="form-check-input" type="checkbox" value="" id="reverseCheck" name="mozipCheck">
 		</div>
 	</form>
 

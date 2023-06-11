@@ -1,5 +1,6 @@
 package com.itwill.shape.service;
 
+// 김지민_meet.list
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -56,6 +57,7 @@ public class MeetListService {
 	}
 	
 	/**
+	 * 김지민
 	 * 모임 최신순으로 정렬
 	 * @return
 	 */
@@ -66,6 +68,7 @@ public class MeetListService {
 	}
 
 	/**
+	 * 김지민
 	 * 모임 인기순(찜 순)으로 정렬
 	 * @return
 	 */
@@ -76,6 +79,7 @@ public class MeetListService {
 	}
 	
 	/**
+	 * 김지민
 	 * 모임 제목 검색
 	 * @param title
 	 * @return
@@ -88,6 +92,7 @@ public class MeetListService {
 	
 	
 	/**
+	 * 김지민
 	 * 모임 sido 검색
 	 * @param sido
 	 * @return
@@ -100,6 +105,7 @@ public class MeetListService {
 	
 	
 	/**
+	 * 김지민
 	 * 모임 카테코리 검색
 	 * @param category
 	 * @return
@@ -111,6 +117,7 @@ public class MeetListService {
 	}
 	
 	/**
+	 * 김지민
 	 * MTID 테이블의 ID USER의 찜 수 +1
 	 * @param mtlike -> mtid, id 둘 다 필요 + 넘기기
 	 * @return
@@ -123,6 +130,7 @@ public class MeetListService {
 	}
 	
 	/**
+	 * 김지민
 	 * mtid 모임에 like count 감소
 	 * @param long mtid, String id
 	 * @return
@@ -141,6 +149,29 @@ public class MeetListService {
 		
 		return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
 	}
+	
+	/**
+	 * 0612 김지민
+	 * 모임 중 
+	 * @return
+	 */
+	public List<MeetListCountDto> MozipIng() {
+		log.info("MozipIng");
+		
+		return meetInfoRepository.selectOrderByMozipIng();
+	}
+	
+	/**
+	 * 0612 김지민
+	 * 모임 종료
+	 * @return
+	 */
+	public List<MeetListCountDto> MozipEnd() {
+		log.info("MozipIng");
+		
+		return meetInfoRepository.selectOrderByMozipEnd();
+	}
+	
 
 
 }
