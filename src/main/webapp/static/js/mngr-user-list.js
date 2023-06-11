@@ -6,7 +6,6 @@ $(document).ready(function() {
 	initPage();
 	registEvent();
 	setDefault();
-	findAllAction();
 });
 
 const initPage = function() {
@@ -90,4 +89,60 @@ const findAllAction = function() {
 		$('input[name="searchRegDateEnd"]').focus();
 		return;
 	}
+	
+	const searchId = $('input[name="searchId"]').val().trim();
+	const searchPhone = $('input[name="searchPhone"]').val().trim();
+	const searchEmail = $('input[name="searchEmail"]').val().trim();
+	
+	let data = {
+		searchId : searchId,
+		searchPhone : searchPhone,
+		searchEmail : searchEmail,
+		searchRegDateStart : searchRegDateStart,
+		searchRegDateEnd : searchRegDateEnd
+	};
+	
+	console.log(data);
+	
+	axios.post('/shape/mngr/user/list', data)
+	.then((res) => {		
+		let list = res.data;
+		let html = '';
+		let count = 1;
+		
+		if(list.length <= 0) {
+			html += '<tr><td class="text-center align-middle" colspan="5">데이터가 없습니다.</td></tr>'
+		}
+		
+		for (let user of list) {
+			let phone = '';
+			if(user.phone.includes('-')) {
+				phone = user.phone;
+			} else {
+				phone = user.phone.substr(0, 3) + '-'
+						+ user.phone.substr(3, 7) + '-'
+						+ user.phone.substr(7, 13);
+			}
+			
+			let join = user.join_date.substr(0, 10);
+			
+					
+			html += `
+					<tr onClick="location.href='/shape/mngr/user/detail?id=${ user.id }'">
+						<td>${ count }</td>
+						<td>${ user.id }</td>
+						<td>${ user.name }</td>
+						<td>${ phone }</td>
+						<td>${ join }</td>
+					</tr>
+			`;
+			
+			count += 1;
+		}
+		
+		$('tbody#userList').html(html);
+	})
+	.catch((err) => {
+		console.log(err);
+	})
 };

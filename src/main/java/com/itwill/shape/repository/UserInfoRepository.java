@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.UserInfo;
+import com.itwill.shape.dto.MngrUserInfoSearchListDto;
 import com.itwill.shape.dto.UserInfoFindDto;
 
 public interface UserInfoRepository {
@@ -117,5 +118,13 @@ public interface UserInfoRepository {
 	 * @return List<UserInfo>
 	 */
 	List<UserInfo> selectAllUser();
+	
+	/**
+	 * 하지윤
+	 * 관리자 - 사용자 검색
+	 * @param dto
+	 * @return
+	 */
+	List<UserInfo> selectByKeyword(MngrUserInfoSearchListDto dto);
 	
 }

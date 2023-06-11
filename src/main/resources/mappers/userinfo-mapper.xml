@@ -116,4 +116,28 @@
 		WHERE DIVISION = 'ROLE_M'
 	</select> 
 	
+	<!-- 관리자 - 사용자 검색 -->
+	<select id="selectByKeyword" resultType="com.itwill.shape.domain.UserInfo">
+		SELECT
+			*
+		FROM USER_INFO UI
+		WHERE DIVISION = 'ROLE_M'
+	    <if test='searchId != null and searchId neq ""'>
+	    	AND UI.ID LIKE '%' || #{searchId} || '%'
+	    </if>
+	    <if test='searchPhone != null and searchPhone neq ""'>
+	    	AND UI.PHONE LIKE '%' || #{searchPhone} || '%'
+	    </if>
+	    <if test='searchEmail != null and searchEmail neq ""'>
+	    	AND UI.EMAIL LIKE '%' || #{searchEmail} || '%'
+	    </if>
+	    <if test='searchRegDateStart != null and searchRegDateEnd != null
+	    		and searchRegDateStart neq "" and searchRegDateEnd neq ""'>
+	    	<![CDATA[
+			    AND JOIN_DATE >= TO_DATE(#{searchRegDateStart}, 'YYYY-MM-DD')
+			    AND JOIN_DATE < TO_DATE(#{searchRegDateEnd}, 'YYYY-MM-DD') + 1
+			]]>
+	    </if>
+	</select>
+	
 </mapper>
