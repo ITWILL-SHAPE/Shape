@@ -45,7 +45,11 @@
 						       id="row-checkbox" />
 						</td>
 						<td>${ loop.index + 1 }</td>
-						<td class="row-content">${ myposts.title }</td>
+						<td class="row-content">
+							<a href="/shape/post/detail?pid=${ myposts.pid }">
+								${ myposts.title }
+							</a>
+						</td>
 						<td>
 						<fmt:formatDate value="${ myposts.created_date }"
 								        pattern="yyyy-MM-dd HH:mm" />

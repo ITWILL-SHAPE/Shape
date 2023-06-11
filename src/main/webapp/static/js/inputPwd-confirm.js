@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		
         try {
             const response = await axios.post('/shape/confirmpwd', inputPwd);
+            //const response = await axios.post('/shape/confirmpwd', { params: { inputPwd } });
+            //왜 안돼?
             console.log(response);
             const isMatched = response.data;
 

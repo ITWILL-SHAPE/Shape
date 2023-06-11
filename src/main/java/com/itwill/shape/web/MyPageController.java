@@ -129,10 +129,13 @@ public class MyPageController {
 	@ResponseBody
 	@PostMapping("/confirmpwd")
 	public String confirmPwd(@RequestBody String inputPwd) {
+	//public String confirmPwd(@RequestParam("inputPwd") String inputPwd) {
 		log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd.substring(0, inputPwd.length() - 1));
+		//log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
 		boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd.substring(0, inputPwd.length() - 1));
+		//boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
 		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
 		if (isPasswordMatched) {
 			return "true";
@@ -273,7 +276,7 @@ public class MyPageController {
 		log.info("readMycomments(author(id)={})", author);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test2");
+		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test");
 		log.info("readMycomments(mycomments={})", mycomments);
 
 		model.addAttribute("mycomments", mycomments);
