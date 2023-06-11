@@ -19,78 +19,50 @@
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/css/common.css"/>
 		<!-- icon -->
 		<link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath()%>/static/images/common/favicon.ico">
+		<%@ include file="../../common/mngr_sidebar.jsp" %>
 		<title>Shape</title>
 	</head>
 	<body>
-		<%@ include file="../../common/mngr_sidebar.jsp"%>
-		<h1>관리자 faq list 테스트</h1>
-			<%-- <div id="body">
-				<table>
-					<thead>
-						<tr>
-							<th>NO.</th>
-							<th>제목</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${ faqs }" var="faq">
-								<td>${ faq.fid }</td>
-								<td>
-									${ faq.question }
-								</td>
-						</c:forEach>
-					</tbody>
-				</table>
+		<div class="container">
 			
-			<div>
-				<c:url var="faqCreatePage" value="/faq/create" ></c:url>
-				<a href="${ faqCreatePage }">FAQ 작성</a>	
-			</div>
-			
-			
-			</div> --%>
+			<div class="my-2 p-5 text-center">
+				<p>관리자 FAQ list</p>
+			</div>	
 	
-		<div class="container-fluid">
-		<header class="my-2 p-5 text-center">
-		</header>
-
-		<main class="my-2">
-			<div class="card">
-				<table class="card-body table table-hover">
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>제목</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${ faqs }" var="faq">
+			<main class="my-2">
+				<div class="card">
+					<table class="card-body table table-hover">
+						<thead>
 							<tr>
-								<td>${ faq.fid }</td>
-								<td>
-									<c:url var="faqDetailPage" value="/mngr/faq/detail">
-										<c:param name="fid" value="${ faq.fid }"></c:param>
-									</c:url>
-									<a href="${ faqDetailPage }">${ faq.question }</a>
-								</td>
-							</tr>	
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			
-			<div style="float: right">
-				<c:url var="faqCreatePage" value="/mngr/faq/create" ></c:url>
-				<a href="${ faqCreatePage }">FAQ 작성</a>	
-			</div>
-		</main>
-
+								<th>No</th>
+								<th>제목</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${ faqs }" var="faq">
+								<tr>
+									<td>${ faq.fid }</td>
+									<td>
+										<c:url var="faqDetailPage" value="/mngr/faq/detail">
+											<c:param name="fid" value="${ faq.fid }"></c:param>
+										</c:url>
+										<a href="${ faqDetailPage }">${ faq.question }</a>
+									</td>
+								</tr>	
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="card-footer my-2 text-center">
+					<c:url var="faqCreatePage" value="/mngr/faq/create" ></c:url>
+					<a class="btn btn-primary"  href="${ faqCreatePage }">FAQ 작성</a>	
+				</div>
+			</main>
+		</div>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
 			crossorigin="anonymous"></script>
-
-	</div>
-	
 	</body>
 </html>

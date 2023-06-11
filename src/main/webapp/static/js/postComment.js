@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //TODO: 수정 완료 버튼 이벤트
         const modifyButtons = document.querySelectorAll('button.btnModify');
         for (let btn of modifyButtons) {
+			btn.addEventListener('click', showUpdateDiv);
 			btn.addEventListener('click', function(e) {
 				const pcid = e.target.getAttribute('data-id');
 				//const reqUrl = `/spring2/api/reply/${pcid}`;
@@ -79,32 +80,44 @@ document.addEventListener('DOMContentLoaded', () => {
 				`;
 				console.log(pcid);
 			});
-				
 		}
 		
 	}; //makeCommentElements end.
 	
+	// jsp에 div 따로 만든 것들 element -> 안됨
+	const updateDiv = document.querySelector('div#modifyContent');
+	const updateText = document.querySelector('textarea#updateText');
+	const btnUpdate = document.querySelector('button#btnUpdate');
 	
-		/*const updateContentBtn = document.querySelector('button#btnUpdate');
-	updateContentBtn.addEventListener('click', function(e) {
+	const showUpdateDiv = (e) => {
 		
-		const pcid = e.target.getAttribute('data-id'); // 수정할 댓글 아이디
+		document.getElementById('modifyContent').style.display = "block"; // div 보이기
 		
-		const updateText = document.querySelector('textarea#updateText').innerHTML; // 수정할 댓글 내용 
-		
+	};
+	
+	
+	//const updateButton = document.querySelectorAll('button.btnUpdate');
+
+	//const updateText = document.querySelector('textarea#updateText').value;
+
+	const updateComment = (e) => {
+
+		const pcid = e.target.getAttribute('data-id');
+		const updateText = document.querySelector('textarea#updateText').value;
+
 		const reqUrl = `/shape/comment/${pcid}`;
-		
 		const data = { updateText };
-		
+
 		axios.put(reqUrl, data)
 			.then((response) => {
-				alert(`댓글 업데이트 성공(${response.data})`);
+				alert(`수정 성공`);
 				getCommentWithPid();
 			})
 			.catch((error) => console.log(error))
-			
+	};
+		//updateButton.addEventListener('click', updateComment);
+	
 		
-	}); 진짜 어캄 왜안됨 */
 		
 
 	// 댓글 삭제 버튼의 이벤트 리스너 (콜백) 함수

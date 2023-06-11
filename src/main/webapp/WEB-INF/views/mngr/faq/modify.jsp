@@ -22,41 +22,41 @@
 		<title>Shape</title>
 	</head>
 	<body>
-		<h1>faq 수정화면</h1>
-		
-		<main class="my-2">
-			<form id="faqModifyForm">
-				<div class="card-body" id="modifyForm">
-					<div class="my-4">
-						<label class="form-label" for="fid">NO.</label>
-						<input class="form-control" id="fid" name="fid" value="${ faq.fid }"/>
-					</div>
-					<div>
-						<label class="form-label" for="question">question</label>
-						<input class="form-control" id="question" name="question" value="${ faq.question }" />
-					</div>
-					<div>
-						<label class="form-label" for="answer">answer</label> 
-						<textarea class="form-control" rows="20" cols="20" id="answer" name="answer">${ faq.answer }</textarea>
-					</div>
-				</div>
-			</form>
-			<div style="float: right">
-				<div>
-					<c:url var="faqListPage" value="/mngr/faq/list"></c:url>
-					<a href="${ faqListPage }">목록</a>
-				</div>
-				<div>
-					<button id="btnFaqUpdate">수정 확인</button>
-				</div>
+		<div class="container">
+			<div class="my-2 p-5 text-center">
+				<p>관리자 FAQ 수정 화면</p>
 			</div>
-		</main>
-		<script
+			
+			<main class="my-2">
+				<form id="faqModifyForm">
+					<div class="card-body" id="modifyForm">
+						<div class="my-4">
+							<label class="form-label" for="fid">NO.</label>
+							<input class="form-control" id="fid" name="fid" value="${ faq.fid }"/>
+						</div>
+						<div>
+							<label class="form-label" for="question">question</label>
+							<input class="form-control" id="question" name="question" value="${ faq.question }" />
+						</div>
+						<div>
+							<label class="form-label" for="answer">answer</label> 
+							<textarea class="form-control" id="answer" name="answer">${ faq.answer }</textarea>
+						</div>
+					</div>
+				</form>
+				
+				<div class="card-footer my-2 text-center"">
+					<c:url var="faqListPage" value="/mngr/faq/list"></c:url>
+					<a class="btn btn-primary" href="${ faqListPage }">목록</a>
+					<button class="btn btn-primary" id="btnFaqUpdate">수정 확인</button>
+				</div>
+				
+			</main>
+			<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-			crossorigin="anonymous"></script>
-			
-		<script src="../../static/js/infoFaq-modify.js"></script>
-		
+			crossorigin="anonymous"></script>	
+			<script src="../../static/js/infoFaq-modify.js"></script>
+		</div>
 	</body>
 </html>

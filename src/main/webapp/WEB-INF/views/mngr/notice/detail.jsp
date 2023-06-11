@@ -23,48 +23,59 @@
 		<title>Shape</title>
 	</head>
 	<body>
-		<h1>Notice detail</h1>
+		<div class="container">
+			<div class="my-2 p-5 text-center">
+				<p>관리자 공지사항 상세 화면</p>
+			</div>
 		
-		<main class="my-2">
-		<section class="card">
-			<form id="noticeDetailFrom">
-			<div class="card-body">
-				<div class="my-4">
-						<label class="form-label" for="nid">NO.</label>
-						<input class="form-control" id="nid" name="nid" value="${ notices.nid }" readonly />
+			<main class="my-2">
+			<section class="card">
+				<form id="noticeDetailFrom">
+				<div class="card-body">
+					<div class="my-4">
+							<label class="form-label" for="nid">NO.</label>
+							<input class="form-control" id="nid" name="nid" value="${ notices.nid }" readonly />
+					</div>
+					<div class="my-4">
+						<label class="form-label" for="title">제목</label>
+						<input class="form-control" id="title" value="${ notices.title }" readonly />
+					</div>
+					<div class="my-4">
+						<label class="form-label">작성일</label>
+						<fmt:formatDate value="${ times }" pattern="yyyy.MM.dd" var="date"/>
+						<input class="form-control" id="created_date" value="${ date }" readonly />
+					</div>
+					<div class="my-4">
+						<label class="form-label" for="file">첨부파일</label>
+						<input class="form-control" id="file" value="${ notices.atchd_file }" readonly />
+					</div>
+					<div class="my-4">
+						<label class="form-label" for="content">내용</label>
+						<div class="form-control" id="content" readonly>${ notices.content }</div>
+					</div>
 				</div>
-				<div class="my-4">
-					<label class="form-label" for="title">제목</label>
-					<input class="form-control" id="title" value="${ notices.title }" readonly />
-				</div>
-				<div class="my-4">
-					<label class="form-label">작성일</label>
-					<fmt:formatDate value="${ times }" pattern="yyyy.MM.dd" var="date"/>
-					<input class="form-control" id="created_date" value="${ date }" readonly />
-				</div>
-				<div class="my-4">
-					<label class="form-label" for="file">첨부파일</label>
-					<input class="form-control" id="file" value="${ notices.atchd_file }" readonly />
-				</div>
-				<div class="my-4">
-					<label class="form-label" for="content">내용</label>
-					<div class="form-control" id="content" readonly>${ notices.content }</div>
+				</form>
+			</section>
+	
+	
+			<div>
+				<div class="my-2 text-center">
+					<c:url var="noticeListPage" value="/mngr/notice/list"></c:url>
+					<a class="btn btn-primary" href="${ noticeListPage }">목록</a>
+					<c:url var="infoNoticeModifyPage" value="/mngr/notice/modify">
+						<c:param name="nid" value="${ notices.nid }"></c:param>
+					</c:url>
+					<a class="btn btn-primary" href="${ infoNoticeModifyPage }">수정</a><!-- 수정 페이지 이동 -->
+					<button class="btn btn-primary" id="btnDeleteNotice">삭제</button>
 				</div>
 			</div>
-			</form>
-		</section>
-
-
-		<div>
-			<div class="my-2 text-center">
-				<c:url var="infoNoticeModifyPage" value="/mngr/notice/modify">
-					<c:param name="nid" value="${ notices.nid }"></c:param>
-				</c:url>
-				<a class="btn btn-primary" href="${ infoNoticeModifyPage }">수정</a><!-- 수정 페이지 이동 -->
-				<button class="btn btn-primary" id="btnDeleteNotice">삭제</button>
-			</div>
+			</main>
+			<script src="../../static/js/infoNotice-detail.js"></script>
+			<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+			crossorigin="anonymous"></script> <!-- 지우면 안됨 -->
+			
 		</div>
-		</main>
-		<script src="../../static/js/infoNotice-detail.js"></script>
-</body>
+	</body>
 </html>
