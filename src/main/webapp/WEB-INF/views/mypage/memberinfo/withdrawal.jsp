@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 > 회원정보 > 회원탈퇴</title>
+<script defer src="static/js/userinfo-withdrawal.js"></script>
 </head>
 <body>
 	<div id="sidebar">
@@ -13,7 +14,7 @@
 	</div>
 	<!-- 메인 컨텐츠 시작 -->
 	<main id="main_content">
-		<form id="withdrwal">
+		<form id="form">
 			<h3 class="title">회원 탈퇴</h3>
 			<!-- 인풋 입력 시작 -->
 			<div class="edit_wrap">
@@ -62,9 +63,11 @@
 								<input type="radio"
 									   name="reason"
 									   id="c6"
-									   value="기타"/>
+									   value="기타" />
 							    <label for="c6">기타</label>
-							    <input type="text" name="etc" class="request_txt" />
+							    <input type="text"
+							    	   name="etc"
+							    	   class="request_txt" />
 							</li>
 						</ul>
 					</div>
@@ -72,7 +75,7 @@
 				<div class="edit_id">
 					<h4 class="label">탈퇴할 아이디</h4>
 					<div class="input_wrap">
-						<span class="user_id">${ userinfo.id }</span>
+						<span class="user_id">${ id }</span>
 					</div>
 				</div>
 				<div class="edit_pwd">
@@ -82,8 +85,8 @@
 					<div class="input_wrap">
 						<input type="password"
 							   id="inputPwd"
-							   name="inputPwd"
-							   required/>
+							   name="inputPwd" 
+							   required />
 						<ul class="check_msg">
 							<li>* 본인인증을 위해 비밀번호를 입력해 주세요.</li>
 						</ul>
@@ -103,8 +106,8 @@
 				<div class="check_wrap">
 					<input type="checkbox"
 						   name="test"
-						   id="test"
-						   required/>
+						   id="test" 
+						   required />
 				  	<label for="test">위의 내용을 모두 확인하였습니다.</label>
 				</div>
 			</div>
@@ -112,7 +115,9 @@
 			<!-- 버튼영역 시작 -->
 			<div class="bottom_btn_area">
 				<div class="btn_wrap">
-					<a href="myprofile" class="btn_again">취소하기</a>
+					<a href="myprofile" class="btn_again">
+					취소하기
+					</a>
 					<input type="submit"
 						   value="회원탈퇴"
 						   class="btn_submit" />

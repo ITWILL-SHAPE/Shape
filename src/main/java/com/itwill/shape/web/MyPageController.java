@@ -134,7 +134,7 @@ public class MyPageController {
 		// log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
-		boolean isPasswordMatched = userInfoService.confirmUser("drj9812",
+		boolean isPasswordMatched = userInfoService.confirmUser("test2",
 				inputPwd.substring(0, inputPwd.length() - 1));
 		// boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
 		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
@@ -188,15 +188,42 @@ public class MyPageController {
 			return "false";
 		}
 	}
-
+	
+	/**
+	 * 0611 손창민
+	 * 회워탈퇴 페이지
+	 * @return
+	 */
 	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
-	@GetMapping("/withdrawal")
-	public String withdrawal() {
-		log.info("withdrawal()");
-
+	@GetMapping("/withdrawalpage")
+	public String withdrawalPage(String id, Model model) {
+		log.info("withdrawalPage(id={})", id);
+		
+		model.addAttribute("id", "test2");
+		
 		return "/mypage/memberinfo/withdrawal";
 	}
+	
+	/**
+	 * 0611 손창민
+	 * 회원 탈퇴 처리 메서드
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/withdrawal")
+	public String withdrawal(@RequestBody String id) {
+		log.info("withdrawal(id={})", id);
+		
+		int result = userInfoService.deleteUserInfoById("test2");
+		
+		if (result == 1) {
+			return "회원탈퇴되었습니다.";
+		} else {
+			return "error";
+		}
+	}
 
+	
 	/**
 	 * 0604 손창민 내가 참여 중인 모임
 	 * 

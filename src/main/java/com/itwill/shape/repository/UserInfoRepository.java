@@ -118,4 +118,12 @@ public interface UserInfoRepository {
 	 */
 	List<UserInfo> selectAllUser();
 	
+	/**
+	 * 0611손창민
+	 * 회원탈퇴 - 유저 정보 삭제
+	 * @param id
+	 * @return
+	 */
+	int deleteUserInfoById(String id);
+	
 }

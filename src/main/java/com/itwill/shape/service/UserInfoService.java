@@ -192,5 +192,16 @@ public class UserInfoService {
 		
 		return passwordEncoder.matches(inputPwd, dbPassword);
 	}
+	/**
+	 * 0611손창민
+	 * 회원탈퇴 유저정보 삭제
+	 * @param id
+	 * @return
+	 */
+	public int deleteUserInfoById(String id) {
+		log.info("deleteUserInfoById(id={})", id);
+		
+		return userInfoRepository.deleteUserInfoById(id);
+	}
 
 }

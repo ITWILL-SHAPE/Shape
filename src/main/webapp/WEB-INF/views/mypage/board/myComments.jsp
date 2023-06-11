@@ -22,7 +22,7 @@
 					<th>
 					<input type="checkbox" 
 					       id="all-checkbox"
-						   name="all-checkbox">
+						   name="all-checkbox" />
 					</th>
 					<th>No</th>
 					<th>내용</th>
