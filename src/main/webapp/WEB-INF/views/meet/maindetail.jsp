@@ -126,7 +126,7 @@
                               </li>                
                            </div>
                             <div id="cost_info" name="cost_info" class="my-2">
-                              <span>📝비용내용 : </span>
+                              <span>🧾비용내용 : </span>
                               <i>${meetmaindetail.mt_cost_info}</i>
                               </li>                
                            </div>
@@ -165,30 +165,41 @@
 	                 </sec:authorize>
                      
                      <!-- 프로필 -->
-                     <p class="my-4">🙋🏻‍♂️HOST</p>
+                    
                      	
                         <div class="card my-4">
+                        	<div class="card-header fw-bold">
+                        	 <p class="my-2">🙋🏻‍♂️HOST</p>
+                        	 </div>
                               <div class="card-body">
                                  <img id="host-profile" class="user-img" src="../static/images/sample/user.png" alt="host 사진">                             
                                  <div id="host-name" class="meetdetailuser"> 이름 : ${ meetmaindetail.userHost.name }</div>
                                  <div id="host-email" class="meetdetailemail">이메일 : ${ meetmaindetail.userHost.email }</div>                              
-                        </div>
-                     </div>
-                     
+                        	</div>
+                   </div>  
                      <!-- 참여자 목록 -->
 						<div>
-							<p class="my-4">👪GUEST</p>
+						<p class="login-info-text">* 참여자는 로그인을 해야 볼 수 있습니다.</p>
 							<div class="card my-2">
+							
 								<div class="card-header fw-bold">
+								
+									<p class="my-2">👪GUEST</p>
+									
+									
 									<button class="btn" id="btnToggleReply">
 										<img id="toggleBtnIcon"
 											src="<%=request.getContextPath()%>/static/images/sample/toggle-off.png"
 											alt="toggle-off" width="45" />
 									</button>
-								</div>
+									
+									</div>
+									
+								
 								
 								<!-- guest들은 로그인 한 사람들만 볼 수 있음 -->
 								<!-- 로그인한 HOST 작성자 볼 수 있게 -->
+
 								<sec:authorize access="isAuthenticated()">
 									<c:set var="login" value="${ meetmaindetail.crtr_id }" />
 									<c:if test="${ login == loginUser }">
@@ -196,31 +207,34 @@
 											<c:forEach items="${ meetmaindetail.prtcpDtoList }"
 												var="list">
 												<div class="card-body" id="GUEST" name="GUEST">
-													<img id="profile-guest" name="profile-guest"
-														class="user-img" src="../static/images/sample/user.png"
-														alt="host 사진">
-													<div id="guest-name" name="guest-name"
-														class="meetdetailuser">이름: ${ list.name }</div>
-													<div id="guest-email" name="guest-email"
-														class="meetdetailemail">이메일:${ list.email }</div>
+														<img id="profile-guest" name="profile-guest"
+															class="user-img" src="../static/images/sample/user.png"
+															alt="host 사진">
+														<div id="guest-name" name="guest-name"
+															class="meetdetailuser">이름: ${ list.name }</div>
+														<div id="guest-email" name="guest-email"
+															class="meetdetailemail">이메일:${ list.email }</div>
+													
 												</div>
-											</c:forEach>
+												</c:forEach>
 										</div>
 									</c:if>
 									
 									<!-- 로그인한 GUEST USER들도 볼 수 있게 -->
+									
 									<c:if test="${ login != loginUser }">
 										<div id="replyToggleDiv" class="collapse">
 											<c:forEach items="${ meetmaindetail.prtcpDtoList }"
 												var="list">
 												<div class="card-body" id="GUEST" name="GUEST">
-													<img id="profile-guest" name="profile-guest"
-														class="user-img" src="../static/images/sample/user.png"
-														alt="host 사진">
-													<div id="guest-name" name="guest-name"
-														class="meetdetailuser">이름: ${ list.name }</div>
-													<div id="guest-email" name="guest-email"
-														class="meetdetailemail">이메일:${ list.email }</div>
+													
+														<img id="profile-guest" name="profile-guest"
+															class="user-img" src="../static/images/sample/user.png"
+															alt="host 사진">
+														<div id="guest-name" name="guest-name"
+															class="meetdetailuser">이름: ${ list.name }</div>
+														<div id="guest-email" name="guest-email"
+															class="meetdetailemail">이메일:${ list.email }</div>
 												</div>
 											</c:forEach>
 										</div>
@@ -239,7 +253,8 @@
             </div>
            </div> 
          </div>     
-  		<script src=" <%=request.getContextPath()%>/static/js/meet-maindetaill.js"></script>	
+  		<script src=" <%=request.getContextPath()%>/static/js/meet-maindetaill.js"></script>
+  		<%-- <script src="<%=request.getContextPath()%>/static/js/meet-modify.js"></script>	 --%>
   		
 </body>
 

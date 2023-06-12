@@ -22,36 +22,32 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/mtid")
+@RequestMapping
 public class MeetControllerPrtcp {
 	
 	
-	private final MeetPrtcpService meetPrtcpService;
-	
-	@PostMapping
-	public ResponseEntity<Integer> createPrtcp(@RequestBody MeetPrtcpCreateDto dto) {
-		log.info("createPrtcp(dto={})" , dto);
-		
-		int result = meetPrtcpService.create(dto);
-		
-		return ResponseEntity.ok(result);
-	}
-	
-	@GetMapping("all/{mtid}")
-	public ResponseEntity<List<MeetPrtcpReadDto>> readPrtcp(@PathVariable long mtid) {
-		log.info("read(mtid= {})" , mtid);
-		
-		List<MeetPrtcpReadDto> list = meetPrtcpService.read(mtid);
-		
-		return ResponseEntity.ok(list);
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Integer> deletePrtcp(@PathVariable String id) {
-		log.info("deletePrtcp(id={})" , id);
-		
-		int result = meetPrtcpService.delete(id);
-		
-		return ResponseEntity.ok(result);
-	}
+	/*
+	 * private final MeetPrtcpService meetPrtcpService;
+	 * 
+	 * @PostMapping public ResponseEntity<Integer> createPrtcp(@RequestBody
+	 * MeetPrtcpCreateDto dto) { log.info("createPrtcp(dto={})" , dto);
+	 * 
+	 * int result = meetPrtcpService.create(dto);
+	 * 
+	 * return ResponseEntity.ok(result); }
+	 * 
+	 * @GetMapping("all/{mtid}") public ResponseEntity<List<MeetPrtcpReadDto>>
+	 * readPrtcp(@PathVariable long mtid) { log.info("read(mtid= {})" , mtid);
+	 * 
+	 * List<MeetPrtcpReadDto> list = meetPrtcpService.read(mtid);
+	 * 
+	 * return ResponseEntity.ok(list); }
+	 * 
+	 * @DeleteMapping("/{id}") public ResponseEntity<Integer>
+	 * deletePrtcp(@PathVariable String id) { log.info("deletePrtcp(id={})" , id);
+	 * 
+	 * int result = meetPrtcpService.delete(id);
+	 * 
+	 * return ResponseEntity.ok(result); }
+	 */
 }

@@ -17,6 +17,7 @@ import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
+import com.itwill.shape.dto.MeetPrtcpCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.MeetDetailService;
@@ -186,7 +187,20 @@ public class MeetController {
 			model.addAttribute("meetmaindetail" , result);
 			   
 			}
-
+		/**
+		 * 06/12 배선영
+		 * 상세보기 페이지 참여하기 join
+		 * @param 	
+		 */
+		@PostMapping
+		public ResponseEntity<Integer> createPrtcp(@RequestBody MeetPrtcpCreateDto dto) {
+			log.info("createPrtcp(dto={})" , dto);
+			
+			int result = meetDetailService.create(dto);
+			
+			return ResponseEntity.ok(result);
+		}
+		
 		
 	}
 	

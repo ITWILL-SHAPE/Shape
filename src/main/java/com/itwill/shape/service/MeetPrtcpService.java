@@ -29,39 +29,41 @@ public class MeetPrtcpService {
 	 * 참여자 정보 
 	 */
 	
-	// 참여자가 참여하기를 누른 경우
-		public int create(MeetPrtcpCreateDto dto) {
-		log.info("create(dto={})");
-				
-		return meetPrtcpRepository.Prtcpinsert(dto.toEntity());
-	}
+	/*
+	 * // 참여자가 참여하기를 누른 경우 public int create(MeetPrtcpCreateDto dto) {
+	 * log.info("create(dto={})");
+	 * 
+	 * return meetPrtcpRepository.Prtcpinsert(dto.toEntity()); }
+	 */
 		
 	// MTID 참여한 소모임에서 참여자 리스트 보기
-		public List<MeetPrtcpReadDto> read(long mtid) {
-			log.info("read(={}" , mtid);
-			
-			List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid);
-			
-			return list.stream().map(MeetPrtcpReadDto::fromEntity).toList();
-		}
+	/*
+	 * public List<MeetPrtcpReadDto> read(long mtid) { log.info("read(={}" , mtid);
+	 * 
+	 * List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid);
+	 * 
+	 * return list.stream().map(MeetPrtcpReadDto::fromEntity).toList(); }
+	 */
 		
-		// MTID 참여자 취소
-		public int delete(String id) {
-			log.info("delete(id={})" ,id);
-			
-			return meetPrtcpRepository.Prtcpdelete(id);
-		}
+		/*
+		 * // MTID 참여자 취소 public int delete(String id)  {
+		 * log.info("delete(id={})" ,id);
+		 * 
+		 * return meetPrtcpRepository.Prtcpdelete(id); }
+		 */
 		
 		// MTID 작성자
-		public UserInfoSelectByIdDto detailHost(String id) {
-			log.info("Host(dto={}",id);
-
-	        UserInfo entity = meetPrtcpRepository.getUserInfo(id);
-	        
-			UserInfoSelectByIdDto result = UserInfoSelectByIdDto.fromEntity(entity);
-		
-			return result;
-					
-		}
+		/*
+		 * public UserInfoSelectByIdDto detailHost(String id) {
+		 * log.info("Host(dto={}",id);
+		 * 
+		 * UserInfo entity = meetPrtcpRepository.getUserInfo(id);
+		 * 
+		 * UserInfoSelectByIdDto result = UserInfoSelectByIdDto.fromEntity(entity);
+		 * 
+		 * return result;
+		 * 
+		 * }
+		 */
 		
 }

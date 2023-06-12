@@ -2,6 +2,8 @@ package com.itwill.shape.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.domain.UserInfo;
