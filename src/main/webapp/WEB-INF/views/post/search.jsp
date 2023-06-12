@@ -50,6 +50,28 @@
 				</c:forEach>
 			</div>
 
+			<!-- 페이징 처리 -->
+			<div>
+				<nav>
+					<ul class="pagination justify-content-center">
+						<li class="page-item ${ paging.prev? "":"disabled" }"><a
+							class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a></li>
+						<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
+							var="num">
+							<li class="page-item ${ paging.cri.pageNum == num? "active":"" }"><a
+								class="page-link" href="${ num }">${ num }</a></li>
+						</c:forEach>
+						<li class="page-item ${ paging.next? "":"disabled" }" ><a
+							class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<form id='actionForm' action='/shape/post/search?keyword='${ keyword } method='get'>
+				<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' />
+				<input type='hidden' name='amount' value='${ paging.cri.amount }' />
+			</form>
+			<!-- 페이징 처리 -->
 
 			<!-- 검색 -->
 			<c:url var="postSearch" value="/post/search"></c:url>
@@ -57,7 +79,7 @@
 				<div class=" pt-5 m-auto row">
 					<div class="col-sm-10">
 						<input class="form-control border-warning" type="text"
-							name="keyword" id="keyword"/>
+							name="keyword" id="keyword" />
 					</div>
 					<div class="col-sm-2">
 						<button type="submit" class="form-control btn btn-outline-warning">검색</button>
@@ -70,5 +92,6 @@
 	</div>
 </div>
 </body>
+<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
 </html>
 <%@ include file="../common/footer.jsp"%>

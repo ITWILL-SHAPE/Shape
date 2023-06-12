@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoQnA;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +17,23 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(
-		locations = {"file:src/main/webapp/WEB-INF/application-context.xml"}
+		locations = {"file:src/main/webapp/WEB-INF/application-context.xml",
+				"file:src/main/webapp/WEB-INF/email-context.xml",
+				"file:src/main/webapp/WEB-INF/security-context.xml" }
 		)
 public class InfoQnARepositoryTest {
 
 	@Autowired
 	private InfoQnARepository infoQnARepository;
+	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		List<InfoQnA> list = infoQnARepository.getListWithPaging(cri);
+		for(InfoQnA q:list) {
+			log.info(q.toString());
+		}
+	}
 	
 	//@Test
 	public void testSelectOrderByQidDesc() {

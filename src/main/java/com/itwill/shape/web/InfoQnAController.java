@@ -1,4 +1,5 @@
 package com.itwill.shape.web;
+import java.io.IOException;
 // 지현 큐앤에이 사용자
 import java.util.List;
 
@@ -7,11 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.dto.InfoQnACreateDto;
 import com.itwill.shape.dto.InfoQnADetailDto;
 import com.itwill.shape.dto.InfoQnAListDto;
+import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.service.InfoQnAService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,13 +31,20 @@ public class InfoQnAController {
 	 * 큐앤에이 사용자 메인 페이지 리스트 불러오기
 	 * @param qid
 	 * @param model
+	 * @throws IOException 
 	 */
 	@GetMapping("/qna")
-	public void list(Model model) {
+	public void list(Model model,Criteria cri) {
 		log.info("list()");
 		
-		List<InfoQnAListDto> list = infoQnAService.read();
+		int total = infoQnAService.getListCount();
+		log.info("listCount = {}", total);
+		
+		List<InfoQnAListDto> list = infoQnAService.read(cri);
+		
 		model.addAttribute("infoQnAs", list);
+		model.addAttribute("paging", new PageDto(cri, total));
+		
 	}
 	
 	@GetMapping("qna/create")

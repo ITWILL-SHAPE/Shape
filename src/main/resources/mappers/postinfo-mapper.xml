@@ -33,7 +33,45 @@
         group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
         order by P.PID desc
 	</select>
+	
+	<select id="selectWithKeywordAndPaging"
+		parameterType="String"
+		resultType="com.itwill.shape.dto.PostListDto">
+		<![CDATA[
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT from 
+		(
+		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, TITLE, CONTENT, AUTHOR, HRS_HD, CREATED_DATE, MODIFIED_DATE, VIEWS
+		from POST_INFO
+		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
+		) P left join POST_COMMENT C
+            on P.PID = C.PID
+		where p.rn >(#{pageNum}-1) * #{amount} AND(lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%'))
+        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+        order by P.PID desc
+		]]>
+	</select>
 
+	<select id="getListWithPaging">
+		<![CDATA[
+		select * from 
+		(
+		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, TITLE, CONTENT, AUTHOR, HRS_HD, CREATED_DATE, MODIFIED_DATE, VIEWS
+		from POST_INFO
+		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
+		)
+		where rn >(#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+
+	<select id="listCount">
+		SELECT COUNT(*) FROM POST_INFO
+	</select>
+	
+	<select id="listCountWithKeyword">
+		select count(*) from POST_INFO
+		where lower(TITLE) like lower('%' || #{keyword} || '%') or lower(HRS_HD) like lower('%' || #{keyword} || '%')   
+	</select>
+	
 	<select id="selectWithCommentCount"
 		resultType="com.itwill.shape.dto.PostListDto">
 		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT

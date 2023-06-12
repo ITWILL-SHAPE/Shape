@@ -1,9 +1,12 @@
 package com.itwill.shape.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.PostInfo;
 import com.itwill.shape.dto.PostCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
@@ -64,6 +67,31 @@ public class PostInfoService {
 		return postInfoRepository.selectWithKeyword(keyword);
 	}
 	
+	public List<PostListDto> read(String keyword, Criteria cri){
+		log.info("read(keyword={})",keyword);
+		Map<String, Object> args = new HashMap<>();
+		args.put("keyword", keyword);
+		args.put("pageNum", cri.getPageNum()+"");
+		args.put("amount", cri.getAmount()+"");
+		return postInfoRepository.selectWithKeywordAndPaging(args);
+	}
+	
+	/**
+	 * 지현
+	 * 목록 페이징 처리해서 불러오
+	 * @param cri
+	 * @return
+	 */
+	public List<PostListDto> read(Criteria cri){
+		log.info("read(cri={})",cri);
+		return postInfoRepository.getListWithPaging(cri);
+	}
+	
+	/**
+	 * 지현
+	 * 목록 불러오기
+	 * @return
+	 */
 	public List<PostListDto> read(){
 		log.info("read()");
 		return postInfoRepository.selectWithCommentCount();
@@ -113,5 +141,13 @@ public class PostInfoService {
 	public int delete(long pid) {
 		log.info("delete(pid={})", pid);
 		return postInfoRepository.deleteByPid(pid);
+	}
+
+	public int getListCount() {
+		return postInfoRepository.listCount();
+	}
+
+	public int getListCountWithKeyword(String keyword) {
+		return postInfoRepository.listCountWithKeyword(keyword);
 	}
 }
