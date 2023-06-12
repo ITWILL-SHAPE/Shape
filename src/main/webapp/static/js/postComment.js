@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	                    <div id="text${comment.pcid}">
 	                        ${comment.content}
 	                    </div>   
-	                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	                    <div class="d-grid gap-2 d-md-flex justify-content-md-end" id="buttonDiv${comment.pcid}">
 	                        <button class="btnDelete btn btn-outline-danger" data-id="${comment.pcid}">
 	                            삭제
 	                        </button>
@@ -64,103 +64,38 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 	}; //makeCommentElements end.
 	
-	const updateDiv = document.querySelector('div#modifyContent').innerHTML;
-	//const updateDiv = document.getElementById("updateDiv").style.display;
-	const updateDivPcid = document.querySelector('input#updateDivPcid');
-	const updateDivText = document.querySelector('textarea#updateDivText');
-	const btnUpdateDiv = document.querySelector('button#btnUpdateDiv');
+	
 	
 	// 댓글 수정 버튼의 이벤트 리스너 (콜백) 함수
 	const showUpdateDiv = (e) => {
-		
 		const pcid = e.target.getAttribute('data-id');
-		const reqUrl = `/shape/comment/${pcid}`;
+		const before = $('div#text' + pcid).text().trim();
 		
-		console.log('updateDivPcid' + updateDivPcid);
+		$('div#text' + pcid).html('<textarea name="updateText" class="form-control">' + before + '</textarea>');
+		$('div#buttonDiv' + pcid).html(`
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<button id="btnUpdateDiv" type="button" class="btn btn-primary" data-id="${pcid}">
+					수정 확인
+				</button>
+			</div>
+		`);
 		
-		axios.get(reqUrl)
-			.then((response) => {
-				const { pcid, content } = response.data;
-				
-				updateDivPcid.value = pcid;
-				updateDivText.value = content;
-				console.log(pcid, content);
-				
-				console.log('updateDivPcid' + updateDivPcid.value);
-				console.log('updateDivText' + updateDivText.value);
-				
-			    const contentText = content;
-				console.log(contentText);
-				const modifyContent = document.querySelector('div#modifyContent' + pcid);
-				//document.getElementById("updateDiv").style.display = 'block';
-				modifyContent.innerHTML = updateDiv; // div 보이기
-				console.log(updateDiv);
-				console.log('axios:get ' + reqUrl); 
-			})
-			.catch((error) => console.log(error)); 
-	};
-	
-	const updateComment = (e) => {
-		const pcid = updateDivPcid.value;		
-		const content = updateDivText.value;
-		console.log(pcid, content);
-		
-		const reqUrl = `/shape/comment/${pcid}`;
-		const data = { content };
-		
-		axios.put(reqUrl, data)
+		$('#btnUpdateDiv').click(function(e) {
+			const reqUrl = `/shape/comment/${pcid}`;
+			const content = $('textarea[name="updateText"]').val().trim();
+			const data = { content };
+			
+			axios.put(reqUrl, data)
 			.then((response) => {
 				alert('수정 성공');
 				getCommentWithPid();
 			})
 			.catch((error) => console.log(error))
-			//.finally(() => document.getElementById('modifyContent').style.display = "none"); // div 숨기기
-	};
-	btnUpdateDiv.addEventListener('click', updateComment);
-	
-	
-	
-	
-	/*// jsp에 div 따로 만든 것들 element -> 됨
-	const updateDiv = document.querySelector('div#modifyContent');
-	const updateDivPcid = document.querySelector('input#updateDivPcid');
-	const updateDivText = document.querySelector('textarea#updateDivText');
-	const btnUpdateDiv = document.querySelector('button.btnUpdateDiv');
-	
-	// 댓글 수정 버튼의 이벤트 리스너 (콜백) 함수
-	const showUpdateDiv = (e) => {
+		})
 		
-		const pcid = e.target.getAttribute('data-id');
-		const reqUrl = `/shape/comment/${pcid}`;
-		
-		axios.get(reqUrl)
-			.then((response) => {
-				const { pcid, content } = response.data;
-				
-				updateDivPcid.value = pcid;
-				updateDivText.value = content;
-				
-				document.getElementById('modifyContent').style.display = "block"; // div 보이기
-			})
-			.catch((error) => console.log(error)); 
 	};
 	
-	const updateComment = (e) => {
-		const pcid = updateDivPcid.value;		
-		const content = updateDivText.value;
-		
-		const reqUrl = `/shape/comment/${pcid}`;
-		const data = { content };
-		
-		axios.put(reqUrl, data)
-			.then((response) => {
-				alert('수정 성공');
-				getCommentWithPid();
-			})
-			.catch((error) => console.log(error))
-			.finally(() => document.getElementById('modifyContent').style.display = "none"); // div 숨기기
-	};
-	btnUpdateDiv.addEventListener('click', updateComment);*/
+	
 
 	// 댓글 삭제 버튼의 이벤트 리스너 (콜백) 함수
 	const deleteComment = (e) => { 
@@ -205,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	const createComment = (e) => {
 		
-		const pid = document.querySelector('input#pid').value; // 해당 게시글 id 왜 안됨
+		const pid = document.querySelector('input#pid').value; // 해당 게시글 id
 		
 		const content = document.querySelector('textarea#content').value;
 		const author = document.querySelector('input#author').value;
