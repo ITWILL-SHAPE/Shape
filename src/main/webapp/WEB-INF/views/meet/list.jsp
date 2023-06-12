@@ -29,7 +29,11 @@
 
 	<!--제목 검색 -> post -->
 	<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
-		<h1>전체 모임</h1>
+		<c:url var="meetListPage" value="/meet/list">
+			</c:url>
+		<a href="${ meetListPage }" class="link-dark text-decoration-none">
+			<h1>전체 모임</h1>
+		</a>	
 		<div class="tst-tools">
 			<div class="d-flex justify-content-center">
 				<div class="input-group w-50">
@@ -200,7 +204,7 @@
 
 						<div>
 							<c:choose>
-								<c:when test="${cardList.pcnt >= cardList.nm_ppl}">
+								<c:when test="${cardList.PCNT >= cardList.nm_ppl}">
 									<div id="mozipFin${status.begin}">
 										<img id="mozipFinImg${status.begin}"
 											src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
@@ -249,10 +253,11 @@
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-suit-heart-fill"
 											viewBox="0 0 16 16">
-                      <path
+                     						 <path
 												d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
-                    </svg>
-										<span class="text-end" id="heart${status.begin}"> <em>${cardList.lcnt}</em>
+                   						</svg>
+										<span class="text-end" id="heart${status.begin}">
+										 <em>${cardList.LCNT}</em>
 										</span>
 									</div>
 								</div>
@@ -264,7 +269,7 @@
 							</div>
 							<div class="text-lg-end text-center">
 								<small class="text-muted"> 모집인원: <span
-									id="currentApplicants${status.begin}">${cardList.pcnt}</span> /
+									id="currentApplicants${status.begin}">${cardList.PCNT}</span> /
 									<span id="maxApplicants${status.begin}">${cardList.nm_ppl}</span>
 								</small>
 							</div>
