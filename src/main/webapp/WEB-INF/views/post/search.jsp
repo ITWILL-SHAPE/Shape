@@ -67,7 +67,8 @@
 				</nav>
 			</div>
 
-			<form id='actionForm' action='/shape/post/search?keyword='${ keyword } method='get'>
+			<form id='actionForm' action='/shape/post/search' method='get'>
+				<input type="hidden" name='keyword' value='${ paging.cri.keyword }' />
 				<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' />
 				<input type='hidden' name='amount' value='${ paging.cri.amount }' />
 			</form>

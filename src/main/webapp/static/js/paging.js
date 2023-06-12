@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log(targetPage);
 		
 		actionForm.find("input[name='pageNum']").val(targetPage);
+		actionForm.find("input[keyword='keyword']").val(keyword);
 		actionForm.submit();
 	})
     
