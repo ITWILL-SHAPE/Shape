@@ -43,6 +43,7 @@
 									<br />작성일자:
 									<fmt:formatDate value="${ postInfo.created_date }"
 										pattern="yyyy-MM-dd" />
+									<br />댓글 개수: ${ postInfo.rcnt }
 								</p>
 							</div>
 						</div>

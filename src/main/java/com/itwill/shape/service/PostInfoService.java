@@ -59,6 +59,7 @@ public class PostInfoService {
 	
 	/**
 	 * 0603 지현
+	 * 사용 안함!
 	 * 목록 키워드로 불러오기
 	 * @return
 	 */
@@ -67,6 +68,13 @@ public class PostInfoService {
 		return postInfoRepository.selectWithKeyword(keyword);
 	}
 	
+	/**
+	 * 지현
+	 * 검색, 페이징 불러오기
+	 * @param keyword
+	 * @param cri
+	 * @return
+	 */
 	public List<PostListDto> read(String keyword, Criteria cri){
 		log.info("read(keyword={})",keyword);
 		Map<String, Object> args = new HashMap<>();
@@ -89,7 +97,8 @@ public class PostInfoService {
 	
 	/**
 	 * 지현
-	 * 목록 불러오기
+	 * 사용 안함!
+	 * 목록 불러오기 
 	 * @return
 	 */
 	public List<PostListDto> read(){
