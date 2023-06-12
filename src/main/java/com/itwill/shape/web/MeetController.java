@@ -135,8 +135,8 @@ public class MeetController {
 	 */
 	
 	@GetMapping("/search")
-	public void search(String category, String sidoValue, String sortBy, Model model) {
-	    log.info("search(requestParam={}, {}, {})", category, sidoValue, sortBy);
+	public void search(String category, String sidoValue, String sortBy, String searchTitle, Model model) {
+	    log.info("search(requestParam={}, {}, {}, {})", category, sidoValue, sortBy, searchTitle);
 
 	    // 카테고리에 따른 검색 로직
 	    if (category != null) {
@@ -164,7 +164,27 @@ public class MeetController {
 			model.addAttribute("searchList", dto);
 			model.addAttribute("sortBy", sortBy);
 		}
+		
+		if(searchTitle != null) {
+			List<MeetListCountDto> dto = meetListService.readByTitle(searchTitle);
+			model.addAttribute("searchList", dto);
+		}
 	    
+	}
+	
+	@PostMapping("/change")
+	public String checkBoxFormSubmission( boolean reverseCheck, Model model) {
+		log.info("checkBoxFormSubmission)");
+        
+		
+		// 체크박스 상태에 따른 로직 수행
+       
+        	List<MeetListCountDto> dto = meetListService.MozipIng();
+        	model.addAttribute("searchList", dto);
+        
+        
+        // 결과를 보여줄 뷰를 반환
+        return "redirect:/meet/list";
 	}
 
 

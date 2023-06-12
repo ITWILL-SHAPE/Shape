@@ -60,65 +60,107 @@ document.addEventListener('DOMContentLoaded', () => {
         const modifyButtons = document.querySelectorAll('button.btnModify');
         for (let btn of modifyButtons) {
 			btn.addEventListener('click', showUpdateDiv);
-			btn.addEventListener('click', function(e) {
-				const pcid = e.target.getAttribute('data-id');
-				//const reqUrl = `/spring2/api/reply/${pcid}`;
-				const contentText = document.querySelector('div#text' + pcid).innerText;
-				console.log(contentText);
-				const modifyContent = document.querySelector('div#modifyContent' + pcid);
-				modifyContent.innerHTML = 
-				`<div id="modifyContent${pcid}">
-	                    <div>
-	                        <textarea id="updateText">${ contentText }</textarea>
-	                    </div>   
-	                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-	                        <button class="btnUpdate btn btn-outline-success" data-id="${pcid}">
-	                            수정 확인
-	                        </button>
-	                    </div>  
-                 </div>
-				`;
-				console.log(pcid);
-			});
 		}
 		
 	}; //makeCommentElements end.
 	
-	// jsp에 div 따로 만든 것들 element -> 안됨
-	const updateDiv = document.querySelector('div#modifyContent');
-	const updateText = document.querySelector('textarea#updateText');
-	const btnUpdate = document.querySelector('button#btnUpdate');
+	const updateDiv = document.querySelector('div#modifyContent').innerHTML;
+	//const updateDiv = document.getElementById("updateDiv").style.display;
+	const updateDivPcid = document.querySelector('input#updateDivPcid');
+	const updateDivText = document.querySelector('textarea#updateDivText');
+	const btnUpdateDiv = document.querySelector('button#btnUpdateDiv');
 	
+	// 댓글 수정 버튼의 이벤트 리스너 (콜백) 함수
 	const showUpdateDiv = (e) => {
 		
-		document.getElementById('modifyContent').style.display = "block"; // div 보이기
+		const pcid = e.target.getAttribute('data-id');
+		const reqUrl = `/shape/comment/${pcid}`;
 		
+		console.log('updateDivPcid' + updateDivPcid);
+		
+		axios.get(reqUrl)
+			.then((response) => {
+				const { pcid, content } = response.data;
+				
+				updateDivPcid.value = pcid;
+				updateDivText.value = content;
+				console.log(pcid, content);
+				
+				console.log('updateDivPcid' + updateDivPcid.value);
+				console.log('updateDivText' + updateDivText.value);
+				
+			    const contentText = content;
+				console.log(contentText);
+				const modifyContent = document.querySelector('div#modifyContent' + pcid);
+				//document.getElementById("updateDiv").style.display = 'block';
+				modifyContent.innerHTML = updateDiv; // div 보이기
+				console.log(updateDiv);
+				console.log('axios:get ' + reqUrl); 
+			})
+			.catch((error) => console.log(error)); 
 	};
 	
-	
-	//const updateButton = document.querySelectorAll('button.btnUpdate');
-
-	//const updateText = document.querySelector('textarea#updateText').value;
-
 	const updateComment = (e) => {
-
-		const pcid = e.target.getAttribute('data-id');
-		const updateText = document.querySelector('textarea#updateText').value;
-
+		const pcid = updateDivPcid.value;		
+		const content = updateDivText.value;
+		console.log(pcid, content);
+		
 		const reqUrl = `/shape/comment/${pcid}`;
-		const data = { updateText };
-
+		const data = { content };
+		
 		axios.put(reqUrl, data)
 			.then((response) => {
-				alert(`수정 성공`);
+				alert('수정 성공');
 				getCommentWithPid();
 			})
 			.catch((error) => console.log(error))
+			//.finally(() => document.getElementById('modifyContent').style.display = "none"); // div 숨기기
 	};
-		//updateButton.addEventListener('click', updateComment);
+	btnUpdateDiv.addEventListener('click', updateComment);
 	
+	
+	
+	
+	/*// jsp에 div 따로 만든 것들 element -> 됨
+	const updateDiv = document.querySelector('div#modifyContent');
+	const updateDivPcid = document.querySelector('input#updateDivPcid');
+	const updateDivText = document.querySelector('textarea#updateDivText');
+	const btnUpdateDiv = document.querySelector('button.btnUpdateDiv');
+	
+	// 댓글 수정 버튼의 이벤트 리스너 (콜백) 함수
+	const showUpdateDiv = (e) => {
 		
+		const pcid = e.target.getAttribute('data-id');
+		const reqUrl = `/shape/comment/${pcid}`;
 		
+		axios.get(reqUrl)
+			.then((response) => {
+				const { pcid, content } = response.data;
+				
+				updateDivPcid.value = pcid;
+				updateDivText.value = content;
+				
+				document.getElementById('modifyContent').style.display = "block"; // div 보이기
+			})
+			.catch((error) => console.log(error)); 
+	};
+	
+	const updateComment = (e) => {
+		const pcid = updateDivPcid.value;		
+		const content = updateDivText.value;
+		
+		const reqUrl = `/shape/comment/${pcid}`;
+		const data = { content };
+		
+		axios.put(reqUrl, data)
+			.then((response) => {
+				alert('수정 성공');
+				getCommentWithPid();
+			})
+			.catch((error) => console.log(error))
+			.finally(() => document.getElementById('modifyContent').style.display = "none"); // div 숨기기
+	};
+	btnUpdateDiv.addEventListener('click', updateComment);*/
 
 	// 댓글 삭제 버튼의 이벤트 리스너 (콜백) 함수
 	const deleteComment = (e) => { 
@@ -167,8 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const content = document.querySelector('textarea#content').value;
 		const author = document.querySelector('input#author').value;
+		const splitContent = content.split(' ').join('');
 		
-		if (content === '') {
+		if (!splitContent) {
 			alert('댓글 작성');
 			return;
 		}

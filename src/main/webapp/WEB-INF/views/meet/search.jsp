@@ -33,9 +33,10 @@
 		<div class="tst-tools">
 			<div class="d-flex justify-content-center">
 				<div class="input-group w-50">
-					<form id="searchFormByTitle" class="TitleSearchForm">
+					<c:url var="meetSearchPage" value="/meet/search"></c:url>
+					<form id="searchFormByTitle" class="TitleSearchForm" action="${ meetSearchPage }">
 						<input type="text" class="form-control" id="searchTitle"
-							name="serchT" placeholder="검색어 입력"
+							name="searchTitle" placeholder="검색어 입력"
 							aria-label="Input group example" aria-describedby="basic-addon1">
 						<button id="titleBtn" type="submit"
 							class="btn btn-outline-secondary">
@@ -53,16 +54,19 @@
 	</header>
 
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
-	<c:url var="meetSearchPage" value="/meet/search">
-	</c:url>
-	<form id="searchFormCheckBox" class="CheckBoxSearchForm" action="${ meetSearchPage }">
+	<form id="searchFormCheckBox" class="CheckBoxSearchForm" >
 		<div class="form-check form-check-reverse">
-			<label class="form-check-label" for="reverseCheck"
-				id="checkRecruitmentStatus"> 모집중 </label> <input
-				class="form-check-input" type="checkbox" value="" id="reverseCheck" name="mozipCheck">
+			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentIng" > 
+			모집중 
+			</label> 
+			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentEd" hidden> 
+			모집완료 
+			</label>
+			<input
+			class="form-check-input" type="checkbox" value="" 
+			id="reverseCheck" name="mozipCheck" >
 		</div>
 	</form>
-
 	<!-- category/sido/ 검색 div들 -> post -->
 
 	<div class="d-flex mb-3">
@@ -189,7 +193,7 @@
 
 						<div>
 							<c:choose>
-								<c:when test="${cardList.pcnt >= cardList.nm_ppl}">
+								<c:when test="${cardList.PCNT >= cardList.nm_ppl}">
 									<div id="mozipFin${status.begin}">
 										<img id="mozipFinImg${status.begin}"
 											src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
@@ -241,7 +245,7 @@
                       <path
 												d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                     </svg>
-										<span class="text-end" id="heart${status.begin}"> <em>${cardList.lcnt}</em>
+										<span class="text-end" id="heart${status.begin}"> <em>${cardList.LCNT}</em>
 										</span>
 									</div>
 								</div>
@@ -253,7 +257,7 @@
 							</div>
 							<div class="text-lg-end text-center">
 								<small class="text-muted"> 모집인원: <span
-									id="currentApplicants${status.begin}">${cardList.pcnt}</span> /
+									id="currentApplicants${status.begin}">${cardList.PCNT}</span> /
 									<span id="maxApplicants${status.begin}">${cardList.nm_ppl}</span>
 								</small>
 							</div>
