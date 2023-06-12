@@ -33,9 +33,10 @@
 		<div class="tst-tools">
 			<div class="d-flex justify-content-center">
 				<div class="input-group w-50">
-					<form id="searchFormByTitle" class="TitleSearchForm">
+				<c:url var="meetSearchPage" value="/meet/search"></c:url>
+					<form id="searchFormByTitle" class="TitleSearchForm" action="${ meetSearchPage }">
 						<input type="text" class="form-control" id="searchTitle"
-							name="serchT" placeholder="검색어 입력"
+							name="searchTitle" placeholder="검색어 입력"
 							aria-label="Input group example" aria-describedby="basic-addon1">
 						<button id="titleBtn" type="submit"
 							class="btn btn-outline-secondary">
@@ -56,11 +57,20 @@
 	
 	<form id="searchFormCheckBox" class="CheckBoxSearchForm" >
 		<div class="form-check form-check-reverse">
-			<label class="form-check-label" for="reverseCheck"
-				id="checkRecruitmentStatus"> 모집중 </label> <input
-				class="form-check-input" type="checkbox" value="" id="reverseCheck" name="mozipCheck">
+			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentIng" > 
+			모집중 
+			</label>
+			<%-- 
+			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentEd" hidden> 
+			모집완료 
+			</label>
+			 --%>
+			<input
+			class="form-check-input" type="checkbox" value="" 
+			id="reverseCheck" name="mozipCheck" >
 		</div>
 	</form>
+	
 
 	<!-- category/sido/ 검색 div들 -> post -->
 
