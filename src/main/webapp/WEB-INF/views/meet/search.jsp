@@ -53,8 +53,9 @@
 	</header>
 
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
-	
-	<form id="searchFormCheckBox" class="CheckBoxSearchForm" >
+	<c:url var="meetSearchPage" value="/meet/search">
+	</c:url>
+	<form id="searchFormCheckBox" class="CheckBoxSearchForm" action="${ meetSearchPage }">
 		<div class="form-check form-check-reverse">
 			<label class="form-check-label" for="reverseCheck"
 				id="checkRecruitmentStatus"> 모집중 </label> <input
@@ -66,12 +67,11 @@
 
 	<div class="d-flex mb-3">
 		<!-- 모집 분야 필터 -->
-		<!-- 카테고리 필터 -->
 		<div class="p-2">
 			<c:url var="meetSearchPage" value="/meet/search">
 			</c:url>
 			<form id="searchFormCategory" class="categorySearchForm"
-				action="${ meetSearchPage }">
+				action="${ meetSearchPage }" >
 				<div class="input-group mb-3">
 					<label for="categorySelect"> <select
 						class="custom-select custom-select-lg mb-3" id="category"
@@ -154,14 +154,13 @@
 			<form id="searchFormSort" class="sortSearchForm"
 				action="${ meetSearchPage }">
 				<select name="sortBy" onchange="this.form.submit()">
-					<option value="latest"
-						${sortBy == 'latest' ? 'selected="selected"' : '' }>최신순</option>
-					<option value="popular"
-						${sortBy == 'popular' ? 'selected="selected"' : '' }>인기순</option>
+					<option value="최신순"
+						${sortBy == '최신순' ? 'selected="selected"' : '' }>최신순</option>
+					<option value="인기순"
+						${sortBy == '인기순' ? 'selected="selected"' : '' }>인기순</option>
 				</select>
 			</form>
 		</div>
-
 	</div>
 	<!--아이템: model.addAttribute("listCount", dto);-->
 	<div id="cardList" class="album py-5">
@@ -170,7 +169,7 @@
       -> 로그인: header.jsp, main.jsp => 37줄 참고 
       -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
     -->
-			<c:forEach items="${listCount}" var="cardList" varStatus="status">
+			<c:forEach items="${searchList}" var="cardList" varStatus="status">
 				<c:url var="meetDetailPage" value="/meet/maindetail">
 					<c:param name="mtid" value="${cardList.mtid}" />
 				</c:url>

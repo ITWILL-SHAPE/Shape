@@ -12,25 +12,22 @@
 	: TABLE 당 하나의 mapper를 갖는다.
 	: 해당 쿼리 작성 후 무슨 역할을 하는지와 작성자 이름 기재
 -->
-
-	<!-- 
-	post_comment table에서 pcid와 일치하는 댓글 삭제
-	 -->
+	<!-- 마이페이지 -->
+	<!-- post_comment table에서 pcid와 일치하는 댓글 삭제 -->
 	<delete id="deleteByPcid">
 		DELETE FROM post_comment
-		 WHERE pcid = #{ pcid }
+		 WHERE pcid = #{pcid}
 	</delete>
 	
-	<!-- 
-	post_comment table에서 author로 댓글 목록 가져오기
-	 -->
+	<!-- post_comment table에서 author(id)로 댓글 목록 가져오기 -->
 	<select	id="selectByAuthor"
 		resultType="com.itwill.shape.domain.PostComment"
 		>
 		SELECT *
 		  FROM post_comment
-		 WHERE author = #{ author }
+		 WHERE author = #{author}
 	</select>
+	<!-- 마이 페이지 끝 -->
 
 	<!--게시판 페이지 -->
 	<select id="selectCommentCountWithPid"

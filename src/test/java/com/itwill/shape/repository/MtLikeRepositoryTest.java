@@ -42,7 +42,7 @@ public class MtLikeRepositoryTest {
 		
 		log.info(mtLike.toString());
 		
-		int result = meetLikeRepository.likeCreate(mtLike);
+		int result = meetLikeRepository.likeCreate(mtLike.getMtid(), mtLike.getId());
 		log.info("mtInfo = {}", mtLike);
 	}
 	

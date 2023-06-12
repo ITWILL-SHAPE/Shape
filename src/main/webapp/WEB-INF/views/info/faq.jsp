@@ -6,6 +6,11 @@
 <html>
 <body>
 	<div class="container">
+	
+	<div class="my-2 p-5 text-center">
+		<h1>FAQ</h1>
+	</div>
+	
 	<main>
 		<div class="accordion" id="accordionExample">
 			<c:forEach items="${ faqs }" var="faq" varStatus="status">

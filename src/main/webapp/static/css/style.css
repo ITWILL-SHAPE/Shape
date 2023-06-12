@@ -77,16 +77,12 @@ span.highlight {
   margin-right: 180px;
 }
 
-/*디테일 JSP 사용 
-div.meeetcontent {
-	margin-right : 10px;
-	margin-left: 10px;
+.form-box#modifyForm {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 180px;
+  margin-right: 180px;
 }
-div.meetdetailemail{
-	margin-right : 10px;
-	margin-left: 10px;
-}
-*/
 
 .dt_class {
   margin-bottom: 10px;
@@ -144,4 +140,44 @@ div.meetdetailuser{
 div.replyToggleDiv {
   max-height: 50px; /* 카드의 최대 높이를 지정 */
   overflow-y: auto; /* 세로 스크롤을 추가하여 내용이 넘치는 경우 스크롤 가능하도록 설정 */
+}
+
+/* 'meet/list.jsp' */
+
+svg.bd-placeholder-img {
+   font-size: 1.125rem;
+   text-anchor: middle;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   user-select: none;
+}
+
+@media ( min-width : 768px) {
+   .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+   }
+}
+
+img.overlay-image {
+   position: relative;
+}
+
+img.overlay-right {
+   position: absolute;
+   top: 15px;
+   right: 20px;
+}
+
+img.overlay-left {
+   position: absolute;
+   top: 15px;
+   left: 10px;
+}
+a:link.meetListATag {
+    text-decoration: none;
+}
+
+/* mngr userInfo list*/
+table.users tr {
+	cursor: pointer;
 }

@@ -1,5 +1,3 @@
-sidebar
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -34,8 +32,8 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 				<h5>회원정보</h5>
 				<ul class="hyphen-list">
 					<li><a href="myprofile">나의 프로필</a></li>
-					<li><a href="confirmpwd">비밀번호 수정</a></li>
-					<li><a href="withdrawal">회원탈퇴(beta)</a></li>
+					<li><a href="confirmpwdpage">비밀번호 수정</a></li>
+					<li><a href="withdrawalpage">회원탈퇴(beta)</a></li>
 				</ul>
 			</nav>
 		</li>
@@ -61,13 +59,4 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 		</li>
 	</ul>
 </div>
-<style>
-/* 메인 콘텐츠 스타일 */
-/*
-#content {
-   margin-left: 220px; /* 사이드바 너비 + 여백
-   padding: 20px;
-}
-*/
-</style>
 </html>

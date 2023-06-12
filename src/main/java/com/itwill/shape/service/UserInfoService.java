@@ -72,11 +72,10 @@ public class UserInfoService {
 	 * 0606 손창민
 	 * DB에서 아규먼트로 전달받은 id와 일치하는 user_info table의 pwd를 inputPwd로 변경
 	 */
-	public int modifyPwdById(String id, String inputPwd) {
-		log.info("id={}", id);
-		log.info("inputPwd={}", inputPwd);
+	public int modifyPwdById(String id, String newPwd) {
+		log.info("modifyPwdById(id={}, inputPwd={})", id, newPwd);
 		
-		return userInfoRepository.modifyPwdById(id, inputPwd);
+		return userInfoRepository.modifyPwdById(id, newPwd);
 	}
 	
 	
@@ -171,6 +170,38 @@ public class UserInfoService {
 		log.info("updateUserPwd(id = {}, pwd = {})", id, pwd);
 		
 		return userInfoRepository.updateUserPwd(id, passwordEncoder.encode(pwd));
+	}
+	
+	
+	/**
+	 * 하지윤
+	 * 비밀번호 확인
+	 * User의 id와 pwd를 받으면 해당 아이디에 인코드된 패스워드를 들고와
+	 * 비교한 후 boolean 리턴
+	 * 
+	 * @param id
+	 * @param pwd
+	 * @return boolean
+	 */
+	public boolean confirmUser(String id, String inputPwd) {
+		log.info("confirmUser(id = {}, inputPwd = {})", id, inputPwd);	
+		
+		// 해당 아이디에 있는 User 비밀번호를 찾음.
+		String dbPassword = userInfoRepository.findUserPwd(id);
+		log.info("confirmUser(dbPassword{})", dbPassword);
+		
+		return passwordEncoder.matches(inputPwd, dbPassword);
+	}
+	/**
+	 * 0611손창민
+	 * 회원탈퇴 유저정보 삭제
+	 * @param id
+	 * @return
+	 */
+	public int deleteUserInfoById(String id) {
+		log.info("deleteUserInfoById(id={})", id);
+		
+		return userInfoRepository.deleteUserInfoById(id);
 	}
 
 }

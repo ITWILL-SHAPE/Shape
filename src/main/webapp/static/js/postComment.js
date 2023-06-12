@@ -7,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	const comments = document.querySelector('div#comments'); // 댓글 목록 표시 영역(div)
 	const commentCountSpan = document.querySelector('span#commentCount'); // 댓글 개수 표시 영역(span)
 	
-	
-	
 	// 댓글 목록 HTML을 작성하고 comments 영역에 추가하는 함수
 	const makeCommentElements = (data) => { // argument data: Ajax 요청의 응답으로 전달받은 데이터
 		
@@ -33,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	                    </div>
                     
                     <div id="modifyContent${comment.pcid}">
-	                    <div>
+	                    <div id="text${comment.pcid}">
 	                        ${comment.content}
 	                    </div>   
 	                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -57,13 +55,71 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', deleteComment);
         }
         
-        // TODO: 모든 수정 버튼들을 찾아서 클릭 이벤트 리스너를 등록:
+        //모든 수정 버튼들을 찾아서 클릭 이벤트 리스너를 등록:
+        //TODO: 수정 완료 버튼 이벤트
         const modifyButtons = document.querySelectorAll('button.btnModify');
         for (let btn of modifyButtons) {
-			btn.addEventListener('click', showModifyContentDiv);
+			btn.addEventListener('click', showUpdateDiv);
+			btn.addEventListener('click', function(e) {
+				const pcid = e.target.getAttribute('data-id');
+				//const reqUrl = `/spring2/api/reply/${pcid}`;
+				const contentText = document.querySelector('div#text' + pcid).innerText;
+				console.log(contentText);
+				const modifyContent = document.querySelector('div#modifyContent' + pcid);
+				modifyContent.innerHTML = 
+				`<div id="modifyContent${pcid}">
+	                    <div>
+	                        <textarea id="updateText">${ contentText }</textarea>
+	                    </div>   
+	                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	                        <button class="btnUpdate btn btn-outline-success" data-id="${pcid}">
+	                            수정 확인
+	                        </button>
+	                    </div>  
+                 </div>
+				`;
+				console.log(pcid);
+			});
 		}
+		
+	}; //makeCommentElements end.
+	
+	// jsp에 div 따로 만든 것들 element -> 안됨
+	const updateDiv = document.querySelector('div#modifyContent');
+	const updateText = document.querySelector('textarea#updateText');
+	const btnUpdate = document.querySelector('button#btnUpdate');
+	
+	const showUpdateDiv = (e) => {
+		
+		document.getElementById('modifyContent').style.display = "block"; // div 보이기
+		
 	};
 	
+	
+	//const updateButton = document.querySelectorAll('button.btnUpdate');
+
+	//const updateText = document.querySelector('textarea#updateText').value;
+
+	const updateComment = (e) => {
+
+		const pcid = e.target.getAttribute('data-id');
+		const updateText = document.querySelector('textarea#updateText').value;
+
+		const reqUrl = `/shape/comment/${pcid}`;
+		const data = { updateText };
+
+		axios.put(reqUrl, data)
+			.then((response) => {
+				alert(`수정 성공`);
+				getCommentWithPid();
+			})
+			.catch((error) => console.log(error))
+	};
+		//updateButton.addEventListener('click', updateComment);
+	
+		
+		
+
 	// 댓글 삭제 버튼의 이벤트 리스너 (콜백) 함수
 	const deleteComment = (e) => { 
 		console.log(e.target);
@@ -83,41 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	};
 	
-	// 댓글 수정 버튼의 이벤트 리스너 (콜백) 함수
-	const showModifyContentDiv = (e) => {
-		
-		const pcid = e.target.getAttribute('data-id');
-		const reqUrl = `/shape/comment/${pcid}`;
-		
-		axios.get(reqUrl)
-			.then((response) => {
-				
-				const { pcid, content } = response.data;
-				
-				`<div id="modifyContent${pcid}">
-	                    <div>
-	                        ${content}
-	                    </div>   
-	                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-	                        <button class="btnUpdate btn btn-outline-success" data-id="${pcid}">
-	                            수정 확인
-	                        </button>
-	                    </div>  
-                    </div>
-				`;
-			})
-			.catch((error) => console.log(error));
-	};
-	
-	/*const btnUpdate = document.querySelector('button.btnUpdate');
-	
-	const updateContent = (e) => {
-		
-		const pcid = e.target.getAttribute('data-id'); // 수정할 댓글 아이디
-		const content = // 수정할 댓글 내용
-		
-	};*/
-
 	
 	const getCommentWithPid = async () => {
 		
@@ -135,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log(error);
 		}
 	};
-
 	getCommentWithPid(); // 함수 호출
 	
 	// 댓글 등록 버튼
@@ -148,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const content = document.querySelector('textarea#content').value;
 		const author = document.querySelector('input#author').value;
 		
-		if (content ==='') {
+		if (content === '') {
 			alert('댓글 작성');
 			return;
 		}

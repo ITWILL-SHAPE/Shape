@@ -1,8 +1,11 @@
 package com.itwill.shape.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.UserInfo;
+import com.itwill.shape.dto.MngrUserInfoSearchListDto;
 import com.itwill.shape.dto.UserInfoFindDto;
 
 public interface UserInfoRepository {
@@ -14,7 +17,7 @@ public interface UserInfoRepository {
 	 * @param inputPwd
 	 * @return
 	 */
-	int modifyPwdById(@Param("id") String id, @Param("inputPwd") String inputPwd);
+	int modifyPwdById(@Param("id") String id, @Param("newPwd") String newPwd);
 	
 	
 	/**
@@ -73,6 +76,14 @@ public interface UserInfoRepository {
 	 */
 	int updateUserPwd(@Param("id") String id, @Param("pwd") String pwd);
 	
+	/**
+	 * 하지윤
+	 * DB에 있는 pwd를 리턴
+	 * @param id
+	 * @return
+	 */
+	String findUserPwd(String id);
+	
 	
 	/**
 	 * 로그인한 id를 이용하여 user의 정보읽기
@@ -100,5 +111,28 @@ public interface UserInfoRepository {
 	 * @return int (0/1)  
 	 */
 	int imageModify(String id, byte[] ImageData);
+	
+	/**
+	 * 하지윤
+	 * 관리자 - 사용자 조회
+	 * @return List<UserInfo>
+	 */
+	List<UserInfo> selectAllUser();
+	
+	/**
+	 * 하지윤
+	 * 관리자 - 사용자 검색
+	 * @param dto
+	 * @return
+	 */
+	List<UserInfo> selectByKeyword(MngrUserInfoSearchListDto dto);
+	
+	/**
+	 * 0611손창민
+	 * 회원탈퇴 - 유저 정보 삭제
+	 * @param id
+	 * @return
+	 */
+	int deleteUserInfoById(String id);
 	
 }

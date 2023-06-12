@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (checkbox.checked) {
 				const pcid = checkbox.closest('tr').querySelector('#pcid').value;
 				console.log(pcid);
-				selectedComments.push({ pcid: pcid });
+				
+				selectedPcids.push({ pcid: pcid });
 				console.log(selectedPcids);
 			}
 		});
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 				// 삭제 작업 완료 후 처리할 내용
 				location.reload(); // 페이지 새로고침
+				//table.innerText = response.data;
 			})
 			.catch((error) => {
 				// 에러 발생 시 처리할 내용

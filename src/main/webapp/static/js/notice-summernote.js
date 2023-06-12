@@ -1,5 +1,5 @@
 /**
- * post-summernote.js 게시판 summernote
+ * notice-summernote.js 게시판 summernote
  * create
  * modify
  */
@@ -66,3 +66,11 @@ $(document)
 							'30', '36', '50', '72']
 					});
 		});
+		
+document.addEventListener('DOMContentLoaded', () => {
+		const changeHd = (target) => {
+			const hd = target.value;
+			console.log(target.value);
+			document.getElementById('textarea#hrs_hd').innerText = hd;
+		}
+	});

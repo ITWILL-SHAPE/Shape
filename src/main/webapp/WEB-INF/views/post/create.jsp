@@ -4,20 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!-- postpage create -->
-<!-- summernote link -->
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<script src="../static/summernote/lang/summernote-ko-KR.js"></script>
-<!-- summernote link -->
 <div class="container">
 	<header class="my-2 p-5 text-center">
 		<h1>게시글 작성</h1>
 	</header>
 
-	<main class="border bg-body rounded shadow-sm">
+	<main class="my-2">
 		<div class="card">
 			<form method="post">
 				<div class="card-body">
@@ -46,18 +38,19 @@
 						<label class="form-label" for="author">작성자 아이디</label>
 						<sec:authentication property="principal.username" var="id" />
 						<input class="form-control" type="text" id="author" name="author"
-							value="${ id }" readonly/>
+							value="${ id }" readonly />
+					</div>
+					<div class="d-grid mt-3 gap-2 d-md-flex justify-content-md-end">
+						<input class="btn btn-warning" type="submit"
+							value="작성 완료" />
 					</div>
 				</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<input class="form-control btn btn-outline-warning" type="submit"
-						value="작성 완료" />
-					<c:url var="postList" value="/post/list" />
-					<button onclick="location.href='${ postList }'"
-						class="btn btn-warning" type="button">목록</button>
-				</div>
 			</form>
-
+		</div>
+		<div class="d-grid mt-2 gap-2 col-5 mx-auto">
+			<c:url var="postList" value="/post/list" />
+			<button onclick="location.href='${ postList }'"
+				class="btn btn-warning" type="button">목록</button>
 		</div>
 	</main>
 </div>

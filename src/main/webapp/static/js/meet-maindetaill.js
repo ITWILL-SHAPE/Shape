@@ -2,6 +2,49 @@
  * USER DEtaill 페이지
  * 유저가 (guest)가 찜 클릭 찜 취소 참여 user정보까지 보여주는 페이지
 **/
+	// 참여자 목록
+	
+	document.addEventListener('DOMContentLoaded', () => {
+		// 참여자 목록 표시 (div)
+		const guest = document.querySelector('div#GUEST');
+	
+		// 부트스트랩 Collapse 객체를 생성 - 초기 상태는 화면에서 안보이는 상태
+	    const bsCollapse = new bootstrap.Collapse('div#replyToggleDiv', {toggle: false});
+	    
+	    // 버튼 아이콘 이미지
+	    const toggleBtnIcon = document.querySelector('img#toggleBtnIcon');
+		
+		
+		// 목록 보이기/숨기기 토글 버튼에 이벤트 리스너를 등록
+	    const btnToggleReply = document.querySelector('button#btnToggleReply');
+	    btnToggleReply.addEventListener('click', () => {
+	        bsCollapse.toggle();
+	        
+	        if (toggleBtnIcon.alt === 'toggle-off') {
+	             toggleBtnIcon.src = '../static/images/sample/toggle-on.png';
+	             toggleBtnIcon.alt = 'toggle-on';
+	             
+	             // 댓글 전체 목록을 서버에 요청하고, 응답이 오면 화면 갱신.
+	            // getdetailByMtid();
+	        } else {
+	            toggleBtnIcon.src = '../static/images/sample/toggle-off.png';
+	            toggleBtnIcon.alt = 'toggle-off';
+	            //guest.innerHTML = '';
+	        }
+	    
+	    });
+		// 로그인 여부 확인
+		/*const isAuthenticated = <sec:authorize access="isAuthenticated()">true</sec:authorize>;
+
+		if (isAuthenticated) {
+			// 로그인된 사용자인 경우
+			// 추가적인 자바스크립트 코드 작성
+		} else {
+			// 로그인되지 않은 사용자인 경우
+			alert('로그인이 필요합니다.'); // 알림창에 표시할 메시지
+		}*/
+	});
+	
 
 	
 	// 찜 클릭
@@ -44,6 +87,7 @@
 	 *const btnJoin = document.querySelector('#join');
 let isJoined = false; // 초기 상태는 참여하지 않은 상태
 
+<<<<<<< HEAD
 btnJoin.addEventListener('click', () => {
   if (isJoined) {
     // 이미 참여한 상태인 경우
@@ -127,37 +171,10 @@ function insertParticipant(userInfo) {
 	 *  
 	**/
 	// 참여자 목록
+=======
+	**/ 
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 	
-	document.addEventListener('DOMContentLoaded', () => {
-		// 참여자 목록 표시 (div)
-		const guest = document.querySelector('div#GUEST');
-	
-		// 부트스트랩 Collapse 객체를 생성 - 초기 상태는 화면에서 안보이는 상태
-	    const bsCollapse = new bootstrap.Collapse('div#replyToggleDiv', {toggle: false});
-	    
-	    // 버튼 아이콘 이미지
-	    const toggleBtnIcon = document.querySelector('img#toggleBtnIcon');
-		
-		
-		// 목록 보이기/숨기기 토글 버튼에 이벤트 리스너를 등록
-	    const btnToggleReply = document.querySelector('button#btnToggleReply');
-	    btnToggleReply.addEventListener('click', () => {
-	        bsCollapse.toggle();
-	        
-	        if (toggleBtnIcon.alt === 'toggle-off') {
-	             toggleBtnIcon.src = '../static/images/sample/toggle-on.png';
-	             toggleBtnIcon.alt = 'toggle-on';
-	             
-	             // 댓글 전체 목록을 서버에 요청하고, 응답이 오면 화면 갱신.
-	            // getdetailByMtid();
-	        } else {
-	            toggleBtnIcon.src = '../static/images/sample/toggle-off.png';
-	            toggleBtnIcon.alt = 'toggle-off';
-	            // guest.innerHTML = '';
-	        }
-	    
-	    });
-	});
 	
 
 

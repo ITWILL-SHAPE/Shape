@@ -27,13 +27,12 @@ public class PostInfoService {
 
 	/**
 	 * 0608 손창민
-	 * post_info table에서 pcid와 일치하는 작성글 삭제
-	 * @param id
+	 * post_info table에서 pid와 일치하는 작성글 삭제
+	 * @param pid
 	 * @return
 	 */
 	public int deleteByPid(long pid) {
-//		log.info("author={}", author);
-//		log.info("content={}", title);
+		log.info("deleteByPid(pid={})", pid);
 		
 		return postInfoRepository.deleteByPid(pid);
 	}
@@ -41,12 +40,11 @@ public class PostInfoService {
 	/**
 	 * 0601 손창민
 	 * post_info table에서 author와 일치하는 작성글 불러오기
-	 * @param id
+	 * @param author(id)
 	 * @return
 	 */
 	public List<PostInfoSelectByAuthorDto> selectByAuthor(String author) {
-		log.info("selectById()");
-		log.info("author={}", author);
+		log.info("selectById(author(id)={})", author);
 		
 		List<PostInfo> entity = postInfoRepository.selectByAuthor(author);
 		log.info("entity={}", entity);

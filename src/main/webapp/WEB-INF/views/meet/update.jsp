@@ -21,17 +21,18 @@
 							</small>
 						</div>
 					</div>
-					<form action="" method="post" class="form-box" id="createForm">
+					<form action="" method="post" class="form-box" id="modifyForm">
 						<dl>
 							<div>
 								<input type="hidden" id="crtr_id" name="crtr_id" value="${ meet.crtr_id }" />
+								<input type="hidden" id="mtid" name="mtid" value="${ meet.mtid }" />
 							</div>
 								<dt align="left" class="dt_class">
 									모임 제목 <span class="highlight">*</span>
 								</dt>
 							<dd align="left">
 							  <div class="input-group">
-							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value="${ meet.title }" oninput="updateCharCount()" required>
+							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value="${ meet.title }" oninput="updateCharCount()" autofocus required>
 							  </div>
 							  <div class="smallText">
 							    <small id="textLengthCheck" class="form-text text-muted">(0 / 80)</small>
@@ -137,19 +138,19 @@
 							<dd align="left">
 								<div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_1" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_2" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_3" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_4" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" id="formFile_5" accept="image/*">
 									</div>
 								</div>
 							</dd>
@@ -168,11 +169,12 @@
 						</dl>
 						<div>
 							<div>
+								<br>
 								<div class="my-2 text-center">
-									<c:url var="meetList" value="/meet/list" />
-									<a class="btn btn-warning" href="${ meetList }">취소</a>
-									<input class="btn btn-outline-primary" type="submit"
+									<a class="mx-3 btn btn-warning" id="btnCancel">취소</a>
+									<input class="mx-3 btn btn-outline-primary" type="submit" id="btnUpdate"
 										value="모임 수정하기" />
+									<button class="mx-3 btn btn-outline-danger" type="button" id="btnDelete">삭제</button>
 								</div>
 							</div>
 						</div>

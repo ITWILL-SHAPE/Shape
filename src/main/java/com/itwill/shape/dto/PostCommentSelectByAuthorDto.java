@@ -24,6 +24,7 @@ import lombok.ToString;
 public class PostCommentSelectByAuthorDto {
 	
 	long pcid;
+	long pid;
 	private String content;
 	private Timestamp created_date;
 
@@ -36,6 +37,7 @@ public class PostCommentSelectByAuthorDto {
 
 		return PostCommentSelectByAuthorDto.builder()
 				.pcid(entity.getPcid())
+				.pid(entity.getPid())
 				.content(entity.getContent())
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.build();

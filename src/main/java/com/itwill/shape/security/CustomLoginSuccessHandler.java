@@ -29,7 +29,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		log.info("ROLE NAMES : {}", roleNames);
 		System.out.println(roleNames.contains("ROLE_A"));
-		if(roleNames.contains("A")) {
+		if(roleNames.contains("ROLE_A")) {
 			System.out.println("mngr로 이동");
 			response.sendRedirect("/shape/mngr/");
 			return;
@@ -41,7 +41,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 			return;
 		}
 		
-		response.sendRedirect("/shape/");
+		// response.sendRedirect("/shape/");
 		
 	}
 
