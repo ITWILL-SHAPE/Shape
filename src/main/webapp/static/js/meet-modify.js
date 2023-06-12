@@ -23,6 +23,7 @@
 		const btnDelete = document.querySelector('#btnDelete');
 		const btnCancel = document.querySelector('#btnCancel');
 
+		// 모임 수정 취소 버튼
 		btnCancel.addEventListener('click', () => {
 			const check = confirm('작성하신 내용은 저장되지 않습니다. 모임 수정을 취소하시겠습니까?');
 			if (check) {
@@ -30,8 +31,8 @@
 			}
 		});
 
+		// 모임 삭제 버튼
 		btnDelete.addEventListener('click', () => {
-
 			const result = confirm('모임을 정말 삭제할까요?');
 			console.log(`삭제 확인 결과 = ${result}`);
 
@@ -42,7 +43,8 @@
 
 			}
 		});
-
+	
+		// 모임 수정 버튼
 		btnUpdate.addEventListener('click', () => {
 			event.preventDefault();
 

@@ -3,6 +3,7 @@
  * 정지언 
  */
 
+// 모임 만들기 취소 버튼
 document.addEventListener('DOMContentLoaded', () => {
 	const createForm = document.querySelector('#createForm');
 
@@ -13,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			history.go(-1); // 취소하면 이전 페이지로 이동
 		}
 	});
-
+	
+	// 모임 만들기 버튼
 	const btnCreate = document.querySelector('#btnCreate');
 	btnCreate.addEventListener('click', () => {
 
