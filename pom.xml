@@ -191,6 +191,11 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>5.1.5.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-client</artifactId>
+			<version>5.1.5.RELEASE</version>
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
@@ -205,6 +210,7 @@
 		    <artifactId>spring-context-support</artifactId>
 		    <version>5.3.27</version>
 		</dependency>
+		
 	</dependencies>
 	
 	

@@ -45,10 +45,12 @@ const setDefault = function() {
 };
 
 const registEvent = function() {
+	/*
 	$('#btnSearch').on('click', function(e) {
 		e.preventDefault();
 		findAllAction();
 	});
+	*/
 	
 	$('#btnResetSearch').on('click', function(e) {
 		e.preventDefault();
@@ -104,6 +106,10 @@ const findAllAction = function() {
 	
 	console.log(data);
 	
+	
+	searchForm.submit();
+	
+	/*
 	axios.post('/shape/mngr/user/list', data)
 	.then((res) => {		
 		let list = res.data;
@@ -145,4 +151,5 @@ const findAllAction = function() {
 	.catch((err) => {
 		console.log(err);
 	})
+	*/
 };

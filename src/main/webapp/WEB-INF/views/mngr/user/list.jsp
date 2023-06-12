@@ -36,64 +36,66 @@
 				<!-- 검색 영역 -->
 				<div class="card mb-3">
 					<div class="card-header text-white bg-dark">검색 영역</div>
-					<div class="card-body g-3">
-						<div class="row g-3">
-							<div class="col-6">
-								<div class="form-group row">
-									<label for="id" class="col-2 col-form-label">아이디</label>
-									<div class="col-10">
-										<input id="id" type="text" name="searchId" class="form-control w-25"/>
-									</div>								
+					<form action="/shape/mngr/user/list" method="get" name="searchForm">
+						<div class="card-body g-3">
+							<div class="row g-3">
+								<div class="col-6">
+									<div class="form-group row">
+										<label for="id" class="col-2 col-form-label">아이디</label>
+										<div class="col-10">
+											<input id="id" type="text" name="searchId" value="${ search.searchId }" class="form-control w-25"/>
+										</div>								
+									</div>
 								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group row">
-									<label class="col-2 col-form-label">가입일자</label>
-									<div class="col-4">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<span class="input-group-text bg-dark border-dark">
-													<i class="bi bi-calendar text-white"></i>
-												</span>
+								<div class="col-6">
+									<div class="form-group row">
+										<label class="col-2 col-form-label">가입일자</label>
+										<div class="col-4">
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text bg-dark border-dark">
+														<i class="bi bi-calendar text-white"></i>
+													</span>
+												</div>
+												<input class="datepicker form-control" name="searchRegDateStart" value="${ search.searchRegDateStart }">
 											</div>
-											<input class="datepicker form-control" name="searchRegDateStart">
-										</div>
-									</div>		
-									~
-									<div class="col-4">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<span class="input-group-text bg-dark border-dark">
-													<i class="bi bi-calendar text-white"></i>
-												</span>
+										</div>		
+										~
+										<div class="col-4">
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text bg-dark border-dark">
+														<i class="bi bi-calendar text-white"></i>
+													</span>
+												</div>
+												<input class="datepicker form-control" name="searchRegDateEnd" value="${ search.searchRegDateEnd }">
 											</div>
-											<input class="datepicker form-control" name="searchRegDateEnd">
-										</div>
-									</div>				
+										</div>				
+									</div>
 								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group row">
-									<label for="phone" class="col-2 col-form-label">전화번호</label>
-									<div class="col-10">
-										<input id="phone" type="text" name="searchPhone" class="form-control w-50"/>
-									</div>								
+								<div class="col-6">
+									<div class="form-group row">
+										<label for="phone" class="col-2 col-form-label">전화번호</label>
+										<div class="col-10">
+											<input id="phone" type="text" name="searchPhone" class="form-control w-50" value="${ search.searchPhone }"/>
+										</div>								
+									</div>
 								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group row">
-									<label for="email" class="col-2 col-form-label">이메일</label>
-									<div class="col-10">
-										<input id="email" type="text" name="searchEmail" class="form-control w-50"/>
-									</div>								
+								<div class="col-6">
+									<div class="form-group row">
+										<label for="email" class="col-2 col-form-label">이메일</label>
+										<div class="col-10">
+											<input id="email" type="text" name="searchEmail" class="form-control w-50" value="${ search.searchEmail }"/>
+										</div>								
+									</div>
 								</div>
-							</div>
-							<div class="d-grid gap-2 d-md-flex justify-content-md-center">
-								<button id="btnSearch" class="btn btn-primary" type="button">검색</button>
-	  							<button id="btnResetSearch" class="btn btn-dark" type="button">초기화</button>
-							</div>
-						</div>						
-					</div>
+								<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+									<button id="btnSearch" class="btn btn-primary" type="submit">검색</button>
+		  							<button id="btnResetSearch" class="btn btn-dark" type="button">초기화</button>
+								</div>
+							</div>						
+						</div>
+					</form>
 				</div>
 
 

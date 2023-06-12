@@ -160,6 +160,11 @@ public class MemeberController {
 		return userInfoService.findUserId(dto.getName(), dto.getEmail());
 	}
 	
+	/**
+	 * 인증 후 임시 비밀번호 발급
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/randomPwd")
 	@ResponseBody
 	public ResponseEntity<Integer> randomPwd(@RequestBody UserInfoFindDto dto) {
@@ -169,5 +174,6 @@ public class MemeberController {
 		int result = userInfoService.updateUserPwd(dto.getId(), pwd);
 		
 		return ResponseEntity.ok(result);
-	}
+	}	
+	
 }

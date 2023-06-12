@@ -35,6 +35,16 @@
 				<c:url value="/member/findIdOrPwd" var="findIdOrPwd"/>
 				<a href="${ findIdOrPwd }" class="text-decoration-none text-dark">아이디 및 비밀번호 찾기</a>
 			</div>
+			<!-- 통합 로그인 -->
+			<div class="text-center w-50 m-auto my-3 link">
+				<ul class="content_list">
+					<li class="bg-warning rounded-circle">
+						<a href="javascript:kakaoLogin()" class="custom">
+							<i class="bi bi-chat-fill font-20"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 		
@@ -66,5 +76,39 @@
 				<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }"/>
 			</form>
 			 --%>
-
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				type: 'POST',
+				url: '/api/getKakaoApi',
+				data: {},
+				success: function(data) {
+					Kakao.init(data);
+				},
+				error: function(xhr, status, error) {
+					alert("API 등록에 실패했습니다." + error);
+				}
+			})
+		});
+		
+		function kakaoLogin() {
+			Kakao.Auth.login({
+				success: function (response) {
+				Kakao.API.request({
+					url: '/v2/user/me',
+					success: function (response) {
+						kakaoLoginPro(response)
+					},
+					fail: function (error) {
+						console.log(error)
+					},
+				})
+			},
+				fail: function (error) {
+					console.log(error)
+				},
+			})
+		}
+	</script>
 <%@ include file="../common/footer.jsp" %>

@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>shape</title>
 	</head>
 	<body>
 		<h1>Access Denied Page</h1>

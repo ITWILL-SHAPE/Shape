@@ -31,7 +31,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		System.out.println(roleNames.contains("ROLE_A"));
 		if(roleNames.contains("ROLE_A")) {
 			System.out.println("mngr로 이동");
-			response.sendRedirect("/shape/mngr/");
+			response.sendRedirect("/shape/mngr");
 			return;
 		}
 		

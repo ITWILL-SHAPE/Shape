@@ -28,6 +28,7 @@
     	<security:intercept-url pattern="/meet/search" access="permitAll"/>
     	<security:intercept-url pattern="/info/qna/create" access="hasRole('M')"/>
     	<security:intercept-url pattern="/info/**" access="permitAll"/>
+    	<security:intercept-url pattern="/test/**" access="permitAll"/>
     	<security:intercept-url pattern="/mngr/**" access="hasRole('A')"/>
     	<security:intercept-url pattern="/**" access="hasRole('M')"/>
     	<!-- <security:intercept-url pattern="/**" access="hasRole('M')"/> -->    	

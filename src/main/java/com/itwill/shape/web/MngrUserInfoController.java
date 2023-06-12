@@ -1,6 +1,8 @@
 package com.itwill.shape.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +29,11 @@ public class MngrUserInfoController {
 	
 	// 관리자 - 사용자 관리 list
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Model model, MngrUserInfoSearchListDto dto) {
 		log.info("userInfoList()");
 		
-		model.addAttribute("list", mngrUserInfoService.selectAllUser());
+		model.addAttribute("list", mngrUserInfoService.selectByKeyword(dto));
+		model.addAttribute("search", dto);
 	}
 	
 	// 관리자 - 사용자 detail
@@ -41,27 +44,4 @@ public class MngrUserInfoController {
 		model.addAttribute("user", mngrUserInfoService.selectUserDetail(id));
 	}
 	
-	// 관리자 - 사용자 검색
-	@PostMapping("/list")
-	@ResponseBody
-	public List<MngrUserInfoSelectDto> searchList(Model model, @RequestBody MngrUserInfoSearchListDto dto) {
-		log.info("searchUserList(dto = {})", dto);
-		
-		// model.addAttribute("list", mngrUserInfoService.selectByKeyword(dto));
-		
-		return mngrUserInfoService.selectByKeyword(dto);
-	}
-	
-	/*
-	@RequestMapping("/list")
-	public String mngrUserList(Model model, @RequestBody(required = false) MngrUserInfoSearchListDto dto) {
-		log.info("mngrUserList()");
-		
-		List<MngrUserInfoSelectDto> list = mngrUserInfoService.selectByKeyword(dto);
-		model.addAttribute("list", list);
-		model.addAttribute("search", dto);
-		
-		return "/mngr/user/list";
-	}
-	*/
 }

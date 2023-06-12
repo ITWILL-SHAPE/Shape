@@ -20,6 +20,10 @@ div.errorMessage {
     color: red;
 }
 
+.font-20 {font-size: 20px;}
+
+a.custom { text-decoration: none; color: black !important; line-height: initial;}
+
 /* 회원가입 */
 div.signUpBox {
 	height: 700px;
