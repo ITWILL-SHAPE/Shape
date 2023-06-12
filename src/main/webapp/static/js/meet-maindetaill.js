@@ -2,11 +2,9 @@
  * USER DEtaill 페이지
  * 유저가 (guest)가 찜 클릭 찜 취소 참여 user정보까지 보여주는 페이지
 **/
-	// 참여자 목록
 	
 	document.addEventListener('DOMContentLoaded', () => {
-		// 참여자 목록 표시 (div)
-		const guest = document.querySelector('div#GUEST');
+		
 	
 		// 부트스트랩 Collapse 객체를 생성 - 초기 상태는 화면에서 안보이는 상태
 	    const bsCollapse = new bootstrap.Collapse('div#replyToggleDiv', {toggle: false});
@@ -24,30 +22,20 @@
 	             toggleBtnIcon.src = '../static/images/sample/toggle-on.png';
 	             toggleBtnIcon.alt = 'toggle-on';
 	             
-	             // 댓글 전체 목록을 서버에 요청하고, 응답이 오면 화면 갱신.
-	            // getdetailByMtid();
+	             
 	        } else {
 	            toggleBtnIcon.src = '../static/images/sample/toggle-off.png';
 	            toggleBtnIcon.alt = 'toggle-off';
-	            //guest.innerHTML = '';
+	        
 	        }
 	    
 	    });
-		// 로그인 여부 확인
-		/*const isAuthenticated = <sec:authorize access="isAuthenticated()">true</sec:authorize>;
-
-		if (isAuthenticated) {
-			// 로그인된 사용자인 경우
-			// 추가적인 자바스크립트 코드 작성
-		} else {
-			// 로그인되지 않은 사용자인 경우
-			alert('로그인이 필요합니다.'); // 알림창에 표시할 메시지
-		}*/
-	});
+		
+	
 	
 
 	
-	// 찜 클릭
+	/*// 찜 클릭
 	const btnLike = document.querySelector('button#like');
 		let isLiked = false; // 초기 상태는 찜 클릭이 아닌 경우
 			btnLike.addEventListener('click', () => {
@@ -62,7 +50,7 @@
 	    	isLiked = true;	
 	    }
 	});
-	
+	*/
 	// 참여 클릭
 	const btnjoin = document.querySelector('button#join');
 	let isjoined = false; // 초기 상태는 참여하기가 아닌 경우
@@ -77,17 +65,35 @@
 		} else {
 			// 참여 완료 상태가 아닌 경우
 			if (confirm("참여하시겠습니까?")) {
-				btnjoin.innerHTML = '참여완료';
-				isjoined = true;
+				getUserInfo()
+					.then((userInfo) => {
+						if (userInfo) {
+							// 사용자 정보가 존재하는 경우 참여 정보를 삽입합니다.
+							insertParticipant(userInfo)
+								.then(() => {
+									// 참여 완료 메시지를 표시하고 버튼 상태를 변경합니다.
+									alert('참여되었습니다.');
+									btnJoin.innerHTML = '참여완료';
+									isJoined = true;
+								})
+								.catch((error) => {
+									console.error('참여 정보 삽입 중 오류 발생:', error);
+								});
+						} 
+					})
+					.catch((error) => {
+						console.error('사용자 정보 조회 중 오류 발생:', error);
+					});
+				
 			}
 		}
 	});
 	
 	/** 
-	 *const btnJoin = document.querySelector('#join');
-let isJoined = false; // 초기 상태는 참여하지 않은 상태
+	 *	const btnJoin = document.querySelector('button#join');
+		let isJoined = false; // 초기 상태는 참여하지 않은 상태
 
-<<<<<<< HEAD
+
 btnJoin.addEventListener('click', () => {
   if (isJoined) {
     // 이미 참여한 상태인 경우
@@ -168,12 +174,12 @@ function insertParticipant(userInfo) {
   });
 }
 
-	 *  
+	 
 	**/
-	// 참여자 목록
-=======
-	**/ 
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
+	
+});
+	
+
 	
 	
 

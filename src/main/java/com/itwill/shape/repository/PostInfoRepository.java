@@ -1,8 +1,10 @@
 package com.itwill.shape.repository;
 
 import java.util.List;
+import java.util.Map;
 
-
+import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.InfoQnA;
 import com.itwill.shape.domain.PostInfo;
 import com.itwill.shape.dto.PostListDto;
 
@@ -41,6 +43,13 @@ public interface PostInfoRepository {
 
 	int updateTitleAndContent(PostInfo entity);
 
-
 	List<PostListDto> selectWithKeyword(String keyword);
+	
+	List<PostListDto> getListWithPaging(Criteria cri);
+
+	int listCount();
+
+	int listCountWithKeyword(String keyword);
+
+	List<PostListDto> selectWithKeywordAndPaging(Map<String, Object> args);
 }

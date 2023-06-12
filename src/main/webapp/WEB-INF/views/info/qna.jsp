@@ -33,7 +33,7 @@
 							<c:if test="${infoQnA != null}">
 								<c:choose>
 									<c:when test="${infoQnA.secret.equals('N')}">
-									<!-- 공개글은 로그인, 로그아웃 여부 상관없이 열람 가능 -->
+										<!-- 공개글은 로그인, 로그아웃 여부 상관없이 열람 가능 -->
 										<td class="ms-2"><c:url var="infoQnADetailPage"
 												value="/info/qna/detail">
 												<c:param name="qid" value="${ infoQnA.qid }" />
@@ -42,7 +42,7 @@
 											href="${ infoQnADetailPage }">${ infoQnA.title }</a></td>
 									</c:when>
 									<c:otherwise>
-									<!-- 비공개글은 해당 사용자만 열람 가능 -->
+										<!-- 비공개글은 해당 사용자만 열람 가능 -->
 										<!-- security에서 사용자의 id를 가져오고 변수명으로 id를 사용 -->
 										<c:choose>
 											<c:when test="sec:authorize access!=isAnonymous()">
@@ -64,18 +64,19 @@
 												</c:choose>
 											</c:when>
 											<c:otherwise>
-												<td class="ms-2"><a class="link-offset-2 link-underline link-underline-opacity-0 link-dark">🔒비밀글입니다.</a></td>
+												<td class="ms-2"><a
+													class="link-offset-2 link-underline link-underline-opacity-0 link-dark">🔒비밀글입니다.</a></td>
 											</c:otherwise>
 										</c:choose>
 									</c:otherwise>
 								</c:choose>
 							</c:if>
 							<c:choose>
-								<c:when test="${ id == writer }">
-									<td class="col-2 text-center">${ writer }</td>
+								<c:when test="${ id == infoQnA.writer }">
+									<td class="col-2 text-center">${ infoQnA.writer }</td>
 								</c:when>
 								<c:otherwise>
-									<td class="col-2 text-center">${ writer }</td>
+									<td class="col-2 text-center">${ infoQnA.writer }</td>
 								</c:otherwise>
 							</c:choose>
 							<td class="col-2 text-center"><fmt:formatDate
@@ -95,23 +96,38 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
+			<!-- 페이징 처리 -->
+			<div class="pb-3">
+				<nav>
+					<ul class="pagination justify-content-center">
+						<li class="page-item ${ paging.prev? "":"disabled" }"><a
+							class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a></li>
+						<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
+							var="num">
+							<li class="page-item ${ paging.cri.pageNum == num? "active":"" }"><a
+								class="page-link" href="${ num }">${ num }</a></li>
+						</c:forEach>
+						<li class="page-item ${ paging.next? "":"disabled" }" ><a
+							class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a></li>
+					</ul>
+				</nav>
+			</div>
 
-		<div class="my-2 d-grid d-md-flex">
-			<c:url var="qnaPaging" value="/info/qna/paging" />
-			<button onclick="location.href='${ qnaPaging }'"
-				class="btn btn-primary" type="button">페이징 적용</button>
+			<form id='actionForm' action='/shape/info/qna' method='get'>
+				<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' />
+				<input type='hidden' name='amount' value='${ paging.cri.amount }' />
+			</form>
+			<!-- 페이징 처리 -->
+			
 		</div>
-
 		<div class="my-2 d-grid d-md-flex justify-content-md-end">
 			<c:url var="qnaCreate" value="/info/qna/create" />
 			<button onclick="location.href='${ qnaCreate }'"
 				class="btn btn-primary" type="button">질문하기</button>
 		</div>
 	</main>
-
-
 </div>
 </body>
+<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
 </html>
 <%@ include file="../common/footer.jsp"%>

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.dto.PostCreateDto;
 import com.itwill.shape.dto.PostDetailDto;
 import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
@@ -29,20 +31,42 @@ public class PostInfoController {
 	private final PostInfoService postInfoService; 
 	private final PostCommentService postCommentService; // 수빈: 댓글 같이 삭제되게 하려고
 
+	/**
+	 * 지현
+	 * 게시판 리스트 출력 with paging
+	 * @param model
+	 * @param cri
+	 */
 	@GetMapping("/list") 
-	public void list(Model model) {
+	public void list(Model model, Criteria cri) {
 		log.info("list()");
 
-		List<PostListDto> list = postInfoService.read();
+		int total = postInfoService.getListCount();
+		log.info("listCount={}", total);
+		
+		List<PostListDto> list = postInfoService.read(cri);
 
 		model.addAttribute("posts", list);
+		model.addAttribute("paging", new PageDto(cri, total));
 	}
 	
+	/**
+	 * 지현
+	 * 게시판 검색 키워트 리스트 출력 with paging
+	 * @param model
+	 * @param keyword
+	 * @param cri
+	 */
 	@GetMapping("/search")
-	public void list(Model model, String keyword) {
-		log.info("keyword={}",keyword);
-		List<PostListDto> list = postInfoService.read(keyword);
+	public void list(Model model, String keyword, Criteria cri) {
+		log.info("keyword={}, cri={}",keyword, cri);
+		
+		int keywordTotal = postInfoService.getListCountWithKeyword(keyword);
+		log.info("listCount = {}",keywordTotal);
+		
+		List<PostListDto> list = postInfoService.read(keyword, cri);
 		model.addAttribute("posts", list);
+		model.addAttribute("paging", new PageDto(cri, keywordTotal));
 	}
 	
 

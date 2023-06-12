@@ -21,7 +21,7 @@
 		
 	<!-- 참여인원 list select문 !-->
 	<select id="selectPrtcpList" resultType="com.itwill.shape.domain.MeetPrtcp">
-		select * from MEET_PRTCP where mtid = #{ mtid }
+		select * from MEET_PRTCP where mtid = #{mtid}
 	</select>
 	
 	

@@ -127,7 +127,7 @@ div.meetdetailuser{
       align-items: center;
     }
   
-    .user-img {
+img.user-img {
       width: 50px; /* 사용자 사진의 너비 조정 */
       height: 50px; /* 사용자 사진의 높이 조정 */
       margin-right: 10px; /* 사진과 정보 사이의 여백 조정 */
@@ -141,10 +141,13 @@ div.meetdetailuser{
     .user-name, .user-email {
       font-size: 16px; /* 이름과 이메일의 글꼴 크기 조정 */
     }
-div.replyToggleDiv {
-  max-height: 50px; /* 카드의 최대 높이를 지정 */
-  overflow-y: auto; /* 세로 스크롤을 추가하여 내용이 넘치는 경우 스크롤 가능하도록 설정 */
-}
+
+p.login-info-text {
+		color: red;
+		font-size: smaller;
+		text-align: right;
+	}
+
 
 /* 'meet/list.jsp' */
 

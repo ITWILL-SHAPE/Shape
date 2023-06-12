@@ -23,6 +23,7 @@
 
 	<!-- 지현 게시판 -->
 	<!-- 수빈 게시판 검색 (키워드) -->
+	<!-- 사용안함 -->
 	<select id="selectWithKeyword"
 		parameterType="String"
 		resultType="com.itwill.shape.dto.PostListDto">
@@ -33,7 +34,59 @@
         group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
         order by P.PID desc
 	</select>
+	
+	<select id="selectWithKeywordAndPaging"
+		parameterType="String"
+		resultType="com.itwill.shape.dto.PostListDto">
+		<![CDATA[
+		select * from 
+		(
+		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE
+		from 
+        (
+        select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
+        from POST_INFO P left join POST_COMMENT C
+            on P.PID = C.PID
+        where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
+        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+        order by P.PID desc
+        )
+		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
+		)
+		where rn >(#{pageNum}-1) * #{amount}
+		]]>
+	</select>
 
+	<select id="getListWithPaging"
+		resultType="com.itwill.shape.dto.PostListDto">
+		<![CDATA[
+		select * from 
+		(
+		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE, RCNT
+		from 
+		(
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
+		from POST_INFO P left join POST_COMMENT C
+		on P.PID = C.PID
+		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+		order by P.PID desc
+		)
+		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
+		)
+		where rn >(#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+
+	<select id="listCount">
+		SELECT COUNT(*) FROM POST_INFO
+	</select>
+	
+	<select id="listCountWithKeyword">
+		select count(*) from POST_INFO
+		where lower(TITLE) like lower('%' || #{keyword} || '%') or lower(HRS_HD) like lower('%' || #{keyword} || '%')   
+	</select>
+	
+	<!-- 사용안함 -->
 	<select id="selectWithCommentCount"
 		resultType="com.itwill.shape.dto.PostListDto">
 		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT

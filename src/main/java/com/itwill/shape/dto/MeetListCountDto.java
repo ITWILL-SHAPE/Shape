@@ -16,8 +16,8 @@ public class MeetListCountDto {
 	private String sido;
 	private String mt_date;
 	private String category;
-	private long lcnt;
-	private long pcnt;
+	private long LCNT;
+	private long PCNT;
 	private long nm_ppl;
 	private String title;
 

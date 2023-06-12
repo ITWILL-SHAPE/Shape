@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.PostInfo;
+import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.dto.PostListDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +25,15 @@ public class PostInfoRepositoryTest {
 	@Autowired
 	private PostInfoRepository postInfoRepository;
 	
-
-	
 	@Test
+	public void testPageDto() {
+		Criteria cri = new Criteria();
+		cri.setPageNum(11);
+		PageDto dto = new PageDto(cri, 250);
+		log.info("dto = {}", dto);
+	}
+	
+//	@Test
     public void testSelectWithKeyword() {
         List<PostListDto> result = postInfoRepository.selectWithKeyword("te");
         log.info("result = {}", result);

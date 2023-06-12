@@ -29,6 +29,7 @@ public class MeetDetailService {
 	
 	
 	
+	
 		/**
 		 * 리스트 페이지
 		 */
@@ -39,6 +40,7 @@ public class MeetDetailService {
 			log.info("dto={}", dto);
 			
 			List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid);
+			log.info(list.toString());
 			
 			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id());
 
@@ -49,18 +51,25 @@ public class MeetDetailService {
 			return dto;
 			
 		}
+		// 참여하기 클릭
+		public int create(MeetPrtcpCreateDto dto) {
+			log.info("create(dto={})");
+			return meetPrtcpRepository.Prtcpinsert(dto.toEntity());
+		}
 
 
 		/**
 		 * 상세보기 수정 페이지 modify
+		 *
+		/*
+		 * public MeetMainDetailDto update(long mtid) {
+		 * log.info("update(mtid={})",mtid);
+		 * 
+		 * 
+		 * return null;
 		 */
-		public MeetMainDetailDto update(long mtid) {
-			log.info("update(mtid={})",mtid);
 			
-			
-			return null;
-			
-		}
+		//}
 		
 		/**
 		 * 참여자는 따로 서비스 컨트롤러 만들었음
@@ -97,4 +106,7 @@ public class MeetDetailService {
 			
 			return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
 		}
+
+
+		
 }

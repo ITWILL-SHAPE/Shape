@@ -59,9 +59,10 @@
 				<div class="my-2 row"><!-- 내 댓글 작성 div -->
 					<label class="form-label" for="content">나의 댓글</label>
 					<div class="col-10">
+						<sec:authentication property="principal.username" var="id" />
+						<input class="form-control" type="text" id="author" name="author"
+							value="${ id }" readonly />
 						<textarea class="form-control" id="content"></textarea>
-						<input class="" id="author" value=""/>
-						<!-- TODO: 로그인 사용자 아이디 -->
 					</div>
 					<div class="col-2">
 						<button class="form-control btn btn-outline-success"
@@ -70,23 +71,14 @@
 				</div>
 				
 				<!-- 수빈: 댓글 리스트 div -->
-				<div id="comments"></div>
+				<div id="comments">
+				
+				</div>
 
 			</div>
 		</section><!-- 댓글 등록, 댓글 리스트 카드 -->
 		
-		<div id="modifyContent${ pcid }" style="display:none"><!-- 댓글 수정 div 그 자리에 안 나타나고 아래에 따로 생김 -->
-			<div>
-				<input id="pcid" class="d-none" />
-				<textarea id="updateText">${ contentText }</textarea>
-			</div>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button class="btnUpdate btn btn-outline-success" data-id="${pcid}">
-					수정 확인
-				</button>
-			</div>
-		</div>
-
+		
 		<div class="d-grid gap-2 col-5 mx-auto">
 			<c:url var="postList" value="/post/list" />
 			<button onclick="location.href='${ postList }'"

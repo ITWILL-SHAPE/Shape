@@ -5,6 +5,22 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.shape.repository.InfoQnARepository">
 
+	<select id="listCount">
+		SELECT COUNT(*) FROM INFO_QNA
+	</select>
+
+	<select id="getListWithPaging">
+		<![CDATA[
+		select * from 
+		(
+		select /*+ INDEX_DESC(INFO_QNA pk_board) */ rownum rn, QID, TITLE, CONTENT, WRITER, AN_TITLE, AN_COMMENT, CREATED_DATE, ANSWER_DATE, SECRET
+		from INFO_QNA
+		where QID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
+		)
+		where rn >(#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+
 	<select id="selectOrderByQidDesc">
 		select * from INFO_QNA order by QID desc
 	</select>
@@ -28,5 +44,7 @@
 	<delete id="deleteByQid">
 		delete from INFO_QNA where QID = #{qid}
 	</delete>
+	
+	
 
 </mapper>
