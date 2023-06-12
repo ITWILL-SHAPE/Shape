@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<div class="container">
+	<div class="container mb-55">
 	
 	<div class="my-2 p-5 text-center">
 		<h1>FAQ</h1>
@@ -17,9 +17,9 @@
 				<div class="accordion-item"
 					role="tabpanel" aria-labelledby="headingOne">
 					<h2 class="accordion-header">
-						<button class="accordion-button" type="button"
+						<button class="accordion-button fw-bold" type="button"
 							data-bs-toggle="collapse" data-bs-target="#faq${ status.index }"
-							aria-expanded="true" aria-controls="faq${ status.index }">
+							aria-expanded="true" aria-controls="faq${ status.index }" >
 							${ faq.question }
 						</button> <!-- 질문 자리 -->
 					</h2>

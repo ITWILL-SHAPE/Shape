@@ -37,8 +37,7 @@
 						</div>
 						<div>
 							<label class="form-label" for="answer">answer</label> 
-							<textarea class="form-control" id="an_comment" name="an_comment"
-								 id="answer" name="answer" required></textarea>
+							<textarea class="form-control" id="answer" name="answer" required></textarea>
 						</div>
 						
 						<div class="my-2 text-center">

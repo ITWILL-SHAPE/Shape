@@ -4,8 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!-- postpage detail -->
-<div class="container">
-	<main class="my-2">
+<div class="container mb-55 min-vh-100">
+	<main class="my-5">
 		<section class="card">
 			<form class="card-body" id="modifyForm">
 				<!-- 조회수 -->
@@ -54,7 +54,7 @@
 				<span>댓글 </span><span id="commentCount">${ post.commentCount }</span>
 			</div>
 
-			<div class="card-body "><!-- 댓글 작성, 목록 보여줄 div -->
+			<div class="card-body mb-55"><!-- 댓글 작성, 목록 보여줄 div -->
 
 				<div class="my-2 row"><!-- 내 댓글 작성 div -->
 					<label class="form-label" for="content">나의 댓글</label>
@@ -87,11 +87,11 @@
 		<!-- end modal -->
 	</main>
 
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 
-	<script src="<%=request.getContextPath()%>/static/js/postComment.js"></script>
+	
 </div>
 </body>
+<script src="<%=request.getContextPath()%>/static/js/postComment.js"></script>
 <script src="<%=request.getContextPath()%>/static/js/post-detail.js"></script>
-</html>
 <%@ include file="../common/footer.jsp"%>

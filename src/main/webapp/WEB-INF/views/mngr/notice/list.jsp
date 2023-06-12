@@ -31,7 +31,7 @@
 		
 			<main class="my-2">
 				<div class="card">
-					<table class="card-body table table-hover">
+					<table class="card-body table table-hover text-center">
 						<thead>
 							<tr>
 								<th>No</th>
