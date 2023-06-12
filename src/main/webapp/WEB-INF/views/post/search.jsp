@@ -94,6 +94,6 @@
 	</div>
 </div>
 </body>
-<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
+<script src="<%=request.getContextPath()%>/static/js/paging-search.js"></script>
 </html>
 <%@ include file="../common/footer.jsp"%>

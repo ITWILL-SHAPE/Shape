@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.dto.InfoQnADetailDto;
 import com.itwill.shape.dto.InfoQnAListDto;
 import com.itwill.shape.dto.InfoQnAMngrUpdateDto;
+import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.service.InfoQnAService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,11 +31,15 @@ public class InfoQnAMngrController {
 	 * @param model
 	 */
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Model model,Criteria cri) {
 		log.info("list()");
 		
-		List<InfoQnAListDto> list = infoQnAService.read();
+		int total = infoQnAService.getListCount();
+		log.info("listCount = {}", total);
+		
+		List<InfoQnAListDto> list = infoQnAService.read(cri);
 		model.addAttribute("infoQnAs", list);
+		model.addAttribute("paging", new PageDto(cri, total));
 	}
 	
 	@GetMapping("/modify")
