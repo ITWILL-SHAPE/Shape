@@ -14,7 +14,10 @@
 		select * from 
 		(
 		select /*+ INDEX_DESC(INFO_QNA pk_board) */ rownum rn, QID, TITLE, CONTENT, WRITER, AN_TITLE, AN_COMMENT, CREATED_DATE, ANSWER_DATE, SECRET
-		from INFO_QNA
+		from 
+		(
+		select * from INFO_QNA order by CREATED_DATE desc
+		)
 		where QID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
 		)
 		where rn >(#{pageNum}-1) * #{amount}

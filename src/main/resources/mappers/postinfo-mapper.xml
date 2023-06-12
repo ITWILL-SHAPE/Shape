@@ -49,7 +49,7 @@
             on P.PID = C.PID
         where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
         group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
-        order by P.PID desc
+        order by P.CREATED_DATE desc
         )
 		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
 		)
@@ -69,7 +69,7 @@
 		from POST_INFO P left join POST_COMMENT C
 		on P.PID = C.PID
 		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
-		order by P.PID desc
+		order by P.CREATED_DATE desc
 		)
 		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
 		)
