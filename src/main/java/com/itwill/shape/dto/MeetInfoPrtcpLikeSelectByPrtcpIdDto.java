@@ -25,9 +25,8 @@ public class MeetInfoPrtcpLikeSelectByPrtcpIdDto {
 	private String sido; //meet_info
 	private String category; //meet_info
 	private long nm_ppl; // 모집인원수, meet_info
-	private Timestamp created_date; // meet_inf
-	private int lcnt; // count(meet_like.mtid)
-	private int pcnt; // count(meet_prtcp.prtcp_id)
+	private long LCNT; // count(meet_like.mtid)
+	private long PCNT; // count(meet_prtcp.prtcp_id)
 	
 	/**
 	 * 0602 손창민
@@ -36,17 +35,17 @@ public class MeetInfoPrtcpLikeSelectByPrtcpIdDto {
 	 *  MeetInfoJoPrtcpLikSelectByMtIdDto로 객체로 리턴하는 메서드
 	 *  모임팀이 만든대서 보류!
 	 */
-	public MeetInfoPrtcpLikeSelectByPrtcpIdDto fromEntity(MeetInfo meetInfo,
-			MeetLike meetLike, MeetPrtcp meetPrtcp) {
-		return MeetInfoPrtcpLikeSelectByPrtcpIdDto.builder()
-				.mtid(meetInfo.getMtid())
-				.title(meetInfo.getTitle())
-//				.image(meetInfo.getImg())
-				.sido(meetInfo.getSido())
-				.category(meetInfo.getCategory())
-				.nm_ppl(meetInfo.getNm_ppl())
-				.lcnt(lcnt)
-				.pcnt(pcnt)
-				.build();
-	}
+//	public MeetInfoPrtcpLikeSelectByPrtcpIdDto fromEntity(MeetInfo meetInfo,
+//			MeetLike meetLike, MeetPrtcp meetPrtcp) {
+//		return MeetInfoPrtcpLikeSelectByPrtcpIdDto.builder()
+//				.mtid(meetInfo.getMtid())
+//				.title(meetInfo.getTitle())
+////				.image(meetInfo.getImg())
+//				.sido(meetInfo.getSido())
+//				.category(meetInfo.getCategory())
+//				.nm_ppl(meetInfo.getNm_ppl())
+//				.lcnt(lcnt)
+//				.pcnt(pcnt)
+//				.build();
+//	}
 }
