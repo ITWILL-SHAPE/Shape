@@ -50,9 +50,10 @@
 	    }
 	});
 	*/
-	// 참여 클릭
-	const btnjoin = document.querySelector('button#join');
-	let isjoined = false; // 초기 상태는 참여하기가 아닌 경우
+
+	
+	/*const btnjoin = document.querySelector('button#join');
+	let isjoined = false; // 초기 상태는 참여하기가 아닌 경우*/
 	/*
 	const joindDetailModel = (e) => {
 		const mtid = e.target.getAttribute('data-id');
