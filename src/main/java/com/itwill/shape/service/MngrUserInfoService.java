@@ -54,9 +54,6 @@ public class MngrUserInfoService {
 	public Map<String, Object> selectByKeyword(MngrUserInfoSearchListDto dto) {
 		log.info("selectByKeyword(dto = {})", dto);
 		
-		// list 개수 카운트
-		int count = userInfoRepository.userInfoCount(dto);
-		
 		// list - 회원 정보
 		if(dto.getPageNum() > 1) {
 			dto.setAmount(dto.getPageNum() * 10);
@@ -70,7 +67,6 @@ public class MngrUserInfoService {
 		// list, paging, count
 		Map<String, Object> result = new HashMap<>();
 		result.put("list", paging);
-		result.put("count", count);
 
 		return result;
 	}
