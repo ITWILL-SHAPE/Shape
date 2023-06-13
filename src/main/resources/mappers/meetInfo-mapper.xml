@@ -223,12 +223,10 @@
 		, m.content
 		, nvl(m.views, 0)
 		, m.created_date
-		, u.email
-		, u.name
-		from meet_info m, user_info u
+		from meet_info m
 		WHERE
 		m.mtid = #{mtid}
-		and m.crtr_id = u.id
+		
 	</select>
 
 
