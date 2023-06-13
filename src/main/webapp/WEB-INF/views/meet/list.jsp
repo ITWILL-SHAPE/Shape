@@ -58,7 +58,6 @@
 	</header>
 
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
-	
 	<form id="searchFormCheckBox" class="CheckBoxSearchForm" >
 		<div class="form-check form-check-reverse">
 			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentIng" > 

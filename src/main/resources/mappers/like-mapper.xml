@@ -5,10 +5,10 @@
 <mapper namespace="com.itwill.shape.repository.MeetLikeRepository">
 
 	<!-- 찜 수 create문 -->
-	<update id="likeCreate">
+	<insert id="likeCreate">
 		insert into MEET_LIKE (mtid, id)
 		values (#{mtid}, #{id})
-	</update>
+	</insert>
 	
 	<!-- 찜 수 delete문 -->
 	<delete id="likeDelete">
@@ -21,6 +21,35 @@
     <!-- primary key를 사용해도 됨: 중복 안되고 null이 아니기에 -->
     <select id="selectMeetlikeCountWithMtid" resultType="java.lang.Long">
         select count(mtid) from MEET_LIKE where mtid = #{mtid}
+    </select>
+    
+
+    
+    <!-- 지언 찜 도전 0613 -->
+    
+    <!-- 찜 등록 -->
+    <insert id="like_insert">
+    	insert into MEET_LIKE values(#{mtid}, #{id})
+    </insert>
+    <update id="like_up">
+    	update MEET_INFO set like=like+1
+    	where mtid=#{mtid}
+    </update>
+    <!-- meetinfo 테이블에 like(찜 수) 넣어야 하는 지? -->
+    
+    <!-- 찜 삭제 -->
+    <delete id="like_delete">
+    	delete from MEET_LIKE
+    	where mtid=#{mtid} and id=#{id}
+    </delete>
+    <update id="like_down">
+    	update MEET_INFO set like=like-1
+    	where mtid=#{mtid}
+    </update>
+    
+    <!-- 찜 등록/삭제시 찜 갯수 가져오기 -->
+    <select id="like_count">
+    	select like from MEET_INFO where mtid=#{mtid}
     </select>
 	
 </mapper>

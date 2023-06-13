@@ -10,6 +10,11 @@ import com.itwill.shape.dto.MeetMainDetailDto;
 // meet_info의 repository.
 public interface MeetInfoRepository {
 
+	/**
+	 * 0602 정지언
+	 * @param entity
+	 * @return
+	 */
 	int insert(MeetInfo entity); // create 모임 만들기
 	int update(MeetInfo entity); // update 모임 수정하기
 	int deleteByMtid(long mtid); // delete 모임 삭제하기
