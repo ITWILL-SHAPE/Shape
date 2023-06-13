@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -201,18 +202,27 @@ public class MeetController {
 	}
 
 	/**
-	 * 06/12 배선영 상세보기 페이지 참여하기 join
+	 * 06/12 배선영 상세보기 페이지 참여하기 join , delete
 	 * 
 	 * @param
 	 */
 	@PostMapping
-	public ResponseEntity<Integer> createPrtcp(@RequestParam MeetPrtcpCreateDto dto) {
+	public ResponseEntity<Integer> createPrtcp(@RequestBody MeetPrtcpCreateDto dto) {
 		log.info("createPrtcp(dto={})", dto);
 
 		int result = meetDetailService.create(dto);
 
 		return ResponseEntity.ok(result);
 	}
+	
+	@DeleteMapping("/{mtid}")
+    public ResponseEntity<Integer> deletePtrcp(@PathVariable String id) {
+        log.info("deleteReply(id={})", id);
+        
+        int result = meetDetailService.delete(id);
+        
+        return ResponseEntity.ok(result);
+    }
 
 	/**
 	 * 06/13 정지언 찜 ajax 처리

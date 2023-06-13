@@ -56,7 +56,11 @@ public class MeetDetailService {
 			log.info("create(dto={})");
 			return meetPrtcpRepository.Prtcpinsert(dto.toEntity());
 		}
-
+		// 참여 취소
+		public int delete(String id) {
+			// TODO Auto-generated method stub
+			return meetPrtcpRepository.Prtcpdelete(id);
+		}
 
 		/**
 		 * 상세보기 수정 페이지 modify
@@ -106,6 +110,7 @@ public class MeetDetailService {
 			
 			return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
 		}
+		
 
 
 		
