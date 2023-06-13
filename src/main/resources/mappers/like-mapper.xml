@@ -24,32 +24,32 @@
     </select>
     
 
-    
+
     <!-- 지언 찜 도전 0613 -->
     
-    <!-- 찜 등록 -->
-    <insert id="like_insert">
-    	insert into MEET_LIKE values(#{mtid}, #{id})
-    </insert>
-    <update id="like_up">
-    	update MEET_INFO set like=like+1
-    	where mtid=#{mtid}
-    </update>
-    <!-- meetinfo 테이블에 like(찜 수) 넣어야 하는 지? -->
-    
-    <!-- 찜 삭제 -->
-    <delete id="like_delete">
-    	delete from MEET_LIKE
-    	where mtid=#{mtid} and id=#{id}
-    </delete>
-    <update id="like_down">
-    	update MEET_INFO set like=like-1
-    	where mtid=#{mtid}
-    </update>
-    
-    <!-- 찜 등록/삭제시 찜 갯수 가져오기 -->
-    <select id="like_count">
-    	select like from MEET_INFO where mtid=#{mtid}
-    </select>
+    <!-- 특정 mtid의 좋아요 갯수 조회 -->
+	<select id="getLikeCountByMtid">
+		select count(*) from MEET_LIKE where mtid = #{mtid}
+	</select>
+	
+	<!-- 특정 mtid의 찜 개수를 가져옴 -->
+	<select id="getCountByMtid">
+		select count(mtid) from MEET_LIKE where mtid = #{mtid}
+	</select>
+	
+	<!-- 특정 mtid에 유저(id)가 찜을 했는 지의 여부 확인 -->
+	<select id="isLikedByUser">
+		select count(*) from MEET_LIKE where mtid = #{mtid} and id = #{id}
+	</select>
+	
+	<!-- 특정 mtid에 유저의 찜 추가 -->
+	<insert id="insertLike">
+		insert into MEET_LIKE (mtid, id) values (#{mtid}, #{id})
+	</insert>
+	
+	<!-- 특정 mtid에 유저의 찜 삭제 -->
+	<delete id="deleteLike">
+		delete from MEET_LIKE where mtid = #{mtid} and id = #{id}	
+	</delete>
 	
 </mapper>

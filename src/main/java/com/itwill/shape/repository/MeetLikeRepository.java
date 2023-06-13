@@ -1,5 +1,7 @@
 package com.itwill.shape.repository;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.shape.domain.MeetLike;
 
 public interface MeetLikeRepository {
@@ -19,5 +21,47 @@ public interface MeetLikeRepository {
 	 * @return
 	 */
 	int likeDelete(long mtid, String id);
+	
+	
+	/**
+	 * 0613 정지언
+	 * 특정 mtid의 좋아요 갯수 조회
+	 * @param mtid
+	 * @return
+	 */
+	int getLikeCountByMtid(int mtid);
+	
+	/**
+	 * 0613 정지언
+	 * 특정 mtid의 찜 개수를 가져옴
+	 * @param mtid
+	 * @return
+	 */
+	int getCountByMtid(int mtid);
+	
+	/**
+	 * 0613 정지언
+	 * 특정 mtid에 유저(id)가 찜을 했는 지의 여부 확인
+	 * @param mtid
+	 * @param id
+	 * @return
+	 */
+	boolean isLikedByUser(int mtid, String id);
+	
+	/**
+	 * 0613 정지언
+	 * 특정 mtid에 유저의 찜 추가
+	 * @param mtid
+	 * @param id
+	 */
+	void insertLike(int mtid, String id);
+	
+	/**
+	 * 0613 정지언
+	 * 특정 mtid에 유저의 찜 삭제
+	 * @param mtid
+	 * @param id
+	 */
+	void deleteLike(int mtid, String id);
 
 }
