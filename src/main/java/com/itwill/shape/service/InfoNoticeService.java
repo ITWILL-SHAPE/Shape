@@ -4,6 +4,7 @@ import java.util.List;
 // 우수빈 notice service
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
 import com.itwill.shape.dto.InfoNoticeListDto;
 import com.itwill.shape.dto.InfoNoticeCreateDto;
@@ -82,5 +83,15 @@ public class InfoNoticeService {
 			return infoNoticeRepository.deleteByNid(nid);
 		}
 		
+		/**
+		 * 목록 페이징
+		 */
+		public List<InfoNoticeListDto> read(Criteria cri) {
+			log.info("read(cri={})",cri);
+			return infoNoticeRepository.selectWithPaging(cri);
+		}
 		
+		public int getListCount() {
+			return infoNoticeRepository.listCount();
+		}
 }
