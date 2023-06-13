@@ -17,7 +17,7 @@ public class MeetPrtcp { // 참여자 정보
 	private String prtcp_id;
 	private String name;
 	private String gender;
-	private long phone;
+	private String phone;
 	private String email;
 	
 	

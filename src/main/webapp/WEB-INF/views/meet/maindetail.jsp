@@ -161,9 +161,23 @@
 	                        <div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
 	                           <button id="like" name="like" type="submit" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
 	                           <button id="join" name="join"  type="submit"  class="btn btn-outline-primary btn-lg">참여하기</button>
-	        
 	                        </div>
 	                     </c:if>
+	                     <%-- <c:set var="UserPrtcp"
+									value="${ meetmaindetail.prtcpDtoList.prtcp_id }" />
+								<c:choose>
+									<c:when test="${loginUser == UserPrtcp }">
+										<button id="delete" name="delete" type="submit"
+											class="btn btn-outline-primary btn-lg">참여취소</button>
+									</c:when>
+									<c:when test="${ author != loginUser }">
+										<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
+	                           				<button id="like" name="like" type="submit" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+										 	<button id="join" name="join"  type="submit"  class="btn btn-outline-primary btn-lg">참여하기</button>
+										</div>
+									</c:when>
+								</c:choose> --%>
+	                     
 	                     <!-- 로그인한 유저와 이 글을 작성한 유저가 같을 경우 visible -->
 	                     <c:if test="${ author == loginUser }">
 	                        <div>
@@ -180,7 +194,7 @@
                      
                      
                      <!-- 프로필 -->
-                 
+                 		
                         <div class="card my-4">
                         	<div class="card-header fw-bold">
                         	 <p class="my-2">🙋🏻‍♂️HOST</p>

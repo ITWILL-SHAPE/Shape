@@ -220,10 +220,10 @@ public class MeetController {
 	}
 	
 	@DeleteMapping("/{mtid}")
-    public ResponseEntity<Integer> deletePtrcp(@PathVariable String id) {
-        log.info("deleteReply(id={})", id);
+    public ResponseEntity<Integer> deletePtrcp(@PathVariable long mtid) {
+        log.info("deleteReply(id={})", mtid);
         
-        int result = meetDetailService.delete(id);
+        int result = meetDetailService.delete(mtid);
         
         return ResponseEntity.ok(result);
     }

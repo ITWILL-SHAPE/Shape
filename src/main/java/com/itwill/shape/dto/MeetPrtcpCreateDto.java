@@ -16,7 +16,7 @@ public class MeetPrtcpCreateDto {
 	private String prtcp_id;
 	private String name;
 	private String gender;
-	private long phone;
+	private String phone;
 	private String email;
 	
 		// 참여자 정보 넣기

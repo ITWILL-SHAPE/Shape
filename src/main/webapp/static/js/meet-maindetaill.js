@@ -70,14 +70,15 @@
 			axios.post('/shape/meet', data)
 				.then((response) => {
 					alert('참여완료 했습니다.');
-					btnjoin.innerHTML = '참여완료';
+					
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 
 		};
-		btnjoin.addEventListener('click', meetJoin);
+		const btndelete = document.querySelector('button#delete');
+		btndelete.addEventListener('click', deletemeetjoin);
 		// 댓글 삭제
 		const deletemeetjoin = (e) => {
 			console.log(e.target);
@@ -85,7 +86,7 @@
 				return;
 			}
 			const mtid = e.target.getAttribute('data-id');
-			const reqUrl = `/shape/meet/maindetail/${mtid}`;
+			const reqUrl = `/shape/meet/${mtid}`;
 
 			axios.delete(reqUrl)
 				.then((response) => {
@@ -97,7 +98,13 @@
 				});
 		};
 
-
+		/*if (isjoined) {
+			btnjoin.innerHTML = '참여완료';
+			btnjoin.addEventListener('click', deletemeetjoin);
+		} else {
+			btnjoin.innerHTML = '참여하기';
+			btnjoin.addEventListener('click', meetJoin);
+		}*/
 
 
 // document	
