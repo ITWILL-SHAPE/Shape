@@ -14,14 +14,37 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		comments.innerHTML = ''; // <div>의 컨텐트를 지움	
 		
+		const author = document.querySelector('input#author').value;
+		
 		let htmlStr = ''; // 문자열을 계속 덧붙이려고 let으로 설정
 		
 		for(let comment of data) {
-			
+			if (author !== comment.author) {
 			// Timestamp 타입 값을 날짜/시간 타입 문자열로 변환:
             const modified = new Date(comment.modifiedDate).toLocaleString();
 			// 댓글 1개를 표시할 HTML 코드:
             htmlStr += `
+                <div class="card" id="${comment.pcid}">
+                
+	                    <div>
+	                        <span class="d-none">${comment.pcid}</span>
+	                        <span class="fw-bold">${comment.author}</span>
+	                        <span class="text-secondary">${modified}</span>
+	                    </div>
+                    
+                    <div id="modifyContent${comment.pcid}">
+	                    <div id="text${comment.pcid}">
+	                        ${comment.content}
+	                    </div>   
+                    </div>  
+                             
+                </div>
+            `; 
+            } else {
+				// Timestamp 타입 값을 날짜/시간 타입 문자열로 변환:
+				const modified = new Date(comment.modifiedDate).toLocaleString();
+				// 댓글 1개를 표시할 HTML 코드:
+				htmlStr += `
                 <div class="card" id="${comment.pcid}">
                 
 	                    <div>
@@ -45,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>  
                              
                 </div>
-            `; 
+            	`;
+			}
 		}
 		comments.innerHTML = htmlStr; // 작성된 HTML 코드를 comments <div> 영역 안에 포함.
 		

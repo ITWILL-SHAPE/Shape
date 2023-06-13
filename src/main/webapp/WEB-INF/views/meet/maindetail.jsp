@@ -143,11 +143,25 @@
 	                     <!-- 이 글을 작성한 유저 -->
 	                     <c:set var="author" value="${ meetmaindetail.crtr_id }"/>
 	                   
+	                   	<!-- 사용자 정보불러오기 -->
+	                   	<input class="d-none" id="mtid" value="${ meetmaindetail.mtid }"/>
+	                   	<sec:authentication property="principal.user.id" var="name"/>
+	                   	<input class="d-none" id="id" value="${ id }" />
+	                   	<sec:authentication property="principal.user.name" var="name"/>
+	                   	<input class="d-none" id="name" value="${ name }" />
+	                   	<sec:authentication property="principal.user.gender" var="gender"/>
+	                   	<input class="d-none" id="gender" value="${ gender }" />
+	                   	<sec:authentication property="principal.user.phone" var="phone"/>
+	                   	<input class="d-none" id="phone" value="${ phone }" />
+	                   	<sec:authentication property="principal.user.email" var="email"/>
+	                   	<input class="d-none" id="email" value="${ email }" />
+	                   	
 	                     <!-- 로그인한 유저와 이 글을 작성한 유저가 다를 경우 visible -->
 	                     <c:if test="${ author != loginUser }">
 	                        <div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-	                           <button id="like" name="like" type="submit" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
-	                           <button id="join" name="join" type="submit" class="btn btn-outline-primary btn-lg">참여하기</button>
+	                           <button id="like" name="like"  class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+	                           <button id="join" name="join"  class="btn btn-outline-primary btn-lg">참여하기</button>
+	        
 	                        </div>
 	                     </c:if>
 	                     <!-- 로그인한 유저와 이 글을 작성한 유저가 같을 경우 visible -->
@@ -164,9 +178,9 @@
 	                     </c:if>
 	                 </sec:authorize>
                      
+                     
                      <!-- 프로필 -->
-                    
-                     	
+                 
                         <div class="card my-4">
                         	<div class="card-header fw-bold">
                         	 <p class="my-2">🙋🏻‍♂️HOST</p>

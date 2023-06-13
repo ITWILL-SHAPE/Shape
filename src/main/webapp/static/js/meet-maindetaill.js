@@ -53,6 +53,32 @@
 	// 참여 클릭
 	const btnjoin = document.querySelector('button#join');
 	let isjoined = false; // 초기 상태는 참여하기가 아닌 경우
+	
+	
+	
+	 const meetJoin = (e) => {
+		 const mtid = document.querySelector('input#mtid').value;
+		const prtcp_id = document.querySelector('input#id').value;
+		const name = document.querySelector('input#name').value;
+		const gender = document.querySelector('input#gender').value;
+		const phone = document.querySelector('input#phone').value;
+		const email = document.querySelector('input#email').value;
+		 
+		 console.log(mtid, prtcp_id, name, gender, phone, email);
+		 
+		 const data = { mtid, prtcp_id, name, gender, phone, email };
+		 
+		 axios.post('/shape/meet', data)
+		 	.then((response) => {
+				 alert('참여완료');
+			 })
+			 .catch((error) => {
+				 console.log(error);
+			 });
+		 
+	 };
+	 btnjoin.addEventListener('click', meetJoin);
+	
 	/*
 	const joindDetailModel = (e) => {
 		const mtid = e.target.getAttribute('data-id');

@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
 import com.itwill.shape.dto.InfoNoticeListDto;
+import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.service.InfoNoticeService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,14 +29,14 @@ public class InfoNoticeController {
 	 * notice list
 	 * @param model
 	 */
-	@GetMapping("/list")
+	/*@GetMapping("/list")
 	public void noticeList(Model model) {
 		log.info("noticeList()");
 		List<InfoNoticeListDto> list = infoNoticeService.read();
 		System.out.println(list);
 		log.info(list.toString());
 		model.addAttribute("notices", list);
-	}
+	}*/
 	
 	/**
 	 * notice detail
@@ -49,5 +51,20 @@ public class InfoNoticeController {
 		model.addAttribute("times", time);
 	}
 	
+	/**
+	 * 리스트 페이징 출력
+	 */
+	@GetMapping("/list")
+	public void list(Model model, Criteria cri) {
+		log.info("list()");
+		
+		int total = infoNoticeService.getListCount();
+		log.info("listCount={}", total);
+		
+		List<InfoNoticeListDto> list = infoNoticeService.read(cri);
+		
+		model.addAttribute("notices", list);
+		model.addAttribute("paging", new PageDto(cri, total));
+	}
 	
 }

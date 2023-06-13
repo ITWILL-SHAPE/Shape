@@ -84,8 +84,8 @@ public class MeetDetailService {
 		public int LikeCountUpdate(long mtid, String id) {
 			log.info("LikeCountUpdate(mtid = {}, id = {})", mtid, id);
 			
-			
-			return meetLikeRepository.likeCreate(mtid, id);
+			return 0;
+//			return meetLikeRepository.likeCreate(mtid, id);
 		}
 		/**
 		 * mtid 모임에 like count 감소

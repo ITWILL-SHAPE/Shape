@@ -210,7 +210,7 @@ public class MeetController {
 	 * @param
 	 */
 	@PostMapping
-	public ResponseEntity<Integer> createPrtcp(@RequestBody MeetPrtcpCreateDto dto) {
+	public ResponseEntity<Integer> createPrtcp(@RequestParam MeetPrtcpCreateDto dto) {
 		log.info("createPrtcp(dto={})", dto);
 
 		int result = meetDetailService.create(dto);
