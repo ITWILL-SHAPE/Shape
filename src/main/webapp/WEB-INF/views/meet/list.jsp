@@ -30,15 +30,16 @@
 	<!--제목 검색 -> post -->
 	<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
 		<c:url var="meetListPage" value="/meet/list">
-			</c:url>
+		</c:url>
 		<a href="${ meetListPage }" class="link-dark text-decoration-none">
 			<h1>전체 모임</h1>
-		</a>	
+		</a>
 		<div class="tst-tools">
 			<div class="d-flex justify-content-center">
 				<div class="input-group w-50">
-				<c:url var="meetSearchPage" value="/meet/search"></c:url>
-					<form id="searchFormByTitle" class="TitleSearchForm" action="${ meetSearchPage }">
+					<c:url var="meetSearchPage" value="/meet/search"></c:url>
+					<form id="searchFormByTitle" class="TitleSearchForm"
+						action="${ meetSearchPage }">
 						<input type="text" class="form-control" id="searchTitle"
 							name="searchTitle" placeholder="검색어 입력"
 							aria-label="Input group example" aria-describedby="basic-addon1">
@@ -58,22 +59,20 @@
 	</header>
 
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
-	<form id="searchFormCheckBox" class="CheckBoxSearchForm" >
+	<form id="searchFormCheckBox" class="CheckBoxSearchForm">
 		<div class="form-check form-check-reverse">
-			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentIng" > 
-			모집중 
-			</label>
+			<label class="form-check-label" for="reverseCheck"
+				id="checkRecruitmentIng"> 모집중 </label>
 			<%-- 
 			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentEd" hidden> 
 			모집완료 
 			</label>
 			 --%>
-			<input
-			class="form-check-input" type="checkbox" value="" 
-			id="reverseCheck" name="mozipCheck" >
+			<input class="form-check-input" type="checkbox" value=""
+				id="reverseCheck" name="mozipCheck">
 		</div>
 	</form>
-	
+
 
 	<!-- category/sido/ 검색 div들 -> post -->
 
@@ -167,10 +166,10 @@
 			<form id="searchFormSort" class="sortSearchForm"
 				action="${ meetSearchPage }">
 				<select name="sortBy" onchange="this.form.submit()">
-					<option value="latest"
-						${sortBy == 'latest' ? 'selected="selected"' : '' }>최신순</option>
-					<option value="popular"
-						${sortBy == 'popular' ? 'selected="selected"' : '' }>인기순</option>
+					<option value="최신순"
+						${sortBy == '최신순' ? 'selected="selected"' : '' }>최신순</option>
+					<option value="인기순"
+						${sortBy == '인기순' ? 'selected="selected"' : '' }>인기순</option>
 				</select>
 			</form>
 		</div>
@@ -187,20 +186,29 @@
 				<c:url var="meetDetailPage" value="/meet/maindetail">
 					<c:param name="mtid" value="${cardList.mtid}" />
 				</c:url>
-				<div class="col" style="cursor: pointer;"
+				<div class="col" style="cursor: pointer;" id="clickEvent"
 					onclick="window.open('${meetDetailPage}');">
 					<div class="card shadow-sm image-container position-relative">
 						<svg idx="${status.begin}" class="bd-placeholder-img card-img-top"
 							width="100%" height="220" xmlns="http://www.w3.org/2000/svg"
 							role="img" aria-label="Placeholder: Thumbnail"
 							preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#55595c" />
-            </svg>
-						<div>
-							<img src="../static/images/sample/like2.svg" alt="toggle-off"
-								width="50" class="heart overlay-image overlay-right" />
-						</div>
-
+              				<rect width="100%" height="100%" fill="#55595c" />
+           				</svg>
+							<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
+							<sec:authorize access="isAuthenticated()">
+								<button id="logInUser">
+									<img src="../static/images/sample/like2.svg" alt="toggle-off"
+										width="50" class="heart overlay-image overlay-right" onclick="alert(확인)"/>
+								</button>
+							</sec:authorize>
+							<!-- 로그인 안 함 -->	
+							 <sec:authorize access="isAnonymous()">
+							 <button id="logOutUser">
+							 	<img src="../static/images/sample/like2.svg" alt="toggle-off"
+									width="50" class="heart overlay-image overlay-right" onclick="" />
+							 </button>
+							 </sec:authorize>
 						<div>
 							<c:choose>
 								<c:when test="${cardList.PCNT >= cardList.nm_ppl}">
@@ -220,28 +228,7 @@
 							</c:choose>
 						</div>
 
-						<%-- 로그인 상태에 따른 하트 클릭 가능 여부 처리 -> 살려두면 후에 로그인 시 카드 화면이 안보임 카드 전체적으로 묶어야 하는 것 같음
-            <script>
-              <sec:authorize access="isAuthenticated()">
-                var id = '${cardList.id}'; // 사용자 ID
-                var author = '${cardList.author}'; // 카드의 작성자 ID
 
-                // 로그인한 사용자와 카드의 작성자가 일치하는 경우
-                if (id === author) {
-                  // 클릭 가능한 하트로 설정
-                  document.querySelector('.heart_icon${status.begin}').addEventListener('click', function(e) {
-                   e.default
-                  });
-                }
-              </sec:authorize>
-
-              <sec:authorize access="isAnonymous()">
-                // 로그인하지 않은 사용자일 경우
-                document.querySelector('.heart_icon${status.begin}').addEventListener('click', function() {
-                  alert('로그인이 필요합니다.');
-                });
-              </sec:authorize>
-            </script>  --%>
 
 						<div class="card-body">
 							<div class="post-inner">
@@ -255,8 +242,7 @@
                      						 <path
 												d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                    						</svg>
-										<span class="text-end" id="heart${status.begin}">
-										 <em>${cardList.LCNT}</em>
+										<span class="text-end" id="heart${status.begin}"> <em>${cardList.LCNT}</em>
 										</span>
 									</div>
 								</div>

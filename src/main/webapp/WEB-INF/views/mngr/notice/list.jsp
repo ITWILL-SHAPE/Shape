@@ -62,8 +62,31 @@
 							</tbody>
 						</table>
 					</div>
+
+					<!-- 페이징 처리 -->
+					<div>
+						<nav>
+							<ul class="pagination justify-content-center">
+								<li class="page-item ${ paging.prev? "":"disabled" }"><a
+									class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a></li>
+								<c:forEach begin="${ paging.startPage }"
+									end="${ paging.endPage }" var="num">
+									<li class="page-item ${ paging.cri.pageNum == num? "active":"" }"><a
+										class="page-link" href="${ num }">${ num }</a></li>
+								</c:forEach>
+								<li class="page-item ${ paging.next? "":"disabled" }" ><a
+									class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a></li>
+							</ul>
+						</nav>
+					</div>
 	
-					<div class="my-2 text-center">
+					<form id='actionForm' action='/shape/mngr/notice/list' method='get'>
+						<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' />
+						<input type='hidden' name='amount' value='${ paging.cri.amount }' />
+					</form>
+					<!-- 페이징 처리 -->
+
+				<div class="my-2 text-center">
 						<c:url var="infoNoticeCreatePage" value="/mngr/notice/create" />
 						<a class="btn btn-primary" href="${ infoNoticeCreatePage }">새 글
 							작성</a>
@@ -74,4 +97,5 @@
 			</div>
 		</div>
 	</body>
+	<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
 </html>

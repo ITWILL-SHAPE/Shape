@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	$(document).ready(function() {
 
+		// 모집중/모집완료 체크박스
 		$('input[type=checkbox][name=mozipCheck]').change(function(e) {
 			if ($(this).prop("checked")) {
 				alert(`${this.value} is checked`);
@@ -38,6 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				// 폼을 문서에 추가하고 제출
 				form.appendTo('body').submit();
+				
+				$(this).attr('checked', true);
+				
 			}
 			else {
 				alert(`${this.value} is unchecked`);
@@ -48,76 +52,61 @@ document.addEventListener('DOMContentLoaded', () => {
 					'action': './list',
 					'method': 'GET'
 				});
+				
+				// 폼에 데이터 추가
+				form.append($('<input>', {
+					'type': 'hidden',
+					'name': 'mozipCheck',
+					'value': 'unchecked'
+				}));
+				
 				// 폼을 문서에 추가하고 제출
 				form.appendTo('body').submit();
+				
+				$(this).removeAttr('checked');
 
 			}
 		});
 	});
 
-	/*
-		$(':checkbox[name="tester"]').on({
-			click: function(e) {
-				$('#clickFlag').toggleClass('on');
-			},
-			change: function(e) {
-				$('#changeFlag').toggleClass('on');
-			}
-		});
-	*/
-	/*// form 선택
-	const searchFormCheckBox = document.querySelector('form#searchFormCheckBox');
+	// 찜
 
-	// 체크박스 선택
-	const reverseCheck = document.querySelector('input#reverseCheck');
+	/*<script>
+		<sec:authorize access="isAuthenticated()">
+			var id = '${cardList.id}'; // 사용자 ID
+			var author = '${cardList.author}'; // 카드의 작성자 ID
 
-	// label 모집완료
-	const checkRecruitmentEd = document.querySelector('label#checkRecruitmentEd');
+			// 로그인한 사용자와 카드의 작성자가 일치하는 경우
+			if (id === author) {
+				// 클릭 가능한 하트로 설정
+				document.querySelector('.heart_icon${status.begin}').addEventListener('click', function(e) {
+					e.default
+				});
+							}
+		</sec:authorize>
 
-	// label 모집중
-	const checkRecruitmentIng = document.querySelector('label#checkRecruitmentIng');
+		<sec:authorize access="isAnonymous()" id="logNot">
+							// 로그인하지 않은 사용자일 경우
+			document.querySelector('.heart_icon${status.begin}').addEventListener('click', function() {
+				alert('로그인이 필요합니다.');
+							});
+		</sec:authorize>
+	</script>*/
 
-	reverseCheck.addEventListener("click", () => {
-		if (reverseCheck.checked) {
-
-			// label 변화
-			//checkRecruitmentEd.removeAttribute('hidden');
-			//checkRecruitmentIng.setAttribute('hidden', true);
-
-
-			/* 페이지 로드 시 저장된 체크박스 상태를 적용
-			const savedCheckboxState = localStorage.getItem('checkboxState');
-			if (savedCheckboxState === 'true') {
-				reverseCheck.checked = true;
-			}
-
-			// 폼 제출 시 체크박스 상태를 로컬 스토리지에 저장
-			searchFormCheckBox.addEventListener('submit', (event) => {
-
-				const isChecked = reverseCheck.checked;
-				localStorage.setItem('checkboxState', isChecked);
-				
-				
-			}); 
-				checkRecruitmentIng.selected = true;
-
-				// serch.jsp로 이동
-				form.action = './change'; // 폼 제출(요청) 주소
-				form.method = 'post'; // 요청 방식
-				form.submit(); // 폼 제출
-
-		} else {
-			
-				// list.jsp로 이동
-				form.action = './comeback'; // 폼 제출(요청) 주소
-				form.method = 'post'; // 요청 방식
-				form.submit(); // 폼 제출
-			
-
-		}
+	/*$('#logInUser').click(function() {
+		alert('클릭했습니다.');
 	});*/
 
 
+	$('#logOutUser').click(function() {
+		alert('로그인이 필요합니다.');
+	});
+
+	$('#logInUser').on('click', function(e) {
+		e.preventDefault();
+		$('#heartClickNot').find('button').prop('disabled', true);
+		alert('클릭했습니다.');
+	});
 
 
 

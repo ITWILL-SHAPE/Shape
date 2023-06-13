@@ -2,6 +2,7 @@ package com.itwill.shape.repository;
 
 import java.util.List;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
 import com.itwill.shape.dto.InfoNoticeListDto;
 import com.itwill.shape.dto.InfoNoticeUpdateDto;
@@ -20,4 +21,8 @@ public interface InfoNoticeRepository {
 	int updateNotice (InfoNotice dto);
 	
 	int deleteByNid (long nid);
+	
+	List<InfoNoticeListDto> selectWithPaging(Criteria cri);
+	
+	int listCount();
 }

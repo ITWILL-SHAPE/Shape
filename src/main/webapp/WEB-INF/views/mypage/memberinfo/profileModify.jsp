@@ -8,21 +8,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Shape</title>
+<script defer src="static/js/userinfo-modify.js"></script>
 <style>
 .center {
-	margin: 0 auto; /* 가로 중앙 정렬을 위해 margin을 auto로 설정 */
-	text-align: center; /* 내부 텍스트를 가운데 정렬 */
+	margin: 0 auto;
+	text-align: center;
 }
 
 table {
-	margin: 0 auto; /* 가로 중앙 정렬을 위해 margin을 auto로 설정 */
-	text-align: left; /* 테이블 내부 텍스트를 왼쪽 정렬 */
-	border-collapse: collapse; /* 테이블 셀 경계를 병합하여 선을 숨김 */
+	margin: 0 auto;
+	text-align: left;
+	border-collapse: collapse;
 }
 
 th, td {
-	padding: 5px; /* 셀 내부 여백 설정 */
-	border: none; /* 셀 경계 선을 없앰 */
+	padding: 5px;
+	border: none;
 }
 
 .profile-container {
@@ -59,16 +60,16 @@ th, td {
 	font-size: 16px;
 	cursor: pointer;
 	width: max-content;
-	padding: 0; /* 옵션: 버튼 내부 여백을 없애기 위해 padding을 0으로 설정 */
+	padding: 0;
 }
 
 .profile-image {
-	width: 300px; /* 원하는 가로 크기로 설정 */
-	height: auto; /* 세로 크기를 자동으로 조정하여 비율 유지 */
+	width: 300px;
+	height: auto;
 }
 
 .profile-info {
-	margin-bottom: 40px; /* 원하는 간격 크기를 설정 */
+	margin-bottom: 40px;
 }
 </style>
 </head>
@@ -76,11 +77,19 @@ th, td {
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<main id="main_contnet">
-		<div class="center">
-			<img src="static/images/common/user.png"
-				 alt="Profile Image"
-				 class="profile-image">
+	<main id="main_content">
+		<div class="center profile-info">
+			<div class="profile-image-container">
+				<img src="<c:url value='/static/images/common/user.png'/>"
+					 alt="Profile Image"
+					 class="profile-image" />
+				<div class="profile-overlay">
+					<label for="profile-upload" class="change-profile-btn">사진변경</label>
+					<input type="file"
+					       id="profile-upload"
+					       style="display: none;" />
+				</div>
+			</div>
 		</div>
 		<div class="center profile-info">
 			<table>
@@ -112,14 +121,16 @@ th, td {
 				</tbody>
 			</table>
 		</div>
-		<div class="center change-profile-btn profile-info">
-			<!--
-         <c:url var="mypageModifyPage" value="/imagemodify">
-            <c:param name="id" value="${myPageUserInfo.id}"></c:param>
-         </c:url>
-           -->
+		<div class="center profile-info">
+		<!-- 
+			<c:url var="mypageModifyPage" value="/imagemodify">
+				<c:param name="id" value="${myPageUserInfo.id}"></c:param>
+			</c:url>
+			 -->
 			<a class="btn btn-outline-primary form-control"
-				href="profilemodifypage?id=${ id }">회원정보 수정</a>
+			   href="myprofile?id=${ id }">수정 완료</a> 
+			<a class="btn btn-outline-primary form-control"
+			   href="myprofile?id=${ id }">취소</a>
 		</div>
 	</main>
 </body>

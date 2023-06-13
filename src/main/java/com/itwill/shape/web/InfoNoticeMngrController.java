@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
 import com.itwill.shape.dto.InfoNoticeListDto;
 import com.itwill.shape.dto.InfoNoticeCreateDto;
 import com.itwill.shape.dto.InfoNoticeUpdateDto;
+import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.service.InfoNoticeService;
 
 import lombok.RequiredArgsConstructor;
@@ -31,14 +33,29 @@ public class InfoNoticeMngrController {
 	 * 관리자 notice list
 	 * @param model
 	 */
+	/*
+	 * @GetMapping("/list") public void listNoticeMngr(Model model) {
+	 * log.info("list()"); List<InfoNoticeListDto> list = infoNoticeService.read();
+	 * System.out.println(list); log.info(list.toString());
+	 * model.addAttribute("notices", list); }
+	 */
+	
+	/**
+	 * 관리자 notice list 페이징 출력
+	 */
 	@GetMapping("/list")
-	public void listNoticeMngr(Model model) {
+	public void list(Model model, Criteria cri) {
 		log.info("list()");
-		List<InfoNoticeListDto> list = infoNoticeService.read();
-		System.out.println(list);
-		log.info(list.toString());
+		
+		int total = infoNoticeService.getListCount();
+		log.info("listCount={}", total);
+		
+		List<InfoNoticeListDto> list = infoNoticeService.read(cri);
+		
 		model.addAttribute("notices", list);
+		model.addAttribute("paging", new PageDto(cri, total));
 	}
+	
 	
 	/**
 	 * 관리자 notice detail

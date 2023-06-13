@@ -29,12 +29,17 @@
 
 	<!--제목 검색 -> post -->
 	<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
-		<h1>전체 모임</h1>
+		<c:url var="meetListPage" value="/meet/list">
+		</c:url>
+		<a href="${ meetListPage }" class="link-dark text-decoration-none">
+			<h1>전체 모임</h1>
+		</a>
 		<div class="tst-tools">
 			<div class="d-flex justify-content-center">
 				<div class="input-group w-50">
 					<c:url var="meetSearchPage" value="/meet/search"></c:url>
-					<form id="searchFormByTitle" class="TitleSearchForm" action="${ meetSearchPage }">
+					<form id="searchFormByTitle" class="TitleSearchForm"
+						action="${ meetSearchPage }">
 						<input type="text" class="form-control" id="searchTitle"
 							name="searchTitle" placeholder="검색어 입력"
 							aria-label="Input group example" aria-describedby="basic-addon1">
@@ -54,19 +59,24 @@
 	</header>
 
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
-	<form id="searchFormCheckBox" class="CheckBoxSearchForm" >
+	<form id="searchFormCheckBox" class="CheckBoxSearchForm">
 		<div class="form-check form-check-reverse">
-			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentIng" > 
-			모집중 
-			</label>
+			<label class="form-check-label" for="reverseCheck"
+				id="checkRecruitmentIng"> 모집중 </label>
 			<%-- 
 			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentEd" hidden> 
 			모집완료 
 			</label>
 			 --%>
-			<input
-			class="form-check-input" type="checkbox" value="" 
-			id="reverseCheck" name="mozipCheck" checked >
+			<%
+			String mozipCheck = request.getParameter("mozipCheck");
+			if (mozipCheck == null) {
+				mozipCheck = ""; // 기본값 설정
+			}
+			%>
+			<input class="form-check-input" type="checkbox" value=""
+				id="reverseCheck" name="mozipCheck"
+				<% if ("checked".equals(mozipCheck)) { %>checked<% } %>>
 		</div>
 	</form>
 	<!-- category/sido/ 검색 div들 -> post -->
@@ -77,7 +87,7 @@
 			<c:url var="meetSearchPage" value="/meet/search">
 			</c:url>
 			<form id="searchFormCategory" class="categorySearchForm"
-				action="${ meetSearchPage }" >
+				action="${ meetSearchPage }">
 				<div class="input-group mb-3">
 					<label for="categorySelect"> <select
 						class="custom-select custom-select-lg mb-3" id="category"

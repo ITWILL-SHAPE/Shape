@@ -23,7 +23,7 @@ public class MeetLikeService {
 	public int likeInsert(long mtid, String id) {
 		log.info("likeinsert(mtid={}, id={})", mtid, id);
 		
-		return meetLikeRepository.likeInsert(mtid, id);
+		return meetLikeRepository.likeCreate(mtid, id);
 	}
 	
 	// 찜 삭제

@@ -139,9 +139,9 @@ public class MeetController {
 	 */
 
 	@GetMapping("/search")
-	public void search(String category, String sidoValue, String sortBy, String searchTitle, boolean reverseCheck,
+	public void search(String category, String sidoValue, String sortBy, String searchTitle, String mozipCheck,
 			Model model) {
-		log.info("search(requestParam={}, {}, {}, {})", category, sidoValue, sortBy, searchTitle);
+		log.info("search(requestParam={}, {}, {}, {}, {})", category, sidoValue, sortBy, searchTitle, mozipCheck);
 
 		// 카테고리에 따른 검색 로직
 		if (category != null) {
@@ -158,9 +158,10 @@ public class MeetController {
 		}
 
 		// 정렬에 따른 검색 로직
-		if (sortBy != null && sortBy.equals("popular")) {
+		if (sortBy != null && sortBy.equals("인기순")) {
 			List<MeetListCountDto> dto = meetListService.readByPopularity();
 			model.addAttribute("searchList", dto);
+			log.info("sortBy = {}",sortBy);
 			model.addAttribute("sortBy", sortBy);
 		} else {
 			List<MeetListCountDto> dto = meetListService.readByCreateTime();
@@ -173,9 +174,12 @@ public class MeetController {
 			model.addAttribute("searchList", dto);
 		}
 
-		// 체크박스 상태에 따른 로직 수행- 0613
-		List<MeetListCountDto> dto = meetListService.MozipIng();
-		model.addAttribute("searchList", dto);
+		if(mozipCheck != null) {
+			// 체크박스 상태에 따른 로직 수행- 0613
+			List<MeetListCountDto> dto = meetListService.MozipIng();
+			model.addAttribute("searchList", dto);
+			
+		}
 
 	}
 
