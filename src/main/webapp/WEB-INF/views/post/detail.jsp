@@ -60,7 +60,7 @@
 					<label class="form-label" for="content">나의 댓글</label>
 					<div class="col-10">
 						<sec:authentication property="principal.username" var="id" />
-						<input class="form-control" type="text" id="author" name="author"
+						<input class="form-control d-none" type="text" id="author" name="author"
 							value="${ id }" readonly />
 						<textarea class="form-control" id="content"></textarea>
 					</div>

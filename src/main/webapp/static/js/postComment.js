@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const modified = new Date(comment.modifiedDate).toLocaleString();
 			// 댓글 1개를 표시할 HTML 코드:
             htmlStr += `
-                <div class="card" id="${comment.pcid}">
+                <div class="card p-2 mb-2" id="${comment.pcid}">
                 
 	                    <div>
 	                        <span class="d-none">${comment.pcid}</span>
@@ -45,28 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
 				const modified = new Date(comment.modifiedDate).toLocaleString();
 				// 댓글 1개를 표시할 HTML 코드:
 				htmlStr += `
-                <div class="card" id="${comment.pcid}">
-                
-	                    <div>
+                <div class="card p-2 mb-2" id="${comment.pcid}">
+                	<div class="row">
+	                    <div class="col-10">
 	                        <span class="d-none">${comment.pcid}</span>
 	                        <span class="fw-bold">${comment.author}</span>
 	                        <span class="text-secondary">${modified}</span>
 	                    </div>
-                    
+	                    <div class="col-2 d-grid gap-2 d-md-flex justify-content-md-end" id="buttonDiv${comment.pcid}">
+	                        <button class="btnDelete btn btn-outline-danger btn-sm" data-id="${comment.pcid}">
+	                            삭제
+	                        </button>
+	                        <button class="btnModify btn btn-outline-success btn-sm" data-id="${comment.pcid}">
+	                            수정
+	                        </button>
+	                    </div>  
+                    </div>
                     <div id="modifyContent${comment.pcid}">
 	                    <div id="text${comment.pcid}">
 	                        ${comment.content}
 	                    </div>   
-	                    <div class="d-grid gap-2 d-md-flex justify-content-md-end" id="buttonDiv${comment.pcid}">
-	                        <button class="btnDelete btn btn-outline-danger" data-id="${comment.pcid}">
-	                            삭제
-	                        </button>
-	                        <button class="btnModify btn btn-outline-success" data-id="${comment.pcid}">
-	                            수정
-	                        </button>
-	                    </div>  
                     </div>  
-                             
                 </div>
             	`;
 			}
@@ -95,10 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		const pcid = e.target.getAttribute('data-id');
 		const before = $('div#text' + pcid).text().trim();
 		
-		$('div#text' + pcid).html('<textarea name="updateText" class="form-control">' + before + '</textarea>');
+		$('div#text' + pcid).html('<textarea name="updateText" class="form-control mt-2">' + before + '</textarea>');
 		$('div#buttonDiv' + pcid).html(`
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				<button id="btnUpdateDiv" type="button" class="btn btn-primary" data-id="${pcid}">
+				<button id="btnUpdateDiv" type="button" class="btn btn-primary btn-sm" data-id="${pcid}">
 					수정 확인
 				</button>
 			</div>
