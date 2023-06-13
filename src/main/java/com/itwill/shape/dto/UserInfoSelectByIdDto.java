@@ -1,6 +1,8 @@
 package com.itwill.shape.dto;
 
 import java.time.LocalDate;
+import java.util.Base64;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +21,7 @@ import com.itwill.shape.domain.UserInfo;
 @ToString			// toString 메서드
 @Data	
 public class UserInfoSelectByIdDto {
+	private String profileImageUrl;
 
 	private byte[] profile;
 	private String name; // 이름 
@@ -67,6 +70,23 @@ public class UserInfoSelectByIdDto {
 				.phone(phone)
 				.build();
 	}
+	
+	/**
+	 * 0612 김세이 
+	 *  profile 필드를 기반으로 profileImageUrl을 생성 
+	 *  프로필 이미지가 있는 경우에만 Base64 인코딩하여 이미지 URL을 생성
+	 *  없는 경우에는 null로 설정
+	 * 
+	 * @return
+	 */
+	
+	public static String generateProfileImageUrl(byte[] profile) {
+		if (profile != null && profile.length > 0) {
+			String base64Image = Base64.getEncoder().encodeToString(profile);
+			return "data:image/png;base64," + base64Image;
+		}
+		return null;
+	} 
 	
 	
 }

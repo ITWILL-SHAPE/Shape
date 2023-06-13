@@ -45,7 +45,8 @@
 						</li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
-						<span><sec:authentication property="principal.user.name"/> 님</span>
+						<span><sec:authentication property="principal.user.name" var="name"/> ${ name }님</span>
+						<sec:authentication property="principal.user.id" var="id" />
 					</sec:authorize>
 				</ul>
 			</div>
@@ -107,7 +108,7 @@
 							<ul class="dropdown-menu text-small"
 								aria-labelledby="dropUser">
 								<li>
-									<c:url value="/myprofile" var="myPage"/>
+									<c:url value="/myprofile?id=${ id }" var="myPage"/>
 									<a class="dropdown-item" href="${ myPage }">마이페이지</a>
 								</li>
 								<li><hr class="dropdown-divider"></li>

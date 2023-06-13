@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class UserInfo {
-	
+	private String profileImageUrl;
+ 
 	private String id;
 	private String pwd;
 	private String name;

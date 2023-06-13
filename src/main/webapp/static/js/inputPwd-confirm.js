@@ -13,8 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		
         try {
             const response = await axios.post('/shape/confirmpwd', inputPwd);
-            //const response = await axios.post('/shape/confirmpwd', { params: { inputPwd } });
             //왜 안돼?
+            //const response = await axios.post('/shape/confirmpwd', { params: { inputPwd } });
+            // 위 코드처럼 보내면 content-type이 application/x-www-form-urlencoded
+            
+            //axios.post 메서드는 기본적으로 Content-Type을 application/json으로 설정
             console.log(response);
             const isMatched = response.data;
 

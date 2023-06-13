@@ -52,7 +52,6 @@ public class MyPageRestController {
 	 * post_comment table에서 pcid와 일치하는 댓글을 삭제
 	 * @return
 	 */
-//	@ResponseBody
 	@DeleteMapping("/deletecomments")	
 	public ResponseEntity<Integer> postCommentDeleteByPcidDtoList(
 			@RequestBody List<PostCommentDeleteByPcidDto> selectedPcids) {

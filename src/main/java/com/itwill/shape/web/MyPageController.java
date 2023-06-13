@@ -43,7 +43,6 @@ public class MyPageController {
 	private final PostInfoService postInfoService;
 	private final UserInfoService userInfoService;
 	private final MeetListService meetListService;
-
 	/**
 	 * 0601 김세 나의프로필 정보 불러오기
 	 * 
@@ -53,31 +52,37 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 회원정보 > 나의 프로필
 	@GetMapping("/myprofile")
-	public String myProfile(String id, Model model) {
-		log.info("myprofile()");
-		log.info("id={}", id);
+	public String myProfile(@RequestParam("id")String id, Model model) {
+	    log.info("myprofile()");
+	    log.info("id={}", id);
 
-		UserInfoSelectByIdDto dto = userInfoService.selectById("test0000");
-		model.addAttribute("myPageUserInfo", dto);
-		return "/mypage/memberinfo/myprofile";
+	    UserInfoSelectByIdDto dto = userInfoService.selectById("test1");
+
+	    if (dto.getProfileImageUrl() != null) {
+	        model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+	    }
+
+	    model.addAttribute("myPageUserInfo", dto);
+	    return "/mypage/memberinfo/myprofile";
 	}
+
 
 	/**
 	 * 0601 김세이 마이페이지 이미지 수정
 	 * 
 	 * @param id
 	 * @param model
-	 * @return "/mypage/memberinfo/myprofile"
+	 * @return "/mypage/memberinfo/myprofile?id=" + id
 	 * @throws IOException
 	 */
 	@GetMapping("/imagemodify")
-	public String imageModify(String id, @RequestParam("profile") MultipartFile profile) throws IOException {
-		log.info("imageModify()");
+	public String imageModify(@RequestParam("id")String id, @RequestParam("profile") MultipartFile[] profile) throws IOException {
+	    log.info("imageModify()");
 
-		int result = userInfoService.imageModify(id, profile);
-		log.info("imageModify 결과 = {}", result);
+	    int result = userInfoService.imageModify(id, profile[0]);
+	    log.info("imageModify 결과 = {}", result);
 
-		return "/mypage/memberinfo/myprofile";
+	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
 	}
 
 	/**
@@ -114,7 +119,7 @@ public class MyPageController {
 	 * @return
 	 */
 	@GetMapping("/confirmpwdpage")
-	public String confirmPwdPage(String id) {
+	public String confirmPwdPage(@RequestParam("id")String id) {
 		log.info("confirmPwdPage(id={})", id);
 
 		return "/mypage/memberinfo/confirmPwd";
@@ -130,11 +135,11 @@ public class MyPageController {
 	@PostMapping("/confirmpwd")
 	public String confirmPwd(String id, @RequestBody String inputPwd) {
 		// public String confirmPwd(@RequestParam("inputPwd") String inputPwd) {
-		log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd.substring(0, inputPwd.length() - 1));
+		log.info("confirmPwd(id={}, inputPwd={})", id, inputPwd.substring(0, inputPwd.length() - 1));
 		// log.info("confirmPwd(id={}, inputPwd={})", null, inputPwd);
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
-		boolean isPasswordMatched = userInfoService.confirmUser("test2",
+		boolean isPasswordMatched = userInfoService.confirmUser("test1",
 				inputPwd.substring(0, inputPwd.length() - 1));
 		// boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
 		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
@@ -153,21 +158,8 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 회원정보 > 비밀번호 수정
 	@GetMapping("/modifypwdpage")
-//		public String modifyPwdPage(String id, String inputPwd, Model model) {
 	public String modifyPwdPage() {
 		log.info("modifyPwdPage()");
-//			log.info("modifyPwd(id={}, inputPwd={})", id, inputPwd);
-//
-//			int result = userInfoService.modifyPwdById("drj9812", passwordEncoder.encode("drj9812"));
-//			log.info("modifyPwd(result={})", result);
-//
-//			UserInfoSelectPwdByIdDto dto = userInfoService.selectPwdById("drj9812");
-//			log.info("modifyPwd(dto={})", dto);
-//
-//			String userPwd = dto.getPwd();
-//			log.info("modifyPwd(userPwd={}", userPwd);
-//
-//			model.addAttribute("userPwd", userPwd);
 
 		return "/mypage/memberinfo/modifyPwd";
 	}
@@ -175,10 +167,10 @@ public class MyPageController {
 	// 마이페이지 > 회원정보 > 비밀번호 수정
 	@ResponseBody
 	@PostMapping("/modifypwd")
-	public String modifyPwd(String id, @RequestBody String newPwd) {
+	public String modifyPwd(@RequestParam("id")String id, @RequestBody String newPwd) {
 		log.info("modifyPwd(id={}, inputPwd={})", id, newPwd.substring(0, newPwd.length() - 1));
 
-		int result = userInfoService.modifyPwdById("drj9812",
+		int result = userInfoService.modifyPwdById(id,
 				passwordEncoder.encode(newPwd.substring(0, newPwd.length() - 1)));
 		log.info("modifyPwd(result={})", result);
 
@@ -196,10 +188,10 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
 	@GetMapping("/withdrawalpage")
-	public String withdrawalPage(String id, Model model) {
+	public String withdrawalPage(@RequestParam("id")String id, Model model) {
 		log.info("withdrawalPage(id={})", id);
 		
-		model.addAttribute("id", "test2");
+		model.addAttribute("id", id);
 		
 		return "/mypage/memberinfo/withdrawal";
 	}
@@ -214,7 +206,7 @@ public class MyPageController {
 	public String withdrawal(@RequestBody String id) {
 		log.info("withdrawal(id={})", id);
 		
-		int result = userInfoService.deleteUserInfoById("test2");
+		int result = userInfoService.deleteUserInfoById(id);
 		
 		if (result == 1) {
 			return "회원탈퇴되었습니다.";
@@ -233,10 +225,10 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
 	@GetMapping("/active")
-	public String readActiveMeet(String prtcpId, Model model) {
-		log.info("readActiveMeet(prtcpId={})", prtcpId);
+	public String readActiveMeet(@RequestParam("id")String prtcpId, Model model) {
+		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId("test2");
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId(prtcpId);
 		log.info("readActiveMeet(dto={})", dto);
 
 		model.addAttribute("activeList", dto);
@@ -252,10 +244,10 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 모임 > 내가 개설한 모임
 	@GetMapping("/created")
-	public String readCreatedMeet(String crtrId, Model model) {
-		log.info("readCreatedMeet(prtcpId={})", crtrId);
+	public String readCreatedMeet(@RequestParam("id")String crtrId, Model model) {
+		log.info("readCreatedMeet(prtcpId(id)={})", crtrId);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByCrtrId("test");
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByCrtrId(crtrId);
 		log.info("readCreatedMeet(dto={})", dto);
 
 		model.addAttribute("createdList", dto);
@@ -271,10 +263,10 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 모임 > 내가 찜한 모임
 	@GetMapping("/interests")
-	public String readInterestsMeet(String id, Model model) {
+	public String readInterestsMeet(@RequestParam("id")String id, Model model) {
 		log.info("readInterestsMeet(id={})", id);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectById("test");
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectById(id);
 		log.info("readInterestsMeet(dto={})", dto);
 
 		model.addAttribute("interestsList", dto);
@@ -299,10 +291,10 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 게시물
 	@GetMapping("/myposts")
-	public String readMyposts(Model model, String author) {
-		log.info("myposts(author(id)={})", author);
+	public String readMyposts(@RequestParam("id")String id, Model model) {
+		log.info("myposts(author(id)={})", id);
 
-		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor("test");
+		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor(id);
 		log.info("readMyposts(myposts={})", myposts);
 
 		model.addAttribute("myposts", myposts);
@@ -319,11 +311,11 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 댓글
 	@GetMapping("/mycomments")
-	public String readMycomments(Model model, String author) {
-		log.info("readMycomments(author(id)={})", author);
+	public String readMycomments(@RequestParam("id")String id, Model model) {
+		log.info("readMycomments(author(id)={})", id);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor("test");
+		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor(id);
 		log.info("readMycomments(mycomments={})", mycomments);
 
 		model.addAttribute("mycomments", mycomments);
