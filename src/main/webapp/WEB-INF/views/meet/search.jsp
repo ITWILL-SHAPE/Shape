@@ -58,13 +58,15 @@
 		<div class="form-check form-check-reverse">
 			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentIng" > 
 			모집중 
-			</label> 
+			</label>
+			<%-- 
 			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentEd" hidden> 
 			모집완료 
 			</label>
+			 --%>
 			<input
 			class="form-check-input" type="checkbox" value="" 
-			id="reverseCheck" name="mozipCheck" >
+			id="reverseCheck" name="mozipCheck" checked >
 		</div>
 	</form>
 	<!-- category/sido/ 검색 div들 -> post -->

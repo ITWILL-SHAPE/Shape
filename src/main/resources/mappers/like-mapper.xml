@@ -5,10 +5,10 @@
 <mapper namespace="com.itwill.shape.repository.MeetLikeRepository">
 
 	<!-- 찜 수 create문 -->
-	<update id="likeCreate">
+	<insert id="likeCreate">
 		insert into MEET_LIKE (mtid, id)
 		values (#{mtid}, #{id})
-	</update>
+	</insert>
 	
 	<!-- 찜 수 delete문 -->
 	<delete id="likeDelete">
@@ -23,32 +23,5 @@
         select count(mtid) from MEET_LIKE where mtid = #{mtid}
     </select>
     
-    
-    <!-- 지언 찜 도전 0613 -->
-    
-    <!-- 찜 등록 -->
-    <insert id="like_insert" parameterType="com.itwill.shape.dto.MeetLikeDto">
-    	insert into MEET_LIKE values(#{mtid}, #{id})
-    </insert>
-    <update id="like_up" parameterType="com.itwill.shape.dto.MeetInfoDto">
-    	update MEET_INFO set like=like+1
-    	where mtid=#{mtid}
-    </update>
-    <!-- meetinfo 테이블에 like(찜 수) 넣어야 하는 지? -->
-    
-    <!-- 찜 삭제 -->
-    <delete id="like_delete" parameterType="com.itwill.shape.dto.MeetLikeDto">
-    	delete from MEET_LIKE
-    	where mtid=#{mtid} and id=#{id}
-    </delete>
-    <update id="like_down" parameterType="com.itwill.shape.dto.MeetInfoDto">
-    	update MEET_INFO set like=like-1
-    	where mtid=#{mtid}
-    </update>
-    
-    <!-- 찜 등록/삭제시 찜 갯수 가져오기 -->
-    <select id="like_count" parameterType="com.itwill.shape.dto.MeetInfoDto" resultType="com.itwill.shape.dto.MeetInfoDto">
-    	select like from MEET_INFO where mtid=#{mtid}
-    </select>
 	
 </mapper>

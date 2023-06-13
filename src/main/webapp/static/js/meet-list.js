@@ -17,7 +17,55 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
 
-	// form 선택
+	$(document).ready(function() {
+
+		$('input[type=checkbox][name=mozipCheck]').change(function(e) {
+			if ($(this).prop("checked")) {
+				alert(`${this.value} is checked`);
+
+				// 동적으로 폼 생성
+				const form = $('<form>', {
+					'action': './search',
+					'method': 'GET'
+				});
+
+				// 폼에 데이터 추가
+				form.append($('<input>', {
+					'type': 'hidden',
+					'name': 'mozipCheck',
+					'value': 'checked'
+				}));
+
+				// 폼을 문서에 추가하고 제출
+				form.appendTo('body').submit();
+			}
+			else {
+				alert(`${this.value} is unchecked`);
+
+				// 체크 해제시 list
+				// 동적으로 폼 생성
+				const form = $('<form>', {
+					'action': './list',
+					'method': 'GET'
+				});
+				// 폼을 문서에 추가하고 제출
+				form.appendTo('body').submit();
+
+			}
+		});
+	});
+
+	/*
+		$(':checkbox[name="tester"]').on({
+			click: function(e) {
+				$('#clickFlag').toggleClass('on');
+			},
+			change: function(e) {
+				$('#changeFlag').toggleClass('on');
+			}
+		});
+	*/
+	/*// form 선택
 	const searchFormCheckBox = document.querySelector('form#searchFormCheckBox');
 
 	// 체크박스 선택
@@ -37,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			//checkRecruitmentIng.setAttribute('hidden', true);
 
 
-			/*// 페이지 로드 시 저장된 체크박스 상태를 적용
+			/* 페이지 로드 시 저장된 체크박스 상태를 적용
 			const savedCheckboxState = localStorage.getItem('checkboxState');
 			if (savedCheckboxState === 'true') {
 				reverseCheck.checked = true;
@@ -50,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				localStorage.setItem('checkboxState', isChecked);
 				
 				
-			}); */
+			}); 
 				checkRecruitmentIng.selected = true;
 
 				// serch.jsp로 이동
@@ -67,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			
 
 		}
-	});
+	});*/
 
 
 
