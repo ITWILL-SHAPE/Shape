@@ -26,5 +26,5 @@ public class MngrUserInfoSelectDto {
 				.join_date(entity.getJoin_date())
 				.build();
 				
-	}
+	}	
 }

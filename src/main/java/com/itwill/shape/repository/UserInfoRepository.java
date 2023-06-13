@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.MngrUserInfoSearchListDto;
+import com.itwill.shape.dto.MngrUserInfoSelectDto;
 import com.itwill.shape.dto.UserInfoFindDto;
 
 public interface UserInfoRepository {
@@ -114,18 +115,17 @@ public interface UserInfoRepository {
 	
 	/**
 	 * 하지윤
-	 * 관리자 - 사용자 조회
-	 * @return List<UserInfo>
-	 */
-	List<UserInfo> selectAllUser();
-	
-	/**
-	 * 하지윤
 	 * 관리자 - 사용자 검색
 	 * @param dto
 	 * @return
 	 */
 	List<UserInfo> selectByKeyword(MngrUserInfoSearchListDto dto);
+	
+	// 관리자 - 사용자 리스트 페이징
+	List<MngrUserInfoSelectDto> selectByKeywordPaging(MngrUserInfoSearchListDto dto);
+	
+	// 관리자 - 사용자 수 카운트
+	int userInfoCount(MngrUserInfoSearchListDto dto);
 	
 	/**
 	 * 0611손창민
