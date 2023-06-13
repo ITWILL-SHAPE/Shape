@@ -16,5 +16,8 @@ public class MngrUserInfoSearchListDto {
 	private String searchEmail;
 	private String searchRegDateStart;
 	private String searchRegDateEnd;
-
+	private int pageNum;
+	private int amount;
+	
+	
 }

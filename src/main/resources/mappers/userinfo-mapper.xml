@@ -116,17 +116,8 @@
 		SET PROFILE = #{profile}
 		WHERE id = #{id}
 	</update>
-
-	<!-- 관리자 - 사용자 전체 조회 -->
-	<select id="selectAllUser"
-		resultType="com.itwill.shape.domain.UserInfo">
-		SELECT
-			*
-		FROM USER_INFO
-		WHERE DIVISION = 'ROLE_M'
-	</select> 
 	
-	<!-- 관리자 - 사용자 검색 -->
+	<!-- 관리자 - 사용자 리스트 검색 -->
 	<select id="selectByKeyword" resultType="com.itwill.shape.domain.UserInfo">
 		SELECT
 			*
@@ -148,6 +139,61 @@
 			    AND JOIN_DATE < TO_DATE(#{searchRegDateEnd}, 'YYYY-MM-DD') + 1
 			]]>
 	    </if>
+	    ORDER BY JOIN_DATE DESC
+	</select>
+	
+	<!-- 관리자 - 사용자 리스트 페이징 -->
+	<select id="selectByKeywordPaging"
+			resultType="com.itwill.shape.dto.MngrUserInfoSelectDto">
+		WITH T AS (
+			SELECT
+				*
+			FROM USER_INFO UI
+			WHERE DIVISION = 'ROLE_M'
+		    <if test='searchId != null and searchId neq ""'>
+		    	AND UI.ID LIKE '%' || #{searchId} || '%'
+		    </if>
+		    <if test='searchPhone != null and searchPhone neq ""'>
+		    	AND UI.PHONE LIKE '%' || #{searchPhone} || '%'
+		    </if>
+		    <if test='searchEmail != null and searchEmail neq ""'>
+		    	AND UI.EMAIL LIKE '%' || #{searchEmail} || '%'
+		    </if>
+		    <if test='searchRegDateStart != null and searchRegDateEnd != null
+		    		and searchRegDateStart neq "" and searchRegDateEnd neq ""'>
+		    	<![CDATA[
+				    AND JOIN_DATE >= TO_DATE(#{searchRegDateStart}, 'YYYY-MM-DD')
+				    AND JOIN_DATE < TO_DATE(#{searchRegDateEnd}, 'YYYY-MM-DD') + 1
+				]]>
+		    </if>
+		)
+		SELECT * FROM T
+		ORDER BY T.JOIN_DATE DESC
+		OFFSET #{pageNum} ROWS FETCH NEXT #{amount} ROWS ONLY
 	</select>
 
+	<!-- 회원 수 -->
+	<select id="userInfoCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM USER_INFO UI
+		WHERE DIVISION = 'ROLE_M'
+	    <if test='searchId != null and searchId neq ""'>
+	    	AND UI.ID LIKE '%' || #{searchId} || '%'
+	    </if>
+	    <if test='searchPhone != null and searchPhone neq ""'>
+	    	AND UI.PHONE LIKE '%' || #{searchPhone} || '%'
+	    </if>
+	    <if test='searchEmail != null and searchEmail neq ""'>
+	    	AND UI.EMAIL LIKE '%' || #{searchEmail} || '%'
+	    </if>
+	    <if test='searchRegDateStart != null and searchRegDateEnd != null
+	    		and searchRegDateStart neq "" and searchRegDateEnd neq ""'>
+	    	<![CDATA[
+			    AND JOIN_DATE >= TO_DATE(#{searchRegDateStart}, 'YYYY-MM-DD')
+			    AND JOIN_DATE < TO_DATE(#{searchRegDateEnd}, 'YYYY-MM-DD') + 1
+			]]>
+	    </if>
+	</select>
+	
 </mapper>

@@ -1,10 +1,11 @@
 package com.itwill.shape.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.MngrUserInfoSearchListDto;
 import com.itwill.shape.dto.MngrUserInfoSelectDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
@@ -20,19 +21,6 @@ public class MngrUserInfoService {
 	
 	private final UserInfoRepository userInfoRepository;
 	
-	/**
-	 * 하지윤
-	 * 관리자 - 모든 사용자 조회
-	 * 
-	 * @return
-	 */
-	public List<MngrUserInfoSelectDto> selectAllUser() {
-		log.info("selectAllUser()");
-		
-		List<UserInfo> list = userInfoRepository.selectAllUser();
-		
-		return list.stream().map(MngrUserInfoSelectDto::fromEntity).toList();
-	}
 	
 	/**
 	 * 하지윤
@@ -47,12 +35,44 @@ public class MngrUserInfoService {
 		return UserInfoSelectByIdDto.fromEntity(userInfoRepository.readUserInfoById(id));
 	}
 	
-	public List<MngrUserInfoSelectDto> selectByKeyword(MngrUserInfoSearchListDto dto) {
+	/**
+	 * 해당 list 크기
+	 * @param dto
+	 * @return
+	 */
+	public int getListCount(MngrUserInfoSearchListDto dto) {
+		return userInfoRepository.selectByKeyword(dto).size();
+	}
+	
+	/**
+	 * 하지윤
+	 * 관리자 - 사용자 리스트
+	 * 
+	 * @param dto
+	 * @return
+	 */
+	public Map<String, Object> selectByKeyword(MngrUserInfoSearchListDto dto) {
 		log.info("selectByKeyword(dto = {})", dto);
 		
-		List<UserInfo> list = userInfoRepository.selectByKeyword(dto);
+		// list 개수 카운트
+		int count = userInfoRepository.userInfoCount(dto);
 		
-		return list.stream().map(MngrUserInfoSelectDto::fromEntity).toList();
+		// list - 회원 정보
+		if(dto.getPageNum() > 1) {
+			dto.setAmount(dto.getPageNum() * 10);
+			dto.setPageNum((dto.getPageNum() - 1) * 10);
+		} else {
+			dto.setPageNum(dto.getPageNum() - 1);
+		}
+		
+		List<MngrUserInfoSelectDto> paging = userInfoRepository.selectByKeywordPaging(dto);		
+		
+		// list, paging, count
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", paging);
+		result.put("count", count);
+
+		return result;
 	}
 
 }

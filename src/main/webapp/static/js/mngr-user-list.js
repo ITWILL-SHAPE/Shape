@@ -45,12 +45,10 @@ const setDefault = function() {
 };
 
 const registEvent = function() {
-	/*
 	$('#btnSearch').on('click', function(e) {
 		e.preventDefault();
 		findAllAction();
 	});
-	*/
 	
 	$('#btnResetSearch').on('click', function(e) {
 		e.preventDefault();
@@ -62,27 +60,32 @@ const registEvent = function() {
 	$('input[name="searchId"]').on('keydown', function(e) {
 		if (e.keyCode == 13) {
 			e.preventDefault();
-			findAllAction();
+			findAllAction(e);
 		}
 	});
 	
 	$('input[name="searchPhone"]').on('keydown', function(e) {
 		if (e.keyCode == 13) {
 			e.preventDefault();
-			findAllAction();
+			findAllAction(e);
 		}
 	});
 	
 	$('input[name="searchEmail"]').on('keydown', function(e) {
 		if (e.keyCode == 13) {
 			e.preventDefault();
-			findAllAction();
+			findAllAction(e);
 		}
 	});
 	
+	$(".page-link").on("click", function(e) {
+		e.preventDefault();
+		findAllAction(e);
+	});	
+	
 };
 
-const findAllAction = function() {
+const findAllAction = function(e) {
 	searchRegDateStart = $('input[name="searchRegDateStart"]').val();
 	searchRegDateEnd = $('input[name="searchRegDateEnd"]').val();
 	
@@ -96,19 +99,34 @@ const findAllAction = function() {
 	const searchPhone = $('input[name="searchPhone"]').val().trim();
 	const searchEmail = $('input[name="searchEmail"]').val().trim();
 	
+	const targetPage = e.target.closest("a").textContent;
+	console.log(targetPage);
+	
 	let data = {
 		searchId : searchId,
 		searchPhone : searchPhone,
 		searchEmail : searchEmail,
 		searchRegDateStart : searchRegDateStart,
-		searchRegDateEnd : searchRegDateEnd
+		searchRegDateEnd : searchRegDateEnd,
+		pageNum : targetPage
 	};
 	
 	console.log(data);
 	
+	const searchForm = $("#searchForm");
 	
+	searchForm.find('input[name="pageNum"]').val(targetPage);
 	searchForm.submit();
 	
+	/*
+	axios.get('/shape/mngr/user/list', data)
+	.then((res) => {
+		console.log(res);
+	})
+	.catch((err) => {
+		console.log(err);
+	})
+	*/
 	/*
 	axios.post('/shape/mngr/user/list', data)
 	.then((res) => {		

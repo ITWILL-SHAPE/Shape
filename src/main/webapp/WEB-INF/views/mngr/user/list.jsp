@@ -36,7 +36,7 @@
 				<!-- 검색 영역 -->
 				<div class="card mb-3">
 					<div class="card-header text-white bg-dark">검색 영역</div>
-					<form action="/shape/mngr/user/list" method="get" name="searchForm">
+					<form action="/shape/mngr/user/list" method="get" id="searchForm">
 						<div class="card-body g-3">
 							<div class="row g-3">
 								<div class="col-6">
@@ -89,8 +89,10 @@
 										</div>								
 									</div>
 								</div>
+								<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' />
+								<input type='hidden' name='amount' value='${ paging.cri.amount }' />
 								<div class="d-grid gap-2 d-md-flex justify-content-md-center">
-									<button id="btnSearch" class="btn btn-primary" type="submit">검색</button>
+									<button id="btnSearch" class="btn btn-primary" type="button">검색</button>
 		  							<button id="btnResetSearch" class="btn btn-dark" type="button">초기화</button>
 								</div>
 							</div>						
@@ -148,7 +150,26 @@
 							</tr>
 						</c:forEach>
 					</tbody>					
-				</table>				
+				</table>
+				
+				<!-- 페이징 -->
+				<div>
+					<nav>
+						<ul class="pagination justify-content-center">
+							<li class="page-item ${ paging.prev ? '' : 'disabled' }">
+								<a class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a>
+							</li>
+							<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }" var="num">
+								<li class="page-item ${ paging.cri.pageNum == num? "active":"" }">
+									<a class="page-link" href="${ num }">${ num }</a>
+								</li>
+							</c:forEach>
+							<li class="page-item ${ paging.next? '' : 'disabled' }" >
+								<a class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</div>
 	</body>
