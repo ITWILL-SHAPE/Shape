@@ -126,7 +126,7 @@ public class MeetListService {
 		log.info("LikeCountUpdate(mtid = {}, id = {})", mtid, id);
 		
 		
-		return meetLikeRepository.likeInsert(mtid, id);
+		return meetLikeRepository.likeCreate(mtid, id);
 	}
 	
 	/**
