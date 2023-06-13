@@ -11,12 +11,12 @@
 
 	<main class="my-2">
 		<div class="card">
-			<form method="post">
+			<form method="post" id="createForm">
 				<div class="card-body">
 					<div class="my-2">
 						<label class="form-label" for="hrs_hd">말머리</label> <select
 							class="form-select" id="select" name="select">
-							<option selected disabled="disabled">말머리를 선택해주세요.</option>
+							<option selected disabled="disabled" value="no">말머리를 선택해주세요.</option>
 							<option value="모임 후기">모임 후기</option>
 							<option value="사담">사담</option>
 							<option value="기타">기타</option>
@@ -25,8 +25,8 @@
 					</div>
 
 					<div class="my-2">
-						<label class="form-label" for="title">제목</label> <input
-							class="form-control" type="text" id="title" name="title" required
+						<label class="form-label" for="title">제목</label> 
+						<input class="form-control" type="text" id="title" name="title" required
 							autofocus />
 					</div>
 					<div class="my-2">
@@ -41,8 +41,9 @@
 							value="${ id }" readonly />
 					</div>
 					<div class="d-grid mt-3 gap-2 d-md-flex justify-content-md-end">
-						<input class="btn btn-warning" type="submit"
-							value="작성 완료" />
+						<button class="btn btn-warning" id="btnPostCreate" type="button">
+							작성 완료
+						</button>
 					</div>
 				</div>
 			</form>

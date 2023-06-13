@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	                        <span class="text-secondary">${modified}</span>
 	                    </div>
                     
-                    <div id="modifyContent${comment.pcid}">
+                    <div id="modifyContent${comment.pcid}" style="white-space: pre-line;">
 	                    <div id="text${comment.pcid}">
 	                        ${comment.content}
 	                    </div>   
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	                    </div>  
                     </div>
                     <div id="modifyContent${comment.pcid}">
-	                    <div id="text${comment.pcid}">
+	                    <div id="text${comment.pcid}" style="white-space: pre-line;">
 	                        ${comment.content}
 	                    </div>   
                     </div>  

@@ -24,8 +24,8 @@
 					<textarea class="form-control d-none" id="hrs_hd" name="hrs_hd">${ post.hrs_hd }</textarea>
 				</div>
 				<div class="my-2">
-					<label class="form-label" for="title">제목</label> <input
-						class="form-control" id="title" name="title"
+					<label class="form-label" for="title">제목</label> 
+					<input class="form-control" id="title" name="title"
 						value="${ post.title }" autofocus />
 				</div>
 				<div class="my-2">
@@ -54,6 +54,5 @@
 </body>
 <script src="<%=request.getContextPath()%>/static/js/post-modify.js"></script>
 <script src="<%=request.getContextPath()%>/static/js/post-summernote.js"></script>
-<script src="<%=request.getContextPath()%>/static/js/post-create.js"></script>
 </html>
 <%@ include file="../common/footer.jsp"%>

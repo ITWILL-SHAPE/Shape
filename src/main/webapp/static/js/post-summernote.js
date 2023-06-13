@@ -47,8 +47,7 @@ $(document)
 							['height', ['height']],
 							[
 								'insert',
-								['picture',
-									'link',
+								[   'link',
 									'video']],
 							[
 								'view',

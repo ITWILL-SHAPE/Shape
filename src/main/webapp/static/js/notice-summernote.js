@@ -47,8 +47,7 @@ $(document)
 							['height', ['height']],
 							[
 								'insert',
-								['picture',
-									'link',
+								[   'link',
 									'video']],
 							[
 								'view',
@@ -67,10 +66,4 @@ $(document)
 					});
 		});
 		
-document.addEventListener('DOMContentLoaded', () => {
-		const changeHd = (target) => {
-			const hd = target.value;
-			console.log(target.value);
-			document.getElementById('textarea#hrs_hd').innerText = hd;
-		}
-	});
+
