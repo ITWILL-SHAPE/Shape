@@ -51,7 +51,8 @@ public class MemberTests {
 										.pwd(passwordEncoder.encode("test2"))
 										.name("test2")
 										.gender("M")
-										.phone("01011112222")
+										.birth("2016-06-07")
+										.phone("010-2513-4654")
 										.email("test2@test2.com")
 										.build();
 		log.info(dto.toString());
@@ -63,7 +64,7 @@ public class MemberTests {
 	}
 	
 	// 관리자 유저 만들기
-	@Test
+	// @Test
 	public void testInsertAdmin() {
 		assertNotNull(userInfoRepository);
 		log.info("userInfoRepository = {}", userInfoRepository);

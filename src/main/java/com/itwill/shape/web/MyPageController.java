@@ -56,7 +56,7 @@ public class MyPageController {
 	    log.info("myprofile()");
 	    log.info("id={}", id);
 
-	    UserInfoSelectByIdDto dto = userInfoService.selectById("test1");
+	    UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 
 	    if (dto.getProfileImageUrl() != null) {
 	        model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
@@ -68,23 +68,39 @@ public class MyPageController {
 
 
 	/**
+	 * 0613 김세이
+	 * 회원정보 수정 페이지
+	 * @return "/mypage/memberinfo/profileModify"
+	 */
+	@GetMapping("/profilemodifypage")
+	public String profileModifyPage(){
+		log.info("profileModifyPage()");
+
+//	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+		return "/mypage/memberinfo/profileModify";
+	}
+	
+	/**
 	 * 0601 김세이 마이페이지 이미지 수정
 	 * 
 	 * @param id
+	 * @param profile
 	 * @param model
-	 * @return "/mypage/memberinfo/myprofile?id=" + id
+	 * @return "/mypage/memberinfo/myprofile"
 	 * @throws IOException
 	 */
-	@GetMapping("/imagemodify")
-	public String imageModify(@RequestParam("id")String id, @RequestParam("profile") MultipartFile[] profile) throws IOException {
-	    log.info("imageModify()");
+	@GetMapping("/profilemodify")
+	public String profileModify(@RequestParam("id")String id, @RequestParam("profile") MultipartFile[] profile) throws IOException {
+	    log.info("profileModify()");
 
 	    int result = userInfoService.imageModify(id, profile[0]);
-	    log.info("imageModify 결과 = {}", result);
+	    log.info("profileModify 결과 = {}", result);
 
-	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+//	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+	    return "/mypage/memberinfo/myprofile";
 	}
-
+	
+	
 	/**
 	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력
 	 * 
