@@ -11,16 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MeetLikeDto {
+public class MeetLikeCountDto {
 
 		private long mtid;
 		private String id;
+		private long like_count;
 		
-		public MeetLike toEntity() {
-			
-			return MeetLike.builder()
-					.mtid(mtid)
-					.id(id)
-					.build();
-		}
+
 }

@@ -24,16 +24,10 @@
     </select>
     
 
-
     <!-- 지언 찜 도전 0613 -->
-    
-    <!-- 특정 mtid의 좋아요 갯수 조회 -->
-	<select id="getLikeCountByMtid">
-		select count(*) from MEET_LIKE where mtid = #{mtid}
-	</select>
 	
-	<!-- 특정 mtid의 찜 개수를 가져옴 -->
-	<select id="getCountByMtid">
+	<!-- 특정 mtid의 찜 갯수를 가져옴 -->
+	<select id="getCountByMtid" resultType="com.itwill.shape.dto.MeetLikeCountDto">
 		select count(mtid) from MEET_LIKE where mtid = #{mtid}
 	</select>
 	

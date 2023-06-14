@@ -29,7 +29,7 @@ public interface MeetLikeRepository {
 	 * @param mtid
 	 * @return
 	 */
-	int getLikeCountByMtid(int mtid);
+	int getLikeCountByMtid(long mtid);
 	
 	/**
 	 * 0613 정지언
@@ -37,7 +37,7 @@ public interface MeetLikeRepository {
 	 * @param mtid
 	 * @return
 	 */
-	int getCountByMtid(int mtid);
+	int getCountByMtid(long mtid);
 	
 	/**
 	 * 0613 정지언
@@ -46,7 +46,7 @@ public interface MeetLikeRepository {
 	 * @param id
 	 * @return
 	 */
-	boolean isLikedByUser(int mtid, String id);
+	boolean isLikedByUser(long mtid, String id);
 	
 	/**
 	 * 0613 정지언
@@ -54,7 +54,8 @@ public interface MeetLikeRepository {
 	 * @param mtid
 	 * @param id
 	 */
-	void insertLike(int mtid, String id);
+	void insertLike(@Param("mtid") long mtid, @Param("id") String id);
+
 	
 	/**
 	 * 0613 정지언
@@ -62,6 +63,7 @@ public interface MeetLikeRepository {
 	 * @param mtid
 	 * @param id
 	 */
-	void deleteLike(int mtid, String id);
+	void deleteLike(@Param("mtid") long mtid, @Param("id") String id);
+
 
 }
