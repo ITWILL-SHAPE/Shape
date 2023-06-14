@@ -57,9 +57,9 @@ public class MeetDetailService {
 			return meetPrtcpRepository.Prtcpinsert(dto.toEntity());
 		}
 		// 참여 취소
-		public int delete(long mtid) {
-			log.info("delete(id={})");
-			return meetPrtcpRepository.Prtcpdelete(mtid);
+		public int delete(long mtid, String id) {
+			log.info("delete(mtid={}, id = {})", mtid, id);
+			return meetPrtcpRepository.Prtcpdelete(mtid, id);
 		}
 
 		/**

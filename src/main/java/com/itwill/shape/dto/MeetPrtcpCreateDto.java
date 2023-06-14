@@ -5,12 +5,14 @@ import com.itwill.shape.domain.MeetPrtcp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
 @Builder
+@Getter
 public class MeetPrtcpCreateDto {
 	private long mtid;
 	private String prtcp_id;

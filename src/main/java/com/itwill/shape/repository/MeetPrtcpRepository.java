@@ -19,7 +19,7 @@ public interface MeetPrtcpRepository {
 	List<MeetPrtcp> selectPrtcpList(long mtid);
 
 	// 모임 참여자 삭제(참여 신청 취소)
-	int Prtcpdelete(long mtid);
+	int Prtcpdelete(@Param("mtid") long mtid, @Param("id") String id);
 	
 	// mtid 글 작성자 
 	UserInfo getUserInfo(String id);

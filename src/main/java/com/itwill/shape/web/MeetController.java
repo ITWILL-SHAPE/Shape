@@ -217,16 +217,18 @@ public class MeetController {
 		log.info("createPrtcp(dto={})", dto);
 
 		int result = meetDetailService.create(dto);
-
+		log.info("result = {}", result);
+		
 		return ResponseEntity.ok(result);
 	}
 	
-	@DeleteMapping("/{mtid}")
-    public ResponseEntity<Integer> deletePtrcp(@PathVariable long mtid) {
-        log.info("deleteReply(id={})", mtid);
+	@DeleteMapping("/{mtid}/{id}")
+	@ResponseBody
+    public ResponseEntity<Integer> deletePtrcp(@PathVariable long mtid, @PathVariable String id) {
+        log.info("deleteReply(mtid={}, id={})", mtid, id);
         
-        int result = meetDetailService.delete(mtid);
-        
+        int result = meetDetailService.delete(mtid, id);
+        log.info("result = {}", result);
         return ResponseEntity.ok(result);
     }
 
