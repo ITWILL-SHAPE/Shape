@@ -1,10 +1,11 @@
 @charset "UTF-8";
 /* reset */
 *{margin: 0; padding: 0;}
-html, body {height: 100%;}
+html, body {
+	min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
 ul, ol { list-style-type: none; margin: 0; padding: 0;}
-#wrap {min-height: 100%; position: relative;}
-#body {margin-top: 110px; padding-bottom: 150px; min-height: 100vh;}
 
 /* 헤더 영역 */
 .header{position: fixed; width: 100%; height: 110px; background-color: white; border-bottom: 1px solid #eeeeee; top:0;}
@@ -34,7 +35,6 @@ nav ul.gnb > li > ul.sub_menu a:hover {background-color : rgb(211, 255, 49);}
 
 
 /* 푸터영역 */
-footer {width: 100%; height: 150px; position: absolute; bottom: 0; left: 0; background-color: black;}
 .footer-content {width: 600px; margin: 10px auto; color: white;}
 div.link {margin-bottom: 5px;}
 div.link > ul.content_list {display: flex;justify-content: center;}
@@ -42,39 +42,36 @@ div.link > ul.content_list > li { display: inline-block; width: 52px; height: 52
 div.link > ul.content_list > li > a {color: white; font-size: 30px;}
 .footer-content > p {text-align: center;}
 
-/* 사이드바 영역 */
-ul.sidebar { list-style-type: none; padding: 0px; margin: 0px; width: 13%; background: white; height: 100%; overflow: auto; position: fixed; border-right: 1px solid #e0e0e0;}
-ul.sidebar > li > div.logo {width: inherit; height: 64px; padding: 12px; margin: 16px;}
-/* ul.sidebar > li:first-of-type {border-bottom: 1px solid #e0e0e0;} */
-/* ul.sidebar > li > div.accodion-item h2 a { text-decoration: none;} */
-ul.sidebar > li > a:hover { background: #333; color: #fff;}
-ul.sidebar > li > div.logo > a.home {overflow: hidden; display: block; width: 100%; height: 100%; text-indent: -9999px; background: url(../images/common/Asset3.png) no-repeat 0 0; background-size: contain; background-position: center;}
-ul.sidebar > li:last-child {border-top: 1px solid #e0e0e0; bottom: 0; position: fixed; width: inherit;}
-ul.sidebar > li:last-child > div {height: 60px; padding: 12px;}
-ul.sidebar > li:last-child > div > a { text-decoration: none; font-size: 27px; color: #000; font-weight: bold; margin-left: 10px;}
-ul.sidebar > li:last-child > div > a:first-of-type {margin-left: 0;}
-.cd1 {margin-left: 14%;}
-div.accordion-body > ul > li > a {font-size: 1rem; color: var(--bs-accordion-btn-color); text-align: left; text-decoration: none;}
-div.accordion-body > ul > li {padding: 10px;}
-div.accordion-body > ul > li:hover {background-color: gray;}
-.none-accordion-button {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x);
-    font-size: 1rem;
-    color: var(--bs-accordion-btn-color);
-    text-align: left;
-    background-color: var(--bs-accordion-btn-bg);
-    border: 0;
-    border-radius: 0;
-    overflow-anchor: none;
-    transition: var(--bs-accordion-transition);
-    text-decoration: none;
+
+/* mngr home */
+.side-fix {
+	height: 100%;
+	overflow: auto;
+	position: fixed;
+	border-right: 1px solid #e0e0e0;
 }
 
+main {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 
+.dropdown-toggle { outline: 0; }
 
+.b-example-divider {
+	height: 3rem;
+	background-color: rgba(0, 0, 0, .1);
+	border: solid rgba(0, 0, 0, .15);
+	border-width: 1px 0;
+	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em
+		rgba(0, 0, 0, .15);
+}
 
-
+.b-example-vr {
+	flex-shrink: 0;
+	width: 1.5rem;
+	height: 100vh;
+}
