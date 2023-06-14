@@ -209,7 +209,7 @@
 								<button id="logInUser">
 									<img src="../static/images/sample/like2.svg" alt="toggle-off"
 										width="50" class="heart overlay-image overlay-right"
-										id="img-heart" onclick="event.stopPropagation();" />
+										id="img-heart" onclick="event.stopPropagation(); LikeCheck();" />
 								</button>
 							</div>
 						</sec:authorize>

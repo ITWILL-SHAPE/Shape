@@ -171,12 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	};
 	
 	
-	const LikeCheck = (e) => {
+	function LikeCheck() {
 
 		//const mtid = document.querySelector('input#mtid').value;
 		//const id = document.querySelector('input#id').value;
 
-		console.log(ddd);
+		console.log('ddd');
 
 	};
 
