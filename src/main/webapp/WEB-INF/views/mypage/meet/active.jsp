@@ -8,13 +8,13 @@
 <title>마이페이지 > 모임 > 내가 참여 중인 모임</title>
 </head>
 <body>
-	<div id="sidebar">
+	<div class="my-2 pt-5" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<!-- 메인 컨텐츠 시작 -->
-		<div class="container-fluid container">
+		<div class="container-fluid container my-2 pt-5">
 			<!--아이템: model.addAttribute("activeList", dto);-->
-			<div id="cardList" class="album py-5">
+			<div id="cardList" class="album py-5 ">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					<!-- for문 변경가능함 확인해보기. 
       -> 로그인: header.jsp, main.jsp => 37줄 참고 

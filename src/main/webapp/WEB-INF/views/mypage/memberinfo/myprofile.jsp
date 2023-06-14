@@ -71,11 +71,11 @@ th, td {
 </style>
 </head>
 <body>
-	<div id="sidebar">
+	<div class="my-2 pt-5" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<main id="main_contnet">
-		<div class="center">
+	<main id="main_content" class="container">
+		<div class="center profile-info my-2 pt-5 text-center">
 			<img src="static/images/common/user.png"
 				 alt="Profile Image"
 				 class="profile-image">
@@ -111,12 +111,12 @@ th, td {
 			</table>
 		</div>
 		<div class="center change-profile-btn profile-info">
-			<!--
+			<!--center
          <c:url var="mypageModifyPage" value="/imagemodify">
             <c:param name="id" value="${myPageUserInfo.id}"></c:param>
          </c:url>
            -->
-			<a class="btn btn-outline-primary form-control"
+			<a class="btn btn-outline-primary form-control text-right"
 				href="profilemodifypage?id=${ id }">수정</a>
 		</div>
 	</main>

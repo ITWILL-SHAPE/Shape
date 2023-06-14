@@ -7,7 +7,7 @@
 <script defer src="static/js/userinfo-withdrawal.js"></script>
 </head>
 <body>
-	<div id="sidebar">
+	<div class="my-2 pt-5" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<!-- 메인 컨텐츠 시작 -->

@@ -15,18 +15,18 @@
 </style>
 </head>
 <body>
-	<div id="sidebar">
+	<div class="my-2 pt-5" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<!-- 메인 콘텐츠 시작 -->
-	<main id="main_content">
+	<main id="main_content container">
 		<form class="modifyPwd_form">
-			<h3 class="title">비밀번호 변경</h3>
+			<h3 class="title my-2 pt-5">비밀번호 변경</h3>
 			<!-- 참고사항 시작 -->
 			<ul class="tip_list">
-				<li>개인정보보호를 위해 최소 3개월 이내에는 정기적으로 비밀번호를 변경해 주시는 게 좋습니다.</li>
-				<li>비밀번호는 쉬운번호나 타 사이트와 같을 경우 도용되기 쉽습니다.</li>
-				<li>주민번호,전화번호,생일 등 개인정보와 연관된 문자나 숫자는 보안상 위험이 높으므로 사용을 자제해 주세요.</li>
+				<li class="my-2 pt-1">개인정보보호를 위해 최소 3개월 이내에는 정기적으로 비밀번호를 변경해 주시는 게 좋습니다.</li>
+				<li class="my-2 pt-1">비밀번호는 쉬운번호나 타 사이트와 같을 경우 도용되기 쉽습니다.</li>
+				<li class="my-2 pt-1">주민번호,전화번호,생일 등 개인정보와 연관된 문자나 숫자는 보안상 위험이 높으므로 사용을 자제해 주세요.</li>
 			</ul>
 			<!-- 참고사항 끝 -->
 			<!-- 인풋입력 시작 -->
@@ -72,10 +72,10 @@
 			<div class="btn_area">
 				<div class="btn_wrap">
 					<input type="submit"
-					       class="btn_submit"
+					       class="btn btn_submit btn-classic"
 					       value="변경완료" /> 
 					<input type="submit"
-					       class="btn_cancel"
+					       class="btn btn_cancel btn-secondary"
 					       value="취소" />
 				</div>
 			</div>
