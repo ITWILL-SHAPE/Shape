@@ -264,6 +264,8 @@ const compareCodeId = function() {
 	console.log(inputCode);
 	console.log(inputCodePwd);
 	console.log('code = ' + code);
+	$('.message').html('');
+	
 	
 	if(inputCode == code) {
 		$('.message').html('인증번호가 일치합니다.');
@@ -271,6 +273,7 @@ const compareCodeId = function() {
 		$('.message').show();
 		$('input[name="codeId"]').attr("readonly",true);
 		showUserId();
+		return;
 	} else {
 		$('.message').html('인증번호가 불일치합니다.');
 		$('.message').css('color', 'red');
@@ -282,6 +285,7 @@ const compareCodeId = function() {
 		$('.message').show();
 		$('input[name="codeId"]').attr("readonly",true);
 		randomPwd();
+		return;
 	} else {
 		$('.message').html('인증번호가 불일치합니다.');
 		$('.message').css('color', 'red');

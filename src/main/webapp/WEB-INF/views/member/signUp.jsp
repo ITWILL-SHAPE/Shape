@@ -3,42 +3,49 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.jsp" %>
 	<div class="container">
-		<span>회원가입</span>
-		<div class="text-center border bg-body rounded shadow-sm signUpBox">
+		<div class="my-2 p-3 text-center">
+			<h1>회원가입</h1>
+			<h6 class="text-muted">Shape에 오신 걸 환영합니다.</h6>
+		</div>
+		<div class="text-center border bg-body rounded shadow-sm p-5">
 			<div class="text-center">
-				<h1 class="my-4">회원가입</h1>
-				<h6 class="text-muted">Shape에 오신 걸 환영합니다.</h6>
-				<div class="p-3">
-					<table class="table table-bordered align-middle">
+				<div class="w-50 m-auto">
+					<table class="table table-borderless align-middle text-start">
 						<colgroup>
 							<col width="20%">
 						</colgroup>
 						<tbody>
 							<tr>
-								<th class="table-secondary">아이디</th>
-								<td class="text-start">
-									<input type="text" name="id" class="form-control w-25 form-check-inline"/>
-									<input type="hidden" id="idDupCheck" value="N">
-									<button id="btnIdDupCheck" type="button" class="btn btn-secondary form-check-inline">중복체크</button>
+								<th class="p-0">아이디</th>
+								<td>
+									<div class="row">
+										<div class="col-9">
+											<input type="text" name="id" class="form-control"/>
+										</div>
+										<div class="col-3 p-0 text-end">
+											<input type="hidden" id="idDupCheck" value="N">
+											<button id="btnIdDupCheck" type="button" class="btn btn-secondary form-check-inline">중복체크</button>
+										</div>	
+									</div>								
 								</td>
 							</tr>
 							<tr>
-								<th class="table-secondary">비밀번호</th>
+								<th class="p-0">비밀번호</th>
 								<td class="text-start">
 									<input type="password" name="pwd"
-										class="form-control w-25"/>
+										class="form-control"/>
 								</td>
 							</tr>
 							<tr>
-								<th class="table-secondary">이름</th>
-								<td class="text-start">
+								<th class="p-0">이름</th>
+								<td>
 									<input type="text" name="name"
-										class="form-control w-25"/>
+										class="form-control"/>
 								</td>
 							</tr>
 							<tr>
-								<th class="table-secondary">성별</th>
-								<td class="text-start">
+								<th class="p-0">성별</th>
+								<td>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio"
 											name="gender" id="male" value="M" checked>
@@ -56,11 +63,11 @@
 								</td>
 							</tr>
 							<tr>
-								<th class="table-secondary">생년월일</th>
-								<td class="text-start">
-									<div class="input-group fw-700 w-25">
+								<th class="p-0">생년월일</th>
+								<td>
+									<div class="input-group fw-700">
 										<div class="input-group-prepend">
-											<span class="input-group-text bg-color-blue">
+											<span class="input-group-text btn-classic">
 												<i class="bi bi-calendar text-white"></i>
 											</span>
 										</div>
@@ -69,23 +76,23 @@
 								</td>
 							</tr>
 							<tr>
-								<th class="table-secondary">휴대폰</th>
-								<td class="text-start">
+								<th class="p-0">휴대폰</th>
+								<td>
 									<input type="text" name="phone" oninput="checkPhone(this)"
-										class="form-control w-50" maxlength="13"/>
+										class="form-control" maxlength="13"/>
 								</td>
 							</tr>
 							<tr>
-								<th class="table-secondary">이메일</th>
-								<td class="text-start">
+								<th class="p-0">이메일</th>
+								<td>
 									<input type="email" name="email"
-										class="form-control w-50"/>
+										class="form-control"/>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<button class="w-50 btn btn-lg btn-primary" id="signUpBtn">회원가입</button>			
+				<button class="w-50 btn btn-lg btn-classic" id="signUpBtn">회원가입</button>			
 			</div>
 		</div>
 	</div>

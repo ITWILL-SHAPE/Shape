@@ -4,10 +4,11 @@
 <%@ include file="../common/header.jsp" %>
 
 	<div class="container">
-		<span>로그인</span>
-		<div class="text-center border bg-body rounded shadow-sm loginBox">
+		<div class="my-2 p-3 text-center">
+			<h1>로그인</h1>
+		</div>
+		<div class="text-center border bg-body rounded shadow-sm p-5">
 			<form method="post" action="/shape/login" class="text-center">
-				<h1 class="my-4">로그인</h1>
 				<div class="my-2">
 					<main class="d-grid gap-3 login-inputBox">
 						<div class="form-floating">
@@ -27,7 +28,7 @@
 						</c:if>
 					</main>					
 				</div>
-				<button class="w-50 btn btn-lg btn-primary" type="submit">로그인</button>
+				<button class="w-50 btn btn-lg btn-classic" type="submit">로그인</button>
 			</form>
 			<div class="text-end w-50 m-auto">
 				<c:url value="/member/signUp" var="signUp"/>

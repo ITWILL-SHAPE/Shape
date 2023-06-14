@@ -10,7 +10,7 @@
 			</div>
 			<div class="position-absolute bottom-0 start-50 translate-middle-x my-3">
 				<c:url var="login" value="/member/customLogin"/>
-				<a href="${ login }" class="btn btn-outline-primary">로그인</a>
+				<a href="${ login }" class="btn btn-classic">로그인</a>
 			</div>
 		</div>
 	</div>
