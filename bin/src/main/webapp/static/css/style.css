@@ -1,0 +1,263 @@
+@charset "UTF-8";
+/* header.jsp에서 사용 */
+.headerBtn {border: none;}
+.headerBtn:active, .headerBtn:focus { outline:none !important; box-shadow:none !important;}
+/* footer.jsp에서 사용 */
+.text-white {color: white;}
+/* login.jsp에 사용 */
+div.loginBox {
+	height: 500px;
+    margin-bottom: 75px;
+    padding: 30px;
+}
+main.login-inputBox {
+	width: 50%;
+    margin: auto;
+}
+div.errorMessage {
+	text-align: start;
+    font-size: 13px;
+    color: red;
+}
+
+.font-20 {font-size: 20px;}
+
+a.custom { text-decoration: none; color: black !important; line-height: initial;}
+
+/* 회원가입 */
+div.signUpBox {
+	height: 700px;
+    margin-bottom: 75px;
+    padding: 30px;
+}
+
+.bg-color-blue {
+	background-color: blue;
+}
+
+.fw-700 {font-weight: 700;}
+
+.signUp-border { border-color: darkgray; }
+
+/* 아이디 및 비밀번호 찾기 */
+.mb-55{margin-bottom: 55px;}
+.h-330{height: 330px;}
+
+/* meet/create.jsp, update.jsp에 사용 */
+.sub-container {background:#fff;}
+
+.main-container {
+	position:relative;
+}
+
+.sub-inner{
+    max-width:920px;
+    margin-bottom:70px;
+}
+
+div.meetCreateBox {
+	height: 2050px;
+	margin-top: 75px;
+	margin-bottom: 75px;
+	margin-left: 300px;
+	margin-right: 300px;
+    padding: 80px;
+    
+}
+
+#mt_notice small{
+	text-align: right;
+	color: red;
+}
+
+span.highlight {
+	color: red;
+}
+
+.form-box#createForm {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 180px;
+  margin-right: 180px;
+}
+
+.form-box#modifyForm {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 180px;
+  margin-right: 180px;
+}
+
+.dt_class {
+  margin-bottom: 10px;
+}
+
+.smallText {
+	text-align: right;
+}
+
+.meetCreateTitle {
+	text-align: center;	
+	margin-bottom: 80px;
+}
+
+.meetCreateInfo {
+	margin-bottom: 8px;
+	margin-right: 180px;
+}
+
+/*디테일 JSP 사용*/ 
+div.meeetcontent {
+   margin-right :15px;
+   margin-left: 15px;
+}
+div.meetdetailemail{
+   margin-right:61px;
+   margin-left: 61px;
+}
+div.meetdetailuser{
+	margin-right:61px;
+   	margin-left: 61px;
+   	margin-top: -55px;
+   	margin-bottom: 10px;
+}
+
+.profile {
+      display: flex;
+      align-items: center;
+    }
+  
+img.user-img {
+      width: 50px; /* 사용자 사진의 너비 조정 */
+      height: 50px; /* 사용자 사진의 높이 조정 */
+      margin-right: 10px; /* 사진과 정보 사이의 여백 조정 */
+    }
+  
+    .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .user-name, .user-email {
+      font-size: 16px; /* 이름과 이메일의 글꼴 크기 조정 */
+    }
+
+p.login-info-text {
+		color: red;
+		font-size: smaller;
+		text-align: right;
+	}
+
+
+/* 'meet/list.jsp' */
+
+svg.bd-placeholder-img {
+   font-size: 1.125rem;
+   text-anchor: middle;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   user-select: none;
+}
+
+@media ( min-width : 768px) {
+   .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+   }
+}
+
+img.overlay-image {
+   position: relative;
+}
+
+img.overlay-right {
+   position: absolute;
+   top: 15px;
+   right: 20px;
+}
+
+img.overlay-left {
+   position: absolute;
+   top: 15px;
+   left: 10px;
+}
+a:link.meetListATag {
+    text-decoration: none;
+}
+
+div.img-overlay {
+	position: relative;
+}
+
+div.img-right {
+	position: absolute;
+   top: 15px;
+   right: 20px;
+}
+
+/* mngr userInfo list*/
+table.users tr {
+	cursor: pointer;
+}
+
+/* mypage.myprofile.jsp */
+.center {
+	margin: 0 auto; /* 가로 중앙 정렬을 위해 margin을 auto로 설정 */
+	text-align: center; /* 내부 텍스트를 가운데 정렬 */
+}
+
+table {
+	margin: 0 auto; /* 가로 중앙 정렬을 위해 margin을 auto로 설정 */
+	text-align: left; /* 테이블 내부 텍스트를 왼쪽 정렬 */
+	border-collapse: collapse; /* 테이블 셀 경계를 병합하여 선을 숨김 */
+}
+
+th, td {
+	padding: 5px; /* 셀 내부 여백 설정 */
+	border: none; /* 셀 경계 선을 없앰 */
+}
+
+.profile-container {
+	position: relative;
+}
+
+.profile-image-container {
+	position: relative;
+	display: inline-block;
+}
+
+.profile-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.profile-overlay:hover {
+	opacity: 1;
+}
+
+.change-profile-btn {
+	border: none;
+	background-color: transparent;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	width: max-content;
+	padding: 0; /* 옵션: 버튼 내부 여백을 없애기 위해 padding을 0으로 설정 */
+}
+
+.profile-image {
+	width: 300px; /* 원하는 가로 크기로 설정 */
+	height: auto; /* 세로 크기를 자동으로 조정하여 비율 유지 */
+}
+
+.profile-info {
+	margin-bottom: 40px; /* 원하는 간격 크기를 설정 */
+}

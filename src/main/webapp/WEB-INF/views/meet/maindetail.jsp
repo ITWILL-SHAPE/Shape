@@ -179,8 +179,9 @@
 		                     	<c:forEach items="${ meetmaindetail.prtcpDtoList }" var="userList">
 		                     		<c:if test="${ userList.prtcp_id == loginUser && loop_flag == false }">
 		                     			<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-				                           <button id="unLike" name="unLike" type="submit" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
-				                           <button id="delete" name="delete"  type="submit"  class="btn btn-outline-primary btn-lg">참여취소</button>
+				                           <button id="unLike" name="unLike" type="button" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+				                           <button id="delete" name="delete"  type="button"  class="btn btn-outline-primary btn-lg"
+				                           			data-id="${meetmaindetail.mtid}" data-login="${ userList.prtcp_id }">참여취소</button>
 				                        </div>
 				                        <c:set var="loop_flag" value="true" />
 		                     		</c:if>
@@ -190,8 +191,8 @@
 		                    	 
 		                     		<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
 		                     			<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-		                           			<button id="like" name="like" type="submit" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
-		                           			<button id="join" name="join"  type="submit"  class="btn btn-outline-primary btn-lg">참여하기</button>
+		                           			<button id="like" name="like" type="button" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+		                           			<button id="join" name="join"  type="button"  class="btn btn-outline-primary btn-lg">참여하기</button>
 		                        		</div>
 		                        	</c:if>
 		                 
