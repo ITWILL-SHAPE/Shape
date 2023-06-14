@@ -36,10 +36,11 @@
 								<p class="card-text">
 									작성자: ${ postInfo.author }
 									<!-- 작성 날짜 -->
-									<br />작성일자:
-									<fmt:formatDate value="${ postInfo.created_date }"
+									<br />날짜:
+									<fmt:formatDate value="${ postInfo.modified_date }"
 										pattern="yyyy-MM-dd" />
-									<br />댓글 개수: ${ postInfo.rcnt }
+										
+									<br />댓글: ${ postInfo.rcnt }
 								</p>
 							</div>
 						</div>
