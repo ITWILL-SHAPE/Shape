@@ -17,15 +17,18 @@
 			<form class="confirmPwd_form">
 				<div class="sub_content my-2 pt-5 text-center">
 					<h3 class="title my-2 pt-3">비밀번호 재입력</h3>
-					<h4 class="sub_title my-2 pt-3">
+					<h6 class="sub_title my-2 pt-3">
 					본인확인을 위해 <strong>로그인 비밀번호</strong>를 한 번 더 입력해주세요.
-					</h4>
-					<input type="password"
+					</h6>
+					<br>
+					<br>
+					<input 
+					       type="password"
 					       id="inputPwd"
 					       name="inputPwd"
-					       placeholder="비밀번호를 입력해 주세요" />
+					       placeholder="  비밀번호를 입력해 주세요" />
 					<input type="submit"
-					       class="btn_login"
+					       class="btn_login btn-classic"
 					       value="확인" />
 				</div>
 				<div class="banner_area my-2 pt-5 text-center ">

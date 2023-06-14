@@ -119,19 +119,16 @@ th, td {
 				</tbody>
 			</table>
 		</div>
-		<div class="center profile-info change-profile-btn my-2 pt-3 text-center">
-		<!-- 
-			<c:url var="mypageModifyPage" value="/imagemodify">
-				<c:param name="id" value="${myPageUserInfo.id}"></c:param>
-			</c:url>
-			 -->
-			<a class="btn btn-outline-primary form-control btn-classic text-right "
-			   href="myprofile?id=${ id }">수정완료</a> 
-			
-			
-			<a class="btn btn-outline-primary form-control btn-secondary text-right"
-			   href="myprofile?id=${ id }">취소</a>
-		</div>
+		<div class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-end">
+    <!-- 수정완료 버튼 -->
+    <a class="btn btn-primary btn-classic" href="myprofile?id=${id}">수정완료</a>
+    
+    <!-- 취소 버튼 -->
+    <a class="btn btn-primary btn-secondary" href="myprofile?id=${id}">취소</a>
+    
+
+</div>
+
 	</main>
 	<!-- 메인 컨텐츠 끝 -->
 </body>

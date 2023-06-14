@@ -19,7 +19,7 @@
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<!-- 메인 콘텐츠 시작 -->
-	<main id="main_content container">
+	<main id="main_content" class="container">
 		<form class="modifyPwd_form">
 			<h3 class="title my-2 pt-5">비밀번호 변경</h3>
 			<!-- 참고사항 시작 -->
@@ -30,11 +30,11 @@
 			</ul>
 			<!-- 참고사항 끝 -->
 			<!-- 인풋입력 시작 -->
-			<div class="input_area">
-				<div class="pwd_now">
-					<h4 class="label">
+			<div class="input_area my-2 pt-5 ">
+				<div class="pwd_now" >
+					<h6 class="label">
 						<label for="nowPwd">현재 비밀번호 입력</label>
-					</h4>
+					</h6>
 					<div class="inputPwd">
 						<input type="password"
 						       id="nowPwd"
@@ -42,10 +42,10 @@
 						       required />
 					</div>
 				</div>
-				<div class="pwd_new">
-					<h4 class="label">
+				<div class="pwd_new my-2 pt-3">
+					<h6 class="label">
 						<label for="newPwd">새로운 비밀번호 입력</label>
-					</h4>
+					</h6>
 					<div class="inputPwd">
 						<input type="password"
 						       id="newPwd"
@@ -55,9 +55,9 @@
 					</div>
 				</div>
 				<div class="pwd_re">
-					<h4 class="label">
+					<h6 class="label">
 						<label for="rePwd">새로운 비밀번호 입력 확인</label>
-					</h4>
+					</h6>
 					<div class="inputPwd">
 						<input type="password"
 						       id="rePwd"
@@ -70,7 +70,7 @@
 			<!-- 인풋입력 끝 -->
 			<!-- 버튼영역 시작 -->
 			<div class="btn_area">
-				<div class="btn_wrap">
+				<div class="btn_wrap my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-end">
 					<input type="submit"
 					       class="btn btn_submit btn-classic"
 					       value="변경완료" /> 
@@ -78,6 +78,8 @@
 					       class="btn btn_cancel btn-secondary"
 					       value="취소" />
 				</div>
+
+				
 			</div>
 			<!-- 버튼영역 끝 -->
 		</form>

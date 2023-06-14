@@ -116,7 +116,7 @@ th, td {
             <c:param name="id" value="${myPageUserInfo.id}"></c:param>
          </c:url>
            -->
-			<a class="btn btn-outline-primary form-control text-right"
+			<a class="btn btn-outline-primary form-control text-right btn-classic"
 				href="profilemodifypage?id=${ id }">수정</a>
 		</div>
 	</main>
