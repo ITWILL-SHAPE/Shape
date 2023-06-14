@@ -2,12 +2,17 @@
 /* reset */
 *{margin: 0; padding: 0;}
 html, body {
+<<<<<<< HEAD
 	height: 100%;
 }
 
 #wrap {
 	position: relative;
   	min-height: 100%;
+=======
+	min-height: 100vh;
+    min-height: -webkit-fill-available;
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 }
 ul, ol { list-style-type: none; margin: 0; padding: 0;}
 
@@ -45,9 +50,10 @@ div.link > ul.content_list {display: flex;justify-content: center;}
 div.link > ul.content_list > li { display: inline-block; width: 52px; height: 52px; line-height: 49px; border: 1px solid white; border-radius: 50%; font-size: 16px; text-align: center; transition: all 0.5s;}
 div.link > ul.content_list > li > a {color: white; font-size: 30px;}
 .footer-content > p {text-align: center;}
+<<<<<<< HEAD
 footer {
   	bottom: 0;
-}
+=======
 
 
 /* mngr home */
@@ -56,6 +62,7 @@ footer {
 	overflow: auto;
 	position: fixed;
 	border-right: 1px solid #e0e0e0;
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 }
 
 main {
@@ -66,6 +73,37 @@ main {
   overflow-y: hidden;
 }
 
+<<<<<<< HEAD
+/* mngr home */
+.side-fix {
+	height: 100%;
+	overflow: auto;
+	position: fixed;
+	border-right: 1px solid #e0e0e0;
+}
+=======
+.dropdown-toggle { outline: 0; }
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
+
+<<<<<<< HEAD
+main {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+=======
+.b-example-divider {
+	height: 3rem;
+	background-color: rgba(0, 0, 0, .1);
+	border: solid rgba(0, 0, 0, .15);
+	border-width: 1px 0;
+	box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em
+		rgba(0, 0, 0, .15);
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
+}
+
+<<<<<<< HEAD
 .dropdown-toggle { outline: 0; }
 
 .b-example-divider {
@@ -77,6 +115,8 @@ main {
 		rgba(0, 0, 0, .15);
 }
 
+=======
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 .b-example-vr {
 	flex-shrink: 0;
 	width: 1.5rem;
