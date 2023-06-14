@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const modified = new Date(comment.modifiedDate).toLocaleString();
 			// 댓글 1개를 표시할 HTML 코드:
             htmlStr += `
-                <div class="card p-2 mb-2" id="${comment.pcid}">
+                <div class="card p-3 mb-2" id="${comment.pcid}">
                 
 	                    <div>
 	                        <span class="d-none">${comment.pcid}</span>
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				const modified = new Date(comment.modifiedDate).toLocaleString();
 				// 댓글 1개를 표시할 HTML 코드:
 				htmlStr += `
-                <div class="card p-2 mb-2" id="${comment.pcid}">
+                <div class="card p-3 mb-2" id="${comment.pcid}">
                 	<div class="row">
 	                    <div class="col-10">
 	                        <span class="d-none">${comment.pcid}</span>
@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	                        <span class="text-secondary">${modified}</span>
 	                    </div>
 	                    <div class="col-2 d-grid gap-2 d-md-flex justify-content-md-end" id="buttonDiv${comment.pcid}">
-	                        <button class="btnDelete btn btn-outline-danger btn-sm" data-id="${comment.pcid}">
+	                        <button class="btnDelete btn btn-danger btn-sm" data-id="${comment.pcid}">
 	                            삭제
 	                        </button>
-	                        <button class="btnModify btn btn-outline-success btn-sm" data-id="${comment.pcid}">
+	                        <button class="btnModify btn btn-classic btn-sm" data-id="${comment.pcid}">
 	                            수정
 	                        </button>
 	                    </div>  
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('div#buttonDiv' + pcid).html(`
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				<button id="btnUpdateDiv" type="button" class="btn btn-primary btn-sm" data-id="${pcid}">
-					수정 확인
+					등록
 				</button>
 			</div>
 		`);

@@ -7,20 +7,18 @@
 <!-- 지현 게시판 search page -->
 <!-- 카드로 2개씩 -->
 <div class="container">
-	<div class="text-center border bg-body rounded shadow-sm">
-
-		<header class="my-2 pt-5 text-center">
+		<header class="my-2 pt-3 text-center">
 			<h1>게시판</h1>
 		</header>
 
 
-		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
+		<div>
 
 			<!-- 글쓰기 버튼 -->
-			<div class="d-grid my-2 col-5 mx-auto" style="height: 4rem;">
+			<div class="text-end">
 				<c:url var="postCreate" value="/post/create" />
 				<button onclick="location.href='${ postCreate }'"
-					class="btn btn-warning" type="button">글쓰기</button>
+					class="btn btn-submit btn-classic" type="button">글쓰기</button>
 			</div>
 
 			<div class="row row-cols-1 row-cols-md-2 g-4 p-2">
@@ -29,7 +27,7 @@
 						<c:param name="pid" value="${ postInfo.pid }" />
 					</c:url>
 					<div class="col" onclick="location.href='${ postDetailPage }'">
-						<div class="card border-warning my-2 p-3">
+						<div class="card border my-2 p-3">
 							<div class="card-body">
 								<!-- 글 번호 -->
 								<!-- <div>${ postInfo.pid }</div> -->
@@ -78,20 +76,22 @@
 			<!-- 검색 -->
 			<c:url var="postSearch" value="/post/search"></c:url>
 			<form action="${ postSearch }">
-				<div class=" pt-5 m-auto row">
-					<div class="col-sm-10">
-						<input class="form-control border-warning" type="text"
-							name="keyword" id="keyword" />
-					</div>
-					<div class="col-sm-2">
-						<button type="submit" class="form-control btn btn-outline-warning">검색</button>
-					</div>
+				<div class="input-group col-sm-7 m-1">
+					<input class="form-control" type="text" placeholder="검색어 입력"
+						name="keyword" id="keyword" aria-label="Input group example"
+						aria-describedby="basic-addon1" />
+					<button type="submit" class="btn btn-outline-secondary">
+						검색
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          							<path
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        							</svg>
+					</button>
 				</div>
 			</form>
-
 		</div>
 
-	</div>
 </div>
 </body>
 <script src="<%=request.getContextPath()%>/static/js/paging-search.js"></script>

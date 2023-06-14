@@ -8,6 +8,7 @@
 <!-- 지현 qna main(list) page -->
 
 <div class="container">
+<div class="sub-container">
 	<header class="my-2 p-5 text-center">
 		<h1>Q&amp;A</h1>
 		<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
@@ -111,12 +112,13 @@
 			<!-- 페이징 처리 -->
 
 		</div>
-		<div class="my-2 d-grid d-md-flex justify-content-md-end">
+		<div class="mt-2 d-grid d-md-flex justify-content-md-center">
 			<c:url var="qnaCreate" value="/info/qna/create" />
 			<button onclick="location.href='${ qnaCreate }'"
 				class="btn btn-primary" type="button">질문하기</button>
 		</div>
 	</main>
+	</div>
 </div>
 </body>
 <script src="<%=request.getContextPath()%>/static/js/paging.js"></script>

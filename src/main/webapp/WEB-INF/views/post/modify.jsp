@@ -5,7 +5,7 @@
 <%@ include file="../common/header.jsp"%>
 <!-- postpage modify -->
 <div class="container">
-	<header class="my-2 p-5 text-center">
+	<header class="my-2 p-3 text-center">
 		<h1>게시글 수정</h1>
 	</header>
 
@@ -24,8 +24,8 @@
 					<textarea class="form-control d-none" id="hrs_hd" name="hrs_hd">${ post.hrs_hd }</textarea>
 				</div>
 				<div class="my-2">
-					<label class="form-label" for="title">제목</label> 
-					<input class="form-control" id="title" name="title"
+					<label class="form-label" for="title">제목</label> <input
+						class="form-control" id="title" name="title"
 						value="${ post.title }" autofocus />
 				</div>
 				<div class="my-2">
@@ -34,21 +34,19 @@
 						required>${ post.content }</textarea>
 				</div>
 				<div class="my-2">
-					<label class="form-label" for="author">작성자 아이디</label> <input
-						class="form-control" id="author" value="${ post.author }" readonly />
+					<label class="form-label d-none" for="author">작성자 아이디</label> <input
+						class="form-control d-none" id="author" value="${ post.author }" readonly />
 				</div>
-
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button class="btn btn-warning" type="button" id="btnUpdate">수정
-						완료</button>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+					<c:url var="postList" value="/post/list" />
+					<button onclick="location.href='${ postList }'"
+						class="btn btn-secondary" type="button">취소</button>
+					<button class="btn btn-classic" type="button" id="btnUpdate">수정완료</button>
 				</div>
 			</form>
 		</div>
-		<div class="d-grid gap-2 col-5 mx-auto">
-			<c:url var="postList" value="/post/list" />
-			<button onclick="location.href='${ postList }'"
-				class="btn btn-warning" type="button">목록</button>
-		</div>
+
+
 	</main>
 </div>
 </body>

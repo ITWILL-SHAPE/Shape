@@ -9,14 +9,15 @@
 		<h1>게시글 작성</h1>
 	</header>
 
-	<main class="my-2">
+	<main class="">
 		<div class="card">
 			<form method="post" id="createForm">
 				<div class="card-body">
 					<div class="my-2">
 						<label class="form-label" for="hrs_hd">말머리</label> <select
 							class="form-select" id="select" name="select">
-							<option selected disabled="disabled" value="no">말머리를 선택해주세요.</option>
+							<option selected disabled="disabled" value="no">말머리를
+								선택해주세요.</option>
 							<option value="모임 후기">모임 후기</option>
 							<option value="사담">사담</option>
 							<option value="기타">기타</option>
@@ -25,8 +26,8 @@
 					</div>
 
 					<div class="my-2">
-						<label class="form-label" for="title">제목</label> 
-						<input class="form-control" type="text" id="title" name="title" required
+						<label class="form-label" for="title">제목</label> <input
+							class="form-control" type="text" id="title" name="title" required
 							autofocus />
 					</div>
 					<div class="my-2">
@@ -35,23 +36,20 @@
 							required></textarea>
 					</div>
 					<div class="my-2">
-						<label class="form-label" for="author">작성자 아이디</label>
+						<label class="form-label d-none" for="author">작성자 아이디</label>
 						<sec:authentication property="principal.username" var="id" />
-						<input class="form-control" type="text" id="author" name="author"
+						<input class="form-control d-none" type="text" id="author" name="author"
 							value="${ id }" readonly />
 					</div>
-					<div class="d-grid mt-3 gap-2 d-md-flex justify-content-md-end">
-						<button class="btn btn-warning" id="btnPostCreate" type="button">
-							작성 완료
-						</button>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+						<c:url var="postList" value="/post/list" />
+						<button onclick="location.href='${ postList }'"
+							class="btn btn-secondary" type="button">취소</button>
+						<button class="btn btn-classic" id="btnPostCreate" type="button">
+							등록</button>
 					</div>
 				</div>
 			</form>
-		</div>
-		<div class="d-grid mt-2 gap-2 col-5 mx-auto">
-			<c:url var="postList" value="/post/list" />
-			<button onclick="location.href='${ postList }'"
-				class="btn btn-warning" type="button">목록</button>
 		</div>
 	</main>
 </div>

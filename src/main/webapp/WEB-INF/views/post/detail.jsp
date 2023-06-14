@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!-- postpage detail -->
-<div class="container mb-2 min-vh-100">
+<div class="container">
 		<section class="card">
 			<form class="card-body" id="modifyForm">
 				<!-- 조회수 -->
@@ -41,9 +41,9 @@
 				<c:url var="postModifyPage" value="/post/modify">
 					<c:param name="pid" value="${ post.pid }"></c:param>
 				</c:url>
-				<button class="btn btn-warning me-md-2" type="button"
+				<button class="btn btn-classic me-md-2" type="button"
 					onclick="location.href='${ postModifyPage }'">수정</button>
-				<button class="btn btn-warning" type="button" id="btnDelete">삭제</button>
+				<button class="btn btn-danger" type="button" id="btnDelete">삭제</button>
 			</div>
 		</c:if>
 		<!-- 포스트 상세 보기 카드 -->
@@ -64,7 +64,7 @@
 						<textarea class="form-control" id="content"></textarea>
 					</div>
 					<div class="col-2">
-						<button class="form-control btn btn-outline-success"
+						<button class="form-control btn btn-classic"
 							id="btnAddComment">등록</button>
 					</div>
 				</div>
@@ -78,10 +78,10 @@
 		</section><!-- 댓글 등록, 댓글 리스트 카드 -->
 		
 		
-		<div class="d-grid gap-2 col-5 mx-auto">
+		<div class="d-grid d-md-flex justify-content-md-center">
 			<c:url var="postList" value="/post/list" />
 			<button onclick="location.href='${ postList }'"
-				class="btn btn-warning" type="button">목록</button>
+				class="btn btn-list" type="button">목록</button>
 		</div>
 		<!-- end modal -->
 
