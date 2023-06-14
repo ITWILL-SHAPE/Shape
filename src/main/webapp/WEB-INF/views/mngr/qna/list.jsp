@@ -101,14 +101,14 @@
 						<nav>
 							<ul class="pagination justify-content-center">
 								<li class="page-item ${ paging.prev? "":"disabled" }"><a
-									class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a></li>
+									class="page-link" href="${ paging.startPage -1 }" tabindex="-1">&laquo;</a></li>
 								<c:forEach begin="${ paging.startPage }"
 									end="${ paging.endPage }" var="num">
 									<li class="page-item ${ paging.cri.pageNum == num? "active":"" }"><a
 										class="page-link" href="${ num }">${ num }</a></li>
 								</c:forEach>
 								<li class="page-item ${ paging.next? "":"disabled" }" ><a
-									class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a></li>
+									class="page-link" href="${ paging.endPage +1 }" tabindex="-1">&raquo;</a></li>
 							</ul>
 						</nav>
 					</div>
