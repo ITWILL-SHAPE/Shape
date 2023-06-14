@@ -41,7 +41,7 @@
 								<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 								<sec:authorize access="isAuthenticated()">
 									<button id="logInUser">
-										<img src="./static/images/sample/like2.svg"
+										<img src="../../static/images/sample/like2.svg"
 											alt="toggle-off" width="50"
 											class="heart overlay-image overlay-right" onclick="alert(확인)" />
 									</button>
@@ -49,7 +49,7 @@
 								<!-- 로그인 안 함 -->
 								<sec:authorize access="isAnonymous()">
 									<button id="logOutUser">
-										<img src="./static/images/sample/like2.svg"
+										<img src="../../static/images/sample/like2.svg"
 											alt="toggle-off" width="50"
 											class="heart overlay-image overlay-right" onclick="" />
 									</button>
@@ -59,7 +59,7 @@
 										<c:when test="${createdList.PCNT >= createdList.nm_ppl}">
 											<div id="mozipFin${status.begin}">
 												<img id="mozipFinImg${status.begin}"
-													src="./static/images/sample/mozip_fin.svg"
+													src="../../static/images/sample/mozip_fin.svg"
 													alt="recuriEng" width="80"
 													class="overlay-image overlay-left" />
 											</div>
@@ -67,7 +67,7 @@
 										<c:otherwise>
 											<div id="mozipIin${status.begin}">
 												<img id="mozipIin${status.begin}"
-													src="./static/images/sample/mozip_ing.svg"
+													src="../../static/images/sample/mozip_ing.svg"
 													alt="recuriIng" width="80"
 													class="overlay-image overlay-left" />
 											</div>

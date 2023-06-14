@@ -57,7 +57,7 @@
 														<i class="bi bi-calendar text-white"></i>
 													</span>
 												</div>
-												<input class="datepicker form-control" name="searchRegDateStart" value="${ search.searchRegDateStart }"/>
+												<input class="datepicker form-control" name="searchRegDateStart" value="${ search.searchRegDateStart }">
 											</div>
 										</div>		
 										~

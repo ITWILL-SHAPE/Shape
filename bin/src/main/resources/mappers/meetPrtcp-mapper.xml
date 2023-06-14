@@ -27,7 +27,7 @@
 	
 	<!-- 참여취소 delete문 !-->
 	<delete id="Prtcpdelete">
-		delete from MEET_PRTCP where mtid = #{ mtid } and prtcp_id = #{id}
+		delete from MEET_PRTCP where mtid = #{ mtid }
 	</delete>
 	
 	<!-- meetList.jsp에서 사용될 참여자 수 저장. -->

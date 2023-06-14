@@ -4,11 +4,10 @@
 <%@ include file="../common/header.jsp" %>
 
 	<div class="container">
-		<div class="my-2 p-3 text-center">
-			<h1>로그인</h1>
-		</div>
+		<span>로그인</span>
 		<div class="text-center border bg-body rounded shadow-sm loginBox">
 			<form method="post" action="/shape/login" class="text-center">
+				<h1 class="my-4">로그인</h1>
 				<div class="my-2">
 					<main class="d-grid gap-3 login-inputBox">
 						<div class="form-floating">

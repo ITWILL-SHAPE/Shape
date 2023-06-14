@@ -53,8 +53,8 @@
 	/*let isjoined = false; // 초기 상태는 참여하기가 아닌 경우*/
 	
 	// 참여 클릭
-	// const btnjoin = document.querySelector('button#join');
-	/*	let isjoined = false; // 초기 상태는 참여하기가 아닌 경우*/
+		const btnjoin = document.querySelector('button#join');
+		let isjoined = false; // 초기 상태는 참여하기가 아닌 경우
 		const meetJoin = (e) => {
 			const mtid = document.querySelector('input#mtid').value;
 			const prtcp_id = document.querySelector('input#id').value;
@@ -70,48 +70,28 @@
 			axios.post('/shape/meet', data)
 				.then((response) => {
 					alert('참여완료 했습니다.');
-					if(response.data) {
-						goToDetail(mtid);
-					} else {
-						console.log('없든듸');
-					}			
+					
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 
 		};
-		 $('button#join').click(function(e) {
-			meetJoin(e);
-		});
-		 //btnjoin.addEventListener('click', meetJoin);
-		
-		// 참여 취소
-		$('button#delete').click(function(e) {
-			deletemeetjoin(e);
-		});
-		// const btndelete = document.querySelector('button#delete');		
-		// btndelete.addEventListener('click', deletemeetjoin);
+		const btndelete = document.querySelector('button#delete');
+		btndelete.addEventListener('click', deletemeetjoin);
+		// 댓글 삭제
 		const deletemeetjoin = (e) => {
-			e.preventDefault();
-			
 			console.log(e.target);
 			if (!confirm('삭제?')) {
 				return;
 			}
 			const mtid = e.target.getAttribute('data-id');
-			const id = e.target.getAttribute('data-login');
-			const reqUrl = `/shape/meet/${mtid}/${id}`;
+			const reqUrl = `/shape/meet/${mtid}`;
 
 			axios.delete(reqUrl)
 				.then((response) => {
 					console.log(response);
-					
-					if(response.data) {
-						goToDetail(mtid);
-					} else {
-						console.log('없든듸');
-					}
+					btnjoin.innerHTML = '참여하기';
 				})
 				.catch((error) => {
 					console.log(error);
@@ -130,18 +110,7 @@
 // document	
 });
 	
-const goToDetail = function(mtid) {
-	window.location.href = `/shape/meet/maindetail?mtid=${mtid}`;
-	/*
-	axios.get(`/shape/meet/maindetail`, mtid)
-	.then((res) =>{
-		console.log(res);
-	})
-	.catch((err) => {
-		console.log(err);
-	})
-	*/
-}
+
 	
 	
 

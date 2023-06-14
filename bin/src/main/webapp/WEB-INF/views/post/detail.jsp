@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!-- postpage detail -->
-<div class="container mb-2 min-vh-100">
+<div class="container mb-55 min-vh-100">
+	<main class="my-5">
 		<section class="card">
 			<form class="card-body" id="modifyForm">
 				<!-- 조회수 -->
@@ -84,6 +85,7 @@
 				class="btn btn-warning" type="button">목록</button>
 		</div>
 		<!-- end modal -->
+	</main>
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 

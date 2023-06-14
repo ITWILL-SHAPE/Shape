@@ -122,10 +122,6 @@
 				</div>
 			</div>
 		</header>
-<<<<<<< HEAD
-		<div id="wrap">
-=======
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 		<!-- // 뉴 디자인 -->
 		
 		<!-- 구 디자인 -->

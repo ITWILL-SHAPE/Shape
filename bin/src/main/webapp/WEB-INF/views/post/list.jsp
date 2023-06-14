@@ -5,13 +5,13 @@
 <%@ include file="../common/header.jsp"%>
 <!-- 게시판 main(list) postpage -->
 <div class="container">
-	<div class="">
+	<div class="border bg-body rounded shadow-sm">
 
 		<header class="my-2 pt-5 text-center">
 			<h1>게시판</h1>
 		</header>
 
-		<div class="p-3 mt-5 border-0 bd-example m-0 border-0">
+		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
 			<!-- 글쓰기 버튼 -->
 			<div class="d-grid my-2 col-5 mx-auto" style="height: 4rem;">
 				<c:url var="postCreate" value="/post/create" />
@@ -89,5 +89,7 @@
 
 	</div>
 </div>
+</body>
 <script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
+</html>
 <%@ include file="../common/footer.jsp"%>

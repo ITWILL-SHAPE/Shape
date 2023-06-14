@@ -1,10 +1,7 @@
-<%@page import="com.itwill.shape.dto.MeetMainDetailDto"%>
-<%@page import="com.itwill.shape.dto.MeetPrtcpReadDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../common/header.jsp" %>
 
 <body>
@@ -138,10 +135,8 @@
                               <i>${meetmaindetail.content}</i>
                               </li>                
                            </div>
-                          
                         </ul>
                      </div>
-                     
                      <!-- 로그인한 유저 -->
                      <sec:authorize access="isAuthenticated()">
 	                     <sec:authentication property="principal.username" var="loginUser"/>
@@ -160,47 +155,41 @@
 	                   	<input class="d-none" id="phone" value="${ phone }" />
 	                   	<sec:authentication property="principal.user.email" var="email"/>
 	                   	<input class="d-none" id="email" value="${ email }" />
-
-							<c:choose>
-		                     <c:when test="${ author == loginUser }">
-		                     	<div>
-		                           <div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-		                           <c:url var="updatePage" value="/meet/update">
-		                             <c:param name="mtid" value="${meetmaindetail.mtid}"></c:param>     
-		                           </c:url>
-		                           <a href="${ updatePage }" type="button" class="btn btn-outline-primary btn-lg" id="btnUpdate" name="btnUpdate">수정하기</a>
-		                           <a href="${delete }" type="button" class="btn btn-outline-danger btn-lg" id="btnDelete" name="btnDelete">삭제하기</a>   
-		                           </div>
-		                        </div>
-		                     </c:when>
-		                     
-		                     <c:when test="${ author != loginUser }">
-		                     	<c:set var="loop_flag" value="false" />
-		                     	<c:forEach items="${ meetmaindetail.prtcpDtoList }" var="userList">
-		                     		<c:if test="${ userList.prtcp_id == loginUser && loop_flag == false }">
-		                     			<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-				                           <button id="unLike" name="unLike" type="button" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
-				                           <button id="delete" name="delete"  type="button"  class="btn btn-outline-primary btn-lg"
-				                           			data-id="${meetmaindetail.mtid}" data-login="${ userList.prtcp_id }">참여취소</button>
-				                        </div>
-				                        <c:set var="loop_flag" value="true" />
-		                     		</c:if>
-		                     	</c:forEach>
-		                     
-		                   
-		                    	 
-		                     		<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
-		                     			<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-		                           			<button id="like" name="like" type="button" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
-		                           			<button id="join" name="join"  type="button"  class="btn btn-outline-primary btn-lg">참여하기</button>
-		                        		</div>
-		                        	</c:if>
-		                 
-		                   </c:when>
-		                   
-	                     </c:choose> 
+	                   	
+	                     <!-- 로그인한 유저와 이 글을 작성한 유저가 다를 경우 visible -->
+	                     <c:if test="${ author != loginUser }">
+	                        <div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
+	                           <button id="like" name="like" type="submit" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+	                           <button id="join" name="join"  type="submit"  class="btn btn-outline-primary btn-lg">참여하기</button>
+	                        </div>
+	                     </c:if>
+	                     <%-- <c:set var="UserPrtcp"
+									value="${ meetmaindetail.prtcpDtoList.prtcp_id }" />
+								<c:choose>
+									<c:when test="${loginUser == UserPrtcp }">
+										<button id="delete" name="delete" type="submit"
+											class="btn btn-outline-primary btn-lg">참여취소</button>
+									</c:when>
+									<c:when test="${ author != loginUser }">
+										<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
+	                           				<button id="like" name="like" type="submit" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+										 	<button id="join" name="join"  type="submit"  class="btn btn-outline-primary btn-lg">참여하기</button>
+										</div>
+									</c:when>
+								</c:choose> --%>
 	                     
-	                     
+	                     <!-- 로그인한 유저와 이 글을 작성한 유저가 같을 경우 visible -->
+	                     <c:if test="${ author == loginUser }">
+	                        <div>
+	                           <div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
+	                           <c:url var="updatePage" value="/meet/update">
+	                             <c:param name="mtid" value="${meetmaindetail.mtid}"></c:param>     
+	                           </c:url>
+	                           <a href="${ updatePage }" type="button" class="btn btn-outline-primary btn-lg" id="btnUpdate" name="btnUpdate">수정하기</a>
+	                           <a href="${delete }" type="button" class="btn btn-outline-danger btn-lg" id="btnDelete" name="btnDelete">삭제하기</a>   
+	                           </div>
+	                        </div>
+	                     </c:if>
 	                 </sec:authorize>
                      
                      
@@ -214,7 +203,6 @@
                                  <img id="host-profile" class="user-img" src="../static/images/sample/user.png" alt="host 사진">                             
                                  <div id="host-name" class="meetdetailuser"> 이름 : ${ meetmaindetail.userHost.name }</div>
                                  <div id="host-email" class="meetdetailemail">이메일 : ${ meetmaindetail.userHost.email }</div>                              
-                        		 
                         	</div>
                    </div>  
                      <!-- 참여자 목록 -->

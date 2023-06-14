@@ -8,8 +8,6 @@ $(document).ready(function() {
 	setDefault();
 });
 
-let targetPage = '';
-
 const initPage = function() {
 	// 데이트피커 초기화
 	$('input[name="searchRegDateStart"]').datepicker({
@@ -39,11 +37,11 @@ const initPage = function() {
 
 
 const setDefault = function() {
-	// const searchRegDateStart = null;
-	// const searchRegDateEnd = null;
+	const searchRegDateStart = null;
+	const searchRegDateEnd = null;
 
-	// $('input[name="searchRegDateStart"]').datepicker('setDate', searchRegDateStart);
-	// $('input[name="searchRegDateEnd"]').datepicker('setDate', searchRegDateEnd);
+	$('input[name="searchRegDateStart"]').datepicker('setDate', searchRegDateStart);
+	$('input[name="searchRegDateEnd"]').datepicker('setDate', searchRegDateEnd);
 };
 
 const registEvent = function() {
@@ -82,15 +80,14 @@ const registEvent = function() {
 	
 	$(".page-link").on("click", function(e) {
 		e.preventDefault();
-		targetPage = e.target.closest("a").textContent;
 		findAllAction(e);
 	});	
 	
 };
 
 const findAllAction = function(e) {
-	const searchRegDateStart = $('input[name="searchRegDateStart"]').val();
-	const searchRegDateEnd = $('input[name="searchRegDateEnd"]').val();
+	searchRegDateStart = $('input[name="searchRegDateStart"]').val();
+	searchRegDateEnd = $('input[name="searchRegDateEnd"]').val();
 	
 	if (searchRegDateStart > searchRegDateEnd) {
 		alert('검색 기간의 끝날짜가 시작날짜보다 빠릅니다.');
@@ -102,10 +99,8 @@ const findAllAction = function(e) {
 	const searchPhone = $('input[name="searchPhone"]').val().trim();
 	const searchEmail = $('input[name="searchEmail"]').val().trim();
 	
-	if(targetPage == null || targetPage == '') {
-		targetPage = $('input[name="pageNum"]').val();
-	}
-	
+	const targetPage = e.target.closest("a").textContent;
+	console.log(targetPage);
 	
 	let data = {
 		searchId : searchId,
