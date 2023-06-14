@@ -184,6 +184,15 @@ a:link.meetListATag {
     text-decoration: none;
 }
 
+div.img-overlay {
+	position: relative;
+}
+
+div.img-right {
+	position: absolute;
+   top: 15px;
+   right: 20px;
+}
 
 /* mngr userInfo list*/
 table.users tr {

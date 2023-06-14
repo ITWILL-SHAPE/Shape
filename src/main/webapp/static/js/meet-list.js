@@ -71,9 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// 찜
 
-		$('#img-heart')
 
-		LikeCheck = function (mtid, id) {
+
+
+		/*$('#img-heart');
+
+		LikeCheck = function(mtid, id) {
 			console.log("찜 실시");
 			alert("찜이 되었습니다.")
 
@@ -95,15 +98,89 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 
-		};onclick="move_profile_page('${item.nickname}')"
+		}; onclick = "move_profile_page('${item.nickname}')"*/
+
+
+		/*const mtid = document.querySelector('input#mtid').value;
+		const id = document.querySelector('input#id').value;
+
+
+		function LikeCheck(mtid, id) {
+			const imgHeart = document.querySelector('img#img-heart');
+			console.log("찜 실시");
+			alert("찜이 되었습니다.")
+
+			const EmptyHeartimage = $('img.overlay-image');
+
+			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
+
+				// 이미지의 src 속성 변경
+				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-on');
+
+
+			} else {
+
+				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-off');
+			}
+		}*/
+
+
+		//imgHeart.addEventListener('click', LikeCheck(mtid, id));
+		/*$(function() {
+			$("#img-heart").click(function() {
+				LikeCheck(mtid, id);
+
+			});
+		});
+
+		function LikeCheck(mtid, id) {
+			console.log("찜 실시");
+			alert("찜이 되었습니다.")
+
+			const EmptyHeartimage = $('img.overlay-image');
+
+			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
+
+				// 이미지의 src 속성 변경
+				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-on');
+
+
+			} else {
+
+				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-off');
+			}
+		}*/
 
 	});
 
+	// const imgHeart = document.querySelector('img#img-heart');
 
 
+	const imgHeart = document.querySelectorAll('img#img-heart');
+	
+	for(let img of imgHeart) {
+		img.addEventListener('click', LikeCheck);
+	};
+	
+	
+	const LikeCheck = (e) => {
 
+		//const mtid = document.querySelector('input#mtid').value;
+		//const id = document.querySelector('input#id').value;
 
+		console.log(ddd);
 
+	};
+
+	//imgHeart.addEventListener('onclick', LikeCheck);
 
 
 });
