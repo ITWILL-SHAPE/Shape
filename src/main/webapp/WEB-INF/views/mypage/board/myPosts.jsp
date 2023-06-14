@@ -57,7 +57,6 @@
 		</table>
 		<button class="delete-button">댓글 삭제</button>
 	</main>
-</body>
 	<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>

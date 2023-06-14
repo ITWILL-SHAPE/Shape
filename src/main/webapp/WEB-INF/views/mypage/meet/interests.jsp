@@ -12,7 +12,6 @@
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<!-- 메인 컨텐츠 시작 -->
-	<main id="main_content">
 		<div class="container-fluid container">
 			<!--아이템: model.addAttribute("interestsList", dto);-->
 			<div id="cardList" class="album py-5">
@@ -111,7 +110,6 @@
 				</div>
 			</div>
 		</div>
-	</main>
 	<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>
