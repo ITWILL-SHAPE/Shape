@@ -187,7 +187,7 @@
 					<c:param name="mtid" value="${cardList.mtid}" />
 				</c:url>
 				<div class="col" style="cursor: pointer;" id="clickEvent"
-					onclick="window.open('${meetDetailPage}');">
+					onclick="location=href=('${meetDetailPage}');">
 					<div class="card shadow-sm image-container position-relative">
 						<svg idx="${status.begin}" class="bd-placeholder-img card-img-top"
 							width="100%" height="220" xmlns="http://www.w3.org/2000/svg"
