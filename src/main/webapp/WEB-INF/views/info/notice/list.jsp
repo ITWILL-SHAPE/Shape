@@ -3,11 +3,8 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-	<body>
 		<div class="container">
-			<div class="my-2 p-5 text-center">
+			<div class="my-2 p-3 text-center">
 				<h1>공지사항</h1>
 			</div>
 		
@@ -16,12 +13,12 @@
 					<table class="card-body table table-hover text-center">
 						<thead>
 							<tr>
-								<th>No</th>
-								<th>제목</th>
-								<th>작성일</th>
+								<th scope="col">No</th>
+								<th scope="col">제목</th>
+								<th scope="col">작성일</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody class="table-group-divider">
 							<c:forEach items="${ notices }" var="notice" varStatus="status">
 								<tr>
 									<c:choose>
@@ -70,7 +67,5 @@
 				<!-- 페이징 처리 -->
 			</main>
 		</div>
-	</body>
-	<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
-</html>
+<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -3,49 +3,50 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
 	<body>
 		<div class="container">
-			<div class="my-2 p-5 text-center">
+			<div class="my-2 p-3 text-center">
 				<h1>공지사항</h1>
 			</div>
 		
 			<main class="my-2">
 			<section class="card">
-				<div>
-					<small>조회수: ${ notices.views }</small>
-				</div>
-				<div class="card-body">
-					<div class="my-4">
-						<label class="form-label" for="title">제목</label>
-						<input class="form-control" id="title" value="${ notices.title }" readonly />
-					</div>
-					<div class="my-4">
-						<label class="form-label">작성일</label>
+				
+				<div class="card-body" >
+					<!-- 조회수 -->
+					<p class="card-text">조회수: ${ notices.views }</p>
+					
+					<!-- 제목 -->
+					<h2 class="card-title">${ notices.title }</h2>
+					<hr />
+					
+					<div class="my-2">
+						<label class="form-label d-none" for="created_date">작성일</label>
 						<fmt:formatDate value="${ times }" pattern="yyyy.MM.dd" var="date"/>
-						<input class="form-control" id="created_date" value="${ date }" readonly />
+						<p class="card-text text-end small" id="created_date">${ date }</p>
 					</div>
-					<div class="my-4">
+					
+					<div class="my-2">
+						<label class="form-label d-none" for="content">내용</label>
+						<div style="height: 5rem;" class="card-text" id="content" readonly>${ notices.content }</div>
+					</div>
+					
+					<hr />
+					
+					<div class="my-2">
 						<label clasYTIs="form-label" for="file">첨부파일</label>
-						<input class="form-control" id="file" value="${ notices.atchd_file }" readonly />
+						<div class="card-text" id="file">${ notices.atchd_file }</div>
 					</div>
-					<div class="my-4">
-						<label class="form-label" for="content">내용</label>
-						<div class="form-control" id="content" readonly>${ notices.content }</div>
-					</div>
+				</div>
+				
+				<div class="my-2 text-center">
+					<c:url var="infoNoticeListPage" value="/info/notice/list" />
+					<a class="btn btn-list" href="${ infoNoticeListPage }">목록</a>
 				</div>
 			</section>
 			</main>
 		</div>
-		<div>
-			<div class="my-2 text-center">
-				<c:url var="infoNoticeListPage" value="/info/notice/list" />
-				<a class="btn btn-primary" href="${ infoNoticeListPage }">목록</a>
-			</div>
-		</div>
 
 
 </body>
-</html>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
