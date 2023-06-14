@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!-- postpage detail -->
-<div class="container mb-55 min-vh-100">
+<div class="container mb-2 min-vh-100">
 		<section class="card">
 			<form class="card-body" id="modifyForm">
 				<!-- 조회수 -->
