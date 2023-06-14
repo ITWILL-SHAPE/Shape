@@ -34,7 +34,7 @@
 					<hr />
 					
 					<div class="my-2">
-						<label clasYTIs="form-label" for="file">첨부파일</label>
+						<label class="form-label" for="file">첨부파일</label>
 						<div class="card-text" id="file">${ notices.atchd_file }</div>
 					</div>
 				</div>

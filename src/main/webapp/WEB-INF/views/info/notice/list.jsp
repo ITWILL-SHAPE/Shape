@@ -23,28 +23,28 @@
 								<tr>
 									<c:choose>
 										<c:when test="${ notice.fix == -1 }">
-											<td>📢</td>
+											<th scope="row" class="col-1 text-center">📢</th>
 										</c:when>
 										<c:otherwise>
 											<!--<td>${ notice.nid }</td>  -->
-											<td>${ status.count }</td>
+											<th scope="row" class="col-1 text-center">${ status.count }</th>
 										</c:otherwise>
 									</c:choose>
-									<td>
+									<td class="ms-2">
 										<c:url var="noticeDetailPage" value="/info/notice/detail">
 											<c:param name="nid" value="${ notice.nid }"></c:param>
 										</c:url>
-										<a href="${ noticeDetailPage }">${ notice.title }</a>
+										<a class="link-offset-2 link-underline link-underline-opacity-0 link-dark" 
+											href="${ noticeDetailPage }">${ notice.title }</a>
 									</td>
-									<td><fmt:formatDate value="${ notice.created_date }" pattern="yyyy-MM-dd"/></td>
+									<td class="col-2 text-center"><fmt:formatDate value="${ notice.created_date }" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-				</div>
-				
-				<!-- 페이징 처리 -->
-				<div>
+					
+					<!-- 페이징 처리 -->
+				<div class="pb-3">
 					<nav>
 						<ul class="pagination justify-content-center">
 							<li class="page-item ${ paging.prev? "":"disabled" }"><a
@@ -65,6 +65,9 @@
 					<input type='hidden' name='amount' value='${ paging.cri.amount }' />
 				</form>
 				<!-- 페이징 처리 -->
+				</div>
+				
+				
 			</main>
 		</div>
 <script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
