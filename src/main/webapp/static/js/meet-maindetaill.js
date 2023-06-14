@@ -77,9 +77,11 @@
 				});
 
 		};
+		 btnjoin .addEventListener('click', meetJoin);
+		
+		// 댓글 삭제
 		const btndelete = document.querySelector('button#delete');
 		btndelete.addEventListener('click', deletemeetjoin);
-		// 댓글 삭제
 		const deletemeetjoin = (e) => {
 			console.log(e.target);
 			if (!confirm('삭제?')) {
