@@ -128,7 +128,7 @@ th, td {
 			</c:url>
 			 -->
 			<a class="btn btn-outline-primary form-control"
-			   href="myprofile?id=${ id }">수정완료</a> 
+			   href="myprofile?id=${ id }">수정 완료</a> 
 			<a class="btn btn-outline-primary form-control"
 			   href="myprofile?id=${ id }">취소</a>
 		</div>

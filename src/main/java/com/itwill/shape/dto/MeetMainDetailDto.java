@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.itwill.shape.domain.MeetInfo;
+import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.domain.UserInfo;
 
@@ -42,6 +43,7 @@ public class MeetMainDetailDto {
 	private Timestamp created_date;
 	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST)
 	private UserInfo userHost; // Host 작성자
+	private MeetLike meetlikes; // 찜 count 
 	
 		
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {

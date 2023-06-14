@@ -12,10 +12,6 @@
 		select * from INFO_FAQ order by FID
 	</select>
 	
-	<select id="selectByFid">
-		select * from INFO_FAQ where FID = ${fid}
-	</select>
-	
 	<update id="updateFaQ">
 		update INFO_FAQ set QUESTION = #{question}, ANSWER = #{answer} where FID = #{fid}
 	</update>

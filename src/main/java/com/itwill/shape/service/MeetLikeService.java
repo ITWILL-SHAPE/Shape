@@ -2,7 +2,7 @@ package com.itwill.shape.service;
 
 import org.springframework.stereotype.Service;
 
-import com.itwill.shape.dto.MeetLikeCountDto;
+import com.itwill.shape.dto.MeetLikeDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.UserInfoRepository;

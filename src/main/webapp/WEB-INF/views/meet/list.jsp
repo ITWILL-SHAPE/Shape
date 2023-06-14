@@ -31,11 +31,9 @@
 	<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
 		<c:url var="meetListPage" value="/meet/list">
 		</c:url>
-		<div class="my-2 p-3 text-center">
-			<a href="${ meetListPage }" class="link-dark text-decoration-none">
-				<h1>전체 모임</h1>
-			</a>
-		</div>	
+		<a href="${ meetListPage }" class="link-dark text-decoration-none">
+			<h1>전체 모임</h1>
+		</a>
 		<div class="tst-tools">
 			<div class="d-flex justify-content-center">
 				<div class="input-group w-50">
@@ -49,7 +47,7 @@
 									aria-label="Input group example"
 									aria-describedby="basic-addon1">
 								<button id="titleBtn" type="submit"
-									class="btn btn-primary">
+									class="btn btn-outline-secondary">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           							<path
@@ -188,7 +186,10 @@
       -> 로그인: header.jsp, main.jsp => 37줄 참고 
       -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
     -->
+			<sec:authentication property="principal.user.id" var="name" />
+			<input class="d-none" id="id" value="${ id }" />
 			<c:forEach items="${listCount}" var="cardList" varStatus="status">
+				<input class="d-none" id="mtid" value="${ cardList.mtid }" />
 				<c:url var="meetDetailPage" value="/meet/maindetail">
 					<c:param name="mtid" value="${cardList.mtid}" />
 				</c:url>
@@ -203,6 +204,7 @@
            				</svg>
 						<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 						<sec:authorize access="isAuthenticated()">
+							<sec:authentication property="principal.username" var="id" />
 							<div class="img-overlay img-right">
 								<button id="logInUser">
 									<img src="../static/images/sample/like2.svg" alt="toggle-off"

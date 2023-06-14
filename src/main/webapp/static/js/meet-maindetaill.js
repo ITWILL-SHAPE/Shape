@@ -55,6 +55,20 @@
 	// 참여 클릭
 	// const btnjoin = document.querySelector('button#join');
 	/*	let isjoined = false; // 초기 상태는 참여하기가 아닌 경우*/
+		// 참여 완료되면 화면에서 보여줌
+		const goToDetail = function(mtid) {
+			window.location.href = `/shape/meet/maindetail?mtid=${mtid}`;
+		}	
+	/*
+	axios.get(`/shape/meet/maindetail`, mtid)
+	.then((res) =>{
+		console.log(res);
+	})
+	.catch((err) => {
+		console.log(err);
+	})
+	*/
+
 		const meetJoin = (e) => {
 			const mtid = document.querySelector('input#mtid').value;
 			const prtcp_id = document.querySelector('input#id').value;
@@ -130,18 +144,7 @@
 // document	
 });
 	
-const goToDetail = function(mtid) {
-	window.location.href = `/shape/meet/maindetail?mtid=${mtid}`;
-	/*
-	axios.get(`/shape/meet/maindetail`, mtid)
-	.then((res) =>{
-		console.log(res);
-	})
-	.catch((err) => {
-		console.log(err);
-	})
-	*/
-}
+
 	
 	
 
