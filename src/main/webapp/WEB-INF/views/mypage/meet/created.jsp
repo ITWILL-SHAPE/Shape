@@ -3,8 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 > 모임 > 내가 개설한 모임</title>
@@ -115,8 +113,8 @@
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
 	</main>
-	<footer>
-		<%@ include file="../../common/footer.jsp"%>
-	</footer>
+	<!-- 메인 컨텐츠 끝 -->
 </body>
-</html>
+<footer>
+	<%@ include file="../../common/footer.jsp"%>
+</footer>

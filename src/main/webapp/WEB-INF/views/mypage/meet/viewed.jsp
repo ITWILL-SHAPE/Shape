@@ -3,8 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 > 모임 > 최근 본 모임(beta)</title>
@@ -116,8 +114,7 @@
 		</div>
 	</main>
 	<!-- 메인 컨텐츠 끝 -->
-	<footer>
-		<%@ include file="../../common/footer.jsp"%>
-	</footer>
 </body>
-</html>
+<footer>
+	<%@ include file="../../common/footer.jsp"%>
+</footer>

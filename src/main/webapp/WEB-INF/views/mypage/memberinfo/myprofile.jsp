@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>Shape</title>
@@ -122,6 +120,8 @@ th, td {
 				href="profilemodifypage?id=${ id }">수정</a>
 		</div>
 	</main>
+	<!-- 메인 컨텐츠 끝 -->
 </body>
-</html>
-<%@ include file="../../common/footer.jsp"%>
+<footer>
+	<%@ include file="../../common/footer.jsp"%>
+</footer>

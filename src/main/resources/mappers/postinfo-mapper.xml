@@ -14,10 +14,11 @@
 
 	<!-- post_info table에서 author(id)로 댓글 목록 가져오기 -->
 	<select id="selectByAuthor"
-		resultType="com.itwill.shape.domain.PostInfo">
+		    resultType="com.itwill.shape.domain.PostInfo">
 		SELECT *
 		FROM post_info
 		WHERE author = #{author}
+		ORDER BY created_date DESC
 	</select>
     <!-- 마이페이지 끝 -->
 

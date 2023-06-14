@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp"%>
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <script defer src="static/js/userPwd-modify.js"></script>
@@ -84,7 +82,8 @@
 			<!-- 버튼영역 끝 -->
 		</form>
 	</main>
-	<!-- 메인 콘텐츠 끝 -->
+	<!-- 메인 컨텐츠 끝 -->
 </body>
-</html>
-<%@ include file="../../common/footer.jsp"%>
+<footer>
+	<%@ include file="../../common/footer.jsp"%>
+</footer>

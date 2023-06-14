@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 > 게시판 > 내가 작성한 댓글</title>
@@ -60,8 +58,7 @@
 		<button class="delete-button">댓글 삭제</button>
 	</main>
 	<!-- 메인 컨텐츠 끝 -->
-	<footer>
-		<%@ include file="../../common/footer.jsp"%>
-	</footer>
 </body>
-</html>
+<footer>
+	<%@ include file="../../common/footer.jsp"%>
+</footer>
