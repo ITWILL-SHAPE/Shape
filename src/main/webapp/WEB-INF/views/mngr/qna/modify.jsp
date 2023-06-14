@@ -99,4 +99,5 @@
 		</div>
 	</div>
 </body>
+<script src="<%=request.getContextPath()%>/static/js/infoQnAMngr-modify.js"></script>
 </html>

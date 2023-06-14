@@ -6,7 +6,7 @@
 <!-- 지현 qna main(list) page -->
 
 <div class="container">
-	<header class="my-2 p-5 text-center">
+	<header class="my-2 p-3 text-center">
 		<h1>Q&amp;A</h1>
 		<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
 	</header>
@@ -49,7 +49,7 @@
 									class="form-control d-none" id="an_title"
 									value="${ infoQnA.an_title }" readonly />
 							</div>
-							<div class="card mb-3">
+							<div class="card mb-2">
 								<div class="card-body">
 									<h4 class="card-text">${ infoQnA.an_title }</h4>
 									<div class="card-text" id="content" style="height: 10rem">${ infoQnA.an_comment }</div>
@@ -62,13 +62,32 @@
 					</c:choose>
 				</c:if>
 
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<button class="btn btn-primary me-md-2" id="btnDelete"
-						type="button">삭제하기</button>
-					<c:url var="qna" value="/info/qna" />
-					<button onclick="location.href='${ qna }'" class="btn btn-primary"
-						type="button">목록</button>
-				</div>
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal.username" var="id" />
+					<c:if test="${ id == infoQnA.writer }">
+						<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+							<c:url var="qna" value="/info/qna" />
+							<button onclick="location.href='${ qna }'"
+								class="btn btn-primary" type="button">목록</button>
+							<button class="btn btn-danger me-md-2" id="btnDelete"
+								type="button">삭제</button>
+						</div>
+					</c:if>
+					<c:if test="${ id != infoQnA.writer }">
+						<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+							<c:url var="qna" value="/info/qna" />
+							<button onclick="location.href='${ qna }'"
+								class="btn btn-primary" type="button">목록</button>
+						</div>
+					</c:if>
+				</sec:authorize>
+				<sec:authorize access="isAnonymous()">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+							<c:url var="qna" value="/info/qna" />
+							<button onclick="location.href='${ qna }'"
+								class="btn btn-primary" type="button">목록</button>
+						</div>
+				</sec:authorize>
 			</form>
 		</section>
 	</main>

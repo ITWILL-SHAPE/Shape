@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <!-- 지현 qna main(list) page -->
 <div class="container">
-	<header class="my-2 p-5 text-center">
+	<header class="my-2 p-3 text-center">
 		<h1>Q&amp;A</h1>
 		<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
 	</header>
@@ -37,8 +37,8 @@
 					</div>
 					<textarea class="form-control d-none" id="secret" name="secret"></textarea>
 				</div>
-				<div class="card-footer my-2">
-					<input class="form-control btn btn-outline-primary" id="btnSubmit"
+				<div class="my-2">
+					<input class="form-control btn btn-classic" id="btnSubmit"
 						type="submit" value="작성 완료" />
 				</div>
 			</form>

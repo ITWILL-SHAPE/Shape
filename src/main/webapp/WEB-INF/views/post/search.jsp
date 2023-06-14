@@ -21,13 +21,13 @@
 					class="btn btn-submit btn-classic" type="button">글쓰기</button>
 			</div>
 
-			<div class="row row-cols-1 row-cols-md-2 g-4 p-2">
+			<div class="row row-cols-1 row-cols-md-2 gd-4">
 				<c:forEach items="${ posts }" var="postInfo">
 					<c:url var="postDetailPage" value="/post/detail">
 						<c:param name="pid" value="${ postInfo.pid }" />
 					</c:url>
 					<div class="col" onclick="location.href='${ postDetailPage }'">
-						<div class="card border my-2 p-3">
+						<div class="card my-2 p-3">
 							<div class="card-body">
 								<!-- 글 번호 -->
 								<!-- <div>${ postInfo.pid }</div> -->
