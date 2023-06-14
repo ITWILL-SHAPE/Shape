@@ -5,38 +5,39 @@
 <mapper
 	namespace="com.itwill.shape.repository.PostInfoRepository">
 
-    <!-- 마이페이지 -->
+	<!-- 마이페이지 -->
 	<!-- post_info table에서 pid와 일치하는 댓글 삭제 -->
 	<delete id="deleteByPid">
-		DELETE FROM post_info 
+		DELETE FROM post_info
 		 WHERE pid = #{pid}
 	</delete>
 
 	<!-- post_info table에서 author(id)로 댓글 목록 가져오기 -->
 	<select id="selectByAuthor"
-		resultType="com.itwill.shape.domain.PostInfo">
+		    resultType="com.itwill.shape.domain.PostInfo">
 		SELECT *
-		FROM post_info
-		WHERE author = #{author}
+		  FROM post_info
+		 WHERE author = #{author}
+		 ORDER BY created_date DESC
 	</select>
-    <!-- 마이페이지 끝 -->
+	<!-- 마이페이지 끝 -->
 
 	<!-- 지현 게시판 -->
 	<!-- 수빈 게시판 검색 (키워드) -->
 	<!-- 사용안함 -->
-	<select id="selectWithKeyword"
-		parameterType="String"
+	<select id="selectWithKeyword" parameterType="String"
 		resultType="com.itwill.shape.dto.PostListDto">
-		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
-        from POST_INFO P left join POST_COMMENT C
-            on P.PID = C.PID
-        where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
-        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
-        order by P.PID desc
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE,
+		count(C.PCID) as RCNT
+		from POST_INFO P left join POST_COMMENT C
+		on P.PID = C.PID
+		where lower(P.TITLE) like lower('%' || #{keyword} || '%') or
+		lower(P.HRS_HD) like lower('%' || #{keyword} || '%')
+		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+		order by P.PID desc
 	</select>
-	
-	<select id="selectWithKeywordAndPaging"
-		parameterType="String"
+
+	<select id="selectWithKeywordAndPaging" parameterType="String"
 		resultType="com.itwill.shape.dto.PostListDto">
 		<![CDATA[
 		select * from 
@@ -80,26 +81,32 @@
 	<select id="listCount">
 		SELECT COUNT(*) FROM POST_INFO
 	</select>
-	
+
 	<select id="listCountWithKeyword">
 		select count(*) from POST_INFO
-		where lower(TITLE) like lower('%' || #{keyword} || '%') or lower(HRS_HD) like lower('%' || #{keyword} || '%')   
+		where lower(TITLE) like
+		lower('%' || #{keyword} || '%') or lower(HRS_HD) like lower('%' ||
+		#{keyword} || '%')
 	</select>
-	
+
 	<!-- 사용안함 -->
 	<select id="selectWithCommentCount"
 		resultType="com.itwill.shape.dto.PostListDto">
-		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE,
+		count(C.PCID) as RCNT
 		from POST_INFO P left join POST_COMMENT C
-		on P.PID = C.PID
+		on P.PID
+		= C.PID
 		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
 		order by P.PID desc
 	</select>
 
 	<insert id="insert">
-		insert into POST_INFO (TITLE, CONTENT, AUTHOR, CREATED_DATE, MODIFIED_DATE,
+		insert into POST_INFO (TITLE, CONTENT, AUTHOR,
+		CREATED_DATE, MODIFIED_DATE,
 		HRS_HD, VIEWS)
-		values (#{title}, #{content}, #{author}, systimestamp, systimestamp,
+		values (#{title},
+		#{content}, #{author}, systimestamp, systimestamp,
 		#{hrs_hd}, 0)
 	</insert>
 
@@ -115,14 +122,16 @@
 
 	<update id="updateTitleAndContent">
 		update POST_INFO
-		set TITLE = #{title}, CONTENT = #{content}, HRS_HD = #{hrs_hd},
+		set TITLE = #{title}, CONTENT =
+		#{content}, HRS_HD = #{hrs_hd},
 		MODIFIED_DATE = systimestamp
-		where PID = #{pid}
+		where PID =
+		#{pid}
 	</update>
 
-	
+
 	<select id="count" resultType="int">
 		select count(pid) from POST_INFO
 	</select>
-	
+
 </mapper>

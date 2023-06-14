@@ -76,6 +76,7 @@ th, td {
 	<div id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
+	<!-- 메인 컨텐츠 시작 -->
 	<main id="main_contnet">
 		<div class="center">
 			<img src="static/images/common/user.png"
@@ -122,6 +123,7 @@ th, td {
 				href="profilemodifypage?id=${ id }">회원정보 수정</a>
 		</div>
 	</main>
+	<!-- 메인 컨텐츠 끝 -->
 </body>
 </html>
 <%@ include file="../../common/footer.jsp"%>
