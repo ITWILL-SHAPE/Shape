@@ -18,7 +18,7 @@ public class MeetPrtcpReadDto {
 	private String prtcp_id;
 	private String name;
 	private String gender;
-	private long phone;
+	private String phone;
 	private String email; 
 	
 		public static MeetPrtcpReadDto fromEntity(MeetPrtcp entity) {
