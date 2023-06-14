@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				// 폼을 문서에 추가하고 제출
 				form.appendTo('body').submit();
-				
+
 				$(this).attr('checked', true);
-				
+
 			}
 			else {
 				alert(`${this.value} is unchecked`);
@@ -52,64 +52,135 @@ document.addEventListener('DOMContentLoaded', () => {
 					'action': './list',
 					'method': 'GET'
 				});
-				
+
 				// 폼에 데이터 추가
 				form.append($('<input>', {
 					'type': 'hidden',
 					'name': 'mozipCheck',
 					'value': 'unchecked'
 				}));
-				
+
 				// 폼을 문서에 추가하고 제출
 				form.appendTo('body').submit();
-				
+
 				$(this).removeAttr('checked');
 
 			}
 		});
+
+
+		// 찜
+
+
+
+
+		/*$('#img-heart');
+
+		LikeCheck = function(mtid, id) {
+			console.log("찜 실시");
+			alert("찜이 되었습니다.")
+
+			const EmptyHeartimage = $('img.overlay-image');
+
+			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
+
+				// 이미지의 src 속성 변경
+				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-on');
+
+
+			} else {
+
+				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-off');
+			}
+
+
+		}; onclick = "move_profile_page('${item.nickname}')"*/
+
+
+		/*const mtid = document.querySelector('input#mtid').value;
+		const id = document.querySelector('input#id').value;
+
+
+		function LikeCheck(mtid, id) {
+			const imgHeart = document.querySelector('img#img-heart');
+			console.log("찜 실시");
+			alert("찜이 되었습니다.")
+
+			const EmptyHeartimage = $('img.overlay-image');
+
+			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
+
+				// 이미지의 src 속성 변경
+				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-on');
+
+
+			} else {
+
+				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-off');
+			}
+		}*/
+
+
+		//imgHeart.addEventListener('click', LikeCheck(mtid, id));
+		/*$(function() {
+			$("#img-heart").click(function() {
+				LikeCheck(mtid, id);
+
+			});
+		});
+
+		function LikeCheck(mtid, id) {
+			console.log("찜 실시");
+			alert("찜이 되었습니다.")
+
+			const EmptyHeartimage = $('img.overlay-image');
+
+			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
+
+				// 이미지의 src 속성 변경
+				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-on');
+
+
+			} else {
+
+				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
+
+				EmptyHeartimage.attr('alt', 'toggle-off');
+			}
+		}*/
+
 	});
 
-	// 찜
-
-	/*<script>
-		<sec:authorize access="isAuthenticated()">
-			var id = '${cardList.id}'; // 사용자 ID
-			var author = '${cardList.author}'; // 카드의 작성자 ID
-
-			// 로그인한 사용자와 카드의 작성자가 일치하는 경우
-			if (id === author) {
-				// 클릭 가능한 하트로 설정
-				document.querySelector('.heart_icon${status.begin}').addEventListener('click', function(e) {
-					e.default
-				});
-							}
-		</sec:authorize>
-
-		<sec:authorize access="isAnonymous()" id="logNot">
-							// 로그인하지 않은 사용자일 경우
-			document.querySelector('.heart_icon${status.begin}').addEventListener('click', function() {
-				alert('로그인이 필요합니다.');
-							});
-		</sec:authorize>
-	</script>*/
-
-	/*$('#logInUser').click(function() {
-		alert('클릭했습니다.');
-	});*/
+	// const imgHeart = document.querySelector('img#img-heart');
 
 
-	$('#logOutUser').click(function() {
-		alert('로그인이 필요합니다.');
-	});
+	const imgHeart = document.querySelectorAll('img#img-heart');
+	
+	for(let img of imgHeart) {
+		img.addEventListener('click', LikeCheck);
+	};
+	
+	
+	function LikeCheck() {
 
-	$('#logInUser').on('click', function(e) {
-		e.preventDefault();
-		$('#heartClickNot').find('button').prop('disabled', true);
-		alert('클릭했습니다.');
-	});
+		//const mtid = document.querySelector('input#mtid').value;
+		//const id = document.querySelector('input#id').value;
 
+		console.log('ddd');
 
+	};
 
+	//imgHeart.addEventListener('onclick', LikeCheck);
 
 
 });

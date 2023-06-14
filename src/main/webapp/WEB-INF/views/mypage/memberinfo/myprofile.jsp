@@ -120,7 +120,7 @@ th, td {
          </c:url>
            -->
 			<a class="btn btn-outline-primary form-control"
-				href="profilemodifypage?id=${ id }">회원정보 수정</a>
+				href="profilemodifypage?id=${ id }">수정</a>
 		</div>
 	</main>
 	<!-- 메인 컨텐츠 끝 -->

@@ -5,13 +5,13 @@
 <%@ include file="../common/header.jsp"%>
 <!-- 게시판 main(list) postpage -->
 <div class="container">
-	<div class="border bg-body rounded shadow-sm">
+	<div class="">
 
 		<header class="my-2 pt-5 text-center">
 			<h1>게시판</h1>
 		</header>
 
-		<div class="p-3 m-5 border-0 bd-example m-0 border-0">
+		<div class="p-3 mt-5 border-0 bd-example m-0 border-0">
 			<!-- 글쓰기 버튼 -->
 			<div class="d-grid my-2 col-5 mx-auto" style="height: 4rem;">
 				<c:url var="postCreate" value="/post/create" />
@@ -36,10 +36,11 @@
 								<p class="card-text">
 									작성자: ${ postInfo.author }
 									<!-- 작성 날짜 -->
-									<br />작성일자:
-									<fmt:formatDate value="${ postInfo.created_date }"
+									<br />날짜:
+									<fmt:formatDate value="${ postInfo.modified_date }"
 										pattern="yyyy-MM-dd" />
-									<br />댓글 개수: ${ postInfo.rcnt }
+										
+									<br />댓글: ${ postInfo.rcnt }
 								</p>
 							</div>
 						</div>
@@ -52,14 +53,14 @@
 				<nav>
 					<ul class="pagination justify-content-center">
 						<li class="page-item ${ paging.prev? "":"disabled" }"><a
-							class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a></li>
+							class="page-link" href="${ paging.startPage -1 }" tabindex="-1">&laquo;</a></li>
 						<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
 							var="num">
 							<li class="page-item ${ paging.cri.pageNum == num? "active":"" }"><a
 								class="page-link" href="${ num }">${ num }</a></li>
 						</c:forEach>
 						<li class="page-item ${ paging.next? "":"disabled" }" ><a
-							class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a></li>
+							class="page-link" href="${ paging.endPage +1 }" tabindex="-1">&raquo;</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -88,7 +89,5 @@
 
 	</div>
 </div>
-</body>
 <script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
-</html>
 <%@ include file="../common/footer.jsp"%>

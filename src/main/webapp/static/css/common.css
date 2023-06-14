@@ -2,8 +2,12 @@
 /* reset */
 *{margin: 0; padding: 0;}
 html, body {
-	min-height: 100vh;
-    min-height: -webkit-fill-available;
+	height: 100%;
+}
+
+#wrap {
+	position: relative;
+  	min-height: 100%;
 }
 ul, ol { list-style-type: none; margin: 0; padding: 0;}
 
@@ -41,6 +45,9 @@ div.link > ul.content_list {display: flex;justify-content: center;}
 div.link > ul.content_list > li { display: inline-block; width: 52px; height: 52px; line-height: 49px; border: 1px solid white; border-radius: 50%; font-size: 16px; text-align: center; transition: all 0.5s;}
 div.link > ul.content_list > li > a {color: white; font-size: 30px;}
 .footer-content > p {text-align: center;}
+footer {
+  	bottom: 0;
+}
 
 
 /* mngr home */

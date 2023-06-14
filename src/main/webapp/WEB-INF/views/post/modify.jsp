@@ -10,7 +10,7 @@
 	</header>
 
 	<main class="my-2">
-		<div class="card">
+		<div class="card mb-2">
 			<form class="card-body" id="modifyForm">
 				<input class="card-text d-none" id="pid" value="${ post.pid }"></input>
 				<div class="my-2">

@@ -35,6 +35,12 @@
 		lower(P.HRS_HD) like lower('%' || #{keyword} || '%')
 		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
 		order by P.PID desc
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE count(C.PCID) as RCNT
+        from POST_INFO P left join POST_COMMENT C
+            on P.PID = C.PID
+        where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
+        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE
+        order by P.PID desc
 	</select>
 
 	<select id="selectWithKeywordAndPaging" parameterType="String"
@@ -42,14 +48,14 @@
 		<![CDATA[
 		select * from 
 		(
-		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE
+		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE, MODIFIED_DATE 
 		from 
         (
-        select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
+        select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE, count(C.PCID) as RCNT
         from POST_INFO P left join POST_COMMENT C
             on P.PID = C.PID
         where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
-        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE
         order by P.CREATED_DATE desc
         )
 		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
@@ -63,13 +69,13 @@
 		<![CDATA[
 		select * from 
 		(
-		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE, RCNT
+		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE, MODIFIED_DATE, RCNT
 		from 
 		(
-		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, count(C.PCID) as RCNT
+		select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE, count(C.PCID) as RCNT
 		from POST_INFO P left join POST_COMMENT C
 		on P.PID = C.PID
-		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE
+		group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE
 		order by P.CREATED_DATE desc
 		)
 		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})

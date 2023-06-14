@@ -38,21 +38,25 @@
 			<div class="d-flex justify-content-center">
 				<div class="input-group w-50">
 					<c:url var="meetSearchPage" value="/meet/search"></c:url>
-					<form id="searchFormByTitle" class="TitleSearchForm"
-						action="${ meetSearchPage }">
-						<input type="text" class="form-control" id="searchTitle"
-							name="searchTitle" placeholder="검색어 입력"
-							aria-label="Input group example" aria-describedby="basic-addon1">
-						<button id="titleBtn" type="submit"
-							class="btn btn-outline-secondary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                            <path
-									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </svg>
-							<span class="visually-hidden">Button</span>
-						</button>
-					</form>
+					<div class="pt-4 m-auto row">
+						<form id="searchFormByTitle" class="TitleSearchForm"
+							action="${meetSearchPage}">
+							<div class="input-group col-sm-7 m-1">
+								<input type="text" class="form-control" id="searchTitle"
+									name="searchTitle" placeholder="검색어 입력"
+									aria-label="Input group example"
+									aria-describedby="basic-addon1">
+								<button id="titleBtn" type="submit"
+									class="btn btn-outline-secondary">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+										fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          							<path
+											d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        							</svg>
+								</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -182,7 +186,10 @@
       -> 로그인: header.jsp, main.jsp => 37줄 참고 
       -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
     -->
+			<sec:authentication property="principal.user.id" var="name" />
+			<input class="d-none" id="id" value="${ id }" />
 			<c:forEach items="${listCount}" var="cardList" varStatus="status">
+				<input class="d-none" id="mtid" value="${ cardList.mtid }" />
 				<c:url var="meetDetailPage" value="/meet/maindetail">
 					<c:param name="mtid" value="${cardList.mtid}" />
 				</c:url>
@@ -195,20 +202,25 @@
 							preserveAspectRatio="xMidYMid slice" focusable="false">
               				<rect width="100%" height="100%" fill="#55595c" />
            				</svg>
-							<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
-							<sec:authorize access="isAuthenticated()">
+						<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
+						<sec:authorize access="isAuthenticated()">
+							<sec:authentication property="principal.username" var="id" />
+							<div class="img-overlay img-right">
 								<button id="logInUser">
 									<img src="../static/images/sample/like2.svg" alt="toggle-off"
-										width="50" class="heart overlay-image overlay-right" onclick="alert(확인)"/>
+										width="50" class="heart overlay-image overlay-right"
+										id="img-heart" onclick="event.stopPropagation(); LikeCheck();" />
 								</button>
-							</sec:authorize>
-							<!-- 로그인 안 함 -->	
-							 <sec:authorize access="isAnonymous()">
-							 <button id="logOutUser">
-							 	<img src="../static/images/sample/like2.svg" alt="toggle-off"
-									width="50" class="heart overlay-image overlay-right" onclick="" />
-							 </button>
-							 </sec:authorize>
+							</div>
+						</sec:authorize>
+						<!-- 로그인 안 함 -->
+						<sec:authorize access="isAnonymous()">
+							<button id="logOutUser" >
+								<img src="../static/images/sample/like2.svg" alt="not-move"
+									width="50" class="heart overlay-image overlay-right"
+									onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
+							</button>
+						</sec:authorize>
 						<div>
 							<c:choose>
 								<c:when test="${cardList.PCNT >= cardList.nm_ppl}">
