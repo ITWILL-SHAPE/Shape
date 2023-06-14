@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.shape.repository.InfoFaQRepository">
+
+	<insert id="insert">
+		insert into INFO_FAQ (QUESTION, ANSWER) values (#{question}, #{answer})
+	</insert>
+	
+	<select id="selectOrderByFid">
+		select * from INFO_FAQ order by FID
+	</select>
+	
+	<select id="selectByFid">
+		select * from INFO_FAQ where FID = ${fid}
+	</select>
+	
+	<update id="updateFaQ">
+		update INFO_FAQ set QUESTION = #{question}, ANSWER = #{answer} where FID = #{fid}
+	</update>
+	
+	<delete id="deleteByFid">
+		delete from INFO_FAQ where FID = #{fid}
+	</delete>
+
+</mapper>
