@@ -1,4 +1,30 @@
 @charset "UTF-8";
+/* 전체 사용 */
+.mainColor {color: #3B7CFF;} /*파란색*/
+
+.subColor {color: #D3FF31;} /*연두색*/
+
+.btn-classic { /*등록*/
+	background-color: #3B7CFF;
+	color: white;
+}
+
+.btn-classic:hover,
+.btn-classic:active { 
+	background-color: #2272F2;
+	color: white;
+}
+
+.btn-list { /*목록*/
+	background-color: #D3FF31;
+	color: black;
+}
+
+.titleBolder { /*h1 타이틀 글자 굵기*/
+	font-weight: bolder;
+}
+
+
 /* header.jsp에서 사용 */
 .headerBtn {border: none;}
 .headerBtn:active, .headerBtn:focus { outline:none !important; box-shadow:none !important;}
@@ -44,25 +70,14 @@ div.signUpBox {
 .h-330{height: 330px;}
 
 /* meet/create.jsp, update.jsp에 사용 */
-.sub-container {background:#fff;}
-
-.main-container {
-	position:relative;
-}
-
-.sub-inner{
-    max-width:920px;
-    margin-bottom:70px;
-}
 
 div.meetCreateBox {
 	height: 2050px;
 	margin-top: 75px;
 	margin-bottom: 75px;
-	margin-left: 300px;
-	margin-right: 300px;
     padding: 80px;
-    
+    min-width: 1000px;
+    min-height: 2050px;
 }
 
 #mt_notice small{

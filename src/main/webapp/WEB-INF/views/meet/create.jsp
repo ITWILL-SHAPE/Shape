@@ -3,13 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
-	<div class="main-container">
-		<div class="sub-container">
+	<div class="container">
 			<div class="border bg-body rounded shadow-sm meetCreateBox">
 				<!-- 작성 -->
 				<div>
 					<div class="meetCreateTitle">
-						<h2>모임 만들기</h2>
+						<h2>모임 등록</h2>
 					</div>
 					<div class="meetCreateInfo">
 						<div align="right" id="mt_notice">
@@ -178,15 +177,14 @@
 						<div>
 							<div>
 								<div class="my-2 text-center">
-									<a class="mx-3 btn btn-warning" id="btnCancel">취소</a>
+									<a class="mx-3 btn btn-secondary" id="btnCancel">취소</a>
 									
-									<input class="mx-3 btn btn-outline-primary" type="submit"
-										id="btnCreate" value="모임 만들기" />
+									<input class="mx-3 btn btn-classic" type="submit"
+										id="btnCreate" value="모임등록" />
 								</div>
 							</div>
 						</div>
 					</form>
-				</div>
 			</div>
 		</div>
 	</div>

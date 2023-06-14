@@ -3,13 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
-	<div class="main-container">
-		<div class="sub-container">
+	<div class="container">
 			<div class="border bg-body rounded shadow-sm meetCreateBox">
 				<!-- 작성 -->
 				<div>
 					<div class="meetCreateTitle">
-						<h2>모임 수정하기</h2>
+						<h1 class="titleBolder">모임 수정</h1>
 					</div>
 					<div class="meetCreateInfo">
 						<div align="right" id="mt_notice">
@@ -171,10 +170,10 @@
 							<div>
 								<br>
 								<div class="my-2 text-center">
-									<a class="mx-3 btn btn-warning" id="btnCancel">취소</a>
-									<input class="mx-3 btn btn-outline-primary" type="submit" id="btnUpdate"
-										value="모임 수정하기" />
-									<button class="mx-3 btn btn-outline-danger" type="button" id="btnDelete">삭제</button>
+									<a class="mx-3 btn btn-secondary" id="btnCancel">취소</a>
+									<input class="mx-3 btn btn-classic" type="submit" id="btnUpdate"
+										value="수정완료" />
+									<button class="mx-3 btn btn-danger" type="button" id="btnDelete">삭제</button>
 								</div>
 							</div>
 						</div>
@@ -182,7 +181,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
