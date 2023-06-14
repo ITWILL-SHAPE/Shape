@@ -54,7 +54,7 @@
 				<span>댓글 </span><span id="commentCount">${ post.commentCount }</span>
 			</div>
 
-			<div class="card-body mb-55"><!-- 댓글 작성, 목록 보여줄 div -->
+			<div class="card-body"><!-- 댓글 작성, 목록 보여줄 div -->
 
 				<div class="my-2 row"><!-- 내 댓글 작성 div -->
 					<label class="form-label" for="content">나의 댓글</label>
