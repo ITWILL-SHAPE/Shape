@@ -35,13 +35,13 @@
 			<h1>전체 모임</h1>
 		</a>
 		<div class="tst-tools">
-			<div class="d-flex justify-content-center">
-				<div class="input-group w-50">
+			<div>
+				<div>
 					<c:url var="meetSearchPage" value="/meet/search"></c:url>
-					<div class="pt-4 m-auto row">
+					<div>
 						<form id="searchFormByTitle" class="TitleSearchForm"
 							action="${meetSearchPage}">
-							<div class="input-group col-sm-7 m-1">
+							<div class="input-group col-sm-7 my-2">
 								<input type="text" class="form-control" id="searchTitle"
 									name="searchTitle" placeholder="검색어 입력"
 									aria-label="Input group example"
@@ -186,10 +186,7 @@
       -> 로그인: header.jsp, main.jsp => 37줄 참고 
       -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
     -->
-			<sec:authentication property="principal.user.id" var="name" />
-			<input class="d-none" id="id" value="${ id }" />
 			<c:forEach items="${listCount}" var="cardList" varStatus="status">
-				<input class="d-none" id="mtid" value="${ cardList.mtid }" />
 				<c:url var="meetDetailPage" value="/meet/maindetail">
 					<c:param name="mtid" value="${cardList.mtid}" />
 				</c:url>
@@ -204,7 +201,6 @@
            				</svg>
 						<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 						<sec:authorize access="isAuthenticated()">
-							<sec:authentication property="principal.username" var="id" />
 							<div class="img-overlay img-right">
 								<button id="logInUser">
 									<img src="../static/images/sample/like2.svg" alt="toggle-off"
