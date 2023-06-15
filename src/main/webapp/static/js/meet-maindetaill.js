@@ -44,12 +44,21 @@
 		// 찜 누르기
 		const meetlike = (e) => {
 			const mtid = document.querySelector('input#mtid').value;
+<<<<<<< HEAD
 			const id = document.querySelector('input#id').value;
 
 			console.log(mtid, id);
 
 			const data = { mtid, id }
 
+=======
+			const like_id = document.querySelector('input#id').value;
+			
+			console.log(mtid , like_id);
+			
+			const data = {mtid , like_id}
+			
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 			axios.post('/shape/meet/like', data)
 				.then((response) => {
 					
@@ -66,12 +75,19 @@
 		};
 		$('button#like').click(function(e) {
 			meetlike(e);
+<<<<<<< HEAD
 		});
 
 
 
 		// 찜 취소
 		$('button#unLike').click(function(e) {
+=======
+	});
+	
+	// 찜 취소
+	$('button#delete').click(function(e) {
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 			deletemeetlike(e);
 		});
 		const deletemeetlike = (e) => {
@@ -82,9 +98,13 @@
 
 			const mtid = e.target.getAttribute('data-id');
 			const id = e.target.getAttribute('data-login');
+<<<<<<< HEAD
 
 			const reqUrl = `/shape/meet/like/${mtid}/${id}`;
 			console.log(mtid, id);
+=======
+			const reqUrl = `/shape/meet/${mtid}/${id}`;
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 
 			axios.delete(reqUrl)
 				.then((response) => {
@@ -143,7 +163,8 @@
 		$('button#delete').click(function(e) {
 			deletemeetjoin(e);
 		});
-		
+		// const btndelete = document.querySelector('button#delete');		
+		// btndelete.addEventListener('click', deletemeetjoin);
 		const deletemeetjoin = (e) => {
 			e.preventDefault();
 			
@@ -171,7 +192,16 @@
 				});
 		};
 
-		
+		/*if (isjoined) {
+			btnjoin.innerHTML = '참여완료';
+			btnjoin.addEventListener('click', deletemeetjoin);
+		} else {
+			btnjoin.innerHTML = '참여하기';
+			btnjoin.addEventListener('click', meetJoin);
+		}*/
+
+
+// document	
 });
 	
 

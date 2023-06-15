@@ -46,17 +46,12 @@ public class MeetDetailService {
 			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id());
 			
 			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
-			
-			List<MeetLike> meetLikeList = meetLikeRepository.selectMeetLikeListByMtid(mtid);
 
 			dto.setPrtcpDtoList(list); // 참여자 정보	
 			
 			dto.setUserHost(result); // 작성자 정보
 			
 			dto.setMeetlikecount(count); // 찜 갯수
-			
-			dto.setMeetLikeId(meetLikeList); // 찜 누른 인간들....
-			
 			return dto;
 			
 		}
@@ -88,6 +83,7 @@ public class MeetDetailService {
 		 */
 		public int meetLikeDelete(long mtid, String id) {
 			log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
+			
 			
 			return meetLikeRepository.likeDelete(mtid, id);
 		}

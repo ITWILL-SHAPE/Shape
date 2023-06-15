@@ -1,7 +1,5 @@
 package com.itwill.shape.repository;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.MeetLike;
@@ -9,11 +7,7 @@ import com.itwill.shape.domain.MeetLike;
 public interface MeetLikeRepository {
 
 	
-	/**
-	 * MTID 테이블의  찜 갯수 나오게 하기
-	 * @param mtid
-	 * @return
-	 */
+	// 찜 갯수 나오게 하기
 	long selectMeetlikeCountWithMtid(long mtid);
 
 	/**
@@ -30,13 +24,51 @@ public interface MeetLikeRepository {
 	 * @param mtLike -> mtid, id(모임 아이디 + 유저 아이디 필요)
 	 * @return
 	 */
-	int likeDelete(@Param("mtid")long mtid,  @Param("id")String id);
-	
+	int likeDelete(long mtid, String id);
+
 	/**
-	 *MTID 찜 리스트
-	 * @param id
+	 * 0613 정지언 특정 mtid의 좋아요 갯수 조회
+	 * 
+	 * @param mtid
 	 * @return
 	 */
-	List<MeetLike> selectMeetLikeListByMtid(@Param("mtid")long mtid );
-	
+	/*
+	 * int getLikeCountByMtid(int mtid);
+	 * 
+	 *//**
+		 * 0613 정지언 특정 mtid의 찜 개수를 가져옴
+		 * 
+		 * @param mtid
+		 * @return
+		 */
+	/*
+	 * int getCountByMtid(int mtid);
+	 * 
+	 *//**
+		 * 0613 정지언 특정 mtid에 유저(id)가 찜을 했는 지의 여부 확인
+		 * 
+		 * @param mtid
+		 * @param id
+		 * @return
+		 */
+	/*
+	 * boolean isLikedByUser(int mtid, String id);
+	 * 
+	 *//**
+		 * 0613 정지언 특정 mtid에 유저의 찜 추가
+		 * 
+		 * @param mtid
+		 * @param id
+		 */
+	/*
+	 * void insertLike(int mtid, String id);
+	 * 
+	 *//**
+		 * 0613 정지언 특정 mtid에 유저의 찜 삭제
+		 * 
+		 * @param mtid
+		 * @param id
+		 *//*
+			 * void deleteLike(int mtid, String id);
+			 */
 }
