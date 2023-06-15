@@ -1,6 +1,8 @@
 package com.itwill.shape.web;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,7 @@ import com.itwill.shape.service.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.driver.parser.util.Array;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -131,30 +134,42 @@ public class MeetController {
 		LocalDate currentDate = LocalDate.now();
 		
 		// 값 "mt_dat"의 인덱스 찾기
-		String date = null;
-		
-		for(int i = 0; i < dto.size(); i++) {
-			date = dto.get(i).getMt_date();
+		List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
+		List<LocalDate> targetDate = new ArrayList<>();
+
+		List<MeetListCountDto> filteredDto = new ArrayList<>();
+		for (MeetListCountDto item : dto) {
+		    String date = item.getMt_date();
+		    log.info("확인 = {}", date);
+		    LocalDate parsedDate = LocalDate.parse(date);
+		    targetDate.add(parsedDate);
+		    log.info(parsedDate.toString());
+		    boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
+
+		    if (isPast) { // 모집날짜가 미래일 경우
+		        filteredDto.add(item);
+		        isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
+		        
+		        
+		    } else {
+		        log.info("떨구는 것 확인 = {}", item);
+		    }
 		}
-		
-		log.info(date);
-		
-		LocalDate targetDate = LocalDate.parse(date);
-		
-		log.info(targetDate.toString());
-		
-		boolean isPast = currentDate.isBefore(targetDate);
-		
-		if(date != null && !isPast) {
-			
-			// 뷰에 PostDetailDto를 전달.
-			model.addAttribute("listCount", dto);
+
+
+		if (!filteredDto.isEmpty()) {
+		    // 뷰에 PostDetailDto를 전달.
+		    model.addAttribute("listCount", filteredDto);
+		    for (MeetListCountDto c : filteredDto) {
+		    	log.info("확인 = {}", c);
+		    }
 		} else {
-			log.info("{}이후로 존재하는 mt_date는 존재하지 않습니다. db확인해보길..."
-					, targetDate.toString());
+		    log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...",
+		            targetDate.toString());
 		}
-		
-		
+
+
+
 
 	}
 
