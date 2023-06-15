@@ -3,16 +3,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
-<head>
-<meta charset="UTF-8">
-<title>마이페이지 > 모임 > 내가 찜한 모임</title>
-</head>
 <body>
-	<div class="my-2 pt-5" id="sidebar">
-		<%@ include file="../sidebar.jsp"%>
-	</div>
-	<!-- 메인 컨텐츠 시작 -->
-		<div class="container-fluid container my-2 pt-5">
+	<div class="row">
+		<div class="my-2 pt-5 col-4" id="sidebar">
+			<%@ include file="../sidebar.jsp"%>
+		</div>
+		<!-- 메인 컨텐츠 시작 -->
+		<div id="main_content" class="container col-8">
+			<div>
+				<h1 class="my-2 pt-5 text-center titleBolder">내가 찜한 모임</h1>
+			</div>
+		<div class="container-fluid container my-2 pt-3">
 			<!--아이템: model.addAttribute("interestsList", dto);-->
 			<div id="cardList" class="album py-5">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -109,6 +110,8 @@
 					</c:forEach>
 				</div>
 			</div>
+		</div>
+		</div>
 		</div>
 	<!-- 메인 컨텐츠 끝 -->
 </body>
