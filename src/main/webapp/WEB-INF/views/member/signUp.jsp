@@ -5,7 +5,6 @@
 	<div class="container">
 		<div class="my-2 p-3 text-center">
 			<h1>회원가입</h1>
-			<h6 class="text-muted">Shape에 오신 걸 환영합니다.</h6>
 		</div>
 		<div class="text-center border bg-body rounded shadow-sm p-5">
 			<div class="text-center">
@@ -19,10 +18,10 @@
 								<th class="p-0">아이디</th>
 								<td>
 									<div class="row">
-										<div class="col-9">
+										<div class="col-8">
 											<input type="text" name="id" class="form-control"/>
 										</div>
-										<div class="col-3 p-0 text-end">
+										<div class="col-4 p-0 text-end">
 											<input type="hidden" id="idDupCheck" value="N">
 											<button id="btnIdDupCheck" type="button" class="btn btn-secondary form-check-inline">중복체크</button>
 										</div>	

@@ -39,12 +39,12 @@ nav ul.gnb > li > ul.sub_menu a:hover {background-color : rgb(211, 255, 49);}
 
 
 /* 푸터영역 */
-.footer-content {width: 600px; margin: 10px auto; color: white;}
-div.link {margin-bottom: 5px;}
+.footer-content {width: 600px; margin: 10px auto;}
+div.link {margin-bottom: 10px;}
 div.link > ul.content_list {display: flex;justify-content: center;}
 div.link > ul.content_list > li { display: inline-block; width: 52px; height: 52px; line-height: 49px; border: 1px solid white; border-radius: 50%; font-size: 16px; text-align: center; transition: all 0.5s;}
-div.link > ul.content_list > li > a {color: white; font-size: 30px;}
-.footer-content > p {text-align: center;}
+div.link > ul.content_list > li > a {font-size: 30px;}
+.footer-content > p {text-align: center; margin: 0 !important}
 footer {
   	bottom: 0;
 }

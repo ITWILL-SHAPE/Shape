@@ -28,6 +28,9 @@
 /* header.jsp에서 사용 */
 .headerBtn {border: none;}
 .headerBtn:active, .headerBtn:focus { outline:none !important; box-shadow:none !important;}
+.w-215-px { width : 215px; }
+.main-background { background-color: #3B7CFF; }
+
 /* footer.jsp에서 사용 */
 .text-white {color: white;}
 /* login.jsp에 사용 */

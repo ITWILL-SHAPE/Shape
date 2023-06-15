@@ -1,14 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 		</div>
-		<footer class="py-5 bg-dark text-white mt-5">
+		<footer class="py-3 mt-5">
 			<div class="footer-content">
 				<div class="link">
 					<ul class="content_list">
 						<li>
-							<a href="https://github.com/ITWILL-SHAPE/Shape" target="_blank">
+							<a href="https://github.com/ITWILL-SHAPE/Shape" target="_blank"
+								class="text-dark">
 								<i class="bi bi-github"></i>
 							</a>
+						</li>
+						<li>
+							<a href="https://www.itwill.co.kr/" target="_blank"
+								class="text-dark">
+								<i class="bi bi-gear-wide-connected"></i>
+							</a>							
 						</li>
 					</ul>						
 				</div>

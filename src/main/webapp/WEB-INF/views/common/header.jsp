@@ -29,7 +29,7 @@
 	</head>
 	<body>
 		<!-- 뉴 디자인 -->
-		<nav class="py-2 bg-light border-bottom navbar-fixed-top">
+		<nav class="py-1 navbar-fixed-top main-background">
 			<div class="container d-flex flex-wrap">
 				<ul class="nav me-auto">
 				</ul>
@@ -37,11 +37,11 @@
 					<sec:authorize access="isAnonymous()">
 						<li class="nav-item">
 							<c:url value="/member/customLogin" var="login"/>
-							<a href="${ login }" class="nav-link link-dark px-2">로그인</a>
+							<a href="${ login }" class="nav-link link-dark text-white px-2">로그인</a>
 						</li>
 						<li class="nav-item">
 							<c:url value="/member/signUp" var="signUp"/>
-							<a href="${ signUp }" class="nav-link link-dark px-2">회원가입</a>
+							<a href="${ signUp }" class="nav-link link-dark text-white px-2">회원가입</a>
 						</li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
@@ -51,14 +51,14 @@
 				</ul>
 			</div>
 		</nav>
-		<header class="py-3 mb-4 border-bottom">
+		<header class="py-3 my-4">
 			<div class="container">
 				<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 					<!-- logo -->
 					<a href="<%=request.getContextPath()%>"
 						class="d-flex align-items-center mb-2 mb-lg-0 text-decoration-none col-md-3">
-						<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png"
-							class="img-fluid">
+						<img src="<%=request.getContextPath()%>/static/images/common/Asset3.png"
+							class="w-215-px">
 					</a>
 					<!-- 메뉴 -->
 					<nav class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 dropdown">
