@@ -45,7 +45,7 @@
 						</li>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
-						<span><sec:authentication property="principal.user.name" var="name"/> ${ name }님</span>
+						<span class="text-white"><sec:authentication property="principal.user.name" var="name"/> ${ name }님</span>
 						<sec:authentication property="principal.user.id" var="id" />
 					</sec:authorize>
 				</ul>

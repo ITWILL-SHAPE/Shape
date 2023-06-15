@@ -23,7 +23,6 @@
 					</button>
 				</li>
 			</ul>
-			
 			<div class="tab-content h-330" id="tabContent">
 				<!-- id 찾기 -->
 				<div class="tab-pane fade show active p-5" id="findId"
