@@ -28,12 +28,14 @@
 <div class="container-fluid container">
 
 	<!--제목 검색 -> post -->
-	<header class="d-grid my-2 col-7 mx-auto m-5 text-center">
+	<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
 		<c:url var="meetListPage" value="/meet/list">
 		</c:url>
-		<a href="${ meetListPage }" class="link-dark text-decoration-none">
-			<h1>전체 모임</h1>
-		</a>
+		<div class="titleBolder">
+			<a href="${ meetListPage }" class="link-dark text-decoration-none">
+				<h1>전체 모임</h1>
+			</a>
+		</div>
 		<div class="tst-tools">
 			<div>
 				<div>
@@ -47,7 +49,7 @@
 									aria-label="Input group example"
 									aria-describedby="basic-addon1">
 								<button id="titleBtn" type="submit"
-									class="btn btn-outline-secondary">
+									class="mainColor">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 										fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           							<path
@@ -60,7 +62,7 @@
 				</div>
 			</div>
 		</div>
-	</header>
+	</div>
 
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
 	<form id="searchFormCheckBox" class="CheckBoxSearchForm">
