@@ -82,9 +82,9 @@
 		</div>
 		<!-- 제목, 내용 -->
 		<div>
-			<div class="card">
+			<div class="card ">
 				<div class="card-body">
-					<div>
+					<div class= "my-5">
 						<div id="myCarousel" class="carousel slide"
 							data-bs-ride="carousel">
 							<div class="carousel-indicators">
@@ -158,36 +158,36 @@
 					</div>
 					<div class="meeetcontent">
 						<ul>
-							<div id="category" class="my-2">
+							<div id="category" class="my-3">
 								<li><sapn>🏷[분야] : </sapn> <i> ${ meetmaindetail.category }</i>
 								</li>
 							</div>
-							<div id="sido_sigungu" class="my-2">
+							<div id="sido_sigungu" class="my-3">
 								<li><sapn>🏳‍[지역] : </sapn> <i>${meetmaindetail.sido}
 										${meetmaindetail.sigungu }</i></li>
 							</div>
-							<div id="meet_date_time" class="my-2">
+							<div id="meet_date_time" class="my-3">
 								<li><sapn>🗓[모집일정] : </sapn> <i>${meetmaindetail.mt_date}</i>
 									<i>${meetmaindetail.mt_time }</i></li>
 							</div>
-							<div id="end_date" class="my-2">
+							<div id="end_date" class="my-3">
 								<span>⏰[모집기간] : </span> <i>${meetmaindetail.ed_date} 까지</i>
 								</li>
 							</div>
-							<div id="meet_ppl" class="my-2">
+							<div id="meet_ppl" class="my-3">
 								<span>🙋🏻‍♀️[인원] : <span> <i>${meetmaindetail.nm_ppl}
 											명</i>
 										</li>
 							</div>
-							<div id="cost" name="cost" class="my-2">
+							<div id="cost" name="cost" class="my-3">
 								<span>💸참가비용 : </span> <i>${meetmaindetail.mt_cost} 원</i>
 								</li>
 							</div>
-							<div id="cost_info" name="cost_info" class="my-2">
+							<div id="cost_info" name="cost_info" class="my-3">
 								<span>🧾비용내용 : </span> <i>${meetmaindetail.mt_cost_info}</i>
 								</li>
 							</div>
-							<div id="content" name="content" class="my-2">
+							<div id="content" name="content" class="my-3">
 								<span>📝내용 : </span> <i>${meetmaindetail.content}</i>
 								</li>
 							</div>
@@ -224,50 +224,50 @@
 										</c:url>
 										<a href="${ updatePage }" type="button"
 											class="btn btn-classic" id="btnUpdate" name="btnUpdate">수정</a>
-										<a href="${delete }" type="button" class="btn btn-secondary"
-											id="btnDelete" name="btnDelete">삭제</a>
 									</div>
 								</div>
 							</c:when>
 
 							<c:when test="${ author != loginUser }">
-								<c:set var="loop_flag" value="false" />
-								<div class=" d-grid gap-2 d-md-block  mx-auto my-2"
-									style="text-align: right;">
+								<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: right;">
 									
-									<c:forEach items="${ meetmaindetail.prtcpDtoList }"
-										var="userList">
-										<c:if test="${ userList.prtcp_id == loginUser && loop_flag == false }">
-
-											<button id="delete" name="delete" type="button"
-												class="btn btn-secondary" data-id="${meetmaindetail.mtid}"
-												data-login="${ userList.prtcp_id }">참여취소</button>
-											
-											<c:set var="loop_flag" value="true" />
-										</c:if>
-									</c:forEach>
+									<!-- 참여자가 찜을 눌렀을때 -->
 									<c:set var="loop_like" value="false" />
 									<c:forEach items="${meetmaindetail.meetLikeId}" var ="likeUser">
 										<c:if test="${likeUser.id == loginUser && loop_like == false }">
 											<button id="unLike" name="unLike" type="button"
 												class="btn btn-danger" data-id="${meetmaindetail.mtid}"
-												data-login="${ loginUser }">♥
+												data-login="${ likeUser.id }">♥
 												${meetmaindetail.meetlikecount}</button>
 											<c:set var="loop_like" value="true" />
 										</c:if>	
 									</c:forEach>
+									
+									<!-- 참여자가 참여하기를 눌렀을때 -->
+									<c:set var="loop_flag" value="false" />
+									<c:forEach items="${ meetmaindetail.prtcpDtoList }"
+										var="userList">
+										<c:if test="${ userList.prtcp_id == loginUser && loop_flag == false }">
+											<button id="delete" name="delete" type="button" class="btn btn-secondary" 
+											data-id="${meetmaindetail.mtid}" data-login="${ userList.prtcp_id }">참여취소</button>
+											<c:set var="loop_flag" value="true" />
+										</c:if>
+									</c:forEach>
+									
+									<!-- 참여자가 찜을 안 눌었을때  -->
+									<c:if test="${likeUser.id != loginUser && loop_like == false}">
+									<button id="like" name="like" 
+									type="button" class="btn btn-danger" >♡ ${meetmaindetail.meetlikecount}</button>
+									</c:if>
+									
+									<!-- 참여자가 챰여하기를 안 눌었을때  -->
+									<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
+										<button id="join" name="join" type="button" class="btn btn-classic">참여</button>
+									</c:if>
 								
-								<!-- <div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: right;"> -->
-								<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
-									<button id="join" name="join" type="button" class="btn btn-classic">참여</button>
-								</c:if>
-								<c:if test="${likeUser.id != loginUser && loop_like == false  }">
-									<button id="unLike" name="unLike" type="button" class="btn btn-danger" >♥ ${meetmaindetail.meetlikecount}</button>
-								</c:if>
 								</div>
 							</c:when>
-							</div>
-						</c:choose>
+						</c:choose>			
 					</sec:authorize>
 
 
@@ -282,7 +282,7 @@
 								src="../static/images/sample/user.png" alt="host 사진">
 							<div id="host-name" class="meetdetailuser">이름 : ${ meetmaindetail.userHost.name }</div>
 							<div id="host-email" class="meetdetailemail">이메일 : ${ meetmaindetail.userHost.email }</div>
-
+							
 						</div>
 					</div>
 					<!-- 참여자 목록 -->
@@ -359,9 +359,11 @@
 		</div>
 	</div>
 </div>
-<script
-	src=" <%=request.getContextPath()%>/static/js/meet-maindetaill.js"></script>
-<%-- <script src="<%=request.getContextPath()%>/static/js/meet-modify.js"></script>	 --%>
+
+<script src=" <%=request.getContextPath()%>/static/js/meet-maindetaill.js"></script>
+<script src="<%=request.getContextPath()%>/static/js/meet-modify.js"></script>
+	
+
 
 
 

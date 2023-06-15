@@ -13,7 +13,7 @@
 	<!-- 찜 수 delete문 -->
 	<delete id="likeDelete">
 		delete from MEET_LIKE 
-		where ID = #{id} and MTID = #{MTID}
+		where MTID = #{mtid} and ID = #{id}
 	</delete>
 	
 	<!--  meetList.jsp에서 사용될 찜 수 저장.-->
