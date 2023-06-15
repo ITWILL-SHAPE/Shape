@@ -1,18 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp"%>
-<head>
-<script defer src="static/js/userPwd-modify.js"></script>
-<style>
-.tip_list {
-	list-style: none;
-}
 
-.tip_list li:before {
-	content: "- ";
-}
-</style>
-</head>
 <body>
 	<div class="row">
 
@@ -41,7 +30,7 @@
 								<label for="nowPwd">현재 비밀번호 입력</label>
 							</h6>
 							<div class="inputPwd">
-								<input  class="blue-border" type="password" id="nowPwd" name="nowPwd" required autofocus/>
+								<input  class="green-border" type="password" id="nowPwd" name="nowPwd" required autofocus/>
 							</div>
 						</div>
 						<div class="pwd_new my-2 pt-3">
@@ -49,8 +38,8 @@
 								<label for="newPwd">새로운 비밀번호 입력</label>
 							</h6>
 							<div class="inputPwd">
-								<input  class="blue-border" type="password" id="newPwd" name="newPwd" required />
-								<p class="tip_txt">* 영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력해 주세요.</p>
+								<input  class="green-border" type="password" id="newPwd" name="newPwd" required />
+								<p class="tip-text">* 영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력해 주세요.</p>
 							</div>
 						</div>
 						<div class="pwd_re">
@@ -58,8 +47,8 @@
 								<label for="rePwd">새로운 비밀번호 입력 확인</label>
 							</h6>
 							<div class="inputPwd">
-								<input  class="blue-border" type="password" id="rePwd" name="rePwd" required />
-								<p class="tip_txt">* 새로운 비밀번호 변경확인을 위하여 다시 한번 입력해 주세요.</p>
+								<input  class="green-border" type="password" id="rePwd" name="rePwd" required />
+								<p class="tip-text">* 새로운 비밀번호 변경확인을 위하여 다시 한번 입력해 주세요.</p>
 							</div>
 						</div>
 					</div>
@@ -68,8 +57,8 @@
 					<div class="btn_area">
 						<div
 							class="btn_wrap my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-end">
-							<input type="submit" class="btn btn_submit btn-classic"
-								value="변경완료" /> <input type="submit"
+							<input id="updateBtn" type="button" class="btn btn_submit btn-classic"
+								value="변경완료" /> <input type="button"
 								class="btn btn_cancel btn-secondary" value="취소" />
 						</div>
 
@@ -83,6 +72,7 @@
 		<!-- 메인 컨텐츠 끝 -->
 	</div>
 </body>
+<script src="<%=request.getContextPath()%>/static/js/mypage-modifyPwd.js"></script>
 
 <footer>
 	<%@ include file="../../common/footer.jsp"%>

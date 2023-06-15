@@ -1,16 +1,17 @@
 @charset "UTF-8";
 /* 전체 사용 */
-.mainColor {color: #3B7CFF;} /*파란색*/
-
-.subColor {color: #D3FF31;} /*연두색*/
-
+.mainColor {
+	color: #3B7CFF;
+} /*파란색*/
+.subColor {
+	color: #D3FF31;
+} /*연두색*/
 .btn-classic { /*등록*/
 	background-color: #3B7CFF;
 	color: white;
 }
 
-.btn-classic:hover,
-.btn-classic:active { 
+.btn-classic:hover, .btn-classic:active {
 	background-color: #2272F2;
 	color: white;
 }
@@ -24,64 +25,93 @@
 	font-weight: bolder;
 }
 
-
 /* header.jsp에서 사용 */
-.headerBtn {border: none;}
-.headerBtn:active, .headerBtn:focus { outline:none !important; box-shadow:none !important;}
-.w-215-px { width : 215px; }
-.main-background { background-color: #3B7CFF; }
+.headerBtn {
+	border: none;
+}
+
+.headerBtn:active, .headerBtn:focus {
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.w-215-px {
+	width: 215px;
+}
+
+.main-background {
+	background-color: #3B7CFF;
+}
 
 /* footer.jsp에서 사용 */
-.text-white {color: white;}
+.text-white {
+	color: white;
+}
 /* login.jsp에 사용 */
 div.loginBox {
 	height: 500px;
-    margin-bottom: 75px;
-    padding: 30px;
+	margin-bottom: 75px;
+	padding: 30px;
 }
+
 main.login-inputBox {
 	width: 50%;
-    margin: auto;
+	margin: auto;
 }
+
 div.errorMessage {
 	text-align: start;
-    font-size: 13px;
-    color: red;
+	font-size: 13px;
+	color: red;
 }
 
-.font-20 {font-size: 20px;}
+.font-20 {
+	font-size: 20px;
+}
 
-a.custom { text-decoration: none; color: black !important; line-height: initial;}
+a.custom {
+	text-decoration: none;
+	color: black !important;
+	line-height: initial;
+}
 
 /* 회원가입 */
 div.signUpBox {
 	height: 700px;
-    margin-bottom: 75px;
-    padding: 30px;
+	margin-bottom: 75px;
+	padding: 30px;
 }
 
 .bg-color-blue {
 	background-color: blue;
 }
 
-.fw-700 {font-weight: 700;}
-
-.signUp-border { border-color: darkgray; }
-
-/* 아이디 및 비밀번호 찾기 */
-.mb-55{margin-bottom: 55px;}
-.h-330{height: 330px;}
-
-/* meet/create.jsp, update.jsp에 사용 */
-
-div.meetCreateBox {
-	height: 2050px;
-    padding: 80px;
-    min-width: 1000px;
-    min-height: 2050px;
+.fw-700 {
+	font-weight: 700;
 }
 
-#mt_notice small{
+.signUp-border {
+	border-color: darkgray;
+}
+
+/* 아이디 및 비밀번호 찾기 */
+.mb-55 {
+	margin-bottom: 55px;
+}
+
+.h-330 {
+	height: 330px;
+}
+
+/* meet/create.jsp, update.jsp에 사용 */
+div.meetCreateBox {
+	height: 2050px;
+	padding: 80px;
+	min-width: 1000px;
+	min-height: 2050px;
+}
+
+#mt_notice small {
 	text-align: right;
 	color: red;
 }
@@ -91,21 +121,21 @@ span.highlight {
 }
 
 .form-box#createForm {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-left: 180px;
-  margin-right: 180px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-left: 180px;
+	margin-right: 180px;
 }
 
 .form-box#modifyForm {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-left: 180px;
-  margin-right: 180px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	margin-left: 180px;
+	margin-right: 180px;
 }
 
 .dt_class {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .smallText {
@@ -113,7 +143,7 @@ span.highlight {
 }
 
 .meetCreateTitle {
-	text-align: center;	
+	text-align: center;
 	margin-bottom: 80px;
 }
 
@@ -122,82 +152,83 @@ span.highlight {
 	margin-right: 180px;
 }
 
-/*디테일 JSP 사용*/ 
+/*디테일 JSP 사용*/
 div.meeetcontent {
-   margin-right :15px;
-   margin-left: 15px;
+	margin-right: 15px;
+	margin-left: 15px;
 }
-div.meetdetailemail{
-   margin-right:61px;
-   margin-left: 61px;
+
+div.meetdetailemail {
+	margin-right: 61px;
+	margin-left: 61px;
 }
-div.meetdetailuser{
-	margin-right:61px;
-   	margin-left: 61px;
-   	margin-top: -55px;
-   	margin-bottom: 10px;
+
+div.meetdetailuser {
+	margin-right: 61px;
+	margin-left: 61px;
+	margin-top: -55px;
+	margin-bottom: 10px;
 }
 
 .profile {
-      display: flex;
-      align-items: center;
-    }
-  
+	display: flex;
+	align-items: center;
+}
+
 img.user-img {
-      width: 50px; /* 사용자 사진의 너비 조정 */
-      height: 50px; /* 사용자 사진의 높이 조정 */
-      margin-right: 10px; /* 사진과 정보 사이의 여백 조정 */
-    }
-  
-    .user-info {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .user-name, .user-email {
-      font-size: 16px; /* 이름과 이메일의 글꼴 크기 조정 */
-    }
+	width: 50px; /* 사용자 사진의 너비 조정 */
+	height: 50px; /* 사용자 사진의 높이 조정 */
+	margin-right: 10px; /* 사진과 정보 사이의 여백 조정 */
+}
+
+.user-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-name, .user-email {
+	font-size: 16px; /* 이름과 이메일의 글꼴 크기 조정 */
+}
 
 p.login-info-text {
-		color: red;
-		font-size: smaller;
-		text-align: right;
-	}
-
+	color: red;
+	font-size: smaller;
+	text-align: right;
+}
 
 /* 'meet/list.jsp' */
-
 svg.bd-placeholder-img {
-   font-size: 1.125rem;
-   text-anchor: middle;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   user-select: none;
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 }
 
 @media ( min-width : 768px) {
-   .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-   }
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
 }
 
 img.overlay-image {
-   position: relative;
+	position: relative;
 }
 
 img.overlay-right {
-   position: absolute;
-   top: 15px;
-   right: 20px;
+	position: absolute;
+	top: 15px;
+	right: 20px;
 }
 
 img.overlay-left {
-   position: absolute;
-   top: 15px;
-   left: 10px;
+	position: absolute;
+	top: 15px;
+	left: 10px;
 }
+
 a:link.meetListATag {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 div.img-overlay {
@@ -206,8 +237,8 @@ div.img-overlay {
 
 div.img-right {
 	position: absolute;
-   top: 15px;
-   right: 20px;
+	top: 15px;
+	right: 20px;
 }
 
 /* mngr userInfo list*/
@@ -217,7 +248,24 @@ table.users tr {
 
 /* mypage border */
 .blue-border {
-  border: 2px solid;
-  Color: #3B7CFF;
+	border: 2px solid;
+	Color: #3B7CFF;
 }
 
+.green-border {
+	border: 2px solid;
+	color: #D3FF31;
+}
+/* mypage modifyPwd*/
+.tip_list {
+	list-style: none;
+}
+
+.tip_list li:before {
+	content: "- ";
+}
+
+p.tip-text{
+	color: red;
+	font-size: smaller;
+}
