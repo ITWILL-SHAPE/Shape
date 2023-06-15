@@ -1,1 +1,7 @@
 /target/
+.settings/
+.gitignore
+.classpath
+.project
+.DS_Store
+/bin/
