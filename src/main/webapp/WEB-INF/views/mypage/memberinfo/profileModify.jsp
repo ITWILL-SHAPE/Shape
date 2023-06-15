@@ -5,69 +5,6 @@
 <%@ include file="../../common/header.jsp"%>
 <head>
 <script defer src="static/js/userinfo-modify.js"></script>
-<style>
-.center {
-	margin: 0 auto;
-	text-align: center;
-}
-
-table {
-	margin: 0 auto;
-	text-align: left;
-	border-collapse: collapse;
-}
-
-th, td {
-	padding: 5px;
-	border: none;
-}
-
-.profile-container {
-	position: relative;
-}
-
-.profile-image-container {
-	position: relative;
-	display: inline-block;
-}
-
-.profile-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	opacity: 0;
-	transition: opacity 0.3s;
-}
-
-.profile-overlay:hover {
-	opacity: 1;
-}
-
-.change-profile-btn {
-	border: none;
-	background-color: transparent;
-	color: white;
-	font-size: 16px;
-	cursor: pointer;
-	width: max-content;
-	padding: 0;
-}
-
-.profile-image {
-	width: 300px;
-	height: auto;
-}
-
-.profile-info {
-	margin-bottom: 40px;
-}
-</style>
 </head>
 <body>
 	<div class="row">
