@@ -1,5 +1,6 @@
 package com.itwill.shape.web;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -126,9 +127,32 @@ public class MeetController {
 		log.info("readBasic");
 
 		List<MeetListCountDto> dto = meetListService.readByCreateTime();
-
-		// 뷰에 PostDetailDto를 전달.
-		model.addAttribute("listCount", dto);
+		
+		LocalDate currentDate = LocalDate.now();
+		
+		// 값 "mt_dat"의 인덱스 찾기
+		String date = null;
+		
+		for(int i = 0; i < dto.size(); i++) {
+			date = dto.get(i).getMt_date();
+		}
+		
+		log.info(date);
+		
+		LocalDate targetDate = LocalDate.parse(date);
+		
+		log.info(targetDate.toString());
+		
+		boolean isPast = currentDate.isBefore(targetDate);
+		
+		if(date != null && !isPast) {
+			
+			// 뷰에 PostDetailDto를 전달.
+			model.addAttribute("listCount", dto);
+		} else {
+			log.info("{}이후로 존재하는 mt_date는 존재하지 않습니다. db확인해보길..."
+					, targetDate.toString());
+		}
 		
 		
 
