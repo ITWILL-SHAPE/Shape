@@ -41,6 +41,8 @@
 					<div class="pt-4 m-auto row">
 						<form id="searchFormByTitle" class="TitleSearchForm"
 							action="${meetSearchPage}">
+							<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' /> 
+							<input type='hidden' name='amount' value='${ paging.cri.amount }' />
 							<div class="input-group col-sm-7 m-1">
 								<input type="text" class="form-control" id="searchTitle"
 									name="searchTitle" placeholder="검색어 입력"
@@ -189,96 +191,120 @@
       -> 로그인: header.jsp, main.jsp => 37줄 참고 
       -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
     -->
-			<c:forEach items="${searchList}" var="cardList" varStatus="status">
-				<c:url var="meetDetailPage" value="/meet/maindetail">
-					<c:param name="mtid" value="${cardList.mtid}" />
-				</c:url>
-				<div class="col" style="cursor: pointer;"
-					onclick="location=href=('${meetDetailPage}');">
-					<div class="card shadow-sm image-container position-relative">
-						<svg idx="${status.begin}" class="bd-placeholder-img card-img-top"
-							width="100%" height="220" xmlns="http://www.w3.org/2000/svg"
-							role="img" aria-label="Placeholder: Thumbnail"
-							preserveAspectRatio="xMidYMid slice" focusable="false">
+			<c:choose>
+				<c:when test="${ listCount == null }">
+					<div class="p-2 m-3 d-flex col-7">
+						<h3 class="text-lg text-center">현재 모집중인 모임이 존재하지 않습니다.</h3>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${searchList}" var="cardList" varStatus="status">
+						<c:url var="meetDetailPage" value="/meet/maindetail">
+							<c:param name="mtid" value="${cardList.mtid}" />
+						</c:url>
+						<div class="col" style="cursor: pointer;"
+							onclick="location=href=('${meetDetailPage}');">
+							<div class="card shadow-sm image-container position-relative">
+								<svg idx="${status.begin}"
+									class="bd-placeholder-img card-img-top" width="100%"
+									height="220" xmlns="http://www.w3.org/2000/svg" role="img"
+									aria-label="Placeholder: Thumbnail"
+									preserveAspectRatio="xMidYMid slice" focusable="false">
               				<rect width="100%" height="100%" fill="#55595c" />
             			</svg>
-						<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
-						<sec:authorize access="isAuthenticated()">
-							<button id="logInUser">
-								<img src="../static/images/sample/like2.svg" alt="toggle-off"
-									width="50" class="heart overlay-image overlay-right"
-									onclick="event.stopPropagation(); alert('확인');" />
-							</button>
-						</sec:authorize>
-						<!-- 로그인 안 함 -->
-						<sec:authorize access="isAnonymous()">
-							<button id="logOutUser">
-								<img src="../static/images/sample/like2.svg" alt="toggle-off"
-									width="50" class="heart overlay-image overlay-right"
-									onclick="event.stopPropagation(); alert('확인');" />
-							</button>
-						</sec:authorize>
+								<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
+								<sec:authorize access="isAuthenticated()">
+									<button id="logInUser">
+										<img src="../static/images/sample/like2.svg" alt="toggle-off"
+											width="50" class="heart overlay-image overlay-right"
+											onclick="event.stopPropagation(); alert('확인');" />
+									</button>
+								</sec:authorize>
+								<!-- 로그인 안 함 -->
+								<sec:authorize access="isAnonymous()">
+									<button id="logOutUser">
+										<img src="../static/images/sample/like2.svg" alt="toggle-off"
+											width="50" class="heart overlay-image overlay-right"
+											onclick="event.stopPropagation(); alert('확인');" />
+									</button>
+								</sec:authorize>
 
-						<div>
-							<c:choose>
-								<c:when test="${cardList.PCNT >= cardList.nm_ppl}">
-									<div id="mozipFin${status.begin}">
-										<img id="mozipFinImg${status.begin}"
-											src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
-											width="80" class="overlay-image overlay-left" />
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div id="mozipIin${status.begin}">
-										<img id="mozipIin${status.begin}"
-											src="../static/images/sample/mozip_ing.svg" alt="recuriIng"
-											width="80" class="overlay-image overlay-left" />
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</div>
+								<div>
+									<c:choose>
+										<c:when test="${cardList.PCNT >= cardList.nm_ppl}">
+											<div id="mozipFin${status.begin}">
+												<img id="mozipFinImg${status.begin}"
+													src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
+													width="80" class="overlay-image overlay-left" />
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div id="mozipIin${status.begin}">
+												<img id="mozipIin${status.begin}"
+													src="../static/images/sample/mozip_ing.svg" alt="recuriIng"
+													width="80" class="overlay-image overlay-left" />
+											</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
 
-						<div class="card-body">
-							<div class="post-inner">
-								<div class="row align-items-center">
-									<div class="col-auto" id="post-category${status.begin}">
-										${cardList.category}</div>
-									<div class="col text-lg-end text-center">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-											fill="currentColor" class="bi bi-suit-heart-fill"
-											viewBox="0 0 16 16">
+								<div class="card-body">
+									<div class="post-inner">
+										<div class="row align-items-center">
+											<div class="col-auto" id="post-category${status.begin}">
+												${cardList.category}</div>
+											<div class="col text-lg-end text-center">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16"
+													height="16" fill="currentColor"
+													class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
                       						<path
-												d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+														d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
                    						 </svg>
-										<span class="text-end" id="heart${status.begin}"> <em>${cardList.LCNT}</em>
-										</span>
+												<span class="text-end" id="heart${status.begin}"> <em>${cardList.LCNT}</em>
+												</span>
+											</div>
+										</div>
+										<div id="post-sidoAndTitle${status.begin}">[
+											${cardList.sido} ] &lt;${cardList.title}&gt;</div>
+										<div id="post-mtDate${status.begin}">
+											<span class="map">모집일정: ${cardList.mt_date}</span>
+										</div>
+									</div>
+									<div class="text-lg-end text-center">
+										<small class="text-muted"> 모집인원: <span
+											id="currentApplicants${status.begin}">${cardList.PCNT}</span>
+											/ <span id="maxApplicants${status.begin}">${cardList.nm_ppl}</span>
+										</small>
 									</div>
 								</div>
-								<div id="post-sidoAndTitle${status.begin}">[
-									${cardList.sido} ] &lt;${cardList.title}&gt;</div>
-								<div id="post-mtDate${status.begin}">
-									<span class="map">모집일정: ${cardList.mt_date}</span>
-								</div>
-							</div>
-							<div class="text-lg-end text-center">
-								<small class="text-muted"> 모집인원: <span
-									id="currentApplicants${status.begin}">${cardList.PCNT}</span> /
-									<span id="maxApplicants${status.begin}">${cardList.nm_ppl}</span>
-								</small>
+								<!-- card body -->
 							</div>
 						</div>
-						<!-- card body -->
-					</div>
-				</div>
-			</c:forEach>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
 </div>
-</div>
-<div class="my-2 p-5 d-grid gap-2 col-6 mx-auto">
-	<button id="loadMoreBtn" class="btn btn-outline-success btn-lg"
-		type="button">더보기</button>
+<!-- 페이징 -->
+<div>
+	<nav>
+		<ul class="pagination justify-content-center">
+			<li class="page-item ${ paging.prev ? '' : 'disabled' }"><a
+				class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a>
+			</li>
+			<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
+				var="num">
+				<li class="page-item ${ paging.cri.pageNum == num? "active":"" }">
+					<a class="page-link" href="${ num }">${ num }</a>
+				</li>
+			</c:forEach>
+			<li class="page-item ${ paging.next? '' : 'disabled' }"><a
+				class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a>
+			</li>
+		</ul>
+	</nav>
 </div>
 
 

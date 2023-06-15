@@ -194,6 +194,13 @@
 	      -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
 	    -->
 				<c:forEach items="${listCount}" var="cardList" varStatus="status">
+				<c:choose>
+				<c:when test="${ listCount == null }">
+					<div class="p-2 m-3 text-center">
+						"현재 모집중인 모임이 존재하지 않습니다."
+					</div>
+				</c:when>
+				<c:otherwise>
 					<c:url var="meetDetailPage" value="/meet/maindetail">
 						<c:param name="mtid" value="${cardList.mtid}" />
 					</c:url>
@@ -270,8 +277,10 @@
 								</div>
 							</div>
 							<!-- card body -->
-						</div>
-					</div>
+						 </div>
+					 </div>
+				</c:otherwise>	
+				</c:choose>	
 			</c:forEach>
 		</div>
 	</div>
