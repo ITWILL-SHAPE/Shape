@@ -232,7 +232,9 @@ public class MeetController {
         log.info("result = {}", result);
         return ResponseEntity.ok(result);
     }
-	 
+	/**
+	 * 배선영 찜 만들기 
+	 */
 	@PostMapping("/like")
 	  public ResponseEntity<Integer> createLike(@RequestBody MeetLikeDto dto){
 	  log.info("createPrtcp(dto={})", dto);

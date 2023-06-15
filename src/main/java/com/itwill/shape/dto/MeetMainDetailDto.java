@@ -43,7 +43,8 @@ public class MeetMainDetailDto {
 	private Timestamp created_date;
 	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST)
 	private UserInfo userHost; // Host 작성자
-	private long meetlikecount; // 찜 갯수 
+	private long meetlikecount; // 찜 갯수
+	private List<MeetLike> meetLikeId; // 찜 한 아이디
 	
 		
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
