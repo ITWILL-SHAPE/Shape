@@ -26,6 +26,15 @@ public class PostInfoRepositoryTest {
 	private PostInfoRepository postInfoRepository;
 	
 	@Test
+	public void selectByAuthorWithPaging() {
+		Criteria cri = new Criteria();
+		log.info("selectByAuthorWithPaging(cir={})", cri);
+		List<PostInfo> postInfoList = postInfoRepository.selectByAuthorWithPaging("test1", cri);
+		
+		postInfoList.forEach(a -> log.info("selectByAuthorWithPaging(postInfo={})", a));
+	}
+	
+//	@Test
 	public void testPageDto() {
 		Criteria cri = new Criteria();
 		cri.setPageNum(11);

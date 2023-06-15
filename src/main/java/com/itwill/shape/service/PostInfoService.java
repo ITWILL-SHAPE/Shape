@@ -42,7 +42,7 @@ public class PostInfoService {
 	
 	/**
 	 * 0601 손창민
-	 * post_info table에서 author와 일치하는 작성글 불러오기
+	 * post_info table에서 author(id)와 일치하는 작성글 불러오기
 	 * @param author(id)
 	 * @return
 	 */
@@ -57,6 +57,19 @@ public class PostInfoService {
 		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
 	}
 	
+	/**
+	 * 0615 손창민
+	 * post_info table에서 author(id)와 일치하는 작성글 불러오기 with Paging
+	 */
+	public List<PostInfoSelectByAuthorDto> selectByAuthorWithPaging(String author, Criteria cri) {
+		log.info("selectByAuthorWithPaging(author(id)={}, cri={})", author, cri);
+		
+		List<PostInfo> entity = postInfoRepository.selectByAuthorWithPaging(author, cri);
+		log.info("selectByAuthorWithPaging(entity={})", entity);
+		
+		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
+		
+	}
 	/**
 	 * 0603 지현
 	 * 사용 안함!
@@ -97,7 +110,7 @@ public class PostInfoService {
 	
 	/**
 	 * 지현
-	 * 사용 안함!
+	 * 사용 안함!read
 	 * 목록 불러오기 
 	 * @return
 	 */

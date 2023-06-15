@@ -20,6 +20,21 @@
 		WHERE author = #{author}
 		ORDER BY created_date DESC
 	</select>
+	
+	<!-- post_info table에서 author(id)로 댓글 목록 가져오기 with Paging-->
+	<select id="selectByAuthorWithPaging"
+		    resultType="com.itwill.shape.domain.PostInfo">
+	   <![CDATA[
+	    SELECT *
+   		  FROM 
+       (SELECT /*+ INDEX_DESC(post_info post_info_pid_pk) */ ROWNUM rn, pid, title, content, author, hrs_hd, created_date, modified_date, views
+   		  FROM post_info
+  	 	 WHERE author = #{author} AND PID > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
+  	  ORDER BY created_date DESC)
+         WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
+         ]]>
+	</select>
+	
     <!-- 마이페이지 끝 -->
 
 	<!-- 지현 게시판 -->
@@ -52,7 +67,7 @@
         group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE
         order by P.CREATED_DATE desc
         )
-		where PID > 0 and rownum >0 and rownum <= (#{pageNum} * #{amount})
+		where PID > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
 		)
 		where rn >(#{pageNum}-1) * #{amount}
 		]]>
