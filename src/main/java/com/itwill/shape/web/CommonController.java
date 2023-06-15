@@ -2,6 +2,9 @@ package com.itwill.shape.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,5 +41,6 @@ public class CommonController {
 	public void test() {
 		log.info("test()");
 	}
+	
 	
 }

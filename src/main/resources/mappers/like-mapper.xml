@@ -23,10 +23,33 @@
         select count(mtid) from MEET_LIKE where mtid = #{mtid}
     </select>
     
-	<select id="selectMeetLikeListByMtid" resultType="com.itwill.shape.domain.MeetLike">
-		select * from MEET_LIKE where mtid = #{mtid} 
-	</select>
 
-   
+
+    <!-- 지언 찜 도전 0613 -->
+    
+    <!-- 특정 mtid의 좋아요 갯수 조회 -->
+	<select id="getLikeCountByMtid">
+		select count(*) from MEET_LIKE where mtid = #{mtid}
+	</select>
+	
+	<!-- 특정 mtid의 찜 개수를 가져옴 -->
+	<select id="getCountByMtid">
+		select count(mtid) from MEET_LIKE where mtid = #{mtid}
+	</select>
+	
+	<!-- 특정 mtid에 유저(id)가 찜을 했는 지의 여부 확인 -->
+	<select id="isLikedByUser">
+		select count(*) from MEET_LIKE where mtid = #{mtid} and id = #{id}
+	</select>
+	
+	<!-- 특정 mtid에 유저의 찜 추가 -->
+	<insert id="insertLike">
+		insert into MEET_LIKE (mtid, id) values (#{mtid}, #{id})
+	</insert>
+	
+	<!-- 특정 mtid에 유저의 찜 삭제 -->
+	<delete id="deleteLike">
+		delete from MEET_LIKE where mtid = #{mtid} and id = #{id}	
+	</delete>
 	
 </mapper>

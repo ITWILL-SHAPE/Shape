@@ -71,11 +71,11 @@
 		// 찜 누르기
 		const meetlike = (e) => {
 			const mtid = document.querySelector('input#mtid').value;
-			const id = document.querySelector('input#id').value;
+			const like_id = document.querySelector('input#id').value;
 			
-			console.log(mtid , id);
+			console.log(mtid , like_id);
 			
-			const data = {mtid , id}
+			const data = {mtid , like_id}
 			
 			axios.post('/shape/meet/like', data)
 				.then((response) => {
@@ -96,7 +96,7 @@
 	});
 	
 	// 찜 취소
-	$('button#unLike').click(function(e) {
+	$('button#delete').click(function(e) {
 			deletemeetlike(e);
 		});
 		const deletemeetlike = (e) => {
@@ -108,7 +108,7 @@
 			}
 			const mtid = e.target.getAttribute('data-id');
 			const id = e.target.getAttribute('data-login');
-			const reqUrl = `/shape/meet/like/${mtid}/${id}`;
+			const reqUrl = `/shape/meet/${mtid}/${id}`;
 
 			axios.delete(reqUrl)
 				.then((response) => {
@@ -161,7 +161,8 @@
 		$('button#delete').click(function(e) {
 			deletemeetjoin(e);
 		});
-		
+		// const btndelete = document.querySelector('button#delete');		
+		// btndelete.addEventListener('click', deletemeetjoin);
 		const deletemeetjoin = (e) => {
 			e.preventDefault();
 			
@@ -188,7 +189,16 @@
 				});
 		};
 
-		
+		/*if (isjoined) {
+			btnjoin.innerHTML = '참여완료';
+			btnjoin.addEventListener('click', deletemeetjoin);
+		} else {
+			btnjoin.innerHTML = '참여하기';
+			btnjoin.addEventListener('click', meetJoin);
+		}*/
+
+
+// document	
 });
 	
 

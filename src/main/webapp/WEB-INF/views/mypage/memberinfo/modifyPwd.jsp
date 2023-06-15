@@ -15,11 +15,11 @@
 </style>
 </head>
 <body>
-	<div class="my-2 pt-5 col-4" id="sidebar">
+	<div class="my-2 pt-5" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<!-- 메인 콘텐츠 시작 -->
-	<div id="main_content" class="container col-8">
+	<main id="main_content" class="container">
 		<form class="modifyPwd_form">
 			<h3 class="title my-2 pt-5">비밀번호 변경</h3>
 			<!-- 참고사항 시작 -->
@@ -83,7 +83,7 @@
 			</div>
 			<!-- 버튼영역 끝 -->
 		</form>
-	</div>
+	</main>
 	<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>
