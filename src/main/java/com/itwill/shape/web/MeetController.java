@@ -272,39 +272,10 @@ public class MeetController {
 	public ResponseEntity<Integer> deleteLike(@PathVariable long mtid, @PathVariable String id) {
 		log.info("deleteReply(mtid={}, id={})", mtid, id);
 
-		int result = meetDetailService.delete(mtid, id);
+		int result = meetDetailService.meetLikeDelete(mtid, id);
 		log.info("result = {}", result);
 		return ResponseEntity.ok(result);
 	}
-	/**
-	 * 0613 정지언 찜
-	 */
 	
-	/*
-	 * @GetMapping("/likeCount/{mtid}") public int getLikeCountByMtid(@PathVariable
-	 * int mtid) { log.info("getLikeCountByMtid(mtid={})", mtid); return
-	 * meetLikeService.getLikeCountByMtid(mtid); }
-	 * 
-	 * @GetMapping("/count/{mtid}") public int getCountByMtid(@PathVariable int
-	 * mtid) { log.info("getCountByMtid(mtid={})", mtid); return
-	 * meetLikeService.getCountByMtid(mtid); }
-	 * 
-	 * @GetMapping("/isLiked/{mtid}/{id}") public boolean
-	 * isLikedByUser(@PathVariable int mtid, @PathVariable String id) {
-	 * log.info("isLikedByUser(mtid={}, id={})", mtid, id); return
-	 * meetLikeService.isLikedByUser(mtid, id); }
-	 * 
-	 * @PostMapping("/like/{mtid}/{id}") public ResponseEntity<String>
-	 * insertLike(@PathVariable int mtid, @PathVariable String id) {
-	 * log.info("insertLike(mtid={}, id={})", mtid, id);
-	 * meetLikeService.insertLike(mtid, id); return
-	 * ResponseEntity.ok("Like added successfully."); }
-	 * 
-	 * @DeleteMapping("/like/{mtid}/{id}") public ResponseEntity<String>
-	 * deleteLike(@PathVariable int mtid, @PathVariable String id) {
-	 * log.info("deleteLike(mtid={}, id={})", mtid, id);
-	 * meetLikeService.deleteLike(mtid, id); return
-	 * ResponseEntity.ok("Like deleted successfully."); }
-	 */
-
+	
 }
