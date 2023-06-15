@@ -8,6 +8,7 @@ import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.domain.UserInfo;
+import com.itwill.shape.dto.MeetLikeDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetPrtcpCreateDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
@@ -43,11 +44,14 @@ public class MeetDetailService {
 			log.info(list.toString());
 			
 			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id());
+			
+			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
 
 			dto.setPrtcpDtoList(list); // 참여자 정보	
 			
 			dto.setUserHost(result); // 작성자 정보
 			
+			dto.setMeetlikecount(count); // 찜 갯수
 			return dto;
 			
 		}
@@ -62,54 +66,29 @@ public class MeetDetailService {
 			return meetPrtcpRepository.Prtcpdelete(mtid, id);
 		}
 
-		/**
-		 * 상세보기 수정 페이지 modify
-		 *
-		/*
-		 * public MeetMainDetailDto update(long mtid) {
-		 * log.info("update(mtid={})",mtid);
-		 * 
-		 * 
-		 * return null;
-		 */
-			
-		//}
-		
-		/**
-		 * 참여자는 따로 서비스 컨트롤러 만들었음
-		 */
-		
 		// 찜수 
 		/**
 		 * MTID 테이블의 ID USER의 찜 수 +1
 		 * @param mtlike -> mtid, id 둘 다 필요 + 넘기기
 		 * @return
 		 */
-		public int LikeCountUpdate(long mtid, String id) {
-			log.info("LikeCountUpdate(mtid = {}, id = {})", mtid, id);
-			
-			return 0;
-//			return meetLikeRepository.likeCreate(mtid, id);
+		public int meetLikeCreate(MeetLikeDto dto) {
+			log.info("likeCreate(dtos={})", dto);
+			return meetLikeRepository.likeCreate(dto.toEntity());
 		}
 		/**
 		 * mtid 모임에 like count 감소
 		 * @param long mtid, String id
 		 * @return
 		 */
-		public int LikeCountDelete(long mtid, String id) {
+		public int meetLikeDelete(long mtid, String id) {
 			log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
 			
 			
 			return meetLikeRepository.likeDelete(mtid, id);
 		}
 		
-		// 모임별 찜 수 
-		public long LikeCountMtid(int mtid) {
-			log.info("LikeCountMtid(mtid = {})", mtid);
-			
-			
-			return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
-		}
+		
 		
 
 

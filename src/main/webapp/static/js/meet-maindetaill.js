@@ -68,7 +68,64 @@
 		console.log(err);
 	})
 	*/
+		// 찜 누르기
+		const meetlike = (e) => {
+			const mtid = document.querySelector('input#mtid').value;
+			const like_id = document.querySelector('input#id').value;
+			
+			console.log(mtid , like_id);
+			
+			const data = {mtid , like_id}
+			
+			axios.post('/shape/meet/like', data)
+				.then((response) => {
+					alert('찜 완료 했습니다.');
+					if(response.data) {
+						goToDetail(mtid);
+					} else {
+						console.log('없음');
+					}			
+				})
+				.catch((error) => {
+					console.log(error);
+				});
 
+		};
+		 $('button#like').click(function(e) {
+			meetlike(e);
+	});
+	
+	// 찜 취소
+	$('button#delete').click(function(e) {
+			deletemeetlike(e);
+		});
+		const deletemeetlike = (e) => {
+			e.preventDefault();
+			
+			console.log(e.target);
+			if (!confirm('삭제?')) {
+				return;
+			}
+			const mtid = e.target.getAttribute('data-id');
+			const id = e.target.getAttribute('data-login');
+			const reqUrl = `/shape/meet/${mtid}/${id}`;
+
+			axios.delete(reqUrl)
+				.then((response) => {
+					console.log(response);
+					
+					if(response.data) {
+						goToDetail(mtid);
+					} else {
+						console.log('없든듸');
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		};
+		
+	// 참여하기
 		const meetJoin = (e) => {
 			const mtid = document.querySelector('input#mtid').value;
 			const prtcp_id = document.querySelector('input#id').value;

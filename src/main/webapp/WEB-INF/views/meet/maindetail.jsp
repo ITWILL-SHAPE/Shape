@@ -7,13 +7,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../common/header.jsp" %>
 
-<body>
+
 	<div id="detaillmain" class="container">
-      <div><!-- "border bg-body rounded shadow-sm meetCreateBox" -->
+      <div>
         <div class="my-4">
-          <header class="d-grid my-4 col-7 mx-auto m-5 text-center my-2">
-                     <h1>모임 상세보기</h1>
-          </header>
+          <div class="d-grid my-4 col-7 mx-auto m-5 text-center my-2">
+                     <h2>모임 상세보기</h2>
+          </div>
           <div>
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-indicators">
@@ -176,10 +176,12 @@
 		                     
 		                     <c:when test="${ author != loginUser }">
 		                     	<c:set var="loop_flag" value="false" />
+		                     	
 		                     	<c:forEach items="${ meetmaindetail.prtcpDtoList }" var="userList">
 		                     		<c:if test="${ userList.prtcp_id == loginUser && loop_flag == false }">
 		                     			<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-				                           <button id="unLike" name="unLike" type="button" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+				                           <button id="unLike" name="unLike" type="button" class="btn btn-outline-danger btn-lg"
+				                           			data-id="${meetmaindetail.mtid}" data-login="${ loginUser }" >찜 (${meetmaindetail.meetlikecount}) </button>
 				                           <button id="delete" name="delete"  type="button"  class="btn btn-outline-primary btn-lg"
 				                           			data-id="${meetmaindetail.mtid}" data-login="${ userList.prtcp_id }">참여취소</button>
 				                        </div>
@@ -191,7 +193,7 @@
 		                    	 
 		                     		<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
 		                     			<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: center;">
-		                           			<button id="like" name="like" type="button" class="btn btn-outline-danger btn-lg">찜 클릭 ♥ </button>
+		                           			<button id="like" name="like" type="button" class="btn btn-outline-danger btn-lg"> 찜 (${meetmaindetail.meetlikecount}) </button>
 		                           			<button id="join" name="join"  type="button"  class="btn btn-outline-primary btn-lg">참여하기</button>
 		                        		</div>
 		                        	</c:if>
@@ -296,6 +298,6 @@
   		<script src=" <%=request.getContextPath()%>/static/js/meet-maindetaill.js"></script>
   		<%-- <script src="<%=request.getContextPath()%>/static/js/meet-modify.js"></script>	 --%>
   		
-</body>
+
 
 <%@ include file="../common/footer.jsp"%>
