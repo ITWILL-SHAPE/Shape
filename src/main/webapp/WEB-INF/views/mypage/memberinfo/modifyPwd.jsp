@@ -41,7 +41,7 @@
 								<label for="nowPwd">현재 비밀번호 입력</label>
 							</h6>
 							<div class="inputPwd">
-								<input type="password" id="nowPwd" name="nowPwd" required autofocus/>
+								<input  class="blue-border" type="password" id="nowPwd" name="nowPwd" required autofocus/>
 							</div>
 						</div>
 						<div class="pwd_new my-2 pt-3">
@@ -49,7 +49,7 @@
 								<label for="newPwd">새로운 비밀번호 입력</label>
 							</h6>
 							<div class="inputPwd">
-								<input type="password" id="newPwd" name="newPwd" required />
+								<input  class="blue-border" type="password" id="newPwd" name="newPwd" required />
 								<p class="tip_txt">* 영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력해 주세요.</p>
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 								<label for="rePwd">새로운 비밀번호 입력 확인</label>
 							</h6>
 							<div class="inputPwd">
-								<input type="password" id="rePwd" name="rePwd" required />
+								<input  class="blue-border" type="password" id="rePwd" name="rePwd" required />
 								<p class="tip_txt">* 새로운 비밀번호 변경확인을 위하여 다시 한번 입력해 주세요.</p>
 							</div>
 						</div>

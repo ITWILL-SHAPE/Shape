@@ -24,7 +24,7 @@
 					<br>
 					<br> 
 					 <input type="password" id="inputPwd" autofocus
-						name="inputPwd" placeholder="  비밀번호를 입력해 주세요" /> <input
+						name="inputPwd" placeholder="  비밀번호를 입력해 주세요"  class="blue-border" /> <input
 						type="submit" class="btn btn_login btn-classic" value="확인"/>
 				</div>
 				<div class="banner_area my-2 pt-5 text-center ">

@@ -26,7 +26,7 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 }
 </style>
 <div id="sidebar">
-	<div class="border bg-body rounded shadow-sm p-4 mx-2 pb-4">
+	<div class="border bg-body rounded shadow-sm p-3 mx-2 pb-4">
 		<ul>
 			<li>
 				<nav style="margin-top: 30px;">

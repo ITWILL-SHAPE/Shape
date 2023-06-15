@@ -214,3 +214,10 @@ div.img-right {
 table.users tr {
 	cursor: pointer;
 }
+
+/* mypage border */
+.blue-border {
+  border: 2px solid;
+  Color: #3B7CFF;
+}
+
