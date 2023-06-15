@@ -16,37 +16,34 @@
 			<div>
 				<h1 class="my-2 pt-5 text-center titleBolder">내가 작성한 댓글</h1>
 			</div>
-			<div class="my-2 pt-3 w-75 m-auto">
-				<table class="table btn-list">
-					<thead class="text-center">
-						<tr>
-							<th><input type="checkbox" id="all-checkbox"
-								name="all-checkbox" /></th>
-							<th>No</th>
-							<th>내용</th>
-							<th>작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${ mycomments }" var="mycomments"
-							varStatus="loop">
-							<tr>
-								<td class="text-center"><input type="checkbox"
-									id="row-checkbox" /></td>
-								<td class="text-center">${ loop.index + 1 }</td>
-								<td class="row-content"><a
-									href="/shape/post/detail?pid=${ mycomments.pid }"
-									class="text-decoration-none text-dark"> ${ mycomments.content }
-								</a></td>
-								<td class="text-center"><fmt:formatDate
-										value="${ mycomments.created_date }"
-										pattern="yyyy-MM-dd HH:mm" /></td>
-								<td><input type="hidden" id="pcid"
-									value="${ mycomments.pcid }" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+			<div class="my-2 pt-5 w-75 m-auto">
+				<table class="table table-hover">
+  <thead class="text-center btn-classic">
+    <tr>
+      <th><input type="checkbox" id="all-checkbox" name="all-checkbox" /></th>
+      <th>No</th>
+      <th>내용</th>
+      <th>작성일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <c:forEach items="${mycomments}" var="comment" varStatus="loop">
+      <tr>
+        <td class="text-center"><input type="checkbox" id="row-checkbox" /></td>
+        <td class="text-center mainColor">${loop.index + 1}</td>
+        <td class="row-content"><a href="/shape/post/detail?pid=${comment.pid}" class="text-decoration-none text-dark">${comment.content}</a></td>
+        <td class="text-center"><fmt:formatDate value="${comment.created_date}" pattern="yyyy-MM-dd HH:mm" /></td>
+      </tr>
+      <tr class="row-separator">
+        <td colspan="4"></td>
+      </tr>
+      <tr>
+        <td colspan="4" style="display: none;"><input type="hidden" id="pcid" value="${comment.pcid}" /></td>
+      </tr>
+    </c:forEach>
+  </tbody>
+</table>
+
 				<div>
 					<button class="btn delete-button btn-secondary float-end">댓글
 						삭제</button>

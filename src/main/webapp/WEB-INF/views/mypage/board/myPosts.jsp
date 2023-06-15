@@ -16,9 +16,9 @@
 			<div>
 				<h1 class="my-2 pt-5 text-center titleBolder">내가 작성한 게시글</h1>
 			</div>
-			<div class="my-2 pt-3 w-75 m-auto">
-				<table class="table btn-list">
-					<thead>
+			<div class="my-2 pt-5 w-75 m-auto">
+				<table class="table table-hover">
+					<thead class="text-center btn-classic">
 						<tr>
 							<th><input type="checkbox" id="all-checkbox"
 								name="all-checkbox" /></th>
@@ -29,14 +29,16 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${ myposts }" var="myposts" varStatus="loop">
-							<tr>
-								<td><input type="checkbox" id="row-checkbox" /></td>
-								<td>${ loop.index + 1 }</td>
+							<tr class="row-separator">
+								<td class="text-center"><input type="checkbox"
+									id="row-checkbox" /></td>
+								<td class="text-center mainColor">${ loop.index + 1 }</td>
 								<td class="row-content"><a
-									href="/shape/post/detail?pid=${ myposts.pid }"> ${ myposts.title }
+									href="/shape/post/detail?pid=${ myposts.pid }"
+									class="text-decoration-none text-dark"> ${ myposts.title }
 								</a></td>
-								<td><fmt:formatDate value="${ myposts.created_date }"
-										pattern="yyyy-MM-dd HH:mm" /></td>
+								<td class="text-center"><fmt:formatDate
+										value="${ myposts.created_date }" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td><input type="hidden" id="pid" value="${ myposts.pid }" />
 								</td>
 							</tr>
