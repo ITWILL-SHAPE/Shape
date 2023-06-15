@@ -22,6 +22,30 @@ public class MeetListService {
 
 	private final MeetInfoRepository meetInfoRepository;
 	private final MeetLikeRepository meetLikeRepository;
+	
+
+	/**
+	 * 정지언
+	 * 메인페이지 모임 최신순 보이기
+	 * @return
+	 */
+	public List<MeetListCountDto> mainReadByRecent() {
+		log.info("mainReadByRecent()");
+
+		return meetInfoRepository.selectOrderByRecent();
+	}
+	
+	/**
+	 * 정지언
+	 * 메인페이지 모임 인기순 보이기
+	 * @return
+	 */
+	public List<MeetListCountDto> mainReadByPopularity() {
+		log.info("mainReadByPopularity()");
+
+		return meetInfoRepository.selectOrderByPopularity();
+	}
+	
 	/**
 	 * 0610 손창민
 	 * 내가 참여한 모임 목록 불러오기
