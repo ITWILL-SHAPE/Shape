@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 <!-- postpage create -->
+
 <div class="container">
 	<header class="my-2 p-5 text-center">
 		<h1>게시글 작성</h1>
@@ -38,8 +39,8 @@
 					<div class="my-2">
 						<label class="form-label d-none" for="author">작성자 아이디</label>
 						<sec:authentication property="principal.username" var="id" />
-						<input class="form-control d-none" type="text" id="author" name="author"
-							value="${ id }" readonly />
+						<input class="form-control d-none" type="text" id="author"
+							name="author" value="${ id }" readonly />
 					</div>
 					<div class="d-grid gap-2 d-md-flex justify-content-md-center">
 						<c:url var="postList" value="/post/list" />
