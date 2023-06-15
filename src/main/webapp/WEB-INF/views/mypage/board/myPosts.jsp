@@ -18,12 +18,20 @@
 			</div>
 			<div class="my-2 pt-5 w-75 m-auto">
 				<table class="table table-hover">
+					<colgroup>
+						<col span="3">
+						<!-- 첫 번째, 두 번째, 세 번째 열의 너비를 동일하게 지정 -->
+						<col span="1" style="display: none;">
+						<!-- 네 번째 열은 숨김 -->
+					</colgroup>
 					<thead class="text-center btn-classic">
 						<tr>
 							<th><input type="checkbox" id="all-checkbox"
 								name="all-checkbox" /></th>
 							<th>No</th>
 							<th>제목</th>
+								<th style="display: none;"></th>
+							<!-- 네 번째 열은 숨김 -->
 							<th>작성일</th>
 						</tr>
 					</thead>
@@ -35,12 +43,11 @@
 								<td class="text-center mainColor">${ loop.index + 1 }</td>
 								<td class="row-content"><a
 									href="/shape/post/detail?pid=${ myposts.pid }"
-									class="text-decoration-none text-dark"> ${ myposts.title }
-								</a></td>
+									class="text-decoration-none text-dark"> ${ myposts.title }</a></td>
+								<td style="display: none;"><input type="hidden" id="pid" 
+									value="${ myposts.pid }" /></td>
 								<td class="text-center"><fmt:formatDate
-										value="${ myposts.created_date }" pattern="yyyy-MM-dd HH:mm" /></td>
-								<td><input type="hidden" id="pid" value="${ myposts.pid }" />
-								</td>
+									value="${ myposts.created_date }" pattern="yyyy-MM-dd HH:mm" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>

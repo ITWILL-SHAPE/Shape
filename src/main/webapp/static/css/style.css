@@ -338,6 +338,4 @@ th, td {
   border-bottom: 1px solid #3B7CFF; /* 테이블 행 구분선 */
 }
 
-td.hidden {
-  visibility: hidden;
-}
+
