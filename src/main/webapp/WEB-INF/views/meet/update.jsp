@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 	<div class="container">
+		<div class="my-5 p-2">
 			<div class="border bg-body rounded shadow-sm meetCreateBox">
 				<!-- 작성 -->
 				<div>
@@ -173,7 +174,7 @@
 									<a class="mx-3 btn btn-secondary" id="btnCancel">취소</a>
 									<input class="mx-3 btn btn-classic" type="submit" id="btnUpdate"
 										value="수정완료" />
-									<button class="mx-3 btn btn-danger" type="button" id="btnDelete">삭제</button>
+									<button class="mx-3 btn btn-secondary" type="button" id="btnDelete">삭제</button>
 								</div>
 							</div>
 						</div>
@@ -181,6 +182,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

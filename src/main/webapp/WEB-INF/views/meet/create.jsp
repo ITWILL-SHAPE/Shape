@@ -4,11 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
 	<div class="container">
+		<div class="my-5 p-2">
 			<div class="border bg-body rounded shadow-sm meetCreateBox">
 				<!-- 작성 -->
 				<div>
 					<div class="meetCreateTitle">
-						<h2>모임 등록</h2>
+						<h1 class="titleBolder">모임 등록</h1>
 					</div>
 					<div class="meetCreateInfo">
 						<div align="right" id="mt_notice">
@@ -185,6 +186,7 @@
 							</div>
 						</div>
 					</form>
+				<div/>
 			</div>
 		</div>
 	</div>
