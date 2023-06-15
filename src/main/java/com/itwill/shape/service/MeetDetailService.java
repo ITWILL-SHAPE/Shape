@@ -28,9 +28,6 @@ public class MeetDetailService {
 	private final MeetLikeRepository meetLikeRepository; // 찜수
 	private final MeetPrtcpRepository meetPrtcpRepository; // 참여자 정보 
 	
-	
-	
-	
 		/**
 		 * 리스트 페이지
 		 */
@@ -60,6 +57,13 @@ public class MeetDetailService {
 			return dto;
 			
 		}
+		
+		/**
+		 * 모임 참여하기
+		 * @param dto
+		 * @return
+		 */
+		
 		// 참여하기 클릭
 		public int create(MeetPrtcpCreateDto dto) {
 			log.info("create(dto={})");
@@ -70,22 +74,18 @@ public class MeetDetailService {
 			log.info("delete(mtid={}, id = {})", mtid, id);
 			return meetPrtcpRepository.Prtcpdelete(mtid, id);
 		}
-
-		// 찜수 
+		
 		/**
-		 * MTID 테이블의 ID USER의 찜 수 +1
-		 * @param mtlike -> mtid, id 둘 다 필요 + 넘기기
-		 * @return
+		 * 모임 찜하
 		 */
+		
+		// 찜수 
+		
 		public int meetLikeCreate(MeetLikeDto dto) {
 			log.info("likeCreate(dtos={})", dto);
 			return meetLikeRepository.likeCreate(dto.toEntity());
 		}
-		/**
-		 * mtid 모임에 like count 감소
-		 * @param long mtid, String id
-		 * @return
-		 */
+		
 		public int meetLikeDelete(long mtid, String id) {
 			log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
 			

@@ -10,11 +10,14 @@
 
 	<div id="detaillmain" class="container">
       <div>
-        <div class="my-4">
+        <div class="my-5 p-3">
           <div class="d-grid my-4 col-7 mx-auto m-5 text-center my-2">
-                     <h2>모임 상세보기</h2>
-          </div>
-          <%-- <div>
+                     <h1>모임 상세보기</h1>
+          </div>		
+		<!-- 제목, 내용 -->
+			<div class="card ">
+				<div class="card-body">
+			<div class=my-5>
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-indicators">
 					<button type="button" data-bs-target="#myCarousel"
@@ -75,12 +78,7 @@
 					<span class="visually-hidden">Next</span>
 				</button>
 			</div>
-		</div> --%>
-			<!-- 사진 끝 -->
-		
-		<!-- 제목, 내용 -->
-			<div class="card ">
-				<div class="card-body">
+		</div> 
 					<div class= "my-5">
 					<!-- 사진-->
 				<!-- 사진 끝 -->
@@ -199,6 +197,10 @@
 											<c:set var="loop_like" value="true" />
 										</c:if>		
 									</c:forEach>
+									<!-- 참여자가 찜을 안 눌었을때  -->
+									<c:if test="${likeUser.id != loginUser && loop_like == false}">
+										<button id="like" name="like" type="button" class="btn btn-danger" >♡ ${meetmaindetail.meetlikecount}</button>
+									</c:if>
 									
 									<!-- 참여자가 참여하기를 눌렀을때 -->
 									<c:set var="loop_flag" value="false" />
@@ -209,11 +211,6 @@
 											<c:set var="loop_flag" value="true" />
 										</c:if>
 									</c:forEach>
-									
-									<!-- 참여자가 찜을 안 눌었을때  -->
-									<c:if test="${likeUser.id != loginUser && loop_like == false}">
-									<button id="like" name="like" type="button" class="btn btn-danger" >♡ ${meetmaindetail.meetlikecount}</button>
-									</c:if>
 									
 									<!-- 참여자가 챰여하기를 안 눌었을때  -->
 									<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
@@ -299,7 +296,7 @@
 				</div>
 			</div>
 					<!--목록 페이지로 가기 -->
-					<div class="d-grid gap-2 col-2 mx-auto my-2">
+					<div class="d-grid gap-2 col-2 mx-auto my-4">
 						<c:url var="listPage" value="/meet/list"></c:url>
 						<a href="${ listPage }" type="button" class="btn btn-list">목록</a>
 					</div>
