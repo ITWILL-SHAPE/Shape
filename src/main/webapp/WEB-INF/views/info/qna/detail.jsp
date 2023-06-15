@@ -69,7 +69,7 @@
 							<c:url var="qna" value="/info/qna" />
 							<button onclick="location.href='${ qna }'"
 								class="btn btn-primary" type="button">목록</button>
-							<button class="btn btn-danger me-md-2" id="btnDelete"
+							<button class="btn btn-secondary me-md-2" id="btnDelete"
 								type="button">삭제</button>
 						</div>
 					</c:if>
