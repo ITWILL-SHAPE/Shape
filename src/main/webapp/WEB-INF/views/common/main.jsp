@@ -137,11 +137,12 @@
 			</div>
 		</div>
 	</div>
-	
+		
 	<div class="container-fluid container">
-		<div>
-		<h2>인기 많은 모임</h2>
-		<a>More</a>
+		
+		<div class="row">
+			<h2 class="col-11">인기 많은 모임</h2>
+			<p class="col-1 mb-0" >More ></p>
 		</div>
 			<!--아이템: model.addAttribute("listCount", dto);-->
 		<div id="cardList" class="album py-5">
