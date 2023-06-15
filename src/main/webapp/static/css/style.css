@@ -32,7 +32,7 @@
 .main-background { background-color: #3B7CFF; }
 
 /* footer.jsp에서 사용 */
-.text-white {color: white !important;}
+.text-white {color: white;}
 /* login.jsp에 사용 */
 div.loginBox {
 	height: 500px;
