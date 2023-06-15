@@ -53,11 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
 	                        <span class="text-secondary">${modified}</span>
 	                    </div>
 	                    <div class="col-2 d-grid gap-2 d-md-flex justify-content-md-end" id="buttonDiv${comment.pcid}">
-	                        <button class="btnDelete btn btn-danger btn-sm" data-id="${comment.pcid}">
-	                            삭제
-	                        </button>
-	                        <button class="btnModify btn btn-classic btn-sm" data-id="${comment.pcid}">
+	                    	<button class="btnModify btn btn-classic btn-sm" data-id="${comment.pcid}">
 	                            수정
+	                        </button>
+	                        <button class="btnDelete btn btn-secondary btn-sm" data-id="${comment.pcid}">
+	                            삭제
 	                        </button>
 	                    </div>  
                     </div>

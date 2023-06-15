@@ -43,7 +43,7 @@
 				</c:url>
 				<button class="btn btn-classic me-md-2" type="button"
 					onclick="location.href='${ postModifyPage }'">수정</button>
-				<button class="btn btn-danger" type="button" id="btnDelete">삭제</button>
+				<button class="btn btn-secondary" type="button" id="btnDelete">삭제</button>
 			</div>
 		</c:if>
 		<!-- 포스트 상세 보기 카드 -->
@@ -54,17 +54,16 @@
 			</div>
 
 			<div class="card-body"><!-- 댓글 작성, 목록 보여줄 div -->
-
+				<label class="form-label m-0" for="content">나의 댓글</label>
 				<div class="my-2 row"><!-- 내 댓글 작성 div -->
-					<label class="form-label" for="content">나의 댓글</label>
-					<div class="col-10">
+					<div class="col-11">
 						<sec:authentication property="principal.username" var="id" />
 						<input class="form-control d-none" type="text" id="author" name="author"
 							value="${ id }" readonly />
 						<textarea class="form-control" id="content"></textarea>
 					</div>
-					<div class="col-2">
-						<button class="form-control btn btn-classic"
+					<div class="col-1 gap-2 justify-content-md-end">
+						<button class="form-control btn btn-sm btn-classic"
 							id="btnAddComment">등록</button>
 					</div>
 				</div>
