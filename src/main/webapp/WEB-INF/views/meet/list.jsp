@@ -194,7 +194,6 @@
 	      -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
 	    -->
 				<c:forEach items="${listCount}" var="cardList" varStatus="status">
-					<c:if test="${cardList.mt_date}">
 					<c:url var="meetDetailPage" value="/meet/maindetail">
 						<c:param name="mtid" value="${cardList.mtid}" />
 					</c:url>
@@ -273,7 +272,6 @@
 							<!-- card body -->
 						</div>
 					</div>
-				</c:if>
 			</c:forEach>
 		</div>
 	</div>
