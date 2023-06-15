@@ -140,39 +140,7 @@ public class MeetListService {
 		return meetInfoRepository.selectByCategory(category);
 	}
 	
-	/**
-	 * 김지민
-	 * MTID 테이블의 ID USER의 찜 수 +1
-	 * @param mtlike -> mtid, id 둘 다 필요 + 넘기기
-	 * @return
-	 */
-	public int LikeCountUpdate(long mtid, String id) {
-		log.info("LikeCountUpdate(mtid = {}, id = {})", mtid, id);
-		
-		
-		return meetLikeRepository.likeCreate(mtid, id);
-	}
 	
-	/**
-	 * 김지민
-	 * mtid 모임에 like count 감소
-	 * @param long mtid, String id
-	 * @return
-	 */
-	public int LikeCountDelete(long mtid, String id) {
-		log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
-		
-		
-		return meetLikeRepository.likeDelete(mtid, id);
-	}
-	
-	// 모임별 찜 수 
-	public long LikeCountMtid(int mtid) {
-		log.info("LikeCountMtid(mtid = {})", mtid);
-		
-		
-		return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
-	}
 	
 	/**
 	 * 0612 김지민
