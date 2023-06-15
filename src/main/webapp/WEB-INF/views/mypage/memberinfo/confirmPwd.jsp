@@ -9,14 +9,14 @@
 <title>마이페이지 > 회원정보 > 비밀번호 수정</title>
 </head>
 <body>
-	<div class="my-2 pt-5" id="sidebar">
+	<div class="my-2 pt-5 col-4" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
 	<!-- 메인 콘텐츠 시작 -->
-	<main id="main_content" class="container">
+	<div id="main_content" class="container col-8">
 			<form class="confirmPwd_form">
 				<div class="sub_content my-2 pt-5 text-center">
-					<h3 class="title my-2 pt-3">비밀번호 재입력</h3>
+					<h3 class="title my-2 pt-3 titleBolder">비밀번호 재입력</h3>
 					<h6 class="sub_title my-2 pt-3">
 					본인확인을 위해 <strong>로그인 비밀번호</strong>를 한 번 더 입력해주세요.
 					</h6>
@@ -41,7 +41,7 @@
 					</a>
 				</div>
 			</form>
-	</main>
+	</div>
 	<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>

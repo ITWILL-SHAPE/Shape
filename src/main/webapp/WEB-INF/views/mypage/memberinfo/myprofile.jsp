@@ -71,10 +71,10 @@ th, td {
 </style>
 </head>
 <body>
-	<div class="my-2 pt-5" id="sidebar">
+	<div class="my-2 pt-5 col-4" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<main id="main_content" class="container">
+	<div id="main_content" class="container col-8">
 		<div class="center profile-info my-2 pt-5 text-center">
 			<img src="static/images/common/user.png"
 				 alt="Profile Image"
@@ -119,7 +119,7 @@ th, td {
 			<a class="btn btn-outline-primary form-control text-right btn-classic"
 				href="profilemodifypage?id=${ id }">수정</a>
 		</div>
-	</main>
+	</div>
 	<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>

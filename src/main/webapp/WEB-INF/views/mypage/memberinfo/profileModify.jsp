@@ -72,10 +72,10 @@ th, td {
 </style>
 </head>
 <body>
-	<div class="my-2 pt-5" id="sidebar">
+	<div class="my-2 pt-5 col-4" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>
 	</div>
-	<main class=“container” id="main_content">
+	<div class="container col-8" id="main_content">
 		<div class="center profile-info my-2 pt-5 text-center">
 			<div class="profile-image-container">
 				<img src="<c:url value='/static/images/common/user.png'/>"
@@ -129,7 +129,7 @@ th, td {
 
 </div>
 
-	</main>
+	</div>
 	<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>
