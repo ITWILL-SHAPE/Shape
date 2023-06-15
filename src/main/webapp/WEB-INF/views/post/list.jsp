@@ -70,6 +70,7 @@
 		<!-- 페이징 처리 -->
 
 		<!-- 검색 -->
+		<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
 		<c:url var="postSearch" value="/post/search"></c:url>
 		<form action="${ postSearch }">
 			<div class="input-group col-sm-7 my-2">
@@ -86,6 +87,8 @@
 				</button>
 			</div>
 		</form>
+		</div>
+		
 	</div>
 
 </div>
