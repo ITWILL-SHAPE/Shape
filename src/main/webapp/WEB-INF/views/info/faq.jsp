@@ -4,8 +4,8 @@
 <%@ include file="../common/header.jsp"%>
 <div class="container">
 
-	<div class="my-2 p-5 text-center">
-		<h1>FAQ</h1>
+	<div class="my-2 p-3 text-center">
+		<h1 class=“titleBolder”>FAQ</h1>
 	</div>
 
 		<div class="accordion " id="accordionExample">

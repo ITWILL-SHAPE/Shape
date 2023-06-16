@@ -6,8 +6,8 @@
 <!-- postpage create -->
 
 <div class="container">
-	<header class="my-2 p-5 text-center">
-		<h1>게시글 작성</h1>
+	<header class="my-2 p-3 text-center">
+		<h1 class="titleBolder">게시글 작성</h1>
 	</header>
 
 		<div class="card">

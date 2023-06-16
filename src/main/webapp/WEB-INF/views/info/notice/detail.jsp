@@ -6,7 +6,7 @@
 	<body>
 		<div class="container">
 			<div class="my-2 p-3 text-center">
-				<h1>공지사항</h1>
+				<h1 class=“titleBolder”>공지사항</h1>
 			</div>
 		
 			<section class="card">
@@ -38,7 +38,7 @@
 					
 					<div class="my-2">
 						<label class="form-label d-none" for="created_date">작성일</label>
-						<fmt:formatDate value="${ times }" pattern="yyyy.MM.dd" var="date"/>
+						<fmt:formatDate value="${ times }" pattern="yyyy-MM-dd" var="date"/>
 						<p class="card-text text-end small" id="created_date">${ date }</p>
 					</div>
 				</div>
