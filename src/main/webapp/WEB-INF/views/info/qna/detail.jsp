@@ -68,8 +68,8 @@
 						<div class="d-grid gap-2 d-md-flex justify-content-md-center">
 							<c:url var="qna" value="/info/qna" />
 							<button onclick="location.href='${ qna }'"
-								class="btn btn-primary" type="button">목록</button>
-							<button class="btn btn-danger me-md-2" id="btnDelete"
+								class="btn btn-list" type="button">목록</button>
+							<button class="btn btn-secondary me-md-2" id="btnDelete"
 								type="button">삭제</button>
 						</div>
 					</c:if>
@@ -77,7 +77,7 @@
 						<div class="d-grid gap-2 d-md-flex justify-content-md-center">
 							<c:url var="qna" value="/info/qna" />
 							<button onclick="location.href='${ qna }'"
-								class="btn btn-primary" type="button">목록</button>
+								class="btn btn-list" type="button">목록</button>
 						</div>
 					</c:if>
 				</sec:authorize>
@@ -85,7 +85,7 @@
 					<div class="d-grid gap-2 d-md-flex justify-content-md-center">
 							<c:url var="qna" value="/info/qna" />
 							<button onclick="location.href='${ qna }'"
-								class="btn btn-primary" type="button">목록</button>
+								class="btn btn-list" type="button">목록</button>
 						</div>
 				</sec:authorize>
 			</form>

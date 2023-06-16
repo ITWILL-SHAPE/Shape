@@ -3,6 +3,8 @@ package com.itwill.shape.repository;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoQnA;
 import com.itwill.shape.domain.PostInfo;
@@ -13,7 +15,7 @@ public interface PostInfoRepository {
 	//마이페이지
 	/**
 	 * 0601 손창민
-	 * post_info table에서 아규먼트로 넘겨받은 id와 일치하는 작성글 전부 리턴
+	 * post_info table에서 아규먼트로 넘겨받은 author(id)와 일치하는 작성글 전부 리턴
 	 * @param id
 	 * @return List<PostInfo>
 	 */
@@ -26,6 +28,13 @@ public interface PostInfoRepository {
 	 * @return
 	 */
 	int deleteByPid(long pid);
+	
+	/**
+	 * 0615 손창민
+	 * post_info table에서 아규먼트로 넘겨받은 id와 일치하는 작성글 전부 리턴 with paging
+	 */
+	List<PostInfo> selectByAuthorWithPaging(@Param("author") String author, @Param("cri") Criteria cri);
+	
 	// 마이페이지 끝
 	
 	/**

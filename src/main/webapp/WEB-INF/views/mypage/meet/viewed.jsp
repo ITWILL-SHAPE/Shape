@@ -3,10 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
-<head>
-<meta charset="UTF-8">
-<title>마이페이지 > 모임 > 최근 본 모임(beta)</title>
-</head>
+
 <body>
 	<div class="my-2 pt-5" id="sidebar">
 		<%@ include file="../sidebar.jsp"%>

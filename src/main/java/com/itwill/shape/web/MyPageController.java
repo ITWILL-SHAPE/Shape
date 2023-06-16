@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
@@ -230,7 +231,6 @@ public class MyPageController {
 			return "error";
 		}
 	}
-
 	
 	/**
 	 * 0604 손창민 내가 참여 중인 모임
@@ -298,19 +298,40 @@ public class MyPageController {
 		return "/mypage/meet/viewed";
 	}
 
+//	/**
+//	 * 0601 손창민 내가 작성한 글 불러오기
+//	 * 
+//	 * @param model
+//	 * @param author(id)
+//	 * @return "/mypage/board/myPosts"
+//	 */
+//	// 마이페이지 > 게시판 > 내가 작성한 게시물
+//	@GetMapping("/myposts")
+//	public String readMyposts(@RequestParam("id")String id, Model model) {
+//		log.info("myposts(author(id)={})", id);
+//
+//		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor(id);
+//		log.info("readMyposts(myposts={})", myposts);
+//
+//		model.addAttribute("myposts", myposts);
+//
+//		return "/mypage/board/myPosts";
+//	}
+	
 	/**
-	 * 0601 손창민 내가 작성한 글 불러오기
+	 * 0615 손창민 내가 작성한 글 불러오기
 	 * 
-	 * @param model
 	 * @param author(id)
+	 * @param cri
+	 * @param model
 	 * @return "/mypage/board/myPosts"
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 게시물
 	@GetMapping("/myposts")
-	public String readMyposts(@RequestParam("id")String id, Model model) {
-		log.info("myposts(author(id)={})", id);
-
-		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthor(id);
+	public String readMyposts(@RequestParam("id")String id, Criteria cri, Model model) {
+		log.info("myposts(author(id)={}, cri={})", id, cri);
+		
+		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthorWithPaging(id, cri);
 		log.info("readMyposts(myposts={})", myposts);
 
 		model.addAttribute("myposts", myposts);

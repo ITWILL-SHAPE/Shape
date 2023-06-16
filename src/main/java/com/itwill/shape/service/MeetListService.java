@@ -22,6 +22,30 @@ public class MeetListService {
 
 	private final MeetInfoRepository meetInfoRepository;
 	private final MeetLikeRepository meetLikeRepository;
+	
+
+	/**
+	 * 정지언
+	 * 메인페이지 모임 최신순 보이기
+	 * @return
+	 */
+	public List<MeetListCountDto> mainReadByRecent() {
+		log.info("mainReadByRecent()");
+
+		return meetInfoRepository.selectOrderByRecent();
+	}
+	
+	/**
+	 * 정지언
+	 * 메인페이지 모임 인기순 보이기
+	 * @return
+	 */
+	public List<MeetListCountDto> mainReadByPopularity() {
+		log.info("mainReadByPopularity()");
+
+		return meetInfoRepository.selectOrderByPopularity();
+	}
+	
 	/**
 	 * 0610 손창민
 	 * 내가 참여한 모임 목록 불러오기
@@ -116,39 +140,7 @@ public class MeetListService {
 		return meetInfoRepository.selectByCategory(category);
 	}
 	
-	/**
-	 * 김지민
-	 * MTID 테이블의 ID USER의 찜 수 +1
-	 * @param mtlike -> mtid, id 둘 다 필요 + 넘기기
-	 * @return
-	 */
-	public int LikeCountUpdate(long mtid, String id) {
-		log.info("LikeCountUpdate(mtid = {}, id = {})", mtid, id);
-		
-		
-		return meetLikeRepository.likeCreate(mtid, id);
-	}
 	
-	/**
-	 * 김지민
-	 * mtid 모임에 like count 감소
-	 * @param long mtid, String id
-	 * @return
-	 */
-	public int LikeCountDelete(long mtid, String id) {
-		log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
-		
-		
-		return meetLikeRepository.likeDelete(mtid, id);
-	}
-	
-	// 모임별 찜 수 
-	public long LikeCountMtid(int mtid) {
-		log.info("LikeCountMtid(mtid = {})", mtid);
-		
-		
-		return meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
-	}
 	
 	/**
 	 * 0612 김지민

@@ -21,6 +21,20 @@ public interface MeetInfoRepository {
 	MeetInfo selectByMtid(long mtid); // modify
 	int delete(int i);
 	
+	//메인페이지
+	/**
+	 * 메인페이지 최신순
+	 * @return MeetListCountDto
+	 */
+	/*List<MeetListCountDto> mainSelectByRecent();*/
+	
+	/**
+	 * 인기순
+	 * @return
+	 */
+	/* List<MeetListCountDto> mainSelectByPopularity(); */
+
+	
 	//마이페이지
 	/**
 	 * 0610 손창민

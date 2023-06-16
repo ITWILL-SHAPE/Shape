@@ -5,6 +5,12 @@
 	
 	document.addEventListener('DOMContentLoaded', () => {
 		
+		// 화면 전환
+		const goToDetail = function(mtid) {
+			window.location.href = `/shape/meet/maindetail?mtid=${mtid}`;
+		}	
+		
+		
 		// 부트스트랩 Collapse 객체를 생성 - 초기 상태는 화면에서 안보이는 상태
 	    const bsCollapse = new bootstrap.Collapse('div#replyToggleDiv', {toggle: false});
 	    
@@ -30,101 +36,77 @@
 	    
 	    });
 		
-	
-	
-
-	
-	/*// 찜 클릭
-	const btnLike = document.querySelector('button#like');
-		let isLiked = false; // 초기 상태는 찜 클릭이 아닌 경우
-			btnLike.addEventListener('click', () => {
-	  		if (isLiked) {
-				
-	    	// 이미 찜 완료 상태인 경우
-	    	btnLike.innerHTML = '찜 클릭 ♥';
-	    	isLiked = false;
-	      } else {
-	    	// 찜 완료 상태가 아닌 경우
-	    	btnLike.innerHTML = '찜 완료';
-	    	isLiked = true;	
-	    }
-	});
-	*/
-	/*let isjoined = false; // 초기 상태는 참여하기가 아닌 경우*/
-	
-	// 참여 클릭
-	// const btnjoin = document.querySelector('button#join');
-	/*	let isjoined = false; // 초기 상태는 참여하기가 아닌 경우*/
-		// 참여 완료되면 화면에서 보여줌
-		const goToDetail = function(mtid) {
-			window.location.href = `/shape/meet/maindetail?mtid=${mtid}`;
-		}	
-	/*
-	axios.get(`/shape/meet/maindetail`, mtid)
-	.then((res) =>{
-		console.log(res);
-	})
-	.catch((err) => {
-		console.log(err);
-	})
-	*/
+		/** 
+		 * 배선영 찜 
+		 * 
+		*/
+		
 		// 찜 누르기
 		const meetlike = (e) => {
 			const mtid = document.querySelector('input#mtid').value;
-			const like_id = document.querySelector('input#id').value;
+			const id = document.querySelector('input#id').value;
 			
-			console.log(mtid , like_id);
-			
-			const data = {mtid , like_id}
-			
+			const data = { mtid, id }
+
 			axios.post('/shape/meet/like', data)
 				.then((response) => {
-					alert('찜 완료 했습니다.');
-					if(response.data) {
+					
+					if (response.data) {
 						goToDetail(mtid);
 					} else {
 						console.log('없음');
-					}			
+					}
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 
 		};
-		 $('button#like').click(function(e) {
-			meetlike(e);
-	});
+			$('button#like').click(function(e) {
+				meetlike(e);
+		});
+
+
+
+		
 	
 	// 찜 취소
-	$('button#delete').click(function(e) {
+	$('button#unLike').click(function(e) {
 			deletemeetlike(e);
 		});
 		const deletemeetlike = (e) => {
 			e.preventDefault();
-			
+
 			console.log(e.target);
-			if (!confirm('삭제?')) {
-				return;
-			}
+			
+
 			const mtid = e.target.getAttribute('data-id');
 			const id = e.target.getAttribute('data-login');
-			const reqUrl = `/shape/meet/${mtid}/${id}`;
+			const reqUrl = `/shape/meet/like/${mtid}/${id}`;
+			console.log(mtid, id);
 
 			axios.delete(reqUrl)
 				.then((response) => {
 					console.log(response);
-					
-					if(response.data) {
+
+					if (response.data) {
 						goToDetail(mtid);
 					} else {
 						console.log('없든듸');
 					}
+					
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 		};
 		
+		
+		/** 
+		 * 배선영 참여 
+		 * 
+		*/
+
 	// 참여하기
 		const meetJoin = (e) => {
 			const mtid = document.querySelector('input#mtid').value;
@@ -140,7 +122,7 @@
 
 			axios.post('/shape/meet', data)
 				.then((response) => {
-					alert('참여완료 했습니다.');
+					alert('참여완료~♥');
 					if(response.data) {
 						goToDetail(mtid);
 					} else {
@@ -155,7 +137,7 @@
 		 $('button#join').click(function(e) {
 			meetJoin(e);
 		});
-		 //btnjoin.addEventListener('click', meetJoin);
+		
 		
 		// 참여 취소
 		$('button#delete').click(function(e) {
@@ -167,7 +149,7 @@
 			e.preventDefault();
 			
 			console.log(e.target);
-			if (!confirm('삭제?')) {
+			if (!confirm('참여를 거부하시나요???')) {
 				return;
 			}
 			const mtid = e.target.getAttribute('data-id');
@@ -183,22 +165,14 @@
 					} else {
 						console.log('없든듸');
 					}
+					 alert('참여가 취소 ㅠㅠ'); 
 				})
 				.catch((error) => {
 					console.log(error);
 				});
 		};
 
-		/*if (isjoined) {
-			btnjoin.innerHTML = '참여완료';
-			btnjoin.addEventListener('click', deletemeetjoin);
-		} else {
-			btnjoin.innerHTML = '참여하기';
-			btnjoin.addEventListener('click', meetJoin);
-		}*/
-
-
-// document	
+		
 });
 	
 
