@@ -1,13 +1,16 @@
 package com.itwill.shape.service;
 
+import java.util.HashMap;
 // 김지민_meet.list
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
+import com.itwill.shape.dto.MeetSearchListDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.MeetPrtcpRepository;
@@ -164,6 +167,34 @@ public class MeetListService {
 		return meetInfoRepository.selectOrderByMozipEnd();
 	}
 	
+	/**
+	 * 조건에 따른 개체 개수	
+	 * @return
+	 */
+	public int getListCount() {
+		return meetInfoRepository.meetInfoCount(); 
+	}
+	
+	/**
+	 * 조건에 따른 검색 결과 리스트 페이징
+	 * @param dto
+	 * @return
+	 */
+	public Map<String, Object> selectBySearch(MeetSearchListDto dto){
+		log.info("selectBySearch(dto={})", dto);
+		
+		if(dto.getPageNum() > 1) {
+			dto.setAmount(dto.getPageNum() * 15);
+			dto.setPageNum((dto.getPageNum() -1) * 10);
+		} else {
+			dto.setPageNum(dto.getPageNum() -1);
+		}
+		
+		List<MeetListCountDto> paging = meetInfoRepository.selectBySearchPaging(dto);
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", paging);
+		return result;
+	}
 
 
 }
