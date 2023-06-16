@@ -36,6 +36,11 @@
     <select id="selectPrtcpCountWithPrtcpId" resultType="java.lang.Long">
         select count(prtcp_id) from MEET_PRTCP where prtcp_id = #{prtcp_id}
     </select>	
+    
+    <!-- 모임 MTID에 참여인원이 몇명인지 select 문 -->
+    <select id="selectNumberPrtcpMtid" resultType="java.lang.Long">
+    	select count(*) from MEET_PRTCP where mtid = #{mtid}
+    </select> 
 		
 		
 </mapper>

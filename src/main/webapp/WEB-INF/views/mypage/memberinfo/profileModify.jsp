@@ -8,71 +8,71 @@
 </head>
 <body>
 	<div class="row">
-		<div class="col-2 my-5">
+		<div class="col-2"></div>
+		<div class="col-10">
+			<div class="my-2 p-3 text-center">
+				<h1 class="titleBolder" >나의 프로필 수정</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
 			<%@ include file="../sidebar.jsp"%>
 		</div>
 
-		<div class="container col-8" id="main_content">
+		<div class="container col-8 border bg-body rounded shadow-sm" id="main_content">
 
-			<div>
-				<h1 class="my-2 pt-5 text-center titleBolder">나의 프로필</h1>
-			</div>
-			<div class="rounded card">
-				<div class="center profile-info my-2 text-center">
-	
-					<div class="profile-image-container">
-						<img src="<c:url value='/static/images/common/user.png'/>"
-							alt="Profile Image" class="profile-image" />
-						<div class="profile-overlay">
-							<label for="profile-upload" class="change-profile-btn">사진변경</label>
-							<input type="file" id="profile-upload" style="display: none;" />
-						</div>
+			<div class="center profile-info my-2 text-center">
+
+				<div class="profile-image-container">
+					<img src="<c:url value='/static/images/common/user.png'/>"
+						alt="Profile Image" class="profile-image" />
+					<div class="profile-overlay">
+						<label for="profile-upload" class="change-profile-btn">사진변경</label>
+						<input type="file" id="profile-upload" style="display: none;" />
 					</div>
 				</div>
-				<div class=" my-2 pt-3 center profile-info">
-					<table>
-						<tbody>
-							<tr>
-								<th>이름</th>
-								<td>${myPageUserInfo.name}</td>
-							</tr>
-							<tr>
-								<th>성별</th>
-								<td>${myPageUserInfo.gender}</td>
-							</tr>
-							<tr>
-								<th>아이디</th>
-								<td>${myPageUserInfo.id}</td>
-							</tr>
-							<tr>
-								<th>생년월일</th>
-								<td>${myPageUserInfo.birth}</td>
-							</tr>
-							<tr>
-								<th>번호</th>
-								<td>${myPageUserInfo.phone}</td>
-							</tr>
-							<tr>
-								<th>이메일</th>
-								<td>${myPageUserInfo.email}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			
-				<div
-					class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center
-	                    w-75 m-auto">
-					<!-- 취소 버튼 -->
-					<a class="btn btn-primary btn-secondary" href="myprofile?id=${id}">취소</a>
-					<!-- 수정완료 버튼 -->
-					<a class="btn btn-primary btn-classic" href="myprofile?id=${id}">수정완료</a>
-	
-	
-	
-				</div>
 			</div>
+			<div class=" my-2 pt-3 center profile-info">
+				<table>
+					<tbody>
+						<tr>
+							<th>이름</th>
+							<td>${myPageUserInfo.name}</td>
+						</tr>
+						<tr>
+							<th>성별</th>
+							<td>${myPageUserInfo.gender}</td>
+						</tr>
+						<tr>
+							<th>아이디</th>
+							<td>${myPageUserInfo.id}</td>
+						</tr>
+						<tr>
+							<th>생년월일</th>
+							<td>${myPageUserInfo.birth}</td>
+						</tr>
+						<tr>
+							<th>번호</th>
+							<td>${myPageUserInfo.phone}</td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td>${myPageUserInfo.email}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		
+			<div
+				class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center
+                    w-75 m-auto">
+				<!-- 취소 버튼 -->
+				<a class="btn btn-primary btn-secondary" href="myprofile?id=${id}">취소</a>
+				<!-- 수정완료 버튼 -->
+				<a class="btn btn-primary btn-classic" href="myprofile?id=${id}">수정완료</a>
 
+			</div>
 		</div>
 	</div>
 </body>

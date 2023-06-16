@@ -5,7 +5,7 @@
 <div class="container">
 
 	<div class="my-2 p-3 text-center">
-		<h1 class=“titleBolder”>FAQ</h1>
+		<h1 class="titleBolder">FAQ</h1>
 	</div>
 
 		<div class="accordion " id="accordionExample">
