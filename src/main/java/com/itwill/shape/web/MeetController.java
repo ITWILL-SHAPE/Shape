@@ -133,7 +133,6 @@ public class MeetController {
 		// 값 "mt_dat"의 인덱스 찾기
 		LocalDate currentDate = LocalDate.now();
 
-		List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
 		List<LocalDate> targetDate = new ArrayList<>();
 
 		List<MeetListCountDto> filteredDto = new ArrayList<>();
@@ -143,11 +142,12 @@ public class MeetController {
 			LocalDate parsedDate = LocalDate.parse(date);
 			targetDate.add(parsedDate);
 			log.info(parsedDate.toString());
-			boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
+			int isPast = currentDate.compareTo(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
 
-			if (isPast) { // 모집날짜가 미래일 경우
+			log.info("ispast = {}", isPast);
+			
+			if (isPast <= 0) { // 모집날짜가 미래일 경우
 				filteredDto.add(item);
-				isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
 
 			} else {
 				log.info("떨구는 것 확인 = {}", item);
