@@ -9,7 +9,7 @@
 
 <div class="container">
 	<header class="my-2 p-3 text-center">
-		<h1>Q&amp;A</h1>
+		<h1 class=“titleBolder”>Q&amp;A</h1>
 		<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
 	</header>
 
@@ -86,8 +86,12 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	</div>
+
+	<div class="row pt-3">
+		<div class="col-2"></div>
 		<!-- 페이징 처리 -->
-		<div class="pb-3">
+		<div class="col-8">
 			<nav>
 				<ul class="pagination justify-content-center">
 					<li class="page-item ${ paging.prev? "":"disabled" }"><a
@@ -101,22 +105,20 @@
 						class="page-link" href="${ paging.endPage +1 }" tabindex="-1">&raquo;</a></li>
 				</ul>
 			</nav>
+			<form id='actionForm' action='/shape/info/qna' method='get'>
+				<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' />
+				<input type='hidden' name='amount' value='${ paging.cri.amount }' />
+			</form>
 		</div>
-
-		<form id='actionForm' action='/shape/info/qna' method='get'>
-			<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' />
-			<input type='hidden' name='amount' value='${ paging.cri.amount }' />
-		</form>
 		<!-- 페이징 처리 -->
-
+		<div class="col-2" style="text-align: end;">
+			<c:url var="qnaCreate" value="/info/qna/create" />
+			<button onclick="location.href='${ qnaCreate }'"
+				class="btn btn-classic" type="button">질문하기</button>
+			</sdiv>
+		</div>
 	</div>
-	<div class="mt-2 d-grid d-md-flex justify-content-md-center">
-		<c:url var="qnaCreate" value="/info/qna/create" />
-		<button onclick="location.href='${ qnaCreate }'"
-			class="btn btn-classic" type="button">질문하기</button>
-	</div>
-</div>
-</body>
-<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
-</html>
-<%@ include file="../common/footer.jsp"%>
+	</body>
+	<script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
+	</html>
+	<%@ include file="../common/footer.jsp"%>

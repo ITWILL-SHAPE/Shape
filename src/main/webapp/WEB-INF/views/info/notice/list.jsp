@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<div class="container">
 			<div class="my-2 p-3 text-center">
-				<h1>공지사항</h1>
+				<h1 class=“titleBolder”>공지사항</h1>
 			</div>
 		
 			<main class="my-2">
