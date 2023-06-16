@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 	
-	// 정렬 방식
+	// 정렬 방식 + 최신순, 인기순
 	$('select[name="sortBy"]').change(() => {
 		console.log('sortBy');
 		searchMeetList();
