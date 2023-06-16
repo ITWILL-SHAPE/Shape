@@ -10,7 +10,6 @@
 		<h1>게시글 작성</h1>
 	</header>
 
-	<main class="">
 		<div class="card">
 			<form method="post" id="createForm">
 				<div class="card-body">
@@ -52,7 +51,6 @@
 				</div>
 			</form>
 		</div>
-	</main>
 </div>
 </body>
 <script src="<%=request.getContextPath()%>/static/js/post-create.js"></script>

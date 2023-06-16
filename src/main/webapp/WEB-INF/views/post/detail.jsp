@@ -80,7 +80,7 @@
 		<div class="d-grid d-md-flex justify-content-md-center">
 			<c:url var="postList" value="/post/list" />
 			<button onclick="location.href='${ postList }'"
-				class="btn btn-list" type="button">목록</button>
+				class="btn btn-list col-2" type="button">목록</button>
 		</div>
 		<!-- end modal -->
 

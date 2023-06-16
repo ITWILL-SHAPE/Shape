@@ -1,5 +1,13 @@
 @charset "UTF-8";
 /* 전체 사용 */
+.container { padding: 0 150px 0 150px; }
+
+.active>.page-link {
+	background-color: #3B7CFF;
+}
+
+.mozip-m {margin: 7px 15px 0 0;}
+
 .mainColor {
 	color: #3B7CFF;
 } /*파란색*/
@@ -20,6 +28,10 @@
 	background-color: #D3FF31;
 	color: black;
 }
+.btn-list:hover {
+	background-color: #D3FF31;
+	color: black;
+}
 
 .titleBolder { /*h1 타이틀 글자 굵기*/
 	font-weight: bolder;
@@ -30,13 +42,12 @@
 	margin-bottom: 0px;
 }
 
-a { text-decoration: none; color: gray; }
-a:visited { color: gray; }
-a:hover { color: #3B7CFF; }
-a:active { color: #3B7CFF; }
+a.mainA { text-decoration: none; color: gray; }
+a.mainA:visited { color: gray; }
+a.mainA:hover { color: #3B7CFF; }
+a.mainA:active { color: #3B7CFF; }
 
 .mainA {
-	margin-left: 40px;
 	margin-bottom: 0px;
     height: 25px;
     padding-right: 0px;
@@ -126,7 +137,6 @@ div.signUpBox {
 /* meet/create.jsp, update.jsp에 사용 */
 div.meetCreateBox {
 	height: 2050px;
-	padding: 80px;
 	min-width: 1000px;
 	min-height: 2050px;
 }
@@ -165,6 +175,7 @@ span.highlight {
 .meetCreateTitle {
 	text-align: center;
 	margin-bottom: 80px;
+	margin-top: 80px;
 }
 
 .meetCreateInfo {
@@ -176,6 +187,10 @@ span.highlight {
 div.meeetcontent {
 	margin-right: 15px;
 	margin-left: 15px;
+}
+
+#btnToggleReply {
+	border: none;
 }
 
 div.meetdetailemail {

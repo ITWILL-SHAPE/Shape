@@ -110,7 +110,7 @@
 							<dd align="left">
 								<div class="smallText">
 									<div class="input-group">
-										<input type="number" class="form-control" id="nm_ppl"
+										<input type="number" class="form-control" id="nm_ppl" name="nm_ppl"
 										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl" required /> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
@@ -178,10 +178,10 @@
 						<div>
 							<div>
 								<div class="my-2 text-center">
-									<a class="mx-3 btn btn-secondary" id="btnCancel">취소</a>
+									<a class="btn btn-secondary" id="btnCancel">취소</a>
 									
-									<input class="mx-3 btn btn-classic" type="submit"
-										id="btnCreate" value="모임등록" />
+									<input class="btn btn-classic" type="submit"
+										id="btnCreate" value="등록" />
 								</div>
 							</div>
 						</div>
@@ -190,19 +190,9 @@
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>
 	<link
 		href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"

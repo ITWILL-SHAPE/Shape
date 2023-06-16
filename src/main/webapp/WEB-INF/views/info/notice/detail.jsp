@@ -9,22 +9,20 @@
 				<h1>공지사항</h1>
 			</div>
 		
-			<main class="my-2">
 			<section class="card">
 				
 				<div class="card-body" >
 					<!-- 조회수 -->
-					<p class="card-text">조회수: ${ notices.views }</p>
+					<div class="row">
+					
 					
 					<!-- 제목 -->
-					<h2 class="card-title">${ notices.title }</h2>
+					<h2 class="col-10 card-title">${ notices.title }</h2>
+					<p class="col-2 card-text text-end">조회수: ${ notices.views }</p>
+					</div>
 					<hr />
 					
-					<div class="my-2">
-						<label class="form-label d-none" for="created_date">작성일</label>
-						<fmt:formatDate value="${ times }" pattern="yyyy.MM.dd" var="date"/>
-						<p class="card-text text-end small" id="created_date">${ date }</p>
-					</div>
+					
 					
 					<div class="my-2">
 						<label class="form-label d-none" for="content">내용</label>
@@ -37,15 +35,22 @@
 						<label class="form-label" for="file">첨부파일</label>
 						<div class="card-text" id="file">${ notices.atchd_file }</div>
 					</div>
+					
+					<div class="my-2">
+						<label class="form-label d-none" for="created_date">작성일</label>
+						<fmt:formatDate value="${ times }" pattern="yyyy.MM.dd" var="date"/>
+						<p class="card-text text-end small" id="created_date">${ date }</p>
+					</div>
 				</div>
 				
-				<div class="my-2 text-center">
-					<c:url var="infoNoticeListPage" value="/info/notice/list" />
-					<a class="btn btn-list" href="${ infoNoticeListPage }">목록</a>
-				</div>
+				
 			</section>
-			</main>
 		</div>
+		
+		<div class="my-2 text-center">
+					<c:url var="infoNoticeListPage" value="/info/notice/list" />
+					<a class="btn btn-list col-2" href="${ infoNoticeListPage }">목록</a>
+				</div>
 
 
 </body>

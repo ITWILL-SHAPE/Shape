@@ -15,7 +15,7 @@
                      <h1>모임 상세보기</h1>
           </div>		
 		<!-- 제목, 내용 -->
-			<div class="card ">
+			<div class="card border-0">
 				<div class="card-body">
 			<div class=my-5>
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -100,51 +100,53 @@
                      <div>
 						<ul>
 							<div id="category" class="my-3">
-								<li><sapn>🏷[분야] : </sapn> 
-								<i> ${ meetmaindetail.category }</i>
+								<li><sapn>🏷분야 : </sapn> 
+								${ meetmaindetail.category }
 								</li>
 							</div>
 							<div id="sido_sigungu" class="my-3">
 								<li>
-								<sapn>🏳‍[지역] : </sapn> 
-								<i>${meetmaindetail.sido} ,${meetmaindetail.sigungu }</i>
+								<sapn>🏳‍지역 : </sapn> 
+								${meetmaindetail.sido}, ${meetmaindetail.sigungu }
 								</li>
 							</div>
 							<div id="meet_date_time" class="my-3">
 								<li>
-								<sapn>🗓[모집일정] : </sapn> 
-								<i>${meetmaindetail.mt_date}</i>
-								<i>${meetmaindetail.mt_time }</i>
+								<sapn>🗓모집일정 : </sapn> 
+								${meetmaindetail.mt_date}<span> </span>
+								${meetmaindetail.mt_time }
 								</li>
 							</div>
 							<div id="end_date" class="my-3">
 								<li>
-								<span>⏰[모집기간] : </span> 
-								<i>${meetmaindetail.ed_date} 까지</i>
+								<span>⏰모집기간 : </span> 
+								${meetmaindetail.ed_date} 까지
 								</li>
 							</div>
 							<div id="meet_ppl" class="my-3">
 								<li>
-								<span>🙋🏻‍♀️[인원] : <span> 
-								<i>${meetmaindetail.nm_ppl} 명</i>
+								<span>🙋🏻‍♀️인원 : <span> 
+								${meetmaindetail.nm_ppl} 명
 								</li>
 							</div>
 							<div id="cost" name="cost" class="my-3">
 								<li>
 								<span>💸참가비용 : </span> 
-								<i>${meetmaindetail.mt_cost} 원</i>
+								<span>[${meetmaindetail.mt_cost_info}]</span> ${meetmaindetail.mt_cost} 원
 								</li>
 							</div>
-							<div id="cost_info" name="cost_info" class="my-3">
+							<div id="cost_info" name="cost_info" class="my-3 d-none">
 								<li>
 								<span>🧾비용내용 : </span> 
-								<i>${meetmaindetail.mt_cost_info}</i>
+								${meetmaindetail.mt_cost_info}
 								</li>
 							</div>
 							<div id="content" name="content" class="my-3">
 								<li>
-								<span>📝내용 : </span> 
-								<i>${meetmaindetail.content}</i>
+									<span>📝내용</span> 
+									<div class="border bg-body rounded mt-2 p-3">
+										${meetmaindetail.content}
+									</div>
 								</li>
 							</div>
 							
@@ -242,10 +244,14 @@
 					<p class="login-info-text">* 참여자는 로그인을 해야 볼 수 있습니다.</p>
 						<div class="card my-2">
 							<div class="card-header fw-bold">
-								<p class="my-2">👪GUEST</p>
-									<button class="btn" id="btnToggleReply">
+								<div class="row">
+									<p class="my-2 col">👪GUEST</p>
+									<button class="btn col text-end" id="btnToggleReply">
 										<img id="toggleBtnIcon" src="<%=request.getContextPath()%>/static/images/sample/toggle-off.png"											alt="toggle-off" width="45" />
 									</button>
+								</div>
+								
+									
 							</div>			
 								<!-- guest들은 로그인 한 사람들만 볼 수 있음 -->
 								<!-- 로그인한 HOST 작성자 볼 수 있게 -->

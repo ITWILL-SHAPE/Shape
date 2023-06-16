@@ -17,7 +17,7 @@
 							data-bs-toggle="collapse" data-bs-target="#faq${ status.index }"
 							aria-expanded="true" aria-controls="faq${ status.index }">
 							
-							<h1><i class="bi bi-question-lg"></i></h1>
+							<h1><i class="bi bi-question-lg subColor"></i></h1>
 							<br/>
 							${ faq.question }
 							<br/><br/> </button>
@@ -26,7 +26,7 @@
 					<div id="faq${ status.index }" class="accordion-collapse collapse"
 						data-bs-parent="#accordionExample">
 						<div class="accordion-body">
-							<h1><i class="bi bi-exclamation-lg"></i></h1>
+							<h1><i class="bi bi-exclamation-lg mainColor"></i></h1>
 							${ faq.answer }<br/>
 							<br/>
 						</div>

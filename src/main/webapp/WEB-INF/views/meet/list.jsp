@@ -82,7 +82,7 @@
 				</div>
 				<!-- 제목 검색 -->
 				<div class="row col-12 p-0">
-					<div class="col-10 my-2">
+					<div class="col-12 my-2">
 						<div class="input-group">
 							<input type="text" class="form-control" id="searchTitle"
 								name="searchTitle" placeholder="검색어 입력"
@@ -93,20 +93,20 @@
 							</button>
 						</div>
 					</div>
-					<!-- 모집 여부 -->
-					<div class="form-check col-2 mt-14">
-						<input class="form-check-input" type="checkbox" value=""
-							id="reverseCheck" name="mozipCheck">
-						<label class="form-check-label" for="reverseCheck"
-							id="checkRecruitmentIng"> 모집중
-						</label>						
-					</div>
 				</div>
 			</div>
 		</div>
 		<!-- 정렬 -->
 		<div class="d-grid d-md-flex justify-content-md-end">
-			<div class="w-25">
+			<div class="w-25 d-grid d-md-flex justify-content-md-end">
+				<!-- 모집 여부 -->
+				<div class="form-check mozip-m">
+					<input class="form-check-input" type="checkbox" value=""
+						id="reverseCheck" name="mozipCheck">
+					<label class="form-check-label" for="reverseCheck"
+						id="checkRecruitmentIng"> 모집중
+					</label>						
+				</div>
 				<select name="sortBy" class="form-select w-50">
 					<option value="최신순"
 						${sortBy == '최신순' ? 'selected="selected"' : '' }>최신순</option>

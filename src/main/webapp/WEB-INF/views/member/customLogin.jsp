@@ -28,9 +28,9 @@
 						</c:if>
 					</main>					
 				</div>
-				<button class="w-50 btn btn-lg btn-classic" type="submit">로그인</button>
+				<button class="w-50 btn btn-lg btn-classic mt-3" type="submit">로그인</button>
 			</form>
-			<div class="text-end w-50 m-auto">
+			<div class="text-end w-50 m-auto mt-2">
 				<c:url value="/member/signUp" var="signUp"/>
 				<a href="${ signUp }" class="text-decoration-none text-dark">회원가입</a> | 
 				<c:url value="/member/findIdOrPwd" var="findIdOrPwd"/>

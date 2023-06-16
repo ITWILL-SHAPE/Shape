@@ -30,7 +30,7 @@
 											<th scope="row" class="col-1 text-center">${ status.count }</th>
 										</c:otherwise>
 									</c:choose>
-									<td class="ms-2">
+									<td class="ms-2 text-start">
 										<c:url var="noticeDetailPage" value="/info/notice/detail">
 											<c:param name="nid" value="${ notice.nid }"></c:param>
 										</c:url>

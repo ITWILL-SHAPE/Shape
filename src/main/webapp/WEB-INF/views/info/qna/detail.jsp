@@ -11,7 +11,6 @@
 		<p>문의를 남겨주시면 영업시간(09:30 ~ 17:30)내에 답변드리겠습니다.</p>
 	</header>
 
-	<main class="my-2">
 		<section class="card">
 			<form class="card-body" id="modifyForm">
 				<!-- 사용자 문의 출력 -->
@@ -82,15 +81,10 @@
 					</c:if>
 				</sec:authorize>
 				<sec:authorize access="isAnonymous()">
-					<div class="d-grid gap-2 d-md-flex justify-content-md-center">
-							<c:url var="qna" value="/info/qna" />
-							<button onclick="location.href='${ qna }'"
-								class="btn btn-list" type="button">목록</button>
-						</div>
+					
 				</sec:authorize>
 			</form>
 		</section>
-	</main>
 </div>
 </body>
 <script src="<%=request.getContextPath()%>/static/js/infoQnA-detail.js"></script>

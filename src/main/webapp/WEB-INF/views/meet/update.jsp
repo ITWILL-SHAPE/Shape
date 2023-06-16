@@ -171,10 +171,10 @@
 							<div>
 								<br>
 								<div class="my-2 text-center">
-									<a class="mx-3 btn btn-secondary" id="btnCancel">취소</a>
-									<input class="mx-3 btn btn-classic" type="submit" id="btnUpdate"
+									<a class="btn btn-secondary" id="btnCancel">취소</a>
+									<input class="btn btn-classic" type="submit" id="btnUpdate"
 										value="수정완료" />
-									<button class="mx-3 btn btn-secondary" type="button" id="btnDelete">삭제</button>
+									<button class="btn btn-danger" type="button" id="btnDelete">삭제</button>
 								</div>
 							</div>
 						</div>

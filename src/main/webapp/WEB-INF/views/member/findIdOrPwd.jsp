@@ -23,23 +23,23 @@
 					</button>
 				</li>
 			</ul>
-			<div class="tab-content h-330" id="tabContent">
+			<div class="tab-content" id="tabContent">
 				<!-- id 찾기 -->
 				<div class="tab-pane fade show active p-5" id="findId"
 					role="tabpanel" aria-labelledby="findId-tab" tabindex="0">
-					<table class="table table-borderless align-middle text-start">
+					<table class="table table-borderless align-middle text-start w-75">
 						<colgroup>
 							<col width="20%">
 						</colgroup>
 						<tbody>
 							<tr>
-								<th class="text-end">이름</th>
+								<th>이름</th>
 								<td>
-									<input type="text" name="name" class="form-control w-50"/>
+									<input type="text" name="name" class="form-control"/>
 								</td>
 							</tr>
 							<tr>
-								<th class="text-end">이메일</th>
+								<th>이메일</th>
 								<td>
 									<div class="input-group form-check-inline">
 										<input type="text" name="emailId" class="form-control"/>
@@ -56,9 +56,9 @@
 								</td>
 							</tr>
 							<tr id="findIdCode" style="display:none;">
-								<th class="text-end">인증번호</th>
+								<th>인증번호</th>
 								<td>
-									<input type="text" name="codeId" class="form-control w-50 form-check-inline"/>
+									<input type="text" name="codeId" class="form-control form-check-inline"/>
 								</td>
 							</tr>
 						</tbody>							
@@ -72,25 +72,25 @@
 				<!-- 비밀번호 찾기 -->
 				<div class="tab-pane fade p-5" id="findPwd"
 					role="tabpanel" aria-labelledby="findPwd-tab" tabindex="0">
-					<table class="table table-borderless align-middle text-start">
+					<table class="table table-borderless align-middle text-start  w-75">
 						<colgroup>
 							<col width="20%">
 						</colgroup>
 						<tbody>
 							<tr>
-								<th class="text-end">아이디</th>
+								<th>아이디</th>
 								<td>
-									<input type="text" name="id" class="form-control w-50"/>
+									<input type="text" name="id" class="form-control"/>
 								</td>
 							</tr>
 							<tr>
-								<th class="text-end">이름</th>
+								<th>이름</th>
 								<td>
-									<input type="text" name="name" class="form-control w-50"/>
+									<input type="text" name="name" class="form-control"/>
 								</td>
 							</tr>
 							<tr>
-								<th class="text-end">이메일</th>
+								<th>이메일</th>
 								<td>
 									<div class="input-group form-check-inline">
 										<input type="text" name="emailId" class="form-control"/>
@@ -107,9 +107,9 @@
 								</td>
 							</tr>
 							<tr id="findPwdCode" style="display:none;">
-								<th class="text-end">인증번호</th>
+								<th>인증번호</th>
 								<td>
-									<input type="text" name="codePwd" class="form-control w-50 form-check-inline"/>
+									<input type="text" name="codePwd" class="form-control form-check-inline"/>
 								</td>
 							</tr>
 						</tbody>

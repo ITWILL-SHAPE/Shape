@@ -77,7 +77,7 @@
 				<input class="form-control" type="text" placeholder="검색어 입력"
 					name="keyword" id="keyword" aria-label="Input group example"
 					aria-describedby="basic-addon1" />
-				<button type="submit" class="btn btn-list">
+				<button type="submit" class="btn btn-classic">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 						fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           							<path
