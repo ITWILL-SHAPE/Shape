@@ -8,15 +8,20 @@
 </head>
 <body>
 	<div class="row">
-		<div class="col-2 my-5">
+		<div class="col-2"></div>
+		<div class="col-10">
+			<div class="my-2 p-3 text-center">
+				<h1 class="titleBolder" >내가 작성한 게시글</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
 			<%@ include file="../sidebar.jsp"%>
 		</div>
 		<!-- 메인 컨텐츠 시작 -->
-		<div id="main_content" class="container col-10 ">
-			<div>
-				<h1 class="my-2 pt-5 text-center titleBolder">내가 작성한 게시글</h1>
-			</div>
-			<div class="my-2 pt-5 w-75 m-auto">
+		<div class="container myPage-container col-8 border bg-body rounded shadow-sm" id="main_content">
+			<div class="my-2 pt-5">
 				<table class="table table-hover">
 					<colgroup>
 						<col span="3">
@@ -52,6 +57,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+<<<<<<< HEAD
 				<div>
 					<!-- 페이징 시작 -->
 					<ul class="pagination justify-content-center">
@@ -79,6 +85,10 @@
 					  
 					<!-- 페이징 끝 -->
 					<button class="btn delete-button btn-secondary float-end">댓글
+=======
+				<div class="mb-2 text-end">
+					<button class="btn delete-button btn-secondary">댓글
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 						삭제</button>
 				</div>
 			</div>
