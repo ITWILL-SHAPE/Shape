@@ -26,13 +26,13 @@ public class MeetMainDetailDto {
 	private String category;
 	private String sido;
 	private String sigungu;
-	private String location;
+	private String location; // 상세주소
 	private String mt_date;
 	private String mt_time;
-	private String ed_date;
+	private String ed_date; // 참여종료
 	private long nm_ppl;
-	private String mt_cost;
-	private String mt_cost_info;
+	private String mt_cost; // 참가비
+	private String mt_cost_info; // 참가비용 정보
 	private byte[] img_1;
 	private byte[] img_2;
 	private byte[] img_3;
@@ -45,6 +45,7 @@ public class MeetMainDetailDto {
 	private UserInfo userHost; // Host 작성자
 	private long meetlikecount; // 찜 갯수
 	private List<MeetLike> meetLikeId; // 찜 한 아이디
+	private long meetNumberPrtcp; // 참여자 인원수 
 	
 		
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {

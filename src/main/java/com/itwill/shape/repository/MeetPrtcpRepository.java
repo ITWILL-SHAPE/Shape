@@ -25,6 +25,9 @@ public interface MeetPrtcpRepository {
 	// mtid 글 작성자 
 	UserInfo getUserInfo(String id);
 	
+	// 참여 인원이 몇명인지 COUNT
+	long selectNumberPrtcpMtid(long mtid);
+	
 	
 	
 	

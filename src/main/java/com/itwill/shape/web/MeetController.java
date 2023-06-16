@@ -30,7 +30,6 @@ import com.itwill.shape.dto.PostDetailDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
-import com.itwill.shape.service.MeetLikeService;
 import com.itwill.shape.service.MeetListService;
 import com.itwill.shape.service.UserInfoService;
 
@@ -423,12 +422,27 @@ public class MeetController {
 
 		// 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
 		MeetMainDetailDto result = meetDetailService.detailByMtid(mtid);
-
+		
 		log.info("resultasdfasdf = {}", mtid);
 		log.info("resultasdfasdf = {}", result);
+		LocalDate currentDate = LocalDate.now();
+		String date = result.getEd_date();
+		log.info("확인 = {}", date);
+		LocalDate parsedDate = LocalDate.parse(date);
+		log.info(parsedDate.toString());
+		
+		int isPast = currentDate.compareTo(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
+		log.info("ispast = {}", isPast);
+		
+		if (isPast <= 0) { // 모집날짜가 미래일 경우
+			model.addAttribute("meetmaindetail", result);
 
+		} else {
+			log.info("떨구는 것 확인 = {}", isPast);
+		}
+		
 		// 뷰에 MeetDetaildto를 전달.
-		model.addAttribute("meetmaindetail", result);
+		/* model.addAttribute("meetmaindetail", result); */
 
 	}
 
