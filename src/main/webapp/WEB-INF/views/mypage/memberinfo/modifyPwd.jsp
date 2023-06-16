@@ -16,10 +16,10 @@
 					<h3 class="title my-2 pt-3 titleBolder">비밀번호 수정</h3>
 					<!-- 참고사항 시작 -->
 					<ul class="tip_list">
-						<li class="my-2 pt-1">개인정보보호를 위해 최소 3개월 이내에는 정기적으로 비밀번호를 변경해
+						<li class=" pt-1 px-3">개인정보보호를 위해 최소 3개월 이내에는 정기적으로 비밀번호를 변경해
 							주시는 게 좋습니다.</li>
-						<li class="my-2 pt-1">비밀번호는 쉬운번호나 타 사이트와 같을 경우 도용되기 쉽습니다.</li>
-						<li class="my-2 pt-1">주민번호,전화번호,생일 등 개인정보와 연관된 문자나 숫자는 보안상
+						<li class=" pt-1 px-3">비밀번호는 쉬운번호나 타 사이트와 같을 경우 도용되기 쉽습니다.</li>
+						<li class="pt-1 px-3">주민번호,전화번호,생일 등 개인정보와 연관된 문자나 숫자는 보안상
 							위험이 높으므로 사용을 자제해 주세요.</li>
 					</ul>
 					<!-- 참고사항 끝 -->
@@ -30,7 +30,7 @@
 								<label for="nowPwd">현재 비밀번호 입력</label>
 							</h6>
 							<div class="inputPwd">
-								<input  class="green-border" type="password" id="nowPwd" name="nowPwd" required autofocus/>
+								<input  class="blue-border" type="password" id="nowPwd" name="nowPwd" required autofocus/>
 							</div>
 						</div>
 						<div class="pwd_new my-2 pt-3">
@@ -38,7 +38,7 @@
 								<label for="newPwd">새로운 비밀번호 입력</label>
 							</h6>
 							<div class="inputPwd">
-								<input  class="green-border" type="password" id="newPwd" name="newPwd" required />
+								<input  class="blue-border" type="password" id="newPwd" name="newPwd" required />
 								<p class="tip-text">* 영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력해 주세요.</p>
 							</div>
 						</div>
@@ -47,7 +47,7 @@
 								<label for="rePwd">새로운 비밀번호 입력 확인</label>
 							</h6>
 							<div class="inputPwd">
-								<input  class="green-border" type="password" id="rePwd" name="rePwd" required />
+								<input  class="blue-border" type="password" id="rePwd" name="rePwd" required />
 								<p class="tip-text">* 새로운 비밀번호 변경확인을 위하여 다시 한번 입력해 주세요.</p>
 							</div>
 						</div>

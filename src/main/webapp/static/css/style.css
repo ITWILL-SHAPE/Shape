@@ -261,13 +261,17 @@ table.users tr {
 /* mypage modifyPwd*/
 .tip_list {
 	list-style: none;
+	font-weight: normal;
+	border: 2px solid;
+	border-Color: #3B7CFF;
+	color: black;
 }
 
 .tip_list li:before {
 	content: "- ";
 }
 
-p.tip-text{
+p.tip-text {
 	color: red;
 	font-size: smaller;
 }
@@ -335,9 +339,7 @@ th, td {
 	margin-bottom: 40px; /* 원하는 간격 크기를 설정 */
 }
 
-/* mypage mycomments, myposts */ 
+/* mypage mycomments, myposts */
 .row-separator {
-  border-bottom: 1px solid #3B7CFF; /* 테이블 행 구분선 */
+	border-bottom: 1px solid #3B7CFF; /* 테이블 행 구분선 */
 }
-
-
