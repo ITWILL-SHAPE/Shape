@@ -27,7 +27,7 @@
 	   <![CDATA[
 	    SELECT *
    		  FROM 
-       (SELECT /*+ INDEX_DESC(post_info post_info_pid_pk) */ ROWNUM rn, pid, title, content, author, hrs_hd, created_date, modified_date, views
+       (SELECT ROWNUM rn, pid, title, content, author, hrs_hd, created_date, modified_date, views
    		  FROM post_info
   	 	 WHERE author = #{author} AND PID > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
   	  ORDER BY created_date DESC)
@@ -57,7 +57,7 @@
 		<![CDATA[
 		select * from 
 		(
-		select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE, MODIFIED_DATE 
+		select rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE, MODIFIED_DATE 
 		from 
         (
         select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE, count(C.PCID) as RCNT

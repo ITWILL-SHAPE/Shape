@@ -38,7 +38,7 @@
 		select * 
 		from 
 			(
-			select /*+ INDEX_DESC(POST_INFO pk_board) */ rownum rn, NID, TITLE, CREATED_DATE, FIX, VIEWS
+			select rownum rn, NID, TITLE, CREATED_DATE, FIX, VIEWS
 			from INFO_NOTICE
 			where NID > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
 			) 
