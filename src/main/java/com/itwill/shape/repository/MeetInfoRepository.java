@@ -124,6 +124,6 @@ public interface MeetInfoRepository {
 	// 리스트 페이징
 	List<MeetListCountDto> selectBySearchPaging(MeetSearchListDto dto);
 	// 페이징을 위한 개체수 카운트
-	int meetInfoCount();
+	int meetInfoCount(MeetSearchListDto dto);
 	
 }
