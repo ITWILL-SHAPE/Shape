@@ -32,6 +32,7 @@ const registEvent = function() {
 		$('input[name="emailId"]').attr("type", "text");
 		// 인증번호 box display none
 		$('#findIdCode').hide();
+		$('#findPwdCode').hide();
 		$('.message').hide();
 		// 아이디 박스
 		$('#yourId').hide();
@@ -287,7 +288,7 @@ const compareCodeId = function() {
 		$('.message').html('인증번호가 일치합니다.');
 		$('.message').css('color', 'green');		
 		$('.message').show();
-		$('input[name="codeId"]').attr("readonly",true);
+		$('input[name="codePwd"]').attr("readonly",true);
 		LoadingWithMask();
 		randomPwd();
 		return;
@@ -334,7 +335,7 @@ function LoadingWithMask() {
 	let loadingImg = '';
 	
 	loadingImg += "<div id='loadingImg'>";
-    loadingImg += " <img src='../static/images/common/loading.gif' style='position: relative; display: block; margin: 0px auto;'/>";
+    loadingImg += " <img src='../static/images/common/loading.gif' style='position: relative; display: block; margin: 0px auto 1000px;'/>";
 	loadingImg += "</div>";
 
 
