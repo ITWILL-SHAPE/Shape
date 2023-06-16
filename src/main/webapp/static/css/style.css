@@ -64,6 +64,25 @@ a.mainA:active { color: #3B7CFF; }
 	 height: 20px;
 }
 
+.carousel-inner { /* 이미지 슬라이드 크기 고정 */
+     width: auto;
+     height: 400px;
+     margin-bottom:50px;
+}
+
+.carousel-item {
+     width: auto;
+     height: auto;
+}
+
+.carousel-indicators [data-bs-target] {
+	background-color: #3B7CFF;
+}
+
+.carousel-indicators {
+    bottom:-50px;
+}
+
 /* header.jsp에서 사용 */
 .headerBtn {
 	border: none;
