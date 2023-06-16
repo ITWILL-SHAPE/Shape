@@ -13,7 +13,7 @@
 		<div class="col-2"></div>
 		<div class="col-10">
 			<div class="my-2 p-3 text-center">
-				<h1 class="titleBolder" >비밀번호 재입력 </h1>
+				<h1 class="titleBolder">비밀번호 재입력</h1>
 			</div>
 		</div>
 	</div>
@@ -23,17 +23,27 @@
 			<%@ include file="../sidebar.jsp"%>
 		</div>
 
-		<div id="main_content" class="container col-8 border bg-body rounded shadow-sm">
+		<div id="main_content"
+			class="container col-8 border bg-body rounded shadow-sm">
 			<form class="confirmPwd_form">
 				<div class="sub_content my-2 pt-3 text-center">
 					<h6 class="sub_title my-2 pt-3">
-						본인확인을 위해 <strong class="mainColor" >로그인 비밀번호</strong>를 한 번 더 입력해주세요.
+						본인확인을 위해 <strong class="mainColor">로그인 비밀번호</strong>를 한 번 더
+						입력해주세요.
 					</h6>
-					<br>
-					
-					 <input type="password" id="inputPwd" autofocus
-						name="inputPwd" placeholder="  비밀번호를 입력해 주세요"  class="blue-border p-1 " /> <input
-						type="submit" class="btn btn_login btn-classic " value="확인"/>
+					<br> 
+					<div>
+					<input type="password" id="inputPwd" autofocus
+						name="inputPwd" placeholder=" 비밀번호를 입력해 주세요"
+						class="form-control form-control-sm custom-input " /> 
+						<input type="submit" class="btn btn_login btn-classic " value="확인" />
+					</div>	
+						
+						
+						
+						
+						
+						
 				</div>
 				<div class="banner_area my-2 pt-5 text-center ">
 					<a

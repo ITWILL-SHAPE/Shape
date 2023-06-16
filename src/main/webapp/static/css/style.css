@@ -409,3 +409,7 @@ th, td {
 .myPage-container {
 	padding: 0 90px 0 90px;
 }
+
+.custom-input {
+  width: 200px; /* 원하는 길이로 설정 */
+}
