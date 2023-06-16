@@ -71,17 +71,27 @@ public class MyPageController {
 	/**
 	 * 0613 김세이
 	 * 회원정보 수정 페이지
+	 * @Param id
+	 * @Param model
 	 * @return "/mypage/memberinfo/profileModify"
 	 */
 	@GetMapping("/profilemodifypage")
-	public String profileModifyPage(){
-		log.info("profileModifyPage()");
+	public String profileModifyPage(@RequestParam("id")String id, Model model){
+		log.info("profileModifyPage(id={})", id);
 
+		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+		
+		if (dto.getProfileImageUrl() != null) {
+	        model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+	    }
+	    model.addAttribute("myPageUserInfo", dto);
+		
 //	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
 		return "/mypage/memberinfo/profileModify";
 	}
 	
 	/**
+	 * 
 	 * 0601 김세이 마이페이지 이미지 수정
 	 * 
 	 * @param id
