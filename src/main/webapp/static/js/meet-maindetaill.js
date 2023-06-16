@@ -43,7 +43,7 @@
 		// 참여인원 FULL
 	
 		$('button#full').click(function(e) {
-			alert("참여가 종료된 모임");
+			alert("참여가 종료된 모임 입니다.");
 		});
 		
 		/** 
