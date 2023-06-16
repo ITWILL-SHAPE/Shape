@@ -55,6 +55,70 @@
 	admin은 현재 있는 툴처럼 만드시면 됩니다.<br>
 </p>
 
+<div class= "my-5 py-5">
+<div class= "my-5">
+			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#myCarousel"
+						data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#myCarousel"
+						data-bs-slide-to="1" aria-label="Slide 2" class="active"
+						aria-current="true"></button>
+					<button type="button" data-bs-target="#myCarousel"
+						data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+				</div>
+				<!-- 1번째 -->
+				<div class="carousel-inner">
+					<div class="carousel-item">
+						
+						<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png" 
+							class="bd-placeholder-img" width="100%" height="150%"/>
+						<div class="container">
+							<div class="carousel-caption text-start">
+								
+							</div>
+						</div>
+					</div>
+					<!-- 2번쨰 -->
+					<div class="carousel-item active">
+						<!-- <svg class="bd-placeholder-img" width="100%" height="100%"
+							xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+							preserveAspectRatio="xMidYMid slice" focusable="false">
+							<rect width="100%" height="100%" fill="#777"></rect></svg> -->
+						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png" 
+							class="bd-placeholder-img" width="100%" height="10%"/>
+						<div class="container">
+							<div class="carousel-caption">
+								
+							</div>
+						</div>
+					</div>
+					<!-- 3번쩨 -->
+					<div class="carousel-item">
+						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png"
+							class="bd-placeholder-img" width="100%" height="150%"/>
+
+						<div class="container">
+							<div class="carousel-caption text-end">
+							<!-- 글쓰기 -->	
+							<p class="black">마지막</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button"
+					data-bs-target="#myCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"
+					data-bs-target="#myCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+		</div>
 
 <div class="container-fluid container py-5">
 	<div class="row my-3">
@@ -180,7 +244,7 @@
 						<sec:authorize access="isAuthenticated()">
 							<div class="img-overlay img-right">
 								<button id="logInUser">
-									<img src="../static/images/sample/like2.svg" alt="toggle-off"
+									<img src="./static/images/sample/like2.svg" alt="toggle-off"
 										width="50" class="heart overlay-image overlay-right"
 										id="img-heart" onclick="event.stopPropagation(); LikeCheck();" />
 								</button>
@@ -189,7 +253,7 @@
 						<!-- 로그인 안 함 -->
 						<sec:authorize access="isAnonymous()">
 							<button id="logOutUser">
-								<img src="../static/images/sample/like2.svg" alt="not-move"
+								<img src="./static/images/sample/like2.svg" alt="not-move"
 									width="50" class="heart overlay-image overlay-right"
 									onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
 							</button>
@@ -199,14 +263,14 @@
 								<c:when test="${cardList.PCNT >= cardList.nm_ppl}">
 									<div id="mozipFin${status.begin}">
 										<img id="mozipFinImg${status.begin}"
-											src="../static/images/sample/mozip_fin.svg" alt="recuriEng"
+											src="./static/images/sample/mozip_fin.svg" alt="recuriEng"
 											width="80" class="overlay-image overlay-left" />
 									</div>
 								</c:when>
 								<c:otherwise>
 									<div id="mozipIin${status.begin}">
 										<img id="mozipIin${status.begin}"
-											src="../static/images/sample/mozip_ing.svg" alt="recuriIng"
+											src="./static/images/sample/mozip_ing.svg" alt="recuriIng"
 											width="80" class="overlay-image overlay-left" />
 									</div>
 								</c:otherwise>
