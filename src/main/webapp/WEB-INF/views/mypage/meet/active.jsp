@@ -5,16 +5,19 @@
 <%@ include file="../../common/header.jsp"%>
 <body>
 	<div class="row">
-		<div class="my-2 pt-5 col-4" id="sidebar">
+		<div class="col-2"></div>
+		<div class="col-10">
+			<div class="my-2 p-3 text-center">
+				<h1 class="titleBolder" >내가 참여 중인 모임</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2">
 			<%@ include file="../sidebar.jsp"%>
 		</div>
-		<!-- 메인 컨텐츠 시작 -->
-		<div id="main_content" class="container col-8">
-			<div>
-				<h1 class="my-2 pt-5 text-center titleBolder">내가 참여중인 모임</h1>
-			</div>
 
-			<div class="container-fluid container my-2 pt-3">
+		<div class="container myPage-container col-8 border bg-body rounded shadow-sm" id="main_content">
 				<!--아이템: model.addAttribute("activeList", dto);-->
 				<div id="cardList" class="album py-5 ">
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

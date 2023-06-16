@@ -16,8 +16,8 @@
 	<form id="searchMeetList" action="/shape/meet/list" method="get">
 		<div class="text-center">
 			<div class="w-50 m-auto">
-				<input type='hidden' name='pageNum' value='${ search.pageNum }' /> 
-				<input type='hidden' name='amount' value='${ search.amount }' />
+				<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' /> 
+				<input type='hidden' name='amount' value='${ paging.cri.amount }' />
 				<div class="row col-12">
 					<!-- 카테고리 -->
 					<div class="col-6">
@@ -216,20 +216,20 @@
 	</div>
 
 	<!-- 페이징 -->
-	<div class="mt-5">
+	<!-- 페이징 -->
+	<div>
 		<nav>
 			<ul class="pagination justify-content-center">
-				<li class="page-item ${ paging.prev ? '' : 'disabled' }"><a
-					class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a>
+				<li class="page-item ${ paging.prev ? '' : 'disabled' }">
+					<a class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a>
 				</li>
-				<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
-					var="num">
+				<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }" var="num">
 					<li class="page-item ${ paging.cri.pageNum == num? "active":"" }">
 						<a class="page-link" href="${ num }">${ num }</a>
 					</li>
 				</c:forEach>
-				<li class="page-item ${ paging.next? '' : 'disabled' }"><a
-					class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a>
+				<li class="page-item ${ paging.next? '' : 'disabled' }" >
+					<a class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a>
 				</li>
 			</ul>
 		</nav>
@@ -237,5 +237,4 @@
 </div>
 
 <script src="<%=request.getContextPath()%>/static/js/meet-list.js"></script>
-<script src="<%=request.getContextPath()%>/static/js/paging-search.js"></script>
 <%@ include file="../common/footer.jsp"%>

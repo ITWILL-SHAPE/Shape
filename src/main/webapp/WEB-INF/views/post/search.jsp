@@ -8,7 +8,7 @@
 <!-- 카드로 2개씩 -->
 <div class="container">
 	<header class="my-2 pt-3 text-center">
-		<h1 class=“titleBolder”>게시판</h1>
+		<h1 class="titleBolder">게시판</h1>
 	</header>
 
 

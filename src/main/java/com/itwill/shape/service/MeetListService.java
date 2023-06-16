@@ -171,8 +171,8 @@ public class MeetListService {
 	 * 조건에 따른 개체 개수	
 	 * @return
 	 */
-	public int getListCount() {
-		return meetInfoRepository.meetInfoCount(); 
+	public int getListCount(MeetSearchListDto dto) {
+		return meetInfoRepository.meetInfoCount(dto); 
 	}
 	
 	/**
@@ -188,6 +188,11 @@ public class MeetListService {
 			dto.setPageNum((dto.getPageNum() -1) * 15);
 		} else {
 			dto.setPageNum(dto.getPageNum() -1);
+			dto.setAmount(15);
+		}
+		
+		if(dto.getSearchSortBy() == null || dto.getSearchSortBy().equals("")) {
+			dto.setSearchSortBy("recent");
 		}
 		
 		List<MeetListCountDto> paging = meetInfoRepository.selectBySearchPaging(dto);
