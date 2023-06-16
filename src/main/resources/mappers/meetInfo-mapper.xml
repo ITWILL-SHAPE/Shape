@@ -138,10 +138,12 @@
 		HAVING COUNT(P.prtcp_id)  <  M.nm_ppl
 		ORDER BY M.CREATED_DATE DESC
 		]]>
+		
 
 	</select>
 
 	<!-- 모집완료 -->
+	<!-- 안씀 -->
 	<select id="selectOrderByMozipEnd"
 		resultType="com.itwill.shape.dto.MeetListCountDto">
 		SELECT M.mtid, M.sido, M.mt_date, M.category, COUNT(L.mtid) AS LCNT,
@@ -265,6 +267,58 @@
 		m.mtid = #{mtid}
 
 	</select>
-
+	
+	<!-- 선택하는거니까 != null? 모르게써-->
+	<!-- 그리고 제목 검색은 키워드가 아닌지 -->
+	<select id="selectBySearchPaging"
+		resultType="com.itwill.shape.dto.MeetListCountDto">
+		WITH P AS(
+			SELECT  M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, 
+			M.title, M.created_date, count(L.mtid) AS LCNT
+			FROM MEET_INFO M
+			LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
+			LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+			<if test='category != null'>
+				where  M.category like #{category}
+			</if>
+			<if test='sido != null'>
+				where  M.sido like #{sido}
+			</if>
+			<if test='keyword != null and keyword neq""'>
+				where lower(M.title) like lower('%' || #{?keyword?} || '%')
+			</if>
+			<if test='MozipCheck != null'>
+				<![CDATA[
+					HAVING COUNT(P.prtcp_id)  <  M.nm_ppl
+				]]>
+			</if>
+			GROUP BY
+			M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, M.CREATED_DATE
+			<if test='sort == recent'>
+				ORDER BY M.CREATED_DATE
+			</if>
+			<if test='sort == popularity'>
+				ORDER BY count(L.mtid) DESC
+			</if>
+		)
+		SELECT * 
+		FROM P
+		OFFSET #{pageNum} ROWS FETCH NEXT #{amount} ROWS ONLY
+	</select>
+	
+	<select id="meetInfoCount" resultType="int">
+		SELECT count(*)
+		FROM MEET_INFO M
+		<if test='category != null'>
+			where  M.category like #{category}
+		</if>
+		<if test='sido != null'>
+			where  M.sido like #{sido}
+		</if>
+		<if test='keyword != null and keyword neq""'>
+			where lower(M.title) like lower('%' || #{?keyword?} || '%')
+		</if>
+	</select>
+	
 
 </mapper>

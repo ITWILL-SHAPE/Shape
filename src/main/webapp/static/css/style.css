@@ -25,6 +25,26 @@
 	font-weight: bolder;
 }
 
+/* main.jsp에서 사용 */
+.mainH2 {
+	margin-bottom: 0px;
+}
+
+a { text-decoration: none; color: gray; }
+a:visited { color: gray; }
+a:hover { color: #3B7CFF; }
+a:active { color: #3B7CFF; }
+
+.mainA {
+	margin-left: 40px;
+	margin-bottom: 0px;
+    height: 25px;
+    padding-right: 0px;
+    padding-left: 0px;
+    width: 70px;
+    align-self: self-end;
+}
+
 /* header.jsp에서 사용 */
 .headerBtn {
 	border: none;
