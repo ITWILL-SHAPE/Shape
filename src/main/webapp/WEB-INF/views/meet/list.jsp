@@ -147,13 +147,13 @@
 								<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 								<sec:authorize access="isAuthenticated()">
 									<img src="../static/images/sample/like2.svg" alt="toggle-off"
-										width="50" class="heart overlay-image overlay-right"
+										width="40" class="heart overlay-image overlay-right"
 										id="img-heart" onclick="event.stopPropagation(); LikeCheck();" />
 								</sec:authorize>
 								<!-- 로그인 안 함 -->
 								<sec:authorize access="isAnonymous()">
 									<img src="../static/images/sample/like2.svg" alt="not-move"
-										width="50" class="heart overlay-image overlay-right"
+										width="40" class="heart overlay-image overlay-right"
 										onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
 								</sec:authorize>
 								<div>
@@ -191,7 +191,8 @@
 												</span>
 											</div>
 										</div>
-										<div id="post-sidoAndTitle${status.begin}">[
+										<br>
+										<div class="titleHidden" id="post-sidoAndTitle${status.begin}">[
 											${cardList.sido} ] &lt;${cardList.title}&gt;</div>
 
 										<div id="post-mtDate${status.begin}">

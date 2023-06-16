@@ -95,7 +95,7 @@
 	</div>
 	<!--아이템: model.addAttribute("listCount", dto);-->
 	<div id="cardList" class="album py-3">
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<!-- for문 변경가능함 확인해보기. 
 	      -> 로그인: header.jsp, main.jsp => 37줄 참고 
 	      -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
@@ -117,13 +117,13 @@
 						<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 						<sec:authorize access="isAuthenticated()">
 									<img src="./static/images/sample/like2.svg" alt="toggle-off"
-										width="50" class="heart overlay-image overlay-right"
+										width="40" class="heart overlay-image overlay-right"
 										id="img-heart" onclick="event.stopPropagation(); LikeCheck();" />
 						</sec:authorize>
 						<!-- 로그인 안 함 -->
 						<sec:authorize access="isAnonymous()">
 								<img src="./static/images/sample/like2.svg" alt="not-move"
-									width="50" class="heart overlay-image overlay-right"
+									width="40" class="heart overlay-image overlay-right"
 									onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
 						</sec:authorize>
 						<div>
@@ -161,7 +161,8 @@
 										</span>
 									</div>
 								</div>
-								<div id="post-sidoAndTitle${status.begin}">[
+								<br>
+								<div class="titleHidden" id="post-sidoAndTitle${status.begin}">[
 									${cardList.sido} ] &lt;${cardList.title}&gt;</div>
 								<div id="post-mtDate${status.begin}">
 									<span class="map">모집일정: ${cardList.mt_date}</span>
@@ -212,7 +213,7 @@
 							<div class="img-overlay img-right">
 								<button id="logInUser">
 									<img src="./static/images/sample/like2.svg" alt="toggle-off"
-										width="50" class="heart overlay-image overlay-right"
+										width="40" class="heart overlay-image overlay-right"
 										id="img-heart" onclick="event.stopPropagation(); LikeCheck();" />
 								</button>
 							</div>
@@ -221,7 +222,7 @@
 						<sec:authorize access="isAnonymous()">
 							<button id="logOutUser">
 								<img src="./static/images/sample/like2.svg" alt="not-move"
-									width="50" class="heart overlay-image overlay-right"
+									width="40" class="heart overlay-image overlay-right"
 									onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
 							</button>
 						</sec:authorize>
@@ -260,7 +261,8 @@
 										</span>
 									</div>
 								</div>
-								<div id="post-sidoAndTitle${status.begin}">[
+								<br>
+								<div class="titleHidden" id="post-sidoAndTitle${status.begin}">[
 									${cardList.sido} ] &lt;${cardList.title}&gt;</div>
 								<div id="post-mtDate${status.begin}">
 									<span class="map">모집일정: ${cardList.mt_date}</span>
