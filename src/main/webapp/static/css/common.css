@@ -7,7 +7,7 @@ html, body {
 
 #wrap {
 	position: relative;
-  	min-height: 100%;
+  	min-height: 57%;
 }
 ul, ol { list-style-type: none; margin: 0; padding: 0;}
 
@@ -44,6 +44,7 @@ div.link {margin-bottom: 10px;}
 div.link > ul.content_list {display: flex;justify-content: center;}
 div.link > ul.content_list > li { display: inline-block; width: 52px; height: 52px; line-height: 49px; border: 1px solid white; border-radius: 50%; font-size: 16px; text-align: center; transition: all 0.5s;}
 div.link > ul.content_list > li > a {font-size: 30px;}
+div.link > ul.content_list > li > a > i:hover { color : #D3FF31;}
 .footer-content > p {text-align: center; margin: 0 !important}
 footer {
   	bottom: 0;

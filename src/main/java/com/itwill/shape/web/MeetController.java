@@ -173,6 +173,7 @@ public class MeetController {
 	 * @param model
 	 */
 
+	/*
 	@GetMapping("/search")
 	public void search(String category, String sidoValue, String sortBy, String searchTitle, String mozipCheck,
 			Model model) {
@@ -397,6 +398,7 @@ public class MeetController {
 		}
 
 	}
+	*/
 
 	/**
 	 * 0604 배선영 상세보기 페이지

@@ -19,13 +19,13 @@
 				<div class="sub_content my-2 pt-5 text-center">
 					<h3 class="title my-2 pt-3 titleBolder">비밀번호 재입력</h3>
 					<h6 class="sub_title my-2 pt-3">
-						본인확인을 위해 <strong>로그인 비밀번호</strong>를 한 번 더 입력해주세요.
+						본인확인을 위해 <strong class="mainColor" >로그인 비밀번호</strong>를 한 번 더 입력해주세요.
 					</h6>
 					<br>
 					<br> 
 					 <input type="password" id="inputPwd" autofocus
-						name="inputPwd" placeholder="  비밀번호를 입력해 주세요"  class="blue-border" /> <input
-						type="submit" class="btn btn_login btn-classic" value="확인"/>
+						name="inputPwd" placeholder="  비밀번호를 입력해 주세요"  class="blue-border p-1 " /> <input
+						type="submit" class="btn btn_login btn-classic " value="확인"/>
 				</div>
 				<div class="banner_area my-2 pt-5 text-center ">
 					<a

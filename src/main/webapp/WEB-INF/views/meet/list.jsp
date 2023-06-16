@@ -5,80 +5,52 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../common/header.jsp"%>
-<head>
-<!-- Favicons -->
-<link rel="apple-touch-icon"
-	href="/docs/5.1/assets/img/favicons/apple-touch-icon.png"
-	sizes="180x180">
-<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png"
-	sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png"
-	sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-<link rel="mask-icon"
-	href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg"
-	color="#7952b3">
-<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
 
-<!-- css -->
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/static/css/style.css" />
-</head>
+<div class="container">
+	<!-- Title -->
+	<div class="my-2 p-3 text-center">
+		<h1 class="titleBolder">전체 모임</h1>
+	</div>
 
-<div class="container-fluid container">
-
-	<!--제목 검색 -> post -->
-	<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
-		<c:url var="meetListPage" value="/meet/list">
-		</c:url>
-		<div class="titleBolder">
-			<a href="${ meetListPage }" class="link-dark text-decoration-none">
-				<h1>전체 모임</h1>
-			</a>
-		</div>
-		<div class="tst-tools">
-			<div>
-				<div>
-					<c:url var="meetSearchPage" value="/meet/search"></c:url>
-					<div>
-						<form id="searchFormByTitle" class="TitleSearchForm"
-							action="${meetSearchPage}">
-							<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' /> 
-							<input type='hidden' name='amount' value='${ paging.cri.amount }' />
-							<div class="input-group col-sm-7 my-2">
-								<input type="text" class="form-control" id="searchTitle"
-									name="searchTitle" placeholder="검색어 입력"
-									aria-label="Input group example"
-									aria-describedby="basic-addon1">
-								<button id="titleBtn" type="submit" class="btn btn-classic">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-										fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-          							<path
-											d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-        							</svg>
-								</button>
-							</div>
-						</form>
+	<!-- searchForm -->
+	<form id="seachMeetList">
+		<div class="text-center">
+			<div class="w-50 m-auto">
+				<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' /> 
+				<input type='hidden' name='amount' value='${ paging.cri.amount }' />
+				<!-- 제목 검색 -->
+				<div class="row col-12 p-0">
+					<div class="col-10 my-2">
+						<div class="input-group">
+							<input type="text" class="form-control" id="searchTitle"
+								name="searchTitle" placeholder="검색어 입력"
+								aria-label="Input group example"
+								aria-describedby="basic-addon1">
+							<button id="titleBtn" type="button" class="btn btn-classic">
+								<i class="bi bi-search"></i>
+							</button>
+						</div>
+					</div>
+					<div class="form-check col-2 mt-14">
+						<input class="form-check-input" type="checkbox" value=""
+							id="reverseCheck" name="mozipCheck">
+						<label class="form-check-label" for="reverseCheck"
+							id="checkRecruitmentIng"> 모집중
+						</label>						
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
+		</div>	
+	</form>
 	<!--모집 중 체크 박스 검색 -> post + label과 input의 순서 중요 서로 앞뒤로 바뀌면 js가 실행이 안됨.-->
 	<form id="searchFormCheckBox" class="m-2 p-3 CheckBoxSearchForm">
-		<div class="form-check form-check-reverse">
-			<label class="form-check-label" for="reverseCheck"
-				id="checkRecruitmentIng"> 모집중 </label>
+		
 			<%-- 
 			<label class="form-check-label" for="reverseCheck" id="checkRecruitmentEd" hidden> 
 			모집완료 
 			</label>
 			 --%>
-			<input class="form-check-input" type="checkbox" value=""
-				id="reverseCheck" name="mozipCheck">
-		</div>
+			
 	</form>
 
 
