@@ -10,7 +10,7 @@ public class PageDto {
 	private int startPage, endPage;
 	private boolean prev, next;
 	
-	private int total;
+	private int total; //게시물 수
 	private Criteria cri;
 	
 	public PageDto(Criteria cri, int total) {

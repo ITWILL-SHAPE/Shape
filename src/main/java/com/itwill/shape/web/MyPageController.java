@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
+import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
 import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
 import com.itwill.shape.service.MeetListService;
@@ -341,11 +342,14 @@ public class MyPageController {
 	public String readMyposts(@RequestParam("id")String id, Criteria cri, Model model) {
 		log.info("myposts(author(id)={}, cri={})", id, cri);
 		
+		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthor(id);
 		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthorWithPaging(id, cri);
-		log.info("readMyposts(myposts={})", myposts);
+		int size = list.size();
+		
+		log.info("readMyposts(myposts={}, size={})", myposts, size);
 
 		model.addAttribute("myposts", myposts);
-
+		model.addAttribute("pageMaker", new PageDto(cri, size));
 		return "/mypage/board/myPosts";
 	}
 
@@ -358,15 +362,19 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 게시판 > 내가 작성한 댓글
 	@GetMapping("/mycomments")
-	public String readMycomments(@RequestParam("id")String id, Model model) {
+	public String readMycomments(@RequestParam("id")String id, Criteria cri, Model model) {
 		log.info("readMycomments(author(id)={})", id);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
-		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthor(id);
-		log.info("readMycomments(mycomments={})", mycomments);
+		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthor(id);
+		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthorWithPaging(id, cri);
+		int size = list.size();
+		
+		log.info("readMycomments(mycomments={}, size={})", mycomments, size);
 
 		model.addAttribute("mycomments", mycomments);
-
+		model.addAttribute("pageMaker", new PageDto(cri, size));
+		
 		return "/mypage/board/myComments";
 	}
 }

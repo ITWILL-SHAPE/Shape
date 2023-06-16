@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.PostComment;
 import com.itwill.shape.dto.PostCommentCreateDto;
 import com.itwill.shape.dto.PostCommentReadDto;
@@ -45,6 +46,25 @@ public class PostCommentService {
 		log.info("selectByAuthor(author(id)={})", author);
 		
 		List<PostComment> entity = postCommentRepository.selectByAuthor(author);
+		log.info("selectByAuthor(entity={})", entity);
+		
+		// PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입의 객체로
+		// 리포지토리 계층의 메서드를 호출 - DB selectById
+		return entity.stream().map(PostCommentSelectByAuthorDto::fromEntity).toList();
+	}
+	
+	/**
+	 * 0616 손창민
+	 * MypageController에서 사용
+	 * post_comment table에서 author(id)와 일치하는 댓글 목록 불러오기 with Paging
+	 * @param author(id)
+	 * @return List<PostCommentSelectById> dto
+	 */
+	public List<PostCommentSelectByAuthorDto> selectByAuthorWithPaging(String author, Criteria cri) {
+		log.info("selectByAuthorWithPaging(author(id)={})", author);
+		
+		List<PostComment> entity = postCommentRepository.selectByAuthorWithPaging(author, cri);
+		log.info("selectByAuthorWithPaging(entity={})", entity);
 		
 		// PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입의 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById

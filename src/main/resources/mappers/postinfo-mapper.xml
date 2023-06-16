@@ -27,9 +27,9 @@
 	   <![CDATA[
 	    SELECT *
    		  FROM 
-       (SELECT ROWNUM rn, pid, title, content, author, hrs_hd, created_date, modified_date, views
+       (SELECT /*+ INDEX_DESC(post_info POST_INFO_PID_PK) */ ROWNUM rn, pid, title, content, author, hrs_hd, created_date, modified_date, views
    		  FROM post_info
-  	 	 WHERE author = #{author} AND PID > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
+  	 	 WHERE author = #{author} AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
   	  ORDER BY created_date DESC)
          WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
          ]]>

@@ -30,7 +30,7 @@
 								name="all-checkbox" /></th>
 							<th>No</th>
 							<th>제목</th>
-								<th style="display: none;"></th>
+							<th style="display: none;"></th>
 							<!-- 네 번째 열은 숨김 -->
 							<th>작성일</th>
 						</tr>
@@ -44,15 +44,40 @@
 								<td class="row-content"><a
 									href="/shape/post/detail?pid=${ myposts.pid }"
 									class="text-decoration-none text-dark"> ${ myposts.title }</a></td>
-								<td style="display: none;"><input type="hidden" id="pid" 
+								<td style="display: none;"><input type="hidden" id="pid"
 									value="${ myposts.pid }" /></td>
 								<td class="text-center"><fmt:formatDate
-									value="${ myposts.created_date }" pattern="yyyy-MM-dd HH:mm" /></td>
+										value="${ myposts.created_date }" pattern="yyyy-MM-dd HH:mm" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<div>
+					<!-- 페이징 시작 -->
+					<ul class="pagination justify-content-center">
+						<li class="page-item ${ pageMaker.prev? "":"disabled" }"><a
+							class="page-link" href="/shape/myposts?id=${ id }&pageNum=${ pageMaker.startPage - 1 }"
+							tabindex="-1">&laquo;</a></li>
+						<c:forEach begin="${ pageMaker.startPage }"
+							end="${ pageMaker.endPage }" var="num">
+							<li class="page-item ${ pageMaker.cri.pageNum == num? "active":"" }">
+								<a class="page-link"
+								href="/shape/myposts?id=${ id }&pageNum=${ num }">${ num }</a>
+							</li>
+						</c:forEach>
+						<li class="page-item ${ pageMaker.next? "":"disabled" }" ><a
+							class="page-link" href="/shape/myposts?id=${ id }&pageNum=${ pageMaker.endPage + 1 }"
+							tabindex="-1">&raquo;</a></li>
+					</ul>
+					
+					<!--
+					<form id='actionForm' action='/shape/mycomments?id=${ id }' method='get'>
+						<input type='hidden' name='pageNum'
+							value='${ pageMaker.cri.pageNum }' /> 
+					</form>
+					  -->
+					  
+					<!-- 페이징 끝 -->
 					<button class="btn delete-button btn-secondary float-end">댓글
 						삭제</button>
 				</div>

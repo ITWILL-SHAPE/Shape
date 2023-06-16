@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.PostComment;
+import com.itwill.shape.domain.PostInfo;
 
 
 public interface PostCommentRepository {
@@ -24,6 +26,14 @@ public interface PostCommentRepository {
 	 * @return List<PostComment>
 	 */
 	List<PostComment> selectByAuthor(String author);
+	
+	/**
+	 * 0616 손창민
+	 * post_comment table에서 아규먼트로 넘겨받은 id와 일치하는 댓글 전부 리턴 with Paging
+	 * @param author
+	 * @return List<PostComment>
+	 */
+	List<PostComment> selectByAuthorWithPaging(@Param("author") String author, @Param("cri") Criteria cri);
 	
 	/**
 	 * 0603 지현
