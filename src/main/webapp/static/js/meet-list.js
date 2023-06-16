@@ -16,154 +16,58 @@
  * 
  */
 document.addEventListener('DOMContentLoaded', () => {
-
-	$(document).ready(function() {
-
-		// 모집중/모집완료 체크박스
-		$('input[type=checkbox][name=mozipCheck]').change(function(e) {
-			if ($(this).prop("checked")) {
-				alert(`${this.value} is checked`);
-
-				// 동적으로 폼 생성
-				const form = $('<form>', {
-					'action': './search',
-					'method': 'GET'
-				});
-
-				// 폼에 데이터 추가
-				form.append($('<input>', {
-					'type': 'hidden',
-					'name': 'mozipCheck',
-					'value': 'checked'
-				}));
-
-				// 폼을 문서에 추가하고 제출
-				form.appendTo('body').submit();
-
-				$(this).attr('checked', true);
-
-			}
-			else {
-				alert(`${this.value} is unchecked`);
-
-				// 체크 해제시 list
-				// 동적으로 폼 생성
-				const form = $('<form>', {
-					'action': './list',
-					'method': 'GET'
-				});
-
-				// 폼에 데이터 추가
-				form.append($('<input>', {
-					'type': 'hidden',
-					'name': 'mozipCheck',
-					'value': 'unchecked'
-				}));
-
-				// 폼을 문서에 추가하고 제출
-				form.appendTo('body').submit();
-
-				$(this).removeAttr('checked');
-
-			}
-		});
-
-
-		// 찜
-
-
-
-
-		/*$('#img-heart');
-
-		LikeCheck = function(mtid, id) {
-			console.log("찜 실시");
-			alert("찜이 되었습니다.")
-
-			const EmptyHeartimage = $('img.overlay-image');
-
-			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
-
-				// 이미지의 src 속성 변경
-				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
-
-				EmptyHeartimage.attr('alt', 'toggle-on');
-
-
-			} else {
-
-				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
-
-				EmptyHeartimage.attr('alt', 'toggle-off');
-			}
-
-
-		}; onclick = "move_profile_page('${item.nickname}')"*/
-
-
-		/*const mtid = document.querySelector('input#mtid').value;
-		const id = document.querySelector('input#id').value;
-
-
-		function LikeCheck(mtid, id) {
-			const imgHeart = document.querySelector('img#img-heart');
-			console.log("찜 실시");
-			alert("찜이 되었습니다.")
-
-			const EmptyHeartimage = $('img.overlay-image');
-
-			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
-
-				// 이미지의 src 속성 변경
-				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
-
-				EmptyHeartimage.attr('alt', 'toggle-on');
-
-
-			} else {
-
-				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
-
-				EmptyHeartimage.attr('alt', 'toggle-off');
-			}
-		}*/
-
-
-		//imgHeart.addEventListener('click', LikeCheck(mtid, id));
-		/*$(function() {
-			$("#img-heart").click(function() {
-				LikeCheck(mtid, id);
-
-			});
-		});
-
-		function LikeCheck(mtid, id) {
-			console.log("찜 실시");
-			alert("찜이 되었습니다.")
-
-			const EmptyHeartimage = $('img.overlay-image');
-
-			if (EmptyHeartimage.attr('alt') === 'toggle-off') {
-
-				// 이미지의 src 속성 변경
-				EmptyHeartimage.attr('src', '../static/images/sample/like.svg');
-
-				EmptyHeartimage.attr('alt', 'toggle-on');
-
-
-			} else {
-
-				EmptyHeartimage.attr('src', '../static/images/sample/like2.svg');
-
-				EmptyHeartimage.attr('alt', 'toggle-off');
-			}
-		}*/
-
+	
+	// category 변경 시
+	$('#category').change(() => {
+		console.log('category');
+		searchMeetList();
 	});
+	
+	// 시도 변경 시
+	$('#sido').change(() => {
+		console.log('sido');
+		searchMeetList();
+	});
+	
+	// 제목 검색 시 - 버튼을 눌렀을 때
+	$('#titleBtn').click(() => {
+		console.log('title');
+		searchMeetList();
+	});
+	
+	// 제목 검색 시 - enter를 눌렀을 때
+	$('input[name="searchTitle"]').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			console.log('title');
+			searchMeetList();
+		}
+	});
+	
+	// 모집 여부
+	$('input[name="mozipCheck"]:checkbox').click(() => {
+		if($('input[name="mozipCheck"]:checkbox').is(":checked")) {
+			$('input[name="mozipCheck"]:checkbox').attr('checked', 'checked');
+			console.log('모집 중');
+			searchMeetList();
+		} else {
+			console.log('모집 중이 아닌것도');
+			$('input[name="mozipCheck"]:checkbox').removeAttr('checked');
+			searchMeetList();
+		}
+	});
+	
+	// 정렬 방식
+	$('select[name="sortBy"]').change(() => {
+		console.log('sortBy');
+		searchMeetList();
+	});
+	
+	
+	
+	
 
-	// const imgHeart = document.querySelector('img#img-heart');
-
-
+	/*주말*/
 	const imgHeart = document.querySelectorAll('img#img-heart');
 	
 	for(let img of imgHeart) {
@@ -184,3 +88,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
+
+// 검색 function
+const searchMeetList = function() {
+	// 검색 영역 value 확인
+	const searchCategory = $('#category').val();
+	const searchSidoValue = $('#sido').val();
+	const searchTitle = $('#titleBtn').val();
+	const searchSortBy = $('select[name="sortBy"]').val();
+	const searchMozipCheck = $('input[name="mozipCheck"]:checkbox').is(":checked");
+	
+	let data = {
+		searchCategory : searchCategory,
+		searchSidoValue : searchSidoValue,
+		searchTitle : searchTitle,
+		searchSortBy : searchSortBy,
+		searchMozipCheck : searchMozipCheck
+	}
+	
+	console.log(data);
+	
+	const searchMeetList = $('#searchMeetList');
+	searchMeetList.submit();
+	
+}
