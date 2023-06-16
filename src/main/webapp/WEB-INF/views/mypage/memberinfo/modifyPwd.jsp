@@ -30,7 +30,7 @@
 								<label for="nowPwd">현재 비밀번호 입력</label>
 							</h6>
 							<div class="inputPwd">
-								<input  class="blue-border" type="password" id="nowPwd" name="nowPwd" required autofocus/>
+								<input  class="form-control custom-input" type="password" id="nowPwd" name="nowPwd" required autofocus/>
 							</div>
 						</div>
 						<div class="pwd_new my-2 pt-3">

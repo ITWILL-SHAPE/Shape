@@ -405,3 +405,7 @@ th, td {
 .row-separator {
 	border-bottom: 1px solid #3B7CFF; /* 테이블 행 구분선 */
 }
+
+.myPage-container {
+	padding: 0 90px 0 90px;
+}
