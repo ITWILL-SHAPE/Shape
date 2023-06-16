@@ -41,10 +41,13 @@ public class MeetDetailService {
 			log.info(list.toString());
 			
 			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id());
+			log.info(result.toString());
 			
 			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
 			
 			List<MeetLike> meetLikeList = meetLikeRepository.selectMeetLikeListByMtid(mtid);
+			
+			long prtcpcount = meetPrtcpRepository.selectNumberPrtcpMtid(mtid);
 
 			dto.setPrtcpDtoList(list); // 참여자 정보	
 			
@@ -53,6 +56,8 @@ public class MeetDetailService {
 			dto.setMeetlikecount(count); // 찜 갯수
 			
 			dto.setMeetLikeId(meetLikeList); // 찜 누른 인간들....
+			
+			dto.setMeetNumberPrtcp(prtcpcount); // 참여자 인원수
 			
 			return dto;
 			

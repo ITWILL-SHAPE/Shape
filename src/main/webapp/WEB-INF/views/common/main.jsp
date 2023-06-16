@@ -21,71 +21,71 @@
 <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
 <meta name="theme-color" content="#7952b3">
 
-
-<div class= "my-5 py-5">
-<div class= "my-5">
-			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#myCarousel"
-						data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#myCarousel"
-						data-bs-slide-to="1" aria-label="Slide 2" class="active"
-						aria-current="true"></button>
-					<button type="button" data-bs-target="#myCarousel"
-						data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+<div id="detaillmain" class="container">
+	<div class="card border-0">
+		<div class="card-body">
+			<div class= "my-5">
+				<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#myCarousel"
+							data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#myCarousel"
+							data-bs-slide-to="1" aria-label="Slide 2" class="active"
+							aria-current="true"></button>
+						<button type="button" data-bs-target="#myCarousel"
+							data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+					</div>
+					<!-- 1번째 -->
+					<div class="carousel-inner">
+						<div class="carousel-item">
+							
+							<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png" 
+								class="bd-placeholder-img" width="100%" height="150%"/>
+							<div class="container">
+								<div class="carousel-caption text-start">
+									
+								</div>
+							</div>
+						</div>
+						<!-- 2번쨰 -->
+						<div class="carousel-item active">
+							<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png" 
+								class="bd-placeholder-img" width="100%" height="10%"/>
+							<div class="container">
+								<div class="carousel-caption">
+									
+								</div>
+							</div>
+						</div>
+						<!-- 3번쩨 -->
+						<div class="carousel-item">
+							<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png"
+								class="bd-placeholder-img" width="100%" height="150%"/>
+	
+							<div class="container">
+								<div class="carousel-caption text-end">
+								<!-- 글쓰기 -->	
+								<p class="black">마지막</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#myCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#myCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
-				<!-- 1번째 -->
-				<div class="carousel-inner">
-					<div class="carousel-item">
-						
-						<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png" 
-							class="bd-placeholder-img" width="100%" height="150%"/>
-						<div class="container">
-							<div class="carousel-caption text-start">
-								
-							</div>
-						</div>
-					</div>
-					<!-- 2번쨰 -->
-					<div class="carousel-item active">
-						<!-- <svg class="bd-placeholder-img" width="100%" height="100%"
-							xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-							preserveAspectRatio="xMidYMid slice" focusable="false">
-							<rect width="100%" height="100%" fill="#777"></rect></svg> -->
-						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png" 
-							class="bd-placeholder-img" width="100%" height="10%"/>
-						<div class="container">
-							<div class="carousel-caption">
-								
-							</div>
-						</div>
-					</div>
-					<!-- 3번쩨 -->
-					<div class="carousel-item">
-						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png"
-							class="bd-placeholder-img" width="100%" height="150%"/>
-
-						<div class="container">
-							<div class="carousel-caption text-end">
-							<!-- 글쓰기 -->	
-							<p class="black">마지막</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button"
-					data-bs-target="#myCarousel" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button"
-					data-bs-target="#myCarousel" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
 			</div>
 		</div>
-		</div>
+	</div>
+</div>
+		
 
 <div class="container-fluid container py-5">
 	<div class="row my-3">
@@ -189,7 +189,7 @@
 		<a class="col-1 mainA" href="${ meetListPage }">More ></a>
 	</div>
 <div id="cardList" class="album py-3">
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<!-- for문 변경가능함 확인해보기. 
 	      -> 로그인: header.jsp, main.jsp => 37줄 참고 
 	      -> https://baessi.tistory.com/144: 아이디 각 카드마다 다르게 해야 함.
