@@ -15,7 +15,7 @@
  * 김지민
  * 
  */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {	
 	
 	// category 변경 시
 	$('#category').change(() => {
@@ -45,20 +45,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 	
 	// 모집 여부
-	$('input[name="mozipCheck"]:checkbox').click(() => {
-		if($('input[name="mozipCheck"]:checkbox').is(":checked")) {
-			$('input[name="mozipCheck"]:checkbox').attr('checked', 'checked');
+	$('input[name="searchMozipCheck"]:checkbox').click(() => {
+		if($('input[name="searchMozipCheck"]:checkbox').is(":checked")) {
+			$('input[name="searchMozipCheck"]:checkbox').attr('checked', 'checked');
 			console.log('모집 중');
 			searchMeetList();
 		} else {
 			console.log('모집 중이 아닌것도');
-			$('input[name="mozipCheck"]:checkbox').removeAttr('checked');
+			$('input[name="searchMozipCheck"]:checkbox').removeAttr('checked');
 			searchMeetList();
 		}
 	});
 	
 	// 정렬 방식 + 최신순, 인기순
-	$('select[name="sortBy"]').change(() => {
+	$('select[name="searchSortBy"]').change(() => {
 		console.log('sortBy');
 		searchMeetList();
 	});
@@ -96,8 +96,8 @@ const searchMeetList = function() {
 	const searchCategory = $('#category').val();
 	const searchSidoValue = $('#sido').val();
 	const searchTitle = $('#titleBtn').val();
-	const searchSortBy = $('select[name="sortBy"]').val();
-	const searchMozipCheck = $('input[name="mozipCheck"]:checkbox').is(":checked");
+	const searchSortBy = $('select[name="searchSortBy"]').val();
+	const searchMozipCheck = $('input[name="searchMozipCheck"]:checkbox').is(":checked");
 	
 	let data = {
 		searchCategory : searchCategory,

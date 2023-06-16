@@ -16,67 +16,67 @@
 	<form id="searchMeetList" action="/shape/meet/list" method="get">
 		<div class="text-center">
 			<div class="w-50 m-auto">
-				<input type='hidden' name='pageNum' value='${ paging.cri.pageNum }' /> 
-				<input type='hidden' name='amount' value='${ paging.cri.amount }' />
+				<input type='hidden' name='pageNum' value='${ search.pageNum }' /> 
+				<input type='hidden' name='amount' value='${ search.amount }' />
 				<div class="row col-12">
 					<!-- 카테고리 -->
 					<div class="col-6">
-						<select class=" form-select" id="category" name="category">
+						<select class=" form-select" id="category" name="searchCategory">
 								<option value="">모집 분야</option>
 								<option value="운동·액티비티"
-									${category == '운동·액티비티' ? 'selected="selected"' : '' }>운동·액티비티</option>
+									${ search.searchCategory eq '운동·액티비티' ? 'selected="selected"' : '' }>운동·액티비티</option>
 								<option value="음식·음료"
-									${category == '음식·음료' ? 'selected="selected"' : '' }>음식·음료</option>
+									${search.searchCategory eq '음식·음료' ? 'selected="selected"' : '' }>음식·음료</option>
 								<option value="취미"
-									${category == '취미' ? 'selected="selected"' : '' }>취미</option>
+									${search.searchCategory eq '취미' ? 'selected="selected"' : '' }>취미</option>
 								<option value="여행·동행"
-									${category == '여행·동행' ? 'selected="selected"' : '' }>여행·동행</option>
+									${search.searchCategory eq '여행·동행' ? 'selected="selected"' : '' }>여행·동행</option>
 								<option value="자기계발·교육"
-									${category == '자기계발·교육' ? 'selected="selected"' : '' }>자기계발·교육</option>
+									${search.searchCategory eq '자기계발·교육' ? 'selected="selected"' : '' }>자기계발·교육</option>
 								<option value="동네·친목"
-									${category == '동네·친목' ? 'selected="selected"' : '' }>동네·친목</option>
+									${search.searchCategory eq '동네·친목' ? 'selected="selected"' : '' }>동네·친목</option>
 								<option value="문화·예술"
-									${category == '문화·예술' ? 'selected="selected"' : '' }>문화·예술</option>
+									${search.searchCategory eq '문화·예술' ? 'selected="selected"' : '' }>문화·예술</option>
 								<option value="기타"
-									${category == '기타' ? 'selected="selected"' : '' }>기타</option>
+									${search.searchCategory eq '기타' ? 'selected="selected"' : '' }>기타</option>
 						</select>
 					</div>
 					<!-- 시도 검색 -->
 					<div class="col-6">
-						<select class="form-select" id="sido" name="sidoValue">
+						<select class="form-select" id="sido" name="searchSidoValue">
 								<option value="">---시/도 선택---</option>
 								<option value="서울특별시"
-									${sidoValue == '서울특별시' ? 'selected="selected"' : '' }>서울특별시</option>
+									${ search.searchSidoValue eq '서울특별시' ? 'selected="selected"' : '' }>서울특별시</option>
 								<option value="인천광역시"
-									${sidoValue == '인천광역시' ? 'selected="selected"' : '' }>인천광역시</option>
+									${search.searchSidoValue eq '인천광역시' ? 'selected="selected"' : '' }>인천광역시</option>
 								<option value="대전광역시"
-									${sidoValue == '대전광역시' ? 'selected="selected"' : '' }>대전광역시</option>
+									${search.searchSidoValue eq '대전광역시' ? 'selected="selected"' : '' }>대전광역시</option>
 								<option value="광주광역시"
-									${sidoValue == '광주광역시' ? 'selected="selected"' : '' }>광주광역시</option>
+									${search.searchSidoValue eq '광주광역시' ? 'selected="selected"' : '' }>광주광역시</option>
 								<option value="대구광역시"
-									${sidoValue == '대구광역시' ? 'selected="selected"' : '' }>대구광역시</option>
+									${search.searchSidoValue eq '대구광역시' ? 'selected="selected"' : '' }>대구광역시</option>
 								<option value="울산광역시"
-									${sidoValue == '울산광역시' ? 'selected="selected"' : '' }>울산광역시</option>
+									${search.searchSidoValue eq '울산광역시' ? 'selected="selected"' : '' }>울산광역시</option>
 								<option value="부산광역시"
-									${sidoValue == '부산광역시' ? 'selected="selected"' : '' }>부산광역시</option>
+									${search.searchSidoValue eq '부산광역시' ? 'selected="selected"' : '' }>부산광역시</option>
 								<option value="경기도"
-									${sidoValue == '경기도' ? 'selected="selected"' : '' }>경기도</option>
+									${search.searchSidoValue eq '경기도' ? 'selected="selected"' : '' }>경기도</option>
 								<option value="강원도"
-									${sidoValue == '강원도' ? 'selected="selected"' : '' }>강원도</option>
+									${search.searchSidoValue eq '강원도' ? 'selected="selected"' : '' }>강원도</option>
 								<option value="충청북도"
-									${sidoValue == '충청북도' ? 'selected="selected"' : '' }>충청북도</option>
+									${search.searchSidoValue eq '충청북도' ? 'selected="selected"' : '' }>충청북도</option>
 								<option value="충청남도"
-									${sidoValue == '충청남도' ? 'selected="selected"' : '' }>충청남도</option>
+									${search.searchSidoValue eq '충청남도' ? 'selected="selected"' : '' }>충청남도</option>
 								<option value="전라북도"
-									${sidoValue == '전라북도' ? 'selected="selected"' : '' }>전라북도</option>
+									${search.searchSidoValue eq '전라북도' ? 'selected="selected"' : '' }>전라북도</option>
 								<option value="전라남도"
-									${sidoValue == '전라남도' ? 'selected="selected"' : '' }>전라남도</option>
+									${search.searchSidoValue eq '전라남도' ? 'selected="selected"' : '' }>전라남도</option>
 								<option value="경상북도"
-									${sidoValue == '경상북도' ? 'selected="selected"' : '' }>경상북도</option>
+									${search.searchSidoValue eq '경상북도' ? 'selected="selected"' : '' }>경상북도</option>
 								<option value="경상남도"
-									${sidoValue == '경상남도' ? 'selected="selected"' : '' }>경상남도</option>
+									${search.searchSidoValue eq '경상남도' ? 'selected="selected"' : '' }>경상남도</option>
 								<option value="제주도"
-									${sidoValue == '제주도' ? 'selected="selected"' : '' }>제주도</option>
+									${search.searchSidoValue eq '제주도' ? 'selected="selected"' : '' }>제주도</option>
 						</select>
 					</div>
 				</div>
@@ -85,7 +85,7 @@
 					<div class="col-12 my-2">
 						<div class="input-group">
 							<input type="text" class="form-control" id="searchTitle"
-								name="searchTitle" placeholder="검색어 입력"
+								name="searchTitle" placeholder="검색어 입력" value="${ search.searchTitle }"
 								aria-label="Input group example"
 								aria-describedby="basic-addon1">
 							<button id="titleBtn" type="button" class="btn btn-classic">
@@ -101,17 +101,17 @@
 			<div class="w-25 d-grid d-md-flex justify-content-md-end">
 				<!-- 모집 여부 -->
 				<div class="form-check mozip-m">
-					<input class="form-check-input" type="checkbox" value=""
-						id="reverseCheck" name="mozipCheck">
+					<input class="form-check-input" type="checkbox"
+						id="reverseCheck" name="searchMozipCheck" ${ search.searchMozipCheck == 'on' ? 'checked="checked"' : ''}>
 					<label class="form-check-label" for="reverseCheck"
 						id="checkRecruitmentIng"> 모집중
 					</label>						
 				</div>
-				<select name="sortBy" class="form-select w-50">
-					<option value="최신순"
-						${sortBy == '최신순' ? 'selected="selected"' : '' }>최신순</option>
-					<option value="인기순"
-						${sortBy == '인기순' ? 'selected="selected"' : '' }>인기순</option>
+				<select name="searchSortBy" class="form-select w-50">
+					<option value="recent"
+						${ search.searchSortBy eq 'recent' ? 'selected="selected"' : '' }>최신순</option>
+					<option value="popularity"
+						${search.searchSortBy eq 'popularity' ? 'selected="selected"' : '' }>인기순</option>
 				</select>
 			</div>
 		</div>

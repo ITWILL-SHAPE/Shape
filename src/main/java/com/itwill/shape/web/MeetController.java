@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
@@ -24,6 +25,7 @@ import com.itwill.shape.dto.MeetLikeDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetPrtcpCreateDto;
+import com.itwill.shape.dto.MeetSearchListDto;
 import com.itwill.shape.dto.PostDetailDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.MeetDetailService;
@@ -125,8 +127,17 @@ public class MeetController {
 	 * @param model
 	 */
 	@GetMapping("/list")
-	public void readBasic(Model model) {
-		log.info("readBasic");
+	public void readBasic(Model model, MeetSearchListDto search) {
+		log.info("readBasic(search = {})", search);
+		
+
+		Criteria cri = new Criteria();
+		if(search.getPageNum() != 0) {
+			cri.setPageNum(search.getPageNum());
+		} else {
+			search.setPageNum(cri.getPageNum());
+			search.setAmount(cri.getAmount());
+		}
 
 		List<MeetListCountDto> dto = meetListService.readByCreateTime();
 
@@ -157,6 +168,7 @@ public class MeetController {
 		if (!filteredDto.isEmpty()) {
 			// 뷰에 PostDetailDto를 전달.
 			model.addAttribute("listCount", filteredDto);
+			model.addAttribute("search", search);
 			for (MeetListCountDto c : filteredDto) {
 				log.info("확인 = {}", c);
 			}

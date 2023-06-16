@@ -17,6 +17,6 @@ public class MeetSearchListDto {
 	private String searchTitle;
 	private String searchMozipCheck;
 	
-	private int pageNum;
-	private int amount;
+	private int pageNum; //페이지 수
+	private int amount; //현재 페이지에 뿌릴 게시글 수
 }
