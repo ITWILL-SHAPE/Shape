@@ -56,6 +56,14 @@ a.mainA:active { color: #3B7CFF; }
     align-self: self-end;
 }
 
+.titleHidden {
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 white-space: nowrap;
+	 width: 285px;
+	 height: 20px;
+}
+
 /* header.jsp에서 사용 */
 .headerBtn {
 	border: none;
