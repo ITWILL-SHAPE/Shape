@@ -28,7 +28,7 @@
 				</thead>
 				<tbody class="table-group-divider">
 					<c:forEach items="${ infoQnAs }" var="infoQnA" varStatus="loop">
-						<tr>
+						<tr class="border">
 							<th scope="row" class="col-1 text-center">${loop.index + 1}</th>
 							<c:if test="${infoQnA != null}">
 								<c:choose>

@@ -49,10 +49,7 @@ $(document)
 								'insert',
 								[   'link',
 									'video']],
-							[
-								'view',
-								['fullscreen',
-									'help']]],
+							],
 						fontNames: ['Arial',
 							'Arial Black',
 							'Comic Sans MS',
