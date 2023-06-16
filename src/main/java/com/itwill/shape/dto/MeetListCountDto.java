@@ -5,9 +5,11 @@ import com.itwill.shape.domain.MeetInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class MeetListCountDto {
 	

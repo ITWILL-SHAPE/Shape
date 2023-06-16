@@ -18,7 +18,7 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 }
 
 #sidebar {
-	padding: 1rem;
+	padding-left: 30px;
 	background-color: white;
 	z-index: 9999;
 	float: left;
@@ -34,7 +34,6 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 					<ul class="hyphen-list">
 						<li><a class="text-decoration-none text-dark" href="myprofile?id=${ id }">나의 프로필</a></li>
 						<li><a class="text-decoration-none text-dark" href="confirmpwdpage?id=${ id }">비밀번호 수정</a></li>
-						<li><a class="text-decoration-none text-dark" href="withdrawalpage?id=${ id }">회원탈퇴(beta)</a></li>
 					</ul>
 				</nav>
 			</li>
@@ -45,7 +44,6 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 						<li><a class="text-decoration-none text-dark" href="active?id=${ id }">내가 참여 중인 모임</a></li>
 						<li><a class="text-decoration-none text-dark" href="created?id=${ id }">내가 개설한 모임</a></li>
 						<li><a class="text-decoration-none text-dark" href="interests?id=${ id }">내가 찜한 모임</a></li>
-						<li><a class="text-decoration-none text-dark" href="viewed?id=${ id }">최근 본 모임(beta)</a></li>
 					</ul>
 				</nav>
 			</li>

@@ -6,7 +6,7 @@
 <!-- 게시판 main(list) postpage -->
 <div class="container">
 	<div class="my-2 pt-3 text-center">
-		<h1 class=“titleBolder”>게시판</h1>
+		<h1 class="titleBolder">게시판</h1>
 	</div>
 
 	<div class="border-0 bd-example m-0 border-0">

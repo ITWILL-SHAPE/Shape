@@ -273,51 +273,91 @@
 	<select id="selectBySearchPaging"
 		resultType="com.itwill.shape.dto.MeetListCountDto">
 		WITH P AS(
-			SELECT  M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, 
-			M.title, M.created_date, count(L.mtid) AS LCNT
-			FROM MEET_INFO M
-			LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
-			LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
-			<if test='category != null'>
-				where  M.category like #{category}
+		    SELECT 
+		          M.mtid
+		        , M.sido
+		        , M.mt_date
+		        , M.category
+		        , M.nm_ppl
+		        , M.title
+		        , M.created_date
+		        , COUNT(L.mtid) AS LCNT
+		        , COUNT(P.MTID) AS PCNT
+		    FROM MEET_INFO M
+		    LEFT JOIN MEET_LIKE L
+		        ON M.mtid = L.mtid
+		    LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+		    <![CDATA[
+		   		WHERE M.ED_DATE <= (
+		   			SELECT
+		   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		   			FROM DUAL
+		   		)
+		    ]]>
+		    <if test='searchTitle != null and searchTitle neq""'>
+		    	AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
+		    </if>
+		    <if test='searchCategory != null and searchCategory neq ""'>
+		    	AND M.CATEGORY = #{searchCategory}
+		    </if>
+		    <if test='searchSidoValue != null and searchSidoValue neq ""'>
+		    	AND M.SIDO = #{searchSidoValue}
+		    </if>
+		    <if test='searchMozipCheck != null and searchMozipCheck neq ""'>
+		    	<![CDATA[
+				    AND M.NM_PPL < (
+				        SELECT
+				            COUNT(*)
+				        FROM MEET_PRTCP P1
+				        WHERE P1.MTID = M.MTID
+				    )
+			    ]]>
+		    </if>
+		    GROUP BY
+		        M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE
+		    <if test='searchSortBy eq "recent"'>
+				ORDER BY M.CREATED_DATE DESC
 			</if>
-			<if test='sido != null'>
-				where  M.sido like #{sido}
-			</if>
-			<if test='keyword != null and keyword neq""'>
-				where lower(M.title) like lower('%' || #{?keyword?} || '%')
-			</if>
-			<if test='MozipCheck != null'>
-				<![CDATA[
-					HAVING COUNT(P.prtcp_id)  <  M.nm_ppl
-				]]>
-			</if>
-			GROUP BY
-			M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, M.CREATED_DATE
-			<if test='sort == recent'>
-				ORDER BY M.CREATED_DATE
-			</if>
-			<if test='sort == popularity'>
-				ORDER BY count(L.mtid) DESC
+			<if test='searchSortBy eq "popularity"'>
+				ORDER BY LCNT DESC
 			</if>
 		)
-		SELECT * 
+		SELECT
+			* 
 		FROM P
 		OFFSET #{pageNum} ROWS FETCH NEXT #{amount} ROWS ONLY
 	</select>
 	
 	<select id="meetInfoCount" resultType="int">
-		SELECT count(*)
-		FROM MEET_INFO M
-		<if test='category != null'>
-			where  M.category like #{category}
-		</if>
-		<if test='sido != null'>
-			where  M.sido like #{sido}
-		</if>
-		<if test='keyword != null and keyword neq""'>
-			where lower(M.title) like lower('%' || #{?keyword?} || '%')
-		</if>
+		SELECT
+			COUNT(*) 
+	    FROM MEET_INFO M
+	    <![CDATA[
+	   		WHERE M.ED_DATE <= (
+	   			SELECT
+	   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	   			FROM DUAL
+	   		)
+	    ]]>
+	    <if test='searchTitle != null and searchTitle neq ""'>
+	    	AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
+	    </if>
+	    <if test='searchCategory != null and searchCategory neq ""'>
+	    	AND M.CATEGORY = #{searchCategory}
+	    </if>
+	    <if test='searchSidoValue != null and searchSidoValue neq ""'>
+	    	AND M.SIDO = #{searchSidoValue}
+	    </if>
+	    <if test='searchMozipCheck != null and searchMozipCheck neq ""'>
+	    	<![CDATA[
+			    AND M.NM_PPL < (
+			        SELECT
+			            COUNT(*)
+			        FROM MEET_PRTCP P1
+			        WHERE P1.MTID = M.MTID
+			    )
+		    ]]>
+	    </if>
 	</select>
 	
 

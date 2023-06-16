@@ -6,7 +6,7 @@
 <!-- postpage modify -->
 <div class="container">
 	<header class="my-2 p-3 text-center">
-		<h1 class=“titleBolder”>게시글 수정</h1>
+		<h1 class="titleBolder">게시글 수정</h1>
 	</header>
 
 	<main class="my-2">

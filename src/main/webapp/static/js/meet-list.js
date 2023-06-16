@@ -15,6 +15,9 @@
  * 김지민
  * 
  */
+
+let targetPage = '';
+
 document.addEventListener('DOMContentLoaded', () => {	
 	
 	// category 변경 시
@@ -63,7 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		searchMeetList();
 	});
 	
-	
+	// 페이징 클릭시
+	$(".page-link").on("click", function(e) {
+		e.preventDefault();
+		targetPage = e.target.closest("a").textContent;
+		findAllAction(e);
+	});	
 	
 	
 
@@ -98,6 +106,10 @@ const searchMeetList = function() {
 	const searchTitle = $('#titleBtn').val();
 	const searchSortBy = $('select[name="searchSortBy"]').val();
 	const searchMozipCheck = $('input[name="searchMozipCheck"]:checkbox').is(":checked");
+	
+	if(targetPage == null || targetPage == '') {
+		targetPage = $('input[name="pageNum"]').val();
+	}
 	
 	let data = {
 		searchCategory : searchCategory,

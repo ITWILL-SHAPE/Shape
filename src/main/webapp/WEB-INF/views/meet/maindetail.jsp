@@ -96,6 +96,7 @@
                         <h3 id="title" readonly>${ meetmaindetail.title }</h3>
                      </div>
                   </div>
+                  <br/>
                      <!-- 내용 -->
                      <div>
 						<ul>
@@ -107,7 +108,7 @@
 							<div id="sido_sigungu" class="my-3">
 								<li>
 								<sapn>🏳‍지역 : </sapn> 
-								${meetmaindetail.sido}, ${meetmaindetail.sigungu }
+								${meetmaindetail.sido}, ${meetmaindetail.sigungu } , ${meetmaindetail.location }
 								</li>
 							</div>
 							<div id="meet_date_time" class="my-3">
@@ -133,6 +134,9 @@
 								<li>
 								<span>💸참가비용 : </span> 
 								<span>[${meetmaindetail.mt_cost_info}]</span> ${meetmaindetail.mt_cost} 원
+								 	<c:if test="${meetmaindetail.mt_cost != '참가비 없음.'}">
+    									<span>${meetmaindetail.mt_cost}</span>
+  									</c:if>
 								</li>
 							</div>
 							<div id="cost_info" name="cost_info" class="my-3 d-none">
@@ -188,8 +192,8 @@
 
 							<c:when test="${ author != loginUser }">
 								<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: right;">
-									
-									<!-- 참여자가 찜을 눌렀을때 -->
+								
+								<!-- 참여자가 찜을 눌렀을때 -->
 									<c:set var="loop_like" value="false" />
 									<c:forEach items="${meetmaindetail.meetLikeId}" var ="likeUser">
 										<c:if test="${likeUser.id == loginUser && loop_like == false }">
@@ -199,10 +203,21 @@
 											<c:set var="loop_like" value="true" />
 										</c:if>		
 									</c:forEach>
+									
 									<!-- 참여자가 찜을 안 눌었을때  -->
 									<c:if test="${likeUser.id != loginUser && loop_like == false}">
 										<button id="like" name="like" type="button" class="btn btn-danger" >♡ ${meetmaindetail.meetlikecount}</button>
 									</c:if>
+									
+									
+									<!--  참여자가 모임인원이 FULL -->
+									<c:set var="NumberPrtcp" value="${meetmaindetail.meetNumberPrtcp}" />
+									<c:if test="${meetmaindetail.nm_ppl == NumberPrtcp  }">
+										<button id="full" name="full" type="button" class="btn btn-secondary" >참여종료</button>
+									</c:if>
+									
+									<!--  참여 인원이 NO FULL -->
+								<c:if test="${meetmaindetail.nm_ppl > NumberPrtcp}">
 									
 									<!-- 참여자가 참여하기를 눌렀을때 -->
 									<c:set var="loop_flag" value="false" />
@@ -218,6 +233,15 @@
 									<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
 										<button id="join" name="join" type="button" class="btn btn-classic">참여</button>
 									</c:if>
+								
+								</c:if>
+									
+									
+									
+									
+									
+									
+									
 								
 								</div>
 							</c:when>
@@ -267,9 +291,9 @@
 															class="user-img" src="../static/images/sample/user.png"
 															alt="host 사진">
 														<div id="guest-name" name="guest-name"
-															class="meetdetailuser">이름: ${ list.name }</div>
+															class="meetdetailuser">이름 : ${ list.name }</div>
 														<div id="guest-email" name="guest-email"
-															class="meetdetailemail">이메일:${ list.email }</div>
+															class="meetdetailemail">이메일 : ${ list.email }</div>
 													
 												</div>
 												</c:forEach>
@@ -288,9 +312,9 @@
 															class="user-img" src="../static/images/sample/user.png"
 															alt="host 사진">
 														<div id="guest-name" name="guest-name"
-															class="meetdetailuser">이름: ${ list.name }</div>
+															class="meetdetailuser">이름 : ${ list.name }</div>
 														<div id="guest-email" name="guest-email"
-															class="meetdetailemail">이메일:${ list.email }</div>
+															class="meetdetailemail">이메일 : ${ list.email }</div>
 												</div>
 											</c:forEach>
 										</div>

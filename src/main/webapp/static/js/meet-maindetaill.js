@@ -35,6 +35,16 @@
 	        }
 	    
 	    });
+	    
+	    /**
+		 * 배선영 참여인원 종료
+		 * 
+		 */
+		// 참여인원 FULL
+	
+		$('button#full').click(function(e) {
+			alert("참여가 종료된 모임 입니다.");
+		});
 		
 		/** 
 		 * 배선영 찜 
@@ -67,8 +77,7 @@
 		});
 
 
-
-		
+	
 	
 	// 찜 취소
 	$('button#unLike').click(function(e) {

@@ -6,7 +6,7 @@
 	<body>
 		<div class="container">
 			<div class="my-2 p-3 text-center">
-				<h1 class=“titleBolder”>공지사항</h1>
+				<h1 class="titleBolder">공지사항</h1>
 			</div>
 		
 			<section class="card">
