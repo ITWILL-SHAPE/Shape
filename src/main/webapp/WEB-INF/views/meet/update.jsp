@@ -73,7 +73,7 @@
 								<div>
 									<div class="input-group mb-3">
 										<input type="date" id="mt_date"
-											name="mt_date" class="form-control" placeholder="날짜" value="${ meet.mt_date }">
+											name="mt_date" class="form-control" placeholder="날짜" value="${ meet.mt_date }" onchange="setMinMeetDate()">
 										<input type="time" id="mt_time"
 											name="mt_time" class="form-control" placeholder="시간" value="${ meet.mt_time }">
 									</div>

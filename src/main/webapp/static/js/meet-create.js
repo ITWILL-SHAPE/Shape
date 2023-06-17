@@ -144,6 +144,12 @@ startDateInput.value = getCurrentDate();
 document.getElementById('mt_date').setAttribute('min', getCurrentDate());
 document.getElementById('ed_date').setAttribute('min', getCurrentDate());
 
+// 모집날짜를 모임날짜 이후로 선택하지 못하게 제한을 두는 함수
+function setMaxEndDate() {
+    const endDateInput = document.getElementById('mt_date').value;
+    document.getElementById('ed_date').setAttribute('max', endDateInput);
+}
+
 function resetInputValue() {
 	document.getElementById("mt_cost").value = "";
 }

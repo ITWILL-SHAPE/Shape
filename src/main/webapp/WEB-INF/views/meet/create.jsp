@@ -83,7 +83,7 @@
 								<div>
 									<div class="input-group mb-3">
 										<input type="date" id="mt_date"
-											name="mt_date" class="form-control" placeholder="날짜" required>
+											name="mt_date" class="form-control" placeholder="날짜" required onchange="setMaxEndDate()">
 										<input type="time" id="mt_time"
 											name="mt_time" class="form-control" placeholder="시간" required>
 									</div>

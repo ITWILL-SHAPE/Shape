@@ -100,3 +100,14 @@
 			charCount.textContent = count;
 		}
 	});
+	
+	// 페이지를 불러왔을 때 함수를 바로 실행 시켜줌
+	document.addEventListener('DOMContentLoaded', function() {
+    setMinMeetDate();
+  	});
+	
+	// 모임날짜를 수정할 때 모집날짜 이후로만 수정할 수 있게 제한을 두는 함수
+	function setMinMeetDate() {
+    const meetDateInput = document.getElementById('ed_date').value;
+    document.getElementById('mt_date').setAttribute('min', meetDateInput);
+}
