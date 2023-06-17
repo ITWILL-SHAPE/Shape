@@ -17,8 +17,8 @@
 		<li>
 			<c:url value="/mngr" var="home"/>
 			<a href="${ home }" class="nav-link text-white">
-				<i class="bi bi-house-door"></i>
-				Home
+				<i class="bi bi-speedometer2"></i>
+				대쉬보드
 			</a>
 		</li>
 		<li>
