@@ -136,6 +136,8 @@ public class CommonController {
     public String uploadImage(Test test) throws Exception {
 		log.info("upload()");
 		
+		System.out.println(test.toString());
+		
 		// 파일 업로드 처리
         String fileName = null;
         MultipartFile uploadFile = test.getUploadFile();
