@@ -58,15 +58,21 @@
                         </tr>
                     </thead>
                     <tbody id="userList">
-                        <c:forEach items="${ list }" var="file" varStatus="state">
-                            <tr>
-                                <td>${ file.idx }</td>
-                                <td>${ file.fileName }</td>
-                                <td>
-                                    <
-                                </td>
-                            </tr>
-                        </c:forEach>
+                            <c:forEach items="${ list }" var="file" varStatus="state">
+                                <tr>
+	                                <td>${ file.idx }</td>
+	                                <td>${ file.fileName }</td>
+	                                <td>
+	                                   <!-- 저장할 때 img면 파일 확장자가 png, jpg, gif 등인지 확인하고 저장하고 img로 뿌려주기 -->
+	                                   <c:set value="data:image/png;base64, ${ file.file }" var="url"/>
+	                                   <img src="${ url }"
+	                                       style="max-width: 50%; min-height: 50px;" />
+	                               </td>
+	                               <td>
+	                                   <button type="button" onclick="deleteRow(this);" data-id="${ file.idx }">X</button>
+	                               </td>
+	                           </tr>
+	                        </c:forEach>  
                     </tbody>                    
                 </table>
         </div>
@@ -81,7 +87,10 @@
 	            $("#form_test").submit();
 	        });
 	        
-	        
+	        function deleteRow(e) {
+	        	let idx = e.target.attr('data-id');
+	        	console.log(idx);
+	        }
 	     
 	    </script>
 	</body>

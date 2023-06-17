@@ -1,8 +1,10 @@
 package com.itwill.shape.web;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +44,20 @@ public class PleaseController {
 		log.info("pleaseMainController()");
 		
 		List<Please> please = pleaseService.selectBlobList();
+		for(Please p : please) {
+			// byte encoding
+			byte[] imgByte = p.getBlob();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			p.setFile(imgStr);
+		}
+		
 		model.addAttribute("list", please);
 	}
 	

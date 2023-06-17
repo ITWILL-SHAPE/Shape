@@ -21,4 +21,6 @@ public class Please {
 	// file 보낸 걸 받기
 	private MultipartFile uploadFile;
 	
+	private String file;
+	
 }

@@ -27,8 +27,6 @@ public class PleaseService {
 	public List<Please> selectBlobList() {
 		log.info("selectBlobList()");
 		
-		List<Please> list = pleaseRepository.selectBlobList();
-		
 		return pleaseRepository.selectBlobList();
 	}
 
