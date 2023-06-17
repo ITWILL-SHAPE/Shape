@@ -32,11 +32,11 @@
 						입력해주세요.
 					</h6>
 					<br> 
-					<div>
+					<div class="input-groupPwd" >
 					<input type="password" id="inputPwd" autofocus
 						name="inputPwd" placeholder=" 비밀번호를 입력해 주세요"
-						class="form-control form-control-sm custom-input " /> 
-						<input type="submit" class="btn btn_login btn-classic " value="확인" />
+						class="form-control" /> 
+					<input type="submit" class="btn btn_login btn-classic" value="확인" />
 					</div>	
 						
 						

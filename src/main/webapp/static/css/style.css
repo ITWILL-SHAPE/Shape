@@ -322,6 +322,14 @@ table.users tr {
 	border: 2px solid;
 	color: #D3FF31;
 }
+
+/* mypage confirmPwd */
+
+.input-groupPwd {
+    display: inline-flex;
+    width: 35%;
+}
+
 /* mypage modifyPwd*/
 .tip_list {
 	list-style: none;
