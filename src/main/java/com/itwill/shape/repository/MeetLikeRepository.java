@@ -38,5 +38,10 @@ public interface MeetLikeRepository {
 	 * @return
 	 */
 	List<MeetLike> selectMeetLikeListByMtid(@Param("mtid")long mtid );
-	
+
+	/**
+	 * 찜 리스트 전체 
+	 * @return
+	 */
+	List<MeetLike> selectMeetLikeList();
 }

@@ -307,6 +307,14 @@ div.img-right {
 	right: 20px;
 }
 
+div.emptyListCount {
+	height: 39vh; 
+	display: flex; 
+	justify-content: center; 
+	align-items: center; 
+	flex-wrap: wrap;
+} 
+
 /* mngr userInfo list*/
 table.users tr {
 	cursor: pointer;

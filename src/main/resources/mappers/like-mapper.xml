@@ -26,7 +26,11 @@
 	<select id="selectMeetLikeListByMtid" resultType="com.itwill.shape.domain.MeetLike">
 		select * from MEET_LIKE where mtid = #{mtid} 
 	</select>
-
+	
+	<!-- 김지민 -->
+	<select id="selectMeetLikeList" resultType="com.itwill.shape.domain.MeetLike">
+		select * from MEET_LIKE 
+	</select>
    
 	
 </mapper>

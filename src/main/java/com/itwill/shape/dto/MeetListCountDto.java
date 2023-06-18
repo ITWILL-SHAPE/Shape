@@ -22,6 +22,7 @@ public class MeetListCountDto {
 	private long PCNT;
 	private long nm_ppl;
 	private String title;
+	private String CRTR_ID;
 
 	public static MeetListCountDto fromEntity(MeetInfo entity) {
 		
