@@ -103,7 +103,7 @@ const findAllAction = function(e) {
 	const searchEmail = $('input[name="searchEmail"]').val().trim();
 	
 	if(targetPage == null || targetPage == '') {
-		targetPage = $('input[name="pageNum"]').val();
+		targetPage = 1;
 	}
 	
 	
@@ -119,7 +119,6 @@ const findAllAction = function(e) {
 	console.log(data);
 	
 	const searchForm = $("#searchForm");
-	
 	searchForm.find('input[name="pageNum"]').val(targetPage);
 	searchForm.submit();
 	
