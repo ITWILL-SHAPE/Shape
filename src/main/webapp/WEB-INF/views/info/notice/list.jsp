@@ -8,7 +8,6 @@
 				<h1 class="titleBolder">공지사항</h1>
 			</div>
 		
-			<main class="my-2">
 				<div class="card">
 					<table class="card-body table table-hover text-center">
 						<thead>
@@ -43,8 +42,11 @@
 						</tbody>
 					</table>
 					
-					<!-- 페이징 처리 -->
-				<div class="pb-3">
+					
+				</div>
+				
+				<!-- 페이징 처리 -->
+				<div class="pt-3">
 					<nav>
 						<ul class="pagination justify-content-center">
 							<li class="page-item ${ paging.prev? "":"disabled" }"><a
@@ -65,10 +67,7 @@
 					<input type='hidden' name='amount' value='${ paging.cri.amount }' />
 				</form>
 				<!-- 페이징 처리 -->
-				</div>
 				
-				
-			</main>
 		</div>
 <script src="<%=request.getContextPath()%>/static/js/paging.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
