@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.MeetLike;
+import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetSearchListDto;
@@ -25,7 +26,7 @@ public class MeetListService {
 
 	private final MeetInfoRepository meetInfoRepository;
 	private final MeetLikeRepository meetLikeRepository;
-	
+	private final MeetPrtcpRepository meetPrtcpRepository;
 
 	/**
 	 * 정지언
@@ -96,76 +97,15 @@ public class MeetListService {
 
 	/**
 	 * 김지민
-	 * 모임 인기순(찜 순)으로 정렬
+	 * 모임 찜 리스트가져오기
 	 * @return
 	 */
-	public List<MeetListCountDto> readByPopularity() {
+	public List<MeetLike> LikeList() {
 		log.info("readByCreateTime()");
 
-		return meetInfoRepository.selectOrderByPopularity();
+		return meetLikeRepository.selectMeetLikeList();
 	}
 	
-	/**
-	 * 김지민
-	 * 모임 제목 검색
-	 * @param title
-	 * @return
-	 */
-	public List<MeetListCountDto> readByTitle(String title) {
-		log.info("readByCreateTime(title = {})", title);
-
-		return meetInfoRepository.selectByKeyword(title);
-	}
-	
-	
-	/**
-	 * 김지민
-	 * 모임 sido 검색
-	 * @param sido
-	 * @return
-	 */
-	public List<MeetListCountDto> readByLocation(String sido) {
-		log.info("readByCreateTime(sido = {})", sido);
-
-		return meetInfoRepository.selectByLocation(sido);
-	}
-	
-	
-	/**
-	 * 김지민
-	 * 모임 카테코리 검색
-	 * @param category
-	 * @return
-	 */
-	public List<MeetListCountDto> readByCategory(String category) {
-		log.info("readByCreateTime(category = {})", category);
-
-		return meetInfoRepository.selectByCategory(category);
-	}
-	
-	
-	
-	/**
-	 * 0612 김지민
-	 * 모임 중 
-	 * @return
-	 */
-	public List<MeetListCountDto> MozipIng() {
-		log.info("MozipIng");
-		
-		return meetInfoRepository.selectOrderByMozipIng();
-	}
-	
-	/**
-	 * 0612 김지민
-	 * 모임 종료
-	 * @return
-	 */
-	public List<MeetListCountDto> MozipEnd() {
-		log.info("MozipIng");
-		
-		return meetInfoRepository.selectOrderByMozipEnd();
-	}
 	
 	/**
 	 * 조건에 따른 개체 개수	
@@ -200,6 +140,8 @@ public class MeetListService {
 		result.put("list", paging);
 		return result;
 	}
+	
+	
 
 
 }

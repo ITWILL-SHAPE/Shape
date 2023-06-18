@@ -138,7 +138,7 @@
 		HAVING COUNT(P.prtcp_id)  <  M.nm_ppl
 		ORDER BY M.CREATED_DATE DESC
 		]]>
-		
+
 
 	</select>
 
@@ -267,43 +267,45 @@
 		m.mtid = #{mtid}
 
 	</select>
-	
-	<!-- 선택하는거니까 != null? 모르게써-->
-	<!-- 그리고 제목 검색은 키워드가 아닌지 -->
+
+	<!-- paging 검색 -->
 	<select id="selectBySearchPaging"
 		resultType="com.itwill.shape.dto.MeetListCountDto">
 		WITH P AS(
-		    SELECT 
-		          M.mtid
-		        , M.sido
-		        , M.mt_date
-		        , M.category
-		        , M.nm_ppl
-		        , M.title
-		        , M.created_date
-		        , COUNT(L.mtid) AS LCNT
-		        , COUNT(P.MTID) AS PCNT
-		    FROM MEET_INFO M
-		    LEFT JOIN MEET_LIKE L
-		        ON M.mtid = L.mtid
-		    LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+		SELECT
+		M.mtid
+		, M.sido
+		, M.mt_date
+		, M.category
+		, M.nm_ppl
+		, M.title
+		, M.CRTR_ID
+		, M.created_date
+		, COUNT(DISTINCT L.mtid) AS LCNT
+		, COUNT(P.mtid) AS PCNT
+		FROM MEET_INFO M
+		LEFT JOIN (
+		SELECT DISTINCT MTID
+		FROM MEET_LIKE
+		) L ON M.mtid = L.mtid
+		LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
 		    <![CDATA[
-		   		WHERE M.ED_DATE <= (
+		   		WHERE M.ED_DATE >= (
 		   			SELECT
 		   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
 		   			FROM DUAL
 		   		)
 		    ]]>
-		    <if test='searchTitle != null and searchTitle neq""'>
-		    	AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
-		    </if>
-		    <if test='searchCategory != null and searchCategory neq ""'>
-		    	AND M.CATEGORY = #{searchCategory}
-		    </if>
-		    <if test='searchSidoValue != null and searchSidoValue neq ""'>
-		    	AND M.SIDO = #{searchSidoValue}
-		    </if>
-		    <if test='searchMozipCheck != null and searchMozipCheck neq ""'>
+		<if test='searchTitle != null and searchTitle neq""'>
+			AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
+		</if>
+		<if test='searchCategory != null and searchCategory neq ""'>
+			AND M.CATEGORY = #{searchCategory}
+		</if>
+		<if test='searchSidoValue != null and searchSidoValue neq ""'>
+			AND M.SIDO = #{searchSidoValue}
+		</if>
+		<if test='searchMozipCheck != null and searchMozipCheck neq ""'>
 		    	<![CDATA[
 				    AND M.NM_PPL < (
 				        SELECT
@@ -312,43 +314,44 @@
 				        WHERE P1.MTID = M.MTID
 				    )
 			    ]]>
-		    </if>
-		    GROUP BY
-		        M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE
-		    <if test='searchSortBy eq "recent"'>
-				ORDER BY M.CREATED_DATE DESC
-			</if>
-			<if test='searchSortBy eq "popularity"'>
-				ORDER BY LCNT DESC
-			</if>
+		</if>
+		GROUP BY
+		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE, M.CRTR_ID
+		<if test='searchSortBy eq "recent"'>
+			ORDER BY M.CREATED_DATE DESC
+		</if>
+		<if test='searchSortBy eq "popularity"'>
+			ORDER BY LCNT DESC
+		</if>
 		)
 		SELECT
-			* 
+		*
 		FROM P
 		OFFSET #{pageNum} ROWS FETCH NEXT #{amount} ROWS ONLY
 	</select>
-	
+
+	<!-- 페이징 -->
 	<select id="meetInfoCount" resultType="int">
 		SELECT
-			COUNT(*) 
-	    FROM MEET_INFO M
+		COUNT(*)
+		FROM MEET_INFO M
 	    <![CDATA[
-	   		WHERE M.ED_DATE <= (
+	   		WHERE M.ED_DATE >= (
 	   			SELECT
 	   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
 	   			FROM DUAL
 	   		)
 	    ]]>
-	    <if test='searchTitle != null and searchTitle neq ""'>
-	    	AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
-	    </if>
-	    <if test='searchCategory != null and searchCategory neq ""'>
-	    	AND M.CATEGORY = #{searchCategory}
-	    </if>
-	    <if test='searchSidoValue != null and searchSidoValue neq ""'>
-	    	AND M.SIDO = #{searchSidoValue}
-	    </if>
-	    <if test='searchMozipCheck != null and searchMozipCheck neq ""'>
+		<if test='searchTitle != null and searchTitle neq ""'>
+			AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
+		</if>
+		<if test='searchCategory != null and searchCategory neq ""'>
+			AND M.CATEGORY = #{searchCategory}
+		</if>
+		<if test='searchSidoValue != null and searchSidoValue neq ""'>
+			AND M.SIDO = #{searchSidoValue}
+		</if>
+		<if test='searchMozipCheck != null and searchMozipCheck neq ""'>
 	    	<![CDATA[
 			    AND M.NM_PPL < (
 			        SELECT
@@ -357,8 +360,9 @@
 			        WHERE P1.MTID = M.MTID
 			    )
 		    ]]>
-	    </if>
+		</if>
+		ORDER BY M.CREATED_DATE DESC
 	</select>
-	
+
 
 </mapper>

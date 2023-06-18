@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
@@ -135,6 +136,7 @@ public class MeetController {
 		int total = meetListService.getListCount(search);
 		log.info("listCount = {}", total);
 		
+		
 		// 페이징을 위한
 		Criteria cri = new Criteria();
 		if(search.getPageNum() != 0) {
@@ -145,282 +147,15 @@ public class MeetController {
 		}
 		
 		Map<String, Object> map = meetListService.selectBySearch(search);
+		List<MeetLike> ml = meetListService.LikeList();
+		
 		model.addAttribute("listCount", map.get("list"));
 		model.addAttribute("search", search);
 		model.addAttribute("paging", new PageDto(cri, total));
-		
-		/*
-		List<MeetListCountDto> dto = meetListService.readByCreateTime();
-
-		// 값 "mt_dat"의 인덱스 찾기
-		LocalDate currentDate = LocalDate.now();
-
-		List<LocalDate> targetDate = new ArrayList<>();
-
-		List<MeetListCountDto> filteredDto = new ArrayList<>();
-		for (MeetListCountDto item : dto) {
-			String date = item.getMt_date();
-			log.info("확인 = {}", date);
-			LocalDate parsedDate = LocalDate.parse(date);
-			targetDate.add(parsedDate);
-			log.info(parsedDate.toString());
-			int isPast = currentDate.compareTo(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-
-			log.info("ispast = {}", isPast);
-			
-			if (isPast <= 0) { // 모집날짜가 미래일 경우
-				filteredDto.add(item);
-
-			} else {
-				log.info("떨구는 것 확인 = {}", item);
-			}
-		}
-
-		if (!filteredDto.isEmpty()) {
-			// 뷰에 PostDetailDto를 전달.
-			model.addAttribute("listCount", filteredDto);
-			for (MeetListCountDto c : filteredDto) {
-				log.info("확인 = {}", c);
-			}
-		} else {
-			log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
-		}
-		*/
+		model.addAttribute("like", ml);
 	}
 
-	/**
-	 * 0611 김지민
-	 * 
-	 * @param category
-	 * @param model
-	 */
-
-	/*
-	@GetMapping("/search")
-	public void search(String category, String sidoValue, String sortBy, String searchTitle, String mozipCheck,
-			Model model) {
-		log.info("search(requestParam={}, {}, {}, {}, {})", category, sidoValue, sortBy, searchTitle, mozipCheck);
-
-		// 카테고리에 따른 검색 로직
-		if (category != null) {
-			List<MeetListCountDto> dto = meetListService.readByCategory(category);
-
-			// 값 "mt_dat"의 인덱스 찾기
-			LocalDate currentDate = LocalDate.now();
-
-			List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
-			List<LocalDate> targetDate = new ArrayList<>();
-
-			List<MeetListCountDto> filteredDto = new ArrayList<>();
-			for (MeetListCountDto item : dto) {
-				String date = item.getMt_date();
-				log.info("확인 = {}", date);
-				LocalDate parsedDate = LocalDate.parse(date);
-				targetDate.add(parsedDate);
-				log.info(parsedDate.toString());
-				boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-
-				if (isPast) { // 모집날짜가 미래일 경우
-					filteredDto.add(item);
-					isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
-
-				} else {
-					log.info("떨구는 것 확인 = {}", item);
-				}
-			}
-
-			if (!filteredDto.isEmpty()) {
-				
-				log.info("여기 들어갔냐");
-				
-				model.addAttribute("searchList", filteredDto);
-				model.addAttribute("category", category);
-
-			} else {
-				log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
-			}
-		}
-
-		// 시도에 따른 검색 로직
-		if (sidoValue != null) {
-			List<MeetListCountDto> dto = meetListService.readByLocation(sidoValue);
-
-			// 값 "mt_dat"의 인덱스 찾기
-			LocalDate currentDate = LocalDate.now();
-
-			List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
-			List<LocalDate> targetDate = new ArrayList<>();
-
-			List<MeetListCountDto> filteredDto = new ArrayList<>();
-			for (MeetListCountDto item : dto) {
-				String date = item.getMt_date();
-				log.info("확인 = {}", date);
-				LocalDate parsedDate = LocalDate.parse(date);
-				targetDate.add(parsedDate);
-				log.info(parsedDate.toString());
-				boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-
-				if (isPast) { // 모집날짜가 미래일 경우
-					filteredDto.add(item);
-					isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
-
-				} else {
-					log.info("떨구는 것 확인 = {}", item);
-				}
-			}
-
-			if (!filteredDto.isEmpty()) {
-				model.addAttribute("searchList", filteredDto);
-				model.addAttribute("sidoValue", sidoValue);
-			} else {
-				log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
-			}
-		}
-
-		// 정렬에 따른 검색 로직
-		if (sortBy != null && sortBy.equals("인기순")) {
-			List<MeetListCountDto> dto = meetListService.readByPopularity();
-			// 값 "mt_dat"의 인덱스 찾기
-			LocalDate currentDate = LocalDate.now();
-
-			List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
-			List<LocalDate> targetDate = new ArrayList<>();
-
-			List<MeetListCountDto> filteredDto = new ArrayList<>();
-			for (MeetListCountDto item : dto) {
-				String date = item.getMt_date();
-				log.info("확인 = {}", date);
-				LocalDate parsedDate = LocalDate.parse(date);
-				targetDate.add(parsedDate);
-				log.info(parsedDate.toString());
-				boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-
-				if (isPast) { // 모집날짜가 미래일 경우
-					filteredDto.add(item);
-					isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
-
-				} else {
-					log.info("떨구는 것 확인 = {}", item);
-				}
-			}
-
-			if (!filteredDto.isEmpty()) {
-				model.addAttribute("searchList", filteredDto);
-				log.info("sortBy = {}", sortBy);
-				model.addAttribute("sortBy", sortBy);
-			} else {
-				log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
-			}
-
-		} else if (sortBy != null && sortBy.equals("최신순")) {
-			List<MeetListCountDto> dto = meetListService.readByCreateTime();
-
-			// 값 "mt_dat"의 인덱스 찾기
-			LocalDate currentDate = LocalDate.now();
-
-			List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
-			List<LocalDate> targetDate = new ArrayList<>();
-
-			List<MeetListCountDto> filteredDto = new ArrayList<>();
-			for (MeetListCountDto item : dto) {
-				String date = item.getMt_date();
-				log.info("확인 = {}", date);
-				LocalDate parsedDate = LocalDate.parse(date);
-				targetDate.add(parsedDate);
-				log.info(parsedDate.toString());
-				boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-
-				if (isPast) { // 모집날짜가 미래일 경우
-					filteredDto.add(item);
-					isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
-
-				} else {
-					log.info("떨구는 것 확인 = {}", item);
-				}
-			}
-
-			if (!filteredDto.isEmpty()) {
-				model.addAttribute("searchList", filteredDto);
-				model.addAttribute("sortBy", sortBy);
-			} else {
-				log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
-			}
-
-		}
-
-		if (searchTitle != null) {
-			List<MeetListCountDto> dto = meetListService.readByTitle(searchTitle);
-
-			// 값 "mt_dat"의 인덱스 찾기
-			LocalDate currentDate = LocalDate.now();
-
-			List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
-			List<LocalDate> targetDate = new ArrayList<>();
-
-			List<MeetListCountDto> filteredDto = new ArrayList<>();
-			for (MeetListCountDto item : dto) {
-				String date = item.getMt_date();
-				log.info("확인 = {}", date);
-				LocalDate parsedDate = LocalDate.parse(date);
-				targetDate.add(parsedDate);
-				log.info(parsedDate.toString());
-				boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-
-				if (isPast) { // 모집날짜가 미래일 경우
-					filteredDto.add(item);
-					isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
-
-				} else {
-					log.info("떨구는 것 확인 = {}", item);
-				}
-			}
-
-			if (!filteredDto.isEmpty()) {
-				model.addAttribute("searchList", filteredDto);
-			} else {
-				log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
-			}
-
-		}
-
-		if (mozipCheck != null) {
-			// 체크박스 상태에 따른 로직 수행- 0613
-			List<MeetListCountDto> dto = meetListService.MozipIng();
-
-			// 값 "mt_dat"의 인덱스 찾기
-			LocalDate currentDate = LocalDate.now();
-
-			List<Boolean> isPastArray = new ArrayList<>(); // 불리언 배열 선언
-			List<LocalDate> targetDate = new ArrayList<>();
-
-			List<MeetListCountDto> filteredDto = new ArrayList<>();
-			for (MeetListCountDto item : dto) {
-				String date = item.getMt_date();
-				log.info("확인 = {}", date);
-				LocalDate parsedDate = LocalDate.parse(date);
-				targetDate.add(parsedDate);
-				log.info(parsedDate.toString());
-				boolean isPast = currentDate.isBefore(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-
-				if (isPast) { // 모집날짜가 미래일 경우
-					filteredDto.add(item);
-					isPastArray.add(isPast); // 불리언 결과를 리스트에 추가
-
-				} else {
-					log.info("떨구는 것 확인 = {}", item);
-				}
-			}
-
-			if (!filteredDto.isEmpty()) {
-				model.addAttribute("searchList", filteredDto);
-			} else {
-				log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
-			}
-
-		}
-
-	}
-	*/
+	
 
 	/**
 	 * 0604 배선영 상세보기 페이지
