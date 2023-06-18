@@ -81,15 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const imgHeart = document.querySelectorAll('img#img-heart');
 
-	for (let img of imgHeart) {
-		img.addEventListener('click', LogInLikeCheck);
+	for (var i = 0; i < imgHeart.length; i++) {
+		imgHeart[i].addEventListener('click', LogInLikeCheck);
 	};
 
 	const imgUnHeart = document.querySelectorAll('img#img-heartEmpty');
 
-	for (let img of imgUnHeart) {
-		img.addEventListener('click', LogLikeUnCheck);
+	for (var i = 0; i < imgUnHeart.length; i++) {
+		imgUnHeart[i].addEventListener('click', LogLikeUnCheck);
 	};
+	
 
 	const mtid = document.querySelector('input#mtid').value;
 	const id = document.querySelector('input#id').value;
