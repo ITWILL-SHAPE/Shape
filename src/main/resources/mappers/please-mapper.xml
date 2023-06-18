@@ -19,4 +19,17 @@
             *
         FROM please
     </select>
+    
+    <delete id="deleteBlob">
+        DELETE FROM PLEASE
+        WHERE IDX = #{idx}
+    </delete>
+    
+    <select id="selectBlobByIdx" resultType="com.itwill.shape.domain.Please">
+        SELECT
+            *
+        FROM please
+        WHERE IDX = #{idx}
+    </select>
+    
 </mapper>

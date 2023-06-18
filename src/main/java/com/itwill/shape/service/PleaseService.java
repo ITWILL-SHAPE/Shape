@@ -29,5 +29,16 @@ public class PleaseService {
 		
 		return pleaseRepository.selectBlobList();
 	}
+	
+	public void deleteBlob(int idx) {
+		log.info("deleteBlobService(idx = {})", idx);
+		pleaseRepository.deleteBlob(idx);
+	}
+	
+	public Please selectBlobByIdx(long idx) {
+		log.info("downloadByIdx(idx = {})", idx);
+		
+		return pleaseRepository.selectBlobByIdx(idx);
+	}
 
 }

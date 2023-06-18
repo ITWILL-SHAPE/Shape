@@ -21,6 +21,7 @@ public class Please {
 	// file 보낸 걸 받기
 	private MultipartFile uploadFile;
 	
+	// 이미지를 보여주기 위한 byte[] to String
 	private String file;
 	
 }
