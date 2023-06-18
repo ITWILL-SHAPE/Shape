@@ -38,9 +38,8 @@
 					<!-- 1번째 -->
 					<div class="carousel-inner">
 						<div class="carousel-item">
-							
-							<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png" 
-								class="bd-placeholder-img" width="100%" height="150%"/>
+							<img src="<%=request.getContextPath()%>/static/images/common/main1.png" 
+								class="bd-placeholder-img" width="100%" height="100%"/>
 							<div class="container">
 								<div class="carousel-caption text-start">
 									
@@ -49,8 +48,8 @@
 						</div>
 						<!-- 2번쨰 -->
 						<div class="carousel-item active">
-							<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png" 
-								class="bd-placeholder-img" width="100%" height="10%"/>
+							<img src="<%=request.getContextPath()%>/static/images/common/main1.png" 
+								class="bd-placeholder-img" width="100%" height="100%"/>
 							<div class="container">
 								<div class="carousel-caption">
 									
@@ -59,8 +58,8 @@
 						</div>
 						<!-- 3번쩨 -->
 						<div class="carousel-item">
-							<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png"
-								class="bd-placeholder-img" width="100%" height="150%"/>
+							<img src="<%=request.getContextPath()%>/static/images/common/main1.png"
+								class="bd-placeholder-img" width="100%" height="100%"/>
 	
 							<div class="container">
 								<div class="carousel-caption text-end">
@@ -210,21 +209,15 @@
 	           				</svg>
 						<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 						<sec:authorize access="isAuthenticated()">
-							<div class="img-overlay img-right">
-								<button id="logInUser">
 									<img src="./static/images/sample/like2.svg" alt="toggle-off"
 										width="40" class="heart overlay-image overlay-right"
 										id="img-heart" onclick="event.stopPropagation(); LikeCheck();" />
-								</button>
-							</div>
 						</sec:authorize>
 						<!-- 로그인 안 함 -->
 						<sec:authorize access="isAnonymous()">
-							<button id="logOutUser">
 								<img src="./static/images/sample/like2.svg" alt="not-move"
 									width="40" class="heart overlay-image overlay-right"
 									onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
-							</button>
 						</sec:authorize>
 						<div>
 							<c:choose>

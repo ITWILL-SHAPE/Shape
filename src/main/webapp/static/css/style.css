@@ -48,6 +48,7 @@ a.mainA:hover { color: #3B7CFF; }
 a.mainA:active { color: #3B7CFF; }
 
 .mainA {
+	margin-left: 15px;
 	margin-bottom: 0px;
     height: 25px;
     padding-right: 0px;
@@ -77,6 +78,7 @@ a.mainA:active { color: #3B7CFF; }
 
 .carousel-indicators [data-bs-target] {
 	background-color: #3B7CFF;
+	width: 60px;
 }
 
 .carousel-indicators {
@@ -320,6 +322,14 @@ table.users tr {
 	border: 2px solid;
 	color: #D3FF31;
 }
+
+/* mypage confirmPwd */
+
+.input-groupPwd {
+    display: inline-flex;
+    width: 35%;
+}
+
 /* mypage modifyPwd*/
 .tip_list {
 	list-style: none;
