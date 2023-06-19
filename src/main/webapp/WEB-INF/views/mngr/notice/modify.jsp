@@ -34,7 +34,7 @@
 				<p>관리자</p>
 			</div>
 			
-				<form id="noticeModifyForm">
+				<form id="noticeModifyForm" encType="multipart/form-data">
 					<section class="card">
 						<div class="card-body">
 							<div class="my-2">
@@ -55,11 +55,18 @@
 								<input class="form-control" id="created_date" value="${ date }" readonly />
 							</div>
 							
+							<br/>
+							
 							<div class="my-2">
-								<label class="form-label" for="file">첨부파일</label>
-								<input class="form-control" id="file" name="file" value="${ notices.atchd_file }"  />
-								<input class="form-control" type="file" id="atchd_file" name="atchd_file" multiple/>
+								<small style="color: red;">* 파일은 하나만 업로드 가능합니다</small>
+								<br/>
+									<span>현재 파일: </span>
+									<input class="form-control" id="file_name" name="file_name" value="${ notices.file_name }"  readonly />
+								<input class="form-control" type="file" id="atchd_file" name="uploadFile" 
+									onchange="javascript:document.getElementById('file_name').value = this.value"/>
 							</div>
+							
+							<br />
 						
 							<!-- 고정글 체크여부 -->
 							<div class="form-check">

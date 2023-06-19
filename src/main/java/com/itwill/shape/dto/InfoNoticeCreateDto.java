@@ -1,5 +1,7 @@
 package com.itwill.shape.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itwill.shape.domain.InfoNotice;
 
 import lombok.AllArgsConstructor;
@@ -23,13 +25,17 @@ public class InfoNoticeCreateDto {
 	private String content;
 	private byte[] atchd_file;
 	private int fix;
+	private String file_name;
+	
+	private MultipartFile uploadFile; // file 보낸거 받기
 	
 	public InfoNotice toEntity() {
 		return InfoNotice.builder()
 				.title(title)
 				.content(content)
-				.atchd_file("".getBytes()) //TODO: 나중에 ㅠ
+				.atchd_file(atchd_file)
 				.fix(fix)
+				.file_name(file_name)
 				.build();
 	}
 }
