@@ -1,36 +1,26 @@
 package com.itwill.shape.web;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.sql.Blob;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialException;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.itwill.shape.domain.Please;
 import com.itwill.shape.service.PleaseService;
-import com.itwill.shape.service.PostCommentService;
-import com.itwill.shape.service.PostInfoService;
-import com.nimbusds.jose.shaded.gson.Gson;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -106,7 +96,7 @@ public class PleaseController {
 	// 파일 다운로드 어쩌냐.......
 	@PostMapping("/download/{idx}")
 	@ResponseBody
-	public void download(@PathVariable long idx, HttpServletResponse response) {
+	public void download(@PathVariable long idx, HttpServletResponse response, HttpServletRequest request) {
 		log.info("download(idx = {})", idx);
 		
 		// 해당 파일 정보를 가져옴
@@ -117,7 +107,7 @@ public class PleaseController {
 		// 해당 파일 byte
 		byte[] fileByte = please.getBlob();
 		
-		// 여기에 수업에서 배운 거 쓰면 될 듯...근데 오늘은 아님
+		
 		
 	}
 
