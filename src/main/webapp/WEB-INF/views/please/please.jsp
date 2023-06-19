@@ -100,15 +100,46 @@
 					let idx = e.target.getAttribute('data-id');
 		        	console.log(idx);
 		        	
-		        	axios.post('/shape/please/download/' + idx)
-		        	.then((res) => {
-		        		console.log(res);
-		        	})
-		        	.catch((err) => {
-		        		console.log(err);
-		        	})
+		        	$.ajax({
+		        	    url: '/shape/please/download/' + idx,
+		        	    type: 'POST',
+		        	    cache: false,
+		        	    xhrFields: {
+		        	        responseType: "blob",
+		        	    },
+		        	}).done(function (blob, status, xhr) {
+	        	        // check for a filename
+	        	        let fileName = e.target.innerText;	        	        
+
+	        	        // for IE
+	        	        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+	        	            window.navigator.msSaveOrOpenBlob(blob, fileName);
+	        	        } else {
+	        	            var URL = window.URL || window.webkitURL;
+	        	            var downloadUrl = URL.createObjectURL(blob);
+
+	        	            if (fileName) {
+	        	                var a = document.createElement("a");
+
+	        	                // for safari
+	        	                if (a.download === undefined) {
+	        	                    window.location.href = downloadUrl;
+	        	                } else {
+	        	                    a.href = downloadUrl;
+	        	                    a.download = fileName;
+	        	                    document.body.appendChild(a);
+	        	                    a.click();
+	        	                }
+	        	            } else {
+	        	                window.location.href = downloadUrl;
+	        	            }
+	        	        }
+	        	    })
 				});
+		        	
 			});
+			
+			
 			
 	        $(document).on('click', '#btn_register', function(e) {
 	        	let Form = new FormData($('#form_test')[0]);

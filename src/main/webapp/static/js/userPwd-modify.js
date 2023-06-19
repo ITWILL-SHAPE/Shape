@@ -17,7 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log(rePwd);
 
 		try {
-			let response = await axios.post('/shape/confirmpwd', inputPwd);
+			let response = await axios.post('/shape/confirmpwd', { id: id, inputPwd: inputPwd }, {
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
 			//왜 안돼?
 			//const response = await axios.post('/shape/confirmpwd', { params: { inputPwd } });
 			console.log(response);
@@ -33,7 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (passwordRegex.test(newPwd)) {
 							// 비밀번호 변경 요청을 컨트롤러에 전송
 							try {
-								response = await axios.post('/shape/modifypwd', newPwd);
+								response = await axios.post('/shape/modifypwd', { id: id, newPwd: newPwd }, {
+									headers: {
+										'Content-Type': 'application/json'
+									}
+								});
 								console.log(response);
 
 								const isModified = response.data;
@@ -41,9 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
 								if (isModified) {
 									// 변경 완료 후 처리할 작업 수행
 									alert('비밀번호 변경 완료');
+									//modifyPwdForm.action = '/shape/myprofile';
+									//modifyPwdForm.method = 'get';
+									//modifyPwdForm.submit();
 									modifyPwdForm.action = '/shape/myprofile';
 									modifyPwdForm.method = 'get';
-									modifyPwdForm.submit();
+									window.location.href = modifyPwdForm.action + '?id=' + id;
 								} else {
 									cosole.error(error);
 									alert('비밀번호 변경 실패. 관리자에게 문의해주세요.');
