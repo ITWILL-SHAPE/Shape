@@ -93,7 +93,6 @@
 		<a class="col-1 mainA" href="${ meetListPage }">More ></a>
 	</div>
 	<!--아이템: model.addAttribute("listCount", dto);-->
-	<div id="cardList" class="album py-3">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<!-- for문 변경가능함 확인해보기. 
 	      -> 로그인: header.jsp, main.jsp => 37줄 참고 
@@ -180,14 +179,12 @@
 			</c:forEach>
 		</div>
 	</div>
-</div>
 <div class="container-fluid container py-5">
 	<div class="row my-3">
 		<h2 class="col-11 mainH2">인기 많은 모임</h2>
 		<c:url var="meetListPage" value="/meet/list"></c:url>
 		<a class="col-1 mainA" href="${ meetListPage }">More ></a>
 	</div>
-<div id="cardList" class="album py-3">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 			<!-- for문 변경가능함 확인해보기. 
 	      -> 로그인: header.jsp, main.jsp => 37줄 참고 
@@ -274,7 +271,39 @@
 			</c:forEach>
 		</div>
 	</div>
-</div>
-
+<div class="container-fluid container py-5">
+	<div class="row my-3">
+		<h2 class="col-11 mainH2">최근 등록된 게시물</h2>
+		<c:url var="postListPage" value="/post/list"></c:url>
+		<a class="col-1 mainA" href="${ postListPage }">More ></a>
+	</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+			<c:forEach items="${ posts }" var="postInfo" begin="0" end="2">
+				<c:url var="postDetailPage" value="/post/detail">
+					<c:param name="pid" value="${ postInfo.pid }" />
+				</c:url>
+				<div class="col" onclick="location.href='${ postDetailPage }'">
+					<div class="card my-2 p-3">
+						<div class="card-body">
+							<!-- 글 번호 -->
+							<!-- <div>${ postInfo.pid }</div> -->
+							<!-- 말머리랑 제목 -->
+							<h5 class="card-title text-truncate">[ ${ postInfo.hrs_hd} ]
+								${ postInfo.title }</h5>
+							<!-- 작성자 -->
+							<p class="card-text">
+								작성자: ${ postInfo.author }
+								<!-- 작성 날짜 -->
+								<br />날짜:
+								<fmt:formatDate value="${ postInfo.modified_date }"
+									pattern="yyyy-MM-dd" />
+								<br />댓글: ${ postInfo.rcnt }
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 <script src="<%=request.getContextPath()%>/static/js/meet-list.js"></script>
 <%@ include file="./footer.jsp"%>

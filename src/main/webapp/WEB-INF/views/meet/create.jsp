@@ -21,7 +21,7 @@
 						</small>
 						</div>
 					</div>
-					<form action="" method="post" class="form-box" id="createForm">
+					<form action="" method="post" class="form-box" id="createForm" encType="multipart/form-data">
 						<dl>
 							<div>
 								<sec:authorize access="isAuthenticated()">
@@ -146,19 +146,19 @@
 							<dd align="left">
 								<div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" name="formFile1" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" name="formFile2" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" name="formFile3" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" name="formFile4" accept="image/*">
 									</div>
 									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
+										<input class="form-control" type="file" name="formFile5" accept="image/*">
 									</div>
 								</div>
 							</dd>

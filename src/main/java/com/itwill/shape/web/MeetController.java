@@ -2,6 +2,7 @@ package com.itwill.shape.web;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.MeetLike;
@@ -66,7 +68,83 @@ public class MeetController {
 	@PostMapping("/create")
 	public String create(MeetInfoCreateDto dto) {
 		log.info("POST: create({})", dto);
-
+		
+		MultipartFile uploadFile1 = dto.getFormFile1();
+		MultipartFile uploadFile2 = dto.getFormFile2();
+		MultipartFile uploadFile3 = dto.getFormFile3();
+		MultipartFile uploadFile4 = dto.getFormFile4();
+		MultipartFile uploadFile5 = dto.getFormFile5();
+		
+		if(!uploadFile1.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;		
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile1.getBytes();
+				dto.setImg_1(bytes);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				
+			}
+		}
+		
+		if(!uploadFile2.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;		
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile2.getBytes();
+				dto.setImg_2(bytes);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				
+			}
+		}
+		
+		if(!uploadFile3.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;		
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile3.getBytes();
+				dto.setImg_3(bytes);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				
+			}
+		}
+		
+		if(!uploadFile4.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;		
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile4.getBytes();
+				dto.setImg_4(bytes);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				
+			}
+		}
+		
+		if(!uploadFile5.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;		
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile5.getBytes();
+				dto.setImg_5(bytes);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				
+			}
+		}
+		
 		int result = meetInfoService.create(dto);
 		log.info("모임 만들기 결과 = {}", result);
 
