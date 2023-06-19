@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.Test;
 import com.itwill.shape.dto.MeetListCountDto;
+import com.itwill.shape.dto.MngrMeetGraphDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
@@ -108,8 +109,9 @@ public class CommonController {
 	 * @return
 	 */
 	@GetMapping("/mngr")
-	public String mngr() {
-		log.info("mngr()");
+	public String mngr(Model model , MngrMeetGraphDto dto) {
+		log.info("mngr()(dto={})", dto);
+		model.addAttribute("gender", dto);
 		
  		return "/common/home";
 	}

@@ -50,7 +50,7 @@ public class MeetController {
 	private final MeetInfoService meetInfoService;
 	private final MeetListService meetListService;
 	private final MeetDetailService meetDetailService; // 상세보기 서비스 다시 만들었습니다.
-	/* private final MeetLikeService meetLikeService; */
+	
 
 	@GetMapping("/create")
 	public void create() {

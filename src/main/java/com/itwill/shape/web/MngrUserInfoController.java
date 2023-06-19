@@ -53,11 +53,6 @@ public class MngrUserInfoController {
 		
 		model.addAttribute("user", mngrUserInfoService.selectUserDetail(id));
 	}
-	// 관리자 - 그래프
-	@GetMapping
-	public void graph(Model model , MngrMeetGraphDto dto) {
-		log.info("MngrCountUser(dto={})", dto);
-		model.addAttribute("graph", dto);
-	}
+	
 	
 }

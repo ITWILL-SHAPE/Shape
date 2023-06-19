@@ -244,15 +244,13 @@
 		, m.title
 		, m.category
 		, m.sido
-		,
-		m.sigungu
+		, m.sigungu
 		, m.location
 		, m.mt_date
 		, m.mt_time
 		, m.ed_date
 		, m.nm_ppl
-		,
-		m.mt_cost
+		, m.mt_cost
 		, m.mt_cost_info
 		, m.img_1
 		, m.img_2
