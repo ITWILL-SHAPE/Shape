@@ -393,7 +393,28 @@ public class MyPageController {
 
 		model.addAttribute("myposts", myposts);
 		model.addAttribute("pageMaker", new PageDto(cri, size));
+
 		return "/mypage/board/myPosts";
+	}
+
+	/**
+	 * 0619 손창민 AJAX 작성글 테이블 새로고침
+	 * 
+	 * @return
+	 */
+	@GetMapping("/updateposts")
+	public ResponseEntity<List<PostInfoSelectByAuthorDto>> updatePosts(@RequestParam("id") String id,
+			@RequestParam("pageNum") int pageNum, Criteria cri) {
+		try {
+			// 페이징된 테이블 데이터를 가져오는 로직 작성
+			cri.setPageNum(pageNum);
+			List<PostInfoSelectByAuthorDto> tableDataList = postInfoService.selectByAuthorWithPaging(id, cri);
+			log.info("updatePosts(tableDataList={}, cri={})", tableDataList, cri);
+			return ResponseEntity.ok(tableDataList);
+		} catch (Exception e) {
+			// 예외 처리
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 
 	/**
@@ -405,14 +426,14 @@ public class MyPageController {
 	 * @param model
 	 */
 	@GetMapping("/mypostssearch")
-	public String searchPosts(@RequestParam("id") String id, @RequestParam("keyword") String keyword, Criteria cri,
-			Model model) {
-		log.info("searchPosts(author(id)={}, keyword={}, cri={})", id, keyword, cri);
+	public String searchPosts(@RequestParam("id") String id, Criteria cri, Model model) {
+		log.info("searchPosts(author(id)={}, keyword={}, cri={})", id, cri.getKeyword(), cri);
 
-		int count = postInfoService.countPosts(id, keyword);
+		int count = postInfoService.countPosts(id, cri.getKeyword());
 		log.info("searchPosts(count={})", count);
 
-		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, keyword, cri);
+		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, cri.getKeyword(),
+				cri);
 		model.addAttribute("myposts", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
 		return "/mypage/board/myPosts";
@@ -444,6 +465,26 @@ public class MyPageController {
 	}
 
 	/**
+	 * 0619 손창민 AJAX 작성 댓글 테이블 새로고침
+	 * 
+	 * @return
+	 */
+	@GetMapping("/updatecomments")
+	public ResponseEntity<List<PostCommentSelectByAuthorDto>> updateComments(@RequestParam("id") String id,
+			@RequestParam("pageNum") int pageNum, Criteria cri) {
+		try {
+			cri.setPageNum(pageNum);
+			// 페이징된 테이블 데이터를 가져오는 로직 작성
+			List<PostCommentSelectByAuthorDto> tableDataList = postCommentsService.selectByAuthorWithPaging(id, cri);
+			log.info("updateComments(tableDataList={}, cri={})", tableDataList, cri);
+			return ResponseEntity.ok(tableDataList);
+		} catch (Exception e) {
+			// 예외 처리
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
+	}
+
+	/**
 	 * 0616 손창민 댓글 검색 키워트 리스트 출력 with paging
 	 * 
 	 * @param model
@@ -458,10 +499,11 @@ public class MyPageController {
 		int count = postCommentsService.countComments(id, keyword);
 		log.info("searchComments(count={})", count);
 
-		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, keyword, cri);
+		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, keyword,
+				cri);
 		model.addAttribute("mycomments", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
-		
+
 		return "/mypage/board/myComments";
 	}
 }
