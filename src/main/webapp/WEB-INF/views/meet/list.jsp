@@ -144,13 +144,22 @@
 								<div class="col" style="cursor: pointer;" id="clickEvent"
 									onclick="location=href=('${meetDetailPage}');">
 									<div class="card shadow-sm image-container position-relative">
-										<svg idx="${status.begin}"
+										<!-- 저장할 때 img면 파일 확장자가 png, jpg, gif 등인지 확인하고 저장하고 img로 뿌려주기 -->
+										<c:set value="data:image/png;base64, ${ cardList.file }" var="url" />
+										<img src="${ url }" class="bd-placeholder-img card-img-top" width="100%"
+											height="220" xmlns="http://www.w3.org/2000/svg"
+											aria-label="Placeholder: Thumbnail"
+											preserveAspectRatio="xMidYMid slice" focusable="false" />
+										<!-- 
+										<svg idx="${status.current}"
 											class="bd-placeholder-img card-img-top" width="100%"
 											height="220" xmlns="http://www.w3.org/2000/svg" role="img"
 											aria-label="Placeholder: Thumbnail"
 											preserveAspectRatio="xMidYMid slice" focusable="false">
-	              				<rect width="100%" height="100%" fill="#55595c" />
-	           				</svg>
+										 -->	
+	              						<rect width="100%" height="100%" fill="#55595c" />
+	           							</svg>
+
 										<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 										<sec:authorize access="isAuthenticated()">
 											<sec:authentication property="principal.username"
@@ -158,31 +167,35 @@
 											<input class="d-none" id="mtid" value="${ cardList.mtid }" />
 											<input class="d-none" id="id" value="${loginUser}" />
 											<c:set var="author" value="${ cardList.CRTR_ID }" />
+											<c:set value="false" var="loop" />
 											<c:forEach items="${like}" var="like">
 												<c:choose>
-													<c:when
-														test="${ loginUser == like.id && cardList.mtid == like.mtid && author != loginUser}">
-														<img  src="../static/images/sample/like.svg"
-															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right" 
-															id="img-heart${status.current}"
-															onclick="event.stopPropagation(); LogInLikeCheck();" />
-													</c:when>
-													<c:when
-														test="${ loginUser == like.id && cardList.mtid == like.mtid && author == loginUser}">
+													<c:when test="${ loginUser == author && loop == false}">
 														<img src="../static/images/sample/like2.svg"
 															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right" 
+															class="heart overlay-image overlay-right"
 															id="img-heartEd${status.current}"
 															onclick="event.stopPropagation(); alert('선택하신 모임을 작성한 사용자는 찜을 할 수 없습니다.');" />
+														<c:set value="true" var="loop" />
 													</c:when>
-													<c:otherwise>
+													<c:when
+														test="${ loginUser == like.id && cardList.mtid == like.mtid && loop == false }">
+														<img src="../static/images/sample/like.svg"
+															alt="toggle-off" width="40"
+															class="heart overlay-image overlay-right"
+															id="img-heart${status.current}"
+															onclick="event.stopPropagation(); LogInLikeCheck();" />
+														<c:set value="true" var="loop" />
+													</c:when>
+													<c:when
+														test="${ (loginUser != like.id || cardList.mtid != like.mtid) && loop == false }">
 														<img src="../static/images/sample/like2.svg"
 															alt="toggle-off" width="40"
 															class="heart overlay-image overlay-right"
 															id="img-heartEmpty${status.current}"
 															onclick="event.stopPropagation(); LogLikeUnCheck();" />
-													</c:otherwise>
+														<c:set value="true" var="loop" />
+													</c:when>
 												</c:choose>
 											</c:forEach>
 										</sec:authorize>

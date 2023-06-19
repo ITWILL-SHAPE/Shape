@@ -1,7 +1,9 @@
 package com.itwill.shape.web;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Iterator;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -148,6 +150,21 @@ public class MeetController {
 		
 		Map<String, Object> map = meetListService.selectBySearch(search);
 		List<MeetLike> ml = meetListService.LikeList();
+		for( String key : map.keySet()) {
+			MeetListCountDto d =  (MeetListCountDto) map.get(key);
+			log.info("확인 = {}", map.get(key));
+			byte[] imgByte = d.getImg_1();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch(UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			d.setFile(imgStr);
+			
+		}
 		
 		model.addAttribute("listCount", map.get("list"));
 		model.addAttribute("search", search);
