@@ -26,7 +26,7 @@
 					
 					<div class="my-2">
 						<label class="form-label d-none" for="content">내용</label>
-						<div style="height: 5rem;" class="card-text" id="content" readonly>${ notices.content }</div>
+						<div class="card-text" id="content" readonly>${ notices.content }</div>
 					</div>
 					
 					<hr />
@@ -45,12 +45,13 @@
 				
 				
 			</section>
-		</div>
-		
-		<div class="my-2 text-center">
+			<div class="my-2 text-center">
 					<c:url var="infoNoticeListPage" value="/info/notice/list" />
 					<a class="btn btn-list col-2" href="${ infoNoticeListPage }">목록</a>
 				</div>
+		</div>
+		
+		
 
 
 </body>
