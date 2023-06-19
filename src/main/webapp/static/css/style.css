@@ -307,12 +307,13 @@ div.img-right {
 	right: 20px;
 }
 
-div.emptyListCount {
+div#emptyListCount {
 	height: 39vh; 
 	display: flex; 
 	justify-content: center; 
 	align-items: center; 
 	flex-wrap: wrap;
+	margin: auto;
 } 
 
 /* mngr userInfo list*/

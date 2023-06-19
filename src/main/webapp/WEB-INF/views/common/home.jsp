@@ -31,46 +31,46 @@
 						<!-- id를 하나 정하고 script에서 지정(크기를 변경하고 싶으면 여기서) -->
 						<!-- https://www.chartjs.org/docs/3.3.0/samples/bar/vertical.html -->
 						<!-- 위에 있는 링크로 가보면 sample을 볼 수 있으니 참고 -->
-						<h1>쿼리짜긴 귀찮아서 그냥 만든 예시</h1>
+						<h1>남 녀 비율</h1>
 						<canvas id="chart1" width="400" height="400"></canvas>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">		
-			/* 여기서 이름 지은 거 */
-			let chart1 = document.getElementById("chart1");
-			/* new Chart(<여기서 씀>, {}) */
-			let example = new Chart(chart1, {
-				type: 'line', 	// 여기서 원하는 타입의 차트 타입쓰면 됨.
-				data: {
-					labels: ["1월", "2월", "3월", "4월"],
-					datasets : [{
-						label : '여자 접속률',
-						data : ["50", "60", "30", "90"],	// 쿼리로 가져온 값 넣기
-						borderColor : '#3B7CFF',	// 원하는 색
-						backgroundColor : '#3B7CFF'	// 원하는 색
-					}, {
-						label : '남자 접속률',
-						data : ["60", "30", "90", "10"],	// 쿼리로 가져온 값 넣기
-						borderColor : '#D3FF31',	// 원하는 색
-						backgroundColor : '#D3FF31'
-					}]
-				},
-				options : {
-					responsive: true,
-				    plugins: {
-				      legend: {
-				        position: 'top',
-				      },
-				      title: {
-				        display: true,
-				        text: '예시'
-				      }
-				    }
-				}				
-			});
-		
+		<script type="text/javascript">
+		  /* 여기서 이름 지은 거 */
+		  const DATA_COUNT = 2; // 차트에 표시할 데이터 개수
+		  const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+
+		  const data = {
+		    labels: ['Blue','Yellow'],
+		    datasets: [
+		      {
+		        label: ['남자 접속률', '여자 접속률'],
+		        data : ['60', '40'],
+		        backgroundColor: ['#3B7CFF','#D3FF31'],
+		      }
+		    ]
+		  };
+
+		  let chart1 = document.getElementById("chart1");
+		  new Chart(chart1, {
+		    type: 'doughnut', // 원하는 타입의 차트 타입쓰면 됨.
+		    data: data,
+		    options: {
+		      responsive: true,
+		      plugins: {
+		        legend: {
+		          position: 'top',
+		        },
+		        title: {
+		          display: true,
+		          text: '참여율'
+		        }
+		      }
+		    }
+		  });
 		</script>
+
 	</body>
 </html>

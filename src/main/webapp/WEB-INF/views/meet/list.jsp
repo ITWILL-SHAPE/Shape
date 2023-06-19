@@ -165,7 +165,7 @@
 														<img  src="../static/images/sample/like.svg"
 															alt="toggle-off" width="40"
 															class="heart overlay-image overlay-right" 
-															id="img-heart${status.begin}"
+															id="img-heart${status.current}"
 															onclick="event.stopPropagation(); LogInLikeCheck();" />
 													</c:when>
 													<c:when
@@ -173,14 +173,14 @@
 														<img src="../static/images/sample/like2.svg"
 															alt="toggle-off" width="40"
 															class="heart overlay-image overlay-right" 
-															id="img-heartEd${status.begin}"
+															id="img-heartEd${status.current}"
 															onclick="event.stopPropagation(); alert('선택하신 모임을 작성한 사용자는 찜을 할 수 없습니다.');" />
 													</c:when>
 													<c:otherwise>
 														<img src="../static/images/sample/like2.svg"
 															alt="toggle-off" width="40"
 															class="heart overlay-image overlay-right"
-															id="img-heartEmpty${status.begin}"
+															id="img-heartEmpty${status.current}"
 															onclick="event.stopPropagation(); LogLikeUnCheck();" />
 													</c:otherwise>
 												</c:choose>

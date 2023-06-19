@@ -72,7 +72,7 @@
 								<hr />
 								<!-- 작성날짜 -->
 								<fmt:formatDate value="${ infoQnA.created_date }"
-									pattern="yyyy-MM-dd HH:mm:ss" var="created" />
+									pattern="yyyy-MM-dd" var="created" />
 								<p class="card-text text-end small" id="created_date">${ created }</p>
 							</div>
 						</div>
@@ -84,13 +84,13 @@
 						</div>
 						<div class="my-2">
 							<label class="form-label" for="an_comment">답변</label>
-							<textarea class="form-control" id="an_comment" name="an_comment"
+							<textarea class="form-control" style="height: 100px;" id="an_comment" name="an_comment"
 								required autofocus>${ infoQnA.an_comment }</textarea>
 						</div>
 
 						<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-							<button class="btn btn-warning" type="button" id="btnUpdate">
-								작성 완료</button>
+							<button class="btn btn-classic" type="button" id="btnUpdate">
+								등록</button>
 						</div>
 					</form>
 				</div>

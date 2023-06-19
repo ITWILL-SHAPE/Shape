@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.UserInfo;
+import com.itwill.shape.dto.MngrMeetGraphDto;
 import com.itwill.shape.dto.MngrUserInfoSearchListDto;
 import com.itwill.shape.dto.MngrUserInfoSelectDto;
 import com.itwill.shape.dto.UserInfoFindDto;
@@ -139,7 +140,7 @@ public interface UserInfoRepository {
 	 * 0618배선영
 	 * 관리자 - 그래프 남 녀 유저 count 그래프
 	 */
-	int getMaleUserCount(MngrUserInfoSearchListDto dto); // 남자 회원수
+	int getMaleUserCount(MngrMeetGraphDto dto); //  관리자 남자 회원수
 	
-	int getFemaleUserCount(MngrUserInfoSearchListDto dto); // 여자 회원수
+	int getFemaleUserCount(MngrMeetGraphDto dto); // 관리자 여자 회원수
 }
