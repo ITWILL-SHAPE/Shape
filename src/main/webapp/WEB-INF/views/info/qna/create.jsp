@@ -25,9 +25,9 @@
 							required></textarea>
 					</div>
 					<div class="my-2">
-						<label class="form-label" for="writer">작성자 아이디</label>
+						<label class="form-label d-none" for="writer">작성자 아이디</label>
 						<sec:authentication property="principal.username" var="id" />
-						<input class="form-control" type="text" id="writer" name="writer"
+						<input class="form-control d-none" type="text" id="writer" name="writer"
 							value="${ id }" readonly />
 					</div>
 					<div class="form-check">
@@ -39,7 +39,7 @@
 				</div>
 				<div class="my-2">
 					<input class="form-control btn btn-classic" id="btnSubmit"
-						type="submit" value="작성 완료" />
+						type="submit" value="등록" />
 				</div>
 			</form>
 		</div>
