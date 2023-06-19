@@ -19,28 +19,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MeetMainDetailDto {
+public class MeetMainDetailDto { // 상세페이지
 	private long mtid; // 상세보기 페이지 아이디
 	private String crtr_id; // 아이디
-	private String title;
-	private String category;
-	private String sido;
-	private String sigungu;
+	private String title; // 제목
+	private String category; // 카테고리
+	private String sido; // 시도
+	private String sigungu; //시군구
 	private String location; // 상세주소
-	private String mt_date;
-	private String mt_time;
+	private String mt_date; // 모집일정
+	private String mt_time; // 모집시간
 	private String ed_date; // 참여종료
-	private long nm_ppl;
+	private long nm_ppl; //모집인원
 	private String mt_cost; // 참가비
 	private String mt_cost_info; // 참가비용 정보
-	private byte[] img_1;
-	private byte[] img_2;
-	private byte[] img_3;
-	private byte[] img_4;
-	private byte[] img_5;
-	private String content;
-	private long views; 
-	private Timestamp created_date;
+	private byte[] img_1; //이미지 1
+	private byte[] img_2; //이미지 2
+	private byte[] img_3; // 이미지 3
+	private byte[] img_4; // 이미지 4
+	private byte[] img_5; // 이미지 5
+	private String content; // 모임내용
+	private long views;  // 조회수 (안함)
+	private Timestamp created_date; // 작성한 시간
 	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST)
 	private UserInfo userHost; // Host 작성자
 	private long meetlikecount; // 찜 갯수

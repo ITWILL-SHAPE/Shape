@@ -196,4 +196,14 @@
 	    </if>
 	</select>
 	
+	<!-- 남성 회원수  -->
+	<select id="getMaleUserCount" resultType="int">
+		SELECT COUNT(*) FROM USER_INFO WHERE GENDER = 'M'
+	</select>
+	
+	<!-- 여성 회원수 -->
+	<select id="getFemaleUserCount" resultType="int">
+		SELECT COUNT(*) FROM USER_INFO WHERE GENDER = 'F'
+	</select>
+	
 </mapper>

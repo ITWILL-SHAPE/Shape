@@ -13,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Getter
-public class MeetPrtcpCreateDto {
-	private long mtid;
-	private String prtcp_id;
-	private String name;
-	private String gender;
-	private String phone;
-	private String email;
+public class MeetPrtcpCreateDto { // 참여자 정보 insert
+	private long mtid; // 참여한 모임 PK
+	private String prtcp_id; // 참여자 아이다
+	private String name; // 참여자 이름
+	private String gender; // 참여자 성
+	private String phone; // 참여자 폰
+	private String email; // 참여자 이메일
 	
 		// 참여자 정보 넣기
 		public MeetPrtcp toEntity() {

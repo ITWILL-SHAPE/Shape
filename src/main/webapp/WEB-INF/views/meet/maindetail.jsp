@@ -134,7 +134,7 @@
 								<li>
 								<span>💸참가비용 : </span> 
 								<span>[${meetmaindetail.mt_cost_info}]</span> ${meetmaindetail.mt_cost} 원
-								 	<c:if test="${meetmaindetail.mt_cost != '참가비 없음.'}">
+								 	<c:if test="${meetmaindetail.mt_cost == '참가비 없음.'}">
     									<span>${meetmaindetail.mt_cost}</span>
   									</c:if>
 								</li>

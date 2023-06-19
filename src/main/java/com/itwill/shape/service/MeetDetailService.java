@@ -24,30 +24,30 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 // 상세보기 페이지 서비스
 public class MeetDetailService {
-	private final MeetInfoRepository meetInfoRepository;
+	private final MeetInfoRepository meetInfoRepository; // 작성한 내용 
 	private final MeetLikeRepository meetLikeRepository; // 찜수
 	private final MeetPrtcpRepository meetPrtcpRepository; // 참여자 정보 
 	
 		/**
 		 * 리스트 페이지
 		 */
-		public MeetMainDetailDto detailByMtid(long mtid) {
+		public MeetMainDetailDto detailByMtid(long mtid) { // 상세페이지
 			log.info("detail(mtid={})" , mtid);
 			
-			MeetMainDetailDto dto = MeetMainDetailDto.fromEntity(meetInfoRepository.detailByMtid(mtid));
+			MeetMainDetailDto dto = MeetMainDetailDto.fromEntity(meetInfoRepository.detailByMtid(mtid)); // 작성한 글 상세페이지
 			log.info("dto={}", dto);
 			
-			List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid);
+			List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid); // 참여자 정보 리스트
 			log.info(list.toString());
 			
-			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id());
+			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id()); // 작성자 USER 정보
 			log.info(result.toString());
 			
-			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid);
+			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid); // 찜 개수
 			
-			List<MeetLike> meetLikeList = meetLikeRepository.selectMeetLikeListByMtid(mtid);
+			List<MeetLike> meetLikeList = meetLikeRepository.selectMeetLikeListByMtid(mtid); // 찜 누른 사람들 리스트
 			
-			long prtcpcount = meetPrtcpRepository.selectNumberPrtcpMtid(mtid);
+			long prtcpcount = meetPrtcpRepository.selectNumberPrtcpMtid(mtid); // 참여자 인원수
 
 			dto.setPrtcpDtoList(list); // 참여자 정보	
 			
@@ -84,13 +84,12 @@ public class MeetDetailService {
 		 * 모임 찜하
 		 */
 		
-		// 찜수 
-		
+		// 찜수 +1	
 		public int meetLikeCreate(MeetLikeDto dto) {
 			log.info("likeCreate(dtos={})", dto);
 			return meetLikeRepository.likeCreate(dto.toEntity());
 		}
-		
+		// 찜수 -1	
 		public int meetLikeDelete(long mtid, String id) {
 			log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
 			

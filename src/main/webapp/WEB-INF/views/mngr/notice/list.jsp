@@ -26,11 +26,11 @@
 			<%@ include file="../../common/mngr_sidebar.jsp"%>
 			<div class="vh-100 vw-100 p-3">
 				<div class="my-2 p-5 text-center">
-					<p>관리자 공지사항 list</p>
+					<h1 class="titleBolder">공지사항</h1>
+					<p>관리자</p>
 				</div>
 	
 	
-				<main class="my-2">
 					<div class="card">
 						<table class="card-body table table-hover text-center">
 							<thead>
@@ -64,18 +64,18 @@
 					</div>
 
 					<!-- 페이징 처리 -->
-					<div>
+					<div class="py-3">
 						<nav>
 							<ul class="pagination justify-content-center">
 								<li class="page-item ${ paging.prev? "":"disabled" }"><a
-									class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a></li>
+									class="page-link" href="${ paging.startPage -1 }" tabindex="-1">&laquo;</a></li>
 								<c:forEach begin="${ paging.startPage }"
 									end="${ paging.endPage }" var="num">
 									<li class="page-item ${ paging.cri.pageNum == num? "active":"" }"><a
 										class="page-link" href="${ num }">${ num }</a></li>
 								</c:forEach>
 								<li class="page-item ${ paging.next? "":"disabled" }" ><a
-									class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a></li>
+									class="page-link" href="${ paging.endPage +1 }" tabindex="-1">&raquo;</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -88,11 +88,10 @@
 
 				<div class="my-2 text-center">
 						<c:url var="infoNoticeCreatePage" value="/mngr/notice/create" />
-						<a class="btn btn-primary" href="${ infoNoticeCreatePage }">새 글
-							작성</a>
+						<a class="btn" href="${ infoNoticeCreatePage }" style="background-color: #D3FF31;">
+						새 글 작성</a>
 						<!-- create 페이지 이동 -->
 					</div>
-				</main>
 	
 			</div>
 		</div>

@@ -26,10 +26,10 @@
 		
 				<div class="vh-100 vw-100 p-3">
 					<div class="my-2 p-5 text-center">
-						<p>FAQ 작성</p>
+						<h1 class="titleBolder">FAQ</h1>
+						<p>관리자</p>
 					</div>
 		
-					<main class="my-2">
 						<section class="card">
 							<form method="post">
 								<div class="card-body">
@@ -52,7 +52,6 @@
 								</div>
 							</form>
 						</section>
-					</main>
 				</div>
 			</div>
 			

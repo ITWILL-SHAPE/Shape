@@ -162,23 +162,25 @@
 												<c:choose>
 													<c:when
 														test="${ loginUser == like.id && cardList.mtid == like.mtid && author != loginUser}">
-														<img src="../static/images/sample/like.svg"
+														<img  src="../static/images/sample/like.svg"
 															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right" id="img-heart"
+															class="heart overlay-image overlay-right" 
+															id="img-heart${status.begin}"
 															onclick="event.stopPropagation(); LogInLikeCheck();" />
 													</c:when>
 													<c:when
 														test="${ loginUser == like.id && cardList.mtid == like.mtid && author == loginUser}">
 														<img src="../static/images/sample/like2.svg"
 															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right" id="img-heart"
+															class="heart overlay-image overlay-right" 
+															id="img-heartEd${status.begin}"
 															onclick="event.stopPropagation(); alert('선택하신 모임을 작성한 사용자는 찜을 할 수 없습니다.');" />
 													</c:when>
 													<c:otherwise>
 														<img src="../static/images/sample/like2.svg"
 															alt="toggle-off" width="40"
 															class="heart overlay-image overlay-right"
-															id="img-heartEmpty"
+															id="img-heartEmpty${status.begin}"
 															onclick="event.stopPropagation(); LogLikeUnCheck();" />
 													</c:otherwise>
 												</c:choose>

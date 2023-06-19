@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MeetLikeDto {
+public class MeetLikeDto { // 찜
 
-		private long mtid;
-		private String id;
+		private long mtid; // 작성한 글 번호 PK
+		private String id; // 찜한 USER 아이디 PK
 		
 		public MeetLike toEntity() {
 			

@@ -26,10 +26,10 @@
 		<%@ include file="../../common/mngr_sidebar.jsp"%>
 		<div class="vh-100 vw-100 p-3">
 			<div class="my-2 p-5 text-center">
-				<p>관리자 FAQ 상세 화면</p>
+				<h1 class="titleBolder">FAQ</h1>
+				<p>관리자</p>
 			</div>
 
-			<main class="my-2">
 				<section class="card">
 					<form id="faqDetailForm">
 						<div class="card-body">
@@ -61,7 +61,6 @@
 					<a class="btn btn-primary" href="${ faqModifyPage }">수정</a>
 					<button class="btn btn-primary" id="btnFaqDelete">삭제</button>
 				</div>
-			</main>
 
 
 			
