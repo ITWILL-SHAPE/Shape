@@ -257,6 +257,7 @@ public class MeetController {
 		
 		log.info("resultasdfasdf = {}", mtid);
 		log.info("resultasdfasdf = {}", result);
+		
 		// 시간 지나면 상세페이지 사라지는 마술~!~
 		LocalDate currentDate = LocalDate.now();
 		String date = result.getEd_date();

@@ -1,5 +1,7 @@
 package com.itwill.shape.service;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -58,6 +60,67 @@ public class MeetDetailService {
 			dto.setMeetLikeId(meetLikeList); // 찜 누른 인간들....
 			
 			dto.setMeetNumberPrtcp(prtcpcount); // 참여자 인원수
+			
+			// 바이트를 인코딩한 String으로 반환
+			if(dto.getImg_1() != null) {
+				byte[] imgByte1 = Base64.getEncoder().encode(dto.getImg_1());
+				try {
+					dto.setFile1(new String(imgByte1, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			if(dto.getImg_2() != null) {
+				byte[] imgByte2 = Base64.getEncoder().encode(dto.getImg_2());
+				try {
+					dto.setFile2(new String(imgByte2, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			if(dto.getImg_3() != null) {
+				byte[] imgByte3 = Base64.getEncoder().encode(dto.getImg_3());
+				try {
+					dto.setFile3(new String(imgByte3, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			if(dto.getImg_4() != null) {
+				byte[] imgByte4 = Base64.getEncoder().encode(dto.getImg_4());
+				try {
+					dto.setFile4(new String(imgByte4, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			if(dto.getImg_5() != null) {
+				byte[] imgByte5 = Base64.getEncoder().encode(dto.getImg_5());
+				try {
+					dto.setFile5(new String(imgByte5, "UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			/*
+			byte[] imgByte2 = Base64.getEncoder().encode(dto.getImg_2());
+			byte[] imgByte3 = Base64.getEncoder().encode(dto.getImg_3());
+			byte[] imgByte4 = Base64.getEncoder().encode(dto.getImg_4());
+			byte[] imgByte5 = Base64.getEncoder().encode(dto.getImg_5());
+			*/
+			/*
+			try {
+				dto.setFile1(new String(imgByte1, "UTF-8"));
+				/*
+				dto.setFile2(new String(imgByte2, "UTF-8"));
+				dto.setFile3(new String(imgByte3, "UTF-8"));
+				dto.setFile4(new String(imgByte4, "UTF-8"));
+				dto.setFile5(new String(imgByte5, "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			*/
 			
 			return dto;
 			

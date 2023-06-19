@@ -47,7 +47,20 @@ public class MeetMainDetailDto { // 상세페이지
 	private UserInfo userHost; // Host 작성자
 	private long meetlikecount; // 찜 갯수
 	private List<MeetLike> meetLikeId; // 찜 한 아이디
-	private long meetNumberPrtcp; // 참여자 인원수 
+	private long meetNumberPrtcp; // 참여자 인원수
+
+	// 사진
+	private String file1;
+	private String file2;
+	private String file3;
+	private String file4;
+	private String file5;
+	private String file6;
+	
+	
+	
+	
+		
 	
 	
 		

@@ -21,49 +21,95 @@
 			<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 				<div class="carousel-indicators">
 					<button type="button" data-bs-target="#myCarousel"
-						data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+						data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+					<c:if test="${ meetmaindetail.file2 != null }">	
 					<button type="button" data-bs-target="#myCarousel"
-						data-bs-slide-to="1" aria-label="Slide 2" class="active"
-						aria-current="true"></button>
+						data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+					</c:if>
+					<c:if test="${ meetmaindetail.file3 != null }">	
 					<button type="button" data-bs-target="#myCarousel"
 						data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
-						
+					</c:if>
+					<c:if test="${ meetmaindetail.file4 != null }">		
+						<button type="button" data-bs-target="#myCarousel"
+						data-bs-slide-to="3" aria-label="Slide 4" class=""></button>
+					</c:if>
+					<c:if test="${ meetmaindetail.file5 != null }">		
+						<button type="button" data-bs-target="#myCarousel"
+						data-bs-slide-to="4" aria-label="Slide 5" class=""></button>
+					</c:if>
 				</div>
 				<!-- 1번째 -->
 				<div class="carousel-inner">
-					<div class="carousel-item">
-						
-						<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png" 
-							class="bd-placeholder-img" width="100%" height="150%"/>
+					<div class="carousel-item active">
+						<c:if test="${ meetmaindetail.file1 == null }">							
+							<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png" 
+								class="bd-placeholder-img" width="100%" height="150%"/>							
+						</c:if>
+						<c:if test="${ meetmaindetail.file1 != null }"> 
+							<c:set value="data:image/png;base64, ${ meetmaindetail.file1 }" var="url1" />							
+							<img src="${ url1 }" style="max-width: 50%; min-height: 50px;"
+								class="bd-placeholder-img" width="100%" height="auto"/> 
+						</c:if>						
 						<div class="container">
 							<div class="carousel-caption text-start">
-								
 							</div>
 						</div>
 					</div>
 					<!-- 2번쨰 -->
-					<div class="carousel-item active">
-						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png" 
-							class="bd-placeholder-img" width="100%" height="10%"/>
-						<div class="container">
-							<div class="carousel-caption">	
+					<c:if test="${ meetmaindetail.file2 != null }">					
+						<div class="carousel-item">
+								<c:set value="data:image/png;base64, ${ meetmaindetail.file2 }" var="url2" />
+								<img src="${ url2 }" style="max-width: 50%; min-height: 50px;"
+									class="bd-placeholder-img" width="100%" height="auto"/> 
+							
+							<div class="container">
+								<div class="carousel-caption">	
+								</div>
 							</div>
 						</div>
-					</div>
+					</c:if>	
 					<!-- 3번쩨 -->
-					
-					<div class="carousel-item">
-						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png"
-							class="bd-placeholder-img" width="100%" height="150%"/>
-
-						<div class="container">
-							<div class="carousel-caption text-end">
-							<!-- 글쓰기 -->	
-							<p class="black">마지막</p>
+					<c:if test="${ meetmaindetail.file3 != null }"> 
+						<div class="carousel-item">
+								<c:set value="data:image/png;base64, ${ meetmaindetail.file3 }" var="url3" />
+								<img src="${ url3 }" style="max-width: 50%; min-height: 50px;"
+									class="bd-placeholder-img" width="100%" height="auto"/> 
+							
+							<div class="container">
+								<div class="carousel-caption">	
+								</div>
 							</div>
 						</div>
-					</div>
+					</c:if>		
+					<!-- 4번째 -->
+					<c:if test="${ meetmaindetail.file4 != null }"> 
+						<div class="carousel-item">
+							<c:set value="data:image/png;base64, ${ meetmaindetail.file4 }" var="url4" />
+							<img src="${ url4 }" style="max-width: 50%; min-height: 50px;"
+								class="bd-placeholder-img" width="100%" height="auto"/> 
+						
+							<div class="container">
+								<div class="carousel-caption">	
+								</div>
+							</div>
+						</div>
+					</c:if>		
+					<!--5번째 -->
+					<c:if test="${ meetmaindetail.file5 != null }">
+						<div class="carousel-item"> 
+							<c:set value="data:image/png;base64, ${ meetmaindetail.file5 }" var="url5" />
+							<img src="${ url5 }" style="max-width: 50%; min-height: 50px;"
+								class="bd-placeholder-img" width="100%" height="auto"/> 
+						
+							<div class="container">
+								<div class="carousel-caption text-end">
+								</div>
+							</div>
+						</div>
+					</c:if>	
 				</div>
+				
 				<button class="carousel-control-prev" type="button"
 					data-bs-target="#myCarousel" data-bs-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -76,10 +122,10 @@
 				</button>
 			</div>
 		</div> 
-					<div class= "my-5">
-					<!-- 사진-->
-				<!-- 사진 끝 -->
-            </div>
+		<div class= "my-5">
+		</div>
+		<!-- 사진-->
+		<!-- 사진 끝 -->
                   <!-- 제목, 내용 -->
            <div> 
             <div class="card">
@@ -229,17 +275,8 @@
 									<!-- 참여자가 챰여하기를 안 눌었을때  -->
 									<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
 										<button id="join" name="join" type="button" class="btn btn-classic">참여</button>
-									</c:if>
-								
+									</c:if>							
 								</c:if>
-									
-									
-									
-									
-									
-									
-									
-								
 								</div>
 							</c:when>
 						</c:choose>			
@@ -253,10 +290,19 @@
 							<p class="my-2">🙋🏻‍♂️HOST</p>
 						</div>
 						<div class="card-body">
+							<c:set var="host" value="${ meetmaindetail.userHost }" />
+						<c:if test="${ host.profile == null }">							
 							<img id="host-profile" class="user-img"
-								src="../static/images/sample/user.png" alt="host 사진">
-							<div id="host-name" class="meetdetailuser">이름 : ${ meetmaindetail.userHost.name }</div>
-							<div id="host-email" class="meetdetailemail">이메일 : ${ meetmaindetail.userHost.email }</div>	
+								src="../static/images/sample/user.png" alt="host 사진">							
+						</c:if>
+						<c:if test="${ host.profile != null }"> 
+							<c:set value="data:image/png;base64, ${ meetmaindetail.userHost.profile }" var="host" />							
+							<img src="${ host }" style="max-width: 50%; min-height: 50px;"
+								class="bd-placeholder-img" width="100%" height="auto"/> 
+						</c:if>	
+							
+							<div id="host-name" class="meetdetailuser">이름 : ${ host.name}</div>
+							<div id="host-email" class="meetdetailemail">이메일 : ${ host.email }</div>	
 						</div>
 					</div>
 										                                  
