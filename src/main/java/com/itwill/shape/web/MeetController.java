@@ -171,6 +171,7 @@ public class MeetController {
 		
 		log.info("resultasdfasdf = {}", mtid);
 		log.info("resultasdfasdf = {}", result);
+		// 시간 지나면 상세페이지 사라지는 마술~!~
 		LocalDate currentDate = LocalDate.now();
 		String date = result.getEd_date();
 		log.info("확인 = {}", date);
@@ -197,6 +198,7 @@ public class MeetController {
 	 * 
 	 * @param
 	 */
+	// 참여하기
 	@PostMapping
 	public ResponseEntity<Integer> createPrtcp(@RequestBody MeetPrtcpCreateDto dto) {
 		log.info("createPrtcp(dto={})", dto);
@@ -206,7 +208,7 @@ public class MeetController {
 
 		return ResponseEntity.ok(result);
 	}
-
+	// 참여취소
 	@DeleteMapping("/{mtid}/{id}")
 	@ResponseBody
 	public ResponseEntity<Integer> deletePtrcp(@PathVariable long mtid, @PathVariable String id) {
@@ -220,6 +222,7 @@ public class MeetController {
 	/**
 	 * 배선영 찜 만들기
 	 */
+	// 찜 +1
 	@PostMapping("/like")
 	public ResponseEntity<Integer> createLike(@RequestBody MeetLikeDto dto) {
 		log.info("createPrtcp(dto={})", dto);
@@ -229,7 +232,7 @@ public class MeetController {
 
 		return ResponseEntity.ok(result);
 	}
-
+	// 찜 -1
 	@DeleteMapping("/like/{mtid}/{id}")
 	@ResponseBody
 	public ResponseEntity<Integer> deleteLike(@PathVariable long mtid, @PathVariable String id) {

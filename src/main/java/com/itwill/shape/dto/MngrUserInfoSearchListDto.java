@@ -18,6 +18,7 @@ public class MngrUserInfoSearchListDto {
 	private String searchRegDateEnd;
 	private int pageNum;
 	private int amount;
-	
+	private int maleCount; // 남자 회원수
+	private int feMaleCount; // 여자회원수
 	
 }
