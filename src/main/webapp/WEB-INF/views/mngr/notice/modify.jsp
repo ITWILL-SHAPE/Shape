@@ -30,10 +30,10 @@
 		<%@ include file="../../common/mngr_sidebar.jsp"%>
 		<div class="vh-100 vw-100 p-3">
 			<div class="my-2 p-5 text-center">
-				<p>관리자 공지사항 수정 화면</p>
+				<h1 class="titleBolder">공지사항</h1>
+				<p>관리자</p>
 			</div>
 			
-			<main class="my-2">
 				<form id="noticeModifyForm">
 					<section class="card">
 						<div class="card-body">
@@ -46,32 +46,34 @@
 								<input class="form-control" id="title" name="title" value="${ notices.title }" />
 							</div>
 							<div class="my-2">
+									<label class="form-label" for="summernote">내용</label>
+									<textarea class="form-control" id="summernote" name="content" required>${ notices.content }</textarea>
+							</div>
+							<div class="my-2">
 								<label class="form-label">작성일</label>
 								<fmt:formatDate value="${ times }" pattern="yyyy.MM.dd" var="date"/>
 								<input class="form-control" id="created_date" value="${ date }" readonly />
 							</div>
+							
 							<div class="my-2">
 								<label class="form-label" for="file">첨부파일</label>
 								<input class="form-control" id="file" name="file" value="${ notices.atchd_file }"  />
+								<input class="form-control" type="file" id="atchd_file" name="atchd_file" multiple/>
 							</div>
-							<div class="my-2">
-									<label class="form-label" for="summernote">내용</label>
-									<textarea class="form-control" id="summernote" name="content" required>${ notices.content }</textarea>
+						
+							<!-- 고정글 체크여부 -->
+							<div class="form-check">
+								<label class="form-check-label" for="checkbox">고정</label>
+								<input class="form-check-input" type=checkbox name="fix" id="checkbox" value="-1"/>
 							</div>
-						</div>
-						<!-- 고정글 체크여부 -->
-						<div class="form-check">
-							<label class="form-check-label" for="checkbox">고정</label>
-							<input class="form-check-input" type=checkbox name="fix" id="checkbox" value="-1"/>
 						</div>
 					</section>
 				</form>
-				<div class="my-2 text-center">
+				<div class="my-2 pb-5 text-center">
 					<c:url var="infoNoticelistPage" value="/mngr/notice/list" />
-					<a class="btn btn-primary" href="${ infoNoticelistPage }">목록</a>
-					<button class="btn btn-primary" id="btnUpdateNotice">수정 완료</button>
+					<a class="btn" href="${ infoNoticelistPage }" style="background-color: #D3FF31;">목록</a>
+					<button class="btn" id="btnUpdateNotice" style="background-color: #D3FF31;">수정 완료</button>
 				</div>
-		</main>
 			<script src="../../static/js/infoNotice-modify.js"></script>
 			<script src="<%=request.getContextPath()%>/static/js/notice-summernote.js"></script>
 		</div>

@@ -12,10 +12,9 @@
 			<c:forEach items="${ faqs }" var="faq" varStatus="status">
 				<div class="accordion-item " role="tabpanel"
 					aria-labelledby="headingOne">
-					<!-- 질문 자리 -->
 					<h2 class="accordion-header" id="flush-headingOne">
-						<button class="accordion-button bg-white fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq${ status.index }"
-							aria-expanded="true" aria-controls="faq${ status.index }">
+						<button class="accordion-button bg-white fw-bold collapsed" type="button" data-bs-toggle="collapse" 
+							data-bs-target="#faq${ status.index }" aria-expanded="true" aria-controls="faq${ status.index }">
 							<h1><i class="bi bi-question-lg subColor"></i></h1>
 							<br/>
 							${ faq.question }
@@ -23,7 +22,6 @@
 						</button>
 					</h2>
 					<div id="faq${ status.index }" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-					    <!-- 답변 자리 -->
 						<div class="accordion-body">
 							<h1><i class="bi bi-exclamation-lg mainColor"></i></h1>
 							${ faq.answer }<br/>

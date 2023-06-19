@@ -26,10 +26,10 @@
 			<%@ include file="../../common/mngr_sidebar.jsp"%>
 			<div class="vh-100 vw-100 p-3">
 			<div class="my-2 p-5 text-center">
-				<p>관리자 공지사항 상세 화면</p>
+				<h1 class="titleBolder">공지사항</h1>
+				<p>관리자</p>
 			</div>
 		
-			<main class="my-2">
 			<section class="card">
 				<form id="noticeDetailFrom">
 				<div class="card-body">
@@ -47,12 +47,12 @@
 						<input class="form-control" id="created_date" value="${ date }" readonly />
 					</div>
 					<div class="my-4">
-						<label class="form-label" for="file">첨부파일</label>
-						<input class="form-control" id="file" value="${ notices.atchd_file }" readonly />
-					</div>
-					<div class="my-4">
 						<label class="form-label" for="content">내용</label>
 						<div class="form-control" id="content" readonly>${ notices.content }</div>
+					</div>
+					<div class="my-4">
+						<label class="form-label" for="file">첨부파일</label>
+						<input class="form-control" id="file" value="${ notices.atchd_file }" readonly />
 					</div>
 				</div>
 				</form>
@@ -70,7 +70,6 @@
 					<button class="btn btn-primary" id="btnDeleteNotice">삭제</button>
 				</div>
 			</div>
-			</main>
 			<script src="../../static/js/infoNotice-detail.js"></script>
 			</div>
 		</div>

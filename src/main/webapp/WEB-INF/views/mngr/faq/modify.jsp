@@ -25,35 +25,35 @@
 		<%@ include file="../../common/mngr_sidebar.jsp"%>
 		<div class="vh-100 vw-100 p-3">
 			<div class="my-2 p-5 text-center">
-				<p>관리자 FAQ 수정 화면</p>
+				<h1 class="titleBolder">FAQ</h1>
+				<p>관리자</p>
 			</div>
-
-			<main class="my-2">
-				<form id="faqModifyForm">
-					<div class="card-body" id="modifyForm">
-						<div class="my-4">
-							<label class="form-label" for="fid">NO.</label> <input
-								class="form-control" id="fid" name="fid" value="${ faq.fid }" />
+				
+				<div class="card">
+					<form id="faqModifyForm">
+						<div class="card-body" id="modifyForm">
+							<div class="my-4">
+								<label class="form-label" for="fid">NO.</label> <input
+									class="form-control" id="fid" name="fid" value="${ faq.fid }" />
+							</div>
+							<div>
+								<label class="form-label" for="question">question</label> <input
+									class="form-control" id="question" name="question"
+									value="${ faq.question }" />
+							</div>
+							<div>
+								<label class="form-label" for="answer">answer</label>
+								<textarea class="form-control" id="answer" name="answer">${ faq.answer }</textarea>
+							</div>
 						</div>
-						<div>
-							<label class="form-label" for="question">question</label> <input
-								class="form-control" id="question" name="question"
-								value="${ faq.question }" />
-						</div>
-						<div>
-							<label class="form-label" for="answer">answer</label>
-							<textarea class="form-control" id="answer" name="answer">${ faq.answer }</textarea>
-						</div>
-					</div>
-				</form>
-
+					</form>
+				</div>
 				<div class="card-footer my-2 text-center"">
 					<c:url var="faqListPage" value="/mngr/faq/list"></c:url>
 					<a class="btn btn-primary" href="${ faqListPage }">목록</a>
 					<button class="btn btn-primary" id="btnFaqUpdate">수정 확인</button>
 				</div>
 
-			</main>
 			<script
 				src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 				integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"

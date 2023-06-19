@@ -27,10 +27,10 @@
 			
 			<div class="vh-100 vw-100 p-3">
 				<div class="my-2 p-5 text-center">
-					<p>관리자 FAQ list</p>
+					<h1 class="titleBolder">FAQ</h1>
+					<p>관리자</p>
 				</div>	
 	
-				<main class="my-2">
 					<div class="card">
 						<table class="card-body table table-hover">
 							<thead>
@@ -59,7 +59,6 @@
 						<c:url var="faqCreatePage" value="/mngr/faq/create" ></c:url>
 						<a class="btn btn-primary"  href="${ faqCreatePage }">FAQ 작성</a>	
 					</div>
-				</main>
 			</div>
 		</div>
 		<script

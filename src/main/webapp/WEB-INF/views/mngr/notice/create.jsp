@@ -32,10 +32,10 @@
 		<%@ include file="../../common/mngr_sidebar.jsp"%>
 		<div class="vh-100 vw-100 p-3">
 		<header class="my-2 p-5 text-center">
-			<p>Notice Create</p>
+			<h1 class="titleBolder">공지사항</h1>
+			<p>관리자</p>
 		</header>
 
-		<main class="my-2">
 			<div class="card">
 				<form method="post">
 					<div class="card-body">
@@ -48,23 +48,25 @@
 							<label class="form-label" for="summernote">내용</label>
 							<textarea class="form-control" id="summernote" name="content" required></textarea>
 						</div>
+						
+						<div class="my-2">
+							<input class="form-control" type="file" id="atchd_file" name="atchd_file" multiple/>
+						</div>
+						
 						<div class="form-check"> <!-- 글 고정 체크박스 -->
 							<label class="form-check-label" for="checkbox">고정</label>
 							<input class="form-check-input" type=checkbox name="fix" id="checkbox" value="-1"/>
 						</div>
 					</div>
-					<div class="card-footer my-2">
-						<input class="form-control btn btn-outline-warning" type="submit" id="btnCreateNotice"
-							value="작성 완료" />
-					</div>
 					<div class="my-2 text-center">
 						<c:url var="postList" value="/mngr/notice/list" />
-						<button onclick="location.href='${ postList }'"
-							class="btn btn-warning" type="button">목록</button>
+						<button onclick="location.href='${ postList }" class="btn" type="button" style="background-color: #D3FF31;">목록</button>
+						<button class="btn" type="submit" id="btnCreateNotice" style="background-color: #D3FF31;">
+							등록
+						</button>
 					</div>
 				</form>
 			</div>
-		</main>
 
 		<script src="<%=request.getContextPath()%>/static/js/notice-summernote.js"></script>
 	</div>
