@@ -8,6 +8,7 @@
 <%@ include file="../common/header.jsp" %>
 
 
+
 	<div id="detaillmain" class="container">
       <div>
         <div class="my-5 p-3">
@@ -48,8 +49,8 @@
 						</c:if>
 						<c:if test="${ meetmaindetail.file1 != null }"> 
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file1 }" var="url1" />							
-							<img src="${ url1 }" style="max-width: 50%; min-height: 50px;"
-								class="bd-placeholder-img" width="100%" height="auto"/> 
+							<img src="${ url1 }" class="d-block mx-auto" 
+							style="width: 100%; height: 100%; object-fit: fill;"/> 
 						</c:if>						
 						<div class="container">
 							<div class="carousel-caption text-start">
@@ -60,8 +61,8 @@
 					<c:if test="${ meetmaindetail.file2 != null }">					
 						<div class="carousel-item">
 								<c:set value="data:image/png;base64, ${ meetmaindetail.file2 }" var="url2" />
-								<img src="${ url2 }" style="max-width: 50%; min-height: 50px;"
-									class="bd-placeholder-img" width="100%" height="auto"/> 
+								<img src="${ url2 }" class="bd-placeholder-img" 
+							style="width: 100%; height: 100%; object-fit: fill;"/> 
 							
 							<div class="container">
 								<div class="carousel-caption">	
@@ -73,8 +74,8 @@
 					<c:if test="${ meetmaindetail.file3 != null }"> 
 						<div class="carousel-item">
 								<c:set value="data:image/png;base64, ${ meetmaindetail.file3 }" var="url3" />
-								<img src="${ url3 }" style="max-width: 50%; min-height: 50px;"
-									class="bd-placeholder-img" width="100%" height="auto"/> 
+								<img src="${ url3 }" class="bd-placeholder-img" 
+							style="width: 100%; height: 100%; object-fit: fill;"/> 
 							
 							<div class="container">
 								<div class="carousel-caption">	
@@ -86,8 +87,8 @@
 					<c:if test="${ meetmaindetail.file4 != null }"> 
 						<div class="carousel-item">
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file4 }" var="url4" />
-							<img src="${ url4 }" style="max-width: 50%; min-height: 50px;"
-								class="bd-placeholder-img" width="100%" height="auto"/> 
+							<img src="${ url4 }" class="bd-placeholder-img" 
+							style="width: 100%; height: 100%; object-fit: contain;"/> 
 						
 							<div class="container">
 								<div class="carousel-caption">	
@@ -99,8 +100,8 @@
 					<c:if test="${ meetmaindetail.file5 != null }">
 						<div class="carousel-item"> 
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file5 }" var="url5" />
-							<img src="${ url5 }" style="max-width: 50%; min-height: 50px;"
-								class="bd-placeholder-img" width="100%" height="auto"/> 
+							<img src="${ url5 }" class="bd-placeholder-img" 
+							style="width: 100%; height: 100%; object-fit: contain;"/> 
 						
 							<div class="container">
 								<div class="carousel-caption text-end">
@@ -291,13 +292,13 @@
 						</div>
 						<div class="card-body">
 							<c:set var="host" value="${ meetmaindetail.userHost }" />
-						<c:if test="${ host.profile == null }">							
+						<c:if test="${ meetmaindetail.hostProFile == null }">							
 							<img id="host-profile" class="user-img"
 								src="../static/images/sample/user.png" alt="host 사진">							
 						</c:if>
-						<c:if test="${ host.profile != null }"> 
-							<c:set value="data:image/png;base64, ${ meetmaindetail.userHost.profile }" var="host" />							
-							<img src="${ host }" style="max-width: 50%; min-height: 50px;"
+						<c:if test="${  meetmaindetail.hostProFile != null }"> 
+							<c:set value="data:image/png;base64, ${ meetmaindetail.hostProFile }" var="hostPro" />							
+							<img src="${ hostPro }" style="max-width: 50%; min-height: 50px;"
 								class="bd-placeholder-img" width="100%" height="auto"/> 
 						</c:if>	
 							

@@ -1,6 +1,7 @@
 package com.itwill.shape.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.MeetPrtcpRepository;
+import com.itwill.shape.repository.UserInfoRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +31,8 @@ public class MeetDetailService {
 	private final MeetInfoRepository meetInfoRepository; // 작성한 내용 
 	private final MeetLikeRepository meetLikeRepository; // 찜수
 	private final MeetPrtcpRepository meetPrtcpRepository; // 참여자 정보 
+	private final UserInfoRepository userInfoRepository; // USER 정보 가져오기
+	
 	
 		/**
 		 * 리스트 페이지
@@ -42,9 +46,21 @@ public class MeetDetailService {
 			List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid); // 참여자 정보 리스트
 			log.info(list.toString());
 			
-			UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id()); // 작성자 USER 정보
-			log.info(result.toString());
-			
+	         UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id()); // 작성자 USER 정보 , + 사진
+	         log.info(result.toString());
+	        
+	         // Host 사진 가져오기
+				if(result.getProfile() != null) {
+					byte[] imgByteHost = Base64.getEncoder().encode( result.getProfile());
+					try {
+						dto.setHostProFile(new String(imgByteHost,"UTF-8"));
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+				}
+	         
+	         
+
 			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid); // 찜 개수
 			
 			List<MeetLike> meetLikeList = meetLikeRepository.selectMeetLikeListByMtid(mtid); // 찜 누른 사람들 리스트
@@ -103,24 +119,14 @@ public class MeetDetailService {
 				}
 			}
 			
-			/*
-			byte[] imgByte2 = Base64.getEncoder().encode(dto.getImg_2());
-			byte[] imgByte3 = Base64.getEncoder().encode(dto.getImg_3());
-			byte[] imgByte4 = Base64.getEncoder().encode(dto.getImg_4());
-			byte[] imgByte5 = Base64.getEncoder().encode(dto.getImg_5());
-			*/
-			/*
-			try {
-				dto.setFile1(new String(imgByte1, "UTF-8"));
-				/*
-				dto.setFile2(new String(imgByte2, "UTF-8"));
-				dto.setFile3(new String(imgByte3, "UTF-8"));
-				dto.setFile4(new String(imgByte4, "UTF-8"));
-				dto.setFile5(new String(imgByte5, "UTF-8"));
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-			*/
+			
+			// Guest 사진 가져오기
+			List<UserInfo> prtcpList = new ArrayList<>();
+	         for(MeetPrtcp mp : list) {
+	             prtcpList.add(userInfoRepository.selectById(mp.getPrtcp_id())); // 참여자 사진 가져오기
+	             
+	          }
+			
 			
 			return dto;
 			
