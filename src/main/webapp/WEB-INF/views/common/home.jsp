@@ -31,23 +31,24 @@
 						<!-- id를 하나 정하고 script에서 지정(크기를 변경하고 싶으면 여기서) -->
 						<!-- https://www.chartjs.org/docs/3.3.0/samples/bar/vertical.html -->
 						<!-- 위에 있는 링크로 가보면 sample을 볼 수 있으니 참고 -->
-						<h1>남 녀 비율</h1>
+						<h1>GENDER 회원수 비율</h1>
 						<canvas id="chart1" width="400" height="400"></canvas>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
+
+		
 		  /* 여기서 이름 지은 거 */
 		  const DATA_COUNT = 2; // 차트에 표시할 데이터 개수
 		  const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
 		  const data = {
-		    labels: ['Blue','Yellow'],
+		    labels: ['Male', 'Female'],
 		    datasets: [
 		      {
-		        label: ['남자 접속률', '여자 접속률'],
-		        data : ['60', '40'],
+		        data : ['60', '40'], // 쿼리에서 가져오면 됨.. ㅇㅇ 근데 어떻게 MODEL 에서 가져올까요? 나도 몰라요~
 		        backgroundColor: ['#3B7CFF','#D3FF31'],
 		      }
 		    ]
