@@ -395,10 +395,18 @@
 		ORDER BY M.CREATED_DATE DESC
 	</select>
 	
-	<select id="selectImg"
-		resultType="byte[]">
-		select img_1 
-		from MEET_INFO
+	<!-- 
+	<resultMap type="java.util.HashMap" id="imgByte">
+		<result property="img1" column="img_1" javaType="byte[]" />
+		<result property="mtid" column="mtid" javaType="java.lang.Long" />
+	</resultMap>
+	parameterType="Map" resultType="imgByte"
+	 -->
+	 
+	<select id="selectImg" resultType="com.itwill.shape.dto.MeetListCountDto">
+		SELECT img_1 
+		FROM MEET_INFO
+		where mtid = #{ mtid }
 	</select>	
 
 

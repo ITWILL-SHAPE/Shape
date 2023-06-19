@@ -145,7 +145,7 @@
 									onclick="location=href=('${meetDetailPage}');">
 									<div class="card shadow-sm image-container position-relative">
 										<c:choose>
-											<c:when test="${ cardList.file == null}">
+											<c:when test="${ cardList.file != null}">
 												<!-- 저장할 때 img면 파일 확장자가 png, jpg, gif 등인지 확인하고 저장하고 img로 뿌려주기 -->
 												<c:set value="data:image/png;base64, ${ cardList.file }"
 													var="url" />

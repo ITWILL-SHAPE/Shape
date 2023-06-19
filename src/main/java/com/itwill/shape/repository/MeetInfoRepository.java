@@ -1,6 +1,7 @@
 package com.itwill.shape.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
@@ -129,6 +130,8 @@ public interface MeetInfoRepository {
 	int meetInfoCount(MeetSearchListDto dto);
 	
 	// img_1
-	byte[] selectImg();
+	//Map<byte[], Long> selectImg();
+	
+	List<MeetListCountDto> selectImg(long mtid);
 	
 }

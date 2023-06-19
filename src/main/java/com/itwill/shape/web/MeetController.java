@@ -214,60 +214,15 @@ public class MeetController {
 		Criteria cri = new Criteria();
 		if (search.getPageNum() != 0) {
 			cri.setPageNum(search.getPageNum());
+			cri.setAmount(search.getAmount() + 5);
 		} else {
 			search.setPageNum(cri.getPageNum());
-			search.setAmount(cri.getAmount());
+			search.setAmount(cri.getAmount() + 5);
 		}
 
 		Map<String, Object> map = meetListService.selectBySearch(search);
 		List<MeetLike> ml = new ArrayList<>();
-		for (String key : map.keySet()) {
-			Object value = map.get(key);
-			if (value instanceof MeetListCountDto) {
-				MeetListCountDto d = (MeetListCountDto) value;
-				log.info("확인 = {}", value);
-				byte[] imgByte = d.getImg_1();
 
-				if (imgByte != null) {
-					byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
-					String imgStr = null;
-					try {
-						imgStr = new String(byteEnc64, "UTF-8");
-					} catch (UnsupportedEncodingException e) {
-						e.printStackTrace();
-					}
-					d.setFile(imgStr);
-				} else {
-					// imgByte가 null인 경우에 대한 처리
-					// 예를 들어, 빈 문자열 또는 기본 이미지 경로로 설정할 수 있습니다.
-					d.setFile(""); // 빈 문자열로 설정하거나 다른 처리를 수행해야 함
-				}
-			} else if (value instanceof ArrayList) {
-				ArrayList<?> list = (ArrayList<?>) value;
-				for (Object item : list) {
-					if (item instanceof MeetListCountDto) {
-						MeetListCountDto d = (MeetListCountDto) item;
-						byte[] imgByte = d.getImg_1();
-						ml = meetListService.LikeList(d.getMtid());
-
-						if (imgByte != null) {
-							byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
-							String imgStr = null;
-							try {
-								imgStr = new String(byteEnc64, "UTF-8");
-							} catch (UnsupportedEncodingException e) {
-								e.printStackTrace();
-							}
-							d.setFile(imgStr);
-						} else {
-							// imgByte가 null인 경우에 대한 처리
-							// 예를 들어, 빈 문자열 또는 기본 이미지 경로로 설정할 수 있습니다.
-							d.setFile(""); // 빈 문자열로 설정하거나 다른 처리를 수행해야 함
-						}
-					}
-				}
-			}
-		}
 
 		model.addAttribute("listCount", map.get("list"));
 		model.addAttribute("search", search);
