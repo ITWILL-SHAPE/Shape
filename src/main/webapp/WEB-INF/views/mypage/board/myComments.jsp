@@ -61,7 +61,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<<<<<<< HEAD
 				<div>
 					<!-- 페이징 시작 -->
 					<ul class="pagination justify-content-center">
@@ -88,13 +87,13 @@
 					</form>
  -->
 					<!-- 페이징 끝 -->
-					<button class="btn delete-button btn-secondary float-end">
-						댓글
+				
 						<div class="mb-2 text-end">
 							<button class="btn delete-button btn-secondary">댓글삭제</button>
 						</div>
 				</div>
 			</div>
+			
 			<!--  검색 시작 -->
 			<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
 				<c:url var="commentSearch" value="/mycommentssearch">
