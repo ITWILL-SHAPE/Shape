@@ -20,9 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itwill.shape.domain.Test;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MngrMeetGraphDto;
+import com.itwill.shape.dto.PostListDto;
+import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
+import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.service.TestBlobService;
 
 import lombok.RequiredArgsConstructor;
@@ -37,6 +40,7 @@ public class CommonController {
 	private final MeetListService meetListService;
 	private final MeetDetailService meetDetailService;
 	private final TestBlobService testBlobService;
+	private final PostInfoService postInfoService; 
 	
 	/**
 	 * 사용자 main page
@@ -48,6 +52,7 @@ public class CommonController {
 		
 		List<MeetListCountDto> rdto = meetListService.mainReadByRecent();
 		List<MeetListCountDto> pdto = meetListService.mainReadByPopularity();
+		List<PostListDto> list = postInfoService.read();
 		
 		LocalDate currentDate = LocalDate.now();
 
@@ -99,6 +104,8 @@ public class CommonController {
 			log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
 		}
 		// 뷰에 PostDetailDto를 전달.
+		
+		model.addAttribute("posts", list);
 		
 		return "/common/main";
 	}
