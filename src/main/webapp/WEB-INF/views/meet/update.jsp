@@ -133,25 +133,28 @@
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">
-							모임 사진<span class="highlight">*</span>
+							모임 사진
 							</dt>
 							<dd align="left">
-								<div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile_1" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile_2" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile_3" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile_4" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile_5" accept="image/*">
-									</div>
+								<img class="imagePreview" id="imagePreview" />
+								<div class="my-2">
+									<input class="form-control" type="file" name="formFile1" accept="image/*" onchange="uploadImage(this);">
+								</div>
+								<img class="imagePreview" id="imagePreview" />
+								<div class="my-2">
+									<input class="form-control" type="file" name="formFile2" accept="image/*" onchange="uploadImage(this);">
+								</div>
+								<img class="imagePreview" id="imagePreview" />
+								<div class="my-2">
+									<input class="form-control" type="file" name="formFile3" accept="image/*" onchange="uploadImage(this);">
+								</div>
+								<img class="imagePreview" id="imagePreview" />
+								<div class="my-2">
+									<input class="form-control" type="file" name="formFile4" accept="image/*" onchange="uploadImage(this);">
+								</div>
+								<img class="imagePreview" id="imagePreview" />
+								<div class="my-2">
+									<input class="form-control" type="file" name="formFile5" accept="image/*" onchange="uploadImage(this);">
 								</div>
 							</dd>
 							<br>

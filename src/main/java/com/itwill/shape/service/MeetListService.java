@@ -100,10 +100,10 @@ public class MeetListService {
 	 * 모임 찜 리스트가져오기
 	 * @return
 	 */
-	public List<MeetLike> LikeList() {
+	public List<MeetLike> LikeList(long mtid) {
 		log.info("readByCreateTime()");
 
-		return meetLikeRepository.selectMeetLikeList();
+		return meetLikeRepository.selectMeetLikeListByMtid(mtid);
 	}
 	
 	

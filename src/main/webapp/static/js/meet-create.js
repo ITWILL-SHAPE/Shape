@@ -157,8 +157,14 @@ function resetInputValue() {
 // 인원수는 음수와 0을 입력하지 못하도록 입력 이벤트를 가로채고 유효성 검사 수행
 document.getElementById('nm_ppl').addEventListener('input', function(e) {
 	var input = e.target.value;
+	var max = 25;
+	
 	if (input <= 0) {
 		e.target.value = '';
 	}
+	
+	if (this.value > max) {
+      	this.value = max;
+    }
+	
 });
-

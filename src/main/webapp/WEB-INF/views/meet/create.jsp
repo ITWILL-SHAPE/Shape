@@ -111,10 +111,10 @@
 								<div class="smallText">
 									<div class="input-group">
 										<input type="number" class="form-control" id="nm_ppl" name="nm_ppl"
-										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl" required /> 
+										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl" min="1" max="25" required /> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
-									<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력</small>
+									<small id="nm_ppl_help" class="form-text text-muted">최대 인원 25명</small>
 								</div>
 							</dd>
 							<br>

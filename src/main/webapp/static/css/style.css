@@ -164,6 +164,10 @@ div.signUpBox {
 }
 
 /* meet/create.jsp, update.jsp에 사용 */
+.imagePreview {
+	width: 300px;
+}
+
 div.meetCreateBox {
 	height: 2050px;
 	min-width: 1000px;
