@@ -281,7 +281,6 @@
 		, M.title
 		, M.CRTR_ID
 		, M.created_date
-		, TO_CHAR(M.img_1)
 		, COUNT(DISTINCT L.mtid) AS LCNT
 		, COUNT(P.mtid) AS PCNT
 		FROM MEET_INFO M
@@ -317,7 +316,7 @@
 			    ]]>
 		</if>
 		GROUP BY
-		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE, M.CRTR_ID, TO_CHAR(M.img_1) 
+		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE, M.CRTR_ID 
 		<if test='searchSortBy eq "recent"'>
 			ORDER BY M.CREATED_DATE DESC
 		</if>
@@ -364,6 +363,12 @@
 		</if>
 		ORDER BY M.CREATED_DATE DESC
 	</select>
+	
+	<select id="selectImg"
+		resultType="byte[]">
+		select img_1 
+		from MEET_INFO
+	</select>	
 
 
 </mapper>

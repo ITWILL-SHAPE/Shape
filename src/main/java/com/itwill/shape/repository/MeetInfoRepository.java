@@ -128,4 +128,7 @@ public interface MeetInfoRepository {
 	// 페이징을 위한 개체수 카운트
 	int meetInfoCount(MeetSearchListDto dto);
 	
+	// img_1
+	byte[] selectImg();
+	
 }

@@ -1,5 +1,6 @@
 package com.itwill.shape.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 // 김지민_meet.list
 import java.util.List;
@@ -136,6 +137,14 @@ public class MeetListService {
 		}
 		
 		List<MeetListCountDto> paging = meetInfoRepository.selectBySearchPaging(dto);
+		byte[] img = new byte[paging.size()];
+		
+		for(MeetListCountDto d : paging) {
+			img = meetInfoRepository.selectImg();
+			d.setImg_1(img);
+		}
+		
+		 
 		Map<String, Object> result = new HashMap<>();
 		result.put("list", paging);
 		return result;
