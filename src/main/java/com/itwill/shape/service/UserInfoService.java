@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.shape.domain.Please;
 import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.UserCreateDto;
 import com.itwill.shape.dto.UserInfoFindDto;
@@ -116,22 +117,31 @@ public class UserInfoService {
 		
 		return dto;
 	}
-
+	
 	/**
-	 * 김세이 06.02 
+	 * 김세이 06.19 
 	 * 마이페이지 프로필 사진 변경을 위한 메서드 
-	 * @param id, imageFile 
+	 * @param dto
 	 * @return int 
 	 */
-	public int imageModify(String id, MultipartFile profile) throws IOException {
-		log.info("imageModify({})", id);
+	
+	public int setProfile(UserInfoSelectByIdDto dto) {
+		log.info("setProfile(dto = {})");
 		
-		        // 이미지 파일을 읽어서 byte 배열로 변환
-		        byte[] imageData = profile.getBytes();
-
-		        // 변환된 byte 배열을 데이터베이스에 저장
-		    return userInfoRepository.imageModify(id,imageData);
+		return userInfoRepository.setProfile(dto);
 	}
+	
+	
+	
+//	public int imageModify(String id, MultipartFile profile) throws IOException {
+//		log.info("imageModify({})", id);
+//		
+//		        // 이미지 파일을 읽어서 byte 배열로 변환
+//		        byte[] imageData = profile.getBytes();
+//
+//		        // 변환된 byte 배열을 데이터베이스에 저장
+//		    return userInfoRepository.imageModify(id,imageData);
+//	}
 	
 	
 	/**
@@ -202,6 +212,11 @@ public class UserInfoService {
 		log.info("deleteUserInfoById(id={})", id);
 		
 		return userInfoRepository.deleteUserInfoById(id);
+	}
+
+	public void insertBlob(UserInfoSelectByIdDto dto) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -3,6 +3,8 @@ package com.itwill.shape.dto;
 import java.time.LocalDate;
 import java.util.Base64;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,13 +25,20 @@ import com.itwill.shape.domain.UserInfo;
 public class UserInfoSelectByIdDto {
 	private String profileImageUrl;
 
-	private byte[] profile;
 	private String name; // 이름 
 	private String gender; // 성별 
 	private String id; // 아이디
 	private String birth; // 생년월일  
 	private String phone; // 핸드폰번호 
 	private String email; // 이메일 
+	
+	private byte[] profile;
+
+	// file 보낸 걸 받기
+	private MultipartFile uploadFile;
+	
+	// 이미지를 보여주기 위한 byte[] to String
+	private String file;
 
 	
 
@@ -51,6 +60,7 @@ public class UserInfoSelectByIdDto {
 				.birth(entity.getBirth())
 				.phone(entity.getPhone())
 				.email(entity.getEmail())
+				.profile(entity.getProfile())
 				.build();
 	}
 	

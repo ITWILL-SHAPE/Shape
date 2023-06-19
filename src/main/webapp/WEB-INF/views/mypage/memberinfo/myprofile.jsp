@@ -22,8 +22,15 @@
 		<div id="main_content" class="container col-8 border bg-body rounded shadow-sm">
 			
 			<div class="center profile-info my-2 text-center">
-				<img src="static/images/common/user.png" alt="Profile Image"
-					class="profile-image">
+				<c:if test="${ myPageUserInfo.file == null }">
+					<img src="static/images/common/user.png" alt="Profile Image"
+						class="profile-image">
+				</c:if>
+				<c:if test="${ myPageUserInfo.file != null }">
+					<c:set value="data:image/png;base64, ${ myPageUserInfo.file }" var="url" />
+					<img src="${ url }" alt="Profile Image"
+						class="profile-image">
+				</c:if>
 			</div>
 			<div class="center profile-info">
 				<table>

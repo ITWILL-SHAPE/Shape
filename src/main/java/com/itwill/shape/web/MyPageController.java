@@ -1,6 +1,8 @@
 package com.itwill.shape.web;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -48,73 +50,98 @@ public class MyPageController {
 	private final UserInfoService userInfoService;
 	private final MeetListService meetListService;
 
-	/**
-	 * 0601 김세 나의프로필 정보 불러오기
-	 * 
-	 * @param id
-	 * @param model
-	 * @return "/mypage/memberinfo/myprofile"
-	 */
 	// 마이페이지 > 회원정보 > 나의 프로필
-	@GetMapping("/myprofile")
-	public String myProfile(@RequestParam("id") String id, Model model) {
-		log.info("myprofile()");
-		log.info("id={}", id);
+		@GetMapping("/myprofile")
+		public String myProfile(@RequestParam("id") String id, Model model) {
+			log.info("myprofile()");
+			log.info("id={}", id);
 
-		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+			UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+			
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String(byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if (dto.getProfileImageUrl() != null) {
+				model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+			}
 
-		if (dto.getProfileImageUrl() != null) {
-			model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+			model.addAttribute("myPageUserInfo", dto);
+			return "/mypage/memberinfo/myprofile";
 		}
 
-		model.addAttribute("myPageUserInfo", dto);
-		return "/mypage/memberinfo/myprofile";
-	}
+		/**
+		 * 0613 김세이 회원정보 수정 페이지
+		 * 
+		 * @Param id
+		 * @Param model
+		 * @return "/mypage/memberinfo//profilemodifypage"
+		 */
+		@GetMapping("/profilemodifypage")
+		public String profileModifyPage(@RequestParam("id") String id, Model model) {
+			log.info("profileModifyPage(id={})", id);
 
-	/**
-	 * 0613 김세이 회원정보 수정 페이지
-	 * 
-	 * @Param id
-	 * @Param model
-	 * @return "/mypage/memberinfo/profileModify"
-	 */
-	@GetMapping("/profilemodifypage")
-	public String profileModifyPage(@RequestParam("id") String id, Model model) {
-		log.info("profileModifyPage(id={})", id);
+			UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 
-		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String(byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if (dto.getProfileImageUrl() != null) {
+				model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+			}
+			model.addAttribute("myPageUserInfo", dto);
 
-		if (dto.getProfileImageUrl() != null) {
-			model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+//		    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+			return "/mypage/memberinfo/profileModify";
 		}
-		model.addAttribute("myPageUserInfo", dto);
 
-//	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
-		return "/mypage/memberinfo/profileModify";
-	}
-
-	/**
-	 * 
-	 * 0601 김세이 마이페이지 이미지 수정
-	 * 
-	 * @param id
-	 * @param profile
-	 * @param model
-	 * @return "/mypage/memberinfo/myprofile"
-	 * @throws IOException
-	 */
-	@GetMapping("/profilemodify")
-	public String profileModify(@RequestParam("id") String id, @RequestParam("profile") MultipartFile[] profile)
-			throws IOException {
-		log.info("profileModify()");
-
-		int result = userInfoService.imageModify(id, profile[0]);
-		log.info("profileModify 결과 = {}", result);
-
-//	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
-		return "/mypage/memberinfo/myprofile";
-	}
-
+		/**
+		 * 0619 김세이 프로필 사진 업로드 
+		 * 
+		 * @Param UserInfoSelectByIdDto 
+		 * @return "/mypage/memberinfo/profileupload"
+		 */
+		@PostMapping("/profileupload/{id}")
+		public String profileUpload(@PathVariable String id, UserInfoSelectByIdDto dto) {
+			log.info("profileUpload(dto = {})", dto);
+			
+			dto.setId(id);
+			
+			// 받아오는 파일
+			MultipartFile uploadFile = dto.getUploadFile();
+			if(!uploadFile.isEmpty()) {
+				
+				// 저장할 바이트
+				byte[] bytes;		
+				try {
+					// upload된 파일을 byte 로 변환
+					bytes = uploadFile.getBytes();
+					
+					dto.setProfile(bytes);
+					userInfoService.setProfile(dto);
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+			
+		}
 	/**
 	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력
 	 * 

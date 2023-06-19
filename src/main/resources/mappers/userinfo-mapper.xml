@@ -206,4 +206,11 @@
 		SELECT COUNT(*) FROM USER_INFO WHERE GENDER = 'F'
 	</select>
 	
+	<update id="setProfile"         
+	    parameterType="com.itwill.shape.dto.UserInfoSelectByIdDto">
+	    UPDATE USER_INFO
+	    SET PROFILE = #{profile}
+		WHERE id = #{id}
+    </update>
+	
 </mapper>
