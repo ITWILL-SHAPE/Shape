@@ -96,7 +96,7 @@ public class PleaseController {
 	// 파일 다운로드 어쩌냐.......
 	@PostMapping("/download/{idx}")
 	@ResponseBody
-	public void download(@PathVariable long idx, HttpServletResponse response, HttpServletRequest request) {
+	public byte[] download(@PathVariable long idx, HttpServletResponse response, HttpServletRequest request) {
 		log.info("download(idx = {})", idx);
 		
 		// 해당 파일 정보를 가져옴
@@ -107,7 +107,7 @@ public class PleaseController {
 		// 해당 파일 byte
 		byte[] fileByte = please.getBlob();
 		
-		
+		return fileByte;
 		
 	}
 
