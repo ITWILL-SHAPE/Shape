@@ -144,22 +144,14 @@
 							모임 사진
 							</dt>
 							<dd align="left">
-								<div>
-									<div class="mb-3">
-										<input class="form-control" type="file" name="formFile1" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" name="formFile2" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" name="formFile3" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" name="formFile4" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" name="formFile5" accept="image/*">
-									</div>
+								<div id="inputContainer">
+								  <div class="input-group mb-3">
+								    <input class="form-control file-input" type="file" name="formFile1" accept="image/*">
+								  	<button class="btn btn-secondary" type="button">삭제</button>
+								  </div>
+								</div>
+								<div class="text-center">
+								<button class="btn btn-list" type="button" id="addButton">추가</button>
 								</div>
 							</dd>
 							<br>
