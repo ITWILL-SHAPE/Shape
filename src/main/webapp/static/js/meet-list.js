@@ -91,11 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		imgUnHeart[i].addEventListener('click', LogLikeUnCheck);
 	};
 	
-
+	const dataArr = [];
+	for (var i = 0; i < imgHeart.length; i++) {
 	const mtid = document.querySelector('input#mtid').value;
 	const id = document.querySelector('input#id').value;
 
 	const data = { mtid, id }
+	dataArr.push(data);
+	};
 
 	// 빨간하트 찜 취소
 	function LogInLikeCheck(event) {
@@ -135,12 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	function LogLikeUnCheck() {
 		
 		console.log('찜을 할거예요');
+		console.log(dataArr.forEach(value));
 		
-		axios.post('/shape/meet/like', data)
+		axios.post('/shape/meet/like', dataArr.forEach(value))
 			.then((response) => {
 
 				if (response.data) {
 					goToList();
+					
 				} else {
 					console.log('없음');
 				}
