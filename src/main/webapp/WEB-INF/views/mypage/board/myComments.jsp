@@ -21,7 +21,9 @@
 		</div>
 		<!-- 메인 컨텐츠 시작 -->
 
-		<div class="container myPage-container col-8 border bg-body rounded shadow-sm" id="main_content">
+		<div
+			class="container myPage-container col-8 border bg-body rounded shadow-sm"
+			id="main_content">
 
 			<div class="my-2 pt-5">
 				<table class="table table-hover">
@@ -59,12 +61,13 @@
 						</c:forEach>
 					</tbody>
 				</table>
-<<<<<<< HEAD
+				<<<<<<< HEAD
 				<div>
 					<!-- 페이징 시작 -->
 					<ul class="pagination justify-content-center">
 						<li class="page-item ${ pageMaker.prev? "":"disabled" }"><a
-							class="page-link" href="/shape/mycomments?id=${ id }&pageNum=${ pageMaker.startPage - 1 }"
+							class="page-link"
+							href="/shape/mycomments?id=${ id }&pageNum=${ pageMaker.startPage - 1 }"
 							tabindex="-1">&laquo;</a></li>
 						<c:forEach begin="${ pageMaker.startPage }"
 							end="${ pageMaker.endPage }" var="num">
@@ -74,7 +77,8 @@
 							</li>
 						</c:forEach>
 						<li class="page-item ${ pageMaker.next? "":"disabled" }" ><a
-							class="page-link" href="/shape/mycomments?id=${ id }&pageNum=${ pageMaker.endPage + 1 }"
+							class="page-link"
+							href="/shape/mycomments?id=${ id }&pageNum=${ pageMaker.endPage + 1 }"
 							tabindex="-1">&raquo;</a></li>
 					</ul>
 					<!-- 
@@ -84,17 +88,37 @@
 					</form>
  -->
 					<!-- 페이징 끝 -->
-					<button class="btn delete-button btn-secondary float-end">댓글
-=======
-				<div class="mb-2 text-end">
-					<button class="btn delete-button btn-secondary">댓글
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
-						삭제</button>
+					<button class="btn delete-button btn-secondary float-end">
+						댓글
+						<div class="mb-2 text-end">
+							<button class="btn delete-button btn-secondary">댓글삭제</button>
+						</div>
 				</div>
 			</div>
+			<!--  검색 시작 -->
+			<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
+				<c:url var="commentSearch" value="/mycommentssearch">
+					<c:param name="id" value="${id}" />
+				</c:url>
+				<form action="${commentSearch}" method="get">
+					<input type="hidden" name="id" value="${id}" />
+					<div class="input-group col-sm-7 my-2">
+						<input class="form-control" type="text" placeholder="검색어 입력"
+							name="keyword" id="keyword" aria-label="Input group example"
+							aria-describedby="basic-addon1" />
+						<button type="submit" class="btn btn-classic">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path
+									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        </svg>
+						</button>
+					</div>
+				</form>
+			</div>
+			<!-- 검색 끝 -->
 		</div>
-	</div>
-	<!-- 메인 컨텐츠 끝 -->
+		<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>
 	<%@ include file="../../common/footer.jsp"%>

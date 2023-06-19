@@ -2,35 +2,30 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.shape.repository.PostCommentRepository">
-<!--
-	작명 방법
-	: TABLE 이름 + "-" + mapper
-
-	작성 방법
-	: 2 ~ 5번줄 추가 후, 뒤에 있는 참조하는 Repository 변경.
-	: TABLE 당 하나의 mapper를 갖는다.
-	: 해당 쿼리 작성 후 무슨 역할을 하는지와 작성자 이름 기재
--->
+<mapper
+	namespace="com.itwill.shape.repository.PostCommentRepository">
+	<!-- 작명 방법 : TABLE 이름 + "-" + mapper 작성 방법 : 2 ~ 5번줄 추가 후, 뒤에 있는 참조하는 Repository 
+		변경. : TABLE 당 하나의 mapper를 갖는다. : 해당 쿼리 작성 후 무슨 역할을 하는지와 작성자 이름 기재 -->
 	<!-- 마이페이지 -->
 	<!-- post_comment table에서 pcid와 일치하는 댓글 삭제 -->
 	<delete id="deleteByPcid">
 		DELETE FROM post_comment
-		 WHERE pcid = #{pcid}
+		WHERE pcid = #{pcid}
 	</delete>
-	
+
 	<!-- post_comment table에서 author(id)로 댓글 목록 가져오기 -->
-	<select	id="selectByAuthor"
-		    resultType="com.itwill.shape.domain.PostComment" >
+	<select id="selectByAuthor"
+		resultType="com.itwill.shape.domain.PostComment">
 		SELECT *
-		  FROM post_comment
-		 WHERE author = #{author}
-		 ORDER BY created_date DESC
+		FROM post_comment
+		WHERE author = #{author}
+		ORDER BY created_date DESC
 	</select>
-	
-	<!-- post_info table에서 author(id)로 댓글 목록 가져오기 with Paging-->
+
+
+	<!-- post_info table에서 author(id)로 댓글 목록 가져오기 with Paging -->
 	<select id="selectByAuthorWithPaging"
-		    resultType="com.itwill.shape.domain.PostComment">
+		resultType="com.itwill.shape.domain.PostComment">
 	   <![CDATA[
 	    SELECT *
    		  FROM 
@@ -41,49 +36,71 @@
          WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
          ]]>
 	</select>
+
+	<!-- post_comment table에서 author(id), keyword로 작성댓글 개수 가져오기 -->
+	<select id="countComments">
+		SELECT COUNT(*)
+		FROM post_comment
+		WHERE author = #{ author } AND LOWER(content) LIKE lower('%' || #{keyword} ||
+		'%')
+	</select>
+
+	<!-- post_comment table에서 author(id), keyword로 작성댓글 목록 가져오기 with Paging -->
+	<select id="selectByAuthorAndKeywordWithPaging"
+		resultType="com.itwill.shape.domain.PostComment">
+	   <![CDATA[
+	    SELECT *
+   		  FROM 
+       (SELECT /*+ INDEX_DESC(post_comment POST_COMMENT_PCID_PID_PK) */ ROWNUM rn, pcid, pid, content, author, created_date, modified_date
+   		  FROM post_comment
+  	 	 WHERE author = #{author}  AND LOWER(content) LIKE lower('%' || #{keyword} || '%') AND pcid > 0 AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
+  	  ORDER BY created_date DESC)
+         WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
+         ]]>
+	</select>
 	<!-- 마이 페이지 끝 -->
 
 	<!--게시판 페이지 -->
 	<select id="selectCommentCountWithPid"
-        resultType="java.lang.Long">
-        select count(PCID) from POST_COMMENT
-        where PID = #{pid}
-    </select>
-    
-    <select id="selectByPid" 
-        resultType="com.itwill.shape.domain.PostComment">
-        select * from POST_COMMENT
-        where PID = #{pid}
-        order by MODIFIED_DATE desc
-    </select>
-    
-    <select id="selectByPcid"
-        resultType="com.itwill.shape.domain.PostComment">
-        select * from POST_COMMENT where PCID = #{pcid}
-    </select>
-    
-    <!-- 수빈: date 삭제(default timestamp여서 없어도 됨) -->
-    <insert id="insert">
-        insert into POST_COMMENT (PID, CONTENT, AUTHOR)
-        values (#{pid}, #{content}, #{author})
-    </insert>
-    
-    
-    
-    <update id="update">
-        update POST_COMMENT
-        set CONTENT = #{content}, MODIFIED_DATE = systimestamp
-        where PCID = #{pcid}
-    </update>
-    
-    <delete id="delete">
-        delete from POST_COMMENT
-        where PCID = #{pcid}
-    </delete>
-    
-    <!-- 수빈 : 게시글 삭제될 때 게시글의 댓글도 삭제 -->
+		resultType="java.lang.Long">
+		select count(PCID) from POST_COMMENT
+		where PID = #{pid}
+	</select>
+
+	<select id="selectByPid"
+		resultType="com.itwill.shape.domain.PostComment">
+		select * from POST_COMMENT
+		where PID = #{pid}
+		order by MODIFIED_DATE desc
+	</select>
+
+	<select id="selectByPcid"
+		resultType="com.itwill.shape.domain.PostComment">
+		select * from POST_COMMENT where PCID = #{pcid}
+	</select>
+
+	<!-- 수빈: date 삭제(default timestamp여서 없어도 됨) -->
+	<insert id="insert">
+		insert into POST_COMMENT (PID, CONTENT, AUTHOR)
+		values (#{pid}, #{content}, #{author})
+	</insert>
+
+
+
+	<update id="update">
+		update POST_COMMENT
+		set CONTENT = #{content}, MODIFIED_DATE = systimestamp
+		where PCID = #{pcid}
+	</update>
+
+	<delete id="delete">
+		delete from POST_COMMENT
+		where PCID = #{pcid}
+	</delete>
+
+	<!-- 수빈 : 게시글 삭제될 때 게시글의 댓글도 삭제 -->
 	<delete id="deleteCommentByPid">
 		delete from POST_COMMENT where PID = #{pid}
 	</delete>
-    
+
 </mapper>

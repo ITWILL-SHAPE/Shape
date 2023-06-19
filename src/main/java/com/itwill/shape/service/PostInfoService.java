@@ -23,120 +23,142 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class PostInfoService {
-	
+
 	private final PostInfoRepository postInfoRepository;
 	private final PostCommentRepository postCommentRepository;
 
-
 	/**
-	 * 0608 손창민
-	 * post_info table에서 pid와 일치하는 작성글 삭제
+	 * 0608 손창민 post_info table에서 pid와 일치하는 작성글 삭제
+	 * 
 	 * @param pid
 	 * @return
 	 */
 	public int deleteByPid(long pid) {
 		log.info("deleteByPid(pid={})", pid);
-		
+
 		return postInfoRepository.deleteByPid(pid);
 	}
-	
+
 	/**
-	 * 0601 손창민
-	 * post_info table에서 author(id)와 일치하는 작성글 불러오기
+	 * 0601 손창민 post_info table에서 author(id)와 일치하는 작성글 불러오기
+	 * 
 	 * @param author(id)
 	 * @return
 	 */
 	public List<PostInfoSelectByAuthorDto> selectByAuthor(String author) {
 		log.info("selectById(author(id)={})", author);
-		
+
 		List<PostInfo> entity = postInfoRepository.selectByAuthor(author);
 		log.info("entity={}", entity);
-		
+
 		// PostInfo 타입의 객체를 PostInfoSelectByIdDTO 타입 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
 		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
 	}
-	
+
 	/**
-	 * 0615 손창민
-	 * post_info table에서 author(id)와 일치하는 작성글 불러오기 with Paging
+	 * 0615 손창민 post_info table에서 author(id)와 일치하는 작성글 불러오기 with Paging
 	 */
 	public List<PostInfoSelectByAuthorDto> selectByAuthorWithPaging(String author, Criteria cri) {
 		log.info("selectByAuthorWithPaging(author(id)={}, cri={})", author, cri);
-		
+
 		List<PostInfo> entity = postInfoRepository.selectByAuthorWithPaging(author, cri);
+		log.info("selectByAuthorWithPaging(entity={})", entity);
+
+		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
+
+	}
+
+	/**
+	 * 0616 손창민
+	 * post_info table에서 author(id), keyword와 일치하는 작성글 개수 불러오기
+	 */
+	public int countPosts(String author, String keyword) {
+		log.info("countPosts(author={}, keyword={})", author, keyword);
+		
+		return postInfoRepository.countPosts(author, keyword);
+	}
+
+	/**
+	 * 0616 손창민 
+	 * post_info table에서 author(id), keyword와 일치하는 작성글 불러오기 with Paging
+	 */
+	public List<PostInfoSelectByAuthorDto> selectByAuthorAndKeywordWithPaging(String author, String keyword, Criteria cri) {
+		log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, keyword={}, cri={})", author, keyword, cri);
+		
+		List<PostInfo> entity = postInfoRepository.selectByAuthorAndKeywordWithPaging(author, keyword, cri);
 		log.info("selectByAuthorWithPaging(entity={})", entity);
 		
 		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
-		
 	}
+
 	/**
-	 * 0603 지현
-	 * 사용 안함!
-	 * 목록 키워드로 불러오기
+	 * 0603 지현 사용 안함! 목록 키워드로 불러오기
+	 * 
 	 * @return
 	 */
-	public List<PostListDto> read(String keyword){
-		log.info("read(keyword={})",keyword);
+	public List<PostListDto> read(String keyword) {
+		log.info("read(keyword={})", keyword);
 		return postInfoRepository.selectWithKeyword(keyword);
 	}
-	
+
 	/**
-	 * 지현
-	 * 검색, 페이징 불러오기
+	 * 지현 검색, 페이징 불러오기
+	 * 
 	 * @param keyword
 	 * @param cri
 	 * @return
 	 */
-	public List<PostListDto> read(String keyword, Criteria cri){
-		log.info("read(keyword={})",keyword);
+	public List<PostListDto> read(String keyword, Criteria cri) {
+		log.info("read(keyword={})", keyword);
 		Map<String, Object> args = new HashMap<>();
 		args.put("keyword", keyword);
-		args.put("pageNum", cri.getPageNum()+"");
-		args.put("amount", cri.getAmount()+"");
+		args.put("pageNum", cri.getPageNum() + "");
+		args.put("amount", cri.getAmount() + "");
 		return postInfoRepository.selectWithKeywordAndPaging(args);
 	}
-	
+
 	/**
-	 * 지현
-	 * 목록 페이징 처리해서 불러오
+	 * 지현 목록 페이징 처리해서 불러오
+	 * 
 	 * @param cri
 	 * @return
 	 */
-	public List<PostListDto> read(Criteria cri){
-		log.info("read(cri={})",cri);
+	public List<PostListDto> read(Criteria cri) {
+		log.info("read(cri={})", cri);
 		return postInfoRepository.getListWithPaging(cri);
 	}
-	
+
 	/**
-	 * 지현
-	 * 사용 안함!read
-	 * 목록 불러오기 
+	 * 지현 사용 안함!read 목록 불러오기
+	 * 
 	 * @return
 	 */
-	public List<PostListDto> read(){
+	public List<PostListDto> read() {
 		log.info("read()");
 		return postInfoRepository.selectWithCommentCount();
 	}
-	
+
 	/**
 	 * 상세보기 페이지
+	 * 
 	 * @param pid
 	 * @return
 	 */
 	public PostDetailDto read(long pid) {
-		log.info("read(pid={})",pid);
-		
+		log.info("read(pid={})", pid);
+
 		PostInfo entity = postInfoRepository.selectByPid(pid);
 		PostDetailDto dto = PostDetailDto.fromEntity(entity);
-		
+
 		long count = postCommentRepository.selectCommentCountWithPid(pid);
 		dto.setCommentCount(count);
 		return dto;
 	}
-	
+
 	/**
 	 * 새 포스트 작성
+	 * 
 	 * @param dto
 	 * @return
 	 */
@@ -144,14 +166,15 @@ public class PostInfoService {
 		log.info("create({})", dto);
 		return postInfoRepository.insert(dto.toEntity());
 	}
-	
+
 	public int viewCount(long pid) {
 		log.info("viewCount({})", pid);
 		return postInfoRepository.viewCount(pid);
 	}
-	
+
 	/**
 	 * 포스트 업데이트
+	 * 
 	 * @param post
 	 * @return
 	 */
@@ -159,7 +182,7 @@ public class PostInfoService {
 		log.info("update({})", post);
 		return postInfoRepository.updateTitleAndContent(post.toEntity());
 	}
-	
+
 	public int delete(long pid) {
 		log.info("delete(pid={})", pid);
 		return postInfoRepository.deleteByPid(pid);

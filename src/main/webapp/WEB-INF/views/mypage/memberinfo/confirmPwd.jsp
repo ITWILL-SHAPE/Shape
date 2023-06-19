@@ -38,12 +38,7 @@
 						class="form-control" /> 
 					<input type="submit" class="btn btn_login btn-classic" value="확인" />
 					</div>	
-						
-						
-						
-						
-						
-						
+							
 				</div>
 				<div class="banner_area my-2 pt-5 text-center ">
 					<a
