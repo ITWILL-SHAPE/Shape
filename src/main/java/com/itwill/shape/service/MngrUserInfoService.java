@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.dto.MngrMeetGraphDto;
 import com.itwill.shape.dto.MngrUserInfoSearchListDto;
 import com.itwill.shape.dto.MngrUserInfoSelectDto;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
@@ -70,5 +71,13 @@ public class MngrUserInfoService {
 
 		return result;
 	}
-
+	/**
+	 * 배선영
+	 * 관리자 - 그래프 만들기
+	 * @param dto
+	 * @return
+	 */
+	public int countGender(MngrMeetGraphDto dto) {
+		return userInfoRepository.getFemaleUserCount(dto);
+	}
 }

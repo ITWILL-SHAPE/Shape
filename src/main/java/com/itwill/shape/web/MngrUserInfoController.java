@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.dto.MngrMeetGraphDto;
 import com.itwill.shape.dto.MngrUserInfoSearchListDto;
 import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.service.MngrUserInfoService;
@@ -51,6 +52,12 @@ public class MngrUserInfoController {
 		log.info("userInfoDetail(id = {})", id);
 		
 		model.addAttribute("user", mngrUserInfoService.selectUserDetail(id));
+	}
+	// 관리자 - 그래프
+	@GetMapping
+	public void graph(Model model , MngrMeetGraphDto dto) {
+		log.info("MngrCountUser(dto={})", dto);
+		model.addAttribute("graph", dto);
 	}
 	
 }

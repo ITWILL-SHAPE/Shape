@@ -19,4 +19,7 @@ public class MeetSearchListDto {
 	
 	private int pageNum; //페이지 수
 	private int amount; //현재 페이지에 뿌릴 게시글 수
+	
+	private int maleCount; // 남자 회원수
+	private int feMaleCount; // 여자회원수
 }
