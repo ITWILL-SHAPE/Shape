@@ -144,22 +144,29 @@
 								<div class="col" style="cursor: pointer;" id="clickEvent"
 									onclick="location=href=('${meetDetailPage}');">
 									<div class="card shadow-sm image-container position-relative">
-										<!-- 저장할 때 img면 파일 확장자가 png, jpg, gif 등인지 확인하고 저장하고 img로 뿌려주기 -->
-										<c:set value="data:image/png;base64, ${ cardList.file }" var="url" />
-										<img src="${ url }" class="bd-placeholder-img card-img-top" width="100%"
-											height="220" xmlns="http://www.w3.org/2000/svg"
-											aria-label="Placeholder: Thumbnail"
-											preserveAspectRatio="xMidYMid slice" focusable="false" />
-										<!-- 
-										<svg idx="${status.current}"
-											class="bd-placeholder-img card-img-top" width="100%"
-											height="220" xmlns="http://www.w3.org/2000/svg" role="img"
-											aria-label="Placeholder: Thumbnail"
-											preserveAspectRatio="xMidYMid slice" focusable="false">
-										 -->	
-	              						<rect width="100%" height="100%" fill="#55595c" />
-	           							</svg>
-
+										<c:choose>
+											<c:when test="${ cardList.file == null}">
+												<!-- 저장할 때 img면 파일 확장자가 png, jpg, gif 등인지 확인하고 저장하고 img로 뿌려주기 -->
+												<c:set value="data:image/png;base64, ${ cardList.file }"
+													var="url" />
+												<img src="${ url }" class="bd-placeholder-img card-img-top"
+													width="100%" height="220"
+													xmlns="http://www.w3.org/2000/svg"
+													aria-label="Placeholder: Thumbnail"
+													preserveAspectRatio="xMidYMid slice" focusable="false" />
+											</c:when>
+											<c:otherwise>
+												<img
+													src="<%=request.getContextPath()%>/static/images/common/main1.png"
+													class="bd-placeholder-img card-img-top"
+													width="100%" height="220"
+													xmlns="http://www.w3.org/2000/svg"
+													aria-label="Placeholder: Thumbnail"
+													preserveAspectRatio="xMidYMid slice" focusable="false"/>
+												<rect width="100%" height="100%" fill="#55595c" />
+												</svg>
+											</c:otherwise>
+										</c:choose>
 										<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 										<sec:authorize access="isAuthenticated()">
 											<sec:authentication property="principal.username"

@@ -179,7 +179,7 @@ const searchMeetList = function(e) {
 	const searchTitle = $('#titleBtn').val();
 	const searchSortBy = $('select[name="searchSortBy"]').val();
 	const searchMozipCheck = $('input[name="searchMozipCheck"]:checkbox').is(":checked");
-
+	
 	if (targetPage == null || targetPage == '') {
 		targetPage = $('input[name="pageNum"]').val();
 	}
