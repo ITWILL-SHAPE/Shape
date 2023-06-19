@@ -114,12 +114,14 @@ public interface MeetInfoRepository {
 	
 	/**
 	 * mtid 모임 상세 페이지
+	 * 배선영
 	 * @param mtid
 	 * @return
 	 */
-	
 	// 작성 상세페이지
 	MeetInfo detailByMtid(long mtid);
+	
+	
 	
 	// 리스트 페이징
 	List<MeetListCountDto> selectBySearchPaging(MeetSearchListDto dto);

@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -18,13 +19,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.MeetLike;
-import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
 import com.itwill.shape.dto.MeetLikeDto;
@@ -33,17 +32,12 @@ import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetPrtcpCreateDto;
 import com.itwill.shape.dto.MeetSearchListDto;
 import com.itwill.shape.dto.PageDto;
-import com.itwill.shape.dto.PostDetailDto;
-import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
-import com.itwill.shape.service.UserInfoService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
-import oracle.jdbc.driver.parser.util.Array;
 
 @Slf4j
 @RequiredArgsConstructor

@@ -27,6 +27,7 @@
 						aria-current="true"></button>
 					<button type="button" data-bs-target="#myCarousel"
 						data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+						
 				</div>
 				<!-- 1번째 -->
 				<div class="carousel-inner">
@@ -42,19 +43,15 @@
 					</div>
 					<!-- 2번쨰 -->
 					<div class="carousel-item active">
-						<!-- <svg class="bd-placeholder-img" width="100%" height="100%"
-							xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
-							preserveAspectRatio="xMidYMid slice" focusable="false">
-							<rect width="100%" height="100%" fill="#777"></rect></svg> -->
 						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png" 
 							class="bd-placeholder-img" width="100%" height="10%"/>
 						<div class="container">
-							<div class="carousel-caption">
-								
+							<div class="carousel-caption">	
 							</div>
 						</div>
 					</div>
 					<!-- 3번쩨 -->
+					
 					<div class="carousel-item">
 						<img src="<%=request.getContextPath()%>/static/images/sample/detail2.png"
 							class="bd-placeholder-img" width="100%" height="150%"/>

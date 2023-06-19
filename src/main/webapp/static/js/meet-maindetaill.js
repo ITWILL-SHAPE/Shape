@@ -131,7 +131,7 @@
 
 			axios.post('/shape/meet', data)
 				.then((response) => {
-					alert('참여완료~♥');
+					alert('참여완료');
 					if(response.data) {
 						goToDetail(mtid);
 					} else {
@@ -158,7 +158,7 @@
 			e.preventDefault();
 			
 			console.log(e.target);
-			if (!confirm('참여를 거부하시나요???')) {
+			if (!confirm('참여를 거부하시나요?')) {
 				return;
 			}
 			const mtid = e.target.getAttribute('data-id');
@@ -174,7 +174,7 @@
 					} else {
 						console.log('없든듸');
 					}
-					 alert('참여가 취소 ㅠㅠ'); 
+					 alert('참여가 취소 완료'); 
 				})
 				.catch((error) => {
 					console.log(error);

@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
@@ -46,6 +48,7 @@ public class MeetMainDetailDto { // 상세페이지
 	private long meetlikecount; // 찜 갯수
 	private List<MeetLike> meetLikeId; // 찜 한 아이디
 	private long meetNumberPrtcp; // 참여자 인원수 
+	
 	
 		
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
