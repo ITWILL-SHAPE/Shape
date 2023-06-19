@@ -6,6 +6,10 @@
 <%@ include file="../../common/header.jsp"%>
 <head>
 <script defer src="static/js/inputPwd-confirm.js"></script>
+<script>
+	var id = '${id}';
+	console.log(id);
+</script>
 </head>
 <body>
 	<!-- 제목 -->
@@ -31,14 +35,13 @@
 						본인확인을 위해 <strong class="mainColor">로그인 비밀번호</strong>를 한 번 더
 						입력해주세요.
 					</h6>
-					<br> 
-					<div class="input-groupPwd" >
-					<input type="password" id="inputPwd" autofocus
-						name="inputPwd" placeholder=" 비밀번호를 입력해 주세요"
-						class="form-control" /> 
-					<input type="submit" class="btn btn_login btn-classic" value="확인" />
-					</div>	
-							
+					<br>
+					<div class="input-groupPwd">
+						<input type="password" id="inputPwd" autofocus name="inputPwd"
+							placeholder=" 비밀번호를 입력해 주세요" class="form-control" /> <input
+							type="submit" class="btn btn_login btn-classic" value="확인" />
+					</div>
+
 				</div>
 				<div class="banner_area my-2 pt-5 text-center ">
 					<a

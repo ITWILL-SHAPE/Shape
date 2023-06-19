@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const allCheckbox = document.getElementById('all-checkbox');
 	const rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
 	const table = document.querySelector('.table');
-	
+	console.log(deleteButton);
+
 	allCheckbox.addEventListener('change', () => {
 		const isChecked = allCheckbox.checked;
 
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (checkbox.checked) {
 				const pid = checkbox.closest('tr').querySelector('#pid').value;
 				console.log(pid);
-				
+
 				selectedPids.push({ pid: pid });
 				console.log(selectedPids);
 			}
