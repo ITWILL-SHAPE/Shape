@@ -3,11 +3,8 @@ package com.itwill.shape.web;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Iterator;
-<<<<<<< HEAD
 import java.io.IOException;
-=======
 import java.io.UnsupportedEncodingException;
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
