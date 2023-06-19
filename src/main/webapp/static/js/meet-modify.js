@@ -111,3 +111,24 @@
     const meetDateInput = document.getElementById('ed_date').value;
     document.getElementById('mt_date').setAttribute('min', meetDateInput);
 }
+
+// 사진 파일 미리보기
+function uploadImage(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('imagePreview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    document.getElementById('imagePreview').src = "";
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var imagePreview = document.getElementById('imagePreview');
+  var imageUrl = "${meet.img_1}"; // 서버에서 가져온 이미지 URL
+
+  imagePreview.src = imageUrl;
+  
+ });

@@ -66,13 +66,44 @@
 	<insert id="insert">
 		insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY,
 		SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME,
-		ED_DATE, NM_PPL, MT_COST,
-		MT_COST_INFO, CONTENT, CREATED_DATE)
+		ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, 
+		<if test="img_1 != null">
+			IMG_1,
+		</if>
+		<if test="img_2 != null">
+			IMG_2,
+		</if>
+		<if test="img_3 != null">
+			IMG_3,
+		</if>
+		<if test="img_4 != null">
+			IMG_4,
+		</if>
+		<if test="img_5 != null">
+			IMG_5,
+		</if>
+		CONTENT, CREATED_DATE)
 		values (#{crtr_id}, #{title},
 		#{category}, #{sido}, #{sigungu}, #{location},
 		#{mt_date}, #{mt_time},
 		#{ed_date}, #{nm_ppl}, #{mt_cost},
-		#{mt_cost_info}, #{content},
+		#{mt_cost_info}, 
+		<if test="img_1 != null">
+			#{img_1},
+		</if>
+		<if test="img_2 != null">
+			#{img_2},
+		</if>
+		<if test="img_3 != null ">
+			#{img_3},
+		</if>
+		<if test="img_4 != null">
+			#{img_4},
+		</if>
+		<if test="img_5 != null">
+			#{img_5},
+		</if>
+		#{content},
 		sysdate)
 	</insert>
 
