@@ -281,6 +281,7 @@
 		, M.title
 		, M.CRTR_ID
 		, M.created_date
+		, M.img_1
 		, COUNT(DISTINCT L.mtid) AS LCNT
 		, COUNT(P.mtid) AS PCNT
 		FROM MEET_INFO M
@@ -316,7 +317,7 @@
 			    ]]>
 		</if>
 		GROUP BY
-		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE, M.CRTR_ID
+		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE, M.CRTR_ID, M.img_1
 		<if test='searchSortBy eq "recent"'>
 			ORDER BY M.CREATED_DATE DESC
 		</if>
