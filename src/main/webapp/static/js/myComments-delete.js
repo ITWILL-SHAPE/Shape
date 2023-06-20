@@ -2,13 +2,12 @@
  * myComments.jsp에서 사용
  */
 document.addEventListener('DOMContentLoaded', () => {
-	const deleteButton = document.querySelector('.delete-button');
-	const allCheckbox = document.getElementById('all-checkbox');
-	const rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
-	const table = document.querySelector('.table');
+	var deleteButton = document.querySelector('.delete-button');
+	var allCheckbox = document.getElementById('all-checkbox');
+	var rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
 
 	allCheckbox.addEventListener('change', () => {
-		const isChecked = allCheckbox.checked;
+		var isChecked = allCheckbox.checked;
 
 		rowCheckboxes.forEach((checkbox) => {
 			checkbox.checked = isChecked;
@@ -38,13 +37,30 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (!response.data) {
 					throw new Error('댓글 삭제에 실패 했습니다.');
 				}
-				
+
 				const urlParams = new URLSearchParams(window.location.search);
-				const pageNum = urlParams.get('pageNum');
+				let pageNum = urlParams.get('pageNum');
+
+				if (pageNum === null) {
+					pageNum = 1;
+				}
 				console.log(pageNum);
 				// 삭제 작업 완료 후 처리할 내용
 				//location.reload(); // 페이지 새로고침
 				updateTable(pageNum);
+
+				deleteButton = document.querySelector('.delete-button');
+				rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
+
+				allCheckbox.addEventListener('change', () => {
+					isChecked = allCheckbox.checked;
+
+					rowCheckboxes.forEach((checkbox) => {
+						checkbox.checked = isChecked;
+					});
+				});
+				
+				allCheckbox.checked = false;
 			})
 			.catch((error) => {
 				// 에러 발생 시 처리할 내용
@@ -58,6 +74,22 @@ document.addEventListener('DOMContentLoaded', () => {
 				const tableData = response.data;
 				const tbody = document.querySelector('tbody');
 				tbody.innerHTML = generateTableRows(tableData);
+				console.log(tableData);
+
+				// 체크박스 이벤트 리스너 다시 등록
+				rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
+				rowCheckboxes.forEach((checkbox) => {
+					checkbox.addEventListener('change', () => {
+						if (checkbox.checked) {
+							deleteButton.disabled = false; // 체크박스가 선택되면 삭제 버튼 활성화
+						} else {
+							const checkedCheckboxes = document.querySelectorAll('input[id="row-checkbox"]:checked');
+							if (checkedCheckboxes.length === 0) {
+								deleteButton.disabled = true; // 선택된 체크박스가 없으면 삭제 버튼 비활성화
+							}
+						}
+					});
+				});
 			})
 			.catch((error) => {
 				console.log('Error: ' + error);
@@ -74,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <td class="text-center"><input type="checkbox" id="row-checkbox" /></td>
         <td class="text-center mainColor">${index + 1}</td>
         <td class="row-content"><a href="/shape/post/detail?pid=${data.pid}" class="text-decoration-none text-dark">${data.content}</a></td>
-        <td style="display: none;"><input type="hidden" id="pid" value="${data.pcid}" /></td>
+        <td style="display: none;"><input type="hidden" id="pcid" value="${data.pcid}" /></td>
         <td class="text-center">${createdDate}</td>
       </tr>
     `;
