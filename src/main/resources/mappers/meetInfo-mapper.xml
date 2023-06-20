@@ -121,10 +121,25 @@
 
 	<!-- 모임 수정 update문 -->
 	<update id="update">
-		update MEET_INFO set TITLE = #{title}, MT_DATE =
-		#{mt_date}, MT_TIME = #{mt_time}, MT_COST = #{mt_cost}
-		, MT_COST_INFO =
-		#{mt_cost_info}, CONTENT = #{content} where MTID =
+		update MEET_INFO set TITLE = #{title}, MT_DATE = #{mt_date}, MT_TIME = #{mt_time},
+		MT_COST = #{mt_cost}, MT_COST_INFO =
+		#{mt_cost_info}, 
+		<if test="img_1 != null">
+			IMG_1 = #{img_1},
+		</if>
+		<if test="img_2 != null">
+			IMG_2 = #{img_2},
+		</if>
+		<if test="img_3 != null">
+			IMG_3 = #{img_3},
+		</if>
+		<if test="img_4 != null">
+			IMG_4 = #{img_4},
+		</if>
+		<if test="img_5 != null">
+			IMG_5 = #{img_5},
+		</if>
+		CONTENT = #{content} where MTID =
 		#{mtid}
 	</update>
 

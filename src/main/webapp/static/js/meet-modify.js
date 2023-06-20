@@ -12,11 +12,11 @@
 		const mt_time = document.querySelector('input#mt_time').value;
 		const mt_cost = document.querySelector('input#mt_cost').value;
 		const mt_cost_info = document.querySelector('select#mt_cost_info').value;
-		const formFile_1 = document.querySelector('input#formFile_1').value;
-		const formFile_2 = document.querySelector('input#formFile_2').value;
-		const formFile_3 = document.querySelector('input#formFile_3').value;
-		const formFile_4 = document.querySelector('input#formFile_4').value;
-		const formFile_5 = document.querySelector('input#formFile_5').value;
+/*		const formFile1 = document.querySelector('input#formFile1');
+		const formFile2 = document.querySelector('input#formFile2');
+		const formFile3 = document.querySelector('input#formFile3');
+		const formFile4 = document.querySelector('input#formFile4');
+		const formFile5 = document.querySelector('input#formFile5');*/
 		const summernote = document.querySelector('textarea#summernote').value;
 
 		const btnUpdate = document.querySelector('#btnUpdate');
@@ -112,36 +112,15 @@
     document.getElementById('mt_date').setAttribute('min', meetDateInput);
 }
 
-  const deleteButton = document.createElement('button');
-  deleteButton.classList.add('btn', 'btn-secondary', 'deleteButton');
-  deleteButton.type = 'button';
-  deleteButton.textContent = '삭제';
-
- deleteButton.addEventListener('click', () => {
-
-if (newInput.name === 'formFile1') {
-      // Reset the input and preview
-      newInput.value = '';
-      newPreview.src = '';
-    } else {
-      inputContainer.removeChild(newFileInput);
-      fileInputCount--;
-
-    if (fileInputCount < 5) {
-      addButton.disabled = false;
-      }
-    }
-  });
-
-  newFileInput.appendChild(newInput);
-  newFileInput.appendChild(newPreview);
-  newFileInput.appendChild(deleteButton);
-  
-  inputContainer.appendChild(newFileInput);
-  fileInputCount++;
-
-  if (fileInputCount >= 5) {
-    addButton.disabled = true;
+function imageUpload(input) {
+  const preview = input.parentElement.querySelector('.imagePreview1');
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    preview.src = e.target.result;
+  };
+  if (input.files && input.files[0]) {
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    preview.src = "";
   }
-
-
+}
