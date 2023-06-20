@@ -37,7 +37,7 @@
 		</header>
 
 			<div class="card">
-				<form method="post">
+				<form method="post" encType="multipart/form-data">
 					<div class="card-body">
 						<div class="my-2">
 							<label class="form-label" for="title">제목</label> 
@@ -49,23 +49,29 @@
 							<textarea class="form-control" id="summernote" name="content" required></textarea>
 						</div>
 						
+						<br />
+						
 						<div class="my-2">
-							<input class="form-control" type="file" id="atchd_file" name="atchd_file" multiple/>
+							<small style="color: red;">* 파일은 하나만 업로드 가능합니다</small>
+							<input class="form-control" type="file" id="atchd_file" name="uploadFile" />
 						</div>
+						
+						<br />
 						
 						<div class="form-check"> <!-- 글 고정 체크박스 -->
 							<label class="form-check-label" for="checkbox">고정</label>
 							<input class="form-check-input" type=checkbox name="fix" id="checkbox" value="-1"/>
 						</div>
 					</div>
-					<div class="my-2 text-center">
-						<c:url var="postList" value="/mngr/notice/list" />
-						<button onclick="location.href='${ postList }" class="btn" type="button" style="background-color: #D3FF31;">목록</button>
+					
+				</form>
+			</div>
+			<div class="my-2 text-center">
+						<c:url var="noticeList" value="/mngr/notice/list" />
+						<a class="btn" href="${ noticeList }" style="background-color: #D3FF31;">목록</a>
 						<button class="btn" type="submit" id="btnCreateNotice" style="background-color: #D3FF31;">
 							등록
 						</button>
-					</div>
-				</form>
 			</div>
 
 		<script src="<%=request.getContextPath()%>/static/js/notice-summernote.js"></script>

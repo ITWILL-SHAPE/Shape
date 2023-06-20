@@ -197,13 +197,20 @@
 	</select>
 	
 	<!-- 남성 회원수  -->
-	<select id="getMaleUserCount" resultType="int">
+	<select id="getMaleUserCount" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USER_INFO WHERE GENDER = 'M'
 	</select>
 	
 	<!-- 여성 회원수 -->
-	<select id="getFemaleUserCount" resultType="int">
+	<select id="getFemaleUserCount" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM USER_INFO WHERE GENDER = 'F'
 	</select>
+	
+	<update id="setProfile"         
+	    parameterType="com.itwill.shape.dto.UserInfoSelectByIdDto">
+	    UPDATE USER_INFO
+	    SET PROFILE = #{profile}
+		WHERE id = #{id}
+    </update>
 	
 </mapper>

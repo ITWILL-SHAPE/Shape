@@ -5,6 +5,9 @@
 <%@ include file="../../common/header.jsp"%>
 <head>
 <script defer src="static/js/myPosts-delete.js"></script>
+<script>
+	var id = '${id}';
+</script>
 </head>
 <body>
 	<div class="row">
@@ -87,9 +90,9 @@
 					  -->
 
 					<!-- 페이징 끝 -->
-						<div class="mb-2 text-end">
-							<button class="btn delete-button btn-secondary">댓글삭제</button>
-						</div>
+					<div class="mb-2 text-end">
+						<button class="btn delete-button btn-secondary">작성글 삭제</button>
+					</div>
 				</div>
 			</div>
 			<!-- 검색 -->
@@ -114,7 +117,7 @@
 			</div>
 			-->
 
-<!--  검색 시작 -->
+			<!--  검색 시작 -->
 			<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
 				<c:url var="postsSearch" value="/mypostssearch">
 					<c:param name="id" value="${id}" />

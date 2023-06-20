@@ -136,26 +136,10 @@
 							모임 사진
 							</dt>
 							<dd align="left">
-								<img class="imagePreview" id="imagePreview" />
-								<div class="my-2">
-									<input class="form-control" type="file" name="formFile1" accept="image/*" onchange="uploadImage(this);">
-								</div>
-								<img class="imagePreview" id="imagePreview" />
-								<div class="my-2">
-									<input class="form-control" type="file" name="formFile2" accept="image/*" onchange="uploadImage(this);">
-								</div>
-								<img class="imagePreview" id="imagePreview" />
-								<div class="my-2">
-									<input class="form-control" type="file" name="formFile3" accept="image/*" onchange="uploadImage(this);">
-								</div>
-								<img class="imagePreview" id="imagePreview" />
-								<div class="my-2">
-									<input class="form-control" type="file" name="formFile4" accept="image/*" onchange="uploadImage(this);">
-								</div>
-								<img class="imagePreview" id="imagePreview" />
-								<div class="my-2">
-									<input class="form-control" type="file" name="formFile5" accept="image/*" onchange="uploadImage(this);">
-								</div>
+								<div class="input-group mb-3">
+								    <input class="form-control file-input" type="file" name="formFile1" accept="image/*">
+								  	<button class="btn btn-secondary" type="button">삭제</button>
+								  </div>
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">

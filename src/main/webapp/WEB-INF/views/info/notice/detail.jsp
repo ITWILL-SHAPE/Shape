@@ -33,7 +33,7 @@
 					
 					<div class="my-2">
 						<label class="form-label" for="file">첨부파일</label>
-						<div class="card-text" id="file">${ notices.atchd_file }</div>
+						<a name="file" data-id="${ notices.nid }" href="">${ notices.file_name }</a>
 					</div>
 					
 					<div class="my-2">
@@ -55,4 +55,5 @@
 
 
 </body>
+<script src="<%=request.getContextPath()%>/static/js/infoNotice-download.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

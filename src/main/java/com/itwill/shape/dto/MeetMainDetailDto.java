@@ -43,8 +43,14 @@ public class MeetMainDetailDto { // 상세페이지
 	private String content; // 모임내용
 	private long views;  // 조회수 (안함)
 	private Timestamp created_date; // 작성한 시간
+	
+	// 다른 정보 가져오는것
 	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST)
+<<<<<<< HEAD
 	private UserInfo userHost; // USER 작성자
+=======
+	private UserInfo userHost; // Host 
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 	private long meetlikecount; // 찜 갯수
 	private List<MeetLike> meetLikeId; // 찜 한 아이디
 	private long meetNumberPrtcp; // 참여자 인원수
@@ -55,7 +61,15 @@ public class MeetMainDetailDto { // 상세페이지
 	private String file3;
 	private String file4;
 	private String file5;
-	private String file6;
+	
+	// Host 이미지
+	private String hostProFile;
+	
+	// 프로필 이미지 참여자
+	private List<UserInfo> userProFile;
+	private String guestProFile;
+	
+	
 	
 	
 	

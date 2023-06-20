@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			history.go(-1); // 취소하면 이전 페이지로 이동
 		}
 	});
-	
+
 	// 모임 만들기 버튼
 	const btnCreate = document.querySelector('#btnCreate');
 	btnCreate.addEventListener('click', () => {
@@ -146,8 +146,8 @@ document.getElementById('ed_date').setAttribute('min', getCurrentDate());
 
 // 모집날짜를 모임날짜 이후로 선택하지 못하게 제한을 두는 함수
 function setMaxEndDate() {
-    const endDateInput = document.getElementById('mt_date').value;
-    document.getElementById('ed_date').setAttribute('max', endDateInput);
+	const endDateInput = document.getElementById('mt_date').value;
+	document.getElementById('ed_date').setAttribute('max', endDateInput);
 }
 
 function resetInputValue() {
@@ -156,15 +156,62 @@ function resetInputValue() {
 
 // 인원수는 음수와 0을 입력하지 못하도록 입력 이벤트를 가로채고 유효성 검사 수행
 document.getElementById('nm_ppl').addEventListener('input', function(e) {
-	var input = e.target.value;
-	var max = 25;
-	
+	const input = e.target.value;
+	const max = 25;
+
 	if (input <= 0) {
 		e.target.value = '';
 	}
-	
+
 	if (this.value > max) {
-      	this.value = max;
-    }
-	
+		this.value = max;
+	}
+
 });
+
+  const inputContainer = document.getElementById('inputContainer');
+  const addButton = document.getElementById('addButton');
+  let fileInputCount = 1;
+
+  addButton.addEventListener('click', () => {
+    if (fileInputCount >= 5) {
+      addButton.disabled = true;
+      return;
+    }
+
+    const newFileInput = document.createElement('div');
+    newFileInput.classList.add('input-group','mb-3');
+
+    const newInput = document.createElement('input');
+    newInput.classList.add('form-control', 'file-input');
+    newInput.type = 'file';
+    newInput.name = `formFile${fileInputCount + 1}`;
+    newInput.accept = 'image/*';
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('btn', 'btn-secondary', 'deleteButton');
+    deleteButton.type = 'button';
+    deleteButton.textContent = '삭제';
+
+    deleteButton.addEventListener('click', () => {
+      inputContainer.removeChild(newFileInput);
+      fileInputCount--;
+
+      if (fileInputCount < 5) {
+        addButton.disabled = false;
+      }
+    });
+
+    newFileInput.appendChild(newInput);
+    newFileInput.appendChild(deleteButton);
+    inputContainer.appendChild(newFileInput);
+    fileInputCount++;
+
+    if (fileInputCount >= 5) {
+      addButton.disabled = true;
+    }
+  });
+ 
+
+
+

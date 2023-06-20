@@ -7,9 +7,20 @@
 	<!-- 우수빈 noticemapper -->
 	
 	<insert id="insert">
-		insert into INFO_NOTICE (TITLE, CONTENT, ATCHD_FILE, VIEWS, CREATED_DATE, FIX)
-		values (#{title}, #{content}, #{atchd_file}, #{views}, systimestamp, #{fix})
+		insert into INFO_NOTICE 
+			(TITLE, CONTENT, VIEWS, CREATED_DATE, FIX
+			<if test="atchd_file != null">
+			 	, ATCHD_FILE, FILE_NAME
+			 </if>
+			 )
+		values 
+			(#{title}, #{content}, #{views}, systimestamp, #{fix} 
+			<if test="atchd_file != null">
+				, #{atchd_file}, #{file_name}
+			</if>
+			)
 	</insert>
+	
 	
 	<select id="selectOrderByDateDesc">
 		select * from INFO_NOTICE order by FIX, CREATED_DATE desc
@@ -25,7 +36,10 @@
 	
 	<update id="updateNotice">
 		update INFO_NOTICE
-		set TITLE = #{title}, CONTENT = #{content}, ATCHD_FILE = #{atchd_file}, CREATED_DATE = systimestamp, FIX = #{fix}
+		set TITLE = #{title}, CONTENT = #{content}, CREATED_DATE = systimestamp, FIX = #{fix} 
+			<if test="atchd_file != null">
+				, ATCHD_FILE = #{atchd_file}, FILE_NAME = #{file_name}
+			</if>
 		where NID = #{nid}
 	</update>
 	

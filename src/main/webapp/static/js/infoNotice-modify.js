@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		const title = document.querySelector('input#title').value;
 		const content = document.querySelector('textarea#summernote').value;
+		//const uploadFile = document.getElementById('input#atchd_file');
 		
 		const nid = document.querySelector('input#nid').value;
 		
@@ -28,4 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			form.submit();
 		}
 	});
+	
+	
 });

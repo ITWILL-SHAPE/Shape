@@ -9,6 +9,7 @@ import com.itwill.shape.dto.MngrMeetGraphDto;
 import com.itwill.shape.dto.MngrUserInfoSearchListDto;
 import com.itwill.shape.dto.MngrUserInfoSelectDto;
 import com.itwill.shape.dto.UserInfoFindDto;
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
 
 public interface UserInfoRepository {
 	/**
@@ -105,14 +106,17 @@ public interface UserInfoRepository {
 	UserInfo selectById(String id);
 
 	/**
-	 * 0602 김세이 
+	 * 0619 김세이 
 	 * 마이페이지 프로필 사진 변경 
 	 * 
-	 * @param id 
-	 * @param imageFile
+	 * @param dto 
 	 * @return int (0/1)  
 	 */
-	int imageModify(String id, byte[] ImageData);
+	int setProfile(UserInfoSelectByIdDto dto);
+	
+	//int imageModify(String id, byte[] ImageData);
+	
+	
 	
 	/**
 	 * 하지윤
@@ -143,4 +147,6 @@ public interface UserInfoRepository {
 	int getMaleUserCount(MngrMeetGraphDto dto); //  관리자 남자 회원수
 	
 	int getFemaleUserCount(MngrMeetGraphDto dto); // 관리자 여자 회원수
+
+
 }

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (checkbox.checked) {
 				const pcid = checkbox.closest('tr').querySelector('#pcid').value;
 				console.log(pcid);
-				
+
 				selectedPcids.push({ pcid: pcid });
 				console.log(selectedPcids);
 			}
@@ -38,13 +38,55 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (!response.data) {
 					throw new Error('댓글 삭제에 실패 했습니다.');
 				}
+				
+				const urlParams = new URLSearchParams(window.location.search);
+				const pageNum = urlParams.get('pageNum');
+				console.log(pageNum);
 				// 삭제 작업 완료 후 처리할 내용
-				location.reload(); // 페이지 새로고침
-				//table.innerText = response.data;
+				//location.reload(); // 페이지 새로고침
+				updateTable(pageNum);
 			})
 			.catch((error) => {
 				// 에러 발생 시 처리할 내용
 				console.log('Error: ' + error);
 			});
 	});
+
+	function updateTable(pageNum) {
+		axios.get('/shape/updatecomments', { params: { id: id, pageNum: pageNum } })
+			.then((response) => {
+				const tableData = response.data;
+				const tbody = document.querySelector('tbody');
+				tbody.innerHTML = generateTableRows(tableData);
+			})
+			.catch((error) => {
+				console.log('Error: ' + error);
+			});
+	}
+
+	// 테이블 행 생성 함수
+	function generateTableRows(tableData) {
+		let rows = '';
+		tableData.forEach((data, index) => {
+			const createdDate = formatDate(data.created_date); // 날짜 포맷팅 처리
+			const row = `
+      <tr class="row-separator">
+        <td class="text-center"><input type="checkbox" id="row-checkbox" /></td>
+        <td class="text-center mainColor">${index + 1}</td>
+        <td class="row-content"><a href="/shape/post/detail?pid=${data.pid}" class="text-decoration-none text-dark">${data.content}</a></td>
+        <td style="display: none;"><input type="hidden" id="pid" value="${data.pcid}" /></td>
+        <td class="text-center">${createdDate}</td>
+      </tr>
+    `;
+			rows += row;
+		});
+		return rows;
+	}
+
+	// 날짜 포맷팅 함수
+	function formatDate(dateString) {
+		const date = new Date(dateString);
+		const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+		return formattedDate;
+	}
 });

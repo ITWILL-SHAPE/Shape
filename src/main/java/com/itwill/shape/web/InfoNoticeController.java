@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
@@ -49,6 +52,20 @@ public class InfoNoticeController {
 		Timestamp time = Timestamp.valueOf(notice.getCreated_date());
 		model.addAttribute("notices", notice);
 		model.addAttribute("times", time);
+	}
+	
+	/**
+	 * 첨부파일 다운로드
+	 */
+	@PostMapping("/download/{nid}")
+	@ResponseBody
+	public byte[] download(@PathVariable long nid) {
+		log.info("download(nid = {})", nid);
+		
+		InfoNotice file = infoNoticeService.read(nid);
+		
+		byte[] fileByte = file.getAtchd_file();
+		return fileByte;
 	}
 	
 	/**

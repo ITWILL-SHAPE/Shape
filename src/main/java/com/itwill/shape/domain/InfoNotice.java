@@ -27,5 +27,6 @@ public class InfoNotice {
 	private int views;
 	private LocalDateTime created_date;
 	private int fix;
+	private String file_name;
 
 }

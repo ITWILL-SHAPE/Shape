@@ -1,6 +1,8 @@
 package com.itwill.shape.web;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
@@ -48,73 +50,98 @@ public class MyPageController {
 	private final UserInfoService userInfoService;
 	private final MeetListService meetListService;
 
-	/**
-	 * 0601 김세 나의프로필 정보 불러오기
-	 * 
-	 * @param id
-	 * @param model
-	 * @return "/mypage/memberinfo/myprofile"
-	 */
 	// 마이페이지 > 회원정보 > 나의 프로필
-	@GetMapping("/myprofile")
-	public String myProfile(@RequestParam("id") String id, Model model) {
-		log.info("myprofile()");
-		log.info("id={}", id);
+		@GetMapping("/myprofile")
+		public String myProfile(@RequestParam("id") String id, Model model) {
+			log.info("myprofile()");
+			log.info("id={}", id);
 
-		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+			UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+			
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String(byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if (dto.getProfileImageUrl() != null) {
+				model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+			}
 
-		if (dto.getProfileImageUrl() != null) {
-			model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+			model.addAttribute("myPageUserInfo", dto);
+			return "/mypage/memberinfo/myprofile";
 		}
 
-		model.addAttribute("myPageUserInfo", dto);
-		return "/mypage/memberinfo/myprofile";
-	}
+		/**
+		 * 0613 김세이 회원정보 수정 페이지
+		 * 
+		 * @Param id
+		 * @Param model
+		 * @return "/mypage/memberinfo//profilemodifypage"
+		 */
+		@GetMapping("/profilemodifypage")
+		public String profileModifyPage(@RequestParam("id") String id, Model model) {
+			log.info("profileModifyPage(id={})", id);
 
-	/**
-	 * 0613 김세이 회원정보 수정 페이지
-	 * 
-	 * @Param id
-	 * @Param model
-	 * @return "/mypage/memberinfo/profileModify"
-	 */
-	@GetMapping("/profilemodifypage")
-	public String profileModifyPage(@RequestParam("id") String id, Model model) {
-		log.info("profileModifyPage(id={})", id);
+			UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 
-		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String(byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if (dto.getProfileImageUrl() != null) {
+				model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+			}
+			model.addAttribute("myPageUserInfo", dto);
 
-		if (dto.getProfileImageUrl() != null) {
-			model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+//		    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+			return "/mypage/memberinfo/profileModify";
 		}
-		model.addAttribute("myPageUserInfo", dto);
 
-//	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
-		return "/mypage/memberinfo/profileModify";
-	}
-
-	/**
-	 * 
-	 * 0601 김세이 마이페이지 이미지 수정
-	 * 
-	 * @param id
-	 * @param profile
-	 * @param model
-	 * @return "/mypage/memberinfo/myprofile"
-	 * @throws IOException
-	 */
-	@GetMapping("/profilemodify")
-	public String profileModify(@RequestParam("id") String id, @RequestParam("profile") MultipartFile[] profile)
-			throws IOException {
-		log.info("profileModify()");
-
-		int result = userInfoService.imageModify(id, profile[0]);
-		log.info("profileModify 결과 = {}", result);
-
-//	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
-		return "/mypage/memberinfo/myprofile";
-	}
-
+		/**
+		 * 0619 김세이 프로필 사진 업로드 
+		 * 
+		 * @Param UserInfoSelectByIdDto 
+		 * @return "/mypage/memberinfo/profileupload"
+		 */
+		@PostMapping("/profileupload/{id}")
+		public String profileUpload(@PathVariable String id, UserInfoSelectByIdDto dto) {
+			log.info("profileUpload(dto = {})", dto);
+			
+			dto.setId(id);
+			
+			// 받아오는 파일
+			MultipartFile uploadFile = dto.getUploadFile();
+			if(!uploadFile.isEmpty()) {
+				
+				// 저장할 바이트
+				byte[] bytes;		
+				try {
+					// upload된 파일을 byte 로 변환
+					bytes = uploadFile.getBytes();
+					
+					dto.setProfile(bytes);
+					userInfoService.setProfile(dto);
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+			
+		}
 	/**
 	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력
 	 * 
@@ -393,7 +420,28 @@ public class MyPageController {
 
 		model.addAttribute("myposts", myposts);
 		model.addAttribute("pageMaker", new PageDto(cri, size));
+
 		return "/mypage/board/myPosts";
+	}
+
+	/**
+	 * 0619 손창민 AJAX 작성글 테이블 새로고침
+	 * 
+	 * @return
+	 */
+	@GetMapping("/updateposts")
+	public ResponseEntity<List<PostInfoSelectByAuthorDto>> updatePosts(@RequestParam("id") String id,
+			@RequestParam("pageNum") int pageNum, Criteria cri) {
+		try {
+			// 페이징된 테이블 데이터를 가져오는 로직 작성
+			cri.setPageNum(pageNum);
+			List<PostInfoSelectByAuthorDto> tableDataList = postInfoService.selectByAuthorWithPaging(id, cri);
+			log.info("updatePosts(tableDataList={}, cri={})", tableDataList, cri);
+			return ResponseEntity.ok(tableDataList);
+		} catch (Exception e) {
+			// 예외 처리
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 
 	/**
@@ -405,14 +453,14 @@ public class MyPageController {
 	 * @param model
 	 */
 	@GetMapping("/mypostssearch")
-	public String searchPosts(@RequestParam("id") String id, @RequestParam("keyword") String keyword, Criteria cri,
-			Model model) {
-		log.info("searchPosts(author(id)={}, keyword={}, cri={})", id, keyword, cri);
+	public String searchPosts(@RequestParam("id") String id, Criteria cri, Model model) {
+		log.info("searchPosts(author(id)={}, keyword={}, cri={})", id, cri.getKeyword(), cri);
 
-		int count = postInfoService.countPosts(id, keyword);
+		int count = postInfoService.countPosts(id, cri.getKeyword());
 		log.info("searchPosts(count={})", count);
 
-		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, keyword, cri);
+		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, cri.getKeyword(),
+				cri);
 		model.addAttribute("myposts", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
 		return "/mypage/board/myPosts";
@@ -444,6 +492,26 @@ public class MyPageController {
 	}
 
 	/**
+	 * 0619 손창민 AJAX 작성 댓글 테이블 새로고침
+	 * 
+	 * @return
+	 */
+	@GetMapping("/updatecomments")
+	public ResponseEntity<List<PostCommentSelectByAuthorDto>> updateComments(@RequestParam("id") String id,
+			@RequestParam("pageNum") int pageNum, Criteria cri) {
+		try {
+			cri.setPageNum(pageNum);
+			// 페이징된 테이블 데이터를 가져오는 로직 작성
+			List<PostCommentSelectByAuthorDto> tableDataList = postCommentsService.selectByAuthorWithPaging(id, cri);
+			log.info("updateComments(tableDataList={}, cri={})", tableDataList, cri);
+			return ResponseEntity.ok(tableDataList);
+		} catch (Exception e) {
+			// 예외 처리
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
+	}
+
+	/**
 	 * 0616 손창민 댓글 검색 키워트 리스트 출력 with paging
 	 * 
 	 * @param model
@@ -458,10 +526,11 @@ public class MyPageController {
 		int count = postCommentsService.countComments(id, keyword);
 		log.info("searchComments(count={})", count);
 
-		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, keyword, cri);
+		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, keyword,
+				cri);
 		model.addAttribute("mycomments", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
-		
+
 		return "/mypage/board/myComments";
 	}
 }
