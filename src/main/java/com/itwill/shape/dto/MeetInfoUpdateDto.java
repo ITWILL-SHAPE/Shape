@@ -36,6 +36,12 @@ public class MeetInfoUpdateDto {
 	private byte[] img_5;
 	private String content;
 	
+	private String file1;
+	private String file2;
+	private String file3;
+	private String file4;
+	private String file5;
+	
 	public MeetInfo updateEntity() {
 		
 		return MeetInfo.builder()
