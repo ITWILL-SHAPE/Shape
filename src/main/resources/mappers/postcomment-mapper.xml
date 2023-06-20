@@ -66,10 +66,13 @@
 		select count(PCID) from POST_COMMENT
 		where PID = #{pid}
 	</select>
-
+	
+	<!-- 게시판 댓글 리스트  -->
 	<select id="selectByPid"
 		resultType="com.itwill.shape.domain.PostComment">
-		select * from POST_COMMENT
+		select C.pcid, C.pid, C.content, C.author, C.created_date, C.modified_date, U.profile as profile
+		from POST_COMMENT C
+		left join user_info U on C.author = U.id
 		where PID = #{pid}
 		order by MODIFIED_DATE desc
 	</select>

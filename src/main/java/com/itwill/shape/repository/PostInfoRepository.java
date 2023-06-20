@@ -50,28 +50,74 @@ public interface PostInfoRepository {
 	// 마이페이지 끝
 	
 	/**
+	 * 사용 안함
 	 * 0603 지현 아래로는 게시판 사용자 페이지에서 보여주는 용
 	 * 목록 불러오기
 	 * @return
 	 */
 	List<PostListDto> selectWithCommentCount();
-
+	
+	/**
+	 * 게시판 상세보기
+	 * @param pid
+	 * @return
+	 */
 	PostInfo selectByPid(long pid);
-
+	
+	/**
+	 * 조회수
+	 * @param pid
+	 * @return
+	 */
 	int viewCount(long pid);
 	
+	/**
+	 * 새 글 작성
+	 * @param entity
+	 * @return
+	 */
 	int insert(PostInfo entity);
-
+	
+	/**
+	 * 수정
+	 * @param entity
+	 * @return
+	 */
 	int updateTitleAndContent(PostInfo entity);
 
+	/**
+	 * 사용안함
+	 * 검색
+	 * @param keyword
+	 * @return
+	 */
 	List<PostListDto> selectWithKeyword(String keyword);
 	
+	/**
+	 * 메인 리스트 페이지 페이징과 함께 리스트 출력
+	 * @param cri
+	 * @return
+	 */
 	List<PostListDto> getListWithPaging(Criteria cri);
 
+	/**
+	 * 페이징을 위한 전체 게시글 카운트
+	 * @return
+	 */
 	int listCount();
-
+	
+	/**
+	 * 페이징을 위한 검색 게시글 카운트
+	 * @param keyword
+	 * @return
+	 */
 	int listCountWithKeyword(String keyword);
-
+	
+	/**
+	 * 검색 리스트 페이지 페이징과 함께 리스트 출력
+	 * @param args
+	 * @return
+	 */
 	List<PostListDto> selectWithKeywordAndPaging(Map<String, Object> args);
 
 }

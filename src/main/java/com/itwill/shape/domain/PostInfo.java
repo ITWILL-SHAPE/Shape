@@ -27,4 +27,5 @@ public class PostInfo {
 	private long views;
 	
 	private String keyword;
+	private byte[] profile;
 }
