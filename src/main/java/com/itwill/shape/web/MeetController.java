@@ -73,7 +73,7 @@ public class MeetController {
 		MultipartFile uploadFile4 = dto.getFormFile4();
 		MultipartFile uploadFile5 = dto.getFormFile5();
 
-		if (!uploadFile1.isEmpty()) {
+		if (uploadFile1 != null && !uploadFile1.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -87,7 +87,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile2.isEmpty()) {
+		if (uploadFile2 != null && !uploadFile2.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -101,7 +101,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile3.isEmpty()) {
+		if (uploadFile3 != null && !uploadFile3.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -115,7 +115,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile4.isEmpty()) {
+		if (uploadFile4 != null && !uploadFile4.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -129,7 +129,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile5.isEmpty()) {
+		if (uploadFile5 != null && !uploadFile5.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -148,7 +148,6 @@ public class MeetController {
 
 		return "redirect:/meet/list";
 
-		// 여기에 blob에 저장하기 위해 url을 byte로 변환하는 코드를 넣어야하는 지?
 	}
 
 	/**

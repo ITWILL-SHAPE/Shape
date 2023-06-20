@@ -41,22 +41,27 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach items="${ fixed }" var="fixed">
+									<tr>
+										<th scope="row" class="col-1 text-center">📢</th>
+										<td class="ms-2"><c:url var="noticeDetailPage"
+												value="/mngr/notice/detail">
+												<c:param name="nid" value="${ fixed.nid }"></c:param>
+											</c:url> <a
+											href="${ noticeDetailPage }">${ fixed.title }</a></td>
+										<td class="col-2 text-center"><fmt:formatDate
+												value="${ fixed.created_date }" pattern="yyyy-MM-dd" /></td>
+									</tr>
+								</c:forEach>
 								<c:forEach items="${ notices }" var="notice" varStatus="status">
 									<tr>
-										<c:choose>
-											<c:when test="${ notice.fix == -1 }">
-												<td>📢</td>
-											</c:when>
-											<c:otherwise>
 												<td>${ status.count }</td>
-											</c:otherwise>
-										</c:choose>
 										<td><c:url var="noticeDetailMngrPage"
 												value="/mngr/notice/detail">
 												<c:param name="nid" value="${ notice.nid }"></c:param>
 											</c:url> <a href="${ noticeDetailMngrPage }">${ notice.title }</a></td>
 										<td><fmt:formatDate value="${ notice.created_date }"
-												pattern="yyyy.MM.dd" /></td>
+												pattern="yyyy-MM-dd" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>

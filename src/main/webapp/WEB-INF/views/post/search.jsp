@@ -28,21 +28,45 @@
 				</c:url>
 				<div class="col" onclick="location.href='${ postDetailPage }'">
 					<div class="card my-2 p-3">
-						<div class="card-body">
-							<!-- 글 번호 -->
-							<!-- <div>${ postInfo.pid }</div> -->
+												<div class="card-body">
 							<!-- 말머리랑 제목 -->
 							<h5 class="card-title text-truncate">[ ${ postInfo.hrs_hd} ]
 								${ postInfo.title }</h5>
-							<!-- 작성자 -->
-							<p class="card-text">
-								작성자: ${ postInfo.author }
-								<!-- 작성 날짜 -->
-								<br />작성일자:
-								<fmt:formatDate value="${ postInfo.created_date }"
-									pattern="yyyy-MM-dd" />
-								<br />댓글 개수: ${ postInfo.rcnt }
-							</p>
+							<div class="mt-2 grid d-grid d-md-flex">
+								<div class="g-col-3">
+									<!-- 프로필 사진 -->
+									<div class="text-center"
+										style="width: 70px; height: 70px; border-radius: 70%; overflow: hidden;">
+										<c:if test="${ postInfo.profile == null }">
+											<img class=""
+												style="width: 100%; height: 100%; object-fit: cover;"
+												src="<%=request.getContextPath()%>/static/images/common/user.png" />
+										</c:if>
+										<c:if test="${ postInfo.profile != null }">
+											<c:set value="data:image/png;base64, ${ postInfo.file }"
+													var="profile" />
+											<img class="" src="${ profile }"
+												style="width: 100%; height: 100%; object-fit: cover;"/>
+										</c:if>
+									</div>
+								</div>
+								<!-- 게시글 작성자 등 -->
+								<div class="g-col ms-2">
+									<!-- 글 번호 -->
+									<!-- <div>${ postInfo.pid }</div> -->
+
+									<!-- 작성자 -->
+									<p class="card-text">
+										작성자: ${ postInfo.author }
+										<!-- 작성 날짜 -->
+										<br />날짜:
+										<fmt:formatDate value="${ postInfo.modified_date }"
+											pattern="yyyy-MM-dd" />
+
+										<br />댓글: ${ postInfo.rcnt }
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -54,14 +78,14 @@
 			<nav>
 				<ul class="pagination justify-content-center">
 					<li class="page-item ${ paging.prev? "":"disabled" }"><a
-						class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a></li>
+						class="page-link" href="${ paging.startPage -1 }" tabindex="-1">&laquo;</a></li>
 					<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
 						var="num">
 						<li class="page-item ${ paging.cri.pageNum == num? "active":"" }"><a
 							class="page-link" href="${ num }">${ num }</a></li>
 					</c:forEach>
 					<li class="page-item ${ paging.next? "":"disabled" }" ><a
-						class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a></li>
+						class="page-link" href="${ paging.endPage +1 }" tabindex="-1">&raquo;</a></li>
 				</ul>
 			</nav>
 		</div>

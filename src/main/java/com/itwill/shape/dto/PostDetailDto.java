@@ -23,6 +23,9 @@ public class PostDetailDto {
 	private long commentCount;
 	private long views;
 	
+	private byte[] profile;
+	private String file;
+	
 	public static PostDetailDto fromEntity(PostInfo entity) {
 		return PostDetailDto.builder()
 				.pid(entity.getPid())
@@ -33,6 +36,7 @@ public class PostDetailDto {
 				.created_date(Timestamp.valueOf(entity.getCreated_date()))
 				.modified_date(Timestamp.valueOf(entity.getModified_date()))
 				.views(entity.getViews())
+				.profile(entity.getProfile())
 				.build();
 	}
 }

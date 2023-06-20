@@ -1,4 +1,6 @@
 package com.itwill.shape.web;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -46,6 +48,20 @@ public class PostCommentController {
     	log.info("read(pid={})", pid);
     	
     	List<PostCommentReadDto> list =postCommentService.read(pid); 
+    	for(PostCommentReadDto dto: list) {
+    		//log.info("profile = {}", dto.getProfile());
+    		if(dto.getProfile() != null) {
+    			byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+    			String imgStr = null;
+        		try {
+					imgStr = new String(byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+    		}
+    	}
+    	
     	log.info("# of comment = {}", list.size());
     	
     	return ResponseEntity.ok(list);

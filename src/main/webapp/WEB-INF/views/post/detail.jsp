@@ -16,12 +16,30 @@
 			<!-- 글번호 -->
 			<input class="card-tex d-none" id="pid" value="${ post.pid }"></input>
 			<!-- 작성자 -->
-			<p class="card-text">작성자: ${ post.author }</p>
+			<div class="grid d-grid d-md-flex mt-2" style="height: 30px;">
+				<div class="g-col-3 me-2">
+					<!-- 프로필 사진 -->
+					<div class="text-center"
+						style="width: 30px; height: 30px; border-radius: 70%; overflow: hidden;">
+						<c:if test="${ post.file == null }">
+							<img style="width: 100%; height: 100%; object-fit: cover;"
+								src="<%=request.getContextPath()%>/static/images/common/user.png" />
+						</c:if>
+						<c:if test="${ post.file != null }">
+							<c:set value="data:image/png;base64, ${ post.file }"
+								var="profile" />
+							<img class="" src="${ profile }"
+								style="width: 100%; height: 100%; object-fit: cover;" />
+						</c:if>
+					</div>
+				</div>
+				<p class="g-col card-text mt-1">작성자: ${ post.author }</p>
+			</div>
 			<!-- 내용 -->
 			<hr />
 			<div class="my-2">
 				<label class="form-label d-none" for="content">내용</label>
-				<div class="card-text" id="content">${ post.content }</div>
+				<div class="card-text postDetail" id="content">${ post.content }</div>
 			</div>
 			<hr />
 			<!-- 작성날짜, 수정날짜 -->
