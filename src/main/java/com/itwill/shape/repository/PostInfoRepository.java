@@ -39,13 +39,13 @@ public interface PostInfoRepository {
 	 * 0616 손창민
 	 * post_info table에서 아규먼트로 넘겨받은 author(id), keyword와 일치하는 작성글 개수 불러오기
 	 */
-	int countPosts(@Param("author")String author, @Param("keyword")String keyword);
+	int countPosts(@Param("author")String author,  @Param("cri") Criteria cri);
 	
 	/**
 	 * 0616 손창민
 	 * post_info table에서 author(id), keyword와 일치하는 작성글 불러오기 with Paging
 	 */
-	List<PostInfo> selectByAuthorAndKeywordWithPaging(@Param("author") String author, @Param("keyword")String keyword, @Param("cri") Criteria cri);
+	List<PostInfo> selectByAuthorAndKeywordWithPaging(@Param("author") String author,  @Param("cri") Criteria cri);
 	
 	// 마이페이지 끝
 	

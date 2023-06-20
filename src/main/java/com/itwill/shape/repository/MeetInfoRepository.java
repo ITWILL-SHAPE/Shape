@@ -8,6 +8,7 @@ import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetSearchListDto;
+import com.itwill.shape.dto.PageMeetListDto;
 
 // meet_info의 repository.
 public interface MeetInfoRepository {
@@ -123,6 +124,7 @@ public interface MeetInfoRepository {
 	MeetInfo detailByMtid(long mtid);
 	
 	
+	List<PageMeetListDto> selectByidWithPaging(PageMeetListDto dto);
 	
 	// 리스트 페이징
 	List<MeetListCountDto> selectBySearchPaging(MeetSearchListDto dto);

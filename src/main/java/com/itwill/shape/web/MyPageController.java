@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.PageDto;
@@ -33,6 +34,7 @@ import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.dto.UserInfoSelectPwdByIdDto;
+import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.service.UserInfoService;
 
 import lombok.RequiredArgsConstructor;
@@ -49,99 +51,100 @@ public class MyPageController {
 	private final PostInfoService postInfoService;
 	private final UserInfoService userInfoService;
 	private final MeetListService meetListService;
+	private final MeetInfoRepository meetInfoRepository;
 
 	// 마이페이지 > 회원정보 > 나의 프로필
-		@GetMapping("/myprofile")
-		public String myProfile(@RequestParam("id") String id, Model model) {
-			log.info("myprofile()");
-			log.info("id={}", id);
+	@GetMapping("/myprofile")
+	public String myProfile(@RequestParam("id") String id, Model model) {
+		log.info("myprofile()");
+		log.info("id={}", id);
 
-			UserInfoSelectByIdDto dto = userInfoService.selectById(id);
-			
-			if(dto.getProfile() != null) {
-				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
-				String imgStr = null;
-				try {
-					imgStr = new String(byteImg, "UTF-8");
-					dto.setFile(imgStr);
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			if (dto.getProfileImageUrl() != null) {
-				model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
-			}
+		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 
-			model.addAttribute("myPageUserInfo", dto);
-			return "/mypage/memberinfo/myprofile";
+		if (dto.getProfile() != null) {
+			byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+			String imgStr = null;
+			try {
+				imgStr = new String(byteImg, "UTF-8");
+				dto.setFile(imgStr);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 
-		/**
-		 * 0613 김세이 회원정보 수정 페이지
-		 * 
-		 * @Param id
-		 * @Param model
-		 * @return "/mypage/memberinfo//profilemodifypage"
-		 */
-		@GetMapping("/profilemodifypage")
-		public String profileModifyPage(@RequestParam("id") String id, Model model) {
-			log.info("profileModifyPage(id={})", id);
+		if (dto.getProfileImageUrl() != null) {
+			model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+		}
 
-			UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+		model.addAttribute("myPageUserInfo", dto);
+		return "/mypage/memberinfo/myprofile";
+	}
 
-			if(dto.getProfile() != null) {
-				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
-				String imgStr = null;
-				try {
-					imgStr = new String(byteImg, "UTF-8");
-					dto.setFile(imgStr);
-				} catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
+	/**
+	 * 0613 김세이 회원정보 수정 페이지
+	 * 
+	 * @Param id
+	 * @Param model
+	 * @return "/mypage/memberinfo//profilemodifypage"
+	 */
+	@GetMapping("/profilemodifypage")
+	public String profileModifyPage(@RequestParam("id") String id, Model model) {
+		log.info("profileModifyPage(id={})", id);
+
+		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+
+		if (dto.getProfile() != null) {
+			byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+			String imgStr = null;
+			try {
+				imgStr = new String(byteImg, "UTF-8");
+				dto.setFile(imgStr);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
 			}
-			
-			if (dto.getProfileImageUrl() != null) {
-				model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
-			}
-			model.addAttribute("myPageUserInfo", dto);
+		}
+
+		if (dto.getProfileImageUrl() != null) {
+			model.addAttribute("profileImageUrl", dto.getProfileImageUrl());
+		}
+		model.addAttribute("myPageUserInfo", dto);
 
 //		    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
-			return "/mypage/memberinfo/profileModify";
-		}
+		return "/mypage/memberinfo/profileModify";
+	}
 
-		/**
-		 * 0619 김세이 프로필 사진 업로드 
-		 * 
-		 * @Param UserInfoSelectByIdDto 
-		 * @return "/mypage/memberinfo/profileupload"
-		 */
-		@PostMapping("/profileupload/{id}")
-		public String profileUpload(@PathVariable String id, UserInfoSelectByIdDto dto) {
-			log.info("profileUpload(dto = {})", dto);
-			
-			dto.setId(id);
-			
-			// 받아오는 파일
-			MultipartFile uploadFile = dto.getUploadFile();
-			if(!uploadFile.isEmpty()) {
-				
-				// 저장할 바이트
-				byte[] bytes;		
-				try {
-					// upload된 파일을 byte 로 변환
-					bytes = uploadFile.getBytes();
-					
-					dto.setProfile(bytes);
-					userInfoService.setProfile(dto);
-					
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+	/**
+	 * 0619 김세이 프로필 사진 업로드
+	 * 
+	 * @Param UserInfoSelectByIdDto
+	 * @return "/mypage/memberinfo/profileupload"
+	 */
+	@PostMapping("/profileupload/{id}")
+	public String profileUpload(@PathVariable String id, UserInfoSelectByIdDto dto) {
+		log.info("profileUpload(dto = {})", dto);
+
+		dto.setId(id);
+
+		// 받아오는 파일
+		MultipartFile uploadFile = dto.getUploadFile();
+		if (!uploadFile.isEmpty()) {
+
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile.getBytes();
+
+				dto.setProfile(bytes);
+				userInfoService.setProfile(dto);
+
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-	    return "redirect:/mypage/memberinfo/myprofile?id=" + id;
-			
 		}
+		return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+
+	}
 	/**
 	 * 0604 손창민 비밀번호 수정 전 비밀번호 재입력
 	 * 
@@ -322,13 +325,33 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
 	@GetMapping("/active")
-	public String readActiveMeet(@RequestParam("id") String prtcpId, Model model) {
+	public String readActiveMeet(@RequestParam("id") String prtcpId, Criteria cri, Model model) {
 		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByPrtcpId(prtcpId);
-		log.info("readActiveMeet(dto={})", dto);
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectByPrtcpId(prtcpId, cri);
+		log.info("readActiveMeet(dto={})", List);
 
-		model.addAttribute("activeList", dto);
+		// 이미지 파일
+		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
+			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+
+			if (mc.getImg_1() != null) {
+				byte[] byteEnc64 = Base64.getEncoder().encode(mc.getImg_1());
+				String imgStr = null;
+				try {
+					imgStr = new String(byteEnc64, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+
+				mc.setFile(imgStr);
+			}
+		}
+
+		List<MeetLike> ml = meetListService.LikeList();
+		log.info("ml", ml);
+		model.addAttribute("like", ml);
+		model.addAttribute("activeList", List);
 
 		return "/mypage/meet/active";
 	}
@@ -344,10 +367,27 @@ public class MyPageController {
 	public String readCreatedMeet(@RequestParam("id") String crtrId, Model model) {
 		log.info("readCreatedMeet(prtcpId(id)={})", crtrId);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectByCrtrId(crtrId);
-		log.info("readCreatedMeet(dto={})", dto);
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectByCrtrId(crtrId);
+		log.info("readCreatedMeet(dto={})", List);
 
-		model.addAttribute("createdList", dto);
+		// 이미지 파일
+		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
+			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+
+			if (mc.getImg_1() != null) {
+				byte[] byteEnc64 = Base64.getEncoder().encode(mc.getImg_1());
+				String imgStr = null;
+				try {
+					imgStr = new String(byteEnc64, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+
+				mc.setFile(imgStr);
+			}
+		}
+
+		model.addAttribute("createdList", List);
 
 		return "/mypage/meet/created";
 	}
@@ -363,10 +403,27 @@ public class MyPageController {
 	public String readInterestsMeet(@RequestParam("id") String id, Model model) {
 		log.info("readInterestsMeet(id={})", id);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> dto = meetListService.selectById(id);
-		log.info("readInterestsMeet(dto={})", dto);
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectById(id);
+		log.info("readInterestsMeet(dto={})", List);
 
-		model.addAttribute("interestsList", dto);
+		// 이미지 파일
+		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
+			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+
+			if (mc.getImg_1() != null) {
+				byte[] byteEnc64 = Base64.getEncoder().encode(mc.getImg_1());
+				String imgStr = null;
+				try {
+					imgStr = new String(byteEnc64, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+
+				mc.setFile(imgStr);
+			}
+		}
+
+		model.addAttribute("interestsList", List);
 
 		return "/mypage/meet/interests";
 	}
@@ -452,18 +509,39 @@ public class MyPageController {
 	 * @param cri
 	 * @param model
 	 */
-	@GetMapping("/mypostssearch")
+	@GetMapping("/searchposts")
 	public String searchPosts(@RequestParam("id") String id, Criteria cri, Model model) {
-		log.info("searchPosts(author(id)={}, keyword={}, cri={})", id, cri.getKeyword(), cri);
+		log.info("searchPosts(author(id)={}, cri={})", id, cri);
 
-		int count = postInfoService.countPosts(id, cri.getKeyword());
+		int count = postInfoService.countPosts(id, cri);
 		log.info("searchPosts(count={})", count);
 
-		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, cri.getKeyword(),
-				cri);
+		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, cri);
 		model.addAttribute("myposts", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
 		return "/mypage/board/myPosts";
+	}
+
+	/**
+	 * 0620 손창민 댓글검색 페이징
+	 * 
+	 * @param model
+	 * @param keyword
+	 * @param cri
+	 */
+	@GetMapping("/pagingposts")
+	@ResponseBody
+	public PageDto makePostsPage(@RequestParam("id") String id, Criteria cri) {
+		log.info("makePostsPage(author(id)={}, cri={})", id, cri);
+
+		int count = postInfoService.countPosts(id, cri);
+		log.info("makePostsPage(count={})", count);
+
+//		model.addAttribute("mycomments", list);
+
+//		model.addAttribute("pageMaker", new PageDto(cri, count));
+		log.info("makePage(PageDto={})", new PageDto(cri, count));
+		return new PageDto(cri, count);
 	}
 
 	/**
@@ -518,19 +596,41 @@ public class MyPageController {
 	 * @param keyword
 	 * @param cri
 	 */
-	@GetMapping("/mycommentssearch")
-	public String searchComments(@RequestParam("id") String id, @RequestParam("keyword") String keyword, Criteria cri,
-			Model model) {
-		log.info("searchComments(author(id)={}, keyword={}, cri={})", id, keyword, cri);
+	@GetMapping("/searchcomments")
+	public String searchComments(@RequestParam("id") String id, Criteria cri, Model model) {
+		log.info("searchComments(author(id)={}, cri={})", id, cri);
 
-		int count = postCommentsService.countComments(id, keyword);
+		int count = postCommentsService.countComments(id, cri);
 		log.info("searchComments(count={})", count);
 
-		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, keyword,
-				cri);
+		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, cri);
 		model.addAttribute("mycomments", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
 
+		log.info("searchComments(new PageDto={}", new PageDto(cri, count));
+
 		return "/mypage/board/myComments";
 	}
+
+	/**
+	 * 0620 손창민 댓글검색 페이징
+	 * 
+	 * @param model
+	 * @param keyword
+	 * @param cri
+	 *//*
+		 * @GetMapping("/pagingcomments")
+		 * 
+		 * @ResponseBody public PageDto makeCommentsPage(@RequestParam("id") String id,
+		 * Criteria cri) { log.info("searchComments(author(id)={}, cri={})", id, cri);
+		 * 
+		 * int count = postCommentsService.countComments(id, cri);
+		 * log.info("maekPage(count={})", count);
+		 * 
+		 * // model.addAttribute("mycomments", list);
+		 * 
+		 * // model.addAttribute("pageMaker", new PageDto(cri, count));
+		 * log.info("makePage(PageDto={})", new PageDto(cri, count)); return new
+		 * PageDto(cri, count); }
+		 */
 }

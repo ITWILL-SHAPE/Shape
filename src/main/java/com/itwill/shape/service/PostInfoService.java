@@ -73,20 +73,20 @@ public class PostInfoService {
 	 * 0616 손창민
 	 * post_info table에서 author(id), keyword와 일치하는 작성글 개수 불러오기
 	 */
-	public int countPosts(String author, String keyword) {
-		log.info("countPosts(author={}, keyword={})", author, keyword);
+	public int countPosts(String author, Criteria cri) {
+		log.info("countPosts(author={}, cri={})", author, cri);
 		
-		return postInfoRepository.countPosts(author, keyword);
+		return postInfoRepository.countPosts(author, cri);
 	}
 
 	/**
 	 * 0616 손창민 
 	 * post_info table에서 author(id), keyword와 일치하는 작성글 불러오기 with Paging
 	 */
-	public List<PostInfoSelectByAuthorDto> selectByAuthorAndKeywordWithPaging(String author, String keyword, Criteria cri) {
-		log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, keyword={}, cri={})", author, keyword, cri);
+	public List<PostInfoSelectByAuthorDto> selectByAuthorAndKeywordWithPaging(String author, Criteria cri) {
+		log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, cri={})", author, cri);
 		
-		List<PostInfo> entity = postInfoRepository.selectByAuthorAndKeywordWithPaging(author, keyword, cri);
+		List<PostInfo> entity = postInfoRepository.selectByAuthorAndKeywordWithPaging(author, cri);
 		log.info("selectByAuthorWithPaging(entity={})", entity);
 		
 		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();

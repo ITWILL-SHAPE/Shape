@@ -4,10 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
 <head>
-<script defer src="static/js/myPosts-delete.js"></script>
+<script defer src="static/js/mypage-posts.js"></script>
 <script>
 	var id = '${id}';
 </script>
+<style>
+.highlight {
+	background-color: yellow;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 	<div class="row">
@@ -119,10 +125,12 @@
 
 			<!--  검색 시작 -->
 			<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
-				<c:url var="postsSearch" value="/mypostssearch">
+			
+				<c:url var="searchPosts" value="/searchposts">
 					<c:param name="id" value="${id}" />
 				</c:url>
-				<form action="${postsSearch}" method="get">
+				
+				<form action="${searchPosts}" method="get">
 					<input type="hidden" name="id" value="${id}" />
 					<div class="input-group col-sm-7 my-2">
 						<input class="form-control" type="text" placeholder="검색어 입력"
@@ -141,6 +149,7 @@
 			<!-- 검색 끝 -->
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
+	</div>
 </body>
 <footer>
 	<%@ include file="../../common/footer.jsp"%>

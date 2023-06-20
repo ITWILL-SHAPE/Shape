@@ -41,7 +41,7 @@
 	<select id="countComments">
 		SELECT COUNT(*)
 		FROM post_comment
-		WHERE author = #{ author } AND LOWER(content) LIKE lower('%' || #{keyword} ||
+		WHERE author = #{ author } AND LOWER(content) LIKE lower('%' || #{cri.keyword} ||
 		'%')
 	</select>
 
@@ -53,7 +53,7 @@
    		  FROM 
        (SELECT /*+ INDEX_DESC(post_comment POST_COMMENT_PCID_PID_PK) */ ROWNUM rn, pcid, pid, content, author, created_date, modified_date
    		  FROM post_comment
-  	 	 WHERE author = #{author}  AND LOWER(content) LIKE lower('%' || #{keyword} || '%') AND pcid > 0 AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
+  	 	 WHERE author = #{author}  AND LOWER(content) LIKE lower('%' || #{cri.keyword} || '%') AND pcid > 0 AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
   	  ORDER BY created_date DESC)
          WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
          ]]>

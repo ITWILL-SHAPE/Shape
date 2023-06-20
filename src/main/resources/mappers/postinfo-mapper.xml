@@ -40,7 +40,7 @@
 	<select id="countPosts">
 		SELECT COUNT(*)
 		  FROM post_info
-		 WHERE author = #{ author } AND LOWER(title) LIKE lower('%' || #{keyword} || '%')
+		 WHERE author = #{ author } AND LOWER(title) LIKE lower('%' || #{ cri.keyword } || '%')
 	</select>
 	
 	<!-- post_info table에서 author(id), keyword로 작성글 목록 가져오기 with Paging -->
@@ -51,9 +51,9 @@
    		  FROM 
        (SELECT /*+ INDEX_DESC(post_info POST_INFO_PID_PK) */ ROWNUM rn, pid, title, content, author, hrs_hd, created_date, modified_date, views
    		  FROM post_info
-  	 	 WHERE author = #{author} AND LOWER(title) LIKE lower('%' || #{keyword} || '%') AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
+  	 	 WHERE author = #{ author } AND LOWER(title) LIKE lower('%' || #{ cri.keyword } || '%') AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{ cri.pageNum } * #{ cri.amount })
   	  ORDER BY created_date DESC)
-         WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
+         WHERE rn > ((#{ cri.pageNum } - 1) * #{ cri.amount })
          ]]>
 	</select>
 	<!-- 마이페이지 끝 -->
