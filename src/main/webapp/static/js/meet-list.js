@@ -77,29 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/*주말*/
 
-
-
-	const imgHeart = document.querySelectorAll('img#img-heart');
-
-	for (var i = 0; i < imgHeart.length; i++) {
-		imgHeart[i].addEventListener('click', LogInLikeCheck);
-	};
-
-	const imgUnHeart = document.querySelectorAll('img#img-heartEmpty');
-
-	for (var i = 0; i < imgUnHeart.length; i++) {
-		imgUnHeart[i].addEventListener('click', LogLikeUnCheck);
-	};
-	
-	const dataArr = [];
-	for (var i = 0; i < imgHeart.length; i++) {
-	const mtid = document.querySelector('input#mtid').value;
-	const id = document.querySelector('input#id').value;
-
-	const data = { mtid, id }
-	dataArr.push(data);
-	};
-
 	// 빨간하트 찜 취소
 	function LogInLikeCheck(event) {
 		event.preventDefault();
@@ -112,9 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		const id = event.target.getAttribute('data-login');
 		const reqUrl = `/shape/meet/like/${mtid}/${id}`;
 		console.log(mtid, id);
-		
-		
-		
+
+
+
 
 		axios.delete(reqUrl)
 			.then((response) => {
@@ -130,22 +107,22 @@ document.addEventListener('DOMContentLoaded', () => {
 			.catch((error) => {
 				console.log(error);
 			});
-		
+
 
 	};
-	
+
 	// 찜 함
 	function LogLikeUnCheck() {
-		
+
 		console.log('찜을 할거예요');
 		console.log(dataArr.forEach(value));
-		
+
 		axios.post('/shape/meet/like', dataArr.forEach(value))
 			.then((response) => {
 
 				if (response.data) {
 					goToList();
-					
+
 				} else {
 					console.log('없음');
 				}
@@ -155,9 +132,28 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 
 
-		
+
 
 	};
+
+
+	const imgHeart = document.querySelectorAll('img#img-heart');
+
+	imgHeart.forEach(function(fullImg) {
+		fullImg.addEventListener('click', LogInLikeCheck);
+	});
+
+	const imgUnHeart = document.querySelectorAll('img#img-heartEmpty');
+
+	imgUnHeart.forEach(function(emptyImg) {
+		emptyImg.addEventListener('click', LogInLikeCheck);
+	});
+
+	const mtid = document.querySelector('input#mtid').value;
+	const id = document.querySelector('input#id').value;
+
+	const data = { mtid, id }
+
 
 
 
@@ -179,7 +175,7 @@ const searchMeetList = function(e) {
 	const searchTitle = $('#titleBtn').val();
 	const searchSortBy = $('select[name="searchSortBy"]').val();
 	const searchMozipCheck = $('input[name="searchMozipCheck"]:checkbox').is(":checked");
-	
+
 	if (targetPage == null || targetPage == '') {
 		targetPage = $('input[name="pageNum"]').val();
 	}
@@ -193,10 +189,10 @@ const searchMeetList = function(e) {
 	}
 
 	console.log(data);
-	
+
 	// form
 	const searchMeetList = $('#searchMeetList');
-	
+
 	// pageNum
 	searchMeetList.find('input[name="pageNum"]').val(targetPage);
 	searchMeetList.submit();

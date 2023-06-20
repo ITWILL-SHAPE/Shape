@@ -2,35 +2,43 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.shape.repository.MeetLikeRepository">
+<mapper
+	namespace="com.itwill.shape.repository.MeetLikeRepository">
 
 	<!-- 찜 수 create문 -->
 	<insert id="likeCreate">
 		insert into MEET_LIKE (mtid, id)
-		values (#{mtid}, #{id})
+		values (#{mtid},
+		#{id})
 	</insert>
-	
+
 	<!-- 찜 수 delete문 -->
 	<delete id="likeDelete">
-		delete from MEET_LIKE 
+		delete from MEET_LIKE
 		where ID = #{id} and MTID = #{mtid}
 	</delete>
-	
-	<!--  meetList.jsp에서 사용될 찜 수 저장.-->
-	 <!-- java.lang.Long: wrapper Class(기본 데이터 타입을 객체로 감싸는 클래스) -->
-    <!-- primary key를 사용해도 됨: 중복 안되고 null이 아니기에 -->
-    <select id="selectMeetlikeCountWithMtid" resultType="java.lang.Long">
-        select count(mtid) from MEET_LIKE where mtid = #{mtid}
-    </select>
-    
-	<select id="selectMeetLikeListByMtid" resultType="com.itwill.shape.domain.MeetLike">
-		select * from MEET_LIKE where mtid = #{mtid} 
+
+	<!-- meetList.jsp에서 사용될 찜 수 저장. -->
+	<!-- java.lang.Long: wrapper Class(기본 데이터 타입을 객체로 감싸는 클래스) -->
+	<!-- primary key를 사용해도 됨: 중복 안되고 null이 아니기에 -->
+	<select id="selectMeetlikeCountWithMtid"
+		resultType="java.lang.Long">
+		select count(mtid) from MEET_LIKE where mtid = #{mtid}
 	</select>
-	
+
+	<select id="selectMeetLikeListByMtid"
+		resultType="com.itwill.shape.domain.MeetLike">
+		select * from MEET_LIKE where mtid = #{mtid}
+	</select>
+
 	<!-- 김지민 -->
-	<select id="selectMeetLikeList" resultType="com.itwill.shape.domain.MeetLike">
-		select * from MEET_LIKE 
+	<select id="selectMeetLikeList"
+		resultType="com.itwill.shape.domain.MeetLike">
+		select L.*
+		from MEET_LIKE L
+		left join meet_info I
+		ON L.mtid = I.mtid
 	</select>
-   
-	
+
+
 </mapper>

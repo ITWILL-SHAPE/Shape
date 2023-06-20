@@ -157,7 +157,7 @@
 											</c:when>
 											<c:otherwise>
 												<img
-													src="<%=request.getContextPath()%>/static/images/common/main1.png"
+													src="<%=request.getContextPath()%>/static/images/common/BasicMeetImg.png"
 													class="bd-placeholder-img card-img-top"
 													width="100%" height="220"
 													xmlns="http://www.w3.org/2000/svg"
@@ -175,42 +175,45 @@
 											<input class="d-none" id="id" value="${loginUser}" />
 											<c:set var="author" value="${ cardList.CRTR_ID }" />
 											<c:set value="false" var="loop" />
-											<c:forEach items="${like}" var="like">
-												<c:choose>
-													<c:when test="${ loginUser == author && loop == false}">
-														<img src="../static/images/sample/like2.svg"
-															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right"
-															id="img-heartEd${status.current}"
-															onclick="event.stopPropagation(); alert('선택하신 모임을 작성한 사용자는 찜을 할 수 없습니다.');" />
-														<c:set value="true" var="loop" />
-													</c:when>
-													<c:when
-														test="${ loginUser == like.id && cardList.mtid == like.mtid && loop == false }">
-														<img src="../static/images/sample/like.svg"
-															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right"
-															id="img-heart${status.current}"
-															onclick="event.stopPropagation(); LogInLikeCheck();" />
-														<c:set value="true" var="loop" />
-													</c:when>
-													<c:when
-														test="${ (loginUser != like.id || cardList.mtid != like.mtid) && loop == false }">
-														<img src="../static/images/sample/like2.svg"
-															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right"
-															id="img-heartEmpty${status.current}"
-															onclick="event.stopPropagation(); LogLikeUnCheck();" />
-														<c:set value="true" var="loop" />
-													</c:when>
-												</c:choose>
+											<c:forEach items="${like}" var="like" varStatus="likeStatus">
+												<c:set value="${ like.mtid == cardList.mtid }" var="mtIdBoolean"/>
+												<c:set value="${ loginUser eq cardList.CRTR_ID }" var="mtAuthorBoolean"/>
+												<c:set value="${ like.id eq loginUser }" var="loginUserBoolean"/>
+												
+												<%-- <c:out value="${ (mtIdBoolean && loginUserBoolean) && loop}"></c:out> --%>
+												<c:if test="${ (mtIdBoolean && loginUserBoolean) && loop }">
+													<input class="d-none" id="likeMtid" value="${ like.mtid }" />
+													<img src="../static/images/sample/like.svg"
+														alt="toggle-off" width="40"
+														class="heart overlay-image overlay-right"
+														id="img-heart${likeStatus.index}"/>
+													<c:set value="true" var="loop" />
+												</c:if>
+												
+												<c:if test="${ (mtIdBoolean && mtAuthorBoolean) && loop }">
+													<input class="d-none" id="likeMtid" value="${ like.mtid }" />
+													<img src="../static/images/sample/like2.svg"
+														alt="toggle-off" width="40"
+														class="heart overlay-image overlay-right"
+														id="img-heartEd${likeStatus.index}" />
+													<c:set value="true" var="loop" />
+												</c:if>
+												
+												<c:if test="${ (!mtIdBoolean ||  !loginUserBoolean) && !loop }">
+													<input class="d-none" id="likeMtid" value="${ like.mtid }" />
+													<img src="../static/images/sample/like2.svg"
+														alt="toggle-off" width="40"
+														class="heart overlay-image overlay-right"
+														id="img-heartEmpty${likeStatus.index}" />
+													<c:set value="true" var="loop" />
+												</c:if>
+												
 											</c:forEach>
 										</sec:authorize>
-										<!-- 로그인 안 함 -->
 										<sec:authorize access="isAnonymous()">
 											<img src="../static/images/sample/like2.svg" alt="not-move"
 												width="40" class="heart overlay-image overlay-right"
-												onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
+												onclick="event.stopPropagation(); alert('로그인 후 모임상세보기 창에서 찜 가능합니다');" />
 										</sec:authorize>
 										<div>
 											<c:choose>
@@ -282,7 +285,7 @@
 		<nav>
 			<ul class="pagination justify-content-center">
 				<li class="page-item ${ paging.prev ? '' : 'disabled' }"><a
-					class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a>
+					class="page-link" href="${ paging.startPage -1 }" tabindex="-1">&laquo;</a>
 				</li>
 				<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
 					var="num">
@@ -291,7 +294,7 @@
 					</li>
 				</c:forEach>
 				<li class="page-item ${ paging.next? '' : 'disabled' }"><a
-					class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a>
+					class="page-link" href="${ paging.endPage +1 }" tabindex="-1">&raquo;</a>
 				</li>
 			</ul>
 		</nav>
