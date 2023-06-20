@@ -106,10 +106,10 @@ public class MeetListService {
 	 * 
 	 * @return
 	 */
-	public List<MeetLike> LikeList(long mtid) {
+	public List<MeetLike> LikeList() {
 		log.info("readByCreateTime()");
 
-		return meetLikeRepository.selectMeetLikeListByMtid(mtid);
+		return meetLikeRepository.selectMeetLikeList();
 	}
 
 	/**

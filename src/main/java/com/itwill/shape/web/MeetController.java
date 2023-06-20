@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
@@ -32,6 +33,7 @@ import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetPrtcpCreateDto;
 import com.itwill.shape.dto.MeetSearchListDto;
 import com.itwill.shape.dto.PageDto;
+import com.itwill.shape.dto.PageMeetListDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
@@ -211,22 +213,22 @@ public class MeetController {
 		log.info("listCount = {}", total);
 
 		// 페이징을 위한
-		Criteria cri = new Criteria();
+		CriteriaMeet cri = new CriteriaMeet();
 		if (search.getPageNum() != 0) {
 			cri.setPageNum(search.getPageNum());
-			cri.setAmount(search.getAmount() + 5);
+			//cri.setAmount(search.getAmount());
 		} else {
 			search.setPageNum(cri.getPageNum());
-			search.setAmount(cri.getAmount() + 5);
+			search.setAmount(cri.getAmount());
 		}
 
 		Map<String, Object> map = meetListService.selectBySearch(search);
-		List<MeetLike> ml = new ArrayList<>();
+		List<MeetLike> ml = meetListService.LikeList();
 
 
 		model.addAttribute("listCount", map.get("list"));
 		model.addAttribute("search", search);
-		model.addAttribute("paging", new PageDto(cri, total));
+		model.addAttribute("paging", new PageMeetListDto(cri, total));
 		model.addAttribute("like", ml);
 		
 	}
