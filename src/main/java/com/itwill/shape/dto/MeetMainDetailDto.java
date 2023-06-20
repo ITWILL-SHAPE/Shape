@@ -44,7 +44,7 @@ public class MeetMainDetailDto { // 상세페이지
 	private long views;  // 조회수 (안함)
 	private Timestamp created_date; // 작성한 시간
 	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST)
-	private UserInfo userHost; // Host 작성자
+	private UserInfo userHost; // USER 작성자
 	private long meetlikecount; // 찜 갯수
 	private List<MeetLike> meetLikeId; // 찜 한 아이디
 	private long meetNumberPrtcp; // 참여자 인원수
