@@ -41,7 +41,7 @@
 	<select id="countComments">
 		SELECT COUNT(*)
 		FROM post_comment
-		WHERE author = #{ author } AND LOWER(content) LIKE lower('%' || #{keyword} ||
+		WHERE author = #{ author } AND LOWER(content) LIKE lower('%' || #{cri.keyword} ||
 		'%')
 	</select>
 
@@ -53,7 +53,7 @@
    		  FROM 
        (SELECT /*+ INDEX_DESC(post_comment POST_COMMENT_PCID_PID_PK) */ ROWNUM rn, pcid, pid, content, author, created_date, modified_date
    		  FROM post_comment
-  	 	 WHERE author = #{author}  AND LOWER(content) LIKE lower('%' || #{keyword} || '%') AND pcid > 0 AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
+  	 	 WHERE author = #{author}  AND LOWER(content) LIKE lower('%' || #{cri.keyword} || '%') AND pcid > 0 AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
   	  ORDER BY created_date DESC)
          WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
          ]]>
@@ -66,10 +66,13 @@
 		select count(PCID) from POST_COMMENT
 		where PID = #{pid}
 	</select>
-
+	
+	<!-- 게시판 댓글 리스트  -->
 	<select id="selectByPid"
 		resultType="com.itwill.shape.domain.PostComment">
-		select * from POST_COMMENT
+		select C.pcid, C.pid, C.content, C.author, C.created_date, C.modified_date, U.profile as profile
+		from POST_COMMENT C
+		left join user_info U on C.author = U.id
 		where PID = #{pid}
 		order by MODIFIED_DATE desc
 	</select>

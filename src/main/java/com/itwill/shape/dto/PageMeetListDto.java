@@ -13,6 +13,9 @@ public class PageMeetListDto {
 	private int total; //게시물 수
 	private CriteriaMeet cri;
 	
+	private int pageNum;
+	private int amount;
+	
 	public PageMeetListDto(CriteriaMeet cri, int total) {
 		this.cri = cri;
 		this.total = total;

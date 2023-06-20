@@ -28,7 +28,7 @@ public class InfoNoticeService {
 		 */
 		public List<InfoNoticeListDto> read() {
 			log.info("read()");
-			return infoNoticeRepository.selectOrderByDateDesc();
+			return infoNoticeRepository.selectfixed();
 		}
 		
 		/**

@@ -63,16 +63,16 @@
 							<input class="form-check-input" type=checkbox name="fix" id="checkbox" value="-1"/>
 						</div>
 					</div>
-					
-				</form>
-			</div>
-			<div class="my-2 text-center">
+					<div class="my-2 text-center">
 						<c:url var="noticeList" value="/mngr/notice/list" />
 						<a class="btn" href="${ noticeList }" style="background-color: #D3FF31;">목록</a>
 						<button class="btn" type="submit" id="btnCreateNotice" style="background-color: #D3FF31;">
 							등록
 						</button>
+				</div>
+				</form>
 			</div>
+			
 
 		<script src="<%=request.getContextPath()%>/static/js/notice-summernote.js"></script>
 	</div>

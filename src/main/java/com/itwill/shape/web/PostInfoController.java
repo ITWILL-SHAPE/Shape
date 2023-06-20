@@ -1,5 +1,7 @@
 package com.itwill.shape.web;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -45,6 +47,18 @@ public class PostInfoController {
 		log.info("listCount={}", total);
 		
 		List<PostListDto> list = postInfoService.read(cri);
+		for(PostListDto dto: list) {
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String (byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 		model.addAttribute("posts", list);
 		model.addAttribute("paging", new PageDto(cri, total));
@@ -65,6 +79,18 @@ public class PostInfoController {
 		log.info("listCount = {}",keywordTotal);
 		
 		List<PostListDto> list = postInfoService.read(keyword, cri);
+		for(PostListDto dto: list) {
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String (byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		model.addAttribute("posts", list);
 		model.addAttribute("paging", new PageDto(cri, keywordTotal));
 	}
@@ -91,6 +117,16 @@ public class PostInfoController {
 		postInfoService.viewCount(pid);
 		
 		PostDetailDto dto = postInfoService.read(pid);
+		if(dto!= null) {
+			byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+			String imgStr = null;
+			try {
+				imgStr = new String (byteImg, "UTF-8");
+				dto.setFile(imgStr);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
 
 		model.addAttribute("post", dto);
 	}

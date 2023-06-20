@@ -40,7 +40,7 @@
 	<select id="countPosts">
 		SELECT COUNT(*)
 		  FROM post_info
-		 WHERE author = #{ author } AND LOWER(title) LIKE lower('%' || #{keyword} || '%')
+		 WHERE author = #{ author } AND LOWER(title) LIKE lower('%' || #{ cri.keyword } || '%')
 	</select>
 	
 	<!-- post_info table에서 author(id), keyword로 작성글 목록 가져오기 with Paging -->
@@ -51,9 +51,9 @@
    		  FROM 
        (SELECT /*+ INDEX_DESC(post_info POST_INFO_PID_PK) */ ROWNUM rn, pid, title, content, author, hrs_hd, created_date, modified_date, views
    		  FROM post_info
-  	 	 WHERE author = #{author} AND LOWER(title) LIKE lower('%' || #{keyword} || '%') AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{cri.pageNum} * #{cri.amount})
+  	 	 WHERE author = #{ author } AND LOWER(title) LIKE lower('%' || #{ cri.keyword } || '%') AND pid > 0 AND ROWNUM > 0 AND ROWNUM <= (#{ cri.pageNum } * #{ cri.amount })
   	  ORDER BY created_date DESC)
-         WHERE rn > ((#{cri.pageNum} - 1) * #{cri.amount})
+         WHERE rn > ((#{ cri.pageNum } - 1) * #{ cri.amount })
          ]]>
 	</select>
 	<!-- 마이페이지 끝 -->
@@ -77,24 +77,45 @@
 	<select id="selectWithKeywordAndPaging" parameterType="String"
 		resultType="com.itwill.shape.dto.PostListDto">
 		<![CDATA[
-		select * from 
-		(
-		select rownum rn, PID, HRS_HD, TITLE, AUTHOR, CREATED_DATE, MODIFIED_DATE 
-		from 
-        (
-        select P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE, count(C.PCID) as RCNT
-        from POST_INFO P left join POST_COMMENT C
-            on P.PID = C.PID
-        where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
-        group by P.PID, P.HRS_HD, P.TITLE, P.AUTHOR, P.CREATED_DATE, P.MODIFIED_DATE
-        order by P.CREATED_DATE desc
-        )
-		where PID > 0 and rownum > 0 and rownum <= (#{pageNum} * #{amount})
-		)
-		where rn >(#{pageNum}-1) * #{amount}
+		WITH T AS (
+            SELECT 
+                P.PID,
+                P.HRS_HD,
+                P.TITLE,
+                P.AUTHOR,
+                P.CREATED_DATE,
+                P.MODIFIED_DATE,    
+                (
+                SELECT COUNT(PCID)
+                FROM POST_COMMENT
+                WHERE PID = P.PID
+                ) AS RCNT,
+                U.profile
+            FROM POST_INFO P
+            LEFT JOIN USER_INFO U ON P.author = U.id
+            where lower(P.TITLE) like lower('%' || #{keyword} || '%') or lower(P.HRS_HD) like lower('%' || #{keyword} || '%')   
+            ORDER BY P.PID DESC
+            )
+			SELECT *
+			FROM (
+			    SELECT 
+			        rownum rn, 
+			        T.PID, 
+			        T.HRS_HD, 
+			        T.TITLE, 
+			        T.AUTHOR, 
+			        T.CREATED_DATE, 
+			        T.MODIFIED_DATE, 
+			        T.RCNT, 
+                    T.profile
+			    FROM T
+			    WHERE T.PID > 0 AND rownum <= (#{pageNum} * #{amount})
+                
+			)
+            WHERE rn > (#{pageNum}-1) * #{amount}
 		]]>
 	</select>
-
+	<!-- 
 	<select id="getListWithPaging"
 		resultType="com.itwill.shape.dto.PostListDto">
 		<![CDATA[
@@ -114,7 +135,48 @@
 		where rn >(#{pageNum}-1) * #{amount}
 		]]>
 	</select>
-
+	 -->
+	 <select id="getListWithPaging"
+	 resultType="com.itwill.shape.dto.PostListDto">
+	 	<![CDATA[
+	 	WITH T AS (
+            SELECT 
+                P.PID,
+                P.HRS_HD,
+                P.TITLE,
+                P.AUTHOR,
+                P.CREATED_DATE,
+                P.MODIFIED_DATE,    
+                (
+                SELECT COUNT(PCID)
+                FROM POST_COMMENT
+                WHERE PID = P.PID
+                ) AS RCNT,
+                U.profile
+            FROM POST_INFO P
+            LEFT JOIN USER_INFO U ON P.author = U.id
+            ORDER BY P.PID DESC
+            )
+			SELECT *
+			FROM (
+			    SELECT 
+			        rownum rn, 
+			        T.PID, 
+			        T.HRS_HD, 
+			        T.TITLE, 
+			        T.AUTHOR, 
+			        T.CREATED_DATE, 
+			        T.MODIFIED_DATE, 
+			        T.RCNT, 
+                    T.profile
+			    FROM T
+			    WHERE T.PID > 0 AND rownum <= (#{pageNum} * #{amount})
+                
+			)
+            WHERE rn > (#{pageNum}-1) * #{amount}
+	 	]]>
+	 </select>
+	 
 	<select id="listCount">
 		SELECT COUNT(*) FROM POST_INFO
 	</select>
@@ -149,7 +211,10 @@
 
 	<select id="selectByPid"
 		resultType="com.itwill.shape.domain.PostInfo">
-		select * from POST_INFO where PID = #{pid}
+		select P.pid, P.title, P.author, P.hrs_hd, P.created_date, P.modified_date, P.views, P.content, U.profile as profile
+		from POST_INFO P
+		left join user_info U on P.author = U.id
+		where PID = #{pid}
 	</select>
 
 	<update id="viewCount">
@@ -165,10 +230,5 @@
 		where PID =
 		#{pid}
 	</update>
-
-
-	<select id="count" resultType="int">
-		select count(pid) from POST_INFO
-	</select>
 
 </mapper>

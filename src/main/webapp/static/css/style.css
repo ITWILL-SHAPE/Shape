@@ -441,3 +441,9 @@ th, td {
 .custom-input {
   width: 200px; /* 원하는 길이로 설정 */
 }
+
+.postDetail > p > img{
+	object-fit: contain;
+	width: 100% !important;
+	height: 100%;
+}

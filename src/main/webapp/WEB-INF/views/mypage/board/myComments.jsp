@@ -4,10 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../common/header.jsp"%>
 <head>
-<script defer src="static/js/myComments-delete.js"></script>
+<script defer src="static/js/mypage-comments.js"></script>
 <script>
 	var id = '${id}';
 </script>
+<style>
+.highlight {
+	background-color: yellow;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 	<div class="row">
@@ -98,11 +104,12 @@
 			</div>
 
 			<!--  검색 시작 -->
+
 			<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
-				<c:url var="commentSearch" value="/mycommentssearch">
+				<c:url var="searchComments" value="/searchcomments">
 					<c:param name="id" value="${id}" />
 				</c:url>
-				<form action="${commentSearch}" method="get">
+				<form action="${searchComments}" method="get">
 					<input type="hidden" name="id" value="${id}" />
 					<div class="input-group col-sm-7 my-2">
 						<input class="form-control" type="text" placeholder="검색어 입력"
@@ -111,16 +118,37 @@
 						<button type="submit" class="btn btn-classic">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-          <path
+                    <path
 									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-        </svg>
+                </svg>
 						</button>
 					</div>
 				</form>
 			</div>
+
+			<%-- <div class="d-grid my-2 col-7 mx-auto m-5 text-center">
+			
+				<c:url var="searchComments" value="/searchcomments">
+					<c:param name="id" value="${id}" />
+				</c:url>
+				 
+				<div class="input-group col-sm-7 my-2">
+					<input class="form-control" type="text" placeholder="검색어 입력"
+						name="keyword" id="keyword" aria-label="Input group example"
+						aria-describedby="basic-addon1" />
+					<button type="button" class="btn btn-classic" id="searchButton">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+      </svg>
+					</button>
+				</div>
+			</div> --%>
 			<!-- 검색 끝 -->
 		</div>
 		<!-- 메인 컨텐츠 끝 -->
+	</div>
 </body>
 <footer>
 	<%@ include file="../../common/footer.jsp"%>

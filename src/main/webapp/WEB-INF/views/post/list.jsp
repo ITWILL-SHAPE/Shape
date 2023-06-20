@@ -22,24 +22,48 @@
 				<c:url var="postDetailPage" value="/post/detail">
 					<c:param name="pid" value="${ postInfo.pid }" />
 				</c:url>
+
 				<div class="col" onclick="location.href='${ postDetailPage }'">
 					<div class="card my-2 p-3">
 						<div class="card-body">
-							<!-- 글 번호 -->
-							<!-- <div>${ postInfo.pid }</div> -->
 							<!-- 말머리랑 제목 -->
 							<h5 class="card-title text-truncate">[ ${ postInfo.hrs_hd} ]
 								${ postInfo.title }</h5>
-							<!-- 작성자 -->
-							<p class="card-text">
-								작성자: ${ postInfo.author }
-								<!-- 작성 날짜 -->
-								<br />날짜:
-								<fmt:formatDate value="${ postInfo.modified_date }"
-									pattern="yyyy-MM-dd" />
+							<div class="mt-2 grid d-grid d-md-flex">
+								<div class="g-col-3">
+									<!-- 프로필 사진 -->
+									<div class="text-center"
+										style="width: 70px; height: 70px; border-radius: 70%; overflow: hidden;">
+										<c:if test="${ postInfo.profile == null }">
+											<img class=""
+												style="width: 100%; height: 100%; object-fit: cover;"
+												src="<%=request.getContextPath()%>/static/images/common/user.png" />
+										</c:if>
+										<c:if test="${ postInfo.profile != null }">
+											<c:set value="data:image/png;base64, ${ postInfo.file }"
+													var="profile" />
+											<img class="" src="${ profile }" 
+												style="width: 100%; height: 100%; object-fit: cover;"/>
+										</c:if>
+									</div>
+								</div>
+								<!-- 게시글 작성자 등 -->
+								<div class="g-col ms-2">
+									<!-- 글 번호 -->
+									<!-- <div>${ postInfo.pid }</div> -->
 
-								<br />댓글: ${ postInfo.rcnt }
-							</p>
+									<!-- 작성자 -->
+									<p class="card-text">
+										작성자: ${ postInfo.author }
+										<!-- 작성 날짜 -->
+										<br />날짜:
+										<fmt:formatDate value="${ postInfo.modified_date }"
+											pattern="yyyy-MM-dd" />
+
+										<br />댓글: ${ postInfo.rcnt }
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -71,23 +95,23 @@
 
 		<!-- 검색 -->
 		<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
-		<c:url var="postSearch" value="/post/search"></c:url>
-		<form action="${ postSearch }">
-			<div class="input-group col-sm-7 my-2">
-				<input class="form-control" type="text" placeholder="검색어 입력"
-					name="keyword" id="keyword" aria-label="Input group example"
-					aria-describedby="basic-addon1" />
-				<button type="submit" class="btn btn-classic">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-						fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+			<c:url var="postSearch" value="/post/search"></c:url>
+			<form action="${ postSearch }">
+				<div class="input-group col-sm-7 my-2">
+					<input class="form-control" type="text" placeholder="검색어 입력"
+						name="keyword" id="keyword" aria-label="Input group example"
+						aria-describedby="basic-addon1" />
+					<button type="submit" class="btn btn-classic">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
           							<path
-							d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
         							</svg>
-				</button>
-			</div>
-		</form>
+					</button>
+				</div>
+			</form>
 		</div>
-		
+
 	</div>
 
 </div>

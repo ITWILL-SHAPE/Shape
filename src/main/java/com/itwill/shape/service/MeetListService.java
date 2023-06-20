@@ -11,11 +11,13 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetSearchListDto;
+import com.itwill.shape.dto.PageMeetListDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.MeetPrtcpRepository;
@@ -97,8 +99,8 @@ public class MeetListService {
 	 * @param prtcpId
 	 * @return
 	 */
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId) {
-		log.info("selectByPrtcpId(prtcpId={})", prtcpId);
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, Criteria cri) {
+		log.info("selectByPrtcpId(crtrId={})", prtcpId);
 
 		return meetInfoRepository.selectByPrtcpId(prtcpId);
 	}
