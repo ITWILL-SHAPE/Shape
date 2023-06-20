@@ -48,7 +48,7 @@
 						</div>
 						<!-- 2번쨰 -->
 						<div class="carousel-item active">
-							<img src="<%=request.getContextPath()%>/static/images/common/mainImage.png" 
+							<img src="<%=request.getContextPath()%>/static/images/common/mainImage2.png" 
 								class="bd-placeholder-img" width="100%" height="100%"/>
 							<div class="container">
 								<div class="carousel-caption">
@@ -58,13 +58,13 @@
 						</div>
 						<!-- 3번쩨 -->
 						<div class="carousel-item">
-							<img src="<%=request.getContextPath()%>/static/images/common/mainImage.png"
+							<img src="<%=request.getContextPath()%>/static/images/common/mainImage3.png"
 								class="bd-placeholder-img" width="100%" height="100%"/>
 	
 							<div class="container">
 								<div class="carousel-caption text-end">
 								<!-- 글쓰기 -->	
-								<p class="black">마지막</p>
+								<p class="black"></p>
 								</div>
 							</div>
 						</div>
