@@ -137,41 +137,41 @@
 							</dt>
 							<dd align="left">
 							<div id="inputContainer">
-							  <div class="input-group mb-3">
-							    <c:if test="${meet.img_1 != null}">
+							  <c:if test="${meet.file1 != null}">
+							    <div class="input-group mb-3">
 							      <c:set value="data:image/png;base64, ${meet.file1}" var="url1" />
-							      <img src="${url1}" class="imagePreview" id="imagePreview1">
+							      <img src="${url1}" class="imagePreview">
 							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
-							    </c:if>
-							  </div>
-							  <div class="input-group mb-3">
-							    <c:if test="${meet.img_2 != null}">
+							     </div>
+							   </c:if>
+							   <c:if test="${meet.file2 != null}">
+							   <div class="input-group mb-3">
 							      <c:set value="data:image/png;base64, ${meet.file2}" var="url2" />
-							      <img src="${url2}" class="imagePreview" id="imagePreview2">
+							      <img src="${url2}" class="imagePreview">
 							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
-							    </c:if>
-							  </div>
-							  <div class="input-group mb-3">
-							    <c:if test="${meet.img_3 != null}">
+							    </div>
+							   </c:if>
+							   <c:if test="${meet.file3 != null}">
+							  	<div class="input-group mb-3">
 							      <c:set value="data:image/png;base64, ${meet.file3}" var="url3" />
-							      <img src="${url3}" class="imagePreview" id="imagePreview3">
+							      <img src="${url3}" class="imagePreview">
 							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
-							    </c:if>
-							  </div>
-							  <div class="input-group mb-3">
-							    <c:if test="${meet.img_4 != null}">
+							    </div>
+							   </c:if>
+							   <c:if test="${meet.file4 != null}">
+							     <div class="input-group mb-3">
 							      <c:set value="data:image/png;base64, ${meet.file4}" var="url4" />
-							      <img src="${url4}" class="imagePreview" id="imagePreview4">
+							      <img src="${url4}" class="imagePreview">
 							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							     </div>
 							    </c:if>
-							  </div>
-							  <div class="input-group mb-3">
-							    <c:if test="${meet.img_5 != null}">
+							    <c:if test="${meet.file5 != null}">
+							     <div class="input-group mb-3">
 							      <c:set value="data:image/png;base64, ${meet.file5}" var="url5" />
-							      <img src="${url5}" class="imagePreview" id="imagePreview5">
+							      <img src="${url5}" class="imagePreview">
 							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							     </div>
 							    </c:if>
-							  </div>
 							</div>
 							</dd>
 							<br>
