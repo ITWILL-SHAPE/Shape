@@ -36,6 +36,7 @@ public class MeetInfoUpdateDto {
 	private byte[] img_5;
 	private String content;
 	
+	// 이미지를 보여주기 위한 byte[] to String
 	private String file1;
 	private String file2;
 	private String file3;

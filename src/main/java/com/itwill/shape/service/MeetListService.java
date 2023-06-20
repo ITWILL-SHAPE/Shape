@@ -32,15 +32,34 @@ public class MeetListService {
 	private final MeetLikeRepository meetLikeRepository;
 	private final MeetPrtcpRepository meetPrtcpRepository;
 
+	
 	/**
 	 * 정지언 메인페이지 모임 최신순 보이기
 	 * 
 	 * @return
 	 */
 	public List<MeetListCountDto> mainReadByRecent() {
-		log.info("mainReadByRecent()");
+	    log.info("mainReadByRecent()");
 
-		return meetInfoRepository.selectOrderByRecent();
+	    List<MeetListCountDto> meetList = meetInfoRepository.selectOrderByRecent();
+
+	    for (MeetListCountDto mc : meetList) {
+	        mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+
+	        if (mc.getImg_1() != null) {
+	            byte[] byteEnc64 = Base64.getEncoder().encode(mc.getImg_1());
+	            String imgStr = null;
+	            try {
+	                imgStr = new String(byteEnc64, "UTF-8");
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            }
+
+	            mc.setFile(imgStr);
+	        }
+	    }
+
+	    return meetList;
 	}
 
 	/**
@@ -51,7 +70,25 @@ public class MeetListService {
 	public List<MeetListCountDto> mainReadByPopularity() {
 		log.info("mainReadByPopularity()");
 
-		return meetInfoRepository.selectOrderByPopularity();
+		List<MeetListCountDto> meetList = meetInfoRepository.selectOrderByPopularity();
+		
+	    for (MeetListCountDto mc : meetList) {
+	        mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+
+	        if (mc.getImg_1() != null) {
+	            byte[] byteEnc64 = Base64.getEncoder().encode(mc.getImg_1());
+	            String imgStr = null;
+	            try {
+	                imgStr = new String(byteEnc64, "UTF-8");
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            }
+
+	            mc.setFile(imgStr);
+	        }
+	    }
+
+	    return meetList;
 	}
 
 	/**
