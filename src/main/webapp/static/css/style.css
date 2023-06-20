@@ -72,8 +72,14 @@ a.mainA:active { color: #3B7CFF; }
 }
 
 .carousel-item {
-     width: auto;
-     height: auto;
+     /* width: auto; */
+     height: inherit;
+}
+
+.carousel-item > img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
 }
 
 .carousel-indicators [data-bs-target] {

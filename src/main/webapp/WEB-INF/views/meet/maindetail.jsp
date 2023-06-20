@@ -44,13 +44,11 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<c:if test="${ meetmaindetail.file1 == null }">							
-							<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png" 
-								class="bd-placeholder-img" width="100%" height="150%"/>							
+							<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png"/>							
 						</c:if>
 						<c:if test="${ meetmaindetail.file1 != null }"> 
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file1 }" var="url1" />							
-							<img src="${ url1 }" class="d-block mx-auto" 
-							style="width: 100%; height: 100%; object-fit: fill;"/> 
+							<img src="${ url1 }" class="d-block mx-auto"/> 
 						</c:if>						
 						<div class="container">
 							<div class="carousel-caption text-start">
@@ -61,8 +59,7 @@
 					<c:if test="${ meetmaindetail.file2 != null }">					
 						<div class="carousel-item">
 								<c:set value="data:image/png;base64, ${ meetmaindetail.file2 }" var="url2" />
-								<img src="${ url2 }" class="bd-placeholder-img" 
-							style="width: 100%; height: 100%; object-fit: fill;"/> 
+								<img src="${ url2 }" class="bd-placeholder-img" /> 
 							
 							<div class="container">
 								<div class="carousel-caption">	
@@ -74,8 +71,7 @@
 					<c:if test="${ meetmaindetail.file3 != null }"> 
 						<div class="carousel-item">
 								<c:set value="data:image/png;base64, ${ meetmaindetail.file3 }" var="url3" />
-								<img src="${ url3 }" class="bd-placeholder-img" 
-							style="width: 100%; height: 100%; object-fit: fill;"/> 
+								<img src="${ url3 }" class="bd-placeholder-img" /> 
 							
 							<div class="container">
 								<div class="carousel-caption">	
@@ -87,8 +83,7 @@
 					<c:if test="${ meetmaindetail.file4 != null }"> 
 						<div class="carousel-item">
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file4 }" var="url4" />
-							<img src="${ url4 }" class="bd-placeholder-img" 
-							style="width: 100%; height: 100%; object-fit: contain;"/> 
+							<img src="${ url4 }" class="bd-placeholder-img"/> 
 						
 							<div class="container">
 								<div class="carousel-caption">	
@@ -100,8 +95,7 @@
 					<c:if test="${ meetmaindetail.file5 != null }">
 						<div class="carousel-item"> 
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file5 }" var="url5" />
-							<img src="${ url5 }" class="bd-placeholder-img" 
-							style="width: 100%; height: 100%; object-fit: contain;"/> 
+							<img src="${ url5 }" class="bd-placeholder-img"/> 
 						
 							<div class="container">
 								<div class="carousel-caption text-end">
