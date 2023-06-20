@@ -44,7 +44,7 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<c:if test="${ meetmaindetail.file1 == null }">							
-							<img src="<%=request.getContextPath()%>/static/images/common/Asset1.png"/>							
+							<img src="<%=request.getContextPath()%>/static/images/common/mainImage.png"/>							
 						</c:if>
 						<c:if test="${ meetmaindetail.file1 != null }"> 
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file1 }" var="url1" />							
@@ -206,6 +206,18 @@
 						
 						<!-- 이 글을 작성한 유저 -->
 						<c:set var="author" value="${ meetmaindetail.crtr_id }" />
+						<!-- 사용자 정보불러오기 -->
+						<input class="d-none" id="mtid" value="${ meetmaindetail.mtid }" />
+						<sec:authentication property="principal.user.id" var="name" />
+						<input class="d-none" id="id" value="${ id }" />
+						<sec:authentication property="principal.user.name" var="name" />
+						<input class="d-none" id="name" value="${ name }" />
+						<sec:authentication property="principal.user.gender" var="gender" />
+						<input class="d-none" id="gender" value="${ gender }" />
+						<sec:authentication property="principal.user.phone" var="phone" />
+						<input class="d-none" id="phone" value="${ phone }" />
+						<sec:authentication property="principal.user.email" var="email" />
+						<input class="d-none" id="email" value="${ email }" />
 						<c:choose>
 							<c:when test="${ author == loginUser }">
 								<div>

@@ -174,7 +174,7 @@
 					} else {
 						console.log('없든듸');
 					}
-					 alert('참여가 취소 완료'); 
+					 alert('참여 취소 완료'); 
 				})
 				.catch((error) => {
 					console.log(error);

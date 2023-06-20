@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.shape.repository.DashBoardRepository">
+
+	<select id="categoryMeet"
+			resultType="com.itwill.shape.dto.DashBoardCategoryDto">
+		SELECT DISTINCT
+		      CATEGORY
+		    , COUNT(*)
+		FROM MEET_INFO
+		GROUP BY CATEGORY
+		<!-- 
+		SELECT DISTINCT
+		      (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '여행·동행') AS TRIP
+		    , (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '운동·액티비티') AS EX
+		    , (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '음식·음료') AS FOOD
+		    , (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '취미') AS HOB
+		    , (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '자기계발·교육') AS ST
+		    , (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '동네·친목') AS FR
+		    , (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '문화·예술') AS ART
+		    , (SELECT COUNT(*) FROM MEET_INFO WHERE CATEGORY = '기타') AS OTH
+		FROM MEET_INFO
+		 -->
+	</select>
+	
+</mapper>
