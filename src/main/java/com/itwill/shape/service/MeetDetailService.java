@@ -49,24 +49,13 @@ public class MeetDetailService {
 	         UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id()); // 작성자 USER 정보 , + 사진
 	         log.info(result.toString());
 	        
-	         // Host 사진 가져오기
-				if(result.getProfile() != null) {
-					byte[] imgByteHost = Base64.getEncoder().encode( result.getProfile());
-					try {
-						dto.setHostProFile(new String(imgByteHost,"UTF-8"));
-					} catch (UnsupportedEncodingException e) {
-						e.printStackTrace();
-					}
-				}
-	         
-	         
-
 			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid); // 찜 개수
 			
 			List<MeetLike> meetLikeList = meetLikeRepository.selectMeetLikeListByMtid(mtid); // 찜 누른 사람들 리스트
 			
 			long prtcpcount = meetPrtcpRepository.selectNumberPrtcpMtid(mtid); // 참여자 인원수
-
+			
+			
 			dto.setPrtcpDtoList(list); // 참여자 정보	
 			
 			dto.setUserHost(result); // 작성자 정보
@@ -77,6 +66,9 @@ public class MeetDetailService {
 			
 			dto.setMeetNumberPrtcp(prtcpcount); // 참여자 인원수
 			
+			/**
+			 * 사진 가져오기 , 프로필 가져오기
+			 */
 			// 바이트를 인코딩한 String으로 반환
 			if(dto.getImg_1() != null) {
 				byte[] imgByte1 = Base64.getEncoder().encode(dto.getImg_1());
@@ -119,13 +111,31 @@ public class MeetDetailService {
 				}
 			}
 			
-			
+			 // Host 사진 가져오기
+			if(result.getProfile() != null) {
+				byte[] imgByteHost = Base64.getEncoder().encode(result.getProfile());
+				try {
+					dto.setHostProFile(new String(imgByteHost,"UTF-8"));
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
 			// Guest 사진 가져오기
-			List<UserInfo> prtcpList = new ArrayList<>();
-	         for(MeetPrtcp mp : list) {
-	             prtcpList.add(userInfoRepository.selectById(mp.getPrtcp_id())); // 참여자 사진 가져오기
-	             
-	          }
+			for(MeetPrtcp mp : list) {
+				UserInfo resultmp = meetPrtcpRepository.getUserInfo(mp.getPrtcp_id());
+				if(resultmp.getProfile() != null) {
+					byte[] imgBytGuest = Base64.getEncoder().encode(resultmp.getProfile());
+					try {
+						mp.setGuestImg(new String(imgBytGuest,"UTF-8"));
+						
+					} catch (UnsupportedEncodingException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			
+			
 			
 			
 			return dto;

@@ -20,5 +20,6 @@ public class MeetPrtcp { // 참여자 정보
 	private String phone;
 	private String email;
 	
+	private String guestImg; // 이미지
 	
 }

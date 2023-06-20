@@ -117,8 +117,8 @@
 				</button>
 			</div>
 		</div> 
-		<div class= "my-5">
-		</div>
+			<div class= "my-5">
+			</div>
 		<!-- 사진-->
 		<!-- 사진 끝 -->
                   <!-- 제목, 내용 -->
@@ -195,25 +195,17 @@
 						</ul>
 					</div>
                      
+					
+					
+					
+					
 					<!-- 로그인한 유저 -->
 					<sec:authorize access="isAuthenticated()">
 						<sec:authentication property="principal.username" var="loginUser" />
+						
+						
 						<!-- 이 글을 작성한 유저 -->
 						<c:set var="author" value="${ meetmaindetail.crtr_id }" />
-
-						<!-- 사용자 정보불러오기 -->
-						<input class="d-none" id="mtid" value="${ meetmaindetail.mtid }" />
-						<sec:authentication property="principal.user.id" var="name" />
-						<input class="d-none" id="id" value="${ id }" />
-						<sec:authentication property="principal.user.name" var="name" />
-						<input class="d-none" id="name" value="${ name }" />
-						<sec:authentication property="principal.user.gender" var="gender" />
-						<input class="d-none" id="gender" value="${ gender }" />
-						<sec:authentication property="principal.user.phone" var="phone" />
-						<input class="d-none" id="phone" value="${ phone }" />
-						<sec:authentication property="principal.user.email" var="email" />
-						<input class="d-none" id="email" value="${ email }" />
-
 						<c:choose>
 							<c:when test="${ author == loginUser }">
 								<div>
@@ -228,6 +220,7 @@
 								</div>
 							</c:when>
 
+						 <%-- 이 글을 작성을 안 한 유저 --%> 
 							<c:when test="${ author != loginUser }">
 								<div class=" d-grid gap-2 d-md-block  mx-auto my-2" style="text-align: right;">
 								
@@ -255,7 +248,7 @@
 									</c:if>
 									
 									<!--  참여 인원이 NO FULL -->
-								<c:if test="${meetmaindetail.nm_ppl > NumberPrtcp}">
+									<c:if test="${meetmaindetail.nm_ppl > NumberPrtcp}">
 									
 									<!-- 참여자가 참여하기를 눌렀을때 -->
 									<c:set var="loop_flag" value="false" />
@@ -270,8 +263,9 @@
 									<!-- 참여자가 챰여하기를 안 눌었을때  -->
 									<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
 										<button id="join" name="join" type="button" class="btn btn-classic">참여</button>
-									</c:if>							
-								</c:if>
+									</c:if>
+																
+									</c:if>
 								</div>
 							</c:when>
 						</c:choose>			
@@ -279,25 +273,26 @@
 
 
 					<!-- 프로필 -->
-
 					<div class="card my-2">
 						<div class="card-header fw-bold">
 							<p class="my-2">🙋🏻‍♂️HOST</p>
 						</div>
-						<div class="card-body">
+						<!--  작성자 사진 , 이름 , 이메일-->
+						<div class="card-body"> 
 							<c:set var="host" value="${ meetmaindetail.userHost }" />
-						<c:if test="${ meetmaindetail.hostProFile == null }">							
-							<img id="host-profile" class="user-img"
-								src="../static/images/sample/user.png" alt="host 사진">							
-						</c:if>
-						<c:if test="${  meetmaindetail.hostProFile != null }"> 
-							<c:set value="data:image/png;base64, ${ meetmaindetail.hostProFile }" var="hostPro" />							
-							<img src="${ hostPro }" style="max-width: 50%; min-height: 50px;"
-								class="bd-placeholder-img" width="100%" height="auto"/> 
-						</c:if>	
-							
-							<div id="host-name" class="meetdetailuser">이름 : ${ host.name}</div>
-							<div id="host-email" class="meetdetailemail">이메일 : ${ host.email }</div>	
+								<!--  참여자 이미지가 없으면 -->
+									<c:if test="${ meetmaindetail.hostProFile == null }">							
+										<img id="host-profile" class="user-img" src="../static/images/sample/user.png" alt="host 사진">							
+									</c:if>
+								
+								<!--  참여자 이미지가 있으면 -->
+									<c:if test="${  meetmaindetail.hostProFile != null }"> 
+										<c:set value="data:image/png;base64, ${ meetmaindetail.hostProFile }" var="hostPro" />							
+										<img id="host-profile" class="user-img" src="${ hostPro }" alt="host 사진"/>
+									</c:if>	
+								<!--  참여자 정보 이름, 이메일 -->	
+									<div id="host-name" class="meetdetailuser">이름 : ${ host.name}</div>
+									<div id="host-email" class="meetdetailemail">이메일 : ${ host.email }</div>	
 						</div>
 					</div>
 										                                  
@@ -309,55 +304,63 @@
 								<div class="row">
 									<p class="my-2 col">👪GUEST</p>
 									<button class="btn col text-end" id="btnToggleReply">
-										<img id="toggleBtnIcon" src="<%=request.getContextPath()%>/static/images/sample/toggle-off.png"											alt="toggle-off" width="45" />
+										<img id="toggleBtnIcon" src="<%=request.getContextPath()%>/static/images/sample/toggle-off.png" alt="toggle-off" width="45" />
 									</button>
-								</div>
-								
-									
-							</div>			
-								<!-- guest들은 로그인 한 사람들만 볼 수 있음 -->
-								<!-- 로그인한 HOST 작성자 볼 수 있게 -->
-
+								</div>		
+							</div>
+										
+								<!-- guest들은 로그인 한 사람들만 볼 수 있음, 참여자 정보는 로그인한 사람만 볼 수 있음  -->
 								<sec:authorize access="isAuthenticated()">
-									<c:set var="login" value="${ meetmaindetail.crtr_id }" />
-									<c:if test="${ login == loginUser }">
-										<div id="replyToggleDiv" class="collapse">
-											<c:forEach items="${ meetmaindetail.prtcpDtoList }"
-												var="list">
-												<div class="card-body" id="GUEST" name="GUEST">
-														<img id="profile-guest" name="profile-guest"
-															class="user-img" src="../static/images/sample/user.png"
-															alt="host 사진">
-														<div id="guest-name" name="guest-name"
-															class="meetdetailuser">이름 : ${ list.name }</div>
-														<div id="guest-email" name="guest-email"
-															class="meetdetailemail">이메일 : ${ list.email }</div>
+								
+									<!-- 로그인 == HOST 참여자 정보 볼 수 있게 -->
+										<c:set var="login" value="${ meetmaindetail.crtr_id }" />
+										<c:if test="${ login == loginUser }">
+											<div id="replyToggleDiv" class="collapse">
+												<c:forEach items="${ meetmaindetail.prtcpDtoList }" var="list">
+													<div class="card-body" id="GUEST" name="GUEST">
+												
+														<!--  참여자 이미지가 없으면 -->
+															<c:if test="${ list.guestImg == null }">
+																<img id="profile-guest" name="profile-guest" class="user-img" src="../static/images/sample/user.png" alt="guest 사진">
+															</c:if>
+												
+														<!--  참여자 이미지가 있으면 -->
+															<c:if test="${list.guestImg != null }">
+																<c:set value="data:image/png;base64, ${ list.guestImg }" var="guestPro" />
+																<img id="profile-guest" name="profile-guest" class="user-img" src="${ guestPro }" alt="guest 사진">
+															</c:if>
+												
+														<!--  참여자 정보 이름, 이메일 -->
+															<div id="guest-name" name="guest-name" class="meetdetailuser">이름 : ${ list.name }</div>
+															<div id="guest-email" name="guest-email" class="meetdetailemail">이메일 : ${ list.email }</div>
 													
-												</div>
+													</div>
 												</c:forEach>
-										</div>
-									</c:if>
+											</div>
+										</c:if>
 									
-									<!-- 로그인한 GUEST USER들도 볼 수 있게 -->
-									
-									<c:if test="${ login != loginUser }">
-										<div id="replyToggleDiv" class="collapse">
-											<c:forEach items="${ meetmaindetail.prtcpDtoList }"
-												var="list">
-												<div class="card-body" id="GUEST" name="GUEST">
-													
-														<img id="profile-guest" name="profile-guest"
-															class="user-img" src="../static/images/sample/user.png"
-															alt="host 사진">
-														<div id="guest-name" name="guest-name"
-															class="meetdetailuser">이름 : ${ list.name }</div>
-														<div id="guest-email" name="guest-email"
-															class="meetdetailemail">이메일 : ${ list.email }</div>
-												</div>
-											</c:forEach>
-										</div>
-									</c:if>
+									<!-- 로그인 == GUEST 참여자 정보 볼 수 있게 -->
+										<c:if test="${ login != loginUser }">
+											<div id="replyToggleDiv" class="collapse">
+												<c:forEach items="${ meetmaindetail.prtcpDtoList }" var="list">
+													<div class="card-body" id="GUEST" name="GUEST">
+														<c:if test="${ list.guestImg == null }">	
+															<img id="profile-guest" name="profile-guest" class="user-img" src="../static/images/sample/user.png" alt="host 사진">
+														</c:if>
+												
+														<!--  참여자 이미지가 있으면 -->
+														<c:if test="${list.guestImg != null }">
+														<c:set value="data:image/png;base64, ${ list.guestImg }" var="guestPro" />
+														<img id="profile-guest" name="profile-guest" class="user-img" src="${guestPro }" alt="guest 사진">
+														</c:if>
+														<div id="guest-name" name="guest-name" class="meetdetailuser">이름 : ${ list.name }</div>
+														<div id="guest-email" name="guest-email" class="meetdetailemail">이메일 : ${ list.email }</div>
+													</div>
+												</c:forEach>
+											</div>
+										</c:if>
 								</sec:authorize>
+								
 							</div>
 						</div>
 					</div>
