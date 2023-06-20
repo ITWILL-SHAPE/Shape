@@ -112,23 +112,36 @@
     document.getElementById('mt_date').setAttribute('min', meetDateInput);
 }
 
-// 사진 파일 미리보기
-function uploadImage(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('imagePreview').src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    document.getElementById('imagePreview').src = "";
-  }
-}
+  const deleteButton = document.createElement('button');
+  deleteButton.classList.add('btn', 'btn-secondary', 'deleteButton');
+  deleteButton.type = 'button';
+  deleteButton.textContent = '삭제';
 
-document.addEventListener('DOMContentLoaded', function() {
-  var imagePreview = document.getElementById('imagePreview');
-  var imageUrl = "${meet.img_1}"; // 서버에서 가져온 이미지 URL
+ deleteButton.addEventListener('click', () => {
 
-  imagePreview.src = imageUrl;
+if (newInput.name === 'formFile1') {
+      // Reset the input and preview
+      newInput.value = '';
+      newPreview.src = '';
+    } else {
+      inputContainer.removeChild(newFileInput);
+      fileInputCount--;
+
+    if (fileInputCount < 5) {
+      addButton.disabled = false;
+      }
+    }
+  });
+
+  newFileInput.appendChild(newInput);
+  newFileInput.appendChild(newPreview);
+  newFileInput.appendChild(deleteButton);
   
- });
+  inputContainer.appendChild(newFileInput);
+  fileInputCount++;
+
+  if (fileInputCount >= 5) {
+    addButton.disabled = true;
+  }
+
+

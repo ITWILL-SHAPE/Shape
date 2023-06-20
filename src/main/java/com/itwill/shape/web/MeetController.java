@@ -159,8 +159,73 @@ public class MeetController {
 	@GetMapping("/update")
 	public void modify(long mtid, Model model) {
 		log.info("modify(mtid={})", mtid);
-
+		
 		MeetMainDetailDto dto = meetInfoService.read(mtid);
+		
+		if (dto.getImg_1() != null) {
+			byte[] imgByte = dto.getImg_1();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile1(imgStr);
+		}
+		
+		if (dto.getImg_2() != null) {
+			byte[] imgByte = dto.getImg_2();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile2(imgStr);
+		}
+		
+		if (dto.getImg_3() != null) {
+			byte[] imgByte = dto.getImg_3();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile3(imgStr);
+		}
+		if (dto.getImg_4() != null) {
+			byte[] imgByte = dto.getImg_4();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile4(imgStr);
+		}
+		if (dto.getImg_5() != null) {
+			byte[] imgByte = dto.getImg_5();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile5(imgStr);
+		}
+		
+		
 		model.addAttribute("meet", dto);
 
 	}

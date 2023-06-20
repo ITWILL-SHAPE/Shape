@@ -390,8 +390,8 @@
 		<c:url var="postListPage" value="/post/list"></c:url>
 		<a class="col-1 mainA" href="${ postListPage }">More ></a>
 	</div>
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-			<c:forEach items="${ posts }" var="postInfo" begin="0" end="2">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+			<c:forEach items="${ posts }" var="postInfo" begin="0" end="3">
 				<c:url var="postDetailPage" value="/post/detail">
 					<c:param name="pid" value="${ postInfo.pid }" />
 				</c:url>

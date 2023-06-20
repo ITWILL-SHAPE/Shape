@@ -152,6 +152,9 @@
 								  </div>
 								</div>
 								
+								<div class="smallText">
+									<small id="nm_ppl_help" class="form-text text-muted">최대 5장 첨부 가능</small>
+								</div>
 								<div class="text-center">
 								<button class="btn btn-list" type="button" id="addButton">추가</button>
 								</div>
