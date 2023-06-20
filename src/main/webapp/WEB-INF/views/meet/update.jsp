@@ -136,10 +136,43 @@
 							모임 사진
 							</dt>
 							<dd align="left">
-								<div class="input-group mb-3">
-								    <input class="form-control file-input" type="file" name="formFile1" accept="image/*">
-								  	<button class="btn btn-secondary" type="button">삭제</button>
-								  </div>
+							<div id="inputContainer">
+							  <div class="input-group mb-3">
+							    <c:if test="${meet.img_1 != null}">
+							      <c:set value="data:image/png;base64, ${meet.file1}" var="url1" />
+							      <img src="${url1}" class="imagePreview" id="imagePreview1">
+							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							    </c:if>
+							  </div>
+							  <div class="input-group mb-3">
+							    <c:if test="${meet.img_2 != null}">
+							      <c:set value="data:image/png;base64, ${meet.file2}" var="url2" />
+							      <img src="${url2}" class="imagePreview" id="imagePreview2">
+							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							    </c:if>
+							  </div>
+							  <div class="input-group mb-3">
+							    <c:if test="${meet.img_3 != null}">
+							      <c:set value="data:image/png;base64, ${meet.file3}" var="url3" />
+							      <img src="${url3}" class="imagePreview" id="imagePreview3">
+							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							    </c:if>
+							  </div>
+							  <div class="input-group mb-3">
+							    <c:if test="${meet.img_4 != null}">
+							      <c:set value="data:image/png;base64, ${meet.file4}" var="url4" />
+							      <img src="${url4}" class="imagePreview" id="imagePreview4">
+							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							    </c:if>
+							  </div>
+							  <div class="input-group mb-3">
+							    <c:if test="${meet.img_5 != null}">
+							      <c:set value="data:image/png;base64, ${meet.file5}" var="url5" />
+							      <img src="${url5}" class="imagePreview" id="imagePreview5">
+							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							    </c:if>
+							  </div>
+							</div>
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">

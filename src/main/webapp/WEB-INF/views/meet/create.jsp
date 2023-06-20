@@ -146,10 +146,12 @@
 							<dd align="left">
 								<div id="inputContainer">
 								  <div class="input-group mb-3">
-								    <input class="form-control file-input" type="file" name="formFile1" accept="image/*">
+								    <input class="form-control file-input" type="file" name="formFile1" accept="image/*" onchange="imageUpload(this);">
+								  	<img class="imagePreview" id="imagePreview1">
 								  	<button class="btn btn-secondary" type="button">삭제</button>
 								  </div>
 								</div>
+								
 								<div class="text-center">
 								<button class="btn btn-list" type="button" id="addButton">추가</button>
 								</div>
