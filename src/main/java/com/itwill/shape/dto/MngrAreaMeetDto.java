@@ -5,11 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class MngrMeetGraphDto {
-	private long maleCount; // 남자 회원수
-	private long feMaleCount; // 여자회원수
+@Data
+public class MngrAreaMeetDto {
+	
+	private long areacount;
+
 }

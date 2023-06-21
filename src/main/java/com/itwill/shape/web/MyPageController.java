@@ -144,7 +144,7 @@ public class MyPageController {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+		return "redirect:/myprofile?id=" + id;
 
 	}
 	/**
@@ -345,6 +345,7 @@ public class MyPageController {
 		log.info("readActiveMeet(dto={})", list);
 
 		cri.setPageNum(cri.getPageNum() + 1);
+		
 		// 이미지 파일
 		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
 			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
@@ -365,7 +366,6 @@ public class MyPageController {
 		List<MeetLike> ml = meetListService.LikeList();
 		log.info("ml", ml);
 		model.addAttribute("like", ml);
-
 		model.addAttribute("activeList", list);
 		model.addAttribute("pageMaker", new PageMeetListDto(cri, total));
 

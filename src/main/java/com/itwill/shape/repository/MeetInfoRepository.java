@@ -55,7 +55,6 @@ public interface MeetInfoRepository {
 	// 참여중인 모임 목록 개수
 	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
 	
-	
 	/**
 	 * 0610 손창민
 	 * 내가 개설한 모임 목록 불러오기
