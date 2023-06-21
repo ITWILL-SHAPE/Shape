@@ -169,12 +169,13 @@ public class MeetListService {
 	public Map<String, Object> selectBySearch(MeetSearchListDto dto) {
 		log.info("selectBySearch(dto={})", dto);
 
+		dto.setAmount(15);	
 		if (dto.getPageNum() > 1) {
-			dto.setAmount(dto.getPageNum() * 15);
+			//dto.setAmount(dto.getPageNum() * 15);
 			dto.setPageNum((dto.getPageNum() - 1) * 15);
 		} else {
 			dto.setPageNum(dto.getPageNum() - 1);
-			dto.setAmount(15);
+			//dto.setAmount(15);
 		}
 
 		if (dto.getSearchSortBy() == null || dto.getSearchSortBy().equals("")) {
