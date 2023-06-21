@@ -117,15 +117,6 @@ $('document').ready(function() {
 			$('#textLengthCheck').text("(" + maxLength + " / 최대 " + maxLength + "자)");
 		}
 
-		function updateCharCount() {
-			const textarea = document.getElementById("myTextarea");
-			const charCount = document.getElementById("charCount");
-			const text = textarea.value;
-			const count = text.length;
-			charCount.textContent = count;
-		}
-	});
-
 });
 
 // 현재 날짜를 가져오기 위한 함수

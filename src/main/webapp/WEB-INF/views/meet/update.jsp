@@ -32,7 +32,7 @@
 								</dt>
 							<dd align="left">
 							  <div class="input-group">
-							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value="${ meet.title }" oninput="updateCharCount()" autofocus required>
+							    <input type="text" id="title" name="title" class="form-control" placeholder="모임의 제목을 입력하세요." value="${ meet.title }" autofocus required>
 							  </div>
 							  <div class="smallText">
 							    <small id="textLengthCheck" class="form-text text-muted">(0 / 80)</small>
@@ -133,7 +133,7 @@
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">
-							모임 사진
+							모임 사진<span class="highlight">*</span>
 							</dt>
 							<dd align="left">
 							<div id="inputContainer">

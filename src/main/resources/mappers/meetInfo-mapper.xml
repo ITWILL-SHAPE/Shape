@@ -184,18 +184,62 @@
 	<!-- 최신순으로 select문 -->
 	<select id="selectOrderByRecent"
 		resultType="com.itwill.shape.dto.MeetListCountDto">
-		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		WITH P AS(
+		SELECT
+		M.mtid
+		, M.sido
+		, M.mt_date
+		, M.category
+		, M.nm_ppl
+		,
+		M.title
+		, M.CRTR_ID
+		, M.created_date
+		, COUNT(L.mtid) AS LCNT
+		,
+		COUNT(P.mtid) AS PCNT
+		FROM MEET_INFO M
+		LEFT JOIN (
+		SELECT DISTINCT MTID
+		FROM MEET_LIKE
+		) L ON M.mtid = L.mtid
+		LEFT JOIN MEET_PRTCP P ON M.mtid =
+		P.mtid
+		    <![CDATA[
+		   		WHERE M.ED_DATE >= (
+		   			SELECT
+		   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		   			FROM DUAL
+		   		)
+		    ]]>
+		GROUP BY
+		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE,
+		M.CREATED_DATE, M.CRTR_ID
+			ORDER BY M.CREATED_DATE DESC
+		)
+		SELECT
+		*
+		FROM P
+		OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY
+		<!-- SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
 		AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
+		count(P.mtid) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
 		FROM MEET_INFO M
 		LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
 		LEFT JOIN
-		MEET_PRTCP P ON M.mtid = P.mtid
+		MEET_PRTCP P ON M.mtid = P.mtid  
+		<![CDATA[
+		   		WHERE M.ED_DATE >= (
+		   			SELECT
+		   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		   			FROM DUAL
+		   		)
+		    ]]>
 		GROUP BY M.mtid, M.sido, M.mt_date,
 		M.category, M.nm_ppl, M.title,
 		M.CREATED_DATE
 		ORDER BY M.CREATED_DATE
-		DESC
+		DESC -->
 	</select>
 
 	<!-- 모집중 -->
@@ -241,18 +285,62 @@
 	<!-- 인기순으로 select문 -->
 	<select id="selectOrderByPopularity"
 		resultType="com.itwill.shape.dto.MeetListCountDto">
-		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		WITH P AS(
+		SELECT
+		M.mtid
+		, M.sido
+		, M.mt_date
+		, M.category
+		, M.nm_ppl
+		,
+		M.title
+		, M.CRTR_ID
+		, M.created_date
+		, COUNT(L.mtid) AS LCNT
+		,
+		COUNT(P.mtid) AS PCNT
+		FROM MEET_INFO M
+		LEFT JOIN (
+		SELECT DISTINCT MTID
+		FROM MEET_LIKE
+		) L ON M.mtid = L.mtid
+		LEFT JOIN MEET_PRTCP P ON M.mtid =
+		P.mtid
+		    <![CDATA[
+		   		WHERE M.ED_DATE >= (
+		   			SELECT
+		   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		   			FROM DUAL
+		   		)
+		    ]]>
+		GROUP BY
+		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE,
+		M.CREATED_DATE, M.CRTR_ID
+		ORDER BY LCNT DESC
+		)
+		SELECT
+		*
+		FROM P
+		OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY
+		<!-- SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
 		AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
+		count(P.mtid) AS PCNT, M.nm_ppl, M.title, M.CREATED_DATE
 		FROM MEET_INFO M
 		LEFT JOIN MEET_LIKE L ON M.mtid = L.mtid
 		LEFT JOIN
 		MEET_PRTCP P ON M.mtid = P.mtid
+		 <![CDATA[
+		   		WHERE M.ED_DATE >= (
+		   			SELECT
+		   				TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		   			FROM DUAL
+		   		)
+		    ]]>
 		GROUP BY M.mtid, M.sido, M.mt_date,
 		M.category, M.nm_ppl, M.title,
 		M.CREATED_DATE
 		ORDER BY count(L.mtid)
-		DESC
+		DESC -->
 	</select>
 
 	<!-- 키워드 검색 select문 -->
