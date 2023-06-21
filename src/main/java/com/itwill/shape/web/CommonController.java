@@ -3,7 +3,9 @@ package com.itwill.shape.web;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,7 @@ import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
+import com.itwill.shape.service.MngrDashBoardService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.service.TestBlobService;
 
@@ -41,6 +44,7 @@ public class CommonController {
 	private final MeetDetailService meetDetailService;
 	private final TestBlobService testBlobService;
 	private final PostInfoService postInfoService; 
+	private final MngrDashBoardService mngrDashBoardService;
 	
 	/**
 	 * 사용자 main page
@@ -116,11 +120,25 @@ public class CommonController {
 	 * @return
 	 */
 	@GetMapping("/mngr")
-	public String mngr(Model model , MngrMeetGraphDto dto) {
-		log.info("mngr()(dto={})", dto);
-		model.addAttribute("gender", dto);
+	public String mngr(Model model) {
+		log.info("mngr()");
 		
  		return "/common/home";
+	}
+	
+	@PostMapping("/mngr")
+	@ResponseBody
+	public Map<String, Object> mngr() {
+		log.info("mngr(data)");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("categorys", mngrDashBoardService.categoryMeet());
+		map.put("genderFemale",mngrDashBoardService.genderFemaleMeet());
+		map.put("genderMale" ,mngrDashBoardService.genderMaleMeet()); 
+		map.put("area" ,mngrDashBoardService.areaMeet());
+		
+		
+ 		return map;
 	}
 	
 	@GetMapping("/test/testHandler")
