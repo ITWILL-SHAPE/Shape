@@ -55,6 +55,7 @@
 
 			const check = confirm('모임을 수정하시겠습니까?');
 			if (check) {
+				console.log(modifyForm);
 				modifyForm.submit();
 			}
 		});
@@ -112,15 +113,21 @@
     document.getElementById('mt_date').setAttribute('min', meetDateInput);
 }
 
+// 이미지 미리보기
 function imageUpload(input) {
-  const preview = input.parentElement.querySelector('.imagePreview1');
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    preview.src = e.target.result;
-  };
-  if (input.files && input.files[0]) {
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    preview.src = "";
-  }
+  const preview = input.parentElement.querySelectorAll('.imagePreview');
+  preview.forEach((pre) => {
+	  const reader = new FileReader();
+	  reader.onload = function(e) {
+	    pre.src = e.target.result;
+	  };
+	  if (input.files && input.files[0]) {
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    pre.src = "";
+	  }  
+  })
+  
 }
+
+
