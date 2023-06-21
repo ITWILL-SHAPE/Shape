@@ -21,9 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	btnDelete.addEventListener('click', () => {
 		const result = confirm('모임을 정말 삭제할까요?');
 		console.log(`삭제 확인 결과 = ${result}`);
+		console.log(mtid);
 
 		if (result) {
-			modifyForm.action = './delete?mtid=' + mtid;
+			modifyForm.action = './delete?mtid=' + mtid.value;
 			modifyForm.method = 'post';
 			modifyForm.submit();
 

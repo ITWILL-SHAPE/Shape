@@ -107,10 +107,10 @@
 								<img src="" width="40" height="40" class="rounded-circle" id="profileImg">
 								<script type="text/javascript">
 									let id = $('input[name="user"]').val();
-									console.log(id);
-									axios.post(`/shape/profile/${id}`)
+									// console.log(id);
+									axios.post(encodeURI(`/shape/profile/${id}`))
 									.then((res) => {
-										console.log(res);
+										// console.log(res);
 										let loc = $('input[name="local"]').val();
 										let url = '';
 										if(res.data != null && res.data != '') {
@@ -120,7 +120,6 @@
 											url = loc + '/static/images/common/user.png'
 										}
 										
-										console.log(url);
 										$('#profileImg').attr("src", url);
 									})
 									.catch((err) => {

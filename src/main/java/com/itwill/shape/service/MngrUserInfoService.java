@@ -36,6 +36,11 @@ public class MngrUserInfoService {
 		return UserInfoSelectByIdDto.fromEntity(userInfoRepository.readUserInfoById(id));
 	}
 	
+	// 프로필만
+	public byte[] userProfile(String id) {
+		return userInfoRepository.readUserInfoById(id).getProfile();
+	}
+	
 	/**
 	 * 해당 list 크기
 	 * @param dto

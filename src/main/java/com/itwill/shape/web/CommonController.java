@@ -29,6 +29,7 @@ import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
 import com.itwill.shape.service.MngrDashBoardService;
+import com.itwill.shape.service.MngrUserInfoService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.service.TestBlobService;
 import com.itwill.shape.service.UserInfoService;
@@ -48,6 +49,7 @@ public class CommonController {
 	private final PostInfoService postInfoService; 
 	private final MngrDashBoardService mngrDashBoardService;
 	private final UserInfoService userInfoService;
+	private final MngrUserInfoService mngrUserInfoService;
 	
 	/**
 	 * 사용자 main page
@@ -151,11 +153,12 @@ public class CommonController {
 	public String toStringProfile(@PathVariable String id) {
 		log.info("profile(id = {})", id);
 		
-		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+		// UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+		byte[] profile = mngrUserInfoService.userProfile(id);
 		
 		String imgStr = null;
-		if(dto.getProfile() != null) {
-			byte[] byteEnc64 = Base64.getEncoder().encode(dto.getProfile());
+		if(profile != null) {
+			byte[] byteEnc64 = Base64.getEncoder().encode(profile);
 			try {
 				imgStr = new String(byteEnc64, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
