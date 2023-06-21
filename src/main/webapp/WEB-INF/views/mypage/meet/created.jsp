@@ -56,10 +56,10 @@
 										</svg>
 									</c:otherwise>
 								</c:choose>
-								
-								
+
+
 								<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
-								
+
 
 
 								<div>
@@ -118,8 +118,29 @@
 					</c:forEach>
 				</div>
 			</div>
+			<!-- 페이징 -->
+			<div class="mt-3 pt-3">
+				<nav>
+					<ul class="pagination justify-content-center">
+						<li class="page-item ${ pageMaker.prev ? '' : 'disabled' }"><a
+							class="page-link"
+							href="/shape/created?id=${ id }&pageNum=${ pageMaker.startPage -1 }"
+							tabindex="-1">&laquo;</a></li>
+						<c:forEach begin="${ pageMaker.startPage }"
+							end="${ pageMaker.endPage }" var="num">
+							<li class="page-item ${ pageMaker.cri.pageNum == num? "active":"" }">
+								<a class="page-link"
+								href="/shape/created?id=${ id }&pageNum=${ num }">${ num }</a>
+							</li>
+						</c:forEach>
+						<li class="page-item ${ pageMaker.next? '' : 'disabled' }"><a
+							class="page-link"
+							href="/shape/created?id=${ id }&pageNum=${ pageMaker.endPage + 1 }"
+							tabindex="-1">&raquo;</a></li>
+					</ul>
+				</nav>
+			</div>
 		</div>
-	</div>
 	</div>
 	<!-- 메인 컨텐츠 끝 -->
 </body>

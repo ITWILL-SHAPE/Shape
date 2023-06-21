@@ -10,25 +10,29 @@
 	<select id="selectByPrtcpIdPaging"
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
 		with T as (
-            SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
-            count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M LEFT
-            JOIN meet_like
-            L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE
-            P.prtcp_id = #{ prtcpId } GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl,
-            M.title,
-            M.created_date 
-            ORDER BY M.created_date DESC
-        )
-        select * from T
-        OFFSET #{cri.pageNum} rows fetch next #{cri.amount} rows only
-		<!-- SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M LEFT
+		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		AS LCNT,
+		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M
+		LEFT
 		JOIN meet_like
-		L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE
-		P.prtcp_id
-		= #{prtcpId} GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl,
+		L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON
+		M.mtid = P.mtid WHERE
+		P.prtcp_id = #{ prtcpId } GROUP BY M.mtid,
+		M.sido, M.mt_date,
+		M.category, M.nm_ppl,
 		M.title,
-		M.created_date ORDER BY M.created_date DESC -->
+		M.created_date
+		ORDER BY
+		M.created_date DESC
+		)
+		select * from T
+		OFFSET #{cri.pageNum} rows fetch
+		next #{cri.amount} rows only
+		<!-- SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT, 
+			count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M LEFT JOIN meet_like 
+			L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE P.prtcp_id 
+			= #{prtcpId} GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, 
+			M.created_date ORDER BY M.created_date DESC -->
 		<!-- SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT, 
 			count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M LEFT JOIN meet_like 
 			L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE P.prtcp_id 
@@ -57,21 +61,58 @@
 			M.nm_ppl, M.title ORDER BY M.created_date DESC ) OFFSET #{cri.pageNum} ROWS 
 			FETCH NEXT #{cri.amount} ROWS ONLY -->
 	</select>
-	
+
 	<!-- 내가 참여한 모임의 개수 -->
 	<select id="selectByPrtcpId"
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
-		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M LEFT
+		SELECT M.mtid, M.sido, M.mt_date, M.category,
+		count(L.mtid)
+		AS LCNT,
+		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title
+		FROM meet_info M
+		LEFT
 		JOIN meet_like
-		L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE
+		L ON M.mtid = L.mtid LEFT JOIN
+		meet_prtcp P ON M.mtid
+		= P.mtid WHERE
 		P.prtcp_id
-		= #{prtcpId} GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl,
+		= #{prtcpId} GROUP BY
+		M.mtid, M.sido,
+		M.mt_date, M.category, M.nm_ppl,
 		M.title,
-		M.created_date ORDER BY M.created_date DESC
+		M.created_date ORDER BY
+		M.created_date DESC
 	</select>
 
 	<!-- 내가 개설한 모임 목록 불러오기 -->
+	<select id="selectByCrtrIdPaging"
+		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
+		with T as (
+		SELECT M.mtid, M.sido, M.mt_date, M.category,
+		count(L.mtid)
+		AS LCNT,
+		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title
+		FROM
+		meet_info M
+		LEFT JOIN meet_like L ON M.mtid = L.mtid
+		LEFT JOIN
+		meet_prtcp P ON
+		M.mtid = P.mtid
+		WHERE M.crtr_id = #{crtrId}
+		GROUP BY
+		M.mtid, M.sido,
+		M.mt_date, M.category, M.nm_ppl, M.title,
+		M.created_date
+		ORDER BY
+		M.created_date DESC
+		)
+		select * from T
+		OFFSET
+		#{cri.pageNum} rows fetch next #{cri.amount}
+		rows only
+	</select>
+
+	<!-- 내가 개설한 모임 목록 개수 -->
 	<select id="selectByCrtrId"
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
 		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
@@ -89,7 +130,35 @@
 		M.created_date DESC
 	</select>
 
-	<!-- 내가 찜한 모임 목록 불러오기 -->
+	<!-- 내가 찜한 모임 목록 개수 -->
+	<select id="selectByIdPaging"
+		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
+		with T as (
+		SELECT M.mtid, M.sido, M.mt_date, M.category,
+		count(L.mtid)
+		AS LCNT,
+		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title
+		FROM
+		meet_info M
+		LEFT JOIN meet_like L ON M.mtid = L.mtid
+		LEFT JOIN
+		meet_prtcp P ON
+		M.mtid = P.mtid
+		WHERE L.id = #{id}
+		GROUP BY M.mtid,
+		M.sido, M.mt_date,
+		M.category, M.nm_ppl, M.title,
+		M.created_date
+		ORDER BY
+		M.created_date
+		DESC
+		)
+		select * from T
+		OFFSET #{cri.pageNum} rows fetch next #{cri.amount}
+		rows only
+	</select>
+
+	<!-- 내가 찜한 모임 목록 개수 -->
 	<select id="selectById"
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
 		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)

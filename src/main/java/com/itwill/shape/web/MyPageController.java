@@ -331,21 +331,21 @@ public class MyPageController {
 		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
 
 		cri.setAmount(15);
-		if(cri.getPageNum() == 1) {
+		if (cri.getPageNum() == 1) {
 			cri.setPageNum(1);
 			cri.setAmount(15);
 		} else {
 			cri.setPageNum(cri.getPageNum());
 			cri.setAmount(cri.getPageNum() * 15);
 		}
-		
+
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByPrtcpIdPaging(prtcpId, cri);
 		int total = meetListService.selectByPrtcpId(prtcpId, cri);
-		
+
 		log.info("readActiveMeet(dto={})", list);
 
 		cri.setPageNum(cri.getPageNum() + 1);
-		
+
 		// 이미지 파일
 		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
 			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
@@ -372,36 +372,6 @@ public class MyPageController {
 		return "/mypage/meet/active";
 	}
 
-	/*
-	 * @GetMapping("/active") public String readActiveMeet(@RequestParam("id")
-	 * String prtcpId, PageMeetListDto dto, Model model) {
-	 * log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
-	 * 
-	 * CriteriaMeet cri = new CriteriaMeet(); int total =
-	 * meetListService.getListCountsMyPage(cri); log.info("total={}", total);
-	 * List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list =
-	 * meetListService.selectByPrtcpId(prtcpId, dto);
-	 * log.info("readActiveMeet(dto={})", list);
-	 * 
-	 * // 이미지 파일 for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
-	 * mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
-	 * 
-	 * if (mc.getImg_1() != null) { byte[] byteEnc64 =
-	 * Base64.getEncoder().encode(mc.getImg_1()); String imgStr = null; try { imgStr
-	 * = new String(byteEnc64, "UTF-8"); } catch (UnsupportedEncodingException e) {
-	 * e.printStackTrace(); }
-	 * 
-	 * mc.setFile(imgStr); } }
-	 * 
-	 * List<MeetLike> ml = meetListService.LikeList(); log.info("ml", ml);
-	 * model.addAttribute("like", ml);
-	 * 
-	 * model.addAttribute("activeList", list); model.addAttribute("pageMaker", new
-	 * PageMeetListDto(cri, list.size()));
-	 * 
-	 * return "/mypage/meet/active"; }
-	 */
-	
 	/**
 	 * 0610 손창민 내가 개설한 모임
 	 * 
@@ -410,14 +380,27 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 모임 > 내가 개설한 모임
 	@GetMapping("/created")
-	public String readCreatedMeet(@RequestParam("id") String crtrId, Model model) {
+	public String readCreatedMeet(@RequestParam("id") String crtrId, CriteriaMeet cri, Model model) {
 		log.info("readCreatedMeet(prtcpId(id)={})", crtrId);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectByCrtrId(crtrId);
-		log.info("readCreatedMeet(dto={})", List);
+		cri.setAmount(15);
+		if (cri.getPageNum() == 1) {
+			cri.setPageNum(1);
+			cri.setAmount(15);
+		} else {
+			cri.setPageNum(cri.getPageNum());
+			cri.setAmount(cri.getPageNum() * 15);
+		}
+
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByCrtrIdPaging(crtrId, cri);
+		int total = meetListService.selectByCrtrId(crtrId, cri);
+
+		log.info("readCreatedMeet(dto={})", list);
+
+		cri.setPageNum(cri.getPageNum() + 1);
 
 		// 이미지 파일
-		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
+		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
 			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
 
 			if (mc.getImg_1() != null) {
@@ -433,7 +416,11 @@ public class MyPageController {
 			}
 		}
 
-		model.addAttribute("createdList", List);
+		List<MeetLike> ml = meetListService.LikeList();
+		log.info("ml", ml);
+		model.addAttribute("like", ml);
+		model.addAttribute("createdList", list);
+		model.addAttribute("pageMaker", new PageMeetListDto(cri, total));
 
 		return "/mypage/meet/created";
 	}
@@ -446,14 +433,27 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 모임 > 내가 찜한 모임
 	@GetMapping("/interests")
-	public String readInterestsMeet(@RequestParam("id") String id, Model model) {
+	public String readInterestsMeet(@RequestParam("id") String id, CriteriaMeet cri, Model model) {
 		log.info("readInterestsMeet(id={})", id);
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectById(id);
-		log.info("readInterestsMeet(dto={})", List);
+		cri.setAmount(15);
+		if (cri.getPageNum() == 1) {
+			cri.setPageNum(1);
+			cri.setAmount(15);
+		} else {
+			cri.setPageNum(cri.getPageNum());
+			cri.setAmount(cri.getPageNum() * 15);
+		}
+
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByIdPaging(id, cri);
+		int total = meetListService.selectById(id, cri);
+
+		log.info("readInterestsMeet(dto={})", list);
+
+		cri.setPageNum(cri.getPageNum() + 1);
 
 		// 이미지 파일
-		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
+		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
 			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
 
 			if (mc.getImg_1() != null) {
@@ -468,8 +468,12 @@ public class MyPageController {
 				mc.setFile(imgStr);
 			}
 		}
-
-		model.addAttribute("interestsList", List);
+		
+		List<MeetLike> ml = meetListService.LikeList();
+		log.info("ml", ml);
+		model.addAttribute("like", ml);
+		model.addAttribute("interestsList", list);
+		model.addAttribute("pageMaker", new PageMeetListDto(cri, total));
 
 		return "/mypage/meet/interests";
 	}
@@ -602,7 +606,7 @@ public class MyPageController {
 	@GetMapping("/mycomments")
 	public String readMycomments(@RequestParam("id") String id, Criteria cri, Model model) {
 		log.info("readMycomments(author(id)={})", id);
-		
+
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
 		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthor(id);
 		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthorWithPaging(id, cri);
@@ -612,7 +616,7 @@ public class MyPageController {
 
 		model.addAttribute("mycomments", mycomments);
 		model.addAttribute("pageMaker", new PageDto(cri, size));
-		
+
 		return "/mypage/board/myComments";
 	}
 
@@ -649,8 +653,7 @@ public class MyPageController {
 //	public List<PostCommentSelectByAuthorDto> searchComments(@RequestParam("id") String id, Criteria cri, Model model) {
 		log.info("searchComments(author(id)={}, cri={})", id, cri);
 		String keyword = cri.getKeyword();
-		
-		
+
 		int count = postCommentsService.countComments(id, cri);
 		log.info("searchComments(count={})", count);
 
@@ -660,7 +663,7 @@ public class MyPageController {
 		model.addAttribute("cri", keyword);
 
 		log.info("searchComments(new PageDto={}", new PageDto(cri, count));
-		
+
 		return "/mypage/board/myComments";
 	}
 

@@ -111,29 +111,54 @@ public class MeetListService {
 		log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
 		return meetInfoRepository.selectByPrtcpId(prtcpId, cri).size();
 	}
-
 	/**
-	 * 0610 손창민 내가 개설한 모임 목록 불러오기
+	 * 0621 손창민 내가 개설한 모임 목록 paging
+	 * @param crtrId
+	 * @param cri
+	 * @return
+	 */
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrIdPaging(String crtrId, CriteriaMeet cri) {
+		log.info("selectByPrtcpIdPaging(crtrId={}, cri={})", crtrId, cri);
+		cri.setPageNum((cri.getPageNum() - 1) * 15);
+		
+		return meetInfoRepository.selectByCrtrIdPaging(crtrId, cri);
+	}
+	
+	/**
+	 * 0610 손창민 내가 개설한 모임 목록 개수
 	 * 
 	 * @param crtrId
 	 * @return
 	 */
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrId(String crtrId) {
+	public int selectByCrtrId(String crtrId, CriteriaMeet cri) {
 		log.info("selectByPrtcpId(crtrId={})", crtrId);
 
-		return meetInfoRepository.selectByCrtrId(crtrId);
+		return meetInfoRepository.selectByCrtrId(crtrId, cri).size();
 	}
 
 	/**
-	 * 0610 손창민 내가 찜한 모임 목록 불러오기
+	 * 0610 손창민 내가 찜한 모임 목록 불러오기 paging
 	 * 
 	 * @param id
 	 * @return
 	 */
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectById(String id) {
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByIdPaging(String id, CriteriaMeet cri) {
 		log.info("selectById(id={})", id);
-
-		return meetInfoRepository.selectById(id);
+		cri.setPageNum((cri.getPageNum() - 1) * 15);
+		
+		return meetInfoRepository.selectByIdPaging(id, cri);
+	}
+	
+	/**
+	 * 0610 손창민 내가 찜한 모임 목록 불러오기 개수
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int selectById(String id, CriteriaMeet cri) {
+		log.info("selectById(id={})", id);
+		
+		return meetInfoRepository.selectById(id, cri).size();
 	}
 
 	/**

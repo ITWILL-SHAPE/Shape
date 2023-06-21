@@ -152,13 +152,13 @@
 				<nav>
 					<ul class="pagination justify-content-center">
 						<li class="page-item ${ pageMaker.prev ? '' : 'disabled' }"><a
-							class="page-link" href="${ pageMaker.startPage -1 }" tabindex="-1">&laquo;</a>
+							class="page-link" href="/shape/active?id=${ id }&pageNum=${ pageMaker.startPage -1 }" tabindex="-1">&laquo;</a>
 						</li>
 						<c:forEach begin="${ pageMaker.startPage }" end="${ pageMaker.endPage }"
 							var="num">
 							<li class="page-item ${ pageMaker.cri.pageNum == num? "active":"" }">
 								<a class="page-link" 
-								href="${ num }">${ num }</a>
+								href="/shape/active?id=${ id }&pageNum=${ num }">${ num }</a>
 							</li>
 						</c:forEach>
 						<li class="page-item ${ pageMaker.next? '' : 'disabled' }"><a

@@ -56,20 +56,34 @@ public interface MeetInfoRepository {
 	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
 	
 	/**
-	 * 0610 손창민
-	 * 내가 개설한 모임 목록 불러오기
-	 * @param crtrId
-	 * @return
+	 * 0621 손창민
+	 * 내가 개설한 모임 목록 paging
 	 */
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrId(String crtrId);
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrIdPaging(@Param("crtrId") String crtrId, @Param("cri")CriteriaMeet cri);
 	
 	/**
 	 * 0610 손창민
-	 * 내가 찜한 모임 목록 불러오기
+	 * 내가 개설한 모임 목록 개수
+	 * @param crtrId
+	 * @return
+	 */
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrId(@Param("crtrId") String crtrId, @Param("cri")CriteriaMeet cri);
+	
+	/**
+	 * 0610 손창민
+	 * 내가 찜한 모임 목록 불러오기 paging
 	 * @param id
 	 * @return
 	 */
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectById(String id);
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByIdPaging(@Param("id")String id, @Param("cri")CriteriaMeet cri);
+	
+	/**
+	 * 0621 손창민
+	 * 내가 찜한 모임 개수
+	 * @param id
+	 * @return
+	 */
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectById(@Param("id")String id, @Param("cri")CriteriaMeet cri);
 	
 	//마이페이지 끝
 	
@@ -143,5 +157,6 @@ public interface MeetInfoRepository {
 	//Map<byte[], Long> selectImg();
 	
 	List<MeetListCountDto> selectImg(long mtid);
+	
 	
 }
