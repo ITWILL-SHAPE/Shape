@@ -3,9 +3,13 @@ package com.itwill.shape.repository;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
+=======
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
@@ -48,7 +52,11 @@ public interface MeetInfoRepository {
 	 * @param prtcpId
 	 * @return
 	 */
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")Criteria cri);
+<<<<<<< HEAD
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
+=======
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId);
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 	
 	/**
 	 * 0610 손창민

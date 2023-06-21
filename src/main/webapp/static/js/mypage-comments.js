@@ -71,14 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	});
 
-	searchButton.addEventListener('click', () => {
+	/*searchButton.addEventListener('click', () => {
 		const keyword = document.querySelector('#keyword').value;
 		console.log(keyword);
 
 		if (keyword.trim() !== '') {
 			searchTable(keyword);
 		}
-	});
+	});*/
 
 	function updateTable(pageNum) {
 		axios.get('/shape/updatecomments', { params: { id: id, pageNum: pageNum } })
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	}
 
-	function searchTable(keyword) {
+	/*function searchTable(keyword) {
 		const params = { id: id, keyword: keyword };
 
 		axios
@@ -137,24 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
 			.catch((error) => {
 				console.log('Error: ' + error);
 			})
-	}
+	}*/
 
 	/*// 페이징 생성 함수
 	function generatePagination(pageMaker) {
 		let paginationHTML = '<ul class="pagination justify-content-center">';
 
 		paginationHTML += `<li class="page-item ${pageMaker.prev ? '' : 'disabled'}">
-	<a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${pageMaker.startPage - 1}" tabindex="-1">&laquo;</a>
+    <a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${pageMaker.startPage - 1}" tabindex="-1">&laquo;</a>
   </li>`;
 
 		for (let num = pageMaker.startPage; num <= pageMaker.endPage; num++) {
 			paginationHTML += `<li class="page-item ${pageMaker.cri.pageNum == num ? 'active' : ''}">
-	  <a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${num}">${num}</a>
-	</li>`;
+      <a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${num}">${num}</a>
+    </li>`;
 		}
 
 		paginationHTML += `<li class="page-item ${pageMaker.next ? '' : 'disabled'}">
-	<a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${pageMaker.endPage + 1}" tabindex="-1">&raquo;</a>
+    <a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${pageMaker.endPage + 1}" tabindex="-1">&raquo;</a>
   </li>`;
 
 		paginationHTML += '</ul>';

@@ -40,7 +40,9 @@
 			</div>
 			<!-- 관리자 답변출력 -->
 			<!-- an_title이 확인중이 아닐때만 출력 -->
-			<c:if test="${infoQnA.an_title!='확인중'}">
+			<c:if test="${infoQnA != null}">
+				<c:choose>
+					<c:when test="${infoQnA.an_title!='확인중'}">
 						<div class="my-2">
 							<label class="form-label d-none" for="an_title">제목</label> <input
 								class="form-control d-none" id="an_title"
@@ -55,6 +57,8 @@
 								pattern="yyyy-MM-dd" var="answered" />
 							<p class="card-text text-end small mb-3 me-3" id="answer_date">${ answered }</p>
 						</div>
+					</c:when>
+				</c:choose>
 			</c:if>
 
 			<sec:authorize access="isAuthenticated()">
