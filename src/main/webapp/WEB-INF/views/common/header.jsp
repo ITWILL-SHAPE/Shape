@@ -113,11 +113,11 @@
 										console.log(res);
 										let loc = $('input[name="local"]').val();
 										let url = '';
-										if(res.data != null) {
+										if(res.data != null && res.data != '') {
 											url = "data:image/png;base64," + res.data;
 											
 										} else {
-											let url = loc + '/static/images/common/user.png'
+											url = loc + '/static/images/common/user.png'
 										}
 										
 										console.log(url);

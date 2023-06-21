@@ -269,6 +269,8 @@ div.meetdetailuser {
 	width: 50px; /* 사용자 사진의 너비 조정 */
 	height: 50px; /* 사용자 사진의 높이 조정 */
 	margin-right: 10px; /* 사진과 정보 사이의 여백 조정 */
+	border-radius: 50%; /* 사진을 원 모양으로 나오게 함 */
+	overflow: hidden; /* 오버플로우된 부분을 숨김 */
 }
 
 .user-info {
