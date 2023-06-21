@@ -3,6 +3,9 @@ package com.itwill.shape.repository;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
@@ -45,7 +48,7 @@ public interface MeetInfoRepository {
 	 * @param prtcpId
 	 * @return
 	 */
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId);
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")Criteria cri);
 	
 	/**
 	 * 0610 손창민

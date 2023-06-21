@@ -59,8 +59,8 @@
 
 
 								<!-- 하트기능 -->
-								<input class="d-none" id="mtid" value="${ activeList.mtid }" /> 
-								
+								<input class="d-none" id="mtid" value="${ activeList.mtid }" />
+
 								<input class="d-none" id="id" value="${ id }" />
 								<c:set var="author" value="${ activeList.CRTR_ID }" />
 								<c:set value="false" var="loop" />
@@ -145,11 +145,37 @@
 							</div>
 						</div>
 					</c:forEach>
+
+					<!-- 페이징 시작 -->
+					<div>
+						<nav>
+							<ul class="pagination justify-content-center">
+								<li class="page-item ${ pageMaker.prev? "":"disabled" }"><a
+									class="page-link" href="${ pageMaker.startPage -1 }"
+									tabindex="-1">&laquo;</a></li>
+								<c:forEach begin="${ pageMaker.startPage }"
+									end="${ paging.endPage }" var="num">
+									<li class="page-item ${ pageMaker.cri.pageNum == num? "active":"" }"><a
+										class="page-link" href="${ num }">${ num }</a></li>
+								</c:forEach>
+								<li class="page-item ${ pageMaker.next? "":"disabled" }" ><a
+									class="page-link" href="${ pageMaker.endPage +1 }"
+									tabindex="-1">&raquo;</a></li>
+							</ul>
+						</nav>
+					</div>
+
+					<form id='actionForm' action='/shape/post/list' method='get'>
+						<input type='hidden' name='pageNum'
+							value='${ pageMaker.cri.pageNum }' /> 
+						<input type='hidden' name='amount' value='${ paging.cri.amount }' />
+					</form>
+					<!-- 페이징 끝 -->
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+
 	<!-- 메인 컨텐츠 끝 -->
 </body>
 <footer>

@@ -106,10 +106,10 @@
 			<!--  검색 시작 -->
 
 			<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
-				<c:url var="searchComments" value="/searchcomments">
+				<%-- <c:url var="searchComments" value="/searchcomments">
 					<c:param name="id" value="${id}" />
-				</c:url>
-				<form action="${searchComments}" method="get">
+				</c:url> --%>
+				<%-- <form action="${searchComments}" method="get"> --%>
 					<input type="hidden" name="id" value="${id}" />
 					<div class="input-group col-sm-7 my-2">
 						<input class="form-control" type="text" placeholder="검색어 입력"
@@ -123,7 +123,7 @@
                 </svg>
 						</button>
 					</div>
-				</form>
+				<!-- </form> -->
 			</div>
 
 			<%-- <div class="d-grid my-2 col-7 mx-auto m-5 text-center">

@@ -63,9 +63,9 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, Criteria cri) {
-		log.info("selectByPrtcpId(crtrId={})", prtcpId);
+		log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
 
-		return meetInfoRepository.selectByPrtcpId(prtcpId);
+		return meetInfoRepository.selectByPrtcpId(prtcpId, cri);
 	}
 
 	/**

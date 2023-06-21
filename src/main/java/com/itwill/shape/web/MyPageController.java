@@ -220,7 +220,6 @@ public class MyPageController {
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
 		boolean isPasswordMatched = userInfoService.confirmUser(id, inputPwd);
-		// boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
 		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
 		if (isPasswordMatched) {
 			return "true";
@@ -327,12 +326,12 @@ public class MyPageController {
 	@GetMapping("/active")
 	public String readActiveMeet(@RequestParam("id") String prtcpId, Criteria cri, Model model) {
 		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
-
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectByPrtcpId(prtcpId, cri);
-		log.info("readActiveMeet(dto={})", List);
+		cri.setAmount(15);
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByPrtcpId(prtcpId, cri);
+		log.info("readActiveMeet(dto={})", list);
 
 		// 이미지 파일
-		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
+		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
 			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
 
 			if (mc.getImg_1() != null) {
@@ -351,8 +350,8 @@ public class MyPageController {
 		List<MeetLike> ml = meetListService.LikeList();
 		log.info("ml", ml);
 		model.addAttribute("like", ml);
-		model.addAttribute("activeList", List);
-
+		model.addAttribute("activeList", list);
+		model.addAttribute("pageMaker", new PageDto(cri, list.size()));
 		return "/mypage/meet/active";
 	}
 

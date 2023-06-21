@@ -9,19 +9,44 @@
 	<!-- 내가 참여 중인 모임 목록 불러오기 -->
 	<select id="selectByPrtcpId"
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
-		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
-		AS LCNT,
+		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT, 
+			count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M LEFT JOIN meet_like 
+			L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE P.prtcp_id 
+			= #{prtcpId} GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, 
+			M.created_date ORDER BY M.created_date DESC
+		<!-- SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT, 
+			count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M LEFT JOIN meet_like 
+			L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE P.prtcp_id 
+			= #{prtcpId} GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, 
+			M.created_date ORDER BY M.created_date DESC OFFSET #{cri.pageNum} ROWS FETCH 
+			NEXT #{cri.amount} ROWS ONLY -->
+		<!-- WITH P AS( SELECT M.mtid , M.sido , M.mt_date , M.category , M.nm_ppl 
+			, M.title , M.CRTR_ID , M.created_date , COUNT(DISTINCT L.mtid) AS LCNT , 
+			COUNT(P.mtid) AS PCNT FROM MEET_INFO M LEFT JOIN ( SELECT DISTINCT MTID FROM 
+			MEET_LIKE ) L ON M.mtid = L.mtid LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid 
+			WHERE P.prtcp_id = #{prtcpId} GROUP BY M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, 
+			M.NM_PPL, M.TITLE, M.CREATED_DATE, M.CRTR_ID ORDER BY M.CREATED_DATE DESC) 
+			SELECT * FROM P OFFSET #{cri.pageNum} ROWS FETCH NEXT #{cri.amount} ROWS 
+			ONLY -->
+		<!-- <![CDATA[ SELECT * FROM ( SELECT ROWNUM AS rn, M.mtid, M.sido, M.mt_date, 
+			M.category, count(L.mtid) AS LCNT, count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title 
+			FROM meet_info M LEFT JOIN meet_like L ON M.mtid = L.mtid LEFT JOIN meet_prtcp 
+			P ON M.mtid = P.mtid WHERE P.prtcp_id = #{prtcpId} AND ROWNUM <= (#{cri.pageNum} 
+			* #{cri.amount}) GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, 
+			M.title, M.created_date ORDER BY M.created_date DESC ) WHERE rn > ((#{cri.pageNum} 
+			- 1) * #{cri.amount}) ]]> -->
+	<!-- 	SELECT *
+		FROM (
+		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid) AS LCNT,
 		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title
 		FROM meet_info M
 		LEFT JOIN meet_like L ON M.mtid = L.mtid
-		LEFT JOIN meet_prtcp P ON
-		M.mtid = P.mtid
+		LEFT JOIN meet_prtcp P ON M.mtid = P.mtid
 		WHERE P.prtcp_id = #{prtcpId}
-		GROUP BY M.mtid, M.sido,
-		M.mt_date, M.category, M.nm_ppl, M.title,
-		M.created_date
-		ORDER BY
-		M.created_date DESC
+		GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title
+		ORDER BY M.created_date DESC
+		)
+		OFFSET #{cri.pageNum} ROWS FETCH NEXT #{cri.amount} ROWS ONLY -->
 	</select>
 
 	<!-- 내가 개설한 모임 목록 불러오기 -->
@@ -65,8 +90,9 @@
 	<!-- 모임 개설 insert문 -->
 	<insert id="insert">
 		insert into MEET_INFO (CRTR_ID, TITLE, CATEGORY,
-		SIDO, SIGUNGU, LOCATION, MT_DATE, MT_TIME,
-		ED_DATE, NM_PPL, MT_COST, MT_COST_INFO, 
+		SIDO, SIGUNGU,
+		LOCATION, MT_DATE, MT_TIME,
+		ED_DATE, NM_PPL, MT_COST, MT_COST_INFO,
 		<if test="img_1 != null">
 			IMG_1,
 		</if>
@@ -84,10 +110,12 @@
 		</if>
 		CONTENT, CREATED_DATE)
 		values (#{crtr_id}, #{title},
-		#{category}, #{sido}, #{sigungu}, #{location},
+		#{category},
+		#{sido}, #{sigungu}, #{location},
 		#{mt_date}, #{mt_time},
-		#{ed_date}, #{nm_ppl}, #{mt_cost},
-		#{mt_cost_info}, 
+		#{ed_date},
+		#{nm_ppl}, #{mt_cost},
+		#{mt_cost_info},
 		<if test="img_1 != null">
 			#{img_1},
 		</if>
@@ -309,17 +337,20 @@
 		, M.mt_date
 		, M.category
 		, M.nm_ppl
-		, M.title
+		,
+		M.title
 		, M.CRTR_ID
 		, M.created_date
 		, COUNT(DISTINCT L.mtid) AS LCNT
-		, COUNT(P.mtid) AS PCNT
+		,
+		COUNT(P.mtid) AS PCNT
 		FROM MEET_INFO M
 		LEFT JOIN (
 		SELECT DISTINCT MTID
 		FROM MEET_LIKE
 		) L ON M.mtid = L.mtid
-		LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid
+		LEFT JOIN MEET_PRTCP P ON M.mtid =
+		P.mtid
 		    <![CDATA[
 		   		WHERE M.ED_DATE >= (
 		   			SELECT
@@ -328,7 +359,8 @@
 		   		)
 		    ]]>
 		<if test='searchTitle != null and searchTitle neq""'>
-			AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
+			AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} ||
+			'%')
 		</if>
 		<if test='searchCategory != null and searchCategory neq ""'>
 			AND M.CATEGORY = #{searchCategory}
@@ -347,7 +379,8 @@
 			    ]]>
 		</if>
 		GROUP BY
-		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE, M.CREATED_DATE, M.CRTR_ID 
+		M.MTID, M.SIDO, M.MT_DATE, M.CATEGORY, M.NM_PPL, M.TITLE,
+		M.CREATED_DATE, M.CRTR_ID
 		<if test='searchSortBy eq "recent"'>
 			ORDER BY M.CREATED_DATE DESC
 		</if>
@@ -374,7 +407,8 @@
 	   		)
 	    ]]>
 		<if test='searchTitle != null and searchTitle neq ""'>
-			AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} || '%')
+			AND LOWER(M.TITLE) LIKE LOWER('%' || #{searchTitle} ||
+			'%')
 		</if>
 		<if test='searchCategory != null and searchCategory neq ""'>
 			AND M.CATEGORY = #{searchCategory}
@@ -394,20 +428,17 @@
 		</if>
 		ORDER BY M.CREATED_DATE DESC
 	</select>
-	
-	<!-- 
-	<resultMap type="java.util.HashMap" id="imgByte">
-		<result property="img1" column="img_1" javaType="byte[]" />
-		<result property="mtid" column="mtid" javaType="java.lang.Long" />
-	</resultMap>
-	parameterType="Map" resultType="imgByte"
-	 -->
-	 
-	<select id="selectImg" resultType="com.itwill.shape.dto.MeetListCountDto">
-		SELECT img_1 
+
+	<!-- <resultMap type="java.util.HashMap" id="imgByte"> <result property="img1" 
+		column="img_1" javaType="byte[]" /> <result property="mtid" column="mtid" 
+		javaType="java.lang.Long" /> </resultMap> parameterType="Map" resultType="imgByte" -->
+
+	<select id="selectImg"
+		resultType="com.itwill.shape.dto.MeetListCountDto">
+		SELECT img_1
 		FROM MEET_INFO
 		where mtid = #{ mtid }
-	</select>	
+	</select>
 
 
 </mapper>

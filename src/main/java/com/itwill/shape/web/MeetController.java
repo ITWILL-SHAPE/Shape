@@ -220,7 +220,8 @@ public class MeetController {
 			search.setPageNum(cri.getPageNum());
 			search.setAmount(cri.getAmount());
 		}
-
+		log.info("pageNum={}", cri.getPageNum());
+		log.info("amoun={}", cri.getAmount());
 		Map<String, Object> map = meetListService.selectBySearch(search);
 		List<MeetLike> ml = meetListService.LikeList();
 
