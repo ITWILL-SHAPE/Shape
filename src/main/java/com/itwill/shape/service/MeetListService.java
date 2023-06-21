@@ -100,13 +100,8 @@ public class MeetListService {
 	 * @param prtcpId
 	 * @return
 	 */
-<<<<<<< HEAD
 	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, CriteriaMeet cri) {
 		log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
-=======
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, Criteria cri) {
-		log.info("selectByPrtcpId(crtrId={})", prtcpId);
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 
 		return meetInfoRepository.selectByPrtcpId(prtcpId);
 	}

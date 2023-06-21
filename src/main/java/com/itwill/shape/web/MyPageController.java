@@ -329,15 +329,9 @@ public class MyPageController {
 	@GetMapping("/active")
 	public String readActiveMeet(@RequestParam("id") String prtcpId, CriteriaMeet cri, Model model) {
 		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
-<<<<<<< HEAD
 //		cri.setAmount(15);
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByPrtcpId(prtcpId, cri);
-		log.info("readActiveMeet(dto={})", list);
-=======
-
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectByPrtcpId(prtcpId, cri);
 		log.info("readActiveMeet(dto={})", List);
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 
 		// 이미지 파일
 		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
@@ -359,13 +353,9 @@ public class MyPageController {
 		List<MeetLike> ml = meetListService.LikeList();
 		log.info("ml", ml);
 		model.addAttribute("like", ml);
-<<<<<<< HEAD
-		model.addAttribute("activeList", list);
-		model.addAttribute("pageMaker", new PageMeetListDto(cri, list.size()));
-=======
+		model.addAttribute("pageMaker", new PageMeetListDto(cri, List.size()));
 		model.addAttribute("activeList", List);
 
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 		return "/mypage/meet/active";
 	}
 
