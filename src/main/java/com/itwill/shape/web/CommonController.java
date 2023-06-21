@@ -1,8 +1,10 @@
 package com.itwill.shape.web;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -13,6 +15,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,15 +23,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.Test;
+import com.itwill.shape.domain.UserInfo;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MngrMeetGraphDto;
 import com.itwill.shape.dto.PostListDto;
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
 import com.itwill.shape.dto.PostListDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
 import com.itwill.shape.service.PostInfoService;
 import com.itwill.shape.service.TestBlobService;
+import com.itwill.shape.service.UserInfoService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +49,8 @@ public class CommonController {
 	private final MeetDetailService meetDetailService;
 	private final TestBlobService testBlobService;
 	private final PostInfoService postInfoService; 
+	private final UserInfoService userInfoService;
+	
 	
 	/**
 	 * 사용자 main page
@@ -172,5 +180,26 @@ public class CommonController {
 		
 		return "redirect:/test/testHandler";
     }
+	
+	// header 프로필 사진
+	@PostMapping("/profile/{id}")
+	@ResponseBody
+	public String toStringProfile(@PathVariable String id) {
+		log.info("profile(id = {})", id);
+		
+		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
+		
+		String imgStr = null;
+		if(dto.getProfile() != null) {
+			byte[] byteEnc64 = Base64.getEncoder().encode(dto.getProfile());
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return imgStr;
+	}
 	
 }

@@ -101,9 +101,32 @@
 							<a href="${ myPage }"
 								class="d-block link-dark text-decoration-none dropdown-toggle"
 								id="dropUser" data-bs-toggle="dropdown" aria-expanded="false">
-								<!-- 이미지 파일 대체 -->
-								<img src="https://github.com/mdo.png" alt="mdo" width="32"
-								height="32" class="rounded-circle">
+								<!-- 이미지 파일 대체 -->								
+								<input type="hidden" name="user" value="${ id }"/>
+								<input type="hidden" name="local" value="<%=request.getContextPath()%>"/>
+								<img src="" width="40" height="40" class="rounded-circle" id="profileImg">
+								<script type="text/javascript">
+									let id = $('input[name="user"]').val();
+									console.log(id);
+									axios.post(`/shape/profile/${id}`)
+									.then((res) => {
+										console.log(res);
+										let loc = $('input[name="local"]').val();
+										let url = '';
+										if(res.data != null) {
+											url = "data:image/png;base64," + res.data;
+											
+										} else {
+											let url = loc + '/static/images/common/user.png'
+										}
+										
+										console.log(url);
+										$('#profileImg').attr("src", url);
+									})
+									.catch((err) => {
+										console.log(err);
+									})
+								</script>							
 							</a>
 							<ul class="dropdown-menu text-small"
 								aria-labelledby="dropUser">

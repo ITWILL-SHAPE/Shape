@@ -142,7 +142,7 @@ public class MyPageController {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:/mypage/memberinfo/myprofile?id=" + id;
+		return "redirect:/myprofile?id=" + id;
 
 	}
 	/**
