@@ -22,10 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.PageDto;
+import com.itwill.shape.dto.PageMeetListDto;
 import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
 import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
 import com.itwill.shape.dto.PostListDto;
@@ -324,9 +326,9 @@ public class MyPageController {
 	 */
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
 	@GetMapping("/active")
-	public String readActiveMeet(@RequestParam("id") String prtcpId, Criteria cri, Model model) {
+	public String readActiveMeet(@RequestParam("id") String prtcpId, CriteriaMeet cri, Model model) {
 		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
-		cri.setAmount(15);
+//		cri.setAmount(15);
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByPrtcpId(prtcpId, cri);
 		log.info("readActiveMeet(dto={})", list);
 
@@ -351,7 +353,7 @@ public class MyPageController {
 		log.info("ml", ml);
 		model.addAttribute("like", ml);
 		model.addAttribute("activeList", list);
-		model.addAttribute("pageMaker", new PageDto(cri, list.size()));
+		model.addAttribute("pageMaker", new PageMeetListDto(cri, list.size()));
 		return "/mypage/meet/active";
 	}
 
@@ -517,6 +519,7 @@ public class MyPageController {
 
 		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, cri);
 		model.addAttribute("myposts", list);
+		model.addAttribute("cri", cri.getKeyword());
 		model.addAttribute("pageMaker", new PageDto(cri, count));
 		return "/mypage/board/myPosts";
 	}
@@ -554,7 +557,7 @@ public class MyPageController {
 	@GetMapping("/mycomments")
 	public String readMycomments(@RequestParam("id") String id, Criteria cri, Model model) {
 		log.info("readMycomments(author(id)={})", id);
-
+		
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
 		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthor(id);
 		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthorWithPaging(id, cri);
@@ -564,7 +567,7 @@ public class MyPageController {
 
 		model.addAttribute("mycomments", mycomments);
 		model.addAttribute("pageMaker", new PageDto(cri, size));
-
+		
 		return "/mypage/board/myComments";
 	}
 
@@ -595,19 +598,24 @@ public class MyPageController {
 	 * @param keyword
 	 * @param cri
 	 */
+//	@ResponseBody
 	@GetMapping("/searchcomments")
 	public String searchComments(@RequestParam("id") String id, Criteria cri, Model model) {
+//	public List<PostCommentSelectByAuthorDto> searchComments(@RequestParam("id") String id, Criteria cri, Model model) {
 		log.info("searchComments(author(id)={}, cri={})", id, cri);
-
+		String keyword = cri.getKeyword();
+		
+		
 		int count = postCommentsService.countComments(id, cri);
 		log.info("searchComments(count={})", count);
 
 		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, cri);
 		model.addAttribute("mycomments", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
+		model.addAttribute("cri", keyword);
 
 		log.info("searchComments(new PageDto={}", new PageDto(cri, count));
-
+		
 		return "/mypage/board/myComments";
 	}
 
@@ -617,19 +625,19 @@ public class MyPageController {
 	 * @param model
 	 * @param keyword
 	 * @param cri
-	 *//*
-		 * @GetMapping("/pagingcomments")
-		 * 
-		 * @ResponseBody public PageDto makeCommentsPage(@RequestParam("id") String id,
-		 * Criteria cri) { log.info("searchComments(author(id)={}, cri={})", id, cri);
-		 * 
-		 * int count = postCommentsService.countComments(id, cri);
-		 * log.info("maekPage(count={})", count);
-		 * 
-		 * // model.addAttribute("mycomments", list);
-		 * 
-		 * // model.addAttribute("pageMaker", new PageDto(cri, count));
-		 * log.info("makePage(PageDto={})", new PageDto(cri, count)); return new
-		 * PageDto(cri, count); }
-		 */
+	 */
+	@GetMapping("/pagingcomments")
+	@ResponseBody
+	public PageDto makeCommentsPage(@RequestParam("id") String id, Criteria cri) {
+		log.info("searchComments(author(id)={}, cri={})", id, cri);
+
+		int count = postCommentsService.countComments(id, cri);
+		log.info("maekPage(count={})", count);
+
+		// model.addAttribute("mycomments", list);
+
+		// model.addAttribute("pageMaker", new PageDto(cri, count));
+		log.info("makePage(PageDto={})", new PageDto(cri, count));
+		return new PageDto(cri, count);
+	}
 }
