@@ -329,18 +329,24 @@ public class MyPageController {
 	@GetMapping("/active")
 	public String readActiveMeet(@RequestParam("id") String prtcpId, CriteriaMeet cri, Model model) {
 		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
-<<<<<<< HEAD
-//		cri.setAmount(15);
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByPrtcpId(prtcpId, cri);
+
+		cri.setAmount(15);
+		if(cri.getPageNum() == 1) {
+			cri.setPageNum(1);
+			cri.setAmount(15);
+		} else {
+			cri.setPageNum(cri.getPageNum());
+			cri.setAmount(cri.getPageNum() * 15);
+		}
+		
+		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByPrtcpIdPaging(prtcpId, cri);
+		int total = meetListService.selectByPrtcpId(prtcpId, cri);
+		
 		log.info("readActiveMeet(dto={})", list);
-=======
 
-		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> List = meetListService.selectByPrtcpId(prtcpId, cri);
-		log.info("readActiveMeet(dto={})", List);
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
-
+		cri.setPageNum(cri.getPageNum() + 1);
 		// 이미지 파일
-		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : List) {
+		for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
 			mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
 
 			if (mc.getImg_1() != null) {
@@ -359,16 +365,43 @@ public class MyPageController {
 		List<MeetLike> ml = meetListService.LikeList();
 		log.info("ml", ml);
 		model.addAttribute("like", ml);
-<<<<<<< HEAD
-		model.addAttribute("activeList", list);
-		model.addAttribute("pageMaker", new PageMeetListDto(cri, list.size()));
-=======
-		model.addAttribute("activeList", List);
 
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
+		model.addAttribute("activeList", list);
+		model.addAttribute("pageMaker", new PageMeetListDto(cri, total));
+
 		return "/mypage/meet/active";
 	}
 
+	/*
+	 * @GetMapping("/active") public String readActiveMeet(@RequestParam("id")
+	 * String prtcpId, PageMeetListDto dto, Model model) {
+	 * log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
+	 * 
+	 * CriteriaMeet cri = new CriteriaMeet(); int total =
+	 * meetListService.getListCountsMyPage(cri); log.info("total={}", total);
+	 * List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list =
+	 * meetListService.selectByPrtcpId(prtcpId, dto);
+	 * log.info("readActiveMeet(dto={})", list);
+	 * 
+	 * // 이미지 파일 for (MeetInfoPrtcpLikeSelectByPrtcpIdDto mc : list) {
+	 * mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+	 * 
+	 * if (mc.getImg_1() != null) { byte[] byteEnc64 =
+	 * Base64.getEncoder().encode(mc.getImg_1()); String imgStr = null; try { imgStr
+	 * = new String(byteEnc64, "UTF-8"); } catch (UnsupportedEncodingException e) {
+	 * e.printStackTrace(); }
+	 * 
+	 * mc.setFile(imgStr); } }
+	 * 
+	 * List<MeetLike> ml = meetListService.LikeList(); log.info("ml", ml);
+	 * model.addAttribute("like", ml);
+	 * 
+	 * model.addAttribute("activeList", list); model.addAttribute("pageMaker", new
+	 * PageMeetListDto(cri, list.size()));
+	 * 
+	 * return "/mypage/meet/active"; }
+	 */
+	
 	/**
 	 * 0610 손창민 내가 개설한 모임
 	 * 

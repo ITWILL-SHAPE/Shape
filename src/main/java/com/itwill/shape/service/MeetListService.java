@@ -100,15 +100,16 @@ public class MeetListService {
 	 * @param prtcpId
 	 * @return
 	 */
-<<<<<<< HEAD
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, CriteriaMeet cri) {
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpIdPaging(String prtcpId, CriteriaMeet cri) {
+		log.info("selectByPrtcpIdPaging(crtrId={}, cri={})", prtcpId, cri);
+		cri.setPageNum((cri.getPageNum() - 1) * 15);
+		return meetInfoRepository.selectByPrtcpIdPaging(prtcpId, cri);
+	}
+	
+	// 내가 참여한 모임 개수
+	public int selectByPrtcpId(String prtcpId, CriteriaMeet cri) {
 		log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
-=======
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, Criteria cri) {
-		log.info("selectByPrtcpId(crtrId={})", prtcpId);
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
-
-		return meetInfoRepository.selectByPrtcpId(prtcpId);
+		return meetInfoRepository.selectByPrtcpId(prtcpId, cri).size();
 	}
 
 	/**

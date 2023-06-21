@@ -3,13 +3,11 @@ package com.itwill.shape.repository;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.CriteriaMeet;
-=======
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
+
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
@@ -48,15 +46,15 @@ public interface MeetInfoRepository {
 	//마이페이지
 	/**
 	 * 0610 손창민
-	 * 내가 참여 중인 모임 목록 불러오기
+	 * 내가 참여 중인 모임 목록 불러오기(Paging)
 	 * @param prtcpId
 	 * @return
 	 */
-<<<<<<< HEAD
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpIdPaging(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
+
+	// 참여중인 모임 목록 개수
 	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
-=======
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId);
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
+	
 	
 	/**
 	 * 0610 손창민
