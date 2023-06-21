@@ -23,6 +23,9 @@ public class PostListDto {
 	
 	private long rcnt; //댓글 
 	
+	private byte[] profile;
+	private String file;
+	
 	public static PostListDto fromEntity(PostInfo entity) {
 		return PostListDto.builder()
 				.pid(entity.getPid())

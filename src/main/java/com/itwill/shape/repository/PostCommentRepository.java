@@ -37,14 +37,13 @@ public interface PostCommentRepository {
 	/**
 	 * 0616 손창민 post_comment table에서 아규먼트로 넘겨받은 id, keyword와 일치한느 댓글 목록 개수 리턴
 	 */
-	int countComments(@Param("author") String author, @Param("keyword") String keyword);
+	int countComments(@Param("author") String author, @Param("cri") Criteria cri);
 
 	/**
 	 * 0616 손창민 post_comment table에서 author(id), keyword와 일치하는 작성글 불러오기 with Paging
 	 */
-	List<PostComment> selectByAuthorAndKeywordWithPaging(@Param("author") String author,
-			@Param("keyword") String keyword, @Param("cri") Criteria cri);
-
+	List<PostComment> selectByAuthorAndKeywordWithPaging(@Param("author") String author, @Param("cri") Criteria cri);
+	
 	/**
 	 * 0603 지현 아래로 게시판 댓글 사용
 	 * 
@@ -64,5 +63,6 @@ public interface PostCommentRepository {
 	int update(PostComment entity);
 
 	int deleteCommentByPid(long pid);
+
 
 }

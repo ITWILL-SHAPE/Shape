@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.dto.MeetInfoCreateDto;
 import com.itwill.shape.dto.MeetInfoUpdateDto;
@@ -32,6 +33,7 @@ import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetPrtcpCreateDto;
 import com.itwill.shape.dto.MeetSearchListDto;
 import com.itwill.shape.dto.PageDto;
+import com.itwill.shape.dto.PageMeetListDto;
 import com.itwill.shape.service.MeetDetailService;
 import com.itwill.shape.service.MeetInfoService;
 import com.itwill.shape.service.MeetListService;
@@ -71,7 +73,7 @@ public class MeetController {
 		MultipartFile uploadFile4 = dto.getFormFile4();
 		MultipartFile uploadFile5 = dto.getFormFile5();
 
-		if (!uploadFile1.isEmpty()) {
+		if (uploadFile1 != null && !uploadFile1.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -85,7 +87,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile2.isEmpty()) {
+		if (uploadFile2 != null && !uploadFile2.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -99,7 +101,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile3.isEmpty()) {
+		if (uploadFile3 != null && !uploadFile3.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -113,7 +115,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile4.isEmpty()) {
+		if (uploadFile4 != null && !uploadFile4.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -127,7 +129,7 @@ public class MeetController {
 			}
 		}
 
-		if (!uploadFile5.isEmpty()) {
+		if (uploadFile5 != null && !uploadFile5.isEmpty()) {
 			// 저장할 바이트
 			byte[] bytes;
 			try {
@@ -146,7 +148,6 @@ public class MeetController {
 
 		return "redirect:/meet/list";
 
-		// 여기에 blob에 저장하기 위해 url을 byte로 변환하는 코드를 넣어야하는 지?
 	}
 
 	/**
@@ -158,8 +159,73 @@ public class MeetController {
 	@GetMapping("/update")
 	public void modify(long mtid, Model model) {
 		log.info("modify(mtid={})", mtid);
-
+		
 		MeetMainDetailDto dto = meetInfoService.read(mtid);
+		
+		if (dto.getImg_1() != null) {
+			byte[] imgByte = dto.getImg_1();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile1(imgStr);
+		}
+		
+		if (dto.getImg_2() != null) {
+			byte[] imgByte = dto.getImg_2();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile2(imgStr);
+		}
+		
+		if (dto.getImg_3() != null) {
+			byte[] imgByte = dto.getImg_3();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile3(imgStr);
+		}
+		if (dto.getImg_4() != null) {
+			byte[] imgByte = dto.getImg_4();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile4(imgStr);
+		}
+		if (dto.getImg_5() != null) {
+			byte[] imgByte = dto.getImg_5();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile5(imgStr);
+		}
+		
+		
 		model.addAttribute("meet", dto);
 
 	}
@@ -174,6 +240,82 @@ public class MeetController {
 	public String update(MeetInfoUpdateDto dto) {
 		log.info("update(dto={})", dto);
 
+		MultipartFile uploadFile1 = dto.getFormFile1();
+		MultipartFile uploadFile2 = dto.getFormFile2();
+		MultipartFile uploadFile3 = dto.getFormFile3();
+		MultipartFile uploadFile4 = dto.getFormFile4();
+		MultipartFile uploadFile5 = dto.getFormFile5();
+
+		if (uploadFile1 != null && !uploadFile1.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile1.getBytes();
+				dto.setImg_1(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile2 != null && !uploadFile2.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile2.getBytes();
+				dto.setImg_2(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile3 != null && !uploadFile3.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile3.getBytes();
+				dto.setImg_3(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile4 != null && !uploadFile4.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile4.getBytes();
+				dto.setImg_4(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile5 != null && !uploadFile5.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile5.getBytes();
+				dto.setImg_5(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+		
 		int result = meetInfoService.update(dto);
 		log.info("모임 수정 결과 = {}", result);
 
@@ -211,22 +353,22 @@ public class MeetController {
 		log.info("listCount = {}", total);
 
 		// 페이징을 위한
-		Criteria cri = new Criteria();
+		CriteriaMeet cri = new CriteriaMeet();
 		if (search.getPageNum() != 0) {
 			cri.setPageNum(search.getPageNum());
-			cri.setAmount(search.getAmount() + 5);
+			cri.setAmount(search.getAmount());
 		} else {
 			search.setPageNum(cri.getPageNum());
-			search.setAmount(cri.getAmount() + 5);
+			search.setAmount(cri.getAmount());
 		}
 
 		Map<String, Object> map = meetListService.selectBySearch(search);
-		List<MeetLike> ml = new ArrayList<>();
+		List<MeetLike> ml = meetListService.LikeList();
 
 
 		model.addAttribute("listCount", map.get("list"));
 		model.addAttribute("search", search);
-		model.addAttribute("paging", new PageDto(cri, total));
+		model.addAttribute("paging", new PageMeetListDto(cri, total));
 		model.addAttribute("like", ml);
 		
 	}

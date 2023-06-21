@@ -16,7 +16,7 @@ public interface InfoNoticeRepository {
 	
 	int viewCount (long nid);
 	
-	List<InfoNoticeListDto> selectOrderByDateDesc();
+	List<InfoNoticeListDto> selectfixed();
 	
 	int updateNotice (InfoNotice dto);
 	

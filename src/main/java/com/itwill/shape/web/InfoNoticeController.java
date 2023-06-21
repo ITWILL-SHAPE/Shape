@@ -79,7 +79,9 @@ public class InfoNoticeController {
 		log.info("listCount={}", total);
 		
 		List<InfoNoticeListDto> list = infoNoticeService.read(cri);
+		List<InfoNoticeListDto> fixed = infoNoticeService.read();
 		
+		model.addAttribute("fixed", fixed);
 		model.addAttribute("notices", list);
 		model.addAttribute("paging", new PageDto(cri, total));
 	}

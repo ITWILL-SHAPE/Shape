@@ -169,48 +169,68 @@ document.getElementById('nm_ppl').addEventListener('input', function(e) {
 
 });
 
-  const inputContainer = document.getElementById('inputContainer');
-  const addButton = document.getElementById('addButton');
-  let fileInputCount = 1;
+function imageUpload(input) {
+  const preview = input.parentElement.querySelector('.imagePreview');
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    preview.src = e.target.result;
+  };
+  if (input.files && input.files[0]) {
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    preview.src = "";
+  }
+}
 
-  addButton.addEventListener('click', () => {
-    if (fileInputCount >= 5) {
-      addButton.disabled = true;
-      return;
-    }
+const inputContainer = document.getElementById('inputContainer');
+const addButton = document.getElementById('addButton');
+let fileInputCount = 1;
 
-    const newFileInput = document.createElement('div');
-    newFileInput.classList.add('input-group','mb-3');
+addButton.addEventListener('click', () => {
+  if (fileInputCount >= 5) {
+    addButton.disabled = true;
+    return;
+  }
 
-    const newInput = document.createElement('input');
-    newInput.classList.add('form-control', 'file-input');
-    newInput.type = 'file';
-    newInput.name = `formFile${fileInputCount + 1}`;
-    newInput.accept = 'image/*';
+  const newFileInput = document.createElement('div');
+  newFileInput.classList.add('input-group', 'mb-3');
 
-    const deleteButton = document.createElement('button');
-    deleteButton.classList.add('btn', 'btn-secondary', 'deleteButton');
-    deleteButton.type = 'button';
-    deleteButton.textContent = '삭제';
+  const newPreview = document.createElement('img');
+  newPreview.classList.add('imagePreview');
+  newPreview.id = `imagePreview${fileInputCount + 1}`;
 
-    deleteButton.addEventListener('click', () => {
-      inputContainer.removeChild(newFileInput);
-      fileInputCount--;
+  const newInput = document.createElement('input');
+  newInput.classList.add('form-control', 'file-input');
+  newInput.type = 'file';
+  newInput.name = `formFile${fileInputCount + 1}`;
+  newInput.id = `formFile${fileInputCount + 1}`;
+  newInput.accept = 'image/*';
+  newInput.onchange = function() {
+    imageUpload(this);
+  };
 
-      if (fileInputCount < 5) {
-        addButton.disabled = false;
-      }
-    });
 
-    newFileInput.appendChild(newInput);
-    newFileInput.appendChild(deleteButton);
-    inputContainer.appendChild(newFileInput);
-    fileInputCount++;
+  newFileInput.appendChild(newInput);
+  newFileInput.appendChild(newPreview);
+  
+  inputContainer.appendChild(newFileInput);
+  fileInputCount++;
 
-    if (fileInputCount >= 5) {
-      addButton.disabled = true;
-    }
-  });
+  if (fileInputCount >= 5) {
+    addButton.disabled = true;
+  }
+});
+
+deleteButton.addEventListener('click', () => {
+  const fileInputs = inputContainer.querySelectorAll('.input-group');
+  const lastFileInput = fileInputs[fileInputs.length - 1];
+  inputContainer.removeChild(lastFileInput);
+  fileInputCount--;
+
+  if (fileInputCount < 5) {
+    addButton.disabled = false;
+  }
+});
  
 
 

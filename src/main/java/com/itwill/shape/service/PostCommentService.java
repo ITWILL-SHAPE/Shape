@@ -2,6 +2,7 @@ package com.itwill.shape.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.Criteria;
@@ -76,25 +77,24 @@ public class PostCommentService {
 	/**
 	 * 0616 손창민 post_comments table에서 author(id), keyword와 일치하는 작성글 개수 불러오기
 	 */
-	public int countComments(String author, String keyword) {
-		log.info("countComments(author(id)={}, keyword={})", author, keyword);
+	public int countComments(String author, Criteria cri) {
+		log.info("countComments(author(id)={}, cri={})", author, cri);
 
-		return postCommentRepository.countComments(author, keyword);
+		return postCommentRepository.countComments(author, cri);
 	}
 
 	/**
 	 * 0616 손창민 post_comment table에서 author(id), keyword와 일치하는 댓글 불러오기 with Paging
 	 */
-	public List<PostCommentSelectByAuthorDto> selectByAuthorAndKeywordWithPaging(String author, String keyword,
-			Criteria cri) {
-		log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, keyword={}, cri={})", author, keyword, cri);
+	public List<PostCommentSelectByAuthorDto> selectByAuthorAndKeywordWithPaging(String author, Criteria cri) {
+		log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, cri={})", author, cri);
 
-		List<PostComment> entity = postCommentRepository.selectByAuthorAndKeywordWithPaging(author, keyword, cri);
+		List<PostComment> entity = postCommentRepository.selectByAuthorAndKeywordWithPaging(author, cri);
 		log.info("selectByAuthorWithPaging(entity={})", entity);
 
 		return entity.stream().map(PostCommentSelectByAuthorDto::fromEntity).toList();
 	}
-
+	
 	/**
 	 * 0603 지현 게시판 댓글 사용
 	 * 
@@ -135,4 +135,5 @@ public class PostCommentService {
 		log.info("deleteCommentByPid(pid = {})", pid);
 		return postCommentRepository.deleteCommentByPid(pid);
 	}
+
 }

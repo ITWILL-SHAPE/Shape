@@ -1,4 +1,12 @@
 @charset "UTF-8";
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* 전체 사용 */
 .container { padding: 0 150px 0 150px; }
 
@@ -35,11 +43,13 @@
 
 .titleBolder { /*h1 타이틀 글자 굵기*/
 	font-weight: bolder;
+	font-family: 'Pretendard-Regular';
 }
 
 /* main.jsp에서 사용 */
 .mainH2 {
 	margin-bottom: 0px;
+	font-family: 'Pretendard-Regular';
 }
 
 a.mainA { text-decoration: none; color: gray; }
@@ -48,6 +58,7 @@ a.mainA:hover { color: #3B7CFF; }
 a.mainA:active { color: #3B7CFF; }
 
 .mainA {
+	font-family: 'Pretendard-Regular';
 	margin-left: 15px;
 	margin-bottom: 0px;
     height: 25px;
@@ -76,6 +87,12 @@ a.mainA:active { color: #3B7CFF; }
      height: inherit;
 }
 
+.carousel-item > a > img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
 .carousel-item > img {
 	width: 100%;
 	height: 100%;
@@ -94,6 +111,7 @@ a.mainA:active { color: #3B7CFF; }
 /* header.jsp에서 사용 */
 .headerBtn {
 	border: none;
+	font-size: 20px;
 }
 
 .headerBtn:active, .headerBtn:focus {
@@ -171,13 +189,11 @@ div.signUpBox {
 
 /* meet/create.jsp, update.jsp에 사용 */
 .imagePreview {
-	width: 300px;
+	width: 250px;
 }
 
 div.meetCreateBox {
-	height: 2050px;
 	min-width: 1000px;
-	min-height: 2050px;
 }
 
 #mt_notice small {
@@ -440,4 +456,10 @@ th, td {
 
 .custom-input {
   width: 200px; /* 원하는 길이로 설정 */
+}
+
+.postDetail > p > img{
+	object-fit: contain;
+	width: 100% !important;
+	height: 100%;
 }

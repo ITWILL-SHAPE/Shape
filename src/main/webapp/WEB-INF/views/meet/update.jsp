@@ -21,7 +21,7 @@
 							</small>
 						</div>
 					</div>
-					<form action="" method="post" class="form-box" id="modifyForm">
+					<form action="" method="post" class="form-box" id="modifyForm" encType="multipart/form-data">
 						<dl>
 							<div>
 								<input type="hidden" id="crtr_id" name="crtr_id" value="${ meet.crtr_id }" />
@@ -136,10 +136,46 @@
 							모임 사진
 							</dt>
 							<dd align="left">
-								<div class="input-group mb-3">
-								    <input class="form-control file-input" type="file" name="formFile1" accept="image/*">
-								  	<button class="btn btn-secondary" type="button">삭제</button>
-								  </div>
+							<div id="inputContainer">
+							  <c:if test="${meet.file1 != null}">
+							    <div class="input-group mb-3">
+							    <input class="form-control file-input" type="file" name="formFile1" accept="image/*" onchange="imageUpload(this);">
+							      <c:set value="data:image/png;base64, ${meet.file1}" var="url1" />
+							      <img src="${url1}" class="imagePreview">
+							     </div>
+							   </c:if>
+							   <c:if test="${meet.file2 != null}">
+							   <div class="input-group mb-3">
+							   <input class="form-control file-input" type="file" name="formFile2" id="formFile2" accept="image/*" onchange="imageUpload(this);">
+							      <c:set value="data:image/png;base64, ${meet.file2}" var="url2" />
+							      <img src="${url2}" class="imagePreview">
+							    </div>
+							   </c:if>
+							   <c:if test="${meet.file3 != null}">
+							  	<div class="input-group mb-3">
+							  	<input class="form-control file-input" type="file" name="formFile3" id="formFile3" accept="image/*" onchange="imageUpload(this);">
+							      <c:set value="data:image/png;base64, ${meet.file3}" var="url3" />
+							      <img src="${url3}" class="imagePreview">
+							    </div>
+							   </c:if>
+							   <c:if test="${meet.file4 != null}">
+							     <div class="input-group mb-3">
+							     <input class="form-control file-input" type="file" name="formFile4" id="formFile4" accept="image/*" onchange="imageUpload(this);">
+							      <c:set value="data:image/png;base64, ${meet.file4}" var="url4" />
+							      <img src="${url4}" class="imagePreview">
+							     </div>
+							    </c:if>
+							    <c:if test="${meet.file5 != null}">
+							     <div class="input-group mb-3">
+							     <input class="form-control file-input" type="file" name="formFile5" id="formFile5" accept="image/*" onchange="imageUpload(this);">
+							      <c:set value="data:image/png;base64, ${meet.file5}" var="url5" />
+							      <img src="${url5}" class="imagePreview">
+							     </div>
+							    </c:if>
+							    <div class="smallText">
+									<small id="nm_ppl_help" class="form-text text-muted">첨부한 사진은 변경만 가능</small>
+								</div>
+							</div>
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">

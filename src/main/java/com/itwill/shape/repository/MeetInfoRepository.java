@@ -3,11 +3,19 @@ package com.itwill.shape.repository;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
+import org.apache.ibatis.annotations.Param;
+
+import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
+=======
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetSearchListDto;
+import com.itwill.shape.dto.PageMeetListDto;
 
 // meet_info의 repository.
 public interface MeetInfoRepository {
@@ -44,7 +52,11 @@ public interface MeetInfoRepository {
 	 * @param prtcpId
 	 * @return
 	 */
+<<<<<<< HEAD
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
+=======
 	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId);
+>>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 	
 	/**
 	 * 0610 손창민
@@ -123,6 +135,7 @@ public interface MeetInfoRepository {
 	MeetInfo detailByMtid(long mtid);
 	
 	
+	List<PageMeetListDto> selectByidWithPaging(PageMeetListDto dto);
 	
 	// 리스트 페이징
 	List<MeetListCountDto> selectBySearchPaging(MeetSearchListDto dto);

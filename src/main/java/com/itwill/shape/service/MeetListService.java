@@ -11,11 +11,14 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetSearchListDto;
+import com.itwill.shape.dto.PageMeetListDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.repository.MeetLikeRepository;
 import com.itwill.shape.repository.MeetPrtcpRepository;
@@ -32,15 +35,34 @@ public class MeetListService {
 	private final MeetLikeRepository meetLikeRepository;
 	private final MeetPrtcpRepository meetPrtcpRepository;
 
+	
 	/**
 	 * 정지언 메인페이지 모임 최신순 보이기
 	 * 
 	 * @return
 	 */
 	public List<MeetListCountDto> mainReadByRecent() {
-		log.info("mainReadByRecent()");
+	    log.info("mainReadByRecent()");
 
-		return meetInfoRepository.selectOrderByRecent();
+	    List<MeetListCountDto> meetList = meetInfoRepository.selectOrderByRecent();
+
+	    for (MeetListCountDto mc : meetList) {
+	        mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+
+	        if (mc.getImg_1() != null) {
+	            byte[] byteEnc64 = Base64.getEncoder().encode(mc.getImg_1());
+	            String imgStr = null;
+	            try {
+	                imgStr = new String(byteEnc64, "UTF-8");
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            }
+
+	            mc.setFile(imgStr);
+	        }
+	    }
+
+	    return meetList;
 	}
 
 	/**
@@ -51,7 +73,25 @@ public class MeetListService {
 	public List<MeetListCountDto> mainReadByPopularity() {
 		log.info("mainReadByPopularity()");
 
-		return meetInfoRepository.selectOrderByPopularity();
+		List<MeetListCountDto> meetList = meetInfoRepository.selectOrderByPopularity();
+		
+	    for (MeetListCountDto mc : meetList) {
+	        mc.setImg_1(meetInfoRepository.selectByMtid(mc.getMtid()).getImg_1());
+
+	        if (mc.getImg_1() != null) {
+	            byte[] byteEnc64 = Base64.getEncoder().encode(mc.getImg_1());
+	            String imgStr = null;
+	            try {
+	                imgStr = new String(byteEnc64, "UTF-8");
+	            } catch (UnsupportedEncodingException e) {
+	                e.printStackTrace();
+	            }
+
+	            mc.setFile(imgStr);
+	        }
+	    }
+
+	    return meetList;
 	}
 
 	/**
@@ -60,8 +100,8 @@ public class MeetListService {
 	 * @param prtcpId
 	 * @return
 	 */
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId) {
-		log.info("selectByPrtcpId(prtcpId={})", prtcpId);
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, CriteriaMeet cri) {
+		log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
 
 		return meetInfoRepository.selectByPrtcpId(prtcpId);
 	}
@@ -106,10 +146,10 @@ public class MeetListService {
 	 * 
 	 * @return
 	 */
-	public List<MeetLike> LikeList(long mtid) {
+	public List<MeetLike> LikeList() {
 		log.info("readByCreateTime()");
 
-		return meetLikeRepository.selectMeetLikeListByMtid(mtid);
+		return meetLikeRepository.selectMeetLikeList();
 	}
 
 	/**
@@ -130,12 +170,13 @@ public class MeetListService {
 	public Map<String, Object> selectBySearch(MeetSearchListDto dto) {
 		log.info("selectBySearch(dto={})", dto);
 
+		dto.setAmount(15);	
 		if (dto.getPageNum() > 1) {
-			dto.setAmount(dto.getPageNum() * 15);
+			//dto.setAmount(dto.getPageNum() * 15);
 			dto.setPageNum((dto.getPageNum() - 1) * 15);
 		} else {
 			dto.setPageNum(dto.getPageNum() - 1);
-			dto.setAmount(15);
+			//dto.setAmount(15);
 		}
 
 		if (dto.getSearchSortBy() == null || dto.getSearchSortBy().equals("")) {

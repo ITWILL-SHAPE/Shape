@@ -141,17 +141,22 @@
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">
-							모임 사진
+							모임 사진 <span class="highlight">*</span>
 							</dt>
 							<dd align="left">
 								<div id="inputContainer">
 								  <div class="input-group mb-3">
-								    <input class="form-control file-input" type="file" name="formFile1" accept="image/*">
-								  	<button class="btn btn-secondary" type="button">삭제</button>
+								    <input class="form-control file-input" type="file" id="formFile1" name="formFile1" accept="image/*" onchange="imageUpload(this);">
+								  	<img class="imagePreview" id="imagePreview1">
 								  </div>
+								</div>
+								
+								<div class="smallText">
+									<small id="nm_ppl_help" class="form-text text-muted">최대 5장 첨부 가능</small>
 								</div>
 								<div class="text-center">
 								<button class="btn btn-list" type="button" id="addButton">추가</button>
+								<button class="btn btn-secondary" type="button" id="deleteButton">삭제</button>
 								</div>
 							</dd>
 							<br>

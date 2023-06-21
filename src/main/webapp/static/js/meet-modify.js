@@ -12,11 +12,11 @@
 		const mt_time = document.querySelector('input#mt_time').value;
 		const mt_cost = document.querySelector('input#mt_cost').value;
 		const mt_cost_info = document.querySelector('select#mt_cost_info').value;
-		const formFile_1 = document.querySelector('input#formFile_1').value;
-		const formFile_2 = document.querySelector('input#formFile_2').value;
-		const formFile_3 = document.querySelector('input#formFile_3').value;
-		const formFile_4 = document.querySelector('input#formFile_4').value;
-		const formFile_5 = document.querySelector('input#formFile_5').value;
+/*		const formFile1 = document.querySelector('input#formFile1');
+		const formFile2 = document.querySelector('input#formFile2');
+		const formFile3 = document.querySelector('input#formFile3');
+		const formFile4 = document.querySelector('input#formFile4');
+		const formFile5 = document.querySelector('input#formFile5');*/
 		const summernote = document.querySelector('textarea#summernote').value;
 
 		const btnUpdate = document.querySelector('#btnUpdate');
@@ -55,6 +55,7 @@
 
 			const check = confirm('모임을 수정하시겠습니까?');
 			if (check) {
+				console.log(modifyForm);
 				modifyForm.submit();
 			}
 		});
@@ -112,23 +113,21 @@
     document.getElementById('mt_date').setAttribute('min', meetDateInput);
 }
 
-// 사진 파일 미리보기
-function uploadImage(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById('imagePreview').src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
-  } else {
-    document.getElementById('imagePreview').src = "";
-  }
+// 이미지 미리보기
+function imageUpload(input) {
+  const preview = input.parentElement.querySelectorAll('.imagePreview');
+  preview.forEach((pre) => {
+	  const reader = new FileReader();
+	  reader.onload = function(e) {
+	    pre.src = e.target.result;
+	  };
+	  if (input.files && input.files[0]) {
+	    reader.readAsDataURL(input.files[0]);
+	  } else {
+	    pre.src = "";
+	  }  
+  })
+  
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  var imagePreview = document.getElementById('imagePreview');
-  var imageUrl = "${meet.img_1}"; // 서버에서 가져온 이미지 URL
 
-  imagePreview.src = imageUrl;
-  
- });

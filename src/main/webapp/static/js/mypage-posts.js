@@ -2,12 +2,14 @@
  * myPosts.jsp 에서 사용
  */
 document.addEventListener('DOMContentLoaded', () => {
-	var deleteButton = document.querySelector('.delete-button');
-	var allCheckbox = document.getElementById('all-checkbox');
-	var rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
+	let deleteButton = document.querySelector('.delete-button');
+	const allCheckbox = document.getElementById('all-checkbox');
+	let rowCheckboxes = document.querySelectorAll('input[id="row-checkbox"]');
+	const searchButton = document.querySelector('svg.bi.bi-search');
+	console.log(searchButton);
 
 	allCheckbox.addEventListener('change', () => {
-		var isChecked = allCheckbox.checked;
+		let isChecked = allCheckbox.checked;
 
 		rowCheckboxes.forEach((checkbox) => {
 			checkbox.checked = isChecked;
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						checkbox.checked = isChecked;
 					});
 				});
-				
+
 				allCheckbox.checked = false;
 			})
 			.catch((error) => {
@@ -70,6 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				console.log('Error: ' + error);
 			});
 	});
+
+	/*searchButton.addEventListener('click', () => {
+		const keyword = document.querySelector('#keyword').value;
+		console.log(keyword);
+
+		if (keyword.trim() !== '') {
+			searchTable(keyword);
+		}
+	});*/
 
 	function updateTable(pageNum) {
 		axios.get('/shape/updateposts', { params: { id: id, pageNum: pageNum } })
@@ -98,6 +109,60 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 	}
 
+	/*function searchTable(keyword) {
+		const params = { id: id, keyword: keyword };
+
+		axios
+			.get('/shape/searchposts', { params })
+			.then((response) => {
+				const searchResults = response.data;
+				const tbody = document.querySelector('tbody');
+				tbody.innerHTML = generateTableRows(searchResults);
+				console.log(searchResults);
+
+				highlightKeyword(keyword); // 키워드 강조 처리
+			})
+			.catch((error) => {
+				console.log('Error: ' + error);
+			});
+
+		axios.get('/shape/pagingposts', { params })
+			.then((response) => {
+				const pageMaker = response.data;
+				const ul = document.querySelector('.pagination');
+				ul.innerHTML = generatePagination(pageMaker);
+				console.log(pageMaker);
+
+
+			})
+			.catch((error) => {
+				console.log('Error: ' + error);
+			})
+	}*/
+
+	/*// 페이징 생성 함수
+	function generatePagination(pageMaker) {
+		let paginationHTML = '<ul class="pagination justify-content-center">';
+
+		paginationHTML += `<li class="page-item ${pageMaker.prev ? '' : 'disabled'}">
+    <a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${pageMaker.startPage - 1}" tabindex="-1">&laquo;</a>
+  </li>`;
+
+		for (let num = pageMaker.startPage; num <= pageMaker.endPage; num++) {
+			paginationHTML += `<li class="page-item ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+      <a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${num}">${num}</a>
+    </li>`;
+		}
+
+		paginationHTML += `<li class="page-item ${pageMaker.next ? '' : 'disabled'}">
+    <a class="page-link" href="/shape/mycomments?id=${id}&pageNum=${pageMaker.endPage + 1}" tabindex="-1">&raquo;</a>
+  </li>`;
+
+		paginationHTML += '</ul>';
+
+		return paginationHTML;
+	}*/
+
 	// 테이블 행 생성 함수
 	function generateTableRows(tableData) {
 		let rows = '';
@@ -123,4 +188,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 		return formattedDate;
 	}
+
+	/*// 키워드 강조 처리 함수
+	function highlightKeyword(keyword) {
+		const tableRows = document.querySelectorAll('.row-separator');
+		tableRows.forEach((row) => {
+			const contentCell = row.querySelector('.row-content');
+			const content = contentCell.textContent;
+			const highlightedContent = content.replace(new RegExp(keyword, 'gi'), (match) => `<span class="highlight">${match}</span>`);
+			contentCell.innerHTML = highlightedContent;
+		});
+	}*/
 });
