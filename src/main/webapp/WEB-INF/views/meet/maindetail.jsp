@@ -40,7 +40,7 @@
 						data-bs-slide-to="4" aria-label="Slide 5" class=""></button>
 					</c:if>
 				</div>
-				<!-- 1번째 -->
+				<!-- 1번 -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<c:if test="${ meetmaindetail.file1 == null }">							
@@ -55,7 +55,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- 2번쨰 -->
+					<!-- 2번 -->
 					<c:if test="${ meetmaindetail.file2 != null }">					
 						<div class="carousel-item">
 								<c:set value="data:image/png;base64, ${ meetmaindetail.file2 }" var="url2" />
@@ -67,7 +67,7 @@
 							</div>
 						</div>
 					</c:if>	
-					<!-- 3번쩨 -->
+					<!-- 3번 -->
 					<c:if test="${ meetmaindetail.file3 != null }"> 
 						<div class="carousel-item">
 								<c:set value="data:image/png;base64, ${ meetmaindetail.file3 }" var="url3" />
@@ -79,7 +79,7 @@
 							</div>
 						</div>
 					</c:if>		
-					<!-- 4번째 -->
+					<!-- 4번 -->
 					<c:if test="${ meetmaindetail.file4 != null }"> 
 						<div class="carousel-item">
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file4 }" var="url4" />
@@ -91,7 +91,7 @@
 							</div>
 						</div>
 					</c:if>		
-					<!--5번째 -->
+					<!--5번 -->
 					<c:if test="${ meetmaindetail.file5 != null }">
 						<div class="carousel-item"> 
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file5 }" var="url5" />
@@ -252,12 +252,8 @@
 										<button id="like" name="like" type="button" class="btn btn-danger" >♡ ${meetmaindetail.meetlikecount}</button>
 									</c:if>
 									
-									
-									<!--  참여자가 모임인원이 FULL -->
+									<!--  참여인원 -->
 									<c:set var="NumberPrtcp" value="${meetmaindetail.meetNumberPrtcp}" />
-									<c:if test="${meetmaindetail.nm_ppl == NumberPrtcp  }">
-										<button id="full" name="full" type="button" class="btn btn-secondary" >참여종료</button>
-									</c:if>
 									
 									<!--  참여 인원이 NO FULL -->
 									<c:if test="${meetmaindetail.nm_ppl > NumberPrtcp}">
@@ -276,14 +272,35 @@
 									<c:if test="${ userList.prtcp_id != loginUser && loop_flag == false }">
 										<button id="join" name="join" type="button" class="btn btn-classic">참여</button>
 									</c:if>
-																
-									</c:if>
-								</div>
+								</c:if>
+								<!--  참여인원이 FULL x -->	
+									
+									<!--  참여자가 모임인원이 FULL -->
+										<c:if test="${meetmaindetail.nm_ppl == NumberPrtcp}">
+											<c:set var="hasParticipated" value="false" />
+											<c:forEach items="${meetmaindetail.prtcpDtoList}" var="prtcpList">
+												
+												<!-- 참여자 정보에 ID가 로그인 한 USER ID가 같은 경우 -->
+												<c:if test="${prtcpList.prtcp_id == loginUser}">
+													<c:set var="hasParticipated" value="true" />
+														<button id="delete" name="delete" type="button" class="btn btn-secondary" 
+														data-id="${meetmaindetail.mtid}" data-login="${prtcpList.prtcp_id}">참여취소</button>
+												</c:if>
+											</c:forEach>
+												<!--  아닌 경우 -->
+												<c:if test="${hasParticipated == 'false'}">
+														<button id="full" name="full" type="button" class="btn btn-secondary">참여종료</button>
+												</c:if>
+												</c:if>
+
+
+
+											</div>
 							</c:when>
 						</c:choose>			
 					</sec:authorize>
 
-
+					
 					<!-- 프로필 -->
 					<div class="card my-2">
 						<div class="card-header fw-bold">
