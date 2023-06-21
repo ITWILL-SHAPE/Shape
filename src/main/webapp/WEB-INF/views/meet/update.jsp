@@ -139,37 +139,37 @@
 							<div id="inputContainer">
 							  <c:if test="${meet.file1 != null}">
 							    <div class="input-group mb-3">
+							    <input class="form-control file-input" type="file" name="formFile1" accept="image/*" onchange="imageUpload(this);">
 							      <c:set value="data:image/png;base64, ${meet.file1}" var="url1" />
-							      <img src="${url1}" class="imagePreview">
-							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							      <img src="${url1}" class="imagePreview1">
 							     </div>
 							   </c:if>
 							   <c:if test="${meet.file2 != null}">
 							   <div class="input-group mb-3">
+							   <input class="form-control file-input" type="file" name="formFile2" id="formFile2" accept="image/*" data-file-id="2">
 							      <c:set value="data:image/png;base64, ${meet.file2}" var="url2" />
-							      <img src="${url2}" class="imagePreview">
-							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							      <img src="${url2}" class="imagePreview2">
 							    </div>
 							   </c:if>
 							   <c:if test="${meet.file3 != null}">
 							  	<div class="input-group mb-3">
+							  	<input class="form-control file-input" type="file" name="formFile3" id="formFile3" accept="image/*" data-file-id="3">
 							      <c:set value="data:image/png;base64, ${meet.file3}" var="url3" />
-							      <img src="${url3}" class="imagePreview">
-							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							      <img src="${url3}" class="imagePreview3">
 							    </div>
 							   </c:if>
 							   <c:if test="${meet.file4 != null}">
 							     <div class="input-group mb-3">
+							     <input class="form-control file-input" type="file" name="formFile4" id="formFile4" accept="image/*" data-file-id="4">
 							      <c:set value="data:image/png;base64, ${meet.file4}" var="url4" />
-							      <img src="${url4}" class="imagePreview">
-							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							      <img src="${url4}" class="imagePreview4">
 							     </div>
 							    </c:if>
 							    <c:if test="${meet.file5 != null}">
 							     <div class="input-group mb-3">
+							     <input class="form-control file-input" type="file" name="formFile5" id="formFile5" accept="image/*" data-file-id="5">
 							      <c:set value="data:image/png;base64, ${meet.file5}" var="url5" />
-							      <img src="${url5}" class="imagePreview">
-							      <button class="btn btn-secondary deleteButton" type="button">삭제</button>
+							      <img src="${url5}" class="imagePreview5">
 							     </div>
 							    </c:if>
 							</div>

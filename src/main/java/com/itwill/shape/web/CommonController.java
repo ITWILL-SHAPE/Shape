@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.Test;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MngrMeetGraphDto;
@@ -52,12 +54,14 @@ public class CommonController {
 		
 		List<MeetListCountDto> rdto = meetListService.mainReadByRecent();
 		List<MeetListCountDto> pdto = meetListService.mainReadByPopularity();
+		List<MeetLike> ml = meetListService.LikeList();
 		List<PostListDto> list = postInfoService.read();
 		
 		LocalDate currentDate = LocalDate.now();
 
 		List<LocalDate> targetDate = new ArrayList<>();
 
+		// 최신순 리스트 불러오기
 		List<MeetListCountDto> filteredDto = new ArrayList<>();
 		for (MeetListCountDto item : rdto) {
 			String date = item.getMt_date();
@@ -75,6 +79,7 @@ public class CommonController {
 			}
 		}
 		
+		// 인기순 리스트 불러오기 
 		List<MeetListCountDto> filteredDto2 = new ArrayList<>();
 		for (MeetListCountDto item : pdto) {
 			String date = item.getMt_date();
@@ -96,7 +101,7 @@ public class CommonController {
 			// 뷰에 PostDetailDto를 전달.
 			model.addAttribute("listRecent", filteredDto);
 			model.addAttribute("listPopularity", filteredDto2);
-			
+			model.addAttribute("like", ml);
 			for (MeetListCountDto c : filteredDto) {
 				log.info("확인 = {}", c);
 			}

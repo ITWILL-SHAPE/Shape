@@ -1,6 +1,7 @@
 package com.itwill.shape.dto;
 
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.MeetInfo;
 
@@ -36,6 +37,13 @@ public class MeetInfoUpdateDto {
 	private byte[] img_5;
 	private String content;
 	
+	private MultipartFile formFile1;
+	private MultipartFile formFile2;
+	private MultipartFile formFile3;
+	private MultipartFile formFile4;
+	private MultipartFile formFile5;
+	
+	// 이미지를 보여주기 위한 byte[] to String
 	private String file1;
 	private String file2;
 	private String file3;

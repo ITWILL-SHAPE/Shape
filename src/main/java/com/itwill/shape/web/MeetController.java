@@ -159,8 +159,73 @@ public class MeetController {
 	@GetMapping("/update")
 	public void modify(long mtid, Model model) {
 		log.info("modify(mtid={})", mtid);
-
+		
 		MeetMainDetailDto dto = meetInfoService.read(mtid);
+		
+		if (dto.getImg_1() != null) {
+			byte[] imgByte = dto.getImg_1();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile1(imgStr);
+		}
+		
+		if (dto.getImg_2() != null) {
+			byte[] imgByte = dto.getImg_2();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile2(imgStr);
+		}
+		
+		if (dto.getImg_3() != null) {
+			byte[] imgByte = dto.getImg_3();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile3(imgStr);
+		}
+		if (dto.getImg_4() != null) {
+			byte[] imgByte = dto.getImg_4();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile4(imgStr);
+		}
+		if (dto.getImg_5() != null) {
+			byte[] imgByte = dto.getImg_5();
+			byte[] byteEnc64 = Base64.getEncoder().encode(imgByte);
+			String imgStr = null;
+			try {
+				imgStr = new String(byteEnc64, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			
+			dto.setFile5(imgStr);
+		}
+		
+		
 		model.addAttribute("meet", dto);
 
 	}
@@ -175,6 +240,82 @@ public class MeetController {
 	public String update(MeetInfoUpdateDto dto) {
 		log.info("update(dto={})", dto);
 
+		MultipartFile uploadFile1 = dto.getFormFile1();
+		MultipartFile uploadFile2 = dto.getFormFile2();
+		MultipartFile uploadFile3 = dto.getFormFile3();
+		MultipartFile uploadFile4 = dto.getFormFile4();
+		MultipartFile uploadFile5 = dto.getFormFile5();
+
+		if (uploadFile1 != null && !uploadFile1.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile1.getBytes();
+				dto.setImg_1(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile2 != null && !uploadFile2.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile2.getBytes();
+				dto.setImg_2(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile3 != null && !uploadFile3.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile3.getBytes();
+				dto.setImg_3(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile4 != null && !uploadFile4.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile4.getBytes();
+				dto.setImg_4(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+
+		if (uploadFile5 != null && !uploadFile5.isEmpty()) {
+			// 저장할 바이트
+			byte[] bytes;
+			try {
+				// upload된 파일을 byte 로 변환
+				bytes = uploadFile5.getBytes();
+				dto.setImg_5(bytes);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+		
 		int result = meetInfoService.update(dto);
 		log.info("모임 수정 결과 = {}", result);
 

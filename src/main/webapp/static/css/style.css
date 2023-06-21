@@ -170,14 +170,12 @@ div.signUpBox {
 }
 
 /* meet/create.jsp, update.jsp에 사용 */
-.imagePreview {
+.imagePreview1, .imagePreview2, .imagePreview3, .imagePreview4, .imagePreview5  {
 	width: 250px;
 }
 
 div.meetCreateBox {
-	height: 2050px;
 	min-width: 1000px;
-	min-height: 2050px;
 }
 
 #mt_notice small {
