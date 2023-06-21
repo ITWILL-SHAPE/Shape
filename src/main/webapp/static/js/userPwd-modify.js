@@ -22,23 +22,36 @@ document.addEventListener('DOMContentLoaded', () => {
 					'Content-Type': 'application/json'
 				}
 			});
+			//왜 안돼?
+			//const response = await axios.post('/shape/confirmpwd', { params: { inputPwd } });
 			console.log(response);
 			const isMatched = response.data;
+			//유저가 입력한 비밀번호(inputPwd)와 유저의 비밀번호와 일치하면
 			if (isMatched) {
 				if (inputPwd !== newPwd || inputPwd !== rePwd) {
 					if (newPwd === rePwd) {
+						// 비밀번호 유효성 검사
+						// 영문, 특수문자와 숫자를 포함하여 최소 8자 이상 입력
+						// 특수문자 추가할 거 있으면 추가하기
 						const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^~\-_.])[A-Za-z\d@$!%*#?&^~\-_.]{8,}$/;
 						if (passwordRegex.test(newPwd)) {
+							// 비밀번호 변경 요청을 컨트롤러에 전송
 							try {
-								response = await axios.post('/shape/modifypwd', { id: id, newPwd: newPwd },
-								{
+								response = await axios.post('/shape/modifypwd', { id: id, newPwd: newPwd }, {
 									headers: {
 										'Content-Type': 'application/json'
 									}
 								});
+								console.log(response);
+
 								const isModified = response.data;
+
 								if (isModified) {
+									// 변경 완료 후 처리할 작업 수행
 									alert('비밀번호 변경 완료');
+									//modifyPwdForm.action = '/shape/myprofile';
+									//modifyPwdForm.method = 'get';
+									//modifyPwdForm.submit();
 									modifyPwdForm.action = '/shape/myprofile';
 									modifyPwdForm.method = 'get';
 									window.location.href = modifyPwdForm.action + '?id=' + id;
@@ -48,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								}
 							} catch (error) {
 								console.error(error);
+								// 변경 실패 처리
 								alert('비밀번호 변경 실패. 관리자에게 문의해주세요.');
 							}
 						} else {

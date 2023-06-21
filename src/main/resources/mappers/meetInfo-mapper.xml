@@ -356,7 +356,7 @@
 		M.title
 		, M.CRTR_ID
 		, M.created_date
-		, COUNT(DISTINCT L.mtid) AS LCNT
+		, COUNT(L.mtid) AS LCNT
 		,
 		COUNT(P.mtid) AS PCNT
 		FROM MEET_INFO M
@@ -385,7 +385,7 @@
 		</if>
 		<if test='searchMozipCheck != null and searchMozipCheck neq ""'>
 		    	<![CDATA[
-				    AND M.NM_PPL < (
+				    AND M.NM_PPL > (
 				        SELECT
 				            COUNT(*)
 				        FROM MEET_PRTCP P1
@@ -433,7 +433,7 @@
 		</if>
 		<if test='searchMozipCheck != null and searchMozipCheck neq ""'>
 	    	<![CDATA[
-			    AND M.NM_PPL < (
+			    AND M.NM_PPL > (
 			        SELECT
 			            COUNT(*)
 			        FROM MEET_PRTCP P1

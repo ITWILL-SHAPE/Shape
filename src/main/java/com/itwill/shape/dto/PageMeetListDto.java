@@ -20,14 +20,14 @@ public class PageMeetListDto {
 		this.cri = cri;
 		this.total = total;
 		
-		this.endPage = (int)(Math.ceil(cri.getPageNum()/15.0))*10;
+		this.endPage = (int)(Math.ceil(cri.getPageNum()/15.0))*15;
 		
-		this.startPage = endPage - 9;
+		this.startPage = endPage - 14;
 		
 		this.prev = this.startPage > 1;
 
 		int realEnd = (int) (Math.ceil((total * 1.0) / cri.getAmount()));
-		this.endPage = realEnd <= endPage? realEnd : endPage;
+		this.endPage = realEnd <= this.endPage? realEnd : this.endPage;
 		
 		this.next = this.endPage < realEnd;
 	}

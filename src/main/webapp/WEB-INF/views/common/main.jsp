@@ -46,24 +46,28 @@
 								</div>
 							</div>
 						</div>
-						<!-- 2번쨰 -->
+						<!-- 2번째 -->
 						<div class="carousel-item active">
+						   <c:url var="meetListPage" value="/meet/list"></c:url>
+  							<a href="${meetListPage}">
 							<img src="<%=request.getContextPath()%>/static/images/common/mainImage3.png" 
 								class="bd-placeholder-img" width="100%" height="100%"/>
+							</a>
 							<div class="container">
 								<div class="carousel-caption">
 									
 								</div>
 							</div>
 						</div>
-						<!-- 3번쩨 -->
+						<!-- 3번째 -->
 						<div class="carousel-item">
+							<c:url var="postListPage" value="/post/list"></c:url>
+							<a href="${ postListPage }">
 							<img src="<%=request.getContextPath()%>/static/images/common/mainImage2.png"
 								class="bd-placeholder-img" width="100%" height="100%"/>
-	
+							</a>
 							<div class="container">
 								<div class="carousel-caption text-end">
-								<!-- 글쓰기 -->	
 								<p class="black"></p>
 								</div>
 							</div>

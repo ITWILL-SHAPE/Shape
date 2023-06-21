@@ -356,13 +356,12 @@ public class MeetController {
 		CriteriaMeet cri = new CriteriaMeet();
 		if (search.getPageNum() != 0) {
 			cri.setPageNum(search.getPageNum());
-			//cri.setAmount(search.getAmount());
+			cri.setAmount(search.getAmount());
 		} else {
 			search.setPageNum(cri.getPageNum());
 			search.setAmount(cri.getAmount());
 		}
-		log.info("pageNum={}", cri.getPageNum());
-		log.info("amoun={}", cri.getAmount());
+
 		Map<String, Object> map = meetListService.selectBySearch(search);
 		List<MeetLike> ml = meetListService.LikeList();
 

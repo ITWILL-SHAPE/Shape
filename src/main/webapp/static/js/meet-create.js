@@ -169,7 +169,6 @@ document.getElementById('nm_ppl').addEventListener('input', function(e) {
 
 });
 
-
 function imageUpload(input) {
   const preview = input.parentElement.querySelector('.imagePreview');
   const reader = new FileReader();
@@ -204,41 +203,32 @@ addButton.addEventListener('click', () => {
   newInput.classList.add('form-control', 'file-input');
   newInput.type = 'file';
   newInput.name = `formFile${fileInputCount + 1}`;
+  newInput.id = `formFile${fileInputCount + 1}`;
   newInput.accept = 'image/*';
   newInput.onchange = function() {
     imageUpload(this);
   };
 
-  const deleteButton = document.createElement('button');
-  deleteButton.classList.add('btn', 'btn-secondary', 'deleteButton');
-  deleteButton.type = 'button';
-  deleteButton.textContent = '삭제';
-
- deleteButton.addEventListener('click', () => {
-
-if (newInput.name === 'formFile1') {
-      // Reset the input and preview
-      newInput.value = '';
-      newPreview.src = '';
-    } else {
-      inputContainer.removeChild(newFileInput);
-      fileInputCount--;
-
-    if (fileInputCount < 5) {
-      addButton.disabled = false;
-      }
-    }
-  });
 
   newFileInput.appendChild(newInput);
   newFileInput.appendChild(newPreview);
-  newFileInput.appendChild(deleteButton);
   
   inputContainer.appendChild(newFileInput);
   fileInputCount++;
 
   if (fileInputCount >= 5) {
     addButton.disabled = true;
+  }
+});
+
+deleteButton.addEventListener('click', () => {
+  const fileInputs = inputContainer.querySelectorAll('.input-group');
+  const lastFileInput = fileInputs[fileInputs.length - 1];
+  inputContainer.removeChild(lastFileInput);
+  fileInputCount--;
+
+  if (fileInputCount < 5) {
+    addButton.disabled = false;
   }
 });
  

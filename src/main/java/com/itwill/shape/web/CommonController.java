@@ -65,17 +65,17 @@ public class CommonController {
 		List<MeetListCountDto> filteredDto = new ArrayList<>();
 		for (MeetListCountDto item : rdto) {
 			String date = item.getMt_date();
-			log.info("확인 = {}", date);
+//			log.info("확인 = {}", date);
 			LocalDate parsedDate = LocalDate.parse(date);
 			targetDate.add(parsedDate);
-			log.info(parsedDate.toString());
+//			log.info(parsedDate.toString());
 			int isPast = currentDate.compareTo(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
 
 			if (isPast <= 0) { // 모집날짜가 미래일 경우
 				filteredDto.add(item);
 				
 			} else {
-				log.info("떨구는 것 확인 = {}", item);
+//				log.info("떨구는 것 확인 = {}", item);
 			}
 		}
 		
@@ -83,17 +83,17 @@ public class CommonController {
 		List<MeetListCountDto> filteredDto2 = new ArrayList<>();
 		for (MeetListCountDto item : pdto) {
 			String date = item.getMt_date();
-			log.info("확인 = {}", date);
+//			log.info("확인 = {}", date);
 			LocalDate parsedDate = LocalDate.parse(date);
 			targetDate.add(parsedDate);
-			log.info(parsedDate.toString());
+//			log.info(parsedDate.toString());
 			int isPast = currentDate.compareTo(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
 			
 			if (isPast <= 0) { // 모집날짜가 미래일 경우
 				filteredDto2.add(item);
 				
 			} else {
-				log.info("떨구는 것 확인 = {}", item);
+//				log.info("떨구는 것 확인 = {}", item);
 			}
 		}
 
@@ -103,10 +103,10 @@ public class CommonController {
 			model.addAttribute("listPopularity", filteredDto2);
 			model.addAttribute("like", ml);
 			for (MeetListCountDto c : filteredDto) {
-				log.info("확인 = {}", c);
+//				log.info("확인 = {}", c);
 			}
 		} else {
-			log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
+//			log.info("{} 이후로 존재하는 mt_date는 존재하지 않습니다. DB를 확인해보세요...", targetDate.toString());
 		}
 		// 뷰에 PostDetailDto를 전달.
 		

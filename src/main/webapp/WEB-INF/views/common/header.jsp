@@ -64,7 +64,7 @@
 						<button onclick="location.href='/shape/test/testHandler'" class="btn headerBtn me-5">
 							test
 						</button>
-						<button onclick="location.href='/shape/meet/create'" class="btn headerBtn me-5">
+						<button onclick="location.href='/shape/meet/create'" class="btn headerBtn me-5" >
 							모임 만들기
 						</button>
 						<button onclick="location.href='/shape/meet/list'" class="btn headerBtn me-5">
