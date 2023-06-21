@@ -12,6 +12,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
@@ -99,10 +100,16 @@ public class MeetListService {
 	 * @param prtcpId
 	 * @return
 	 */
-	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId, Criteria cri) {
-		log.info("selectByPrtcpId(crtrId={})", prtcpId);
-
-		return meetInfoRepository.selectByPrtcpId(prtcpId);
+	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpIdPaging(String prtcpId, CriteriaMeet cri) {
+		log.info("selectByPrtcpIdPaging(crtrId={}, cri={})", prtcpId, cri);
+		cri.setPageNum((cri.getPageNum() - 1) * 15);
+		return meetInfoRepository.selectByPrtcpIdPaging(prtcpId, cri);
+	}
+	
+	// 내가 참여한 모임 개수
+	public int selectByPrtcpId(String prtcpId, CriteriaMeet cri) {
+		log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
+		return meetInfoRepository.selectByPrtcpId(prtcpId, cri).size();
 	}
 
 	/**
