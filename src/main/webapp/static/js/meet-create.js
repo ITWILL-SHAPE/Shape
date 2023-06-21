@@ -1,12 +1,6 @@
-/**
- * meet-create.js
- * 정지언 
- */
-
 // 모임 만들기 취소 버튼
 document.addEventListener('DOMContentLoaded', () => {
 	const createForm = document.querySelector('#createForm');
-
 	const btnCancel = document.querySelector('#btnCancel');
 	btnCancel.addEventListener('click', () => {
 		const check = confirm('작성하신 내용은 저장되지 않습니다. 모임 만들기를 취소하시겠습니까?');
@@ -14,11 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			history.go(-1); // 취소하면 이전 페이지로 이동
 		}
 	});
-
 	// 모임 만들기 버튼
 	const btnCreate = document.querySelector('#btnCreate');
 	btnCreate.addEventListener('click', () => {
-
 		event.preventDefault();
 		const title = document.querySelector('input#title').value;
 		const category = document.querySelector('select#category').value;
@@ -34,15 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			alert('필수입력 항목을 반드시 입력해주세요.');
 			return;
 		}
-
 		const check = confirm('모임 분야, 모임 장소, 모집 기간, 모임 인원은 만든 후 수정할 수 없습니다.');
 		if (check) {
 			createForm.submit();
 		}
 	});
-
 });
-
 // 시군구 셀렉트
 $('document').ready(function() {
 	const area0 = ["시/도 선택", "서울특별시", "인천광역시", "대전광역시", "광주광역시", "대구광역시", "울산광역시", "부산광역시", "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주도"];
@@ -62,8 +51,6 @@ $('document').ready(function() {
 	const area14 = ["경산시", "경주시", "구미시", "김천시", "문경시", "상주시", "안동시", "영주시", "영천시", "포항시", "고령군", "군위군", "봉화군", "성주군", "영덕군", "영양군", "예천군", "울릉군", "울진군", "의성군", "청도군", "청송군", "칠곡군"];
 	const area15 = ["거제시", "김해시", "마산시", "밀양시", "사천시", "양산시", "진주시", "진해시", "창원시", "통영시", "거창군", "고성군", "남해군", "산청군", "의령군", "창녕군", "하동군", "함안군", "함양군", "합천군"];
 	const area16 = ["서귀포시", "제주시", "남제주군", "북제주군"];
-
-
 	// 시/도 선택 박스 초기화
 	$("select[name^=sido]").each(function() {
 		$selsido = $(this);
@@ -72,14 +59,11 @@ $('document').ready(function() {
 		});
 		$selsido.next().append("<option value=''>구/군 선택</option>");
 	});
-
-
 	// 시/도 선택시 구/군 설정
 	$("select[name^=sido]").change(function() {
 		const area = "area" + $("option", $(this)).index($("option:selected", $(this))); // 선택지역의 구군 Array
 		const $sigungu = $(this).next(); // 선택영역 군구 객체
 		$("option", $sigungu).remove(); // 구군 초기화
-
 		if (area == "area0")
 			$sigungu.append("<option value=''>구/군 선택</option>");
 		else {
@@ -88,14 +72,11 @@ $('document').ready(function() {
 			});
 		}
 	});
-
-
 	// 참가비 없음을 선택하면 readonly
 	$("select#mt_cost_info").change(
 		function() {
 			const selectedOption = $(this).val();
 			const inputElement = $("input#mt_cost");
-
 			if (selectedOption === "참가비 없음.") {
 				inputElement.prop("readonly", true);
 				inputElement.attr("placeholder", "참가비 없음.");
@@ -104,18 +85,18 @@ $('document').ready(function() {
 				inputElement.attr("placeholder", "참가비용을 입력하세요.");
 			}
 		});
-
 	// 글자 수 실시간 표시 및 제한
 	$("#title").keyup(function(e) {
 		const content = $(this).val();
 		const maxLength = 80;
 		$("#textLengthCheck").text("(" + content.length + " / " + maxLength + ")"); // 실시간 글자 수 표시
-
 		if (content.length > maxLength) {
 			alert("최대 80자까지 입력이 가능합니다.");
 			$(this).val(content.substring(0, maxLength));
 			$('#textLengthCheck').text("(" + maxLength + " / 최대 " + maxLength + "자)");
 		}
+
+	});
 
 });
 
@@ -127,39 +108,30 @@ function getCurrentDate() {
 	const day = String(now.getDate()).padStart(2, '0');
 	return `${year}-${month}-${day}`;
 }
-
 // 시작날짜 입력란에 현재 날짜 자동 채우기
 const startDateInput = document.getElementById('str_date');
 startDateInput.value = getCurrentDate();
-
 document.getElementById('mt_date').setAttribute('min', getCurrentDate());
 document.getElementById('ed_date').setAttribute('min', getCurrentDate());
-
 // 모집날짜를 모임날짜 이후로 선택하지 못하게 제한을 두는 함수
 function setMaxEndDate() {
 	const endDateInput = document.getElementById('mt_date').value;
 	document.getElementById('ed_date').setAttribute('max', endDateInput);
 }
-
 function resetInputValue() {
 	document.getElementById("mt_cost").value = "";
 }
-
 // 인원수는 음수와 0을 입력하지 못하도록 입력 이벤트를 가로채고 유효성 검사 수행
 document.getElementById('nm_ppl').addEventListener('input', function(e) {
 	const input = e.target.value;
 	const max = 25;
-
 	if (input <= 0) {
 		e.target.value = '';
 	}
-
 	if (this.value > max) {
 		this.value = max;
 	}
-
 });
-
 function imageUpload(input) {
   const preview = input.parentElement.querySelector('.imagePreview');
   const reader = new FileReader();
@@ -172,24 +144,19 @@ function imageUpload(input) {
     preview.src = "";
   }
 }
-
 const inputContainer = document.getElementById('inputContainer');
 const addButton = document.getElementById('addButton');
 let fileInputCount = 1;
-
 addButton.addEventListener('click', () => {
   if (fileInputCount >= 5) {
     addButton.disabled = true;
     return;
   }
-
   const newFileInput = document.createElement('div');
   newFileInput.classList.add('input-group', 'mb-3');
-
   const newPreview = document.createElement('img');
   newPreview.classList.add('imagePreview');
   newPreview.id = `imagePreview${fileInputCount + 1}`;
-
   const newInput = document.createElement('input');
   newInput.classList.add('form-control', 'file-input');
   newInput.type = 'file';
@@ -199,30 +166,21 @@ addButton.addEventListener('click', () => {
   newInput.onchange = function() {
     imageUpload(this);
   };
-
-
   newFileInput.appendChild(newInput);
   newFileInput.appendChild(newPreview);
   
   inputContainer.appendChild(newFileInput);
   fileInputCount++;
-
   if (fileInputCount >= 5) {
     addButton.disabled = true;
   }
 });
-
 deleteButton.addEventListener('click', () => {
   const fileInputs = inputContainer.querySelectorAll('.input-group');
   const lastFileInput = fileInputs[fileInputs.length - 1];
   inputContainer.removeChild(lastFileInput);
   fileInputCount--;
-
   if (fileInputCount < 5) {
     addButton.disabled = false;
   }
 });
- 
-
-
-
