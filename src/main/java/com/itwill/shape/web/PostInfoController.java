@@ -117,7 +117,7 @@ public class PostInfoController {
 		postInfoService.viewCount(pid);
 		
 		PostDetailDto dto = postInfoService.read(pid);
-		if(dto!= null) {
+		if(dto.getProfile()!= null) {
 			byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
 			String imgStr = null;
 			try {
