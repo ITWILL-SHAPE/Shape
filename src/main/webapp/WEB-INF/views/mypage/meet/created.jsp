@@ -99,7 +99,7 @@
 												</span>
 											</div>
 										</div>
-										<div id="post-sidoAndTitle${status.begin}">[
+										<div class="titleHidden" id="post-sidoAndTitle${status.begin}">[
 											${createdList.sido} ] &lt;${createdList.title}&gt;</div>
 										<div id="post-mtDate${status.begin}">
 											<span class="map">모집일정: ${createdList.mt_date}</span>
@@ -119,7 +119,7 @@
 				</div>
 			</div>
 			<!-- 페이징 -->
-			<div class="mt-3 pt-3">
+			<div class="mb-3">
 				<nav>
 					<ul class="pagination justify-content-center">
 						<li class="page-item ${ pageMaker.prev ? '' : 'disabled' }"><a

@@ -66,29 +66,13 @@
 						<tr>
 							<th>생년월일</th>
 							<td class="text-start">
-								<c:set var="birth" value="${ user.birth }"/>
-								<c:choose>
-									<c:when test="${ fn:contains(birth, '/') }">
-										${ fn:substring(birth, 0, 8) }
-									</c:when>
-									<c:otherwise>
-										${ fn:substring(birth, 0, 10) }
-									</c:otherwise>
-								</c:choose>								
+								${ user.birth }							
 							</td>
 						</tr>
 						<tr>
 							<th>휴대폰</th>
 							<td class="text-start">
-								<c:set var="phone" value="${ user.phone }"/>
-								<c:choose>
-									<c:when test="${ fn:contains(phone, '-') }">
-										${ phone }											
-									</c:when>
-									<c:otherwise>
-										${ fn:substring(phone, 0, 3) }-${ fn:substring(phone, 3, 7) }-${ fn:substring(phone, 7, 13) }
-									</c:otherwise>
-								</c:choose> 								
+								${ user.phone }							
 							</td>
 						</tr>
 						<tr>

@@ -33,7 +33,7 @@ public class PostCommentService {
 	 * @param pcid
 	 */
 	public int deleteByPcid(long pcid) {
-		log.info("deleteByPcid(pcid={})", pcid);
+		//log.info("deleteByPcid(pcid={})", pcid);
 
 		return postCommentRepository.deleteByPcid(pcid);
 	}
@@ -46,10 +46,10 @@ public class PostCommentService {
 	 * @return List<PostCommentSelectById> dto
 	 */
 	public List<PostCommentSelectByAuthorDto> selectByAuthor(String author) {
-		log.info("selectByAuthor(author(id)={})", author);
+		//log.info("selectByAuthor(author(id)={})", author);
 
 		List<PostComment> entity = postCommentRepository.selectByAuthor(author);
-		log.info("selectByAuthor(entity={})", entity);
+		//log.info("selectByAuthor(entity={})", entity);
 
 		// PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입의 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
@@ -64,10 +64,10 @@ public class PostCommentService {
 	 * @return List<PostCommentSelectById> dto
 	 */
 	public List<PostCommentSelectByAuthorDto> selectByAuthorWithPaging(String author, Criteria cri) {
-		log.info("selectByAuthorWithPaging(author(id)={})", author);
+		//log.info("selectByAuthorWithPaging(author(id)={})", author);
 
 		List<PostComment> entity = postCommentRepository.selectByAuthorWithPaging(author, cri);
-		log.info("selectByAuthorWithPaging(entity={})", entity);
+		//log.info("selectByAuthorWithPaging(entity={})", entity);
 
 		// PostComment 타입의 객체를 PostCommentSelectByUserIdDTO 타입의 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
@@ -78,7 +78,7 @@ public class PostCommentService {
 	 * 0616 손창민 post_comments table에서 author(id), keyword와 일치하는 작성글 개수 불러오기
 	 */
 	public int countComments(String author, Criteria cri) {
-		log.info("countComments(author(id)={}, cri={})", author, cri);
+		//log.info("countComments(author(id)={}, cri={})", author, cri);
 
 		return postCommentRepository.countComments(author, cri);
 	}
@@ -87,10 +87,10 @@ public class PostCommentService {
 	 * 0616 손창민 post_comment table에서 author(id), keyword와 일치하는 댓글 불러오기 with Paging
 	 */
 	public List<PostCommentSelectByAuthorDto> selectByAuthorAndKeywordWithPaging(String author, Criteria cri) {
-		log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, cri={})", author, cri);
+		//log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, cri={})", author, cri);
 
 		List<PostComment> entity = postCommentRepository.selectByAuthorAndKeywordWithPaging(author, cri);
-		log.info("selectByAuthorWithPaging(entity={})", entity);
+		//log.info("selectByAuthorWithPaging(entity={})", entity);
 
 		return entity.stream().map(PostCommentSelectByAuthorDto::fromEntity).toList();
 	}
@@ -102,37 +102,37 @@ public class PostCommentService {
 	 * @return
 	 */
 	public int create(PostCommentCreateDto dto) {
-		log.info("create(dto={})", dto);
+		//log.info("create(dto={})", dto);
 		return postCommentRepository.insert(dto.toEntity());
 	}
 
 	public List<PostCommentReadDto> read(long pid) {
-		log.info("read(pid={})", pid);
+		//log.info("read(pid={})", pid);
 		List<PostComment> list = postCommentRepository.selectByPid(pid);
 		return list.stream().map(PostCommentReadDto::fromEntity).toList();
 	}
 
 	public PostCommentReadDto readByPcid(long pcid) {
-		log.info("readByPcid(pcid= {})", pcid);
+		//log.info("readByPcid(pcid= {})", pcid);
 		PostComment entity = postCommentRepository.selectByPcid(pcid);
 		return PostCommentReadDto.fromEntity(entity);
 	}
 
 	public int delete(long pcid) {
-		log.info("delete(pcid={}", pcid);
+		//log.info("delete(pcid={}", pcid);
 		return postCommentRepository.delete(pcid);
 	}
 
 	public int update(long pcid, PostCommentUpdateDto dto) {
-		log.info("update(pcid={}, dto={})", pcid, dto);
+		//log.info("update(pcid={}, dto={})", pcid, dto);
 
 		PostComment entity = PostComment.builder().pcid(pcid).content(dto.getContent()).build();
-		log.info("entity={}, entity");
+		//log.info("entity={}, entity");
 		return postCommentRepository.update(entity);
 	}
 
 	public int deleteCommentByPid(long pid) {
-		log.info("deleteCommentByPid(pid = {})", pid);
+		//log.info("deleteCommentByPid(pid = {})", pid);
 		return postCommentRepository.deleteCommentByPid(pid);
 	}
 

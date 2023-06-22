@@ -37,7 +37,7 @@ public class PostCommentController {
     // 수빈: 댓글 작성
     @PostMapping
     public ResponseEntity<Integer> createComment(@RequestBody PostCommentCreateDto dto) {
-    	log.info("createComment(dto = {})", dto);
+    	//log.info("createComment(dto = {})", dto);
     	int result = postCommentService.create(dto);
     	return ResponseEntity.ok(result);
     }
@@ -45,7 +45,7 @@ public class PostCommentController {
     // 수빈: 댓글 리스트
     @GetMapping("/all/{pid}")
     public ResponseEntity<List<PostCommentReadDto>> read(@PathVariable long pid) {
-    	log.info("read(pid={})", pid);
+    	//log.info("read(pid={})", pid);
     	
     	List<PostCommentReadDto> list =postCommentService.read(pid); 
     	for(PostCommentReadDto dto: list) {
@@ -62,7 +62,7 @@ public class PostCommentController {
     		}
     	}
     	
-    	log.info("# of comment = {}", list.size());
+    	//log.info("# of comment = {}", list.size());
     	
     	return ResponseEntity.ok(list);
     }
@@ -70,7 +70,7 @@ public class PostCommentController {
     
     @DeleteMapping("/{pcid}")
     public ResponseEntity<Integer> deleteComment(@PathVariable long pcid) {
-        log.info("deleteComment(pcid={})", pcid);
+    	// log.info("deleteComment(pcid={})", pcid);
         
         int result = postCommentService.delete(pcid);
         
@@ -79,10 +79,10 @@ public class PostCommentController {
     
     @GetMapping("/{pcid}")
     public ResponseEntity<PostCommentReadDto> readByPcid(@PathVariable long pcid) {
-        log.info("readByPcid(pcid={})", pcid);
+    	//  log.info("readByPcid(pcid={})", pcid);
         
         PostCommentReadDto dto = postCommentService.readByPcid(pcid);
-        log.info("dto={}", dto);
+        // log.info("dto={}", dto);
         
         return ResponseEntity.ok(dto);
     }
@@ -91,7 +91,7 @@ public class PostCommentController {
     public ResponseEntity<Integer> updateComment(
             @PathVariable long pcid,
             @RequestBody PostCommentUpdateDto dto) {
-        log.info("updateComment(pcid={}, dto={})", pcid, dto);
+    	// log.info("updateComment(pcid={}, dto={})", pcid, dto);
         
         int result = postCommentService.update(pcid, dto);
         

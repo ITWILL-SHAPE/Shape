@@ -36,11 +36,11 @@ public class MyPageRestController {
 	@DeleteMapping("/deleteposts")
 	public ResponseEntity<Integer> postInfoDeleteByPidDtoList(
 			@RequestBody List<PostInfoDeleteByPidDto> selectedPids) {
-		log.info("postInfoDeleteByPidDtoList(selectedPids={})", selectedPids);
+		//log.info("postInfoDeleteByPidDtoList(selectedPids={})", selectedPids);
 		
 		for (PostInfoDeleteByPidDto postInfoDeleteByPidDto : selectedPids) {
 			long pid = postInfoDeleteByPidDto.getPid();
-			log.info("pcid={}", pid);
+			//log.info("pcid={}", pid);
 			
 			postInfoService.deleteByPid(pid);
 		}
@@ -55,11 +55,11 @@ public class MyPageRestController {
 	@DeleteMapping("/deletecomments")	
 	public ResponseEntity<Integer> postCommentDeleteByPcidDtoList(
 			@RequestBody List<PostCommentDeleteByPcidDto> selectedPcids) {
-		log.info("postCommentDeleteDtoList(selectedPcids={})", selectedPcids);
+		//log.info("postCommentDeleteDtoList(selectedPcids={})", selectedPcids);
 		
 		for (PostCommentDeleteByPcidDto postCommentDeleteByPcidDto : selectedPcids) {
 			long pcid = postCommentDeleteByPcidDto.getPcid();
-			log.info("pcid={}", pcid);
+			//log.info("pcid={}", pcid);
 			
 			postCommentService.deleteByPcid(pcid);
 		}

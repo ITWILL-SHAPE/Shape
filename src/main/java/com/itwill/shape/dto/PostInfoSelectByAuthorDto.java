@@ -1,9 +1,7 @@
 package com.itwill.shape.dto;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
-import com.itwill.shape.domain.Guide;
 import com.itwill.shape.domain.PostInfo;
 
 import lombok.AllArgsConstructor;

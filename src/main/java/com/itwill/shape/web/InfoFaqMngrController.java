@@ -28,10 +28,10 @@ public class InfoFaqMngrController {
 	 */
 	@GetMapping("/list")
 	public void list(Model model) {
-		log.info("list()");
+		//log.info("list()");
 		
 		List<InfoFaQDto> list = infoFaqService.read();
-		log.info(list.toString());
+		//log.info(list.toString());
 		
 		model.addAttribute("faqs", list);
 	}
@@ -41,15 +41,15 @@ public class InfoFaqMngrController {
 	 */
 	@GetMapping("/create")
 	public void create() {
-		log.info("GET: create()");
+		//log.info("GET: create()");
 	}
 	
 	@PostMapping("/create")
 	public String create(InfoFaQCreateDto dto) {
-		log.info("POST: create({})", dto);
+		//log.info("POST: create({})", dto);
 		
 		int result = infoFaqService.create(dto);
-		log.info("create result = {}", result);
+		//log.info("create result = {}", result);
 		
 		return "redirect:/mngr/faq/list";
 	}
@@ -59,7 +59,7 @@ public class InfoFaqMngrController {
 	 */
 	@GetMapping("/detail")
 	public void detail(long fid, Model model) {
-		log.info("detail({})", fid);
+		//log.info("detail({})", fid);
 		
 		InfoFaQDto dto = infoFaqService.read(fid);
 		
@@ -73,7 +73,7 @@ public class InfoFaqMngrController {
 	 */
 	@GetMapping("/modify")
 	public void modify(long fid, Model model) {
-		log.info("modify({})", fid);
+		//log.info("modify({})", fid);
 		
 		InfoFaQDto dto = infoFaqService.read(fid);
 		
@@ -82,7 +82,7 @@ public class InfoFaqMngrController {
 	
 	@PostMapping("/delete")
 	public String delete(long fid) {
-		log.info("delete({})", fid);
+		//log.info("delete({})", fid);
 		
 		int result = infoFaqService.delete(fid);
 		
@@ -91,7 +91,7 @@ public class InfoFaqMngrController {
 	
 	@PostMapping("/update")
 	public String update(InfoFaQUpdateDto dto) {
-		log.info("update({})", dto);
+		//log.info("update({})", dto);
 		
 		int result = infoFaqService.update(dto);
 		return "redirect:/mngr/faq/list";

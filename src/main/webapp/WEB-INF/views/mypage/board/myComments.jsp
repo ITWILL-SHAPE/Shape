@@ -108,17 +108,9 @@
 
 			<!--  검색 시작 -->
 			<div class="d-grid my-2 col-7 mx-auto m-5 text-center">
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 				<c:url var="searchComments" value="/searchcomments">
 					<c:param name="id" value="${id}" />
 				</c:url>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/ITWILL-SHAPE/Shape.git
 				<form action="${searchComments}" method="get">
 					<input type="hidden" name="id" value="${id}" />
 					<div class="input-group col-sm-7 my-2">

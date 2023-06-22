@@ -16,8 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
-import com.itwill.shape.dto.InfoNoticeListDto;
 import com.itwill.shape.dto.InfoNoticeCreateDto;
+import com.itwill.shape.dto.InfoNoticeListDto;
 import com.itwill.shape.dto.InfoNoticeUpdateDto;
 import com.itwill.shape.dto.PageDto;
 import com.itwill.shape.service.InfoNoticeService;
@@ -49,10 +49,10 @@ public class InfoNoticeMngrController {
 	 */
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
-		log.info("list()");
+		//log.info("list()");
 		
 		int total = infoNoticeService.getListCount();
-		log.info("listCount={}", total);
+		//log.info("listCount={}", total);
 		
 		List<InfoNoticeListDto> list = infoNoticeService.read(cri);
 		List<InfoNoticeListDto> fixed = infoNoticeService.read();
@@ -70,7 +70,7 @@ public class InfoNoticeMngrController {
 	 */
 	@GetMapping("/detail")
 	public void detail(long nid, Model model) {
-		log.info("detail({})", nid);
+		//log.info("detail({})", nid);
 		InfoNotice notice = infoNoticeService.read(nid);
 		Timestamp time = Timestamp.valueOf(notice.getCreated_date());
 		
@@ -83,12 +83,12 @@ public class InfoNoticeMngrController {
 	 */
 	@GetMapping("/create")
 	public void create() {
-		log.info("GET: create()");
+		//log.info("GET: create()");
 	}
 	
 	@PostMapping("/create") 
 	public String create(InfoNoticeCreateDto dto) {
-		log.info("POST: create({})", dto);
+		//log.info("POST: create({})", dto);
 		
 		MultipartFile uploadFile = dto.getUploadFile(); // 받아오는 파일
 		if(!uploadFile.isEmpty()) {
@@ -109,7 +109,7 @@ public class InfoNoticeMngrController {
 		}
 		
 		int result = infoNoticeService.create(dto);
-		log.info("create result = {}", result);
+		//log.info("create result = {}", result);
 		return "redirect:/mngr/notice/list";
 	}
 	
@@ -119,7 +119,7 @@ public class InfoNoticeMngrController {
 	@PostMapping("/download/{nid}")
 	@ResponseBody
 	public byte[] download(@PathVariable long nid) {
-		log.info("download(nid = {})", nid);
+		//log.info("download(nid = {})", nid);
 		
 		InfoNotice file = infoNoticeService.read(nid);
 		

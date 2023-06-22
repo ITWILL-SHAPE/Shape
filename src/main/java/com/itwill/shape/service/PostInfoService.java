@@ -34,7 +34,7 @@ public class PostInfoService {
 	 * @return
 	 */
 	public int deleteByPid(long pid) {
-		log.info("deleteByPid(pid={})", pid);
+		//log.info("deleteByPid(pid={})", pid);
 
 		return postInfoRepository.deleteByPid(pid);
 	}
@@ -46,10 +46,10 @@ public class PostInfoService {
 	 * @return
 	 */
 	public List<PostInfoSelectByAuthorDto> selectByAuthor(String author) {
-		log.info("selectById(author(id)={})", author);
+		//log.info("selectById(author(id)={})", author);
 
 		List<PostInfo> entity = postInfoRepository.selectByAuthor(author);
-		log.info("entity={}", entity);
+		//log.info("entity={}", entity);
 
 		// PostInfo 타입의 객체를 PostInfoSelectByIdDTO 타입 객체로
 		// 리포지토리 계층의 메서드를 호출 - DB selectById
@@ -60,10 +60,10 @@ public class PostInfoService {
 	 * 0615 손창민 post_info table에서 author(id)와 일치하는 작성글 불러오기 with Paging
 	 */
 	public List<PostInfoSelectByAuthorDto> selectByAuthorWithPaging(String author, Criteria cri) {
-		log.info("selectByAuthorWithPaging(author(id)={}, cri={})", author, cri);
+		//log.info("selectByAuthorWithPaging(author(id)={}, cri={})", author, cri);
 
 		List<PostInfo> entity = postInfoRepository.selectByAuthorWithPaging(author, cri);
-		log.info("selectByAuthorWithPaging(entity={})", entity);
+		//log.info("selectByAuthorWithPaging(entity={})", entity);
 
 		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
 
@@ -74,7 +74,7 @@ public class PostInfoService {
 	 * post_info table에서 author(id), keyword와 일치하는 작성글 개수 불러오기
 	 */
 	public int countPosts(String author, Criteria cri) {
-		log.info("countPosts(author={}, cri={})", author, cri);
+		//log.info("countPosts(author={}, cri={})", author, cri);
 		
 		return postInfoRepository.countPosts(author, cri);
 	}
@@ -84,10 +84,10 @@ public class PostInfoService {
 	 * post_info table에서 author(id), keyword와 일치하는 작성글 불러오기 with Paging
 	 */
 	public List<PostInfoSelectByAuthorDto> selectByAuthorAndKeywordWithPaging(String author, Criteria cri) {
-		log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, cri={})", author, cri);
+		//log.info("selectByAuthorAndKeywordWithPaging(author(id)={}, cri={})", author, cri);
 		
 		List<PostInfo> entity = postInfoRepository.selectByAuthorAndKeywordWithPaging(author, cri);
-		log.info("selectByAuthorWithPaging(entity={})", entity);
+		//log.info("selectByAuthorWithPaging(entity={})", entity);
 		
 		return entity.stream().map(PostInfoSelectByAuthorDto::fromEntity).toList();
 	}
@@ -98,7 +98,7 @@ public class PostInfoService {
 	 * @return
 	 */
 	public List<PostListDto> read(String keyword) {
-		log.info("read(keyword={})", keyword);
+		//log.info("read(keyword={})", keyword);
 		return postInfoRepository.selectWithKeyword(keyword);
 	}
 
@@ -110,7 +110,7 @@ public class PostInfoService {
 	 * @return
 	 */
 	public List<PostListDto> read(String keyword, Criteria cri) {
-		log.info("read(keyword={})", keyword);
+		//log.info("read(keyword={})", keyword);
 		Map<String, Object> args = new HashMap<>();
 		args.put("keyword", keyword);
 		args.put("pageNum", cri.getPageNum() + "");
@@ -125,7 +125,7 @@ public class PostInfoService {
 	 * @return
 	 */
 	public List<PostListDto> read(Criteria cri) {
-		log.info("read(cri={})", cri);
+		//log.info("read(cri={})", cri);
 		return postInfoRepository.getListWithPaging(cri);
 	}
 
@@ -135,7 +135,7 @@ public class PostInfoService {
 	 * @return
 	 */
 	public List<PostListDto> read() {
-		log.info("read()");
+		//og.info("read()");
 		return postInfoRepository.selectWithCommentCount();
 	}
 
@@ -146,7 +146,7 @@ public class PostInfoService {
 	 * @return
 	 */
 	public PostDetailDto read(long pid) {
-		log.info("read(pid={})", pid);
+		//log.info("read(pid={})", pid);
 
 		PostInfo entity = postInfoRepository.selectByPid(pid);
 		PostDetailDto dto = PostDetailDto.fromEntity(entity);
@@ -163,12 +163,12 @@ public class PostInfoService {
 	 * @return
 	 */
 	public int create(PostCreateDto dto) {
-		log.info("create({})", dto);
+		//log.info("create({})", dto);
 		return postInfoRepository.insert(dto.toEntity());
 	}
 
 	public int viewCount(long pid) {
-		log.info("viewCount({})", pid);
+		//log.info("viewCount({})", pid);
 		return postInfoRepository.viewCount(pid);
 	}
 
@@ -179,12 +179,12 @@ public class PostInfoService {
 	 * @return
 	 */
 	public int update(PostUpdateDto post) {
-		log.info("update({})", post);
+		//log.info("update({})", post);
 		return postInfoRepository.updateTitleAndContent(post.toEntity());
 	}
 
 	public int delete(long pid) {
-		log.info("delete(pid={})", pid);
+		//log.info("delete(pid={})", pid);
 		return postInfoRepository.deleteByPid(pid);
 	}
 

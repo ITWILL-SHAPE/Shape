@@ -1,5 +1,4 @@
 package com.itwill.shape.dto;
-//지현 사용자 Qna create
 import com.itwill.shape.domain.InfoQnA;
 
 import lombok.AllArgsConstructor;

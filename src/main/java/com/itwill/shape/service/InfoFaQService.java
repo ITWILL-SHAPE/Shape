@@ -25,7 +25,7 @@ public class InfoFaQService {
 	 * @return faq 리스트
 	 */
 	public List<InfoFaQDto> read() {
-		log.info("read()");
+		//log.info("read()");
 		return infoFaQRepository.selectOrderByFid();
 	}
 	
@@ -35,7 +35,7 @@ public class InfoFaQService {
 	 * @return
 	 */
 	public int create(InfoFaQCreateDto dto) {
-		log.info("create({})", dto);
+		//log.info("create({})", dto);
 		return infoFaQRepository.insert(dto.toEntity());
 	}
 	
@@ -45,7 +45,7 @@ public class InfoFaQService {
 	 * @return
 	 */
 	public int update(InfoFaQUpdateDto dto) {
-		log.info("update({})", dto);
+		//log.info("update({})", dto);
 		return infoFaQRepository.updateFaQ(dto.toEntity());
 	}
 	
@@ -55,7 +55,7 @@ public class InfoFaQService {
 	 * @return
 	 */
 	public int delete(long fid) {
-		log.info("delete({})", fid);
+		//log.info("delete({})", fid);
 		return infoFaQRepository.deleteByFid(fid);
 	}
 	
@@ -64,7 +64,7 @@ public class InfoFaQService {
 	 * 상세보기 detail 페이지에서 수정 or 삭제 버튼 선택
 	 */
 	public InfoFaQDto read(long fid) {
-		log.info("read({})", fid);
+		//log.info("read({})", fid);
 		
 		// db에서 검색
 		InfoFaQ entity = infoFaQRepository.selectByFid(fid);

@@ -33,7 +33,7 @@
 						</c:if>
 					</div>
 				</div>
-				<p class="g-col card-text mt-1">작성자: ${ post.author }</p>
+				<p class="g-col card-text mt-1">${ post.author }</p>
 			</div>
 			<!-- 내용 -->
 			<hr />

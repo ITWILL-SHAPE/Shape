@@ -31,11 +31,11 @@ import com.itwill.shape.dto.PageMeetListDto;
 import com.itwill.shape.dto.PostCommentSelectByAuthorDto;
 import com.itwill.shape.dto.PostInfoSelectByAuthorDto;
 import com.itwill.shape.dto.PostListDto;
+import com.itwill.shape.dto.UserInfoSelectByIdDto;
+import com.itwill.shape.dto.UserInfoSelectPwdByIdDto;
 import com.itwill.shape.service.MeetListService;
 import com.itwill.shape.service.PostCommentService;
 import com.itwill.shape.service.PostInfoService;
-import com.itwill.shape.dto.UserInfoSelectByIdDto;
-import com.itwill.shape.dto.UserInfoSelectPwdByIdDto;
 import com.itwill.shape.repository.MeetInfoRepository;
 import com.itwill.shape.service.UserInfoService;
 
@@ -58,8 +58,8 @@ public class MyPageController {
 	// 마이페이지 > 회원정보 > 나의 프로필
 	@GetMapping("/myprofile")
 	public String myProfile(@RequestParam("id") String id, Model model) {
-		log.info("myprofile()");
-		log.info("id={}", id);
+		//log.info("myprofile()");
+		//log.info("id={}", id);
 
 		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 
@@ -91,7 +91,7 @@ public class MyPageController {
 	 */
 	@GetMapping("/profilemodifypage")
 	public String profileModifyPage(@RequestParam("id") String id, Model model) {
-		log.info("profileModifyPage(id={})", id);
+		//log.info("profileModifyPage(id={})", id);
 
 		UserInfoSelectByIdDto dto = userInfoService.selectById(id);
 
@@ -123,7 +123,7 @@ public class MyPageController {
 	 */
 	@PostMapping("/profileupload/{id}")
 	public String profileUpload(@PathVariable String id, UserInfoSelectByIdDto dto) {
-		log.info("profileUpload(dto = {})", dto);
+		//log.info("profileUpload(dto = {})", dto);
 
 		dto.setId(id);
 
@@ -182,7 +182,7 @@ public class MyPageController {
 	 */
 	@GetMapping("/confirmpwdpage")
 	public String confirmPwdPage(@RequestParam("id") String id, Model model) {
-		log.info("confirmPwdPage(id={})", id);
+		//log.info("confirmPwdPage(id={})", id);
 
 		return "/mypage/memberinfo/confirmPwd";
 	}
@@ -218,12 +218,12 @@ public class MyPageController {
 		String id = requestData.get("id");
 		String inputPwd = requestData.get("inputPwd");
 
-		log.info("confirmPwd(id={}, inputPwd={})", id, inputPwd);
+		//log.info("confirmPwd(id={}, inputPwd={})", id, inputPwd);
 
 		// 유저의 비밀번호와 입력한 비밀번호 비교 로직 수행
 		boolean isPasswordMatched = userInfoService.confirmUser(id, inputPwd);
 		// boolean isPasswordMatched = userInfoService.confirmUser("drj9812", inputPwd);
-		log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
+		//log.info("confirmPwd(isPasswordMatched={})", isPasswordMatched);
 		if (isPasswordMatched) {
 			return "true";
 		} else {
@@ -240,7 +240,7 @@ public class MyPageController {
 	// 마이페이지 > 회원정보 > 비밀번호 수정
 	@GetMapping("/modifypwdpage")
 	public String modifyPwdPage() {
-		log.info("modifyPwdPage()");
+		//log.info("modifyPwdPage()");
 
 		return "/mypage/memberinfo/modifyPwd";
 	}
@@ -272,10 +272,10 @@ public class MyPageController {
 		String id = requestData.get("id");
 		String newPwd = requestData.get("newPwd");
 
-		log.info("modifyPwd(id={}, inputPwd={})", id, newPwd);
+		//log.info("modifyPwd(id={}, inputPwd={})", id, newPwd);
 
 		int result = userInfoService.modifyPwdById(id, passwordEncoder.encode(newPwd));
-		log.info("modifyPwd(result={})", result);
+		//log.info("modifyPwd(result={})", result);
 
 		if (result == 1) {
 			return "true";
@@ -283,41 +283,7 @@ public class MyPageController {
 			return "false";
 		}
 	}
-
-	/**
-	 * 0611 손창민 회워탈퇴 페이지
-	 * 
-	 * @return
-	 */
-	// 마이페이지 > 회원정보 > 회원탈퇴(beta)
-	@GetMapping("/withdrawalpage")
-	public String withdrawalPage(@RequestParam("id") String id, Model model) {
-		log.info("withdrawalPage(id={})", id);
-
-		model.addAttribute("id", id);
-
-		return "/mypage/memberinfo/withdrawal";
-	}
-
-	/**
-	 * 0611 손창민 회원 탈퇴 처리 메서드
-	 * 
-	 * @return
-	 */
-	@ResponseBody
-	@PostMapping("/withdrawal")
-	public String withdrawal(@RequestBody String id) {
-		log.info("withdrawal(id={})", id);
-
-		int result = userInfoService.deleteUserInfoById(id);
-
-		if (result == 1) {
-			return "회원탈퇴되었습니다.";
-		} else {
-			return "error";
-		}
-	}
-
+	
 	/**
 	 * 0604 손창민 내가 참여 중인 모임
 	 * 
@@ -328,7 +294,7 @@ public class MyPageController {
 	// 마이페이지 > 모임 > 내가 참여 중인 모임
 	@GetMapping("/active")
 	public String readActiveMeet(@RequestParam("id") String prtcpId, CriteriaMeet cri, Model model) {
-		log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
+		//log.info("readActiveMeet(prtcpId(id)={})", prtcpId);
 
 		cri.setAmount(15);
 		if (cri.getPageNum() == 1) {
@@ -342,7 +308,7 @@ public class MyPageController {
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByPrtcpIdPaging(prtcpId, cri);
 		int total = meetListService.selectByPrtcpId(prtcpId, cri);
 
-		log.info("readActiveMeet(dto={})", list);
+		//log.info("readActiveMeet(dto={})", list);
 
 		cri.setPageNum(cri.getPageNum() + 1);
 
@@ -364,7 +330,7 @@ public class MyPageController {
 		}
 
 		List<MeetLike> ml = meetListService.LikeList();
-		log.info("ml", ml);
+		//	log.info("ml", ml);
 		model.addAttribute("like", ml);
 		model.addAttribute("activeList", list);
 		model.addAttribute("pageMaker", new PageMeetListDto(cri, total));
@@ -381,7 +347,7 @@ public class MyPageController {
 	// 마이페이지 > 모임 > 내가 개설한 모임
 	@GetMapping("/created")
 	public String readCreatedMeet(@RequestParam("id") String crtrId, CriteriaMeet cri, Model model) {
-		log.info("readCreatedMeet(prtcpId(id)={})", crtrId);
+		//log.info("readCreatedMeet(prtcpId(id)={})", crtrId);
 
 		cri.setAmount(15);
 		if (cri.getPageNum() == 1) {
@@ -395,7 +361,7 @@ public class MyPageController {
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByCrtrIdPaging(crtrId, cri);
 		int total = meetListService.selectByCrtrId(crtrId, cri);
 
-		log.info("readCreatedMeet(dto={})", list);
+		//log.info("readCreatedMeet(dto={})", list);
 
 		cri.setPageNum(cri.getPageNum() + 1);
 
@@ -417,7 +383,7 @@ public class MyPageController {
 		}
 
 		List<MeetLike> ml = meetListService.LikeList();
-		log.info("ml", ml);
+		//log.info("ml", ml);
 		model.addAttribute("like", ml);
 		model.addAttribute("createdList", list);
 		model.addAttribute("pageMaker", new PageMeetListDto(cri, total));
@@ -434,7 +400,7 @@ public class MyPageController {
 	// 마이페이지 > 모임 > 내가 찜한 모임
 	@GetMapping("/interests")
 	public String readInterestsMeet(@RequestParam("id") String id, CriteriaMeet cri, Model model) {
-		log.info("readInterestsMeet(id={})", id);
+		//log.info("readInterestsMeet(id={})", id);
 
 		cri.setAmount(15);
 		if (cri.getPageNum() == 1) {
@@ -448,7 +414,7 @@ public class MyPageController {
 		List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> list = meetListService.selectByIdPaging(id, cri);
 		int total = meetListService.selectById(id, cri);
 
-		log.info("readInterestsMeet(dto={})", list);
+		//log.info("readInterestsMeet(dto={})", list);
 
 		cri.setPageNum(cri.getPageNum() + 1);
 
@@ -470,7 +436,7 @@ public class MyPageController {
 		}
 		
 		List<MeetLike> ml = meetListService.LikeList();
-		log.info("ml", ml);
+		//log.info("ml", ml);
 		model.addAttribute("like", ml);
 		model.addAttribute("interestsList", list);
 		model.addAttribute("pageMaker", new PageMeetListDto(cri, total));
@@ -481,7 +447,7 @@ public class MyPageController {
 	// 마이페이지 > 모임 > 최근 본 모임(beta)
 	@GetMapping("/viewed")
 	public String readViewedMeet() {
-		log.info("viewed()");
+		//log.info("viewed()");
 
 		return "/mypage/meet/viewed";
 	}
@@ -517,13 +483,13 @@ public class MyPageController {
 	// 마이페이지 > 게시판 > 내가 작성한 게시물
 	@GetMapping("/myposts")
 	public String readMyposts(@RequestParam("id") String id, Criteria cri, Model model) {
-		log.info("myposts(author(id)={}, cri={})", id, cri);
+		//log.info("myposts(author(id)={}, cri={})", id, cri);
 
 		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthor(id);
 		List<PostInfoSelectByAuthorDto> myposts = postInfoService.selectByAuthorWithPaging(id, cri);
 		int size = list.size();
 
-		log.info("readMyposts(myposts={}, size={})", myposts, size);
+		//log.info("readMyposts(myposts={}, size={})", myposts, size);
 
 		model.addAttribute("myposts", myposts);
 		model.addAttribute("pageMaker", new PageDto(cri, size));
@@ -543,7 +509,7 @@ public class MyPageController {
 			// 페이징된 테이블 데이터를 가져오는 로직 작성
 			cri.setPageNum(pageNum);
 			List<PostInfoSelectByAuthorDto> tableDataList = postInfoService.selectByAuthorWithPaging(id, cri);
-			log.info("updatePosts(tableDataList={}, cri={})", tableDataList, cri);
+			//	log.info("updatePosts(tableDataList={}, cri={})", tableDataList, cri);
 			return ResponseEntity.ok(tableDataList);
 		} catch (Exception e) {
 			// 예외 처리
@@ -561,10 +527,10 @@ public class MyPageController {
 	 */
 	@GetMapping("/searchposts")
 	public String searchPosts(@RequestParam("id") String id, Criteria cri, Model model) {
-		log.info("searchPosts(author(id)={}, cri={})", id, cri);
+		//log.info("searchPosts(author(id)={}, cri={})", id, cri);
 
 		int count = postInfoService.countPosts(id, cri);
-		log.info("searchPosts(count={})", count);
+		//log.info("searchPosts(count={})", count);
 
 		List<PostInfoSelectByAuthorDto> list = postInfoService.selectByAuthorAndKeywordWithPaging(id, cri);
 		model.addAttribute("myposts", list);
@@ -583,15 +549,15 @@ public class MyPageController {
 	@GetMapping("/pagingposts")
 	@ResponseBody
 	public PageDto makePostsPage(@RequestParam("id") String id, Criteria cri) {
-		log.info("makePostsPage(author(id)={}, cri={})", id, cri);
+		//log.info("makePostsPage(author(id)={}, cri={})", id, cri);
 
 		int count = postInfoService.countPosts(id, cri);
-		log.info("makePostsPage(count={})", count);
+		//log.info("makePostsPage(count={})", count);
 
 //		model.addAttribute("mycomments", list);
 
 //		model.addAttribute("pageMaker", new PageDto(cri, count));
-		log.info("makePage(PageDto={})", new PageDto(cri, count));
+		//log.info("makePage(PageDto={})", new PageDto(cri, count));
 		return new PageDto(cri, count);
 	}
 
@@ -605,14 +571,14 @@ public class MyPageController {
 	// 마이페이지 > 게시판 > 내가 작성한 댓글
 	@GetMapping("/mycomments")
 	public String readMycomments(@RequestParam("id") String id, Criteria cri, Model model) {
-		log.info("readMycomments(author(id)={})", id);
+		//log.info("readMycomments(author(id)={})", id);
 
 		// 컨트롤러는 서비스 계층의 메서드를 호출해서 서비스 기능을 수행
 		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthor(id);
 		List<PostCommentSelectByAuthorDto> mycomments = postCommentsService.selectByAuthorWithPaging(id, cri);
 		int size = list.size();
 
-		log.info("readMycomments(mycomments={}, size={})", mycomments, size);
+		//log.info("readMycomments(mycomments={}, size={})", mycomments, size);
 
 		model.addAttribute("mycomments", mycomments);
 		model.addAttribute("pageMaker", new PageDto(cri, size));
@@ -632,7 +598,7 @@ public class MyPageController {
 			cri.setPageNum(pageNum);
 			// 페이징된 테이블 데이터를 가져오는 로직 작성
 			List<PostCommentSelectByAuthorDto> tableDataList = postCommentsService.selectByAuthorWithPaging(id, cri);
-			log.info("updateComments(tableDataList={}, cri={})", tableDataList, cri);
+			//	log.info("updateComments(tableDataList={}, cri={})", tableDataList, cri);
 			return ResponseEntity.ok(tableDataList);
 		} catch (Exception e) {
 			// 예외 처리
@@ -651,18 +617,18 @@ public class MyPageController {
 	@GetMapping("/searchcomments")
 	public String searchComments(@RequestParam("id") String id, Criteria cri, Model model) {
 //	public List<PostCommentSelectByAuthorDto> searchComments(@RequestParam("id") String id, Criteria cri, Model model) {
-		log.info("searchComments(author(id)={}, cri={})", id, cri);
+		//log.info("searchComments(author(id)={}, cri={})", id, cri);
 		String keyword = cri.getKeyword();
 
 		int count = postCommentsService.countComments(id, cri);
-		log.info("searchComments(count={})", count);
+		//log.info("searchComments(count={})", count);
 
 		List<PostCommentSelectByAuthorDto> list = postCommentsService.selectByAuthorAndKeywordWithPaging(id, cri);
 		model.addAttribute("mycomments", list);
 		model.addAttribute("pageMaker", new PageDto(cri, count));
 		model.addAttribute("cri", keyword);
 
-		log.info("searchComments(new PageDto={}", new PageDto(cri, count));
+		//log.info("searchComments(new PageDto={}", new PageDto(cri, count));
 
 		return "/mypage/board/myComments";
 	}
@@ -677,15 +643,15 @@ public class MyPageController {
 	@GetMapping("/pagingcomments")
 	@ResponseBody
 	public PageDto makeCommentsPage(@RequestParam("id") String id, Criteria cri) {
-		log.info("searchComments(author(id)={}, cri={})", id, cri);
+		//log.info("searchComments(author(id)={}, cri={})", id, cri);
 
 		int count = postCommentsService.countComments(id, cri);
-		log.info("maekPage(count={})", count);
+		//log.info("maekPage(count={})", count);
 
 		// model.addAttribute("mycomments", list);
 
 		// model.addAttribute("pageMaker", new PageDto(cri, count));
-		log.info("makePage(PageDto={})", new PageDto(cri, count));
+		//log.info("makePage(PageDto={})", new PageDto(cri, count));
 		return new PageDto(cri, count);
 	}
 }

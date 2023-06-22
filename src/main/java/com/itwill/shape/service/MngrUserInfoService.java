@@ -31,7 +31,7 @@ public class MngrUserInfoService {
 	 * @return
 	 */
 	public UserInfoSelectByIdDto selectUserDetail(String id) {
-		log.info("selectUserDetail(id = {})", id);
+		//	log.info("selectUserDetail(id = {})", id);
 		
 		return UserInfoSelectByIdDto.fromEntity(userInfoRepository.readUserInfoById(id));
 	}
@@ -58,7 +58,7 @@ public class MngrUserInfoService {
 	 * @return
 	 */
 	public Map<String, Object> selectByKeyword(MngrUserInfoSearchListDto dto) {
-		log.info("selectByKeyword(dto = {})", dto);
+		//	log.info("selectByKeyword(dto = {})", dto);
 		
 		// list - 회원 정보
 		if(dto.getPageNum() > 1) {

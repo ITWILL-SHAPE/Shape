@@ -35,10 +35,10 @@ public class InfoQnAController {
 	 */
 	@GetMapping("/qna")
 	public void list(Model model,Criteria cri) {
-		log.info("list()");
+		//log.info("list()");
 		
 		int total = infoQnAService.getListCount();
-		log.info("listCount = {}", total);
+		//log.info("listCount = {}", total);
 		
 		List<InfoQnAListDto> list = infoQnAService.read(cri);
 		
@@ -49,7 +49,7 @@ public class InfoQnAController {
 	
 	@GetMapping("qna/create")
 	public void create() {
-		log.info("GET:create()");
+		//log.info("GET:create()");
 	}
 	
 	/**
@@ -59,9 +59,9 @@ public class InfoQnAController {
 	 */
 	@PostMapping("/qna/create")
 	public String create(InfoQnACreateDto dto) {
-		log.info("POST: create({})", dto);
+		//log.info("POST: create({})", dto);
 		int result = infoQnAService.create(dto);
-		log.info("큐앤에이 등록 결과 ={}", result);
+		//log.info("큐앤에이 등록 결과 ={}", result);
 		return "redirect:/info/qna";
 	}
 	
@@ -72,7 +72,7 @@ public class InfoQnAController {
 	 */
 	@GetMapping("/qna/detail")
 	public void detail(long qid, Model model) {
-		log.info("detail(qid={})", qid);
+		//log.info("detail(qid={})", qid);
 		InfoQnADetailDto dto = infoQnAService.read(qid);
 		model.addAttribute("infoQnA", dto);
 	}
@@ -84,9 +84,9 @@ public class InfoQnAController {
 	 */
 	@PostMapping("/qna/delete")
 	public String delete(long qid) {
-		log.info("delete(id={})", qid);
+		//log.info("delete(id={})", qid);
 		int result = infoQnAService.delete(qid);
-		log.info("삭제 결과 = {}", qid);
+		//log.info("삭제 결과 = {}", qid);
 		return "redirect:/info/qna";
 	}
 }

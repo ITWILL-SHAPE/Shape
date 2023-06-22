@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.itwill.shape.domain.InfoFaQ;
 import com.itwill.shape.dto.InfoFaQDto;
 import com.itwill.shape.service.InfoFaQService;
 
@@ -24,9 +23,9 @@ public class InfoFaQController {
 	
 	@GetMapping("/faq")
 	public void faq(Model model) {
-		log.info("faq()");
+		//log.info("faq()");
 		List<InfoFaQDto> list = infoFaQService.read();
-		System.out.println(list);
+		//System.out.println(list);
 		// view에 보여줄 데이터를 Model에 저장.
 		model.addAttribute("faqs", list);
 	}

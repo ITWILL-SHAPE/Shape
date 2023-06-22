@@ -42,7 +42,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetListCountDto> mainReadByRecent() {
-	    log.info("mainReadByRecent()");
+		//  log.info("mainReadByRecent()");
 
 	    List<MeetListCountDto> meetList = meetInfoRepository.selectOrderByRecent();
 
@@ -71,7 +71,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetListCountDto> mainReadByPopularity() {
-		log.info("mainReadByPopularity()");
+		//log.info("mainReadByPopularity()");
 
 		List<MeetListCountDto> meetList = meetInfoRepository.selectOrderByPopularity();
 		
@@ -101,14 +101,14 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpIdPaging(String prtcpId, CriteriaMeet cri) {
-		log.info("selectByPrtcpIdPaging(crtrId={}, cri={})", prtcpId, cri);
+		//log.info("selectByPrtcpIdPaging(crtrId={}, cri={})", prtcpId, cri);
 		cri.setPageNum((cri.getPageNum() - 1) * 15);
 		return meetInfoRepository.selectByPrtcpIdPaging(prtcpId, cri);
 	}
 	
 	// 내가 참여한 모임 개수
 	public int selectByPrtcpId(String prtcpId, CriteriaMeet cri) {
-		log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
+		//log.info("selectByPrtcpId(crtrId={}, cri={})", prtcpId, cri);
 		return meetInfoRepository.selectByPrtcpId(prtcpId, cri).size();
 	}
 	/**
@@ -118,7 +118,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrIdPaging(String crtrId, CriteriaMeet cri) {
-		log.info("selectByPrtcpIdPaging(crtrId={}, cri={})", crtrId, cri);
+		//log.info("selectByPrtcpIdPaging(crtrId={}, cri={})", crtrId, cri);
 		cri.setPageNum((cri.getPageNum() - 1) * 15);
 		
 		return meetInfoRepository.selectByCrtrIdPaging(crtrId, cri);
@@ -131,7 +131,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public int selectByCrtrId(String crtrId, CriteriaMeet cri) {
-		log.info("selectByPrtcpId(crtrId={})", crtrId);
+		//log.info("selectByPrtcpId(crtrId={})", crtrId);
 
 		return meetInfoRepository.selectByCrtrId(crtrId, cri).size();
 	}
@@ -143,7 +143,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByIdPaging(String id, CriteriaMeet cri) {
-		log.info("selectById(id={})", id);
+		//log.info("selectById(id={})", id);
 		cri.setPageNum((cri.getPageNum() - 1) * 15);
 		
 		return meetInfoRepository.selectByIdPaging(id, cri);
@@ -156,7 +156,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public int selectById(String id, CriteriaMeet cri) {
-		log.info("selectById(id={})", id);
+		//log.info("selectById(id={})", id);
 		
 		return meetInfoRepository.selectById(id, cri).size();
 	}
@@ -167,7 +167,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetListCountDto> readByCreateTime() {
-		log.info("readByCreateTime()");
+		//log.info("readByCreateTime()");
 
 		return meetInfoRepository.selectOrderByRecent();
 	}
@@ -178,7 +178,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public List<MeetLike> LikeList() {
-		log.info("readByCreateTime()");
+		//log.info("readByCreateTime()");
 
 		return meetLikeRepository.selectMeetLikeList();
 	}
@@ -199,7 +199,7 @@ public class MeetListService {
 	 * @return
 	 */
 	public Map<String, Object> selectBySearch(MeetSearchListDto dto) {
-		log.info("selectBySearch(dto={})", dto);
+		//log.info("selectBySearch(dto={})", dto);
 
 		dto.setAmount(15);	
 		if (dto.getPageNum() > 1) {

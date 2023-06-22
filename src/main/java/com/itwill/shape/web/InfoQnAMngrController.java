@@ -32,10 +32,10 @@ public class InfoQnAMngrController {
 	 */
 	@GetMapping("/list")
 	public void list(Model model,Criteria cri) {
-		log.info("list()");
+		//log.info("list()");
 		
 		int total = infoQnAService.getListCount();
-		log.info("listCount = {}", total);
+		//log.info("listCount = {}", total);
 		
 		List<InfoQnAListDto> list = infoQnAService.read(cri);
 		model.addAttribute("infoQnAs", list);
@@ -44,7 +44,7 @@ public class InfoQnAMngrController {
 	
 	@GetMapping("/modify")
 	public void modify(long qid, Model model) {
-		log.info("modify(qid={})", qid);
+		//log.info("modify(qid={})", qid);
 		InfoQnADetailDto dto = infoQnAService.read(qid);
 		model.addAttribute("infoQnA", dto);
 	}
@@ -57,9 +57,9 @@ public class InfoQnAMngrController {
 	 */
 	@PostMapping("/update")
 	public String update(InfoQnAMngrUpdateDto dto) {
-		log.info("update(dto={})", dto);
+		//log.info("update(dto={})", dto);
 		int result = infoQnAService.update(dto);
-		log.info("답변 업데이트 결과 ={}", result);
+		//log.info("답변 업데이트 결과 ={}", result);
 		return "redirect:/mngr/qna/list";
 	}
 	

@@ -38,16 +38,16 @@ public class MeetDetailService {
 		 * 리스트 페이지
 		 */
 		public MeetMainDetailDto detailByMtid(long mtid) { // 상세페이지
-			log.info("detail(mtid={})" , mtid);
+			//log.info("detail(mtid={})" , mtid);
 			
 			MeetMainDetailDto dto = MeetMainDetailDto.fromEntity(meetInfoRepository.detailByMtid(mtid)); // 작성한 글 상세페이지
-			log.info("dto={}", dto);
+			//log.info("dto={}", dto);
 			
 			List<MeetPrtcp> list = meetPrtcpRepository.selectPrtcpList(mtid); // 참여자 정보 리스트
-			log.info(list.toString());
+			//log.info(list.toString());
 			
 	         UserInfo result = meetPrtcpRepository.getUserInfo(dto.getCrtr_id()); // 작성자 USER 정보 , + 사진
-	         log.info(result.toString());
+	         // log.info(result.toString());
 	        
 			long count = meetLikeRepository.selectMeetlikeCountWithMtid(mtid); // 찜 개수
 			
@@ -150,12 +150,12 @@ public class MeetDetailService {
 		
 		// 참여하기 클릭
 		public int create(MeetPrtcpCreateDto dto) {
-			log.info("create(dto={})");
+			//log.info("create(dto={})");
 			return meetPrtcpRepository.Prtcpinsert(dto.toEntity());
 		}
 		// 참여 취소
 		public int delete(long mtid, String id) {
-			log.info("delete(mtid={}, id = {})", mtid, id);
+			//log.info("delete(mtid={}, id = {})", mtid, id);
 			return meetPrtcpRepository.Prtcpdelete(mtid, id);
 		}
 		
@@ -165,12 +165,12 @@ public class MeetDetailService {
 		
 		// 찜수 +1	
 		public int meetLikeCreate(MeetLikeDto dto) {
-			log.info("likeCreate(dtos={})", dto);
+			//log.info("likeCreate(dtos={})", dto);
 			return meetLikeRepository.likeCreate(dto.toEntity());
 		}
 		// 찜수 -1	
 		public int meetLikeDelete(long mtid, String id) {
-			log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
+			//log.info("LikeCountDelete(mtid = {}, id = {})", mtid, id);
 			
 			return meetLikeRepository.likeDelete(mtid, id);
 		}

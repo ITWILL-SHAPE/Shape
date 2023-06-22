@@ -1,5 +1,4 @@
 package com.itwill.shape.dto;
-// 지현 큐앤에이 관리자 수정용
 import com.itwill.shape.domain.InfoQnA;
 
 import lombok.Data;

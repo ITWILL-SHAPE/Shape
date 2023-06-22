@@ -41,7 +41,7 @@ li::before 선택자를 사용하여 각 리스트 아이템(<li>)의 시작 부
 				<nav style="margin-top: 30px;">
 					<h5 class="mainColor">모임</h5>
 					<ul class="hyphen-list">
-						<li><a class="text-decoration-none text-dark" href="active?id=${ id }">내가 참여 중인 모임</a></li>
+						<li><a class="text-decoration-none text-dark" href="active?id=${ id }">내가 참여한 모임</a></li>
 						<li><a class="text-decoration-none text-dark" href="created?id=${ id }">내가 개설한 모임</a></li>
 						<li><a class="text-decoration-none text-dark" href="interests?id=${ id }">내가 찜한 모임</a></li>
 					</ul>

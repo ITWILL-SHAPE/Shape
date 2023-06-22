@@ -54,7 +54,7 @@ public class MeetController {
 
 	@GetMapping("/create")
 	public void create() {
-		log.info("GET: create()");
+		//log.info("GET: create()");
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class MeetController {
 	 */
 	@PostMapping("/create")
 	public String create(MeetInfoCreateDto dto) {
-		log.info("POST: create({})", dto);
+		//log.info("POST: create({})", dto);
 
 		MultipartFile uploadFile1 = dto.getFormFile1();
 		MultipartFile uploadFile2 = dto.getFormFile2();
@@ -144,7 +144,7 @@ public class MeetController {
 		}
 
 		int result = meetInfoService.create(dto);
-		log.info("모임 만들기 결과 = {}", result);
+		//log.info("모임 만들기 결과 = {}", result);
 
 		return "redirect:/meet/list";
 
@@ -158,7 +158,7 @@ public class MeetController {
 	 */
 	@GetMapping("/update")
 	public void modify(long mtid, Model model) {
-		log.info("modify(mtid={})", mtid);
+		//log.info("modify(mtid={})", mtid);
 		
 		MeetMainDetailDto dto = meetInfoService.read(mtid);
 		
@@ -238,7 +238,7 @@ public class MeetController {
 	 */
 	@PostMapping("/update")
 	public String update(MeetInfoUpdateDto dto) {
-		log.info("update(dto={})", dto);
+		//log.info("update(dto={})", dto);
 
 		MultipartFile uploadFile1 = dto.getFormFile1();
 		MultipartFile uploadFile2 = dto.getFormFile2();
@@ -317,7 +317,7 @@ public class MeetController {
 		}
 		
 		int result = meetInfoService.update(dto);
-		log.info("모임 수정 결과 = {}", result);
+		//log.info("모임 수정 결과 = {}", result);
 
 		return "redirect:/meet/maindetail?mtid=" + dto.getMtid();
 	}
@@ -330,10 +330,10 @@ public class MeetController {
 	 */
 	@PostMapping("/delete")
 	public String delete(long mtid) {
-		log.info("delete(mtid={})", mtid);
+		//log.info("delete(mtid={})", mtid);
 
 		int result = meetInfoService.delete(mtid);
-		log.info("모임 삭제 결과 = {}", result);
+		//log.info("모임 삭제 결과 = {}", result);
 
 		return "redirect:/meet/list";
 
@@ -346,11 +346,11 @@ public class MeetController {
 	 */
 	@GetMapping("/list")
 	public void readBasic(Model model, MeetSearchListDto search) {
-		log.info("readBasic(search = {})", search);
+		//log.info("readBasic(search = {})", search);
 
 		// 검색의 의한 전체 개수
 		int total = meetListService.getListCount(search);
-		log.info("listCount = {}", total);
+		//log.info("listCount = {}", total);
 
 		// 페이징을 위한
 		CriteriaMeet cri = new CriteriaMeet();
@@ -380,13 +380,13 @@ public class MeetController {
 	 */
 	@GetMapping("/maindetail")
 	public void maindetail(long mtid, Model model) {
-		log.info("maindetail(mtid = {})", mtid);
+		//log.info("maindetail(mtid = {})", mtid);
 
 		// 서비스 계층에 메서드 호출해서 화면에 보여줄 MeetDetaildto를 가져옴.
 		MeetMainDetailDto result = meetDetailService.detailByMtid(mtid);
 
-		log.info("resultasdfasdf = {}", mtid);
-		log.info("resultasdfasdf = {}", result);
+		//log.info("resultasdfasdf = {}", mtid);
+		//	log.info("resultasdfasdf = {}", result);
 		
 		// 시간 지나면 상세페이지 
 		/*
@@ -416,10 +416,10 @@ public class MeetController {
 	// 참여하기
 	@PostMapping
 	public ResponseEntity<Integer> createPrtcp(@RequestBody MeetPrtcpCreateDto dto) {
-		log.info("createPrtcp(dto={})", dto);
+		//log.info("createPrtcp(dto={})", dto);
 
 		int result = meetDetailService.create(dto);
-		log.info("result = {}", result);
+		//	log.info("result = {}", result);
 
 		return ResponseEntity.ok(result);
 	}
@@ -428,10 +428,10 @@ public class MeetController {
 	@DeleteMapping("/{mtid}/{id}")
 	@ResponseBody
 	public ResponseEntity<Integer> deletePtrcp(@PathVariable long mtid, @PathVariable String id) {
-		log.info("deleteReply(mtid={}, id={})", mtid, id);
+		//	log.info("deleteReply(mtid={}, id={})", mtid, id);
 
 		int result = meetDetailService.delete(mtid, id);
-		log.info("result = {}", result);
+		//	log.info("result = {}", result);
 		return ResponseEntity.ok(result);
 	}
 
@@ -441,10 +441,10 @@ public class MeetController {
 	// 찜 +1
 	@PostMapping("/like")
 	public ResponseEntity<Integer> createLike(@RequestBody MeetLikeDto dto) {
-		log.info("createPrtcp(dto={})", dto);
+		//log.info("createPrtcp(dto={})", dto);
 
 		int result = meetDetailService.meetLikeCreate(dto);
-		log.info("result = {}", result);
+		//log.info("result = {}", result);
 
 		return ResponseEntity.ok(result);
 	}
@@ -453,10 +453,10 @@ public class MeetController {
 	@DeleteMapping("/like/{mtid}/{id}")
 	@ResponseBody
 	public ResponseEntity<Integer> deleteLike(@PathVariable long mtid, @PathVariable String id) {
-		log.info("deleteReply(mtid={}, id={})", mtid, id);
+		//log.info("deleteReply(mtid={}, id={})", mtid, id);
 
 		int result = meetDetailService.meetLikeDelete(mtid, id);
-		log.info("result = {}", result);
+		//log.info("result = {}", result);
 		return ResponseEntity.ok(result);
 	}
 

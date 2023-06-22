@@ -46,7 +46,7 @@ public class InfoNoticeController {
 	 */
 	@GetMapping("/detail")
 	public void datailNotice(long nid, Model model) {
-		log.info("detailNotice({})", nid);
+		//log.info("detailNotice({})", nid);
 		infoNoticeService.viewCount(nid);
 		InfoNotice notice = infoNoticeService.read(nid);
 		Timestamp time = Timestamp.valueOf(notice.getCreated_date());
@@ -60,7 +60,7 @@ public class InfoNoticeController {
 	@PostMapping("/download/{nid}")
 	@ResponseBody
 	public byte[] download(@PathVariable long nid) {
-		log.info("download(nid = {})", nid);
+		//log.info("download(nid = {})", nid);
 		
 		InfoNotice file = infoNoticeService.read(nid);
 		
@@ -73,10 +73,10 @@ public class InfoNoticeController {
 	 */
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
-		log.info("list()");
+		//log.info("list()");
 		
 		int total = infoNoticeService.getListCount();
-		log.info("listCount={}", total);
+		//log.info("listCount={}", total);
 		
 		List<InfoNoticeListDto> list = infoNoticeService.read(cri);
 		List<InfoNoticeListDto> fixed = infoNoticeService.read();

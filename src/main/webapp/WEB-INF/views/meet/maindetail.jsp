@@ -44,7 +44,7 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<c:if test="${ meetmaindetail.file1 == null }">							
-							<img src="<%=request.getContextPath()%>/static/images/common/mainImage.png"/>							
+							<img src="<%=request.getContextPath()%>/static/images/common/BasicMeetImg.png"/>							
 						</c:if>
 						<c:if test="${ meetmaindetail.file1 != null }"> 
 							<c:set value="data:image/png;base64, ${ meetmaindetail.file1 }" var="url1" />							

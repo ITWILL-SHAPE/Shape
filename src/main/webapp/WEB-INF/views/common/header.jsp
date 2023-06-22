@@ -60,12 +60,9 @@
 							class="w-215-px">
 					</a>
 					<!-- 메뉴 -->
-					<nav class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 dropdown">
-						<button onclick="location.href='/shape/test/testHandler'" class="btn headerBtn me-5">
-							test
-						</button>
+					<nav class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 dropdown ms-4">
 						<button onclick="location.href='/shape/meet/create'" class="btn headerBtn me-5" >
-							모임 만들기
+							모임 등록
 						</button>
 						<button onclick="location.href='/shape/meet/list'" class="btn headerBtn me-5">
 							모임 찾기
