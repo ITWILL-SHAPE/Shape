@@ -288,9 +288,12 @@
 		M.title
 		, M.CRTR_ID
 		, M.created_date
-		, COUNT(L.mtid) AS LCNT
-		,
-		COUNT(P.mtid) AS PCNT
+		,(select count(L.mtid)
+		from meet_like L
+		where M.mtid = L.mtid) as LCNT
+		,(select count(P.mtid)
+        from meet_prtcp P
+        where M.mtid = P.mtid) AS PCNT
 		FROM MEET_INFO M
 		LEFT JOIN (
 		SELECT DISTINCT MTID
@@ -377,9 +380,12 @@
 		M.title
 		, M.CRTR_ID
 		, M.created_date
-		, COUNT(L.mtid) AS LCNT
-		,
-		COUNT(P.mtid) AS PCNT
+		,(select count(L.mtid)
+		from meet_like L
+		where M.mtid = L.mtid) as LCNT
+		,(select count(P.mtid)
+        from meet_prtcp P
+        where M.mtid = P.mtid) AS PCNT
 		FROM MEET_INFO M
 		LEFT JOIN (
 		SELECT DISTINCT MTID

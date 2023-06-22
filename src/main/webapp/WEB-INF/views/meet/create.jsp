@@ -141,7 +141,7 @@
 							</dd>
 							<br>
 							<dt align="left" class="dt_class">
-							모임 사진 <span class="highlight">*</span>
+							모임 사진
 							</dt>
 							<dd align="left">
 								<div id="inputContainer">

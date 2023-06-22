@@ -184,7 +184,6 @@
 							<dd align="left">
 								<div>
 									<div class="my-2">
-										<!-- DB에 들어갈 때 p태그가 생기는 문제 -->
 										<textarea class="form-control" id="summernote" name="content" >${ meet.content }</textarea>
 									</div>
 								</div>

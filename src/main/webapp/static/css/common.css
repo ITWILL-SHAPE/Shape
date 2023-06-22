@@ -60,6 +60,34 @@ footer {
   	bottom: 0;
 }
 
+/* 상단 하단 이동 버튼 */
+.moveTopBtn {
+  position: fixed;
+  bottom: 7rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  color: #fff;
+ }
+
+.moveBottomBtn {
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  color: #fff;
+ }
+ 
+ .topBtnImage {
+	width: 85px;
+	height: 85px;
+}
+
+.bottomBtnImage {
+	width: 85px;
+	height: 85px;
+}
 
 /* mngr home */
 .side-fix {
