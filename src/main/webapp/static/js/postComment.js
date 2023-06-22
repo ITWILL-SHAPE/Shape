@@ -145,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			axios.put(reqUrl, data)
 				.then((response) => {
-					alert('수정 성공');
 					getCommentWithPid();
 				})
 				.catch((error) => console.log(error))
@@ -158,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 댓글 삭제 버튼의 이벤트 리스너 (콜백) 함수
 	const deleteComment = (e) => {
 		console.log(e.target);
-		if (!confirm('삭제?')) {
+		if (!confirm('삭제하시겠습니까?')) {
 			return;
 		}
 		const pcid = e.target.getAttribute('data-id'); // 삭제할 댓글 아이디
@@ -205,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const splitContent = content.split(' ').join('');
 
 		if (!splitContent) {
-			alert('댓글 작성');
+			alert('댓글을 작성하세요');
 			return;
 		}
 
