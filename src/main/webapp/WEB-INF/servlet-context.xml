@@ -31,4 +31,10 @@
 		 컨트롤러 클래스들을 작성하는 패키지 이름. -->
 	<context:component-scan base-package="com.itwill.shape.web"/>
 	
+	<!-- 파일 업로드 설정 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000" /> 
+        <property name="maxInMemorySize" value="100000000" /> 
+    </bean>
+	
 </beans>
