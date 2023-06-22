@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			return;
 		}
 		
-		const result = confirm(`NO. ${nid} 변경 사항을 저장하시겠습니까?`);
+		const result = confirm(`변경 사항을 저장하시겠습니까?`);
 		if(result) {
 			form.action = 'update';
 			form.method = 'post';
