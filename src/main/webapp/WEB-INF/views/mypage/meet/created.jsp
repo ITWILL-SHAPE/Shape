@@ -64,7 +64,7 @@
 
 								<div>
 									<c:choose>
-										<c:when test="${activeList.PCNT >= activeList.nm_ppl}">
+										<c:when test="${createdList.PCNT >= createdList.nm_ppl}">
 											<div id="mozipFin${status.begin}">
 												<img id="mozipFinImg${status.begin}"
 													src="./static/images/sample/mozip_fin.svg" alt="recuriEng"
