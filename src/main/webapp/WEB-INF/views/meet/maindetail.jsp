@@ -291,11 +291,11 @@
 												<c:if test="${hasParticipated == 'false'}">
 														<button id="full" name="full" type="button" class="btn btn-secondary">참여종료</button>
 												</c:if>
-												</c:if>
-
-
-
-											</div>
+										</c:if>
+								
+								
+								
+								</div>
 							</c:when>
 						</c:choose>			
 					</sec:authorize>

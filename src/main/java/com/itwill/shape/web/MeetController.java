@@ -388,25 +388,23 @@ public class MeetController {
 		log.info("resultasdfasdf = {}", mtid);
 		log.info("resultasdfasdf = {}", result);
 		
-		// 시간 지나면 상세페이지 사라지는 마술~!~
-		LocalDate currentDate = LocalDate.now();
-		String date = result.getEd_date();
-		log.info("확인 = {}", date);
-		LocalDate parsedDate = LocalDate.parse(date);
-		log.info(parsedDate.toString());
-
-		int isPast = currentDate.compareTo(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
-		log.info("ispast = {}", isPast);
-
-		if (isPast <= 0) { // 모집날짜가 미래일 경우
-			model.addAttribute("meetmaindetail", result);
-
-		} else {
-			log.info("떨구는 것 확인 = {}", isPast);
-		}
+		// 시간 지나면 상세페이지 
+		/*
+		 * LocalDate currentDate = LocalDate.now(); String date = result.getEd_date();
+		 * log.info("확인 = {}", date); LocalDate parsedDate = LocalDate.parse(date);
+		 * log.info(parsedDate.toString());
+		 * 
+		 * int isPast = currentDate.compareTo(parsedDate); // 현재 시간과 비교하여 지난 시간인지 확인
+		 * log.info("ispast = {}", isPast);
+		 * 
+		 * if (isPast <= 0) { // 모집날짜가 미래일 경우 model.addAttribute("meetmaindetail",
+		 * result);
+		 * 
+		 * } else { log.info("떨구는 것 확인 = {}", isPast); }
+		 */
 
 		// 뷰에 MeetDetaildto를 전달.
-		/* model.addAttribute("meetmaindetail", result); */
+		model.addAttribute("meetmaindetail", result); 
 
 	}
 

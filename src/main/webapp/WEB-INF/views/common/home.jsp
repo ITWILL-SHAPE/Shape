@@ -66,7 +66,7 @@
 				<div class="col-12 text-center p-3"
 					style="border: 1px solid #3B7CFF;">
 					<h1>지역 모임 분포</h1>
-					<canvas id="areaMeetChart" style="width: 65%; height: 80%;"
+					<canvas id="areaMeetChart" style="width: 60%; height: 80%;"
 						class="m-auto"></canvas>
 				</div>
 			</div>
@@ -131,7 +131,7 @@
 					cateCnt[status] = cate.categorycount ;
 					status = status + 1;
 				}
-				console.log(cateCnt);
+				// console.log(cateCnt);
 				
 				let categoryMeetChart = document.getElementById("categoryMeetChart");
 				const categoryMeetCntData = {
@@ -141,7 +141,9 @@
 				      label: 'Meeting',	
 				      data : cateCnt,
 				      backgroundColor:'#3B7CFF ',
-				      borderColor : '#D3FF31'
+				      borderColor : '#D3FF31',
+				      borderWidth: 1,
+				      borderSkipped: false
 				    }
 				  ]
 				};
@@ -151,30 +153,32 @@
 				  options: {
 				    responsive: false,
 				    plugins: {
-				      legend: {
-				    	  position: 'top',
-				      	},
 				      title: {
 				        display: true,
 				        text:'CATEGORIES'
-				      },
-				      animation: {
-				    	  animateScale: true,
-				    	  animateRotate: true
 				      }
-				    }
+				    },
+				      scales: {
+				    	  y: {
+			    	        min: 0,
+			    	        ticks: {
+		    	            // forces step size to be 50 units
+		    	            stepSize: 5
+		    	          }
+			    	      }
+				      }
 				  }
 				});
 				
 				// 지역별 모임 분포				
 				let areamtcp = [];
 				let snt = 0;
-				console.log(datas.area);
+				// console.log(datas.area);
 				for(let areasMrtcp of datas.area) {
 					areamtcp[snt] = areasMrtcp.areacount;
 					snt = snt + 1;
 				}
-				console.log(areamtcp);
+				//console.log(areamtcp);
 				let areaMeetChart = document.getElementById('areaMeetChart');
 				const areaMeetData = {
 				  labels: ['서울특별시', '인천광역시', '대전광역시', '광주광역시', '대구광역시', '울산광역시', '부산광역시', '경기도', '강원도', '충청북도', '충청남도', '전라북도', '전라남도', '경상북도', '경상남도', '제주도'],
