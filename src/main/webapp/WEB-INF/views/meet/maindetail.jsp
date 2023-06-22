@@ -2,9 +2,11 @@
 <%@page import="com.itwill.shape.dto.MeetPrtcpReadDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date" %>   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/header.jsp" %>
 
 
@@ -218,16 +220,26 @@
 						<input class="d-none" id="phone" value="${ phone }" />
 						<sec:authentication property="principal.user.email" var="email" />
 						<input class="d-none" id="email" value="${ email }" />
+						
+						<c:set var="now" value="<%=new java.util.Date()%>" />
+						<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy" /></c:set> 
+						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="endTime" />
+						<!--  현재 시간이 지나면 -->
+						<c:set value="${meetmaindetail.ed_date < endTime}" var="end"/>
 						<c:choose>
 							<c:when test="${ author == loginUser }">
-								<div>
+								<div> 
 									<div class=" d-grid gap-2 d-md-block  mx-auto my-2"
 										style="text-align: right;">
+										<c:if test ="${!end}">
 										<c:url var="updatePage" value="/meet/update">
 											<c:param name="mtid" value="${meetmaindetail.mtid}"></c:param>
 										</c:url>
-										<a href="${ updatePage }" type="button"
-											class="btn btn-classic" id="btnUpdate" name="btnUpdate">수정</a>
+										<a href="${ updatePage }" type="button" class="btn btn-classic" id="btnUpdate" name="btnUpdate">수정</a>
+										</c:if>
+										<c:if test="${ end }">
+											<button id="full" name="full" type="button" class="btn btn-secondary">참여종료</button>
+										</c:if>	
 									</div>
 								</div>
 							</c:when>
@@ -254,7 +266,7 @@
 									
 									<!--  참여인원 -->
 									<c:set var="NumberPrtcp" value="${meetmaindetail.meetNumberPrtcp}" />
-									
+									<c:if test="${!end}">
 									<!--  참여 인원이 NO FULL -->
 									<c:if test="${meetmaindetail.nm_ppl > NumberPrtcp}">
 									
@@ -292,9 +304,10 @@
 														<button id="full" name="full" type="button" class="btn btn-secondary">참여종료</button>
 												</c:if>
 										</c:if>
-								
-								
-								
+									</c:if>
+									<c:if test="${end}">
+										<button id="full" name="full" type="button" class="btn btn-secondary">참여종료</button>
+									</c:if>	
 								</div>
 							</c:when>
 						</c:choose>			

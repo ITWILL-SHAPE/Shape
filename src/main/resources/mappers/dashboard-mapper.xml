@@ -30,11 +30,11 @@
 	</select>
 	
 	<select id="genderFemale" resultType="com.itwill.shape.dto.MngrMeetGraphDto">
-		SELECT COUNT(*) as feMaleCount FROM USER_INFO WHERE GENDER = 'M'
+		SELECT COUNT(*) as feMaleCount FROM USER_INFO WHERE GENDER = 'F'
 	</select>
 	
 	<select id="genderMale" resultType="com.itwill.shape.dto.MngrMeetGraphDto">
-		SELECT COUNT(*) as maleCount FROM USER_INFO WHERE GENDER = 'F'
+		SELECT COUNT(*) as maleCount FROM USER_INFO WHERE GENDER = 'M'
 	</select>
 	
 	<select id="areaMeet" resultType="com.itwill.shape.dto.MngrAreaMeetDto">
