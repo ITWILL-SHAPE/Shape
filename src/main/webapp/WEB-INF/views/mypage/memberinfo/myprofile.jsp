@@ -19,7 +19,7 @@
 			<%@ include file="../sidebar.jsp"%>
 		</div>
 
-		<div id="main_content" class="container col-8 border bg-body rounded shadow-sm">
+		<div id="main_content" class="container col-8 border bg-body rounded shadow-sm pt-4">
 			
 			<div class="center profile-info my-2 text-center">
 				<c:if test="${ myPageUserInfo.file == null }">

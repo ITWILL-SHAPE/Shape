@@ -75,7 +75,7 @@
 					<!-- 버튼영역 시작 -->
 					<div class="btn_area">
 						<div
-							class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center">
+							class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center pb-4">
 							<input id="updateBtn" type="button"
 								class="btn btn_submit btn-classic" value="수정" /> <input
 								type="button" class="btn btn_cancel btn-secondary" value="취소" />

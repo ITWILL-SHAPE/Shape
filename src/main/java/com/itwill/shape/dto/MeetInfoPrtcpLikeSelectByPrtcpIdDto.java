@@ -30,7 +30,7 @@ public class MeetInfoPrtcpLikeSelectByPrtcpIdDto {
 	private long LCNT; // count(meet_like.mtid)
 	private long PCNT; // count(meet_prtcp.prtcp_id)
 	private String CRTR_ID;
-
+	private String ed_date;
 	// file 보낸 걸 받기
 	private MultipartFile uploadFile;
 

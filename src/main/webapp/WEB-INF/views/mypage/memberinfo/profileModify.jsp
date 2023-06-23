@@ -20,7 +20,7 @@
 			<%@ include file="../sidebar.jsp"%>
 		</div>
 
-		<div class="container col-8 border bg-body rounded shadow-sm" id="main_content">
+		<div class="container col-8 border bg-body rounded shadow-sm pt-4" id="main_content">
 
 
 	<div class="center profile-info my-2 text-center">
@@ -81,7 +81,7 @@
 		
 			<div
 				class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center
-                    w-75 m-auto">
+                    w-75 m-auto pb-4">
 				<!-- 취소 버튼 -->
 				<a class="btn btn-primary btn-secondary" href="myprofile?id=${id}">취소</a>
 				<!-- 수정완료 버튼 -->

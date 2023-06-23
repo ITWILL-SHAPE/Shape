@@ -365,7 +365,6 @@ public class MeetController {
 		Map<String, Object> map = meetListService.selectBySearch(search);
 		List<MeetLike> ml = meetListService.LikeList();
 
-
 		model.addAttribute("listCount", map.get("list"));
 		model.addAttribute("search", search);
 		model.addAttribute("paging", new PageMeetListDto(cri, total));
