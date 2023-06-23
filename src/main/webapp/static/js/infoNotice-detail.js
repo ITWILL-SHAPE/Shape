@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		const nid = document.querySelector('input#nid').value;
 		
-		const result = confirm(`NO. ${nid} 삭제?`);
+		const result = confirm(`삭제하시겠습니까?`);
 		
 		if(result) {
 			form.action = 'delete?nid='+nid;

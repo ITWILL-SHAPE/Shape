@@ -163,7 +163,7 @@
 			    	        min: 0,
 			    	        ticks: {
 		    	            // forces step size to be 50 units
-		    	            stepSize: 5
+		    	            stepSize: 1
 		    	          }
 			    	      }
 				      }

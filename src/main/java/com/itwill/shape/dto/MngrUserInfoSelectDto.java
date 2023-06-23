@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MngrUserInfoSelectDto {
 	
+	private int rn;
 	private String id;
 	private String name;
 	private String phone;

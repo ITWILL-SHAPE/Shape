@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnDelete = document.querySelector('#btnDelete');
     const qid = document.querySelector('#qid').value;
     btnDelete.addEventListener('click', () => {
-        const check = confirm('정말 삭제할까요?');
+        const check = confirm('삭제하시겠습니까?');
         if(check){
             modifyForm.action = './delete?qid='+ qid; 
             modifyForm.method = 'post'; 

@@ -120,7 +120,8 @@
 	<!-- 관리자 - 사용자 리스트 검색 -->
 	<select id="selectByKeyword" resultType="com.itwill.shape.domain.UserInfo">
 		SELECT
-			*
+			ROW_NUMBER() OVER(ORDER BY JOIN_DATE DESC) rn
+			, UI.*
 		FROM USER_INFO UI
 		WHERE DIVISION = 'ROLE_M'
 	    <if test='searchId != null and searchId neq ""'>
@@ -167,7 +168,10 @@
 				]]>
 		    </if>
 		)
-		SELECT * FROM T
+		SELECT 
+			ROW_NUMBER() OVER(ORDER BY JOIN_DATE DESC) rn
+			, T.*
+		FROM T
 		ORDER BY T.JOIN_DATE DESC
 		OFFSET #{pageNum} ROWS FETCH NEXT #{amount} ROWS ONLY
 	</select>
