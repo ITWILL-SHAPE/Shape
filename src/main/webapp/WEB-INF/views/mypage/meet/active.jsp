@@ -96,7 +96,7 @@
 									<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 									<c:choose>
 										<c:when
-											test="${activeList.PCNT >= createdList.nm_ppl || activeList.ed_date < date}">
+											test="${activeList.PCNT >= activeList.nm_ppl || activeList.ed_date < date}">
 											<div id="mozipFin${status.begin}">
 												<img id="mozipFinImg${status.begin}"
 													src="./static/images/sample/mozip_fin.svg" alt="recuriEng"
