@@ -59,7 +59,6 @@
 										<br />날짜:
 										<fmt:formatDate value="${ postInfo.modified_date }"
 											pattern="yyyy-MM-dd" />
-
 										<br />댓글: ${ postInfo.rcnt }
 									</p>
 								</div>

@@ -10,9 +10,10 @@
 	<select id="selectByPrtcpIdPaging"
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
 		with T as (
-		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
+		SELECT M.mtid, M.sido, M.mt_date, M.category,
+		(select count(L.mtid) from meet_like L where M.mtid=L.mtid)
 		AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title FROM meet_info M
+		(select count(P.mtid) from meet_prtcp P where M.mtid = P.mtid) AS PCNT, M.nm_ppl, M.title, M.ed_date FROM meet_info M
 		LEFT
 		JOIN meet_like
 		L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON
@@ -21,7 +22,7 @@
 		M.sido, M.mt_date,
 		M.category, M.nm_ppl,
 		M.title,
-		M.created_date
+		M.created_date, M.ed_date
 		ORDER BY
 		M.created_date DESC
 		)
@@ -38,8 +39,8 @@
 			L ON M.mtid = L.mtid LEFT JOIN meet_prtcp P ON M.mtid = P.mtid WHERE P.prtcp_id 
 			= #{prtcpId} GROUP BY M.mtid, M.sido, M.mt_date, M.category, M.nm_ppl, M.title, 
 			M.created_date ORDER BY M.created_date DESC OFFSET #{cri.pageNum} ROWS FETCH 
-			NEXT #{cri.amount} ROWS ONLY -->
-		<!-- WITH P AS( SELECT M.mtid , M.sido , M.mt_date , M.category , M.nm_ppl 
+			NEXT #{cri.amount} ROWS ONLY -->	
+	<!-- WITH P AS( SELECT M.mtid , M.sido , M.mt_date , M.category , M.nm_ppl 
 			, M.title , M.CRTR_ID , M.created_date , COUNT(DISTINCT L.mtid) AS LCNT , 
 			COUNT(P.mtid) AS PCNT FROM MEET_INFO M LEFT JOIN ( SELECT DISTINCT MTID FROM 
 			MEET_LIKE ) L ON M.mtid = L.mtid LEFT JOIN MEET_PRTCP P ON M.mtid = P.mtid 
@@ -89,9 +90,9 @@
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
 		with T as (
 		SELECT M.mtid, M.sido, M.mt_date, M.category,
-		count(L.mtid)
+		(select count(L.mtid) from meet_like L where M.mtid=L.mtid)
 		AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title
+		(select count(P.mtid) from meet_prtcp P where M.mtid = P.mtid) AS PCNT, M.nm_ppl, M.title, M.ed_date
 		FROM
 		meet_info M
 		LEFT JOIN meet_like L ON M.mtid = L.mtid
@@ -101,7 +102,7 @@
 		WHERE M.crtr_id = #{crtrId}
 		GROUP BY
 		M.mtid, M.sido,
-		M.mt_date, M.category, M.nm_ppl, M.title,
+		M.mt_date, M.category, M.nm_ppl, M.title, M.ed_date,
 		M.created_date
 		ORDER BY
 		M.created_date DESC
@@ -135,9 +136,9 @@
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
 		with T as (
 		SELECT M.mtid, M.sido, M.mt_date, M.category,
-		count(L.mtid)
+		(select count(L.mtid) from meet_like L where M.mtid=L.mtid)
 		AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title
+		(select count(P.mtid) from meet_prtcp P where M.mtid = P.mtid) AS PCNT, M.nm_ppl, M.title, M.ed_date
 		FROM
 		meet_info M
 		LEFT JOIN meet_like L ON M.mtid = L.mtid
@@ -147,7 +148,7 @@
 		WHERE L.id = #{id}
 		GROUP BY M.mtid,
 		M.sido, M.mt_date,
-		M.category, M.nm_ppl, M.title,
+		M.category, M.nm_ppl, M.title, M.ed_date,
 		M.created_date
 		ORDER BY
 		M.created_date
@@ -164,7 +165,7 @@
 		resultType="com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto">
 		SELECT M.mtid, M.sido, M.mt_date, M.category, count(L.mtid)
 		AS LCNT,
-		count(P.prtcp_id) AS PCNT, M.nm_ppl, M.title
+		(select count(P.mtid) from meet_prtcp P where M.mtid = P.mtid) AS PCNT, M.nm_ppl, M.title
 		FROM meet_info M
 		LEFT JOIN meet_like L ON M.mtid = L.mtid
 		LEFT JOIN meet_prtcp P ON

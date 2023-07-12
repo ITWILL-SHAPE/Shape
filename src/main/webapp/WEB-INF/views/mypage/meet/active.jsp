@@ -92,8 +92,11 @@
 								<!-- 하트기능 끝 -->
 
 								<div>
+									<c:set var="today" value="<%=new java.util.Date()%>" />
+									<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 									<c:choose>
-										<c:when test="${activeList.PCNT >= activeList.nm_ppl}">
+										<c:when
+											test="${activeList.PCNT >= activeList.nm_ppl || activeList.ed_date < date}">
 											<div id="mozipFin${status.begin}">
 												<img id="mozipFinImg${status.begin}"
 													src="./static/images/sample/mozip_fin.svg" alt="recuriEng"

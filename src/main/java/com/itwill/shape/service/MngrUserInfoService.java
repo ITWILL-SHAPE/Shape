@@ -62,7 +62,6 @@ public class MngrUserInfoService {
 		
 		// list - 회원 정보
 		if(dto.getPageNum() > 1) {
-			dto.setAmount(dto.getPageNum() * 10);
 			dto.setPageNum((dto.getPageNum() - 1) * 10);
 		} else {
 			dto.setPageNum(dto.getPageNum() - 1);

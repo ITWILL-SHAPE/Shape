@@ -65,8 +65,11 @@
 
 
 								<div>
+									<c:set var="today" value="<%=new java.util.Date()%>" />
+									<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 									<c:choose>
-										<c:when test="${interestsList.PCNT >= interestsList.nm_ppl}">
+										<c:when
+											test="${interestsList.PCNT >= interestsList.nm_ppl || interestsList.ed_date < date}">
 											<div id="mozipFin${status.begin}">
 												<img id="mozipFinImg${status.begin}"
 													src="./static/images/sample/mozip_fin.svg" alt="recuriEng"

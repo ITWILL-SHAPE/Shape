@@ -131,7 +131,7 @@
 								<c:param name="id" value="${ user.id }"/>
 							</c:url>
 							<tr onClick="location.href='${ detail }'">
-								<td>${ state.count }</td>
+								<td>${ user.rn }</td>
 								<td>${ user.id }</td>
 								<td>${ user.name }</td>
 								<td>${ user.phone }</td>

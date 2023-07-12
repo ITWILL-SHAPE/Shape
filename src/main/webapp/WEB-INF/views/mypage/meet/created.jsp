@@ -20,6 +20,8 @@
 		<div
 			class="container myPage-container col-8 border bg-body rounded shadow-sm"
 			id="main_content">
+			
+
 			<!--아이템: model.addAttribute("interestsList", dto);-->
 			<div id="cardList" class="album py-5">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -63,8 +65,11 @@
 
 
 								<div>
+									<c:set var="today" value="<%=new java.util.Date()%>" />
+									<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 									<c:choose>
-										<c:when test="${activeList.PCNT >= activeList.nm_ppl}">
+										<c:when
+											test="${createdList.PCNT >= createdList.nm_ppl || createdList.ed_date < date}">
 											<div id="mozipFin${status.begin}">
 												<img id="mozipFinImg${status.begin}"
 													src="./static/images/sample/mozip_fin.svg" alt="recuriEng"

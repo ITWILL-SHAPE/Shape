@@ -108,6 +108,15 @@ a.mainA:active { color: #3B7CFF; }
     bottom:-50px;
 }
 
+.authorP-div {
+	align-self: self-end;
+}
+
+.authorP {
+	margin-bottom: 0rem;
+}
+
+
 /* header.jsp에서 사용 */
 .headerBtn {
 	border: none;
@@ -364,6 +373,7 @@ table.users tr {
 .input-groupPwd {
     display: inline-flex;
     width: 35%;
+    
 }
 
 /* mypage modifyPwd*/

@@ -43,7 +43,7 @@
 					</div>
 
 				</div>
-				<div class="banner_area my-2 pt-5 text-center ">
+				<div class="banner_area my-2 pt-5 text-center pb-4">
 					<a
 						href="https://www.itwilledu.net/cmn/eduCrseMain/1000000/all/CRSE_00000000000620eduCrseMainDetail.do"
 						target="_blank" title="새 창 이동"> <img

@@ -239,7 +239,7 @@
 										<div class="card-body">
 											<div class="post-inner">
 												<div class="row align-items-center">
-													<div class="col-auto" id="post-category${status.begin}">
+													<div class="col-auto fw-bold" id="post-category${status.begin}">
 														${cardList.category}</div>
 													<div class="col text-lg-end text-center">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -253,7 +253,7 @@
 													</div>
 												</div>
 												<br>
-												<div class="titleHidden"
+												<div class="titleHidden fw-bold"
 													id="post-sidoAndTitle${status.begin}">[
 													${cardList.sido} ] &lt;${cardList.title}&gt;</div>
 
