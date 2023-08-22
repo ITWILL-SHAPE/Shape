@@ -20,19 +20,34 @@
 			<%@ include file="../sidebar.jsp"%>
 		</div>
 
-		<div class="container col-8 border bg-body rounded shadow-sm" id="main_content">
+		<div class="container col-8 border bg-body rounded shadow-sm pt-4" id="main_content">
 
-			<div class="center profile-info my-2 text-center">
+
+	<div class="center profile-info my-2 text-center">
+		<form id="form_test" action="/shape/profileupload/${ id }" method="post"
+				encType="multipart/form-data">
+
 
 				<div class="profile-image-container">
-					<img src="<c:url value='/static/images/common/user.png'/>"
-						alt="Profile Image" class="profile-image" />
+					<c:if test="${ myPageUserInfo.file == null }">
+						<img src="static/images/common/user.png" alt="Profile Image"
+							class="profile-image">
+					</c:if>
+					<c:if test="${ myPageUserInfo.file != null }">
+						<c:set value="data:image/png;base64, ${ myPageUserInfo.file }" var="url" />
+						<img src="${ url }" alt="Profile Image"
+							class="profile-image">
+					</c:if>
 					<div class="profile-overlay">
 						<label for="profile-upload" class="change-profile-btn">사진변경</label>
-						<input type="file" id="profile-upload" style="display: none;" />
+						<input type="file" id="profile-upload" name="uploadFile" style="display: none;" />
 					</div>
 				</div>
-			</div>
+     	</form>
+	</div>
+			
+			
+			
 			<div class=" my-2 pt-3 center profile-info">
 				<table>
 					<tbody>
@@ -66,15 +81,22 @@
 		
 			<div
 				class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center
-                    w-75 m-auto">
+                    w-75 m-auto pb-4">
 				<!-- 취소 버튼 -->
 				<a class="btn btn-primary btn-secondary" href="myprofile?id=${id}">취소</a>
 				<!-- 수정완료 버튼 -->
-				<a class="btn btn-primary btn-classic" href="myprofile?id=${id}">수정완료</a>
+				<a class="btn btn-primary btn-classic" id="btnUpdate">수정완료</a>
 
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+    $(document).on('click', '#btnUpdate', function(e) {
+
+        $("#form_test").submit();
+    });
+	</script>
 </body>
 <footer>
 	<%@ include file="../../common/footer.jsp"%>

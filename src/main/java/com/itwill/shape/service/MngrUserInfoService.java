@@ -31,9 +31,14 @@ public class MngrUserInfoService {
 	 * @return
 	 */
 	public UserInfoSelectByIdDto selectUserDetail(String id) {
-		log.info("selectUserDetail(id = {})", id);
+		//	log.info("selectUserDetail(id = {})", id);
 		
 		return UserInfoSelectByIdDto.fromEntity(userInfoRepository.readUserInfoById(id));
+	}
+	
+	// 프로필만
+	public byte[] userProfile(String id) {
+		return userInfoRepository.readUserInfoById(id).getProfile();
 	}
 	
 	/**
@@ -53,11 +58,10 @@ public class MngrUserInfoService {
 	 * @return
 	 */
 	public Map<String, Object> selectByKeyword(MngrUserInfoSearchListDto dto) {
-		log.info("selectByKeyword(dto = {})", dto);
+		//	log.info("selectByKeyword(dto = {})", dto);
 		
 		// list - 회원 정보
 		if(dto.getPageNum() > 1) {
-			dto.setAmount(dto.getPageNum() * 10);
 			dto.setPageNum((dto.getPageNum() - 1) * 10);
 		} else {
 			dto.setPageNum(dto.getPageNum() - 1);
@@ -70,14 +74,5 @@ public class MngrUserInfoService {
 		result.put("list", paging);
 
 		return result;
-	}
-	/**
-	 * 배선영
-	 * 관리자 - 그래프 만들기
-	 * @param dto
-	 * @return
-	 */
-	public int countGender(MngrMeetGraphDto dto) {
-		return userInfoRepository.getFemaleUserCount(dto);
 	}
 }

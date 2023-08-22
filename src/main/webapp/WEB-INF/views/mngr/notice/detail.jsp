@@ -52,7 +52,8 @@
 					</div>
 					<div class="my-4">
 						<label class="form-label" for="file">첨부파일</label>
-						<input class="form-control" id="file" value="${ notices.atchd_file }" readonly />
+						<a name="file" data-id="${ notices.nid }" href="">${ notices.file_name }</a>
+						
 					</div>
 				</div>
 				</form>
@@ -71,6 +72,7 @@
 				</div>
 			</div>
 			<script src="../../static/js/infoNotice-detail.js"></script>
+			<script src="../../static/js/infoNoticeMngr-download.js"></script>
 			</div>
 		</div>
 	</body>

@@ -38,9 +38,9 @@ public class MemeberController {
 	 */	
 	@GetMapping("/customLogin")
 	public void loginInput(String error, String logout, Model model) {
-		log.info("login()");
-		log.info("error = {}", error);
-		log.info("logout = {}", logout);
+		//log.info("login()");
+		//log.info("error = {}", error);
+		//log.info("logout = {}", logout);
 		
 		if(error != null) {
 			model.addAttribute("error", "Login Error Check Your Account");
@@ -58,7 +58,7 @@ public class MemeberController {
 	 */
 	@GetMapping("/accessError")
 	public void accessDenied(Authentication auth, Model model) {
-		log.info("access denied = {}", auth);
+		//log.info("access denied = {}", auth);
 		model.addAttribute("msg", "Access Denied");
 	}
 	
@@ -67,7 +67,7 @@ public class MemeberController {
 	 */
 	@GetMapping("/logout")
 	public void logoutGET() {
-		log.info("custom logout");		
+		//log.info("custom logout");		
 	}
 	
 	
@@ -76,7 +76,7 @@ public class MemeberController {
 	 */
 	@GetMapping("/signUp")
 	public void signUp() {
-		log.info("signUp()");		
+		//log.info("signUp()");		
 	}
 	
 	/**
@@ -84,10 +84,10 @@ public class MemeberController {
 	 */
 	@PostMapping("/signUp")
 	public void createUser(@RequestBody UserCreateDto data) {
-		log.info("createUser(dto = {})", data);
+		//log.info("createUser(dto = {})", data);
 		
 		int result = userInfoService.createMember(data);
-		log.info("result = {}", result);
+		//log.info("result = {}", result);
 	}
 	
 	/**
@@ -97,7 +97,7 @@ public class MemeberController {
 	 */
 	@PostMapping("/idDupCheck/{id}")
 	public ResponseEntity<Integer> idDupCheck(@PathVariable String id) {
-		log.info("idDupCheck(id = {})", id);
+		//log.info("idDupCheck(id = {})", id);
 		
 		int toCnt = userInfoService.idDupCheck(id);
 		
@@ -109,7 +109,7 @@ public class MemeberController {
 	 */
 	@GetMapping("/signUpSuccess")
 	public void signUpSuccess() {
-		log.info("signUpSuccess()");
+		//log.info("signUpSuccess()");
 	}
 	
 	/**
@@ -117,7 +117,7 @@ public class MemeberController {
 	 */
 	@GetMapping("/findIdOrPwd")
 	public void findIdOrPwd() {
-		log.info("findIdOrPwd()");
+		//log.info("findIdOrPwd()");
 	}
 	
 	/**
@@ -128,7 +128,7 @@ public class MemeberController {
 	@GetMapping("/mailCheck/{email}")
 	@ResponseBody
 	public String authNumberSend(@PathVariable String email) {
-		log.info("authNumberSend(email = {})", email);
+		//log.info("authNumberSend(email = {})", email);
 		
 		return mailService.authNumberContent(email);
 	}
@@ -142,7 +142,7 @@ public class MemeberController {
 	@PostMapping("/findUser")
 	@ResponseBody
 	public int findUser(@RequestBody UserInfoFindDto dto) {
-		log.info("findUser(dto = {})", dto);
+		//log.info("findUser(dto = {})", dto);
 		
 		return userInfoService.checkUserExist(dto);
 	}
@@ -155,7 +155,7 @@ public class MemeberController {
 	@PostMapping("/findUserId")
 	@ResponseBody
 	public String findUserId(@RequestBody UserInfoFindDto dto) {
-		log.info("findUserId(dto={})", dto);
+		//log.info("findUserId(dto={})", dto);
 		
 		return userInfoService.findUserId(dto.getName(), dto.getEmail());
 	}
@@ -168,7 +168,7 @@ public class MemeberController {
 	@PostMapping("/randomPwd")
 	@ResponseBody
 	public ResponseEntity<Integer> randomPwd(@RequestBody UserInfoFindDto dto) {
-		log.info("randomPwd(dto={})", dto);
+		//log.info("randomPwd(dto={})", dto);
 		
 		String pwd = mailService.tmpryPwdContent(dto.getEmail());
 		int result = userInfoService.updateUserPwd(dto.getId(), pwd);

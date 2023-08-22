@@ -1,4 +1,12 @@
 @charset "UTF-8";
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* reset */
 *{margin: 0; padding: 0;}
 html, body {
@@ -12,7 +20,7 @@ html, body {
 ul, ol { list-style-type: none; margin: 0; padding: 0;}
 
 /* 헤더 영역 */
-.header{position: fixed; width: 100%; height: 110px; background-color: white; border-bottom: 1px solid #eeeeee; top:0;}
+.header{position: fixed; width: 100%; height: 110px; background-color: white; border-bottom: 1px solid #eeeeee; top:0; }
 .header .gov-info {margin: 0 auto; vertical-align: bottom;  padding: 18px 0 0px 11px; box-sizing: border-box; max-width: 1200px;}
 .header .inner-wrap {padding:0;}
 .header .inner-wrap::before {content: ''; display: table;}
@@ -30,13 +38,15 @@ nav ul.gnb > li {float: left; padding: 0; position: relative; width: 190px; text
 nav ul.gnb > li:first-of-type {margin: 0;}
 nav ul.gnb > li > a {display: block; position: relative; padding: 20px 0 13px 0; font-size: 1.2857em;line-height: 1.1; font-weight: 700; letter-spacing: -0.05em; color: black; text-decoration: none;}
 nav ul.gnb > li.profile > a {padding: 5px 0 6px 0;}
-nav ul.gnb > li i.after-login {font-size: 40px;}
+nav ul.gnb > li i.after-login {font-size: 40px; }
 
 nav ul.gnb > li:hover > ul.sub_menu {display: block;}
 nav ul.gnb > li > ul.sub_menu {display : none; font-weight: 400; background-color: rgb(232, 255, 147); width: inherit;}
 nav ul.gnb > li > ul.sub_menu a {display : block; text-decoration : none; color : rgb(37, 37, 37); padding : 12px 20px;}
 nav ul.gnb > li > ul.sub_menu a:hover {background-color : rgb(211, 255, 49);}
-
+ul > li > a { font-family: 'Pretendard-Regular';  font-weight: 200;}
+header { font-family: 'Pretendard-Regular'; font-weight: 200;}
+ul > span { font-family: 'Pretendard-Regular';  font-weight: 200;}
 
 /* 푸터영역 */
 .footer-content {width: 600px; margin: 10px auto;}
@@ -50,6 +60,34 @@ footer {
   	bottom: 0;
 }
 
+/* 상단 하단 이동 버튼 */
+.moveTopBtn {
+  position: fixed;
+  bottom: 7rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  color: #fff;
+ }
+
+.moveBottomBtn {
+  position: fixed;
+  bottom: 3rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  color: #fff;
+ }
+ 
+ .topBtnImage {
+	width: 85px;
+	height: 85px;
+}
+
+.bottomBtnImage {
+	width: 85px;
+	height: 85px;
+}
 
 /* mngr home */
 .side-fix {
@@ -82,4 +120,8 @@ main {
 	flex-shrink: 0;
 	width: 1.5rem;
 	height: 100vh;
+}
+
+h1{
+	 font-family: 'Pretendard-Regular';
 }

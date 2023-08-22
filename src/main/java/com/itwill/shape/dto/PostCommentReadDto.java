@@ -21,6 +21,9 @@ public class PostCommentReadDto {
     private String content;
     private String author;
     private Timestamp modifiedDate;
+    
+    private byte[] profile;
+    private String file;
 
     // DB에서 select한 Reply 타입 객체를 ReplyReadDto 타입 객체로 변환해서 리턴.
     public static PostCommentReadDto fromEntity(PostComment entity) {
@@ -30,6 +33,7 @@ public class PostCommentReadDto {
                 .content(entity.getContent())
                 .author(entity.getAuthor())
                 .modifiedDate(Timestamp.valueOf(entity.getModified_date()))
+                .profile(entity.getProfile())
                 .build();
     }
     

@@ -27,10 +27,10 @@ public class MngrUserInfoController {
 	// 관리자 - 사용자 관리 list
 	@GetMapping("/list")
 	public void list(Model model, MngrUserInfoSearchListDto dto) {
-		log.info("userInfoList(dto = {})", dto);
+		//log.info("userInfoList(dto = {})", dto);
 		
 		int total = mngrUserInfoService.getListCount(dto);
-		log.info("listCount = {}", total);
+		//log.info("listCount = {}", total);
 		
 		Criteria cri = new Criteria();
 		if(dto.getPageNum() != 0) {
@@ -49,15 +49,10 @@ public class MngrUserInfoController {
 	// 관리자 - 사용자 detail
 	@GetMapping("/detail")
 	public void detail(Model model, String id) {
-		log.info("userInfoDetail(id = {})", id);
+		//log.info("userInfoDetail(id = {})", id);
 		
 		model.addAttribute("user", mngrUserInfoService.selectUserDetail(id));
 	}
-	// 관리자 - 그래프
-	@GetMapping
-	public void graph(Model model , MngrMeetGraphDto dto) {
-		log.info("MngrCountUser(dto={})", dto);
-		model.addAttribute("graph", dto);
-	}
+	
 	
 }

@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		const title = document.querySelector('input#title').value;
 		const content = document.querySelector('textarea#summernote').value;
+		//const uploadFile = document.getElementById('input#atchd_file');
 		
 		const nid = document.querySelector('input#nid').value;
 		
@@ -21,11 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
 			return;
 		}
 		
-		const result = confirm(`NO. ${nid} 변경 사항을 저장하시겠습니까?`);
+		const result = confirm(`변경 사항을 저장하시겠습니까?`);
 		if(result) {
 			form.action = 'update';
 			form.method = 'post';
 			form.submit();
 		}
 	});
+	
+	
 });

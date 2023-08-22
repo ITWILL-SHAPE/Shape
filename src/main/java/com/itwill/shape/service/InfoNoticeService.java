@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
-import com.itwill.shape.dto.InfoNoticeListDto;
 import com.itwill.shape.dto.InfoNoticeCreateDto;
+import com.itwill.shape.dto.InfoNoticeListDto;
 import com.itwill.shape.dto.InfoNoticeUpdateDto;
 import com.itwill.shape.repository.InfoNoticeRepository;
 
@@ -27,8 +27,8 @@ public class InfoNoticeService {
 		 * @return
 		 */
 		public List<InfoNoticeListDto> read() {
-			log.info("read()");
-			return infoNoticeRepository.selectOrderByDateDesc();
+			//	log.info("read()");
+			return infoNoticeRepository.selectfixed();
 		}
 		
 		/**
@@ -37,7 +37,7 @@ public class InfoNoticeService {
 		 * @return
 		 */
 		public int create(InfoNoticeCreateDto dto) {
-			log.info("create({})", dto);
+			//	log.info("create({})", dto);
 			return infoNoticeRepository.insert(dto.toEntity());
 		}
 		
@@ -47,7 +47,7 @@ public class InfoNoticeService {
 		 * @return
 		 */
 		public InfoNotice read(long nid) {
-			log.info("read({})", nid);
+			//	log.info("read({})", nid);
 			InfoNotice entity = infoNoticeRepository.selectByNid(nid);
 //			entity.setViews(infoNoticeRepository.viewCount(nid));
 			return entity;
@@ -59,7 +59,7 @@ public class InfoNoticeService {
 		 * @return
 		 */
 		public int viewCount(long nid) {
-			log.info("viewCount({})", nid);
+			//	log.info("viewCount({})", nid);
 			return infoNoticeRepository.viewCount(nid);
 		}
 		
@@ -69,7 +69,7 @@ public class InfoNoticeService {
 		 * @return
 		 */
 		public int update(InfoNoticeUpdateDto dto) {
-			log.info("update({})", dto);
+			//log.info("update({})", dto);
 			return infoNoticeRepository.updateNotice(dto.toEntity());
 		}
 		
@@ -79,7 +79,7 @@ public class InfoNoticeService {
 		 * @return
 		 */
 		public int delete(long nid) {
-			log.info("delete({})", nid);
+			//log.info("delete({})", nid);
 			return infoNoticeRepository.deleteByNid(nid);
 		}
 		
@@ -87,7 +87,7 @@ public class InfoNoticeService {
 		 * 목록 페이징
 		 */
 		public List<InfoNoticeListDto> read(Criteria cri) {
-			log.info("read(cri={})",cri);
+			//log.info("read(cri={})",cri);
 			return infoNoticeRepository.selectWithPaging(cri);
 		}
 		

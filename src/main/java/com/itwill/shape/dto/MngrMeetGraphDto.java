@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class MngrMeetGraphDto {
-	private int maleCount; // 남자 회원수
-	private int feMaleCount; // 여자회원수
+	private long maleCount; // 남자 회원수
+	private long feMaleCount; // 여자회원수
 }

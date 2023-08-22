@@ -144,13 +144,29 @@
 								<div class="col" style="cursor: pointer;" id="clickEvent"
 									onclick="location=href=('${meetDetailPage}');">
 									<div class="card shadow-sm image-container position-relative">
-										<svg idx="${status.begin}"
-											class="bd-placeholder-img card-img-top" width="100%"
-											height="220" xmlns="http://www.w3.org/2000/svg" role="img"
-											aria-label="Placeholder: Thumbnail"
-											preserveAspectRatio="xMidYMid slice" focusable="false">
-	              				<rect width="100%" height="100%" fill="#55595c" />
-	           				</svg>
+										<c:choose>
+											<c:when test="${ cardList.file != null}">
+												<!-- 저장할 때 img면 파일 확장자가 png, jpg, gif 등인지 확인하고 저장하고 img로 뿌려주기 -->
+												<c:set value="data:image/png;base64, ${ cardList.file }"
+													var="url" />
+												<img src="${ url }" class="bd-placeholder-img card-img-top"
+													width="100%" height="220"
+													xmlns="http://www.w3.org/2000/svg"
+													aria-label="Placeholder: Thumbnail"
+													preserveAspectRatio="xMidYMid slice" focusable="false" />
+											</c:when>
+											<c:otherwise>
+												<img
+													src="<%=request.getContextPath()%>/static/images/common/BasicMeetImg.png"
+													class="bd-placeholder-img card-img-top"
+													width="100%" height="220"
+													xmlns="http://www.w3.org/2000/svg"
+													aria-label="Placeholder: Thumbnail"
+													preserveAspectRatio="xMidYMid slice" focusable="false"/>
+												<rect width="100%" height="100%" fill="#55595c" />
+												</svg>
+											</c:otherwise>
+										</c:choose>
 										<!-- 로그인함: 로그인한 사용자만 입력이 가능함. -->
 										<sec:authorize access="isAuthenticated()">
 											<sec:authentication property="principal.username"
@@ -158,39 +174,46 @@
 											<input class="d-none" id="mtid" value="${ cardList.mtid }" />
 											<input class="d-none" id="id" value="${loginUser}" />
 											<c:set var="author" value="${ cardList.CRTR_ID }" />
-											<c:forEach items="${like}" var="like">
-												<c:choose>
-													<c:when
-														test="${ loginUser == like.id && cardList.mtid == like.mtid && author != loginUser}">
-														<img  src="../static/images/sample/like.svg"
-															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right" 
-															id="img-heart${status.current}"
-															onclick="event.stopPropagation(); LogInLikeCheck();" />
-													</c:when>
-													<c:when
-														test="${ loginUser == like.id && cardList.mtid == like.mtid && author == loginUser}">
-														<img src="../static/images/sample/like2.svg"
-															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right" 
-															id="img-heartEd${status.current}"
-															onclick="event.stopPropagation(); alert('선택하신 모임을 작성한 사용자는 찜을 할 수 없습니다.');" />
-													</c:when>
-													<c:otherwise>
-														<img src="../static/images/sample/like2.svg"
-															alt="toggle-off" width="40"
-															class="heart overlay-image overlay-right"
-															id="img-heartEmpty${status.current}"
-															onclick="event.stopPropagation(); LogLikeUnCheck();" />
-													</c:otherwise>
-												</c:choose>
+											<c:set value="false" var="loop" />
+											<c:forEach items="${like}" var="like" varStatus="likeStatus">
+												<c:set value="${ like.mtid == cardList.mtid }" var="mtIdBoolean"/>
+												<c:set value="${ loginUser eq cardList.CRTR_ID }" var="mtAuthorBoolean"/>
+												<c:set value="${ like.id eq loginUser }" var="loginUserBoolean"/>
+												
+												<%-- <c:out value="${ (mtIdBoolean && loginUserBoolean) && loop}"></c:out> --%>
+												<c:if test="${ (mtIdBoolean && loginUserBoolean) && loop }">
+													<input class="d-none" id="likeMtid" value="${ like.mtid }" />
+													<img src="../static/images/sample/like.svg"
+														alt="toggle-off" width="40"
+														class="heart overlay-image overlay-right"
+														id="img-heart${likeStatus.index}"/>
+													<c:set value="true" var="loop" />
+												</c:if>
+												
+												<c:if test="${ (mtIdBoolean && mtAuthorBoolean) && loop }">
+													<input class="d-none" id="likeMtid" value="${ like.mtid }" />
+													<img src="../static/images/sample/like2.svg"
+														alt="toggle-off" width="40"
+														class="heart overlay-image overlay-right"
+														id="img-heartEd${likeStatus.index}" />
+													<c:set value="true" var="loop" />
+												</c:if>
+												
+												<c:if test="${ (!mtIdBoolean ||  !loginUserBoolean) && !loop }">
+													<input class="d-none" id="likeMtid" value="${ like.mtid }" />
+													<img src="../static/images/sample/like2.svg"
+														alt="toggle-off" width="40"
+														class="heart overlay-image overlay-right"
+														id="img-heartEmpty${likeStatus.index}" />
+													<c:set value="true" var="loop" />
+												</c:if>
+												
 											</c:forEach>
 										</sec:authorize>
-										<!-- 로그인 안 함 -->
 										<sec:authorize access="isAnonymous()">
 											<img src="../static/images/sample/like2.svg" alt="not-move"
 												width="40" class="heart overlay-image overlay-right"
-												onclick="event.stopPropagation(); alert('로그인 후 찜 가능합니다');" />
+												onclick="event.stopPropagation(); alert('로그인 후 모임상세보기 창에서 찜 가능합니다');" />
 										</sec:authorize>
 										<div>
 											<c:choose>
@@ -216,7 +239,7 @@
 										<div class="card-body">
 											<div class="post-inner">
 												<div class="row align-items-center">
-													<div class="col-auto" id="post-category${status.begin}">
+													<div class="col-auto fw-bold" id="post-category${status.begin}">
 														${cardList.category}</div>
 													<div class="col text-lg-end text-center">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -230,7 +253,7 @@
 													</div>
 												</div>
 												<br>
-												<div class="titleHidden"
+												<div class="titleHidden fw-bold"
 													id="post-sidoAndTitle${status.begin}">[
 													${cardList.sido} ] &lt;${cardList.title}&gt;</div>
 
@@ -262,7 +285,7 @@
 		<nav>
 			<ul class="pagination justify-content-center">
 				<li class="page-item ${ paging.prev ? '' : 'disabled' }"><a
-					class="page-link" href="${ paging.startPage -1 }" tabindex="-1">Previous</a>
+					class="page-link" href="${ paging.startPage -1 }" tabindex="-1">&laquo;</a>
 				</li>
 				<c:forEach begin="${ paging.startPage }" end="${ paging.endPage }"
 					var="num">
@@ -271,7 +294,7 @@
 					</li>
 				</c:forEach>
 				<li class="page-item ${ paging.next? '' : 'disabled' }"><a
-					class="page-link" href="${ paging.endPage +1 }" tabindex="-1">Next</a>
+					class="page-link" href="${ paging.endPage +1 }" tabindex="-1">&raquo;</a>
 				</li>
 			</ul>
 		</nav>

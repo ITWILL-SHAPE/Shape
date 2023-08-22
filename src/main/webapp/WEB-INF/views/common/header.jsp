@@ -60,12 +60,9 @@
 							class="w-215-px">
 					</a>
 					<!-- 메뉴 -->
-					<nav class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 dropdown">
-						<button onclick="location.href='/shape/test/testHandler'" class="btn headerBtn me-5">
-							test
-						</button>
-						<button onclick="location.href='/shape/meet/create'" class="btn headerBtn me-5">
-							모임 만들기
+					<nav class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 dropdown ms-4">
+						<button onclick="location.href='/shape/meet/create'" class="btn headerBtn me-5" >
+							모임 등록
 						</button>
 						<button onclick="location.href='/shape/meet/list'" class="btn headerBtn me-5">
 							모임 찾기
@@ -101,9 +98,31 @@
 							<a href="${ myPage }"
 								class="d-block link-dark text-decoration-none dropdown-toggle"
 								id="dropUser" data-bs-toggle="dropdown" aria-expanded="false">
-								<!-- 이미지 파일 대체 -->
-								<img src="https://github.com/mdo.png" alt="mdo" width="32"
-								height="32" class="rounded-circle">
+								<!-- 이미지 파일 대체 -->								
+								<input type="hidden" name="user" value="${ id }"/>
+								<input type="hidden" name="local" value="<%=request.getContextPath()%>"/>
+								<img src="" width="40" height="40" class="rounded-circle" id="profileImg">
+								<script type="text/javascript">
+									let id = $('input[name="user"]').val();
+									// console.log(id);
+									axios.post(encodeURI(`/shape/profile/${id}`))
+									.then((res) => {
+										// console.log(res);
+										let loc = $('input[name="local"]').val();
+										let url = '';
+										if(res.data != null && res.data != '') {
+											url = "data:image/png;base64," + res.data;
+											
+										} else {
+											url = loc + '/static/images/common/user.png'
+										}
+										
+										$('#profileImg').attr("src", url);
+									})
+									.catch((err) => {
+										console.log(err);
+									})
+								</script>							
 							</a>
 							<ul class="dropdown-menu text-small"
 								aria-labelledby="dropUser">

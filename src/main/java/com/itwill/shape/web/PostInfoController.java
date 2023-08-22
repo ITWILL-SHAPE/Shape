@@ -1,5 +1,7 @@
 package com.itwill.shape.web;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -39,12 +41,24 @@ public class PostInfoController {
 	 */
 	@GetMapping("/list") 
 	public void list(Model model, Criteria cri) {
-		log.info("list()");
+		//log.info("list()");
 
 		int total = postInfoService.getListCount();
-		log.info("listCount={}", total);
+		//log.info("listCount={}", total);
 		
 		List<PostListDto> list = postInfoService.read(cri);
+		for(PostListDto dto: list) {
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String (byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 		model.addAttribute("posts", list);
 		model.addAttribute("paging", new PageDto(cri, total));
@@ -59,12 +73,24 @@ public class PostInfoController {
 	 */
 	@GetMapping("/search")
 	public void list(Model model, String keyword, Criteria cri) {
-		log.info("keyword={}, cri={}",keyword, cri);
+		//log.info("keyword={}, cri={}",keyword, cri);
 		
 		int keywordTotal = postInfoService.getListCountWithKeyword(keyword);
-		log.info("listCount = {}",keywordTotal);
+		//log.info("listCount = {}",keywordTotal);
 		
 		List<PostListDto> list = postInfoService.read(keyword, cri);
+		for(PostListDto dto: list) {
+			if(dto.getProfile() != null) {
+				byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+				String imgStr = null;
+				try {
+					imgStr = new String (byteImg, "UTF-8");
+					dto.setFile(imgStr);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		model.addAttribute("posts", list);
 		model.addAttribute("paging", new PageDto(cri, keywordTotal));
 	}
@@ -72,32 +98,42 @@ public class PostInfoController {
 
 	@GetMapping("/create")
 	public void create() {
-		log.info("GET: create()");
+		//log.info("GET: create()");
 	}
 
 	@PostMapping("/create")
 	public String create(PostCreateDto dto) {
-		log.info("POST: create({})", dto);
+		//log.info("POST: create({})", dto);
 
 		int result = postInfoService.create(dto);
-		log.info("포스트 등록 결과 = {}", result);
+		//log.info("포스트 등록 결과 = {}", result);
 		return "redirect:/post/list";
 	}
 
 	@GetMapping("/detail")
 	public void detail(long pid, Model model) {
-		log.info("detail(pid={})", pid);
+		//log.info("detail(pid={})", pid);
 
 		postInfoService.viewCount(pid);
 		
 		PostDetailDto dto = postInfoService.read(pid);
+		if(dto.getProfile()!= null) {
+			byte[] byteImg = Base64.getEncoder().encode(dto.getProfile());
+			String imgStr = null;
+			try {
+				imgStr = new String (byteImg, "UTF-8");
+				dto.setFile(imgStr);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
 
 		model.addAttribute("post", dto);
 	}
 
 	@GetMapping("/modify")
 	public void modify(long pid, Model model) {
-		log.info("modify(pid={})", pid);
+		//log.info("modify(pid={})", pid);
 
 		PostDetailDto dto = postInfoService.read(pid);
 		model.addAttribute("post", dto);
@@ -105,21 +141,21 @@ public class PostInfoController {
 
 	@PostMapping("/delete")
 	public String delete(long pid) {
-		log.info("delete(id= {})", pid);
+		//log.info("delete(id= {})", pid);
 		int result = postInfoService.delete(pid);
-		log.info("삭제 결과 = {}", pid);
+		//log.info("삭제 결과 = {}", pid);
 		
 		int cmtResult = postCommentService.deleteCommentByPid(pid);
-		log.info("댓글 삭제 결과 = {}", cmtResult);
+		//log.info("댓글 삭제 결과 = {}", cmtResult);
 		
 		return "redirect:/post/list";
 	}
 
 	@PostMapping("/update")
 	public String update(PostUpdateDto dto) {
-		log.info("update(dto={})", dto);
+		//log.info("update(dto={})", dto);
 		int result = postInfoService.update(dto);
-		log.info("업데이트 결과 ={}", result);
+		//log.info("업데이트 결과 ={}", result);
 		return "redirect:/post/detail?pid=" + dto.getPid();
 	}
 

@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../common/header.jsp"%>
+<head>
+<script defer src="static/js/userPwd-modify.js"></script>
+<script>
+	var id = '${id}';
+	console.log(id);
+</script>
+</head>
+
 <body>
 	<!-- 제목 -->
 	<div class="row">
@@ -67,7 +75,7 @@
 					<!-- 버튼영역 시작 -->
 					<div class="btn_area">
 						<div
-							class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center">
+							class="my-2 pt-3 d-grid gap-2 d-md-flex justify-content-md-center pb-4">
 							<input id="updateBtn" type="button"
 								class="btn btn_submit btn-classic" value="수정" /> <input
 								type="button" class="btn btn_cancel btn-secondary" value="취소" />
@@ -83,9 +91,6 @@
 		<!-- 메인 컨텐츠 끝 -->
 	</div>
 </body>
-<script
-	src="<%=request.getContextPath()%>/static/js/mypage-modifyPwd.js"></script>
-
 <footer>
 	<%@ include file="../../common/footer.jsp"%>
 </footer>

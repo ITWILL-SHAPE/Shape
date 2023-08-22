@@ -5,10 +5,7 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 
 @NoArgsConstructor	// 기본 생성자
@@ -27,4 +24,5 @@ public class PostInfo {
 	private long views;
 	
 	private String keyword;
+	private byte[] profile;
 }

@@ -21,7 +21,7 @@
 					</div>
 					<div class="my-2">
 						<label class="form-label" for="content">내용</label>
-						<textarea class="form-control" id="content" name="content"
+						<textarea class="form-control" style="height:200px;" id="content" name="content"
 							required></textarea>
 					</div>
 					<div class="my-2">
@@ -37,8 +37,8 @@
 					</div>
 					<textarea class="form-control d-none" id="secret" name="secret"></textarea>
 				</div>
-				<div class="my-2">
-					<input class="form-control btn btn-classic" id="btnSubmit"
+				<div class="mb-3 me-3 d-grid gap-2 d-md-flex justify-content-md-end">
+					<input class="btn btn-classic justify-content-md-end" id="btnSubmit"
 						type="submit" value="등록" />
 				</div>
 			</form>

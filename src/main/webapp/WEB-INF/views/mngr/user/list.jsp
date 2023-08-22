@@ -131,20 +131,10 @@
 								<c:param name="id" value="${ user.id }"/>
 							</c:url>
 							<tr onClick="location.href='${ detail }'">
-								<td>${ state.count }</td>
+								<td>${ user.rn }</td>
 								<td>${ user.id }</td>
 								<td>${ user.name }</td>
-								<c:set var="phone" value="${ user.phone }"/>
-								<td>
-									<c:choose>
-										<c:when test="${ fn:contains(phone, '-') }">
-											${ phone }											
-										</c:when>
-										<c:otherwise>
-											${ fn:substring(phone, 0, 3) }-${ fn:substring(phone, 3, 7) }-${ fn:substring(phone, 7, 13) }
-										</c:otherwise>
-									</c:choose>
-								</td>
+								<td>${ user.phone }</td>
 								<c:set var="join" value="${ user.join_date }"/>
 								<td>${ fn:substring(join, 0, 10) }</td>
 							</tr>

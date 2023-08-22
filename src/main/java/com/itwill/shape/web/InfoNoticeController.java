@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.shape.domain.Criteria;
 import com.itwill.shape.domain.InfoNotice;
@@ -43,7 +46,7 @@ public class InfoNoticeController {
 	 */
 	@GetMapping("/detail")
 	public void datailNotice(long nid, Model model) {
-		log.info("detailNotice({})", nid);
+		//log.info("detailNotice({})", nid);
 		infoNoticeService.viewCount(nid);
 		InfoNotice notice = infoNoticeService.read(nid);
 		Timestamp time = Timestamp.valueOf(notice.getCreated_date());
@@ -52,17 +55,33 @@ public class InfoNoticeController {
 	}
 	
 	/**
+	 * 첨부파일 다운로드
+	 */
+	@PostMapping("/download/{nid}")
+	@ResponseBody
+	public byte[] download(@PathVariable long nid) {
+		//log.info("download(nid = {})", nid);
+		
+		InfoNotice file = infoNoticeService.read(nid);
+		
+		byte[] fileByte = file.getAtchd_file();
+		return fileByte;
+	}
+	
+	/**
 	 * 리스트 페이징 출력
 	 */
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
-		log.info("list()");
+		//log.info("list()");
 		
 		int total = infoNoticeService.getListCount();
-		log.info("listCount={}", total);
+		//log.info("listCount={}", total);
 		
 		List<InfoNoticeListDto> list = infoNoticeService.read(cri);
+		List<InfoNoticeListDto> fixed = infoNoticeService.read();
 		
+		model.addAttribute("fixed", fixed);
 		model.addAttribute("notices", list);
 		model.addAttribute("paging", new PageDto(cri, total));
 	}

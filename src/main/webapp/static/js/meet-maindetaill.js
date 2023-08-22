@@ -43,7 +43,7 @@
 		// 참여인원 FULL
 	
 		$('button#full').click(function(e) {
-			alert("참여가 종료된 모임 입니다.");
+			alert("참여가 종료된 모임입니다.");
 		});
 		
 		/** 
@@ -64,11 +64,11 @@
 					if (response.data) {
 						goToDetail(mtid);
 					} else {
-						console.log('없음');
+						//console.log('없음');
 					}
 				})
 				.catch((error) => {
-					console.log(error);
+					//console.log(error);
 				});
 
 		};
@@ -86,27 +86,27 @@
 		const deletemeetlike = (e) => {
 			e.preventDefault();
 
-			console.log(e.target);
+			//console.log(e.target);
 			
 
 			const mtid = e.target.getAttribute('data-id');
 			const id = e.target.getAttribute('data-login');
 			const reqUrl = `/shape/meet/like/${mtid}/${id}`;
-			console.log(mtid, id);
+			//console.log(mtid, id);
 
 			axios.delete(reqUrl)
 				.then((response) => {
-					console.log(response);
+					//console.log(response);
 
 					if (response.data) {
 						goToDetail(mtid);
 					} else {
-						console.log('없든듸');
+						//console.log('없든듸');
 					}
 					
 				})
 				.catch((error) => {
-					console.log(error);
+					//console.log(error);
 				});
 		};
 		
@@ -125,21 +125,21 @@
 			const phone = document.querySelector('input#phone').value;
 			const email = document.querySelector('input#email').value;
 
-			console.log(mtid, prtcp_id, name, gender, phone, email);
+			//console.log(mtid, prtcp_id, name, gender, phone, email);
 
 			const data = { mtid, prtcp_id, name, gender, phone, email };
 
 			axios.post('/shape/meet', data)
 				.then((response) => {
-					alert('참여완료~♥');
+					alert('참여가 완료 되었습니다.');
 					if(response.data) {
 						goToDetail(mtid);
 					} else {
-						console.log('없든듸');
+						//console.log('없든듸');
 					}			
 				})
 				.catch((error) => {
-					console.log(error);
+					//console.log(error);
 				});
 
 		};
@@ -152,13 +152,11 @@
 		$('button#delete').click(function(e) {
 			deletemeetjoin(e);
 		});
-		// const btndelete = document.querySelector('button#delete');		
-		// btndelete.addEventListener('click', deletemeetjoin);
 		const deletemeetjoin = (e) => {
 			e.preventDefault();
 			
-			console.log(e.target);
-			if (!confirm('참여를 거부하시나요???')) {
+			//console.log(e.target);
+			if (!confirm('참여를 취소하시겠습니까?')) {
 				return;
 			}
 			const mtid = e.target.getAttribute('data-id');
@@ -167,17 +165,17 @@
 
 			axios.delete(reqUrl)
 				.then((response) => {
-					console.log(response);
+					//console.log(response);
 					
 					if(response.data) {
 						goToDetail(mtid);
 					} else {
-						console.log('없든듸');
+						//console.log('없든듸');
 					}
-					 alert('참여가 취소 ㅠㅠ'); 
+					 alert('참여가 취소 되었습니다'); 
 				})
 				.catch((error) => {
-					console.log(error);
+					//console.log(error);
 				});
 		};
 

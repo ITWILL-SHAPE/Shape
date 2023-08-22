@@ -44,12 +44,12 @@ public class MailSendService {
 				}; 
 		int idx = 0; 
 		StringBuffer sb = new StringBuffer(); 
-		log.info("charSet.length : "+charSet.length); 
+		//log.info("charSet.length : "+charSet.length); 
 			
 		for (int i = 0; i < 8; i++) { 
 			idx = (int) (charSet.length * Math.random()); 
 			// 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
-			log.info("idx : "+idx); 
+			//	log.info("idx : "+idx); 
 			sb.append(charSet[idx]); 
 		} 
 		return sb.toString(); 

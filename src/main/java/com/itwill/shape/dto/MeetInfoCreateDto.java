@@ -1,5 +1,7 @@
 package com.itwill.shape.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itwill.shape.domain.MeetInfo;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +34,13 @@ public class MeetInfoCreateDto {
 	private byte[] img_4;
 	private byte[] img_5;
 	private String content;
+	
+	// 사진
+	private MultipartFile formFile1;
+	private MultipartFile formFile2;
+	private MultipartFile formFile3;
+	private MultipartFile formFile4;
+	private MultipartFile formFile5;
 	
 	public MeetInfo toEntity() {
 		

@@ -25,4 +25,6 @@ public class PostComment {
 	private String author;
 	private LocalDateTime created_date;
 	private LocalDateTime modified_date;
+	
+	private byte[] profile;
 }

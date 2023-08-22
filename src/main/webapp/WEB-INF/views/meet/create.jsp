@@ -21,7 +21,7 @@
 						</small>
 						</div>
 					</div>
-					<form action="" method="post" class="form-box" id="createForm">
+					<form action="" method="post" class="form-box" id="createForm" encType="multipart/form-data">
 						<dl>
 							<div>
 								<sec:authorize access="isAuthenticated()">
@@ -111,10 +111,10 @@
 								<div class="smallText">
 									<div class="input-group">
 										<input type="number" class="form-control" id="nm_ppl" name="nm_ppl"
-										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl" required /> 
+										placeholder="인원 수를 입력하세요." aria-label="인원 수를 입력하세요." aria-describedby="ppl" min="1" max="25" required /> 
 										<span class="input-group-text" id="ppl">명</span>
 									</div>
-									<small id="nm_ppl_help" class="form-text text-muted">숫자만 입력</small>
+									<small id="nm_ppl_help" class="form-text text-muted">최대 인원 25명</small>
 								</div>
 							</dd>
 							<br>
@@ -144,22 +144,19 @@
 							모임 사진
 							</dt>
 							<dd align="left">
-								<div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
-									</div>
-									<div class="mb-3">
-										<input class="form-control" type="file" id="formFile" accept="image/*">
-									</div>
+								<div id="inputContainer">
+								  <div class="input-group mb-3">
+								    <input class="form-control file-input" type="file" id="formFile1" name="formFile1" accept="image/*" onchange="imageUpload(this);">
+								  	<img class="imagePreview" id="imagePreview1">
+								  </div>
+								</div>
+								
+								<div class="smallText">
+									<small id="nm_ppl_help" class="form-text text-muted">최대 5장 첨부 가능</small>
+								</div>
+								<div class="text-center">
+								<button class="btn btn-list" type="button" id="addButton">추가</button>
+								<button class="btn btn-secondary" type="button" id="deleteButton">삭제</button>
 								</div>
 							</dd>
 							<br>

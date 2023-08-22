@@ -35,7 +35,7 @@ public class InfoQnAService {
 	}
 
 	public List<InfoQnAListDto> read() {
-		log.info("read()");
+		//log.info("read()");
 		List<InfoQnA> list = infoQnARepository.selectOrderByQidDesc();
 		List<InfoQnAListDto> result = new ArrayList<>();
 		for (InfoQnA q : list) {
@@ -47,7 +47,7 @@ public class InfoQnAService {
 
 	// (사용자) qna 상세보기 페이지
 	public InfoQnADetailDto read(long qid) {
-		log.info("read(id={})", qid);
+		//log.info("read(id={})", qid);
 		InfoQnA entity = infoQnARepository.selectByQid(qid);
 		InfoQnADetailDto dto = InfoQnADetailDto.fromEntity(entity);
 		return dto;
@@ -55,19 +55,19 @@ public class InfoQnAService {
 
 	// (사용자) qna 작성 페이지
 	public int create(InfoQnACreateDto dto) {
-		log.info("create({})", dto);
+		//log.info("create({})", dto);
 		return infoQnARepository.insert(dto.toEntity());
 	}
 
 	// (관리자) qna 답변 페이지(수정이랑 등록이 동일하지 않나 테이블이하나고 엡데이트쓰는거니까 생성아니고
 	public int update(InfoQnAMngrUpdateDto infoQnA) {
-		log.info("update({})", infoQnA);
+		//log.info("update({})", infoQnA);
 		return infoQnARepository.updateAnswerToQnA(infoQnA.toEntity());
 	}
 
 	// (사용자) qna 삭제
 	public int delete(long qid) {
-		log.info("delete(qid={})", qid);
+		//log.info("delete(qid={})", qid);
 		return infoQnARepository.deleteByQid(qid);
 	}
 

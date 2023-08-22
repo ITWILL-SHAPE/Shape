@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.domain.MeetLike;
 import com.itwill.shape.domain.MeetPrtcp;
@@ -41,13 +43,25 @@ public class MeetMainDetailDto { // 상세페이지
 	private String content; // 모임내용
 	private long views;  // 조회수 (안함)
 	private Timestamp created_date; // 작성한 시간
-	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST)
-	private UserInfo userHost; // Host 작성자
+	
+	// 다른 정보 가져오는것
+	private List<MeetPrtcp> prtcpDtoList; // 참여자 리스트 불러오기 (GUEST) 참여자 이미지
+	private UserInfo userHost; // USER 작성자
+
 	private long meetlikecount; // 찜 갯수
 	private List<MeetLike> meetLikeId; // 찜 한 아이디
-	private long meetNumberPrtcp; // 참여자 인원수 
+	private long meetNumberPrtcp; // 참여자 인원수
+
+	// 사진
+	private String file1;
+	private String file2;
+	private String file3;
+	private String file4;
+	private String file5;
 	
-		
+	// Host 이미지
+	private String hostProFile;
+	
 		public static MeetMainDetailDto fromEntity(MeetInfo entity) {
 			return MeetMainDetailDto.builder()
 		            .mtid(entity.getMtid())

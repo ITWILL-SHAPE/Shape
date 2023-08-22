@@ -1,12 +1,18 @@
 package com.itwill.shape.repository;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.itwill.shape.domain.Criteria;
+import com.itwill.shape.domain.CriteriaMeet;
 import com.itwill.shape.domain.MeetInfo;
 import com.itwill.shape.dto.MeetInfoPrtcpLikeSelectByPrtcpIdDto;
 import com.itwill.shape.dto.MeetListCountDto;
 import com.itwill.shape.dto.MeetMainDetailDto;
 import com.itwill.shape.dto.MeetSearchListDto;
+import com.itwill.shape.dto.PageMeetListDto;
 
 // meet_info의 repository.
 public interface MeetInfoRepository {
@@ -39,27 +45,44 @@ public interface MeetInfoRepository {
 	//마이페이지
 	/**
 	 * 0610 손창민
-	 * 내가 참여 중인 모임 목록 불러오기
+	 * 내가 참여 중인 모임 목록 불러오기(Paging)
 	 * @param prtcpId
 	 * @return
 	 */
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(String prtcpId);
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpIdPaging(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
+
+	// 참여중인 모임 목록 개수
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByPrtcpId(@Param("prtcpId") String prtcpId, @Param("cri")CriteriaMeet cri);
+	
+	/**
+	 * 0621 손창민
+	 * 내가 개설한 모임 목록 paging
+	 */
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrIdPaging(@Param("crtrId") String crtrId, @Param("cri")CriteriaMeet cri);
 	
 	/**
 	 * 0610 손창민
-	 * 내가 개설한 모임 목록 불러오기
+	 * 내가 개설한 모임 목록 개수
 	 * @param crtrId
 	 * @return
 	 */
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrId(String crtrId);
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByCrtrId(@Param("crtrId") String crtrId, @Param("cri")CriteriaMeet cri);
 	
 	/**
 	 * 0610 손창민
-	 * 내가 찜한 모임 목록 불러오기
+	 * 내가 찜한 모임 목록 불러오기 paging
 	 * @param id
 	 * @return
 	 */
-	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectById(String id);
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectByIdPaging(@Param("id")String id, @Param("cri")CriteriaMeet cri);
+	
+	/**
+	 * 0621 손창민
+	 * 내가 찜한 모임 개수
+	 * @param id
+	 * @return
+	 */
+	List<MeetInfoPrtcpLikeSelectByPrtcpIdDto> selectById(@Param("id")String id, @Param("cri")CriteriaMeet cri);
 	
 	//마이페이지 끝
 	
@@ -114,16 +137,25 @@ public interface MeetInfoRepository {
 	
 	/**
 	 * mtid 모임 상세 페이지
+	 * 배선영
 	 * @param mtid
 	 * @return
 	 */
-	
 	// 작성 상세페이지
 	MeetInfo detailByMtid(long mtid);
+	
+	
+	List<PageMeetListDto> selectByidWithPaging(PageMeetListDto dto);
 	
 	// 리스트 페이징
 	List<MeetListCountDto> selectBySearchPaging(MeetSearchListDto dto);
 	// 페이징을 위한 개체수 카운트
 	int meetInfoCount(MeetSearchListDto dto);
+	
+	// img_1
+	//Map<byte[], Long> selectImg();
+	
+	List<MeetListCountDto> selectImg(long mtid);
+	
 	
 }
